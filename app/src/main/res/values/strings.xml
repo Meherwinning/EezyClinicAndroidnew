@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">EezyClinic</string>
+    <string name="internet_connection_not_available_msg">Network not available</string>
+    <string name="email_send_error_msg">Unable to send email</string>
+    <string name="app_tour_page1_msg">Online doctor appointment \nApp for patient</string>
+    <string name="app_tour_page2_msg">Upload your documents\nand reports</string>
+    <string name="app_tour_page3_msg">Create your own\nhealth goals</string>
+</resources>

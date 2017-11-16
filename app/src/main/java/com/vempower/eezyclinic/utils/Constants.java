@@ -1,0 +1,86 @@
+package com.vempower.eezyclinic.utils;
+
+import org.jetbrains.annotations.Nullable;
+
+/**
+ * Created by Satishk on 8/9/2017.
+ */
+
+public interface Constants {
+    boolean IS_TESTING=true;
+
+
+
+
+    String BASIC_URL= URL_MANAGE.getURL();
+    //String SHARED_PREFERENCES_FILE_NAME = "stashdealcustomerpref";
+    String LOGGED_USER_DETAILS_OBJECT = "login_user_obj";
+    String SUCCESS_STATUS_CODE = "1";
+    int PASSWORD_MIN_LENGTH = 8;
+    String BANNERS_COUNT_LIMIT = "5";
+    String PAGE_ITEMS_COUNT_LIMIT = "10";
+
+    String SERVER_DATE_FORMAT="yyyy-MM-dd";//2017-03-31
+    String  DISPLAY_DATE_FORMAT="MMM d,yyyy";//"dd-MM-yyyy";
+
+    String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd HH:mm:ss";//"2017-11-22 23:59:59";
+    int MAX_TABS_SIZE = 5;
+    @Nullable
+    String IS_WATCH_APP_TOUR_KEY="is_watch_app_tour_key";
+    String TAWK_CHAT_URL = "https://tawk.to/chat/53fb249a8a6482154c000b0b/default/?$_tawk_popout=true" ;
+
+
+    interface BasicAuthentication {
+        String USERNAME = "developer";
+        String PASSWORD = "Yis637G*H34";
+    }
+
+     interface Filter {
+        String MIN_PRICE_KEY = "min_price_key";
+         String MAX_PRICE_KEY = "max_price_key";
+         String MIN_DISCOUNT_KEY = "min_discount_key";
+         String DISTANCE_KEY = "distance_key";
+         String LAT_KEY = "lat_key";
+         String LNG_KEY = "lng_key";
+
+         String GEO_DATA_KEY = "geo_data_key";
+     }
+
+    class URL_MANAGE
+    {
+        public static String getURL()
+        {
+            if(IS_TESTING)
+            {
+                return "http://202.63.103.194:8009";
+            }else
+            {
+                return "https://www.stashdeal.com";
+            }
+        }
+    }
+
+    interface Pref
+    {
+       String USER_VALIDATION_KEY ="validation_key";
+       String CATEGORY_TYPE_ID_KEY = "categiry_type_id";
+        String CATEGORY_NAME_KEY = "category_name";
+        String CATEGORY_IMAGE_PATH_KEY = "category_image_path_key";
+        String DEAL_OBJECT_KEY = "deal_object_key";
+        String TAB_OBJ_KEY = "tab_obj_key";
+        String IS_FROM_SEARCH_RESULT_KEY = "is_from_search_result_key";
+        String CART_VALUE_KEY = "cart_value_key";
+        String ORDER_OBJ_KEY = "order_obj_key";
+        String ORDER_ID_KEY = "order_id_key";
+        String IS_FROM_CHECKOUT_PAGE = "is_from_checkout_page";
+    }
+
+    interface ActivityResult
+    {
+        int SCREEN_REFRESH_REQUEST_CODE = 8520;
+    }
+
+    public interface OrderStatus {
+       String PAYMENT_ACCEPTED = "3";
+    }
+}
