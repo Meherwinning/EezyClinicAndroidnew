@@ -59,24 +59,7 @@ public class AppTourActivity extends AbstractFragmentActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 mSelectedItem = position;
-                    switch (state)
-                    {
-                        case ViewPager.SCROLL_STATE_DRAGGING:
-                           // Utils.showToastMessage("SCROLL_STATE_DRAGGING");
-                            Log.i(MyApplication.getCurrentActivityContext().getPackageName(), "SCROLL_STATE_DRAGGING");
-                            break;
-                        case ViewPager.SCROLL_STATE_IDLE:
-                           // Utils.showToastMessage("SCROLL_STATE_IDLE");
-                            Log.i(MyApplication.getCurrentActivityContext().getPackageName(), "SCROLL_STATE_IDLE");
 
-                            break;
-                        case ViewPager.SCROLL_STATE_SETTLING:
-                            //Utils.showToastMessage("SCROLL_STATE_SETTLING");
-                            Log.i(MyApplication.getCurrentActivityContext().getPackageName(), "SCROLL_STATE_SETTLING");
-
-                            break;
-
-                    }
                 if(state== ViewPager.SCROLL_STATE_DRAGGING && position==(adapter.getCount()-1))
                 {
                     if(!flag)
