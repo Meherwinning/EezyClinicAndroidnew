@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    buildToolsVersion '27.0.1'
     defaultConfig {
         applicationId "com.vempower.eezyclinic"
         minSdkVersion 17
@@ -21,13 +21,12 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
     implementation 'com.android.support:multidex:1.0.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.squareup.retrofit:retrofit:2.0.0-beta2'
@@ -35,10 +34,25 @@ dependencies {
     implementation 'com.squareup.retrofit:adapter-rxjava:2.0.0-beta2'
     implementation 'com.squareup.okhttp:logging-interceptor:2.6.0'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.github.asne:asne-facebook:0.3.3'
 
+
+
+    //Social login
+    //Start
+
+    compile 'com.github.asne:asne-facebook:0.3.3'
+    compile 'com.github.asne:asne-twitter:0.3.3'
+    compile 'com.github.asne:asne-googleplus:0.3.3'
+    compile 'com.github.asne:asne-linkedin:0.3.3'
+    compile 'com.github.asne:asne-instagram:0.3.3'
+    compile 'com.github.asne:asne-vk:0.3.3'
+    compile 'com.github.asne:asne-odnoklassniki:0.3.3'
+
+    //End
     //https://jitpack.io/#ronaldsmartin/Material-ViewPagerIndicator
     //https://github.com/ronaldsmartin/Material-ViewPagerIndicator
-   // implementation 'com.github.ronaldsmartin:Material-ViewPagerIndicator:1.0.4'
+    // implementation 'com.github.ronaldsmartin:Material-ViewPagerIndicator:1.0.4'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 repositories {

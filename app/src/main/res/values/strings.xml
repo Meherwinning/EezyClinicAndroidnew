@@ -5,4 +5,17 @@
     <string name="app_tour_page1_msg">Online doctor appointment \nApp for patient</string>
     <string name="app_tour_page2_msg">Upload your documents\nand reports</string>
     <string name="app_tour_page3_msg">Create your own\nhealth goals</string>
+
+
+
+    <string name="facebook_app_id">367880220327154</string><!--312054032307399-->
+    <string name="facebook_app_scrate_key">f9a79089f30f9fc9ce5f2f3c9e9b55a0</string>
+
+    <string name="twitter_consumer_key">YJL9cJ0ftif6iOdPoVRAg8tLa</string>
+    <string name="twitter_consumer_secret">KURqaLHo7iL3R7AfQegqutCR0AeYIw4klA2nKrOHXynWjfpx1Z</string>
+
+    <string name="linkedin_consumer_key">81hi89snk3m9t0</string>
+    <string name="linkedin_consumer_secret">1vavLeWuoDiwq5Bn</string>
+
+
 </resources>

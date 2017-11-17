@@ -11,5 +11,24 @@
 
     <color name="app_gradient_top_color">#28b0e2</color>
     <color name="app_gradient_bottom_color">#0dbf7a</color>
+
+
+    <!--Start Social login -->
+    <color name="facebook">#3b5998</color>
+    <color name="facebook_light">#8b9dc3</color>
+    <color name="twitter">#55ACEE</color>
+    <color name="twitter_light">#0084b4</color>
+    <color name="google_plus">#D34836</color>
+    <color name="google_plus_light">#D2D2D2</color>
+    <color name="linkedin">#287bbc</color>
+    <color name="linkedin_light">#0077b5</color>
+    <color name="vk">#36638e</color>
+    <color name="vk_light">#666699</color>
+    <color name="ok">#cf6700</color>
+    <color name="ok_light">#1daa09</color>
+    <color name="instagram">#1C5380</color>
+    <color name="instagram_light">#3f729b</color>
+    <!--End Social login -->
+
    <!-- #45a9da-->
 </resources>
