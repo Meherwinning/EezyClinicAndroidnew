@@ -10,6 +10,7 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -17,6 +18,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    lintOptions{
+        abortOnError false
     }
 }
 
@@ -34,13 +38,10 @@ dependencies {
     implementation 'com.squareup.retrofit:adapter-rxjava:2.0.0-beta2'
     implementation 'com.squareup.okhttp:logging-interceptor:2.6.0'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
-    implementation 'com.github.asne:asne-facebook:0.3.3'
-
-
-
+    implementation 'com.android.support:design:26.1.0'
+    //implementation 'com.github.asne:asne-facebook:0.3.3'
     //Social login
     //Start
-
     compile 'com.github.asne:asne-facebook:0.3.3'
     compile 'com.github.asne:asne-twitter:0.3.3'
     compile 'com.github.asne:asne-googleplus:0.3.3'
@@ -48,12 +49,12 @@ dependencies {
     compile 'com.github.asne:asne-instagram:0.3.3'
     compile 'com.github.asne:asne-vk:0.3.3'
     compile 'com.github.asne:asne-odnoklassniki:0.3.3'
-
     //End
     //https://jitpack.io/#ronaldsmartin/Material-ViewPagerIndicator
     //https://github.com/ronaldsmartin/Material-ViewPagerIndicator
     // implementation 'com.github.ronaldsmartin:Material-ViewPagerIndicator:1.0.4'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation project(':MaterialDesign')
 }
 repositories {
     mavenCentral()

@@ -25,9 +25,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.utils.Utils;
 
 
 /**
@@ -40,6 +40,8 @@ import com.vempower.eezyclinic.R;
 public class PageFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_TEXT = "param1";
+
+   // private MyTextViewRR myTextView;
 
     @Nullable
     private int page;
@@ -80,22 +82,24 @@ public class PageFragment extends Fragment {
         View view=null;
         switch (page)
         {
-            case 1:
+            case 0:
                 view = inflater.inflate(R.layout.fragment_apptour_page1, container, false);
+               // myTextView= view.findViewById(R.id.from_text);
 
+                break;
+            case 1:
+                view = inflater.inflate(R.layout.fragment_apptour_page2, container, false);
+                //myTextView= view.findViewById(R.id.from_text);
                 break;
             case 2:
-                view = inflater.inflate(R.layout.fragment_apptour_page2, container, false);
-
-                break;
-            case 3:
                 view = inflater.inflate(R.layout.fragment_apptour_page3, container, false);
-
+                //myTextView= view.findViewById(R.id.from_text);
                 break;
 
-                default:
-                view = inflater.inflate(R.layout.fragment_apptour_page3, container, false);
-
+                default: {
+                    view = inflater.inflate(R.layout.fragment_apptour_page3, container, false);
+                   // myTextView = view.findViewById(R.id.from_text);
+                }
 
 
         }
@@ -103,6 +107,8 @@ public class PageFragment extends Fragment {
         if (textView != null) {
             textView.setText(pageText);
         }*/
+
+       // myTextView.setText("Screen :"+ Utils.getStringFromResources(R.string.screen));
 
         return view;
     }

@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#28b0e2</color>
+    <color name="colorPrimaryDark">#0781ae</color>
+    <!--<color name="colorAccent">#FF4081</color>-->
+    <color name="colorAccent">@color/white</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
     <color name="text_color">#deffffff</color>
+    <color name="text_color_light_black">#098d69</color>
+
+    <color name="text_hint_color">#c3ffffff</color>
 
     <color name="app_gradient_top_color">#28b0e2</color>
     <color name="app_gradient_bottom_color">#0dbf7a</color>
+
+    <color name="button_text_color">#00b4ef</color>
+
 
 
     <!--Start Social login -->

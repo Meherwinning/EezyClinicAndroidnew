@@ -17,5 +17,8 @@
     <string name="linkedin_consumer_key">81hi89snk3m9t0</string>
     <string name="linkedin_consumer_secret">1vavLeWuoDiwq5Bn</string>
 
+    <string name="Screen">Normal</string>
+    <string name="terms_and_conditions_lbl"><u>Terms and Conditions</u></string>
+
 
 </resources>

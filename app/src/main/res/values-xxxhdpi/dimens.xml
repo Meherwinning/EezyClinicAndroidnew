@@ -2,7 +2,7 @@
 <resources>
 
 
-    <dimen name="app_tour_text_size">5sp</dimen>
+    <dimen name="app_tour_text_size1">5sp</dimen>
 
 
 

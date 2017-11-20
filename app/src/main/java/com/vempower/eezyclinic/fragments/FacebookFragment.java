@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.gc.materialdesign.views.ButtonIcon;
 import com.github.gorbin.asne.core.AccessToken;
 import com.github.gorbin.asne.core.SocialNetwork;
 import com.github.gorbin.asne.core.SocialNetworkManager;
@@ -41,12 +43,12 @@ public class FacebookFragment extends AbstractFragment implements SocialNetworkM
      * 6 - Odnoklassniki
      * 7 - Instagram
      */
-    private Button facebook;
+    private ImageView facebook;
     private View rootView;
     private OnRequestSocialPersonCompleteListener completeListener;
     private FacebookLoginListener facebookLoginListener;
-    private Button twitter;
-    private Button linkedin;
+    private ImageView twitter;
+    private ImageView linkedin;
    /* private Button googleplus;*/
 
     public FacebookFragment() {
@@ -66,9 +68,9 @@ public class FacebookFragment extends AbstractFragment implements SocialNetworkM
         // init buttons and set Listener
         facebook =rootView.findViewById(R.id.facebook);
         facebook.setOnClickListener(loginClick);
-        twitter = (Button) rootView.findViewById(R.id.twitter);
+        twitter =  rootView.findViewById(R.id.twitter);
         twitter.setOnClickListener(loginClick);
-        linkedin = (Button) rootView.findViewById(R.id.linkedin);
+        linkedin = rootView.findViewById(R.id.linkedin);
         linkedin.setOnClickListener(loginClick);
       /*  googleplus = (Button) rootView.findViewById(R.id.googleplus);
         googleplus.setOnClickListener(loginClick);*/
@@ -131,13 +133,13 @@ public class FacebookFragment extends AbstractFragment implements SocialNetworkM
         if(socialNetwork.isConnected()){
             switch (socialNetwork.getID()){
                 case FacebookSocialNetwork.ID:
-                    facebook.setText("Show Facebook profile");
+                    //facebook.setText("Show Facebook profile");
                     break;
                 case TwitterSocialNetwork.ID:
-                    twitter.setText("Show Twitter profile");
+                   // twitter.setText("Show Twitter profile");
                     break;
                case LinkedInSocialNetwork.ID:
-                    linkedin.setText("Show LinkedIn profile");
+                    ///linkedin.setText("Show LinkedIn profile");
                     break;
               /*   case GooglePlusSocialNetwork.ID:
                     googleplus.setText("Show GooglePlus profile");

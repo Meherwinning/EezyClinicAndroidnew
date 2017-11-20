@@ -95,7 +95,7 @@ public class AppTourActivity extends AbstractFragmentActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent= new Intent(AppTourActivity.this,FaceBookLoginActivity.class);
+                Intent intent= new Intent(AppTourActivity.this,SigninActivity.class);
                 startActivity(intent);
                 finish();
             }
