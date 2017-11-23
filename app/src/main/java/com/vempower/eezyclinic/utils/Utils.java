@@ -57,7 +57,18 @@ public  class Utils {
     private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     private static final int BUFFER = 120;
+    public static boolean isNetworkAvailable() {
 
+        Context context = MyApplication.getCurrentActivityContext();
+
+
+        if (context == null) {
+            return false;
+        }
+        return ((ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE))
+                .getActiveNetworkInfo() != null;
+    }
 
     public static boolean isNetworkAvailable(Context context) {
 
@@ -79,7 +90,7 @@ public  class Utils {
             return;
         }
         showToastMsg(MyApplication.getCurrentActivityContext(),
-                "network not available");
+                "Network not available");
     }
 
     public static void showToastMsg(int id) {

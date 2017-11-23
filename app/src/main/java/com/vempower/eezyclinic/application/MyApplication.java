@@ -10,10 +10,12 @@ import android.widget.ImageView;
 
 import com.google.gson.Gson;
 //import com.rey.material.app.ThemeManager;
+import com.rey.material.app.ThemeManager;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 import com.squareup.picasso.Picasso;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
+import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
@@ -35,8 +37,6 @@ public class MyApplication extends MultiDexApplication {
     private static MyApplication myApplication;
     private static ProgressDialog pd;
     private static Context mContext;
-    private boolean isFromcheckOut;
-    private String cartTotlaValue;
     private EezyClinicAPI eezyClinicAPI;
 
     // private RefWatcher refWatcher;
@@ -50,7 +50,15 @@ public class MyApplication extends MultiDexApplication {
         /*if(BuildConfig.DEBUG)
             refWatcher = LeakCanary.install(this);*/
         //ThemeManager.init(this, 2, 0, null);
+        ThemeManager.init(this, 2, 0, null);
 
+
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     public static MyApplication getInstance()
@@ -255,7 +263,9 @@ public class MyApplication extends MultiDexApplication {
 //        client.interceptors().add(new HeaderInterceptor());
         client.interceptors().add(interceptor);
 
-        client.interceptors().add(new BasicAuthInterceptor(Constants.BasicAuthentication.USERNAME, Constants.BasicAuthentication.PASSWORD));
+        //client.interceptors().add(new BasicAuthInterceptor(Constants.BasicAuthentication.USERNAME, Constants.BasicAuthentication.PASSWORD));
+        //TODO for basic authentication remove above comment line
+
         /*client.interceptors().add(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
@@ -326,7 +336,7 @@ public class MyApplication extends MultiDexApplication {
     }
 
 
-    public void setLoggedUserDetailsToSharedPref(Object details) {
+    public void setLoggedUserDetailsToSharedPref(PatientData details) {
 
         if (details == null) {
             SharedPreferenceUtils.setStringValueToSharedPrefarence(
@@ -340,12 +350,12 @@ public class MyApplication extends MultiDexApplication {
                 Constants.LOGGED_USER_DETAILS_OBJECT, json);
     }
 
-    public Object getLoggedUserDetailsFromSharedPref() {
+    public PatientData getLoggedUserDetailsFromSharedPref() {
        // MyApplication.showTransparentDialog();
         Gson gson = new Gson();
         String json = SharedPreferenceUtils.getStringValueFromSharedPrefarence(
                 Constants.LOGGED_USER_DETAILS_OBJECT, "");
-        Object obj = gson.fromJson(json, Object.class);
+        PatientData obj = gson.fromJson(json, PatientData.class);
         //MyApplication.hideTransaprentDialog();
         return obj;
     }
@@ -384,11 +394,5 @@ public  void initImageLoader(Context context) {
 
 
 
-    public void setCartTotalValue(String cartTotlaValue) {
-        this.cartTotlaValue = cartTotlaValue;
-    }
 
-    public String getCartTotalValue() {
-        return cartTotlaValue;
-    }
 }

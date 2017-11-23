@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.eezyclinic.views.MyTextViewRR;
 
 
 /**
@@ -41,7 +42,7 @@ public class PageFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_TEXT = "param1";
 
-   // private MyTextViewRR myTextView;
+    private MyTextViewRR myTextView;
 
     @Nullable
     private int page;
@@ -84,21 +85,21 @@ public class PageFragment extends Fragment {
         {
             case 0:
                 view = inflater.inflate(R.layout.fragment_apptour_page1, container, false);
-               // myTextView= view.findViewById(R.id.from_text);
+                myTextView= view.findViewById(R.id.from_text);
 
                 break;
             case 1:
                 view = inflater.inflate(R.layout.fragment_apptour_page2, container, false);
-                //myTextView= view.findViewById(R.id.from_text);
+                myTextView= view.findViewById(R.id.from_text);
                 break;
             case 2:
                 view = inflater.inflate(R.layout.fragment_apptour_page3, container, false);
-                //myTextView= view.findViewById(R.id.from_text);
+                myTextView= view.findViewById(R.id.from_text);
                 break;
 
                 default: {
                     view = inflater.inflate(R.layout.fragment_apptour_page3, container, false);
-                   // myTextView = view.findViewById(R.id.from_text);
+                    myTextView = view.findViewById(R.id.from_text);
                 }
 
 
@@ -108,7 +109,7 @@ public class PageFragment extends Fragment {
             textView.setText(pageText);
         }*/
 
-       // myTextView.setText("Screen :"+ Utils.getStringFromResources(R.string.screen));
+        myTextView.setText("Screen :"+ Utils.getStringFromResources(R.string.screen)+" Dimen:"+getResources().getDimension(R.dimen.text_size_normal));
 
         return view;
     }

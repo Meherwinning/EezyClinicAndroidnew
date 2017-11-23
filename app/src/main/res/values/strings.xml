@@ -8,8 +8,11 @@
 
 
 
-    <string name="facebook_app_id">367880220327154</string><!--312054032307399-->
+    <!--<string name="facebook_app_id">367880220327154</string>--><!--312054032307399-->
     <string name="facebook_app_scrate_key">f9a79089f30f9fc9ce5f2f3c9e9b55a0</string>
+
+    <string name="facebook_app_id">183899482166124</string>
+    <string name="fb_login_protocol_scheme">fb183899482166124</string>
 
     <string name="twitter_consumer_key">YJL9cJ0ftif6iOdPoVRAg8tLa</string>
     <string name="twitter_consumer_secret">KURqaLHo7iL3R7AfQegqutCR0AeYIw4klA2nKrOHXynWjfpx1Z</string>
@@ -19,6 +22,9 @@
 
     <string name="Screen">Normal</string>
     <string name="terms_and_conditions_lbl"><u>Terms and Conditions</u></string>
+    <string name="ok_label">Ok</string>
+    <string name="action_settings">Settings</string>
+    <string name="please_try_again">Please try again</string>
 
 
 </resources>

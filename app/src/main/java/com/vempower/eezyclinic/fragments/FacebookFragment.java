@@ -2,26 +2,31 @@ package com.vempower.eezyclinic.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.gc.materialdesign.views.ButtonIcon;
 import com.github.gorbin.asne.core.AccessToken;
 import com.github.gorbin.asne.core.SocialNetwork;
 import com.github.gorbin.asne.core.SocialNetworkManager;
 import com.github.gorbin.asne.core.listener.OnLoginCompleteListener;
 import com.github.gorbin.asne.core.listener.OnRequestAccessTokenCompleteListener;
 import com.github.gorbin.asne.core.listener.OnRequestSocialPersonCompleteListener;
+import com.github.gorbin.asne.core.persons.SocialPerson;
 import com.github.gorbin.asne.facebook.FacebookSocialNetwork;
-import com.github.gorbin.asne.linkedin.LinkedInSocialNetwork;
+//import com.github.gorbin.asne.linkedin.LinkedInSocialNetwork;
 import com.github.gorbin.asne.twitter.TwitterSocialNetwork;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.AbstractSocialLoginActivity;
 import com.vempower.eezyclinic.activities.FaceBookLoginActivity;
-import com.vempower.eezyclinic.interfaces.FacebookLoginListener;
+import com.vempower.eezyclinic.core.SocialLoginDetails;
+import com.vempower.eezyclinic.interfaces.SocialLoginListener;
+import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,7 +36,7 @@ import static com.vempower.eezyclinic.utils.Utils.showToastMessage;
 
 
 @SuppressLint("ValidFragment")
-public class FacebookFragment extends AbstractFragment implements SocialNetworkManager.OnInitializationCompleteListener, OnLoginCompleteListener {
+public class FacebookFragment extends LinkedinFragment implements SocialNetworkManager.OnInitializationCompleteListener, OnLoginCompleteListener {
     public static SocialNetworkManager mSocialNetworkManager;
     /**
      * SocialNetwork Ids in ASNE:
@@ -45,35 +50,51 @@ public class FacebookFragment extends AbstractFragment implements SocialNetworkM
      */
     private ImageView facebook;
     private View rootView;
-    private OnRequestSocialPersonCompleteListener completeListener;
-    private FacebookLoginListener facebookLoginListener;
+    //private OnRequestSocialPersonCompleteListener completeListener;
+    private SocialLoginListener facebookLoginListener;
     private ImageView twitter;
     private ImageView linkedin;
-   /* private Button googleplus;*/
+    private ImageView googleplus;
 
     public FacebookFragment() {
     }
 
     @SuppressLint("ValidFragment")
-    public FacebookFragment(FacebookLoginListener facebookLoginListener) {
-        completeListener=facebookLoginListener.getFacebookListener();
-        this.facebookLoginListener=facebookLoginListener;
+    public FacebookFragment(SocialLoginListener facebookLoginListener) {
+       // completeListener = facebookLoginListener.getFacebookListener();
+        this.facebookLoginListener = facebookLoginListener;
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-         rootView = inflater.inflate(R.layout.facebook_fragment, container, false);
+        rootView = inflater.inflate(R.layout.facebook_fragment, container, false);
         //((MainActivity)getActivity()).getSupportActionBar().setTitle(R.string.app_name);
         // init buttons and set Listener
-        facebook =rootView.findViewById(R.id.facebook);
+        facebook = rootView.findViewById(R.id.facebook);
         facebook.setOnClickListener(loginClick);
-        twitter =  rootView.findViewById(R.id.twitter);
+        twitter = rootView.findViewById(R.id.twitter);
         twitter.setOnClickListener(loginClick);
         linkedin = rootView.findViewById(R.id.linkedin);
-        linkedin.setOnClickListener(loginClick);
-      /*  googleplus = (Button) rootView.findViewById(R.id.googleplus);
-        googleplus.setOnClickListener(loginClick);*/
+        linkedin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                login_linkedin();
+            }
+        });
+        googleplus = rootView.findViewById(R.id.googleplus);
+
+        if (googleplus != null) {
+            googleplus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    googleSignIn(facebookLoginListener);
+                }
+            });
+        }
+
 
         //Get Keys for initiate SocialNetworks
         String TWITTER_CONSUMER_KEY = getActivity().getString(R.string.twitter_consumer_key);
@@ -87,11 +108,11 @@ public class FacebookFragment extends AbstractFragment implements SocialNetworkM
 
         //Chose permissions
         ArrayList<String> fbScope = new ArrayList<String>();
-        fbScope.addAll(Arrays.asList("public_profile","email"));/*, user_friends*/
+        fbScope.addAll(Arrays.asList("public_profile", "email"));/*, user_friends*/
         String linkedInScope = "r_basicprofile+r_fullprofile+rw_nus+r_network+w_messages+r_emailaddress+r_contactinfo";
 
         //Use manager to manage SocialNetworks
-        mSocialNetworkManager = (SocialNetworkManager) getFragmentManager().findFragmentByTag(FaceBookLoginActivity.SOCIAL_NETWORK_TAG);
+        mSocialNetworkManager = (SocialNetworkManager) getFragmentManager().findFragmentByTag(AbstractSocialLoginActivity.SOCIAL_NETWORK_TAG);
 
         //Check if manager exist
         if (mSocialNetworkManager == null) {
@@ -106,11 +127,11 @@ public class FacebookFragment extends AbstractFragment implements SocialNetworkM
             mSocialNetworkManager.addSocialNetwork(twNetwork);
 
             //Init and add to manager LinkedInSocialNetwork
-            LinkedInSocialNetwork liNetwork = new LinkedInSocialNetwork(this, LINKEDIN_CONSUMER_KEY, LINKEDIN_CONSUMER_SECRET, LINKEDIN_CALLBACK_URL, linkedInScope);
+           /* LinkedInSocialNetwork liNetwork = new LinkedInSocialNetwork(this, LINKEDIN_CONSUMER_KEY, LINKEDIN_CONSUMER_SECRET, LINKEDIN_CALLBACK_URL, linkedInScope);
             mSocialNetworkManager.addSocialNetwork(liNetwork);
-/*
+*/
             //Init and add to manager LinkedInSocialNetwork
-            GooglePlusSocialNetwork gpNetwork = new GooglePlusSocialNetwork(this);
+   /*         GooglePlusSocialNetwork gpNetwork = new GooglePlusSocialNetwork(this);
             mSocialNetworkManager.addSocialNetwork(gpNetwork);
 */
             //Initiate every network from mSocialNetworkManager
@@ -118,7 +139,7 @@ public class FacebookFragment extends AbstractFragment implements SocialNetworkM
             mSocialNetworkManager.setOnInitializationCompleteListener(this);
         } else {
             //if manager exist - get and setup login only for initialized SocialNetworks
-            if(!mSocialNetworkManager.getInitializedSocialNetworks().isEmpty()) {
+            if (!mSocialNetworkManager.getInitializedSocialNetworks().isEmpty()) {
                 List<SocialNetwork> socialNetworks = mSocialNetworkManager.getInitializedSocialNetworks();
                 for (SocialNetwork socialNetwork : socialNetworks) {
                     socialNetwork.setOnLoginCompleteListener(this);
@@ -129,24 +150,31 @@ public class FacebookFragment extends AbstractFragment implements SocialNetworkM
         return rootView;
     }
 
-    private void initSocialNetwork(SocialNetwork socialNetwork){
-        if(socialNetwork.isConnected()){
-            switch (socialNetwork.getID()){
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        googleInit();
+    }
+
+    private void initSocialNetwork(SocialNetwork socialNetwork) {
+        if (socialNetwork.isConnected()) {
+            switch (socialNetwork.getID()) {
                 case FacebookSocialNetwork.ID:
                     //facebook.setText("Show Facebook profile");
                     break;
                 case TwitterSocialNetwork.ID:
-                   // twitter.setText("Show Twitter profile");
+                    // twitter.setText("Show Twitter profile");
                     break;
-               case LinkedInSocialNetwork.ID:
+              /* case LinkedInSocialNetwork.ID:
                     ///linkedin.setText("Show LinkedIn profile");
-                    break;
-              /*   case GooglePlusSocialNetwork.ID:
-                    googleplus.setText("Show GooglePlus profile");
+                    break;*/
+                 /*case GooglePlusSocialNetwork.ID:
+                   // googleplus.setText("Show GooglePlus profile");
                     break;*/
             }
         }
     }
+
     @Override
     public void onSocialNetworkManagerInitialized() {
         //when init SocialNetworks - get and setup login only for initialized SocialNetworks
@@ -162,29 +190,46 @@ public class FacebookFragment extends AbstractFragment implements SocialNetworkM
     private View.OnClickListener loginClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            if(!Utils.isNetworkAvailable())
+            {
+                Utils.showToastMsgForNetworkNotAvalable();
+                return;
+            }
             /*if(socialNetwork!=null) {
                 socialNetwork.logout();
             }*/
             int networkId = 0;
-            switch (view.getId()){
+            switch (view.getId()) {
                 case R.id.facebook:
                     networkId = FacebookSocialNetwork.ID;
                     break;
-               case R.id.twitter:
+                case R.id.twitter:
                     networkId = TwitterSocialNetwork.ID;
                     break;
-                 case R.id.linkedin:
+                /* case R.id.linkedin:
                     networkId = LinkedInSocialNetwork.ID;
-                    break;
-              /*  case R.id.googleplus:
+                    break;*/
+               /* case R.id.googleplus:
                     networkId = GooglePlusSocialNetwork.ID;
                     break;*/
             }
-             socialNetwork = mSocialNetworkManager.getSocialNetwork(networkId);
-            if(!socialNetwork.isConnected()) {
-                if(networkId != 0) {
+            socialNetwork = mSocialNetworkManager.getSocialNetwork(networkId);
+            try
+            {
+            if(socialNetwork!=null)
+            {
+                socialNetwork.cancelLoginRequest();
+                socialNetwork.logout();
+            }}
+            catch (Exception e)
+            {
+                //TODO nothing
+            }
+
+            if (!socialNetwork.isConnected()) {
+                if (networkId != 0) {
                     socialNetwork.requestLogin();
-                   // AbstractSignUpInActivity.showProgress("Loading social person");
+                    // AbstractSignUpInActivity.showProgress("Loading social person");
                 } else {
                     Toast.makeText(getActivity(), "Wrong networkId", Toast.LENGTH_LONG).show();
                 }
@@ -196,7 +241,7 @@ public class FacebookFragment extends AbstractFragment implements SocialNetworkM
 
     @Override
     public void onLoginSuccess(int networkId) {
-       // AbstractSignUpInActivity.hideProgress();
+        // AbstractSignUpInActivity.hideProgress();
         startProfile(networkId);
     }
 
@@ -216,36 +261,54 @@ public class FacebookFragment extends AbstractFragment implements SocialNetworkM
 */
 
 
-
-
-    private void startProfile(int networkId){
+    private void startProfile(int networkId) {
        /* FacebookProfileFragment profile = FacebookProfileFragment.newInstannce(networkId);
         getActivity().getSupportFragmentManager().beginTransaction()
                 .addToBackStack("profile")
                 .replace(R.id.container, profile)
                 .commit();*/
-       // socialNetwork = FacebookFragment.mSocialNetworkManager.getSocialNetwork(networkId);
+        // socialNetwork = FacebookFragment.mSocialNetworkManager.getSocialNetwork(networkId);
         socialNetwork.setOnRequestAccessTokenCompleteListener(new OnRequestAccessTokenCompleteListener() {
             @Override
             public void onError(int socialNetworkID, String requestID, String errorMessage, Object data) {
-               // showToastMessage("accessToken error "+errorMessage);
+                // showToastMessage("accessToken error "+errorMessage);
             }
 
             @Override
-            public void onRequestAccessTokenComplete(int socialNetworkID, AccessToken accessToken) {
-               // showToastMessage("accessToken "+accessToken);
-                if(facebookLoginListener!=null)
-                {
-                    facebookLoginListener.setAccessToken(accessToken);
-                }
-               // facebookLoginListener
+            public void onRequestAccessTokenComplete(final int socialNetworkID,final  AccessToken accessToken) {
+                // showToastMessage("accessToken "+accessToken);
+
+                socialNetwork.setOnRequestCurrentPersonCompleteListener(new OnRequestSocialPersonCompleteListener() {
+                    @Override
+                    public void onRequestSocialPersonSuccess(int socialNetworkId, SocialPerson socialPerson) {
+                        String name = socialPerson.name;
+                        String id = socialPerson.id;
+                        String email = socialPerson.email;
+                        String socialPersonString = socialPerson.toString();
+                        String infoString = socialPersonString.substring(socialPersonString.indexOf("{") + 1, socialPersonString.lastIndexOf("}"));
+                        String info = infoString.replace(", ", "\n");
+                        String avatarURL = socialPerson.avatarURL;
+
+                        //String ACCESS_TOKEN,String MEDIA_TYPE,String MEDIA_ID,String EMAIL,String DEVICE_ID
+                        SocialLoginDetails details= new SocialLoginDetails(accessToken.token,getMediaType(socialNetworkId),id,email,Utils.getDeviceId());
+                        if (facebookLoginListener != null) {
+                            facebookLoginListener.getLoginDetails(details);
+                        }
+                    }
+
+                    @Override
+                    public void onError(int socialNetworkID, String requestID, String errorMessage, Object data) {
+
+                    }
+                });
+                socialNetwork.requestCurrentPerson();
+                // facebookLoginListener
             }
         });
 
-        socialNetwork.setOnRequestCurrentPersonCompleteListener(completeListener);
-        socialNetwork.requestCurrentPerson();
+
         socialNetwork.requestAccessToken();
-       // socialNetwork.getAccessToken();
+        // socialNetwork.getAccessToken();
         /*socialNetwork.requestAccessToken(new OnRequestAccessTokenCompleteListener() {
             @Override
             public void onRequestAccessTokenComplete(int socialNetworkID, AccessToken accessToken) {
@@ -258,6 +321,26 @@ public class FacebookFragment extends AbstractFragment implements SocialNetworkM
             }
         });*/
         //AbstractSignUpInActivity.showProgress("Loading social person");
+    }
+
+
+    private String getMediaType(int socialNetworkId)
+    {
+        switch (socialNetworkId)
+        {
+            case FacebookSocialNetwork.ID:
+                return Constants.MediaType.FACEBOOK_TYPE;
+            case TwitterSocialNetwork.ID:
+                return Constants.MediaType.TWITTER_TYPE;
+                default:
+                    return "";
+                /* case LinkedInSocialNetwork.ID:
+                    networkId = LinkedInSocialNetwork.ID;
+                    break;
+                case R.id.googleplus:
+                    networkId = GooglePlusSocialNetwork.ID;
+                    break;*/
+        }
     }
 
 /*
@@ -306,7 +389,7 @@ public class FacebookFragment extends AbstractFragment implements SocialNetworkM
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(socialNetwork!=null) {
+        if (socialNetwork != null) {
             socialNetwork.logout();
         }
     }

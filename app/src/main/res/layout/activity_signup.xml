@@ -29,33 +29,37 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:layout_marginBottom="@dimen/_20sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_30sdp">
+                    android:layout_marginBottom="@dimen/_20dp"
+                    android:layout_marginLeft="@dimen/_10dp"
+                    android:layout_marginRight="@dimen/_10dp"
+                    android:layout_marginTop="@dimen/_30dp">
 
                 </RelativeLayout>
 
 
             </RelativeLayout>
+            <EditText
+                android:focusable="true"
+                android:layout_width="match_parent"
+                android:layout_height="0dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_15sdp"
-                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:layout_marginRight="@dimen/_15dp"
                 android:background="@color/transparent"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50dp"
                         android:background="@drawable/background_shape_idle"
                         android:textColorHint="@color/text_hint_color"
                         app:errorEnabled="true"
@@ -64,7 +68,7 @@
                         <com.vempower.eezyclinic.views.MyEditTextRR
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginBottom="@dimen/_2sdp"
+                            android:layout_marginBottom="@dimen/_2dp"
                             android:background="@null"
                             android:gravity="left|center_vertical"
                             android:hint="Name*"
@@ -72,7 +76,7 @@
                             android:inputType="text"
                             android:maxLength="50"
                             android:maxLines="1"
-                            android:padding="@dimen/_2sdp"
+                            android:padding="@dimen/_2dp"
                             android:singleLine="true"
 
                             android:textColor="@color/text_color"
@@ -91,29 +95,34 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50dp"
                         android:background="@drawable/background_shape_idle"
                         android:textColorHint="@color/text_hint_color"
                         app:errorEnabled="true"
                         app:hintEnabled="true">
 
-                        <com.vempower.eezyclinic.views.MyEditTextRR
+                        <com.vempower.eezyclinic.views.MyTextViewRR
+                            android:id="@+id/dateofBirth_tv"
                             android:layout_width="match_parent"
+                            android:clickable="true"
+                            android:onClick="onDateOfBirthTextviewClick"
                             android:layout_height="match_parent"
-                            android:layout_marginBottom="@dimen/_2sdp"
+                            android:layout_marginBottom="@dimen/_2dp"
                             android:background="@null"
                             android:gravity="left|center_vertical"
                             android:hint="Date of Birth"
                             android:imeOptions="actionUnspecified"
                             android:inputType="text"
+                            android:drawableRight="@drawable/cal"
+                            android:drawablePadding="@dimen/_5dp"
                             android:maxLength="50"
                             android:maxLines="1"
-                            android:padding="@dimen/_2sdp"
+                            android:padding="@dimen/_2dp"
                             android:singleLine="true"
 
                             android:textColor="@color/text_color"
@@ -132,36 +141,38 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
-
+<!--
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50dp"
                         android:background="@drawable/background_shape_idle"
                         android:textColorHint="@color/text_hint_color"
                         app:errorEnabled="true"
-                        app:hintEnabled="true">
+                        app:hintEnabled="true">-->
 
-                        <com.vempower.eezyclinic.views.MyEditTextRR
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="@dimen/_2sdp"
-                            android:background="@null"
-                            android:gravity="left|center_vertical"
-                            android:hint="Gender"
-                            android:imeOptions="actionUnspecified"
-                            android:inputType="text"
-                            android:maxLength="50"
-                            android:maxLines="1"
-                            android:padding="@dimen/_2sdp"
-                            android:singleLine="true"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/_2dp"
+                            android:layout_height="@dimen/_50dp"
+                           >
+                            <Spinner
+                                android:id="@+id/gender_type_spinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:backgroundTint="@color/white"
 
-                            android:textColor="@color/text_color"
-                            android:textColorHint="@color/text_hint_color"
-                            android:textSize="@dimen/text_size_normal" />
+                                android:spinnerMode="dropdown"
+                                android:textColor="@color/text_color"
+                                android:textSize="@dimen/text_size_normal" />
 
-                    </android.support.design.widget.TextInputLayout>
+                        </LinearLayout>
+
+                   <!-- </android.support.design.widget.TextInputLayout>-->
 
 
                     <TextView
@@ -173,12 +184,12 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50dp"
                         android:background="@drawable/background_shape_idle"
                         android:textColorHint="@color/text_hint_color"
                         app:errorEnabled="true"
@@ -187,7 +198,7 @@
                         <com.vempower.eezyclinic.views.MyEditTextRR
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginBottom="@dimen/_2sdp"
+                            android:layout_marginBottom="@dimen/_2dp"
                             android:background="@null"
                             android:gravity="left|center_vertical"
                             android:hint="Email ID*"
@@ -195,7 +206,7 @@
                             android:inputType="text"
                             android:maxLength="50"
                             android:maxLines="1"
-                            android:padding="@dimen/_2sdp"
+                            android:padding="@dimen/_2dp"
                             android:singleLine="true"
 
                             android:textColor="@color/text_color"
@@ -214,12 +225,12 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50dp"
                         android:background="@drawable/background_shape_idle"
                         android:textColorHint="@color/text_hint_color"
                         app:errorEnabled="true"
@@ -228,7 +239,7 @@
                         <com.vempower.eezyclinic.views.MyEditTextRR
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginBottom="@dimen/_2sdp"
+                            android:layout_marginBottom="@dimen/_2dp"
                             android:background="@null"
                             android:gravity="left|center_vertical"
                             android:hint="Mobile Number*"
@@ -236,7 +247,7 @@
                             android:inputType="text"
                             android:maxLength="50"
                             android:maxLines="1"
-                            android:padding="@dimen/_2sdp"
+                            android:padding="@dimen/_2dp"
                             android:singleLine="true"
 
                             android:textColor="@color/text_color"
@@ -256,14 +267,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
 
 
 
                     <com.vempower.eezyclinic.views.MyTextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50dp"
                         android:layout_marginTop="-1dp"
                         app:errorEnabled="true"
                         android:textColorHint="@color/text_hint_color"
@@ -275,7 +286,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="left|center_vertical"
-                            android:layout_marginBottom="@dimen/_2sdp"
+                            android:layout_marginBottom="@dimen/_2dp"
                             android:background="@null"
                             android:hint="Password"
                             android:imeOptions="actionUnspecified"
@@ -284,7 +295,7 @@
                             android:maxLines="1"
                             android:maxLength="20"
                             android:textSize="@dimen/text_size_normal"
-                            android:padding="@dimen/_2sdp"
+                            android:padding="@dimen/_2dp"
                             android:singleLine="true"
                             android:textColor="@color/text_color" />
 
@@ -305,7 +316,7 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30dp"
 
                     android:layout_gravity="center_horizontal"
                     android:orientation="horizontal">
@@ -313,17 +324,17 @@
                     <com.vempower.eezyclinic.views.MyCheckBoxRR
                         android:layout_width="wrap_content"
                         android:text="Sign up to Agree"
-                        android:padding="@dimen/_5sdp"
+                        android:padding="@dimen/_5dp"
                         android:textSize="@dimen/text_size_small"
-                        android:background="@color/app_gradient_top_color"
+                        android:background="@color/app_gradient_bottom_color"
                         android:textColor="@color/text_color_light_black"
                         android:layout_height="match_parent" />
 
                   <!--  <com.vempower.eezyclinic.views.MyTextViewRR
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:padding="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5dp"
+                        android:padding="@dimen/_5dp"
                         android:text="Don't have an account?"
 
                         android:textColor="@color/white"
@@ -333,7 +344,7 @@
                     <com.vempower.eezyclinic.views.MyTextViewRR
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:paddingRight="@dimen/_5sdp"
+                        android:paddingRight="@dimen/_5dp"
                         android:gravity="left|center_vertical"
                         android:layout_gravity="center_vertical"
                         android:text="@string/terms_and_conditions_lbl"
@@ -346,12 +357,12 @@
                 <com.vempower.eezyclinic.views.MyButtonRectangleRM
                     android:id="@+id/signup_bt"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_60sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_height="@dimen/_48dp"
+                    android:layout_marginTop="@dimen/_15dp"
                     android:background="@color/white"
                     android:clickable="true"
                     android:maxLines="1"
-                    android:padding="@dimen/_4sdp"
+                    android:padding="@dimen/_4dp"
                     android:text="Sign up"
                     android:textColor="@color/app_gradient_top_color"
                     android:textSize="@dimen/button_text_size" />

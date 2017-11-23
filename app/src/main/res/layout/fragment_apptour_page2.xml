@@ -62,7 +62,7 @@
 
         <com.vempower.eezyclinic.views.MyTextViewMR
             android:id="@+id/text"
-            android:layout_marginTop="@dimen/_35sdp"
+            android:layout_marginTop="@dimen/_35dp"
             android:layout_below="@+id/center_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,18 +71,18 @@
             android:gravity="center"
             android:textColor="@color/text_color"
             android:text="@string/app_tour_page2_msg" />
-        <!--<com.vempower.eezyclinic.views.MyTextViewMR
+        <com.vempower.eezyclinic.views.MyTextViewRR
             android:id="@+id/from_text"
             android:layout_width="wrap_content"
             android:layout_below="@+id/text"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginTop="@dimen/_35sdp"
+            android:layout_marginTop="@dimen/_35dp"
             android:gravity="center"
             android:text="@dimen/app_tour_text_size"
             android:textColor="@color/text_color"
             android:textSize="@dimen/app_tour_text_size" />
--->
+
     </RelativeLayout>
 
 </RelativeLayout>

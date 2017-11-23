@@ -29,6 +29,8 @@ public interface Constants {
     String IS_WATCH_APP_TOUR_KEY="is_watch_app_tour_key";
     String TAWK_CHAT_URL = "https://tawk.to/chat/53fb249a8a6482154c000b0b/default/?$_tawk_popout=true" ;
 
+    //http://cfw.samplespace.com/wp-json/cfw/v1/customer
+
 
     interface BasicAuthentication {
         String USERNAME = "developer";
@@ -45,14 +47,14 @@ public interface Constants {
 
          String GEO_DATA_KEY = "geo_data_key";
      }
-
+//http://202.63.103.194:8008/api/patient/signin
     class URL_MANAGE
     {
         public static String getURL()
         {
             if(IS_TESTING)
             {
-                return "http://202.63.103.194:8009";
+                return "http://202.63.103.194:8008";
             }else
             {
                 return "https://www.stashdeal.com";
@@ -82,5 +84,14 @@ public interface Constants {
 
     public interface OrderStatus {
        String PAYMENT_ACCEPTED = "3";
+    }
+
+    interface MediaType
+    {
+       // media_type {facebook, twitter,  google, linkedin}
+        String FACEBOOK_TYPE ="facebook";
+        String TWITTER_TYPE ="twitter";
+        String GOOGLE_TYPE ="google";
+        String LINKEDIN_TYPE ="linkedin";
     }
 }

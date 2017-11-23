@@ -1,22 +1,17 @@
 package com.vempower.eezyclinic.activities;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.github.gorbin.asne.core.AccessToken;
 import com.github.gorbin.asne.core.listener.OnRequestSocialPersonCompleteListener;
 import com.github.gorbin.asne.core.persons.SocialPerson;
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.core.SocialLoginDetails;
 import com.vempower.eezyclinic.fragments.FacebookFragment;
-import com.vempower.eezyclinic.interfaces.FacebookLoginListener;
+import com.vempower.eezyclinic.interfaces.SocialLoginListener;
 
 import static com.vempower.eezyclinic.utils.Utils.showToastMessage;
 
@@ -50,7 +45,7 @@ public class FaceBookLoginActivity extends AbstractFragmentActivity /*implements
     {
         /*Intent intent= new Intent(this,FaceBookLoginActivity.class);
         startActivity(intent);*/
-        final OnRequestSocialPersonCompleteListener listener= new OnRequestSocialPersonCompleteListener() {
+      /*  final OnRequestSocialPersonCompleteListener listener= new OnRequestSocialPersonCompleteListener() {
             @Override
             public void onRequestSocialPersonSuccess(int socialNetworkId, SocialPerson socialPerson) {
                // AbstractSignUpInActivity.hideProgress();
@@ -61,20 +56,20 @@ public class FaceBookLoginActivity extends AbstractFragmentActivity /*implements
                 String infoString = socialPersonString.substring(socialPersonString.indexOf("{")+1, socialPersonString.lastIndexOf("}"));
                 String  info=infoString.replace(", ", "\n");
                 String  avatarURL=socialPerson.avatarURL;
-       /* Picasso.with(getActivity())
+       *//* Picasso.with(getActivity())
                 .load(socialPerson.avatarURL)
-                .into(photo);*/
+                .into(photo);*//*
                  String person_info="Email "+email+"\nName:"+name+"\nId"+id+"\ninfo"+info+"\nImage URL"+avatarURL;
                  showToastMessage(person_info);
 
                 //social_type=1(google)social_type=2(Facebook)
-               /* SocialSignupMapper mapper = new SocialSignupMapper(email,id,2+"");
+               *//* SocialSignupMapper mapper = new SocialSignupMapper(email,id,2+"");
                 mapper.setOnGoogleSignupListener(new SocialSignupMapper.SocialSignupListener() {
                     @Override
                     public void getUserAPI(UserAPI userAPI) {
                         validateUser(userAPI);
                     }
-                });*/
+                });*//*
 
 
             }
@@ -83,18 +78,14 @@ public class FaceBookLoginActivity extends AbstractFragmentActivity /*implements
             public void onError(int socialNetworkID, String requestID, String errorMessage, Object data) {
                 //showProgress("ERROR: " + errorMessage);
             }
-        };
-        FacebookFragment facebookFragment= new FacebookFragment(new FacebookLoginListener(){
-
+        };*/
+        FacebookFragment facebookFragment= new FacebookFragment(new SocialLoginListener() {
             @Override
-            public OnRequestSocialPersonCompleteListener getFacebookListener() {
-                return listener;
-            }
-
-            @Override
-            public void setAccessToken(AccessToken accessToken) {
-               // Log.i(MyApplication.getCurrentActivityContext().getPackageName(), accessToken.toString());
-                showToastMessage("AccessToken :"+accessToken);
+            public void getLoginDetails(SocialLoginDetails details) {
+                if(details!=null)
+                {
+                    showToastMessage(details.toString());
+                }
             }
         });
 
