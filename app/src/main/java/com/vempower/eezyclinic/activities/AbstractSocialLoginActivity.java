@@ -2,6 +2,7 @@ package com.vempower.eezyclinic.activities;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 
 import com.github.gorbin.asne.core.AccessToken;
 import com.github.gorbin.asne.core.listener.OnRequestSocialPersonCompleteListener;
@@ -11,12 +12,15 @@ import com.linkedin.platform.LISessionManager;
 import com.linkedin.platform.errors.LIApiError;
 import com.linkedin.platform.listeners.ApiListener;
 import com.linkedin.platform.listeners.ApiResponse;
+import com.vempower.eezyclinic.APIResponce.LoginAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.SocialLoginDetails;
 import com.vempower.eezyclinic.fragments.FacebookFragment;
 import com.vempower.eezyclinic.interfaces.SocialLoginListener;
+import com.vempower.eezyclinic.mappers.SocialSignInMapper;
 import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 
 import org.json.JSONObject;
@@ -74,12 +78,63 @@ public class AbstractSocialLoginActivity extends AbstractFragmentActivity {
 
     private SocialLoginListener socialLoginListener= new SocialLoginListener() {
         @Override
-        public void getLoginDetails(SocialLoginDetails details) {
+        public void getLoginDetails(final SocialLoginDetails details) {
             if(details!=null) {
-                showToastMessage(details.toString());
+                //showToastMessage(details.toString());
+                SocialSignInMapper mapper= new SocialSignInMapper(details);
+                mapper.setOnSignInListener(new SocialSignInMapper.SignInListener() {
+                    @Override
+                    public void getLoginAPI(LoginAPI loginAPI) {
+                        //showToastMessage(loginAPI.toString());
+                        validateSocialLoginUserDetails(loginAPI,details);
+
+
+                    }
+                });
             }
         }
     };
+
+    private void validateSocialLoginUserDetails(LoginAPI loginAPI,final SocialLoginDetails details) {
+        if(loginAPI==null)
+        {
+            showMyAlertDialog("Alert", "Invalid service response.\nPlease check Network/Try again","Ok",false);
+            return;
+        }
+        if(!loginAPI.getStatusCode().equalsIgnoreCase(Constants.SUCCESS_STATUS_CODE))
+        {
+            showMyAlertDialog("Alert",loginAPI.getStatusMessage() ,"Ok",false);
+            return;
+
+        }
+        if(TextUtils.isEmpty(loginAPI.getAccessToken()))
+        {
+           // showMyAlertDialog("Alert",loginAPI.getStatusMessage() ,"Ok",false);
+            Intent intent= new Intent(MyApplication.getCurrentActivityContext(),SocialSignUpActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.putExtra(Constants.SocialLoginPref.LOGIN_DETAILS_OBJ_KEY,details);
+            intent.putExtra(Constants.SocialLoginPref.FORMID_KEY,loginAPI.getPatientData().getForm_id());
+            intent.putExtra(Constants.SocialLoginPref.SOCIAL_LOGIN_ID_KEY,loginAPI.getPatientData().getSocial_media_id());
+            intent.putExtra(Constants.SocialLoginPref.SOCIAL_MEDIA_TYPE,loginAPI.getPatientData().getSocial_media());
+
+            startActivity(intent);
+            finish();
+
+            return;
+
+        }
+
+        if(loginAPI.getPatientData()==null || TextUtils.isEmpty(loginAPI.getAccessToken()))
+        {
+            showMyAlertDialog("Alert", "Invalid service response.\nPlease check Network/Try again","Ok",false);
+            return;
+        }
+        MyApplication.getInstance().setLoggedUserDetailsToSharedPref(loginAPI.getPatientData());
+        SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,loginAPI.getAccessToken());
+        startActivity(new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class));
+        finish();
+        showToastMessage("Success to login "+details.MEDIA_TYPE);
+    }
 
 
     @Override

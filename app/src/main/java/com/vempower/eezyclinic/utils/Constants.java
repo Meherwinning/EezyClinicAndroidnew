@@ -16,7 +16,7 @@ public interface Constants {
     //String SHARED_PREFERENCES_FILE_NAME = "stashdealcustomerpref";
     String LOGGED_USER_DETAILS_OBJECT = "login_user_obj";
     String SUCCESS_STATUS_CODE = "1";
-    int PASSWORD_MIN_LENGTH = 8;
+    int PASSWORD_MIN_LENGTH = 6;
     String BANNERS_COUNT_LIMIT = "5";
     String PAGE_ITEMS_COUNT_LIMIT = "10";
 
@@ -47,7 +47,14 @@ public interface Constants {
 
          String GEO_DATA_KEY = "geo_data_key";
      }
-//http://202.63.103.194:8008/api/patient/signin
+
+     interface GenderValues {
+        String GENDER = "Gender";
+        String MALE = "Male";
+        String FEMALE="Female";
+    }
+
+    //http://202.63.103.194:8008/api/patient/signin
     class URL_MANAGE
     {
         public static String getURL()
@@ -75,6 +82,8 @@ public interface Constants {
         String ORDER_OBJ_KEY = "order_obj_key";
         String ORDER_ID_KEY = "order_id_key";
         String IS_FROM_CHECKOUT_PAGE = "is_from_checkout_page";
+        String OTP_KEY = "otp_key";
+        String PATIENT_ID_KEY = "patient_id_key";
     }
 
     interface ActivityResult
@@ -93,5 +102,12 @@ public interface Constants {
         String TWITTER_TYPE ="twitter";
         String GOOGLE_TYPE ="google";
         String LINKEDIN_TYPE ="linkedin";
+    }
+
+    interface SocialLoginPref {
+        String LOGIN_DETAILS_OBJ_KEY = "login_details_obj_key";
+        String FORMID_KEY="formid";
+        String SOCIAL_MEDIA_TYPE="social_media_type";
+        String SOCIAL_LOGIN_ID_KEY="social_login_id";
     }
 }

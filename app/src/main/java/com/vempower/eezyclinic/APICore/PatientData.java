@@ -186,6 +186,23 @@ public class PatientData {
     @Expose
     private String createdDate;
 
+    @SerializedName("social_media")
+    @Expose
+    private String social_media;
+
+    @SerializedName("social_media_id")
+    @Expose
+    private String social_media_id;
+
+    @SerializedName("form_id")
+    @Expose
+    private String form_id;
+
+
+   /* "social_media": "google",
+            "social_media_id": "108140877446405839256",
+            "form_id": 859134569*/
+
     public String getId() {
         return id;
     }
@@ -656,5 +673,30 @@ public class PatientData {
 
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
+    }
+
+
+    public String getSocial_media() {
+        return social_media;
+    }
+
+    public void setSocial_media(String social_media) {
+        this.social_media = social_media;
+    }
+
+    public String getSocial_media_id() {
+        return social_media_id;
+    }
+
+    public void setSocial_media_id(String social_media_id) {
+        this.social_media_id = social_media_id;
+    }
+
+    public String getForm_id() {
+        return form_id;
+    }
+
+    public void setForm_id(String form_id) {
+        this.form_id = form_id;
     }
 }

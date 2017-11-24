@@ -24,17 +24,18 @@
                 android:layout_above="@+id/center_img"
                >
 
-                <RelativeLayout
+                <ImageView
                     android:id="@+id/social_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:layout_marginBottom="@dimen/_20dp"
+                    android:layout_marginBottom="@dimen/_15dp"
                     android:layout_marginLeft="@dimen/_10dp"
                     android:layout_marginRight="@dimen/_10dp"
+                    android:src="@drawable/logo"
                     android:layout_marginTop="@dimen/_30dp">
 
-                </RelativeLayout>
+                </ImageView>
 
 
             </RelativeLayout>
@@ -66,7 +67,7 @@
                         app:hintEnabled="true">
 
                         <com.vempower.eezyclinic.views.MyEditTextRR
-                            android:id="@+id/name_et"
+                           android:id="@+id/name_et"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="@dimen/_2dp"
@@ -197,7 +198,7 @@
                         app:hintEnabled="true">
 
                         <com.vempower.eezyclinic.views.MyEditTextRR
-                            android:id="@+id/email_et"
+                           android:id="@+id/email_et"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="@dimen/_2dp"
@@ -205,7 +206,7 @@
                             android:gravity="left|center_vertical"
                             android:hint="Email ID*"
                             android:imeOptions="actionUnspecified"
-                            android:inputType="text"
+                            android:inputType="textEmailAddress"
                             android:maxLength="50"
                             android:maxLines="1"
                             android:padding="@dimen/_2dp"
@@ -227,7 +228,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_15dp"
+                    android:layout_marginBottom="@dimen/_25dp"
                     android:orientation="vertical">
 
                     <android.support.design.widget.TextInputLayout
@@ -239,7 +240,7 @@
                         app:hintEnabled="true">
 
                         <com.vempower.eezyclinic.views.MyEditTextRR
-                            android:id="@+id/mobile_num_et"
+                           android:id="@+id/mobile_num_et"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="@dimen/_2dp"
@@ -267,6 +268,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
@@ -286,7 +288,6 @@
                         android:background="@drawable/background_shape_idle">
 
                         <com.vempower.eezyclinic.views.MyEditTextRR
-                           android:id="@+id/password_et"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="left|center_vertical"
@@ -326,7 +327,7 @@
                     android:orientation="horizontal">
 
                     <com.vempower.eezyclinic.views.MyCheckBoxRR
-                        android:id="@+id/terms_and_cond_checkbox"
+                       android:id="@+id/terms_and_cond_checkbox"
                         android:layout_width="wrap_content"
                         android:text="Sign up to Agree"
                         android:padding="@dimen/_5dp"

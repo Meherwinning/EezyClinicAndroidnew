@@ -223,6 +223,45 @@ abstract class AbstractActivity : AppCompatActivity() {
         //fragment.show(this.fragmentManager,"")
         fragment?.show(supportFragmentManager, null)
     }
+    protected fun showMyDialog(title: String, message: String,isFinish: Boolean) {
+        showMyDialog(title, message,"Ok",isFinish, null)
+
+    }
+    protected fun showMyDialog(title: String, message: String,isFinish: Boolean, intent: Intent) {
+       showMyDialog(title, message,"Ok",isFinish, intent)
+
+        }
+        protected fun showMyDialog(title: String, message: String, buttonName: String="Ok",isFinish: Boolean, intent: Intent?=null) {
+        val builder = object : SimpleDialog.Builder(R.style.SimpleDialogLight) {
+            override fun onPositiveActionClicked(fragment: DialogFragment) {
+                //Toast.makeText(mActivity, "Agreed", Toast.LENGTH_SHORT).show();
+                super.onPositiveActionClicked(fragment)
+                if (intent != null) {
+                    startActivity(intent)
+                }
+                if (isFinish) {
+                    finish()
+                }
+                //dialogInterface?.retryClick()
+
+            }
+
+            /*override fun onNegativeActionClicked(fragment: DialogFragment) {
+                //Toast.makeText(mActivity, "Disagreed", Toast.LENGTH_SHORT).show();
+                super.onNegativeActionClicked(fragment)
+                dialogInterface?.onCloseClick()
+            }*/
+        }
+
+        (builder as SimpleDialog.Builder).message(message)
+                .title(title)
+                .positiveAction(buttonName)
+        // .negativeAction("Close")
+
+        val fragment = DialogFragment.newInstance(builder)
+        //fragment.show(this.fragmentManager,"")
+        fragment?.show(supportFragmentManager, null)
+    }
 
     protected fun showMyDialog(title: String, message: String,isFinish: Boolean, intents: Array<Intent>) {
         val builder = object : SimpleDialog.Builder(R.style.SimpleDialogLight) {

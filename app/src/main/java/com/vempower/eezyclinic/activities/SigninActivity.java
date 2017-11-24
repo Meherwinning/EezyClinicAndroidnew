@@ -67,7 +67,7 @@ public class SigninActivity extends AbstractSocialLoginActivity {
             @Override
             public void onClick(View view) {
 
-                if(true)
+                if(false)
                 {
                     Intent intent= new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -77,7 +77,7 @@ public class SigninActivity extends AbstractSocialLoginActivity {
 
                 }
 
-                if(true) {
+                if(false) {
                     generateHashkey();
                     return;
                 }
@@ -122,7 +122,7 @@ public class SigninActivity extends AbstractSocialLoginActivity {
             return;
         }
         MyApplication.getInstance().setLoggedUserDetailsToSharedPref(loginAPI.getPatientData());
-        SharedPreferenceUtils.getStringValueFromSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,loginAPI.getAccessToken());
+        SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,loginAPI.getAccessToken());
         startActivity(new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class));
         finish();
     }

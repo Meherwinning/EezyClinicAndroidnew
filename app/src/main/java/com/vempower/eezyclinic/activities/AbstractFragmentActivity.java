@@ -1,9 +1,12 @@
 package com.vempower.eezyclinic.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
 /**
@@ -19,6 +22,23 @@ public class AbstractFragmentActivity extends AbstractActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MyApplication.setCurrentActivityContext(this);
+    }
+
+
+
+    protected void validateSignupReponse(SignupAPI signupAPI) {
+        if(!signupAPI.getStatusCode().equalsIgnoreCase(Constants.SUCCESS_STATUS_CODE) || signupAPI.getData()==null)
+        {
+            showMyDialog("Alert",signupAPI.getStatusMessage(),false);
+            return;
+        }
+        Intent intent= new Intent(MyApplication.getCurrentActivityContext(),VerifyOTPActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra(Constants.Pref.OTP_KEY,signupAPI.getOtp());
+        intent.putExtra(Constants.Pref.PATIENT_ID_KEY,signupAPI.getData().patientId);
+
+        startActivity(intent);
+        finish();
     }
 
 

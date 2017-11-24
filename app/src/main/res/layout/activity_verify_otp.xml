@@ -55,7 +55,7 @@
                     android:background="@drawable/background_shape_idle">
 
                     <com.vempower.eezyclinic.views.MyEditTextRR
-                        android:id="@+id/current_password_et"
+                        android:id="@+id/otp_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="left|center_vertical"
@@ -182,6 +182,7 @@
 
             </LinearLayout>-->
             <com.vempower.eezyclinic.views.MyTextViewRR
+                android:visibility="gone"
                 android:onClick="onForgotPasswordClick"
                 android:layout_width="wrap_content"
                 android:text="Resend OTP"

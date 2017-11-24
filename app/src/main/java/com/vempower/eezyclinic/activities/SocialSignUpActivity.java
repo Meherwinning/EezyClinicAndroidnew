@@ -24,36 +24,43 @@ import com.vempower.eezyclinic.views.MyEditTextRR;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import static com.vempower.eezyclinic.utils.Utils.showToastMessage;
 
 /**
  * Created by satish on 20/11/17.
  */
 
-public class SignUpActivity extends AbstractSocialLoginActivity implements DatePickerDialog.OnDateSetListener {
+public class SocialSignUpActivity extends AbstractSocialLoginActivity implements DatePickerDialog.OnDateSetListener {
 
     private MyTextViewRR dateofBirth_tv;
     private Spinner gender_type_spinner;
     private String selectedGender;
 
 
-    private MyEditTextRR name_et, email_et, mobile_num_et,password_et;
+    private MyEditTextRR name_et, email_et, mobile_num_et;
     private MyButtonRectangleRM signup_bt;
 
+    private SocialLoginDetails details;
+    private String form_Id;
+    private String login_Id;
+    private String media_type;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
-        onShowFacebookButton();
+        setContentView(R.layout.activity_social_signup);
+       // onShowFacebookButton();
         init();
     }
 
     private void init() {
+        if (getIntent() == null) {
+            showMyDialog("Alert", "Invalid user details\nplease try again", true, new Intent(this, SigninActivity.class));
+            return;
+        }
 
         dateofBirth_tv = findViewById(R.id.dateofBirth_tv);
         gender_type_spinner = findViewById(R.id.gender_type_spinner);
@@ -61,11 +68,44 @@ public class SignUpActivity extends AbstractSocialLoginActivity implements DateP
         email_et = findViewById(R.id.email_et);
         mobile_num_et = findViewById(R.id.mobile_num_et);
         signup_bt = findViewById(R.id.signup_bt);
-        password_et = findViewById(R.id.password_et);
         selectedGender=null;
 
-
         setToSpinnerAdapter();
+
+        Serializable serializableExtra = getIntent().getSerializableExtra(Constants.SocialLoginPref.LOGIN_DETAILS_OBJ_KEY);
+        if (serializableExtra == null || !(serializableExtra instanceof SocialLoginDetails)) {
+            showMyDialog("Alert", "Invalid user details\nplease try again", true, new Intent(this, SigninActivity.class));
+            return;
+        }
+        details = (SocialLoginDetails) serializableExtra;
+
+        if (!TextUtils.isEmpty(details.EMAIL)) {
+            email_et.setText(details.EMAIL);
+            email_et.setEnabled(false);
+            email_et.setClickable(false);
+        }
+
+        if (!TextUtils.isEmpty(details.getName())) {
+            name_et.setText(details.getName());
+        }
+
+        form_Id = getIntent().getStringExtra(Constants.SocialLoginPref.FORMID_KEY);
+        if (TextUtils.isEmpty(form_Id)) {
+            showMyDialog("Alert", "Invalid form id details\nplease try again", true, new Intent(this, SigninActivity.class));
+            return;
+        }
+
+        login_Id = getIntent().getStringExtra(Constants.SocialLoginPref.SOCIAL_LOGIN_ID_KEY);
+        if (TextUtils.isEmpty(login_Id)) {
+            showMyDialog("Alert", "Invalid login id details\nplease try again", true, new Intent(this, SigninActivity.class));
+            return;
+        }
+
+        media_type = getIntent().getStringExtra(Constants.SocialLoginPref.SOCIAL_MEDIA_TYPE);
+        if (TextUtils.isEmpty(media_type)) {
+            showMyDialog("Alert", "Invalid login media details/please try again", true, new Intent(this, SigninActivity.class));
+            return;
+        }
 
         signup_bt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,8 +113,9 @@ public class SignUpActivity extends AbstractSocialLoginActivity implements DateP
                 onSignupbuttonClick();
             }
         });
-    }
 
+
+    }
 
     private void onSignupbuttonClick() {
         if (isNotValidDetails()) {
@@ -85,12 +126,10 @@ public class SignUpActivity extends AbstractSocialLoginActivity implements DateP
 
         String email = email_et.getText().toString();
         String mobile_num = mobile_num_et.getText().toString();
-        String password = password_et.getText().toString();
-        //TODO call mapper
         //String name, String dob,String gender,String email,String mobile,String password
-        SignupMapper mapper= new SignupMapper(name,dob,selectedGender,email,mobile_num,password);
-//String formid,String  social_media_type,String  social_login_id
-       // mapper.setSocialSignupValues(form_Id,media_type,login_Id);
+        SignupMapper mapper= new SignupMapper(name,dob,selectedGender,email,mobile_num,null);
+        //String formid,String  social_media_type,String  social_login_id
+        mapper.setSocialSignupValues(form_Id,media_type,login_Id);
         mapper.setOnSignUpListener(new SignupMapper.SignUpListener() {
             @Override
             public void getSignupAPI(SignupAPI signupAPI) {
@@ -101,7 +140,7 @@ public class SignUpActivity extends AbstractSocialLoginActivity implements DateP
                     showMyDialog("Alert", Utils.getStringFromResources(R.string.invalid_service_response_lbl), new ApiErrorDialogInterface() {
                         @Override
                         public void onCloseClick() {
-                            Intent intent= new Intent(MyApplication.getCurrentActivityContext(),SignupMapper.class);
+                            Intent intent= new Intent(MyApplication.getCurrentActivityContext(),SignUpActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();
@@ -123,8 +162,6 @@ public class SignUpActivity extends AbstractSocialLoginActivity implements DateP
 
 
     public boolean isNotValidDetails() {
-
-
         {
             String name = name_et.getText().toString();
 
@@ -185,7 +222,7 @@ public class SignUpActivity extends AbstractSocialLoginActivity implements DateP
         }
 
 
-        String password = password_et.getText().toString();
+       /* String password = password_et.getText().toString();
         {
 
 
@@ -197,19 +234,19 @@ public class SignUpActivity extends AbstractSocialLoginActivity implements DateP
 
             if (password.length() < Constants.PASSWORD_MIN_LENGTH) {
                 showToastMessage("Password should be grater than "+Constants.PASSWORD_MIN_LENGTH);
-               password_et.setError("Password should be grater than "+Constants.PASSWORD_MIN_LENGTH);
+                password_et.setError("Password should be grater than "+Constants.PASSWORD_MIN_LENGTH);
                 return true;
             }
-        }
+        }*/
 
         {
-           MyCheckBoxRR terms_and_cond_checkbox= findViewById(R.id.terms_and_cond_checkbox);
-           if(terms_and_cond_checkbox!=null && !terms_and_cond_checkbox.isCheck())
-           {
-               showToastMessage("Please agree the Terms & Conditions");
-               return true;
+            MyCheckBoxRR terms_and_cond_checkbox= findViewById(R.id.terms_and_cond_checkbox);
+            if(terms_and_cond_checkbox!=null && !terms_and_cond_checkbox.isCheck())
+            {
+                showToastMessage("Please agree the Terms & Conditions");
+                return true;
 
-           }
+            }
         }
 
         return false;
@@ -224,14 +261,13 @@ public class SignUpActivity extends AbstractSocialLoginActivity implements DateP
             public void run() {
                 hideKeyBord(dateofBirth_tv);
             }
-        },100);
+        }, 100);
 
 
     }
 
 
-    public void onDateOfBirthTextviewClick(View view)
-    {
+    public void onDateOfBirthTextviewClick(View view) {
 
         Calendar now = Calendar.getInstance();
         DatePickerDialog dpd = DatePickerDialog.newInstance(
@@ -241,27 +277,27 @@ public class SignUpActivity extends AbstractSocialLoginActivity implements DateP
                 now.get(Calendar.DAY_OF_MONTH)
         );
         dpd.setVersion(DatePickerDialog.Version.VERSION_2);
-       // dpd.setThemeDark(true);
+        // dpd.setThemeDark(true);
         dpd.setAccentColor(getResources().getColor(R.color.colorPrimary));
         dpd.show(getFragmentManager(), "Datepickerdialog");
     }
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        //String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+       // String date = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
         String date = year+"-"+(monthOfYear+1)+"-"+dayOfMonth;
         dateofBirth_tv.setText(date);
-       showToastMessage("You picked the following date: "+date);
+        showToastMessage("You picked the following date: " + date);
     }
 
     public void setToSpinnerAdapter() {
 
-       final ArrayList<String> genderTypeList= new ArrayList<>();
-        genderTypeList.add("Gender");
-        genderTypeList.add("Male");
-        genderTypeList.add("Female");
-        selectedGender= genderTypeList.get(0);
-        ArrayAdapter aa = new ArrayAdapter(MyApplication.getCurrentActivityContext(),R.layout.spinner_textview,genderTypeList);
+        final ArrayList<String> genderTypeList = new ArrayList<>();
+        genderTypeList.add(Constants.GenderValues.GENDER);
+        genderTypeList.add(Constants.GenderValues.MALE);
+        genderTypeList.add(Constants.GenderValues.FEMALE);
+       // selectedGender = genderTypeList.get(0);
+        ArrayAdapter aa = new ArrayAdapter(MyApplication.getCurrentActivityContext(), R.layout.spinner_textview, genderTypeList);
        /* {
 
             @NonNull
@@ -309,12 +345,11 @@ public class SignUpActivity extends AbstractSocialLoginActivity implements DateP
         gender_type_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedGender= genderTypeList.get(0);
-                if(position!=0)
-                {
-                    selectedGender= genderTypeList.get(position-1);
+                selectedGender = null;
+                if (position != 0) {
+                    selectedGender = genderTypeList.get(position - 1);
                 }
-                showToastMessage("selectedGender "+selectedGender);
+               // showToastMessage("selectedGender " + selectedGender);
             }
 
             @Override
@@ -324,7 +359,7 @@ public class SignUpActivity extends AbstractSocialLoginActivity implements DateP
         });
 
 
-
-
     }
+
+
 }

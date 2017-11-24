@@ -27,6 +27,8 @@ class SpalshActivity : AbstractFragmentActivity() {
 
         Handler().postDelayed({
             var intent: Intent? = null
+            //SharedPreferenceUtils.getStringValueFromSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY, loginAPI.getAccessToken())
+
             //intent = Intent(this, AppTourActivity::class.java);
             when(!TextUtils.isEmpty(SharedPreferenceUtils.getStringValueFromSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,null)))
             {
