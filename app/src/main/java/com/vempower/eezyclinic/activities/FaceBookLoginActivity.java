@@ -5,12 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import com.github.gorbin.asne.core.AccessToken;
-import com.github.gorbin.asne.core.listener.OnRequestSocialPersonCompleteListener;
-import com.github.gorbin.asne.core.persons.SocialPerson;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.core.SocialLoginDetails;
-import com.vempower.eezyclinic.fragments.FacebookFragment;
+import com.vempower.eezyclinic.fragments.SocialLoginFragment;
 import com.vempower.eezyclinic.interfaces.SocialLoginListener;
 
 import static com.vempower.eezyclinic.utils.Utils.showToastMessage;
@@ -21,7 +18,7 @@ import static com.vempower.eezyclinic.utils.Utils.showToastMessage;
  */
 
 public class FaceBookLoginActivity extends AbstractFragmentActivity /*implements FragmentManager.OnBackStackChangedListener*/ {
-    public static final String SOCIAL_NETWORK_TAG = "SocialIntegrationMain.SOCIAL_NETWORK_TAG";
+    private static final String SOCIAL_NETWORK_TAG = "SocialIntegrationMain.SOCIAL_NETWORK_TAG";
     private static ProgressDialog pd;
     //static Context context;
     @Override
@@ -79,7 +76,7 @@ public class FaceBookLoginActivity extends AbstractFragmentActivity /*implements
                 //showProgress("ERROR: " + errorMessage);
             }
         };*/
-        FacebookFragment facebookFragment= new FacebookFragment(new SocialLoginListener() {
+        SocialLoginFragment socialLoginFragment = new SocialLoginFragment(new SocialLoginListener() {
             @Override
             public void getLoginDetails(SocialLoginDetails details) {
                 if(details!=null)
@@ -92,7 +89,7 @@ public class FaceBookLoginActivity extends AbstractFragmentActivity /*implements
 
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.container, facebookFragment)
+                .add(R.id.container, socialLoginFragment)
                 .commit();
     }
 

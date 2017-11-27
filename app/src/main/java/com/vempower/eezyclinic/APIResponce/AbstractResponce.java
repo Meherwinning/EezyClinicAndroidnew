@@ -10,10 +10,10 @@ import com.google.gson.annotations.SerializedName;
 public class AbstractResponce {
     @SerializedName("status_code")
     @Expose
-    private String statusCode;
+    public String statusCode;
     @SerializedName("status_message")
     @Expose
-    private String statusMessage;
+    public String statusMessage;
 
     public String getStatusCode() {
         return statusCode;

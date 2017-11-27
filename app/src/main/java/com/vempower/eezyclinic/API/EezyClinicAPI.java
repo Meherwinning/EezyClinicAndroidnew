@@ -5,6 +5,7 @@ import com.vempower.eezyclinic.APIResponce.AbstractResponce;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
 import com.vempower.eezyclinic.APIResponce.RegisterAPI;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
+import com.vempower.eezyclinic.APIResponce.VerifyOTPAPI;
 
 import retrofit.Call;
 import retrofit.http.Body;
@@ -31,4 +32,7 @@ public interface EezyClinicAPI {
     @POST(data+"patient/signup")
     Call<SignupAPI> getSignupAPI(@Body RequestBody postBody);
 
+    //http://202.63.103.194:8008/api/patient/verifyotp
+    @POST(data+"patient/verifyotp")
+    Call<VerifyOTPAPI> verifyOTP_API(@Body RequestBody postBody);
 }

@@ -15,6 +15,13 @@ public class LoginAPI extends  AbstractResponce {
     @SerializedName("access_token_valid_till")
     @Expose
     private String accessTokenValidTill;
+
+
+
+    @SerializedName("user_type")
+    @Expose
+    private String user_type;
+
     @SerializedName("data")
     @Expose
     private PatientData data;
@@ -44,5 +51,10 @@ public class LoginAPI extends  AbstractResponce {
     public void setPatientData(PatientData data) {
         this.data = data;
     }
+
+    public String getUser_type() {
+        return user_type;
+    }
+
 
 }

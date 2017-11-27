@@ -36,7 +36,7 @@ import static com.vempower.eezyclinic.utils.Utils.showToastMessage;
 
 
 @SuppressLint("ValidFragment")
-public class FacebookFragment extends LinkedinFragment implements SocialNetworkManager.OnInitializationCompleteListener, OnLoginCompleteListener {
+public class SocialLoginFragment extends LinkedinFragment implements SocialNetworkManager.OnInitializationCompleteListener, OnLoginCompleteListener {
     public static SocialNetworkManager mSocialNetworkManager;
     /**
      * SocialNetwork Ids in ASNE:
@@ -56,11 +56,11 @@ public class FacebookFragment extends LinkedinFragment implements SocialNetworkM
     private ImageView linkedin;
     private ImageView googleplus;
 
-    public FacebookFragment() {
+    public SocialLoginFragment() {
     }
 
     @SuppressLint("ValidFragment")
-    public FacebookFragment(SocialLoginListener facebookLoginListener) {
+    public SocialLoginFragment(SocialLoginListener facebookLoginListener) {
        // completeListener = facebookLoginListener.getFacebookListener();
         this.facebookLoginListener = facebookLoginListener;
 
@@ -135,7 +135,7 @@ public class FacebookFragment extends LinkedinFragment implements SocialNetworkM
             mSocialNetworkManager.addSocialNetwork(gpNetwork);
 */
             //Initiate every network from mSocialNetworkManager
-            getFragmentManager().beginTransaction().add(mSocialNetworkManager, FaceBookLoginActivity.SOCIAL_NETWORK_TAG).commit();
+            getFragmentManager().beginTransaction().add(mSocialNetworkManager, AbstractSocialLoginActivity.SOCIAL_NETWORK_TAG).commit();
             mSocialNetworkManager.setOnInitializationCompleteListener(this);
         } else {
             //if manager exist - get and setup login only for initialized SocialNetworks
@@ -249,6 +249,7 @@ public class FacebookFragment extends LinkedinFragment implements SocialNetworkM
     public void onError(int networkId, String requestID, String errorMessage, Object data) {
         //AbstractSignUpInActivity.hideProgress();
         showToastMessage("ERROR: " + errorMessage);
+
     }
 
    /* private void startProfile(int networkId){

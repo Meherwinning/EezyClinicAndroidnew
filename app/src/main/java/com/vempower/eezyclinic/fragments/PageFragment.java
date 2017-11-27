@@ -109,7 +109,7 @@ public class PageFragment extends Fragment {
             textView.setText(pageText);
         }*/
 
-        myTextView.setText("Screen :"+ Utils.getStringFromResources(R.string.screen)+" Dimen:"+getResources().getDimension(R.dimen.text_size_normal));
+        //myTextView.setText("Screen :"+ Utils.getStringFromResources(R.string.screen)+" Dimen:"+getResources().getDimension(R.dimen.text_size_normal));
 
         return view;
     }

@@ -4,16 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
+import android.util.Pair;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
+import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
+import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.SocialLoginDetails;
+import com.vempower.eezyclinic.fragments.SublimePickerFragment;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.SignupMapper;
 import com.vempower.eezyclinic.utils.Constants;
@@ -22,7 +28,7 @@ import com.vempower.eezyclinic.views.MyButtonRectangleRM;
 import com.vempower.eezyclinic.views.MyCheckBoxRR;
 import com.vempower.eezyclinic.views.MyEditTextRR;
 import com.vempower.eezyclinic.views.MyTextViewRR;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+//import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -32,7 +38,7 @@ import java.util.Calendar;
  * Created by satish on 20/11/17.
  */
 
-public class SocialSignUpActivity extends AbstractSocialLoginActivity implements DatePickerDialog.OnDateSetListener {
+public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
 
     private MyTextViewRR dateofBirth_tv;
     private Spinner gender_type_spinner;
@@ -269,26 +275,107 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity implements
 
     public void onDateOfBirthTextviewClick(View view) {
 
-        Calendar now = Calendar.getInstance();
-        DatePickerDialog dpd = DatePickerDialog.newInstance(
-                this,
-                now.get(Calendar.YEAR),
-                now.get(Calendar.MONTH),
-                now.get(Calendar.DAY_OF_MONTH)
-        );
-        dpd.setVersion(DatePickerDialog.Version.VERSION_2);
-        // dpd.setThemeDark(true);
-        dpd.setAccentColor(getResources().getColor(R.color.colorPrimary));
-        dpd.show(getFragmentManager(), "Datepickerdialog");
+        SublimePickerFragment pickerFrag = new SublimePickerFragment();
+        pickerFrag.setCallback(mFragmentCallback);
+
+        // Options
+        Pair<Boolean, SublimeOptions> optionsPair = getOptions();
+
+        if (!optionsPair.first) { // If options are not valid
+            showToastMessage("No pickers activated");
+            return;
+        }
+
+        // Valid options
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("SUBLIME_OPTIONS", optionsPair.second);
+        pickerFrag.setArguments(bundle);
+
+        pickerFrag.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
+        pickerFrag.show(getSupportFragmentManager(), "SUBLIME_PICKER");
+
+
     }
 
-    @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-       // String date = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-        String date = year+"-"+(monthOfYear+1)+"-"+dayOfMonth;
-        dateofBirth_tv.setText(date);
-        showToastMessage("You picked the following date: " + date);
+    Pair<Boolean, SublimeOptions> getOptions() {
+        SublimeOptions options = new SublimeOptions();
+        int displayOptions = SublimeOptions.ACTIVATE_DATE_PICKER;
+
+
+
+        // if (rbDatePicker.getVisibility() == View.VISIBLE && rbDatePicker.isChecked()) {
+        options.setPickerToShow(SublimeOptions.Picker.DATE_PICKER);
+        /*} else if (rbTimePicker.getVisibility() == View.VISIBLE && rbTimePicker.isChecked()) {
+            options.setPickerToShow(SublimeOptions.Picker.TIME_PICKER);
+        } else if (rbRecurrencePicker.getVisibility() == View.VISIBLE && rbRecurrencePicker.isChecked()) {
+            options.setPickerToShow(SublimeOptions.Picker.REPEAT_OPTION_PICKER);
+        }
+*/
+        options.setDisplayOptions(displayOptions);
+
+        // Enable/disable the date range selection feature
+        //options.setCanPickDateRange(cbAllowDateRangeSelection.isChecked());
+
+        // Example for setting date range:
+        // Note that you can pass a date range as the initial date params
+        // even if you have date-range selection disabled. In this case,
+        // the user WILL be able to change date-range using the header
+        // TextViews, but not using long-press.
+
+        /*Calendar startCal = Calendar.getInstance();
+        startCal.set(2016, 2, 4);
+        Calendar endCal = Calendar.getInstance();
+        endCal.set(2016, 2, 17);
+
+        options.setDateParams(startCal, endCal);*/
+
+        // If 'displayOptions' is zero, the chosen options are not valid
+        return new Pair<>(displayOptions != 0 ? Boolean.TRUE : Boolean.FALSE, options);
     }
+
+
+    SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
+        @Override
+        public void onCancelled() {
+            // rlDateTimeRecurrenceInfo.setVisibility(View.GONE);
+        }
+
+        @Override
+        public void onDateTimeRecurrenceSet(SelectedDate selectedDate,
+                                            int hourOfDay, int minute,
+                                            SublimeRecurrencePicker.RecurrenceOption recurrenceOption,
+                                            String recurrenceRule) {
+
+
+            if(selectedDate==null || selectedDate.getFirstDate()==null)
+            {
+                return;
+            }
+            Calendar selectedCal = selectedDate.getFirstDate();
+
+            String date =  selectedCal.get(Calendar.YEAR)+"-"+(selectedCal.get(Calendar.MONTH)+1)+"-"+selectedCal.get(Calendar.DAY_OF_MONTH);
+            dateofBirth_tv.setText(date);
+          //  showToastMessage("You picked the following date: "+date);
+
+           /* mSelectedDate = selectedDate;
+            mHour = hourOfDay;
+            mMinute = minute;
+            mRecurrenceOption = recurrenceOption != null ?
+                    recurrenceOption.name() : "n/a";
+            mRecurrenceRule = recurrenceRule != null ?
+                    recurrenceRule : "n/a";
+
+            updateInfoView();
+
+            svMainContainer.post(new Runnable() {
+                @Override
+                public void run() {
+                    svMainContainer.scrollTo(svMainContainer.getScrollX(),
+                            cbAllowDateRangeSelection.getBottom());
+                }
+            });*/
+        }
+    };
 
     public void setToSpinnerAdapter() {
 

@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 
-import com.github.gorbin.asne.core.AccessToken;
-import com.github.gorbin.asne.core.listener.OnRequestSocialPersonCompleteListener;
-import com.github.gorbin.asne.core.persons.SocialPerson;
 import com.linkedin.platform.APIHelper;
 import com.linkedin.platform.LISessionManager;
 import com.linkedin.platform.errors.LIApiError;
@@ -16,7 +13,7 @@ import com.vempower.eezyclinic.APIResponce.LoginAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.SocialLoginDetails;
-import com.vempower.eezyclinic.fragments.FacebookFragment;
+import com.vempower.eezyclinic.fragments.SocialLoginFragment;
 import com.vempower.eezyclinic.interfaces.SocialLoginListener;
 import com.vempower.eezyclinic.mappers.SocialSignInMapper;
 import com.vempower.eezyclinic.utils.Constants;
@@ -70,9 +67,9 @@ public class AbstractSocialLoginActivity extends AbstractFragmentActivity {
                 //showProgress("ERROR: " + errorMessage);
             }
         };*/
-        FacebookFragment facebookFragment = new FacebookFragment(socialLoginListener);
+        SocialLoginFragment socialLoginFragment = new SocialLoginFragment(socialLoginListener);
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.social_container, facebookFragment)
+                .add(R.id.social_container, socialLoginFragment)
                 .commit();
     }
 

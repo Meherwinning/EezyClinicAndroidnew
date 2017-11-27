@@ -19,10 +19,18 @@
 package com.vempower.eezyclinic.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.TextView;
 
+import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 
 /**
  * Created by Satish on 11/15/2017.
@@ -30,9 +38,42 @@ import com.vempower.eezyclinic.R;
 
 public class HomeActivity extends AbstractFragmentActivity {
 
+    private TextView welcome_tv;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_layout);
+        init();
+    }
+
+    private void init() {
+        welcome_tv = findViewById(R.id.welcome_tv);
+        String str = "Welcome to Eezyclinic\n";
+        PatientData patientData = MyApplication.getInstance().getLoggedUserDetailsFromSharedPref();
+        if(patientData!=null)
+        {
+
+            if(!TextUtils.isEmpty(patientData.getPatientName()))
+            {
+                str=str+patientData.getPatientName()+" ";
+            }
+
+        }
+        welcome_tv.setText(str);
+    }
+
+    public void onLogoutButtonClick(View view)
+    {
+        logout();
+
+    }
+
+    private void logout() {
+        MyApplication.getInstance().setLoggedUserDetailsToSharedPref(null);
+        SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,"");
+        Intent intent= new Intent(MyApplication.getCurrentActivityContext(),SigninActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 }

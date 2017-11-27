@@ -73,6 +73,7 @@
             android:textSize="@dimen/app_tour_text_size" />
         <com.vempower.eezyclinic.views.MyTextViewRR
             android:id="@+id/from_text"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_below="@+id/text"
             android:layout_height="wrap_content"

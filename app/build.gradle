@@ -52,7 +52,8 @@ dependencies {
     //compile 'com.github.asne:asne-vk:0.3.3'
     // compile 'com.github.asne:asne-odnoklassniki:0.3.3'
     //End
-    implementation 'com.wdullaer:materialdatetimepicker:3.4.0'
+    //implementation 'com.wdullaer:materialdatetimepicker:3.4.0'
+    //implementation 'com.appeaser.sublimepickerlibrary:sublimepickerlibrary:2.1.1'
     //https://jitpack.io/#ronaldsmartin/Material-ViewPagerIndicator
     //https://github.com/ronaldsmartin/Material-ViewPagerIndicator
     // compile 'com.github.ronaldsmartin:Material-ViewPagerIndicator:1.0.4'
@@ -71,6 +72,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-analytics:11.4.2'
     //compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     //implementation project(':googleplus')
+    implementation project(':sublimepickerlibrary')
 }
 repositories {
     mavenCentral()

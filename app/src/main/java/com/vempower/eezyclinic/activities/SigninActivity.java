@@ -123,7 +123,9 @@ public class SigninActivity extends AbstractSocialLoginActivity {
         }
         MyApplication.getInstance().setLoggedUserDetailsToSharedPref(loginAPI.getPatientData());
         SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,loginAPI.getAccessToken());
-        startActivity(new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class));
+        Intent intent= new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
     }
 
