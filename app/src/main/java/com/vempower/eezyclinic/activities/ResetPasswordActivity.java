@@ -35,4 +35,13 @@ public class ResetPasswordActivity extends AbstractFragmentActivity {
             }
         });
     }
+    @Override
+    public void otpReceived(String smsText) {
+        //Do whatever you want to do with the text
+        //Toast.makeText(this,"Got "+smsText,Toast.LENGTH_LONG).show();
+        //Log.d("Otp",smsText);
+        showToastMessage("From Reset Password\n"+smsText);
+
+    }
+
 }

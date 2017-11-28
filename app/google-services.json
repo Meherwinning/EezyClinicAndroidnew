@@ -1,7 +1,9 @@
 {
   "project_info": {
     "project_number": "712280858111",
-    "project_id": "eesyclinic"
+    "firebase_url": "https://eesyclinic.firebaseio.com",
+    "project_id": "eesyclinic",
+    "storage_bucket": "eesyclinic.appspot.com"
   },
   "client": [
     {
@@ -12,6 +14,10 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "712280858111-f9sinm1oql7v42knig90vdpnoj6af4la.apps.googleusercontent.com",
+          "client_type": 3
+        },
         {
           "client_id": "712280858111-c6pk6t0r5l636m5fio7n040el5kjhedh.apps.googleusercontent.com",
           "client_type": 1,
@@ -35,11 +41,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "712280858111-f9sinm1oql7v42knig90vdpnoj6af4la.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }

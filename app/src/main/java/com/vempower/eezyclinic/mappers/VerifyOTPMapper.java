@@ -59,7 +59,7 @@ public class VerifyOTPMapper extends  AbstractMapper  implements Callback<Verify
         if (requestBody == null) {
             MyApplication.hideTransaprentDialog();
             if (listener != null) {
-                listener.getVerifyOTPAPI(null);
+                listener.getVerifyOTPAPI(null,null);
             }
             return;
         }
@@ -72,14 +72,26 @@ public class VerifyOTPMapper extends  AbstractMapper  implements Callback<Verify
     @Override
     public void onResponse(Response<VerifyOTPAPI> response, Retrofit retrofit) {
         MyApplication.hideTransaprentDialog();
-        listener.getVerifyOTPAPI(response.body());
+
+        getMyResponse(response, new MyResponse<VerifyOTPAPI>() {
+            @Override
+            public void getMyResponse(VerifyOTPAPI responseBody, String errorMsg) {
+                listener.getVerifyOTPAPI(responseBody,errorMsg);
+            }
+        });
 
     }
 
     @Override
     public void onFailure(Throwable t) {
         MyApplication.hideTransaprentDialog();
-        listener.getVerifyOTPAPI(null);
+      //  listener.getVerifyOTPAPI(null);
+        onMyFailure(t, new MyResponse<VerifyOTPAPI>() {
+            @Override
+            public void getMyResponse(VerifyOTPAPI responseBody, String errorMsg) {
+                listener.getVerifyOTPAPI(responseBody,errorMsg);
+            }
+        });
 
     }
 
@@ -107,6 +119,6 @@ public class VerifyOTPMapper extends  AbstractMapper  implements Callback<Verify
     }
 
     public interface VerifyOtpListener {
-        public void getVerifyOTPAPI(VerifyOTPAPI loginAPI);
+        public void getVerifyOTPAPI(VerifyOTPAPI loginAPI,String errorMessage);
     }
 }

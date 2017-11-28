@@ -18,6 +18,7 @@ import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.mappers.SignInMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
+import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
 import com.vempower.eezyclinic.views.MyEditTextRR;
 
@@ -95,18 +96,23 @@ public class SigninActivity extends AbstractSocialLoginActivity {
                 SignInMapper mapper= new SignInMapper(userid,password);
                mapper.setOnSignInListener(new SignInMapper.SignInListener() {
                    @Override
-                   public void getLoginAPI(LoginAPI loginAPI) {
-                       validateLoginUserDetails(loginAPI);
+                   public void getLoginAPI(LoginAPI loginAPI,String errorMessage) {
+                       validateLoginUserDetails(loginAPI,errorMessage);
                    }
                });
             }
         });
     }
 
-    private void validateLoginUserDetails(LoginAPI loginAPI) {
-        if(loginAPI==null)
+    private void validateLoginUserDetails(LoginAPI loginAPI,String errorMessage) {
+        if(loginAPI==null && TextUtils.isEmpty(errorMessage))
         {
-            showMyAlertDialog("Alert", "Invalid service response.\nPlease check Network/Try again","Ok",false);
+            showMyAlertDialog("Alert",  Utils.getStringFromResources(R.string.invalid_service_response_lbl),"Ok",false);
+            return;
+        }
+        if(loginAPI==null && !TextUtils.isEmpty(errorMessage))
+        {
+            showMyAlertDialog("Alert", errorMessage,"Ok",false);
             return;
         }
         if(!loginAPI.getStatusCode().equalsIgnoreCase(Constants.SUCCESS_STATUS_CODE))

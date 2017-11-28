@@ -87,11 +87,6 @@ public class GoolePlusFragment extends AbstractFragment implements  GoogleApiCli
         // [END customize_button]
 
         //onShowFacebookButton();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
 
         OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
         if (opr.isDone()) {
@@ -113,6 +108,13 @@ public class GoolePlusFragment extends AbstractFragment implements  GoogleApiCli
                 }
             });
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
     }
 
     @Override
@@ -286,10 +288,9 @@ public class GoolePlusFragment extends AbstractFragment implements  GoogleApiCli
         });*/
     }
 
-
-
-
-
-
-
+   /* @Override
+    public void onDestroy() {
+        super.onDestroy();
+        signOut();
+    }*/
 }

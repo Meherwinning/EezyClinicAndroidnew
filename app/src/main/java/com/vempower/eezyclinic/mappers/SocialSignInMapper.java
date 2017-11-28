@@ -6,6 +6,7 @@ import android.util.Log;
 import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
+import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.SocialLoginDetails;
 import com.vempower.eezyclinic.utils.Utils;
@@ -58,7 +59,7 @@ public class SocialSignInMapper extends  AbstractMapper  implements Callback<Log
         if (requestBody == null) {
             MyApplication.hideTransaprentDialog();
             if (listener != null) {
-                listener.getLoginAPI(null);
+                listener.getLoginAPI(null,null);
             }
             return;
         }
@@ -71,14 +72,27 @@ public class SocialSignInMapper extends  AbstractMapper  implements Callback<Log
     @Override
     public void onResponse(Response<LoginAPI> response, Retrofit retrofit) {
         MyApplication.hideTransaprentDialog();
-        listener.getLoginAPI(response.body());
+        //listener.getLoginAPI(response.body());
+
+        getMyResponse(response, new MyResponse<LoginAPI>() {
+            @Override
+            public void getMyResponse(LoginAPI responseBody, String errorMsg) {
+                listener.getLoginAPI(responseBody,errorMsg);
+            }
+        });
+
 
     }
 
     @Override
     public void onFailure(Throwable t) {
         MyApplication.hideTransaprentDialog();
-        listener.getLoginAPI(null);
+        onMyFailure(t, new MyResponse<LoginAPI>() {
+            @Override
+            public void getMyResponse(LoginAPI responseBody, String errorMsg) {
+                listener.getLoginAPI(responseBody,errorMsg);
+            }
+        });
 
     }
 
@@ -113,6 +127,6 @@ public class SocialSignInMapper extends  AbstractMapper  implements Callback<Log
     }
 
     public interface SignInListener {
-        public void getLoginAPI(LoginAPI loginAPI);
+        public void getLoginAPI(LoginAPI loginAPI,String errorMessage);
     }
 }

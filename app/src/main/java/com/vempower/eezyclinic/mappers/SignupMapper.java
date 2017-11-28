@@ -79,7 +79,7 @@ public class SignupMapper extends  AbstractMapper  implements Callback<SignupAPI
         if (requestBody == null) {
             MyApplication.hideTransaprentDialog();
             if (listener != null) {
-                listener.getSignupAPI(null);
+                listener.getSignupAPI(null,null);
             }
             return;
         }
@@ -92,14 +92,26 @@ public class SignupMapper extends  AbstractMapper  implements Callback<SignupAPI
     @Override
     public void onResponse(Response<SignupAPI> response, Retrofit retrofit) {
         MyApplication.hideTransaprentDialog();
-        listener.getSignupAPI(response.body());
+       // listener.getSignupAPI(response.body());
+        getMyResponse(response, new MyResponse<SignupAPI>() {
+            @Override
+            public void getMyResponse(SignupAPI responseBody, String errorMsg) {
+                listener.getSignupAPI(responseBody,errorMsg);
+            }
+        });
 
     }
 
     @Override
-    public void onFailure(Throwable t) {
+    public void onFailure(Throwable error) {
         MyApplication.hideTransaprentDialog();
-        listener.getSignupAPI(null);
+        //listener.getSignupAPI(null);
+        onMyFailure(error, new MyResponse<SignupAPI>() {
+            @Override
+            public void getMyResponse(SignupAPI responseBody, String errorMsg) {
+                listener.getSignupAPI(responseBody,errorMsg);
+            }
+        });
 
     }
 
@@ -147,6 +159,6 @@ public class SignupMapper extends  AbstractMapper  implements Callback<SignupAPI
     }
 
     public interface SignUpListener {
-        public void getSignupAPI(SignupAPI signupAPI);
+        public void getSignupAPI(SignupAPI signupAPI,String errorMessage);
     }
 }

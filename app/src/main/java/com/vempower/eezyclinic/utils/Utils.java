@@ -27,6 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.vempower.eezyclinic.MyFirebaseInstanceIDService;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 
@@ -838,5 +840,80 @@ public  class Utils {
 
 
         }.start();
+    }
+
+
+    /*public static String getGCMNotificationRegId(Context context) {
+        if (context == null) {
+            return "";
+        }
+
+        String regId = "";
+        try {
+            GCMRegistrar.checkDevice(context);
+            GCMRegistrar.checkManifest(context);
+            regId = GCMRegistrar.getRegistrationId(context);
+            if (TextUtils.isEmpty(regId)) {
+                GCMRegistrar.register(context,
+                        Constants.GOOGLE_PROJECT_SENDER_ID);
+            }
+        } catch (Exception e) { // TODOAuto-generated catch block
+            e.printStackTrace();
+        }
+        Log.v("GCM ID :", regId);
+        return regId;
+
+    }*/
+
+    public static String getFireBaseCloudMessageId()
+    {
+        String token=SharedPreferenceUtils.getStringValueFromSharedPrefarence(MyFirebaseInstanceIDService.FIRE_BASE_TOKEN_ID,"");
+        if(TextUtils.isEmpty(token))
+        {
+            token =FirebaseInstanceId.getInstance().getToken();
+            if(!TextUtils.isEmpty(token))
+            {
+                SharedPreferenceUtils.setStringValueToSharedPrefarence(MyFirebaseInstanceIDService.FIRE_BASE_TOKEN_ID,token);
+
+                return token;
+            }
+            return "";
+        }
+            return token;
+    }
+
+    public static String printKeyHash1(Activity context) {
+        if (context == null) {
+            return "";
+        }
+        PackageInfo packageInfo;
+        String key = null;
+        try {
+            //getting application package name, as defined in manifest
+            String packageName = context.getApplicationContext().getPackageName();
+
+            //Retriving package info
+            packageInfo = context.getPackageManager().getPackageInfo(packageName,
+                    PackageManager.GET_SIGNATURES);
+
+            Log.e("Package Name=", context.getApplicationContext().getPackageName());
+
+            for (Signature signature : packageInfo.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                key = new String(Base64.encode(md.digest(), 0));
+
+                // String key = new String(Base64.encodeBytes(md.digest()));
+                Log.e("Key Hash=", key);
+            }
+        } catch (PackageManager.NameNotFoundException e1) {
+            Log.e("Name not found", e1.toString());
+        } catch (NoSuchAlgorithmException e) {
+            Log.e("No such an algorithm", e.toString());
+        } catch (Exception e) {
+            Log.e("Exception", e.toString());
+        }
+
+        return key;
     }
 }

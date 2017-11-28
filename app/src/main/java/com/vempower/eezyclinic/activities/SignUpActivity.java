@@ -99,18 +99,28 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
        // mapper.setSocialSignupValues(form_Id,media_type,login_Id);
         mapper.setOnSignUpListener(new SignupMapper.SignUpListener() {
             @Override
-            public void getSignupAPI(SignupAPI signupAPI) {
+            public void getSignupAPI(SignupAPI signupAPI,String errorMessage) {
 
-                if(signupAPI==null)
+
+               /* {
+                    showMyAlertDialog("Alert", Utils.getStringFromResources(R.string.invalid_service_response_lbl),"Ok",false);
+                    return;
+                }*/
+                if(signupAPI==null && !TextUtils.isEmpty(errorMessage))
+                {
+                    showMyAlertDialog("Alert", errorMessage,"Ok",false);
+                    return;
+                }
+                if(signupAPI==null && TextUtils.isEmpty(errorMessage))
                 {
 
                     showMyDialog("Alert", Utils.getStringFromResources(R.string.invalid_service_response_lbl), new ApiErrorDialogInterface() {
                         @Override
                         public void onCloseClick() {
-                            Intent intent= new Intent(MyApplication.getCurrentActivityContext(),SignupMapper.class);
+                           /* Intent intent= new Intent(MyApplication.getCurrentActivityContext(),SignupMapper.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
-                            finish();
+                            finish();*/
                         }
 
                         @Override

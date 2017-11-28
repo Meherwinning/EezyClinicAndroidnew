@@ -28,6 +28,7 @@ public interface Constants {
     @Nullable
     String IS_WATCH_APP_TOUR_KEY="is_watch_app_tour_key";
     String TAWK_CHAT_URL = "https://tawk.to/chat/53fb249a8a6482154c000b0b/default/?$_tawk_popout=true" ;
+    String SMS_SENDER_NAME="WAY2SMS";
 
     //http://cfw.samplespace.com/wp-json/cfw/v1/customer
 

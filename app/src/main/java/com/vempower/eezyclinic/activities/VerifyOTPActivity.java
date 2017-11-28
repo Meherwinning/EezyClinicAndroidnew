@@ -13,19 +13,22 @@ import com.vempower.eezyclinic.APIResponce.VerifyOTPAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.interfaces.OTPListener;
 import com.vempower.eezyclinic.mappers.SignupMapper;
 import com.vempower.eezyclinic.mappers.VerifyOTPMapper;
+import com.vempower.eezyclinic.receivers.OtpReader;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
 import com.vempower.eezyclinic.views.MyEditTextRR;
 
+
 /**
  * Created by satish on 23/11/17.
  */
 
-public class VerifyOTPActivity extends AbstractFragmentActivity {
+public class VerifyOTPActivity extends AbstractFragmentActivity  {
     private String otp_str;
     private String patient_id;
 
@@ -37,6 +40,7 @@ public class VerifyOTPActivity extends AbstractFragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_otp);
         init();
+
     }
     private void init() {
 
@@ -95,9 +99,20 @@ public class VerifyOTPActivity extends AbstractFragmentActivity {
         VerifyOTPMapper mapper= new VerifyOTPMapper(enteredOTP,patient_id);
         mapper.setOnVerifyOtpListener(new VerifyOTPMapper.VerifyOtpListener() {
             @Override
-            public void getVerifyOTPAPI(VerifyOTPAPI loginAPI) {
+            public void getVerifyOTPAPI(VerifyOTPAPI loginAPI,String errorMessage) {
 
-                if(loginAPI==null)
+                /*if(loginAPI==null && TextUtils.isEmpty(errorMessage))
+                {
+                    showMyAlertDialog("Alert",  Utils.getStringFromResources(R.string.invalid_service_response_lbl),"Ok",false);
+                    return;
+                }*/
+                if(loginAPI==null && !TextUtils.isEmpty(errorMessage))
+                {
+                    showMyAlertDialog("Alert", errorMessage,"Ok",false);
+                    return;
+                }
+
+                if(loginAPI==null && TextUtils.isEmpty(errorMessage))
                 {
 
                     showMyDialog("Alert", Utils.getStringFromResources(R.string.invalid_service_response_lbl), new ApiErrorDialogInterface() {
@@ -156,5 +171,14 @@ public class VerifyOTPActivity extends AbstractFragmentActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void otpReceived(String smsText) {
+        //Do whatever you want to do with the text
+        //Toast.makeText(this,"Got "+smsText,Toast.LENGTH_LONG).show();
+        //Log.d("Otp",smsText);
+        showToastMessage("From Verify OTP\n"+smsText);
+
     }
 }

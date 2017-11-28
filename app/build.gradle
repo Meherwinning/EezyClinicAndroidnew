@@ -73,10 +73,12 @@ dependencies {
     //compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     //implementation project(':googleplus')
     implementation project(':sublimepickerlibrary')
+    //implementation 'swarajsaaj:otpreader:1.1'
 }
 repositories {
     mavenCentral()
 }
 
+//apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.gms.google-services'
 

@@ -138,9 +138,19 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
         mapper.setSocialSignupValues(form_Id,media_type,login_Id);
         mapper.setOnSignUpListener(new SignupMapper.SignUpListener() {
             @Override
-            public void getSignupAPI(SignupAPI signupAPI) {
+            public void getSignupAPI(SignupAPI signupAPI,String errorMessage) {
 
-                if(signupAPI==null)
+                /*if(signupAPI==null && TextUtils.isEmpty(errorMessage))
+                {
+                    showMyAlertDialog("Alert", Utils.getStringFromResources(R.string.invalid_service_response_lbl),"Ok",false);
+                    return;
+                }*/
+                if(signupAPI==null && !TextUtils.isEmpty(errorMessage))
+                {
+                    showMyAlertDialog("Alert", errorMessage,"Ok",false);
+                    return;
+                }
+                if(signupAPI==null && TextUtils.isEmpty(errorMessage))
                 {
 
                     showMyDialog("Alert", Utils.getStringFromResources(R.string.invalid_service_response_lbl), new ApiErrorDialogInterface() {

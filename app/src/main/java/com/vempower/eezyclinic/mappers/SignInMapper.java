@@ -13,8 +13,11 @@ import com.vempower.eezyclinic.utils.Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
 import retrofit.Call;
 import retrofit.Callback;
+import retrofit.HttpException;
 import retrofit.Response;
 import retrofit.Retrofit;
 
@@ -59,7 +62,7 @@ public class SignInMapper extends  AbstractMapper  implements Callback<LoginAPI>
         if (requestBody == null) {
             MyApplication.hideTransaprentDialog();
             if (listener != null) {
-                listener.getLoginAPI(null);
+                listener.getLoginAPI(null,null);
             }
             return;
         }
@@ -72,14 +75,30 @@ public class SignInMapper extends  AbstractMapper  implements Callback<LoginAPI>
     @Override
     public void onResponse(Response<LoginAPI> response, Retrofit retrofit) {
         MyApplication.hideTransaprentDialog();
-        listener.getLoginAPI(response.body());
+
+        getMyResponse(response, new MyResponse<LoginAPI>() {
+            @Override
+            public void getMyResponse(LoginAPI responseBody, String errorMsg) {
+                listener.getLoginAPI(responseBody,errorMsg);
+            }
+        });
+
+
+
 
     }
 
     @Override
-    public void onFailure(Throwable t) {
+    public void onFailure(Throwable error) {
         MyApplication.hideTransaprentDialog();
-        listener.getLoginAPI(null);
+
+        onMyFailure(error, new MyResponse<LoginAPI>() {
+            @Override
+            public void getMyResponse(LoginAPI responseBody, String errorMsg) {
+                listener.getLoginAPI(responseBody,errorMsg);
+            }
+        });
+
 
     }
 
@@ -104,6 +123,6 @@ public class SignInMapper extends  AbstractMapper  implements Callback<LoginAPI>
     }
 
     public interface SignInListener {
-        public void getLoginAPI(LoginAPI loginAPI);
+        public void getLoginAPI(LoginAPI loginAPI,String errorMessage);
     }
 }
