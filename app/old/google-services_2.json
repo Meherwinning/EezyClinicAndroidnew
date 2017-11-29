@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "712280858111-9it3utmn486330ua55r4jdflg2r9denb.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.vempower.eezyclinic",
-            "certificate_hash": "a7f1dab811695937951b4103e93620e71deb04ba"
-          }
-        },
-        {
           "client_id": "712280858111-f9sinm1oql7v42knig90vdpnoj6af4la.apps.googleusercontent.com",
           "client_type": 3
         },

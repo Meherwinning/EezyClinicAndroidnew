@@ -30,4 +30,5 @@
     <string name="default_notification_channel_id">EezyClinic_1</string>
     <string name="default_notification_channel_desc">Smart application uniting Patients, Doctors and Insurance Companies under one Smart Platform</string>
 
+    <string name="account_list_dialog_header_msg">You have multiple accounts registered with this mail Id / mobile number.\nPlease select the one you want to change the password for:</string>
 </resources>

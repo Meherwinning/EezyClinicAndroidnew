@@ -85,6 +85,7 @@ public interface Constants {
         String IS_FROM_CHECKOUT_PAGE = "is_from_checkout_page";
         String OTP_KEY = "otp_key";
         String PATIENT_ID_KEY = "patient_id_key";
+        String USER_ACCOUNT_OBJ_KEY="user_account_obj_key";
     }
 
     interface ActivityResult

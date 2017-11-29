@@ -177,7 +177,7 @@ public class SigninActivity extends AbstractSocialLoginActivity {
 
             if (TextUtils.isEmpty(password)) {
                 showToastMessage("Please enter valid password");
-                user_id_et.setError("Please enter valid password");
+                //login_password_et.setError("Please enter valid password");
                 return true;
             }
 

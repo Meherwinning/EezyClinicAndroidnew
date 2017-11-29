@@ -96,6 +96,13 @@ public class SocialLoginFragment extends LinkedinFragment implements SocialNetwo
         }
 
 
+
+        //Use manager to manage SocialNetworks
+        socialInit();
+        return rootView;
+    }
+
+    private void socialInit() {
         //Get Keys for initiate SocialNetworks
         String TWITTER_CONSUMER_KEY = getActivity().getString(R.string.twitter_consumer_key);
         String TWITTER_CONSUMER_SECRET = getActivity().getString(R.string.twitter_consumer_secret);
@@ -111,7 +118,7 @@ public class SocialLoginFragment extends LinkedinFragment implements SocialNetwo
         fbScope.addAll(Arrays.asList("public_profile", "email"));/*, user_friends*/
         String linkedInScope = "r_basicprofile+r_fullprofile+rw_nus+r_network+w_messages+r_emailaddress+r_contactinfo";
 
-        //Use manager to manage SocialNetworks
+
         mSocialNetworkManager = (SocialNetworkManager) getFragmentManager().findFragmentByTag(AbstractSocialLoginActivity.SOCIAL_NETWORK_TAG);
 
         //Check if manager exist
@@ -147,7 +154,6 @@ public class SocialLoginFragment extends LinkedinFragment implements SocialNetwo
                 }
             }
         }
-        return rootView;
     }
 
     @Override
@@ -213,6 +219,7 @@ public class SocialLoginFragment extends LinkedinFragment implements SocialNetwo
                     networkId = GooglePlusSocialNetwork.ID;
                     break;*/
             }
+            socialInit();
             socialNetwork = mSocialNetworkManager.getSocialNetwork(networkId);
             try
             {
@@ -224,6 +231,13 @@ public class SocialLoginFragment extends LinkedinFragment implements SocialNetwo
             catch (Exception e)
             {
                 //TODO nothing
+            }
+
+            if(socialNetwork==null)
+            {
+                socialInit();
+                showToastMessage("Please try again");
+                return;
             }
 
             if (!socialNetwork.isConnected()) {

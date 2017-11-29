@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
@@ -13,9 +15,13 @@ import android.widget.TextView
 import com.rey.material.app.DialogFragment
 import com.rey.material.app.SimpleDialog
 import com.vempower.eezyclinic.R
+import com.vempower.eezyclinic.adapters.AccountListAdapter
 import com.vempower.eezyclinic.application.MyApplication
+import com.vempower.eezyclinic.core.AdapterItem
+import com.vempower.eezyclinic.interfaces.AccountListDialogInterface
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface
 import com.vempower.eezyclinic.utils.Utils
+import java.util.*
 
 /**
  * Created by Satishk on 8/10/2017.
@@ -119,8 +125,7 @@ abstract class AbstractActivity : AppCompatActivity() {
         alertDialog.setCancelable(false)
 
         // On pressing Settings button
-        alertDialog.setPositiveButton(Utils.getStringFromResources(R.string.ok_label)
-        ) { dialog, which ->
+        alertDialog.setPositiveButton(Utils.getStringFromResources(R.string.ok_label)) { dialog, which ->
             dialog.dismiss()
 
 
@@ -190,6 +195,7 @@ abstract class AbstractActivity : AppCompatActivity() {
                 .title(title)
                 .positiveAction("Retry")
                 .negativeAction("Close")
+
 
         val fragment = DialogFragment.newInstance(builder)
         //fragment.show(this.fragmentManager,"")
@@ -295,6 +301,56 @@ abstract class AbstractActivity : AppCompatActivity() {
         fragment?.show(supportFragmentManager, null)
     }
 
+
+
+
+    protected fun showAccountListDialog (accountList :List<AdapterItem>, accountListener: AccountListDialogInterface?) {
+        val alertDialog = AlertDialog.Builder(MyApplication.getCurrentActivityContext())
+        val view = layoutInflater.inflate(R.layout.account_list_dialog_layout, null)
+
+        val recylerview = view.findViewById<android.support.v7.widget.RecyclerView>(R.id.dialog_recylerview)
+        var adapter1 = AccountListAdapter(this, accountList)
+        recylerview.adapter = adapter1
+        recylerview.layoutManager= LinearLayoutManager(this)
+
+        alertDialog.setView(view)
+
+        /*val tv= view.findViewById<TextView>(R.id.text_1)
+        tv.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+
+                showToastMessage("Now click view")
+            }})*/
+
+        // Setting Dialog Title
+        // setting Dialog cancelable to false 9010864578
+        alertDialog.setCancelable(false)
+
+        // On pressing Settings button
+        alertDialog.setPositiveButton(Utils.getStringFromResources(R.string.ok_label)
+        ) { dialog, which ->
+            // dialog.dismiss()
+            //TODO something
+           // showToastMessage("Selected item :" + adapter1.mSelectedItem);
+            if(accountListener!=null)
+            {
+                accountListener.okClick(adapter1.mSelectedItem)
+            }
+
+        }
+
+
+            alertDialog.setNegativeButton("Cancel") { dialog, which ->
+                dialog.dismiss()
+
+            }
+
+
+            alertDialog.show()
+            // builder.contentView(R.layout.radio_view_item)
+
+
+        }
 
 
 

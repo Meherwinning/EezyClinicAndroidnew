@@ -17,6 +17,7 @@ import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.adapters.HintAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.SocialLoginDetails;
 import com.vempower.eezyclinic.fragments.SublimePickerFragment;
@@ -257,7 +258,7 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
 
         {
             MyCheckBoxRR terms_and_cond_checkbox= findViewById(R.id.terms_and_cond_checkbox);
-            if(terms_and_cond_checkbox!=null && !terms_and_cond_checkbox.isCheck())
+            if(terms_and_cond_checkbox!=null && !terms_and_cond_checkbox.isChecked())
             {
                 showToastMessage("Please agree the Terms & Conditions");
                 return true;
@@ -390,11 +391,17 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
     public void setToSpinnerAdapter() {
 
         final ArrayList<String> genderTypeList = new ArrayList<>();
-        genderTypeList.add(Constants.GenderValues.GENDER);
+
         genderTypeList.add(Constants.GenderValues.MALE);
         genderTypeList.add(Constants.GenderValues.FEMALE);
+        genderTypeList.add(Constants.GenderValues.GENDER);
        // selectedGender = genderTypeList.get(0);
-        ArrayAdapter aa = new ArrayAdapter(MyApplication.getCurrentActivityContext(), R.layout.spinner_textview, genderTypeList);
+
+
+        selectedGender= genderTypeList.get(2);
+        HintAdapter aa = new HintAdapter(MyApplication.getCurrentActivityContext(),R.layout.spinner_textview,genderTypeList);
+
+       // ArrayAdapter aa = new ArrayAdapter(MyApplication.getCurrentActivityContext(), R.layout.spinner_textview, genderTypeList);
        /* {
 
             @NonNull
@@ -438,6 +445,7 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
         };*/
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gender_type_spinner.setAdapter(aa);
+        gender_type_spinner.setSelection(aa.getCount());
 
         gender_type_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

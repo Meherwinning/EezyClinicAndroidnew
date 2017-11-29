@@ -1,5 +1,5 @@
 
-package com.vempower.eezyclinic.APIResponce;
+package com.vempower.eezyclinic.APICore;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

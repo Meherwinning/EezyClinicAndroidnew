@@ -6,8 +6,11 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.facebook.LoginActivity;
+import com.vempower.eezyclinic.APICore.UserAccount;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
 
 /**
@@ -23,15 +26,41 @@ public class ResetPasswordActivity extends AbstractFragmentActivity {
     }
 
     private void init() {
+        //intent.putExtra(Constants.Pref.USER_ACCOUNT_OBJ_KEY,userAccounts.get(0));
+
+        if(getIntent()==null || !getIntent().hasExtra(Constants.Pref.USER_ACCOUNT_OBJ_KEY))
+        {
+            showMyDialog("Alert","Invalid user details\nPlease try again",true);
+            return;
+        }
+        Object obj=getIntent().getSerializableExtra(Constants.Pref.USER_ACCOUNT_OBJ_KEY);
+
+        if(obj==null || !(obj instanceof UserAccount))
+        {
+
+        }
+        //UserAccount userAccount=
         MyButtonRectangleRM reset_password_bt =findViewById(R.id.reset_password_bt);
         reset_password_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+               /* showAccountListDialog(new ApiErrorDialogInterface() {
+                    @Override
+                    public void onCloseClick() {
+                        showToastMessage("onCloseClick");
+                    }
+
+                    @Override
+                    public void retryClick() {
+                        showToastMessage("retryClick");
+                    }
+                });*/
                 showToastMessage("Success to reset password");
-                Intent intent= new Intent(MyApplication.getCurrentActivityContext(),LoginActivity.class);
+               /* Intent intent= new Intent(MyApplication.getCurrentActivityContext(),LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                finish();
+                finish();*/
             }
         });
     }

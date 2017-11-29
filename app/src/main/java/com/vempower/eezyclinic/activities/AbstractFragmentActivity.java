@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -31,6 +32,8 @@ public class AbstractFragmentActivity extends AbstractActivity  implements OTPLi
         super.onCreate(savedInstanceState);
         MyApplication.setCurrentActivityContext(this);
         basicInit();
+
+        //View view= getLayoutInflater().inflate(R.layout.radio_view_item,null);
 
     }
 

@@ -58,12 +58,15 @@
                     android:orientation="vertical">
 
                     <android.support.design.widget.TextInputLayout
+                        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50dp"
+
                         android:background="@drawable/background_shape_idle"
                         android:textColorHint="@color/text_hint_color"
                         app:errorEnabled="true"
-                        app:hintEnabled="true">
+                         app:hintEnabled="true">
 
                         <com.vempower.eezyclinic.views.MyEditTextRR
                             android:id="@+id/name_et"
@@ -99,7 +102,7 @@
                     android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
 
-                    <android.support.design.widget.TextInputLayout
+                                      <android.support.design.widget.TextInputLayout                        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50dp"
                         android:background="@drawable/background_shape_idle"
@@ -120,10 +123,10 @@
                             android:imeOptions="actionUnspecified"
                             android:inputType="text"
                             android:drawableRight="@drawable/cal"
+                            android:paddingRight="@dimen/_12dp"
                             android:drawablePadding="@dimen/_5dp"
                             android:maxLength="50"
                             android:maxLines="1"
-                            android:padding="@dimen/_2dp"
                             android:singleLine="true"
 
                             android:textColor="@color/text_color"
@@ -188,7 +191,7 @@
                     android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
 
-                    <android.support.design.widget.TextInputLayout
+                                      <android.support.design.widget.TextInputLayout                        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50dp"
                         android:background="@drawable/background_shape_idle"
@@ -230,7 +233,7 @@
                     android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
 
-                    <android.support.design.widget.TextInputLayout
+                                      <android.support.design.widget.TextInputLayout                        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50dp"
                         android:background="@drawable/background_shape_idle"
@@ -247,7 +250,7 @@
                             android:gravity="left|center_vertical"
                             android:hint="Mobile Number*"
                             android:imeOptions="actionUnspecified"
-                            android:inputType="text"
+                            android:inputType="number"
                             android:maxLength="50"
                             android:maxLines="1"
                             android:padding="@dimen/_2dp"
@@ -331,7 +334,8 @@
                         android:text="Sign up to Agree"
                         android:padding="@dimen/_5dp"
                         android:textSize="@dimen/text_size_small"
-                        android:background="@color/app_gradient_bottom_color"
+
+                        android:button="@drawable/checkbox_selector"
                         android:textColor="@color/text_color_light_black"
                         android:layout_height="match_parent" />
 
