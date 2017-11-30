@@ -274,6 +274,7 @@ public class GoolePlusFragment extends AbstractFragment implements  GoogleApiCli
         //Utils.showToastMessage(msg);
 
         SocialLoginDetails details= new SocialLoginDetails(tokenId, Constants.MediaType.GOOGLE_TYPE,id,email,Utils.getDeviceId());
+        details.setName(name);
         if (socialLoginListener != null) {
             socialLoginListener.getLoginDetails(details);
         }

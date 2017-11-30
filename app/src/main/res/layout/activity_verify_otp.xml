@@ -5,7 +5,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/app_gradient_bg">
-
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:focusable="true" />
     <ScrollView
         android:layout_width="match_parent"
         android:fillViewport="true"
@@ -56,10 +59,12 @@
                 <com.vempower.eezyclinic.views.MyTextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50dp"
-                     app:errorEnabled="true"
-                    app:hintEnabled="true"
+                    android:background="@drawable/background_shape_idle"
+
                     android:textColorHint="@color/text_hint_color"
-                    android:background="@drawable/background_shape_idle">
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                     <com.vempower.eezyclinic.views.MyEditTextRR
                         android:id="@+id/otp_et"

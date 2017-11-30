@@ -47,4 +47,9 @@ public interface EezyClinicAPI {
     Call<ForgotPasswordOTPAPI> forgotPasswordOTPAPI(@Body RequestBody postBody);
 
 
+    //http://202.63.103.194:8008/api/patient/resetpassword
+    @POST(data+"patient/resetpassword")
+    Call<AbstractResponce> resetPasswordAPI(@Body RequestBody postBody);
+
+
 }

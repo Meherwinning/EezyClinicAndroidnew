@@ -9,6 +9,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.views.MyTextViewRR;
 
 import java.util.List;
 
@@ -42,11 +43,13 @@ public abstract class RadioAdapter<T> extends RecyclerView.Adapter<RadioAdapter.
     class ViewHolder extends RecyclerView.ViewHolder {
 
         public RadioButton mRadio;
-        public TextView mText;
+        public MyTextViewRR name_tv,patient_id_tv,email_tv;
 
         public ViewHolder(final View inflate) {
             super(inflate);
-            mText = (TextView) inflate.findViewById(R.id.text_1);
+            name_tv = inflate.findViewById(R.id.name_tv);
+            patient_id_tv = inflate.findViewById(R.id.patient_id_tv);
+            email_tv = inflate.findViewById(R.id.email_tv);
             mRadio = (RadioButton) inflate.findViewById(R.id.radio);
             View.OnClickListener clickListener = new View.OnClickListener() {
                 @Override

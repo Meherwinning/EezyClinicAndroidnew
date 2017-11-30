@@ -119,7 +119,7 @@
                             android:background="@null"
                             android:clickable="true"
                             android:drawablePadding="@dimen/_5dp"
-                            android:drawableRight="@drawable/cal"
+                            android:drawableRight="@drawable/cal1"
                             android:gravity="left|center_vertical"
                             android:hint="Date of Birth"
                             android:imeOptions="actionUnspecified"
@@ -127,7 +127,7 @@
                             android:maxLength="50"
                             android:maxLines="1"
                             android:onClick="onDateOfBirthTextviewClick"
-                            android:padding="@dimen/_2dp"
+                            android:paddingRight="@dimen/_12dp"
                             android:singleLine="true"
 
                             android:textColor="@color/text_color"
@@ -361,7 +361,8 @@
                         android:text="@string/terms_and_conditions_lbl"
                         android:textColor="@color/text_color_light_black"
                         android:textSize="@dimen/text_size_small"
-
+                        android:clickable="true"
+                        android:onClick="onTermsAndConditionsClick"
                         android:textStyle="bold" />
                 </LinearLayout>
 

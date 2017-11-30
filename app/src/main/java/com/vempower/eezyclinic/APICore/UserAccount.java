@@ -54,9 +54,9 @@ public class UserAccount implements AdapterItem {
 
     @Override
     public String getItemName() {
-        return  "Name      : "+patientName+"\n"+
-                "patientId : "+patientUniqueId+"\n"+
-                "Email        : "+patentEmail;
+        return  "Name\t: "+patientName+"\n"+
+                "patientId\t: "+patientUniqueId+"\n"+
+                "Email\t: "+patentEmail;
     }
 
     @Override

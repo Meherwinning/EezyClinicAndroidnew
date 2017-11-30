@@ -1,14 +1,22 @@
 package com.vempower.eezyclinic.activities;
 
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.vempower.eezyclinic.APIResponce.AbstractResponce;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
@@ -22,7 +30,7 @@ import com.vempower.stashdealcustomer.activities.AbstractActivity;
  * Created by Satish on 11/15/2017.
  */
 
-public class AbstractFragmentActivity extends AbstractActivity  implements OTPListener {
+public class AbstractFragmentActivity extends AbstractActivity  /*implements OTPListener*/ {
 
    // private InputMethodManager keyBoardHide;
 
@@ -38,7 +46,7 @@ public class AbstractFragmentActivity extends AbstractActivity  implements OTPLi
     }
 
     private void basicInit() {
-        OtpReader.bind(this,Constants.SMS_SENDER_NAME);
+       //// OtpReader.bind(this,Constants.SMS_SENDER_NAME);
         FirebaseMessaging.getInstance().subscribeToTopic("news");
        // String refreshedToken = FirebaseInstanceId.getInstance().getToken();
        // Log.v("FCM ID :", "FCM1: " + refreshedToken);
@@ -83,12 +91,74 @@ public class AbstractFragmentActivity extends AbstractActivity  implements OTPLi
             }
         }
     }*/
-    @Override
+   /* @Override
     public void otpReceived(String smsText) {
         //Do whatever you want to do with the text
         //Toast.makeText(this,"Got "+smsText,Toast.LENGTH_LONG).show();
         //Log.d("Otp",smsText);
         showToastMessage(smsText);
+
+    }*/
+
+    protected boolean isValidResponse(AbstractResponce response,String errorMessage)
+    {
+        if(response==null && TextUtils.isEmpty(errorMessage))
+        {
+            showMyAlertDialog("Alert",  Utils.getStringFromResources(R.string.invalid_service_response_lbl),"Ok",false);
+            return false;
+        }
+        if(response==null && !TextUtils.isEmpty(errorMessage))
+        {
+            showMyAlertDialog("Alert", errorMessage,"Ok",false);
+            return false;
+        }
+        if(!response.getStatusCode().equalsIgnoreCase(Constants.SUCCESS_STATUS_CODE))
+        {
+            showMyAlertDialog("Alert",response.getStatusMessage() ,"Ok",false);
+            return false;
+
+        }
+        return true;
+    }
+
+    public void onTermsAndConditionsClick(View view)
+    {
+       // Intent intent= new Intent(this,TermsAndConditionsActivity.class);
+        //startActivity(intent);
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        DialogFragment newFragment = MyDialogFragment.newInstance();
+        newFragment.show(ft, "dialog");
+    }
+
+    public static  class MyDialogFragment extends DialogFragment {
+
+        static MyDialogFragment newInstance() {
+            MyDialogFragment f = new MyDialogFragment();
+            return f;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View v = inflater.inflate(R.layout.terms_and_conditions_layout, container, false);
+            WebView wv;
+            wv =  v.findViewById(R.id.terms_webView);
+            String url="file:///android_asset/EezyClinic_T_C.html";
+            wv.loadUrl(url);
+            return v;
+        }
+        @Override
+        public void onStart()
+        {
+            super.onStart();
+            Dialog dialog = getDialog();
+            if (dialog != null)
+            {
+                int width = ViewGroup.LayoutParams.MATCH_PARENT;
+                int height = ViewGroup.LayoutParams.MATCH_PARENT;
+                dialog.getWindow().setLayout(width, height);
+            }
+        }
 
     }
 

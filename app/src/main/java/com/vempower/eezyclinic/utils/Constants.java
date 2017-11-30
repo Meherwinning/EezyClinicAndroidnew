@@ -86,6 +86,7 @@ public interface Constants {
         String OTP_KEY = "otp_key";
         String PATIENT_ID_KEY = "patient_id_key";
         String USER_ACCOUNT_OBJ_KEY="user_account_obj_key";
+        String FORGOT_OTP_KEY="forgot_otp_key";
     }
 
     interface ActivityResult

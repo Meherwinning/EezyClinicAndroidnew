@@ -208,6 +208,7 @@ public class AbstractSocialLoginActivity extends AbstractFragmentActivity {
                     .into(profile_pic);*/
            //showToastMessage(linkedinDetail);
             SocialLoginDetails details= new SocialLoginDetails(accesstoken, Constants.MediaType.LINKEDIN_TYPE,id,email,Utils.getDeviceId());
+            details.setName(name);
             if (socialLoginListener != null) {
                 socialLoginListener.getLoginDetails(details);
             }

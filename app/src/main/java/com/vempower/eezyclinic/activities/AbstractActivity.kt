@@ -301,6 +301,33 @@ abstract class AbstractActivity : AppCompatActivity() {
         fragment?.show(supportFragmentManager, null)
     }
 
+    protected fun showMyDialog1(title: String, message: String,  positiveBtnName: String="Ok", dialogInterface: ApiErrorDialogInterface?) {
+        val builder = object : SimpleDialog.Builder(R.style.SimpleDialogLight) {
+            override fun onPositiveActionClicked(fragment: DialogFragment) {
+                //Toast.makeText(mActivity, "Agreed", Toast.LENGTH_SHORT).show();
+                super.onPositiveActionClicked(fragment)
+
+                dialogInterface?.retryClick()
+
+            }
+
+         /*   override fun onNegativeActionClicked(fragment: DialogFragment) {
+                //Toast.makeText(mActivity, "Disagreed", Toast.LENGTH_SHORT).show();
+                super.onNegativeActionClicked(fragment)
+                dialogInterface?.onCloseClick()
+            }*/
+        }
+
+
+        (builder as SimpleDialog.Builder).message(message)
+                .title(title)
+                .positiveAction(positiveBtnName)
+                //.negativeAction(negativeBtnName)
+
+        val fragment = DialogFragment.newInstance(builder)
+        //fragment.show(this.fragmentManager,"")
+        fragment?.show(supportFragmentManager, null)
+    }
 
 
 

@@ -2,6 +2,7 @@ package com.vempower.eezyclinic.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
@@ -137,7 +138,7 @@ public class VerifyOTPActivity extends AbstractFragmentActivity  {
         });
     }
 
-    private void validateLoginUserDetails(VerifyOTPAPI loginAPI) {
+    private void validateLoginUserDetails(final VerifyOTPAPI loginAPI) {
         if(loginAPI==null)
         {
             showMyAlertDialog("Alert", "Invalid service response.\nPlease check Network/Try again","Ok",false);
@@ -155,13 +156,27 @@ public class VerifyOTPActivity extends AbstractFragmentActivity  {
             showMyAlertDialog("Alert", "Invalid service response.\nPlease check Network/Try again","Ok",false);
             return;
         }
-        showToastMessage("Success to verify OTP");
-        MyApplication.getInstance().setLoggedUserDetailsToSharedPref(loginAPI.getData());
-        SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,loginAPI.getAccessToken());
-        Intent intent= new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        finish();
+        showToastMessage(R.string.signup_success_msg);
+        //title: String, message: String,  positiveBtnName: String="Retry",negativeBtnName: String="Close", dialogInterface: ApiErrorDialogInterface?
+/*        showMyDialog1("Alert", "Ok","Message", new ApiErrorDialogInterface() {
+            @Override
+            public void onCloseClick() {
+                //TODO nothing
+
+            }
+
+            @Override
+            public void retryClick() {*/
+                MyApplication.getInstance().setLoggedUserDetailsToSharedPref(loginAPI.getData());
+                SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,loginAPI.getAccessToken());
+                Intent intent= new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+           // }
+      //  });
+
+
     }
 
     @Override
@@ -173,12 +188,27 @@ public class VerifyOTPActivity extends AbstractFragmentActivity  {
         finish();
     }
 
-    @Override
+  /*  @Override
     public void otpReceived(String smsText) {
         //Do whatever you want to do with the text
         //Toast.makeText(this,"Got "+smsText,Toast.LENGTH_LONG).show();
         //Log.d("Otp",smsText);
         showToastMessage("From Verify OTP\n"+smsText);
 
+    }*/
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //hideKeyBord(dateofBirth_tv);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                hideKeyBord(otp_et);
+            }
+        },100);
+
+
     }
+
 }

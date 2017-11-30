@@ -5,9 +5,9 @@
     <item android:state_checked="true" android:state_focused="true"
         android:drawable="@drawable/check" />
     <item android:state_checked="false" android:state_focused="true"
-        android:drawable="@drawable/uncheck" />
+        android:drawable="@drawable/uncheck1" />
     <item android:state_checked="false"
-        android:drawable="@drawable/uncheck" />
+        android:drawable="@drawable/uncheck1" />
     <item android:state_checked="true"
         android:drawable="@drawable/check" />
 

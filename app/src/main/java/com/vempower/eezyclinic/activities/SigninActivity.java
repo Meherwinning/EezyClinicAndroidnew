@@ -105,22 +105,12 @@ public class SigninActivity extends AbstractSocialLoginActivity {
     }
 
     private void validateLoginUserDetails(LoginAPI loginAPI,String errorMessage) {
-        if(loginAPI==null && TextUtils.isEmpty(errorMessage))
-        {
-            showMyAlertDialog("Alert",  Utils.getStringFromResources(R.string.invalid_service_response_lbl),"Ok",false);
-            return;
-        }
-        if(loginAPI==null && !TextUtils.isEmpty(errorMessage))
-        {
-            showMyAlertDialog("Alert", errorMessage,"Ok",false);
-            return;
-        }
-        if(!loginAPI.getStatusCode().equalsIgnoreCase(Constants.SUCCESS_STATUS_CODE))
-        {
-            showMyAlertDialog("Alert",loginAPI.getStatusMessage() ,"Ok",false);
-            return;
 
+        if(!isValidResponse(loginAPI,errorMessage))
+        {
+           return;
         }
+
 
         if(loginAPI.getPatientData()==null || TextUtils.isEmpty(loginAPI.getAccessToken()))
         {

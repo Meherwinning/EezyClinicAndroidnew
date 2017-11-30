@@ -21,8 +21,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/center_img"
-               >
+                android:layout_above="@+id/center_img">
 
                 <RelativeLayout
                     android:id="@+id/social_container"
@@ -38,10 +37,11 @@
 
 
             </RelativeLayout>
+
             <EditText
-                android:focusable="true"
                 android:layout_width="match_parent"
-                android:layout_height="0dp" />
+                android:layout_height="0dp"
+                android:focusable="true" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,15 +58,15 @@
                     android:orientation="vertical">
 
                     <android.support.design.widget.TextInputLayout
-                        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
-
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_50dp"
 
+                        android:layout_height="@dimen/_50dp"
                         android:background="@drawable/background_shape_idle"
+
                         android:textColorHint="@color/text_hint_color"
                         app:errorEnabled="true"
-                         app:hintEnabled="true">
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                         <com.vempower.eezyclinic.views.MyEditTextRR
                             android:id="@+id/name_et"
@@ -96,37 +96,39 @@
                         android:background="@color/white" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
 
-                                      <android.support.design.widget.TextInputLayout                        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50dp"
                         android:background="@drawable/background_shape_idle"
                         android:textColorHint="@color/text_hint_color"
                         app:errorEnabled="true"
-                        app:hintEnabled="true">
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                         <com.vempower.eezyclinic.views.MyTextViewRR
                             android:id="@+id/dateofBirth_tv"
                             android:layout_width="match_parent"
-                            android:clickable="true"
-                            android:onClick="onDateOfBirthTextviewClick"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="@dimen/_2dp"
                             android:background="@null"
+                            android:clickable="true"
+                            android:drawablePadding="@dimen/_5dp"
+                            android:drawableRight="@drawable/cal1"
                             android:gravity="left|center_vertical"
                             android:hint="Date of Birth"
                             android:imeOptions="actionUnspecified"
                             android:inputType="text"
-                            android:drawableRight="@drawable/cal"
-                            android:paddingRight="@dimen/_12dp"
-                            android:drawablePadding="@dimen/_5dp"
                             android:maxLength="50"
                             android:maxLines="1"
+                            android:onClick="onDateOfBirthTextviewClick"
+                            android:paddingRight="@dimen/_12dp"
                             android:singleLine="true"
 
                             android:textColor="@color/text_color"
@@ -142,41 +144,42 @@
                         android:background="@color/white" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
-<!--
-                    <android.support.design.widget.TextInputLayout
+                    <!--
+                                        <android.support.design.widget.TextInputLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="@dimen/_50dp"
+                                            android:background="@drawable/background_shape_idle"
+                                            android:textColorHint="@color/text_hint_color"
+                                            app:errorEnabled="true"
+                                            app:hintEnabled="true">-->
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50dp"
-                        android:background="@drawable/background_shape_idle"
-                        android:textColorHint="@color/text_hint_color"
-                        app:errorEnabled="true"
-                        app:hintEnabled="true">-->
+                        android:orientation="horizontal"
+                        android:padding="@dimen/_2dp">
 
-                        <LinearLayout
+                        <Spinner
+                            android:id="@+id/gender_type_spinner"
                             android:layout_width="match_parent"
-                            android:orientation="horizontal"
-                            android:padding="@dimen/_2dp"
-                            android:layout_height="@dimen/_50dp"
-                           >
-                            <Spinner
-                                android:id="@+id/gender_type_spinner"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:maxLines="1"
-                                android:singleLine="true"
-                                android:backgroundTint="@color/white"
+                            android:layout_height="match_parent"
+                            android:backgroundTint="@color/white"
+                            android:maxLines="1"
+                            android:singleLine="true"
 
-                                android:spinnerMode="dropdown"
-                                android:textColor="@color/text_color"
-                                android:textSize="@dimen/text_size_normal" />
+                            android:spinnerMode="dropdown"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/text_size_normal" />
 
-                        </LinearLayout>
+                    </LinearLayout>
 
-                   <!-- </android.support.design.widget.TextInputLayout>-->
+                    <!-- </android.support.design.widget.TextInputLayout>-->
 
 
                     <TextView
@@ -185,19 +188,21 @@
                         android:background="@color/white" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
 
-                                      <android.support.design.widget.TextInputLayout                        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50dp"
                         android:background="@drawable/background_shape_idle"
                         android:textColorHint="@color/text_hint_color"
                         app:errorEnabled="true"
-                        app:hintEnabled="true">
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                         <com.vempower.eezyclinic.views.MyEditTextRR
                             android:id="@+id/email_et"
@@ -227,19 +232,21 @@
                         android:background="@color/white" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
 
-                                      <android.support.design.widget.TextInputLayout                        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50dp"
                         android:background="@drawable/background_shape_idle"
                         android:textColorHint="@color/text_hint_color"
                         app:errorEnabled="true"
-                        app:hintEnabled="true">
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                         <com.vempower.eezyclinic.views.MyEditTextRR
                             android:id="@+id/mobile_num_et"
@@ -269,6 +276,7 @@
                         android:background="@color/white" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -277,46 +285,42 @@
                     android:orientation="vertical">
 
 
-
                     <com.vempower.eezyclinic.views.MyTextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50dp"
                         android:layout_marginTop="-1dp"
-                        app:errorEnabled="true"
+                        android:background="@drawable/background_shape_idle"
                         android:textColorHint="@color/text_hint_color"
+                        app:errorEnabled="true"
                         app:passwordToggleEnabled="true"
-                        app:passwordToggleTint="@color/white"
-                        android:background="@drawable/background_shape_idle">
+                        app:passwordToggleTint="@color/white">
 
                         <com.vempower.eezyclinic.views.MyEditTextRR
-                           android:id="@+id/password_et"
+                            android:id="@+id/password_et"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:gravity="left|center_vertical"
                             android:layout_marginBottom="@dimen/_2dp"
                             android:background="@null"
+                            android:gravity="left|center_vertical"
                             android:hint="Password"
                             android:imeOptions="actionUnspecified"
-                            android:textColorHint="@color/text_hint_color"
                             android:inputType="textPassword"
-                            android:maxLines="1"
                             android:maxLength="20"
-                            android:textSize="@dimen/text_size_normal"
+                            android:maxLines="1"
                             android:padding="@dimen/_2dp"
                             android:singleLine="true"
-                            android:textColor="@color/text_color" />
+                            android:textColor="@color/text_color"
+                            android:textColorHint="@color/text_hint_color"
+                            android:textSize="@dimen/text_size_normal" />
 
                     </com.vempower.eezyclinic.views.MyTextInputLayout>
-
-
 
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
 
-                        android:background="@color/white"
-                        />
+                        android:background="@color/white" />
 
                 </LinearLayout>
 
@@ -331,34 +335,36 @@
                     <com.vempower.eezyclinic.views.MyCheckBoxRR
                         android:id="@+id/terms_and_cond_checkbox"
                         android:layout_width="wrap_content"
-                        android:text="Sign up to Agree"
-                        android:padding="@dimen/_5dp"
-                        android:textSize="@dimen/text_size_small"
-
+                        android:layout_height="match_parent"
                         android:button="@drawable/checkbox_selector"
-                        android:textColor="@color/text_color_light_black"
-                        android:layout_height="match_parent" />
-
-                  <!--  <com.vempower.eezyclinic.views.MyTextViewRR
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5dp"
                         android:padding="@dimen/_5dp"
-                        android:text="Don't have an account?"
 
-                        android:textColor="@color/white"
+                        android:text="Sign up to Agree"
+                        android:textColor="@color/text_color_light_black"
+                        android:textSize="@dimen/text_size_small" />
 
-                        android:textSize="@dimen/text_size_normal" />
--->
+                    <!--  <com.vempower.eezyclinic.views.MyTextViewRR
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="@dimen/_5dp"
+                          android:padding="@dimen/_5dp"
+                          android:text="Don't have an account?"
+
+                          android:textColor="@color/white"
+
+                          android:textSize="@dimen/text_size_normal" />
+  -->
                     <com.vempower.eezyclinic.views.MyTextViewRR
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:paddingRight="@dimen/_5dp"
-                        android:gravity="left|center_vertical"
                         android:layout_gravity="center_vertical"
+                        android:clickable="true"
+                        android:gravity="left|center_vertical"
+                        android:onClick="onTermsAndConditionsClick"
+                        android:paddingRight="@dimen/_5dp"
                         android:text="@string/terms_and_conditions_lbl"
-                        android:textSize="@dimen/text_size_small"
                         android:textColor="@color/text_color_light_black"
+                        android:textSize="@dimen/text_size_small"
 
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -375,10 +381,6 @@
                     android:text="Sign up"
                     android:textColor="@color/app_gradient_top_color"
                     android:textSize="@dimen/button_text_size" />
-
-
-
-
 
 
             </LinearLayout>
