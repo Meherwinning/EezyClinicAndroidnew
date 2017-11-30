@@ -16,19 +16,19 @@ public class AbstractResponce {
     private String statusMessage;
 
 
-    public String getStatusCode() {
+    public final String getStatusCode() {
         return statusCode;
     }
 
-    public void setStatusCode(String statusCode) {
+    public final void setStatusCode(String statusCode) {
         this.statusCode = statusCode;
     }
 
-    public String getStatusMessage() {
+    public final String getStatusMessage() {
         return statusMessage;
     }
 
-    public void setStatusMessage(String statusMessage) {
+    public final void setStatusMessage(String statusMessage) {
         this.statusMessage = statusMessage;
     }
 

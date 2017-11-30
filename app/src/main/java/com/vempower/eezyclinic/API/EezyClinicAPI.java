@@ -3,6 +3,7 @@ package com.vempower.eezyclinic.API;
 import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.APIResponce.AbstractResponce;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordAPI;
+import com.vempower.eezyclinic.APIResponce.ForgotPasswordOTPAPI;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
 import com.vempower.eezyclinic.APIResponce.RegisterAPI;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
@@ -40,4 +41,10 @@ public interface EezyClinicAPI {
     //http://202.63.103.194:8008/api/patient/forgotpassword
     @POST(data+"patient/forgotpassword")
     Call<ForgotPasswordAPI> forgorPasswordAPI(@Body RequestBody postBody);
+
+    //http://202.63.103.194:8008/api/patient/forgotpasswordsendotp
+    @POST(data+"patient/forgotpasswordsendotp")
+    Call<ForgotPasswordOTPAPI> forgotPasswordOTPAPI(@Body RequestBody postBody);
+
+
 }
