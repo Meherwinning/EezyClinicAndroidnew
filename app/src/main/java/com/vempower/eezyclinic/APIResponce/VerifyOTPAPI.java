@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.vempower.eezyclinic.APICore.PatientData;
 
-public class VerifyOTPAPI extends  AbstractResponce {
+public class VerifyOTPAPI extends AbstractResponse {
 
 
     @SerializedName("user_type")

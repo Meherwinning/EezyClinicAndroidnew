@@ -12,14 +12,11 @@ import android.widget.EditText;
 
 import com.vempower.eezyclinic.APICore.ForgotPasswordData;
 import com.vempower.eezyclinic.APICore.UserAccount;
-import com.vempower.eezyclinic.APIResponce.AbstractResponce;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordOTPAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
-import com.vempower.eezyclinic.core.AdapterItem;
 import com.vempower.eezyclinic.interfaces.AccountListDialogInterface;
-import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.ForgotPasswordMapper;
 import com.vempower.eezyclinic.mappers.ForgotPasswordOTPMapper;
 import com.vempower.eezyclinic.utils.Constants;
@@ -27,7 +24,6 @@ import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
 import com.vempower.eezyclinic.views.MyEditTextRR;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -125,7 +121,8 @@ public class ForgotPasswordActivity extends AbstractFragmentActivity {
                     finish();*/
                     return;
                 } else {
-                    showAccountListDialog(userAccounts, new AccountListDialogInterface() {
+
+                    showAccountListDialog(isEmail,userAccounts, new AccountListDialogInterface() {
                         @Override
                         public void okClick(int selectedItemIndex) {
                             if (selectedItemIndex <= -1) {

@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by satish on 21/11/17.
  */
 
-public class AbstractResponce {
+public class AbstractResponse {
     @SerializedName("status_code")
     @Expose
     private String statusCode;

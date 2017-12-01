@@ -41,7 +41,7 @@ import java.util.Calendar;
 
 public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
 
-    private MyTextViewRR dateofBirth_tv;
+    private MyTextViewRR dateofBirth_tv,social_login_header_tv;
     private Spinner gender_type_spinner;
     private String selectedGender;
 
@@ -69,15 +69,19 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
             return;
         }
 
+
         dateofBirth_tv = findViewById(R.id.dateofBirth_tv);
         gender_type_spinner = findViewById(R.id.gender_type_spinner);
         name_et = findViewById(R.id.name_et);
         email_et = findViewById(R.id.email_et);
         mobile_num_et = findViewById(R.id.mobile_num_et);
         signup_bt = findViewById(R.id.signup_bt);
+        social_login_header_tv = findViewById(R.id.social_login_header_tv);
         selectedGender=null;
 
         setToSpinnerAdapter();
+
+
 
         Serializable serializableExtra = getIntent().getSerializableExtra(Constants.SocialLoginPref.LOGIN_DETAILS_OBJ_KEY);
         if (serializableExtra == null || !(serializableExtra instanceof SocialLoginDetails)) {
@@ -113,6 +117,8 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
             showMyDialog("Alert", "Invalid login media details/please try again", true, new Intent(this, SigninActivity.class));
             return;
         }
+        String headerText = getResources().getString(R.string.social_login_header_message, media_type);
+        social_login_header_tv.setText(headerText);
 
         signup_bt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -309,7 +315,12 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
     }
 
     Pair<Boolean, SublimeOptions> getOptions() {
+        Calendar endCalendar=Calendar.getInstance();
+        Calendar startCalendar=Calendar.getInstance();
+        startCalendar.set(Calendar.YEAR,startCalendar.get(Calendar.YEAR)-120);
         SublimeOptions options = new SublimeOptions();
+        options.setDateRange(startCalendar.getTimeInMillis(),endCalendar.getTimeInMillis());
+
         int displayOptions = SublimeOptions.ACTIVATE_DATE_PICKER;
 
 

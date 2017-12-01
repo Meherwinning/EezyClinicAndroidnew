@@ -6,7 +6,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.vempower.eezyclinic.APICore.UserAccount;
 
-public class ForgotPasswordAPI extends AbstractResponce {
+public class ForgotPasswordAPI extends AbstractResponse {
 
 
     @SerializedName("data")

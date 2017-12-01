@@ -273,7 +273,12 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
           }
 
     Pair<Boolean, SublimeOptions> getOptions() {
+        Calendar endCalendar=Calendar.getInstance();
+        Calendar startCalendar=Calendar.getInstance();
+        startCalendar.set(Calendar.YEAR,startCalendar.get(Calendar.YEAR)-120);
         SublimeOptions options = new SublimeOptions();
+        options.setDateRange(startCalendar.getTimeInMillis(),endCalendar.getTimeInMillis());
+
         int displayOptions = SublimeOptions.ACTIVATE_DATE_PICKER;
 
 

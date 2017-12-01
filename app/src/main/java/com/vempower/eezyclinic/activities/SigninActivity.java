@@ -54,10 +54,10 @@ public class SigninActivity extends AbstractSocialLoginActivity {
         login_password_et = findViewById(R.id.login_password_et);
         user_id_et = findViewById(R.id.user_id_et);
 
-        if(Constants.IS_TESTING)
+        /*if(Constants.IS_TESTING)
         {
             user_id_et.setText("swathi.kits.1251@gmail.com");
-        }
+        }*/
 
         setLoginListener();
 

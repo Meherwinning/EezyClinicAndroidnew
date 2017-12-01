@@ -5,8 +5,7 @@ import android.util.Log;
 
 import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
-import com.vempower.eezyclinic.APIResponce.AbstractResponce;
-import com.vempower.eezyclinic.APIResponce.LoginAPI;
+import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Utils;
 
@@ -22,7 +21,7 @@ import retrofit.Retrofit;
  * Created by Satishk on 4/10/2017.
  */
 
-public class ResetPasswordMapper extends  AbstractMapper  implements Callback<AbstractResponce> {
+public class ResetPasswordMapper extends  AbstractMapper  implements Callback<AbstractResponse> {
 
 
     private ResetPasswordListener listener;
@@ -68,18 +67,18 @@ public class ResetPasswordMapper extends  AbstractMapper  implements Callback<Ab
             return;
         }
 
-        Call<AbstractResponce> apiResponseCall = stashDealAPI.resetPasswordAPI(requestBody);
+        Call<AbstractResponse> apiResponseCall = stashDealAPI.resetPasswordAPI(requestBody);
 
         apiResponseCall.enqueue(this);
     }
 
     @Override
-    public void onResponse(Response<AbstractResponce> response, Retrofit retrofit) {
+    public void onResponse(Response<AbstractResponse> response, Retrofit retrofit) {
         MyApplication.hideTransaprentDialog();
 
-        getMyResponse(response, new MyResponse<AbstractResponce>() {
+        getMyResponse(response, new MyResponse<AbstractResponse>() {
             @Override
-            public void getMyResponse(AbstractResponce responseBody, String errorMsg) {
+            public void getMyResponse(AbstractResponse responseBody, String errorMsg) {
                 listener.getResetPasswordAPI(responseBody,errorMsg);
             }
         });
@@ -93,9 +92,9 @@ public class ResetPasswordMapper extends  AbstractMapper  implements Callback<Ab
     public void onFailure(Throwable error) {
         MyApplication.hideTransaprentDialog();
 
-        onMyFailure(error, new MyResponse<AbstractResponce>() {
+        onMyFailure(error, new MyResponse<AbstractResponse>() {
             @Override
-            public void getMyResponse(AbstractResponce responseBody, String errorMsg) {
+            public void getMyResponse(AbstractResponse responseBody, String errorMsg) {
                 listener.getResetPasswordAPI(responseBody,errorMsg);
             }
         });
@@ -128,6 +127,6 @@ public class ResetPasswordMapper extends  AbstractMapper  implements Callback<Ab
     }
 
     public interface ResetPasswordListener {
-        public void getResetPasswordAPI(AbstractResponce responce, String errorMessage);
+        public void getResetPasswordAPI(AbstractResponse responce, String errorMessage);
     }
 }

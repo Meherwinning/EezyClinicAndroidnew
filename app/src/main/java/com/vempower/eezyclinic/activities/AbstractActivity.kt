@@ -1,5 +1,6 @@
 package com.vempower.stashdealcustomer.activities
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -21,6 +22,7 @@ import com.vempower.eezyclinic.core.AdapterItem
 import com.vempower.eezyclinic.interfaces.AccountListDialogInterface
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface
 import com.vempower.eezyclinic.utils.Utils
+import com.vempower.eezyclinic.views.MyTextViewRR
 import java.util.*
 
 /**
@@ -331,14 +333,27 @@ abstract class AbstractActivity : AppCompatActivity() {
 
 
 
-    protected fun showAccountListDialog (accountList :List<AdapterItem>, accountListener: AccountListDialogInterface?) {
+    @SuppressLint("StringFormatInvalid")
+    protected fun showAccountListDialog (isFromEmail:Boolean, accountList :List<AdapterItem>, accountListener: AccountListDialogInterface?) {
         val alertDialog = AlertDialog.Builder(MyApplication.getCurrentActivityContext())
         val view = layoutInflater.inflate(R.layout.account_list_dialog_layout, null)
-
+        //mail Id / mobile number
         val recylerview = view.findViewById<android.support.v7.widget.RecyclerView>(R.id.dialog_recylerview)
         var adapter1 = AccountListAdapter(this, accountList)
         recylerview.adapter = adapter1
         recylerview.layoutManager= LinearLayoutManager(this)
+        var isFrom="";
+        when(isFromEmail)
+        {
+            true ->isFrom="mail Id";
+            false ->isFrom="mobile number";
+        }
+
+        val header_text=view.findViewById<MyTextViewRR>(R.id.header_text)
+
+        val headerText = resources.getString(R.string.account_list_dialog_header_msg, isFrom)
+        header_text.setText(headerText)
+
 
         alertDialog.setView(view)
 

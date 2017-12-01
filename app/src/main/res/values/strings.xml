@@ -30,14 +30,11 @@
     <string name="default_notification_channel_id">EezyClinic_1</string>
     <string name="default_notification_channel_desc">Smart application uniting Patients, Doctors and Insurance Companies under one Smart Platform</string>
 
-    <string name="account_list_dialog_header_msg">You have multiple accounts registered with this mail Id / mobile number.\nPlease select the one you want to change the password for:</string>
-    <string name="terms_and_comditions_msg">V-Empower, Inc. understand the importance of privacy and safeguarding your personal information.
-As a part of our service to you, we collect personally identifiable information from you to serve you better.
-We realize this information is personal to you and we think it is important for you to know our information practices.
-V-Empower Inc. Information Practices
-What personally identifiable information does V-Empower Inc. collect?
-What personally identifiable information do third parties collect through our Website?
-What organizations collect the information?
-How does V-Empower Inc. use the information?</string>
+    <string name="account_list_dialog_header_msg">You have multiple accounts registered with this %1$s.\nPlease select the one you want to change the password for:</string>
+
     <string name="signup_success_msg">Your signup is successful.</string>
+
+   <!-- https://stackoverflow.com/questions/3656371/dynamic-string-using-string-xml-->
+    <string name="social_login_header_message">Your %1$s login is successful! Please fill in the mandatory information in the following form:</string>
+
 </resources>

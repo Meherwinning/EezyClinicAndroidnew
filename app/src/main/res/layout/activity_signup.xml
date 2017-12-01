@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_15dp"
-                android:layout_marginRight="@dimen/_15dp"
+                android:layout_marginRight="@dimen/_8dp"
                 android:background="@color/transparent"
                 android:orientation="vertical">
 
@@ -90,9 +90,10 @@
                     </android.support.design.widget.TextInputLayout>
 
 
-                    <TextView
+                   <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:layout_marginRight="@dimen/_12dp"
                         android:background="@color/white" />
 
                 </LinearLayout>
@@ -127,6 +128,7 @@
                             android:inputType="text"
                             android:maxLength="50"
                             android:maxLines="1"
+
                             android:onClick="onDateOfBirthTextviewClick"
                             android:paddingRight="@dimen/_12dp"
                             android:singleLine="true"
@@ -138,9 +140,10 @@
                     </android.support.design.widget.TextInputLayout>
 
 
-                    <TextView
+                   <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:layout_marginRight="@dimen/_12dp"
                         android:background="@color/white" />
 
                 </LinearLayout>
@@ -172,6 +175,7 @@
                             android:backgroundTint="@color/white"
                             android:maxLines="1"
                             android:singleLine="true"
+                            android:foregroundTint="@color/black"
 
                             android:spinnerMode="dropdown"
                             android:textColor="@color/text_color"
@@ -182,9 +186,10 @@
                     <!-- </android.support.design.widget.TextInputLayout>-->
 
 
-                    <TextView
+                   <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:layout_marginRight="@dimen/_12dp"
                         android:background="@color/white" />
 
                 </LinearLayout>
@@ -226,9 +231,10 @@
                     </android.support.design.widget.TextInputLayout>
 
 
-                    <TextView
+                  <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:layout_marginRight="@dimen/_12dp"
                         android:background="@color/white" />
 
                 </LinearLayout>
@@ -270,9 +276,10 @@
                     </android.support.design.widget.TextInputLayout>
 
 
-                    <TextView
+                  <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:layout_marginRight="@dimen/_12dp"
                         android:background="@color/white" />
 
                 </LinearLayout>
@@ -289,11 +296,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50dp"
                         android:layout_marginTop="-1dp"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/white"
                         android:background="@drawable/background_shape_idle"
                         android:textColorHint="@color/text_hint_color"
                         app:errorEnabled="true"
-                        app:passwordToggleEnabled="true"
-                        app:passwordToggleTint="@color/white">
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+
+                        >
 
                         <com.vempower.eezyclinic.views.MyEditTextRR
                             android:id="@+id/password_et"
@@ -316,9 +327,10 @@
                     </com.vempower.eezyclinic.views.MyTextInputLayout>
 
 
-                    <TextView
+                <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:layout_marginRight="@dimen/_12dp"
 
                         android:background="@color/white" />
 
@@ -362,6 +374,7 @@
                         android:gravity="left|center_vertical"
                         android:onClick="onTermsAndConditionsClick"
                         android:paddingRight="@dimen/_5dp"
+
                         android:text="@string/terms_and_conditions_lbl"
                         android:textColor="@color/text_color_light_black"
                         android:textSize="@dimen/text_size_small"

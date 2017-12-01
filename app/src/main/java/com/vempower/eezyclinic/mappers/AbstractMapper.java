@@ -1,10 +1,13 @@
 package com.vempower.eezyclinic.mappers;
 
+import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.RequestBody;
-import com.vempower.eezyclinic.APIResponce.LoginAPI;
+import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.application.MyApplication;
 
 import org.json.JSONArray;
@@ -17,7 +20,9 @@ import java.io.InputStreamReader;
 
 import retrofit.HttpException;
 import retrofit.Response;
-import retrofit.Retrofit;
+
+import static java.net.HttpURLConnection.HTTP_BAD_REQUEST;
+import static java.net.HttpURLConnection.HTTP_OK;
 
 /**
  * Created by Satishk on 4/10/2017.
@@ -79,15 +84,36 @@ public class AbstractMapper {
         {
             myResponse.getMyResponse(null,null);
         }
-        if (response.code()==200) {
+        if (response.code()==HTTP_OK) {
            // showMessage(response.body().getMessage());
             //Intent intent = new Intent(LoginActivity.this, MainAct.class);
             //startActivity(intent);
            myResponse.getMyResponse(response.body(),null);
         }
-        else
+        else {
             try {
+                String finallyError = null;
+                //start
+                if (response.code() != HTTP_BAD_REQUEST) {
 
+                    finallyError=response.message()+"\nResponse Code :"+response.code();
+                    myResponse.getMyResponse(null, finallyError);
+                    return;
+                }
+                    Gson gson = new GsonBuilder().create();
+                  //  AbstractResponce mError=new AbstractResponce();
+                    try {
+                        AbstractResponse mError= gson.fromJson(response.errorBody().string(),AbstractResponse.class);
+
+                        finallyError= mError.getStatusMessage();
+                        //Toast.makeText(getApplicationContext(), mError.getErrorDescription(), Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        // handle failure to read error
+                    }
+                //end
+
+                if(TextUtils.isEmpty(finallyError))
+                {
                 BufferedReader reader = null;
                 StringBuilder sb = new StringBuilder();
                 try {
@@ -104,13 +130,16 @@ public class AbstractMapper {
                     e.printStackTrace();
                 }
 
-                String finallyError = sb.toString();
-                myResponse.getMyResponse(null,finallyError);
+                 finallyError = sb.toString();
+                 finallyError=  "Response Code :"+response.code()+"\n"+finallyError;
+                }
+                myResponse.getMyResponse(null, finallyError);
                 //LoginError loginError= gson.fromJson(response.errorBody().string(),LoginError.class);
                 //showMessage(loginError.getMessage());
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
 
        /* if (view == null) {
             return (T) findViewById(id);
@@ -137,6 +166,24 @@ public class AbstractMapper {
                 Log.e("Error ","" + jObjError.optString("message"));
                 errorMessage=jObjError.optString("message");
 
+                if(TextUtils.isEmpty(errorMessage))
+                {
+                    BufferedReader reader = null;
+                    StringBuilder sb = new StringBuilder();
+                    try {
+                        reader = new BufferedReader(new InputStreamReader(response.errorBody().byteStream()));
+                        String line;
+                            while ((line = reader.readLine()) != null) {
+                                sb.append(line);
+                            }
+                    } catch (IOException e2) {
+                        e2.printStackTrace();
+                    }
+
+                    errorMessage = sb.toString();
+                    errorMessage=  "Response Code :"+response.code()+"\n"+errorMessage;
+                }
+
             } catch (JSONException e1) {
                 e1.printStackTrace();
             } catch (IOException e1) {
@@ -153,23 +200,7 @@ public class AbstractMapper {
     }
 
 
-    protected Object test()
-    {
-       /* Log.e("responsedata","dd"+response.toString());
-        if (response.code()==200) {
-            showMessage(response.body().getMessage());
-            Intent intent = new Intent(LoginActivity.this, MainAct.class);
-            startActivity(intent);
-        }
-        else
-            try {
-                LoginError loginError= gson.fromJson(response.errorBody().string(),LoginError.class);
-                showMessage(loginError.getMessage());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }*/
-        return null;
-    }
+
 
 
 }

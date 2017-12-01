@@ -13,15 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 
-import com.google.firebase.crash.FirebaseCrash;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.vempower.eezyclinic.APIResponce.AbstractResponce;
+import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
-import com.vempower.eezyclinic.interfaces.OTPListener;
-import com.vempower.eezyclinic.receivers.OtpReader;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.stashdealcustomer.activities.AbstractActivity;
@@ -100,7 +96,7 @@ public class AbstractFragmentActivity extends AbstractActivity  /*implements OTP
 
     }*/
 
-    protected boolean isValidResponse(AbstractResponce response,String errorMessage)
+    protected boolean isValidResponse(AbstractResponse response, String errorMessage)
     {
         if(response==null && TextUtils.isEmpty(errorMessage))
         {
@@ -125,15 +121,29 @@ public class AbstractFragmentActivity extends AbstractActivity  /*implements OTP
     {
        // Intent intent= new Intent(this,TermsAndConditionsActivity.class);
         //startActivity(intent);
+        String fileName="EezyClinic_T_C.html";
+        webViewDisplayAsDialog(fileName);
+    }
+    public void onPrivacyPolicyClick(View view)
+    {
+        // Intent intent= new Intent(this,TermsAndConditionsActivity.class);
+        //startActivity(intent);
+        String fileName="EezyClinic_Privacy_Policy.html";
+        webViewDisplayAsDialog(fileName);
+    }
+
+    private void webViewDisplayAsDialog(String fileName) {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        DialogFragment newFragment = MyDialogFragment.newInstance();
+        DialogFragment newFragment = MyDialogFragment.newInstance(fileName);
         newFragment.show(ft, "dialog");
     }
 
     public static  class MyDialogFragment extends DialogFragment {
 
-        static MyDialogFragment newInstance() {
+        private static String htmlFileName;
+        static MyDialogFragment newInstance(String htmlFileNameInAssets) {
             MyDialogFragment f = new MyDialogFragment();
+           htmlFileName=htmlFileNameInAssets;
             return f;
         }
 
@@ -143,7 +153,8 @@ public class AbstractFragmentActivity extends AbstractActivity  /*implements OTP
             View v = inflater.inflate(R.layout.terms_and_conditions_layout, container, false);
             WebView wv;
             wv =  v.findViewById(R.id.terms_webView);
-            String url="file:///android_asset/EezyClinic_T_C.html";
+            //String url="file:///android_asset/EezyClinic_T_C.html";
+            String url="file:///android_asset/"+htmlFileName;
             wv.loadUrl(url);
             return v;
         }

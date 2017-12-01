@@ -9,11 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.facebook.LoginActivity;
-import com.vempower.eezyclinic.APICore.UserAccount;
-import com.vempower.eezyclinic.APIResponce.AbstractResponce;
+import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.application.MyApplication;
-import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.ResetPasswordMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
@@ -114,7 +111,7 @@ public class ResetPasswordActivity extends AbstractFragmentActivity {
         ResetPasswordMapper mapper= new ResetPasswordMapper(otp,id,password,repassword);
         mapper.setOnResetPasswordListener(new ResetPasswordMapper.ResetPasswordListener() {
             @Override
-            public void getResetPasswordAPI(AbstractResponce responce, String errorMessage) {
+            public void getResetPasswordAPI(AbstractResponse responce, String errorMessage) {
                 if(!isValidResponse(responce,errorMessage))
                 {
                     return;

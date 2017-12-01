@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.vempower.eezyclinic.APICore.SignupData;
 
-public class SignupAPI extends AbstractResponce {
+public class SignupAPI extends AbstractResponse {
 
 
     @SerializedName("otp")
