@@ -36,5 +36,16 @@
 
    <!-- https://stackoverflow.com/questions/3656371/dynamic-string-using-string-xml-->
     <string name="social_login_header_message">Your %1$s login is successful! Please fill in the mandatory information in the following form:</string>
+    <string name="press_again_to_exit">Press again to exit.</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="welcome_guest_lbl">Welcome Guest</string>
+
+    <string name="logout_msg">Are you sure to logout?</string>
+    <string name="logout_msg_title">Confirm Logout</string>
+    <string name="success_logout_msg">Logged out successfully!</string>
+    <string name="cancel_lbl">Cancel</string>
+    <string name="resend_otp_header_lbl">Your account wasn\'t verified, please enter the OTP to verify your account.</string>
+    <string name="yes_label">Yes</string>
 
 </resources>

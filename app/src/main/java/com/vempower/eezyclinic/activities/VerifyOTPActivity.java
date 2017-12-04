@@ -32,6 +32,7 @@ import com.vempower.eezyclinic.views.MyEditTextRR;
 public class VerifyOTPActivity extends AbstractFragmentActivity  {
     private String otp_str;
     private String patient_id;
+    public static final String IS_FROM_RESEND_OTP_KEY="is_from_resend_otp_key";
 
     private MyEditTextRR otp_et;
     private TextView otp_display_tv;
@@ -53,6 +54,8 @@ public class VerifyOTPActivity extends AbstractFragmentActivity  {
 
         otp_display_tv=findViewById(R.id. otp_display_tv);
 
+
+
      //   intent.putExtra(Constants.Pref.OTP_KEY,signupAPI.getOtp());
       //  intent.putExtra(Constants.Pref.PATIENT_ID_KEY,signupAPI.getData().patientId);
 
@@ -69,6 +72,11 @@ public class VerifyOTPActivity extends AbstractFragmentActivity  {
         }
         if(Constants.IS_TESTING) {
             otp_display_tv.setText("OTP " + otp_str);
+        }
+
+        if(getIntent().getBooleanExtra(IS_FROM_RESEND_OTP_KEY,false))
+        {
+            findViewById(R.id.header_text_tv).setVisibility(View.VISIBLE);
         }
 
         MyButtonRectangleRM verify_bt =findViewById(R.id.verify_bt);

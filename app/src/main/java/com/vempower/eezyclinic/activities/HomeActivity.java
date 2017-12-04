@@ -20,8 +20,10 @@ package com.vempower.eezyclinic.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
@@ -29,6 +31,8 @@ import android.widget.TextView;
 import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.fragments.AbstractFragment;
+import com.vempower.eezyclinic.fragments.HomeFragment;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 
@@ -36,30 +40,39 @@ import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
  * Created by Satish on 11/15/2017.
  */
 
-public class HomeActivity extends AbstractFragmentActivity {
+public class HomeActivity extends AbstractMenuActivity {
 
-    private TextView welcome_tv;
-    @Override
+
+    /*@Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_layout);
         init();
     }
+*/
 
-    private void init() {
-        welcome_tv = findViewById(R.id.welcome_tv);
-        String str = "Welcome to Eezyclinic\n";
-        PatientData patientData = MyApplication.getInstance().getLoggedUserDetailsFromSharedPref();
-        if(patientData!=null)
-        {
 
-            if(!TextUtils.isEmpty(patientData.getPatientName()))
-            {
-                str=str+patientData.getPatientName()+" ";
-            }
+    public void setActionBar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
+        // setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
+
+        if (Build.VERSION.SDK_INT >= 18) {
+            getSupportActionBar().setHomeAsUpIndicator(
+                    getResources().getDrawable(R.drawable.menu));
         }
-        welcome_tv.setText(str);
+        super.setActionBar(true);
+
+    }
+
+    @Override
+    protected AbstractFragment getFragment() {
+        return getHomeFragment();
     }
 
     public void onLogoutButtonClick(View view)
@@ -75,5 +88,35 @@ public class HomeActivity extends AbstractFragmentActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
+    }
+
+    public AbstractFragment getHomeFragment() {
+        HomeFragment fragment=new HomeFragment();
+      /*  fragment.setOnHomeScreenListener(new HomeScreenListener(){
+            @Override
+            public void onViewAllButtonClick(CategoryDeals categoryDeals) {
+
+                Intent intent= new Intent(HomeActivity.this, CategoryAllDealsActivity.class);
+
+                String name=categoryDeals.getBtypeName();
+                String imagePath=categoryDeals.getBtypeImageWhite();
+                intent.putExtra(Constants.Pref.CATEGORY_TYPE_ID_KEY,categoryDeals.getBtypeId());
+                intent.putExtra(Constants.Pref.CATEGORY_NAME_KEY,name==null?"":name);
+                intent.putExtra(Constants.Pref.CATEGORY_IMAGE_PATH_KEY,imagePath==null?"":imagePath);
+
+                startActivity(intent);
+
+            }
+
+            @Override
+            public void onSingleDealClick(Deal deal) {
+
+                callDealViewPage(deal);
+
+            }
+        });*/
+        // int id=R.drawable.cart;
+        //setTitleRightMenuImage(id);
+        return fragment;
     }
 }

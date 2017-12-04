@@ -10,11 +10,14 @@ import com.linkedin.platform.errors.LIApiError;
 import com.linkedin.platform.listeners.ApiListener;
 import com.linkedin.platform.listeners.ApiResponse;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
+import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.SocialLoginDetails;
 import com.vempower.eezyclinic.fragments.SocialLoginFragment;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.interfaces.SocialLoginListener;
+import com.vempower.eezyclinic.mappers.ResendOTPMapper;
 import com.vempower.eezyclinic.mappers.SocialSignInMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
@@ -92,29 +95,51 @@ public class AbstractSocialLoginActivity extends AbstractFragmentActivity {
         }
     };
 
-    private void validateSocialLoginUserDetails(LoginAPI loginAPI,final SocialLoginDetails details,String errorMessage) {
+    private void validateSocialLoginUserDetails(final LoginAPI loginAPI,final SocialLoginDetails details,String errorMessage) {
 
-        if(loginAPI==null && TextUtils.isEmpty(errorMessage))
-        {
-            showMyAlertDialog("Alert", Utils.getStringFromResources(R.string.invalid_service_response_lbl),"Ok",false);
-            return;
-        }
-        if(loginAPI==null && !TextUtils.isEmpty(errorMessage))
-        {
-            showMyAlertDialog("Alert", errorMessage,"Ok",false);
-            return;
-        }
-       /* if(loginAPI==null)
-        {
-            showMyAlertDialog("Alert", "Invalid service response.\nPlease check Network/Try again","Ok",false);
-            return;
-        }*/
-        if(!loginAPI.getStatusCode().equalsIgnoreCase(Constants.SUCCESS_STATUS_CODE))
-        {
-            showMyAlertDialog("Alert",loginAPI.getStatusMessage() ,"Ok",false);
-            return;
 
+        if(loginAPI!=null && loginAPI.getIs_account_activated().equalsIgnoreCase(Constants.ACCOUNT_NOT_ACTIVATE_STATUS_CODE))
+        {
+
+            //title: String, message: String,  positiveBtnName: String="Retry",negativeBtnName: String="Close", dialogInterface: ApiErrorDialogInterface?
+            showMyDialog("Alert", loginAPI.getStatusMessage(), "Continue", "Close", new ApiErrorDialogInterface() {
+                @Override
+                public void onCloseClick() {
+                    //TODO nothing
+                }
+
+                @Override
+                public void retryClick() {
+
+                    //TODO call
+                    ResendOTPMapper otpMapper= new ResendOTPMapper(loginAPI.getId());
+                    otpMapper.setOnResendOTPListener(new ResendOTPMapper.ResendOTPListener() {
+                        @Override
+                        public void getSignupAPI(SignupAPI signupAPI, String errorMessage) {
+                            if(!isValidResponse(signupAPI,errorMessage))
+                            {
+                                return;
+                            }
+                            Intent intent= new Intent(MyApplication.getCurrentActivityContext(),VerifyOTPActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.putExtra(Constants.Pref.OTP_KEY,signupAPI.getOtp());
+                            intent.putExtra(VerifyOTPActivity.IS_FROM_RESEND_OTP_KEY,true);
+                            intent.putExtra(Constants.Pref.PATIENT_ID_KEY,signupAPI.getData().patientId);
+
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                }
+            });
+
+            return;
         }
+        if(!isValidResponse(loginAPI,errorMessage))
+        {
+            return;
+        }
+
         if(TextUtils.isEmpty(loginAPI.getAccessToken()))
         {
            // showMyAlertDialog("Alert",loginAPI.getStatusMessage() ,"Ok",false);

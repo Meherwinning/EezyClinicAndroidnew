@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:textColor="@color/text_color"
                 android:text="OTP"
-                android:textSize="@dimen/_18sp"
+                android:textSize="@dimen/_16sp"
                 android:layout_height="wrap_content" />
             <ImageView
                 android:layout_margin="@dimen/_20dp"
@@ -39,6 +39,17 @@
                 android:src="@drawable/logo" />
 
         </RelativeLayout>
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/header_text_tv"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/_15dp"
+            android:layout_marginRight="@dimen/_8dp"
+            android:textColor="@color/text_color"
+            android:text="@string/resend_otp_header_lbl"
+            android:textSize="@dimen/text_size_normal"
+            android:layout_marginBottom="@dimen/_15dp"
+            android:layout_height="wrap_content" />
         <LinearLayout
             android:orientation="vertical"
             android:layout_weight="6"
@@ -53,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_15dp"
                 android:orientation="vertical">
+
 
 
 

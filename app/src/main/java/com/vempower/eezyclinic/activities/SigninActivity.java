@@ -13,8 +13,11 @@ import android.util.Log;
 import android.view.View;
 
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
+import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.mappers.ResendOTPMapper;
 import com.vempower.eezyclinic.mappers.SignInMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
@@ -104,11 +107,51 @@ public class SigninActivity extends AbstractSocialLoginActivity {
         });
     }
 
-    private void validateLoginUserDetails(LoginAPI loginAPI,String errorMessage) {
+    private void validateLoginUserDetails(final LoginAPI loginAPI,String errorMessage) {
+
+
+
+        if(loginAPI!=null && loginAPI.getIs_account_activated().equalsIgnoreCase(Constants.ACCOUNT_NOT_ACTIVATE_STATUS_CODE))
+        {
+
+            //title: String, message: String,  positiveBtnName: String="Retry",negativeBtnName: String="Close", dialogInterface: ApiErrorDialogInterface?
+            showMyDialog("Alert", loginAPI.getStatusMessage(), "Continue", "Close", new ApiErrorDialogInterface() {
+                @Override
+                public void onCloseClick() {
+                    //TODO nothing
+                }
+
+                @Override
+                public void retryClick() {
+
+                    //TODO call
+                    ResendOTPMapper otpMapper= new ResendOTPMapper(loginAPI.getId());
+                    otpMapper.setOnResendOTPListener(new ResendOTPMapper.ResendOTPListener() {
+                        @Override
+                        public void getSignupAPI(SignupAPI signupAPI, String errorMessage) {
+                            if(!isValidResponse(signupAPI,errorMessage))
+                            {
+                                return;
+                            }
+                            Intent intent= new Intent(MyApplication.getCurrentActivityContext(),VerifyOTPActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.putExtra(Constants.Pref.OTP_KEY,signupAPI.getOtp());
+                            intent.putExtra(VerifyOTPActivity.IS_FROM_RESEND_OTP_KEY,true);
+                            intent.putExtra(Constants.Pref.PATIENT_ID_KEY,signupAPI.getData().patientId);
+
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                }
+            });
+
+            return;
+        }
 
         if(!isValidResponse(loginAPI,errorMessage))
         {
-           return;
+            return;
         }
 
 

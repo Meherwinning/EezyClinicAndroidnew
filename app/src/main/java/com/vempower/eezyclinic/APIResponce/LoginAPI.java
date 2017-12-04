@@ -27,6 +27,18 @@ public class LoginAPI extends AbstractResponse {
     private PatientData data;
 
 
+/*     "id": "326",
+             "is_account_activated": 0*/
+
+    @SerializedName("id")
+    @Expose
+    private String id="";
+
+    @SerializedName("is_account_activated")
+    @Expose
+    private String is_account_activated="";
+
+
 
     public String getAccessToken() {
         return accessToken;
@@ -56,5 +68,11 @@ public class LoginAPI extends AbstractResponse {
         return user_type;
     }
 
+    public String getId() {
+        return id;
+    }
 
+    public String getIs_account_activated() {
+        return is_account_activated;
+    }
 }

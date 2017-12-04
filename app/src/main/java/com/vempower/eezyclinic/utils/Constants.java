@@ -16,6 +16,7 @@ public interface Constants {
     //String SHARED_PREFERENCES_FILE_NAME = "stashdealcustomerpref";
     String LOGGED_USER_DETAILS_OBJECT = "login_user_obj";
     String SUCCESS_STATUS_CODE = "1";
+    String ACCOUNT_NOT_ACTIVATE_STATUS_CODE = "0";
     int PASSWORD_MIN_LENGTH = 6;
     String BANNERS_COUNT_LIMIT = "5";
     String PAGE_ITEMS_COUNT_LIMIT = "10";

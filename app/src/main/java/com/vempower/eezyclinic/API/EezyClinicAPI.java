@@ -51,4 +51,10 @@ public interface EezyClinicAPI {
     Call<AbstractResponse> resetPasswordAPI(@Body RequestBody postBody);
 
 
+    //
+
+    //http://202.63.103.194:8008/api/patient/resendotp
+    @POST(data+"patient/resendotp")
+    Call<SignupAPI> resendOTPAPI(@Body RequestBody postBody);
+
 }

@@ -11,7 +11,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -73,6 +73,7 @@ dependencies {
     //compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     //implementation project(':googleplus')
     implementation project(':sublimepickerlibrary')
+    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
     //implementation 'swarajsaaj:otpreader:1.1'
 }
 repositories {
