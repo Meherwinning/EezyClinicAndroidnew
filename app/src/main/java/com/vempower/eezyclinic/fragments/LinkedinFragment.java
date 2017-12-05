@@ -86,7 +86,7 @@ public class LinkedinFragment extends GoolePlusFragment {
             @Override
             public void onAuthError(LIAuthError error) {
                 if(error!=null) {
-                    Utils.showToastMessage("failed " + error.toString());
+                    Utils.showToastMessage("Failed " + error.toString());
                 }
 
                // Toast.makeText(getApplicationContext(), "failed " + error.toString(), Toast.LENGTH_LONG).show();

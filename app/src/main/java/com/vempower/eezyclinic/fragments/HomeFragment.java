@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.PatientData;
@@ -38,6 +39,7 @@ public class HomeFragment extends AbstractFragment {
 
     private void init() {
         welcome_tv = fragmentView.findViewById(R.id.welcome_tv);
+
         String str = "Welcome to Eezyclinic\n";
         PatientData patientData = MyApplication.getInstance().getLoggedUserDetailsFromSharedPref();
         if(patientData!=null)
@@ -50,5 +52,7 @@ public class HomeFragment extends AbstractFragment {
 
         }
         welcome_tv.setText(str);
+
     }
+
 }

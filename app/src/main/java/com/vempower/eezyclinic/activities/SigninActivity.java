@@ -113,6 +113,21 @@ public class SigninActivity extends AbstractSocialLoginActivity {
 
         if(loginAPI!=null && loginAPI.getIs_account_activated().equalsIgnoreCase(Constants.ACCOUNT_NOT_ACTIVATE_STATUS_CODE))
         {
+            if(true)
+            {
+                ResendOTPMapper otpMapper= new ResendOTPMapper(loginAPI.getId());
+                otpMapper.setOnResendOTPListener(new ResendOTPMapper.ResendOTPListener() {
+                    @Override
+                    public void getSignupAPI(SignupAPI signupAPI, String errorMessage) {
+                        if(!isValidResponse(signupAPI,errorMessage))
+                        {
+                            return;
+                        }
+                        callResendOTPScreen(signupAPI);
+                    }
+                });
+                return;
+            }
 
             //title: String, message: String,  positiveBtnName: String="Retry",negativeBtnName: String="Close", dialogInterface: ApiErrorDialogInterface?
             showMyDialog("Alert", loginAPI.getStatusMessage(), "Continue", "Close", new ApiErrorDialogInterface() {
@@ -133,14 +148,7 @@ public class SigninActivity extends AbstractSocialLoginActivity {
                             {
                                 return;
                             }
-                            Intent intent= new Intent(MyApplication.getCurrentActivityContext(),VerifyOTPActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            intent.putExtra(Constants.Pref.OTP_KEY,signupAPI.getOtp());
-                            intent.putExtra(VerifyOTPActivity.IS_FROM_RESEND_OTP_KEY,true);
-                            intent.putExtra(Constants.Pref.PATIENT_ID_KEY,signupAPI.getData().patientId);
-
-                            startActivity(intent);
-                            finish();
+                            callResendOTPScreen(signupAPI);
                         }
                     });
                 }
@@ -157,13 +165,24 @@ public class SigninActivity extends AbstractSocialLoginActivity {
 
         if(loginAPI.getPatientData()==null || TextUtils.isEmpty(loginAPI.getAccessToken()))
         {
-            showMyAlertDialog("Alert", "Invalid service response.\nPlease check Network/Try again","Ok",false);
+            showMyAlertDialog("Alert", Utils.getStringFromResources(R.string.invalid_service_response_lbl),Utils.getStringFromResources(R.string.ok_label),false);
             return;
         }
         MyApplication.getInstance().setLoggedUserDetailsToSharedPref(loginAPI.getPatientData());
         SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,loginAPI.getAccessToken());
         Intent intent= new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+
+    private void callResendOTPScreen(SignupAPI signupAPI) {
+        Intent intent= new Intent(MyApplication.getCurrentActivityContext(),VerifyOTPActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra(Constants.Pref.OTP_KEY,signupAPI.getOtp());
+        intent.putExtra(VerifyOTPActivity.IS_FROM_RESEND_OTP_KEY,true);
+        intent.putExtra(Constants.Pref.PATIENT_ID_KEY,signupAPI.getData().patientId);
+
         startActivity(intent);
         finish();
     }
@@ -199,8 +218,8 @@ public class SigninActivity extends AbstractSocialLoginActivity {
             String email = user_id_et.getText().toString();
 
             if (TextUtils.isEmpty(email)) {
-                showToastMessage("Please enter valid user id");
-                user_id_et.setError("Please enter valid user id");
+                showToastMessage(R.string.please_enter_valid_user_id_lbl);//"Please enter valid user id");
+                //user_id_et.setError("Please enter valid user id");
                 return true;
             }
 
@@ -209,7 +228,7 @@ public class SigninActivity extends AbstractSocialLoginActivity {
             String password = login_password_et.getText().toString();
 
             if (TextUtils.isEmpty(password)) {
-                showToastMessage("Please enter valid password");
+                showToastMessage(R.string.please_enter_password_lbl);
                 //login_password_et.setError("Please enter valid password");
                 return true;
             }
@@ -220,7 +239,7 @@ public class SigninActivity extends AbstractSocialLoginActivity {
 
 
 
-    public void generateHashkey(){
+    private void generateHashkey(){
         try {
             String PACKAGE = "com.vempower.eezyclinic";
             PackageInfo info = getPackageManager().getPackageInfo(
@@ -234,8 +253,8 @@ public class SigninActivity extends AbstractSocialLoginActivity {
                 String hashkey= Base64.encodeToString(md.digest(), Base64.NO_WRAP);
                // ((TextView) findViewById(R.id.hash_key)).setText(hashkey);
 
-                showToastMessage("Hashkey "+hashkey);
-                Log.i("Hashkey",hashkey);
+                //showToastMessage("Hashkey "+hashkey);
+                //Log.i("Hashkey",hashkey);
             }
         } catch (PackageManager.NameNotFoundException e) {
             Log.d(TAG, e.getMessage(), e);

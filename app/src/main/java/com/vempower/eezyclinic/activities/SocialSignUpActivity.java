@@ -96,8 +96,8 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
             email_et.setClickable(false);
         }
 
-        if (!TextUtils.isEmpty(details.getName())) {
-            name_et.setText(details.getName());
+        if (!TextUtils.isEmpty(details.NAME)) {
+            name_et.setText(details.NAME);
         }
 
         form_Id = getIntent().getStringExtra(Constants.SocialLoginPref.FORMID_KEY);

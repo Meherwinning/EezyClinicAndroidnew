@@ -261,6 +261,7 @@ public class GoolePlusFragment extends AbstractFragment implements  GoogleApiCli
         String email = acct.getEmail();
         String tokenId = acct.getIdToken();
         String id = acct.getId();
+        String photoUrl=acct.getPhotoUrl().toString();
 
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(tokenId))
         {
@@ -273,8 +274,8 @@ public class GoolePlusFragment extends AbstractFragment implements  GoogleApiCli
         //String msg = "Name:" + name + "\nEmail:" + email + "\nTokenId:" + tokenId + "\n Id:" + id;
         //Utils.showToastMessage(msg);
 
-        SocialLoginDetails details= new SocialLoginDetails(tokenId, Constants.MediaType.GOOGLE_TYPE,id,email,Utils.getDeviceId());
-        details.setName(name);
+        SocialLoginDetails details= new SocialLoginDetails(tokenId, Constants.MediaType.GOOGLE_TYPE,id,email,Utils.getDeviceId(),name,photoUrl);
+        //details.setName(name);
         if (socialLoginListener != null) {
             socialLoginListener.getLoginDetails(details);
         }

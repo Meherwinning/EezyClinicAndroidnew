@@ -302,11 +302,11 @@ public class SocialLoginFragment extends LinkedinFragment implements SocialNetwo
                        // String socialPersonString = socialPerson.toString();
                         //String infoString = socialPersonString.substring(socialPersonString.indexOf("{") + 1, socialPersonString.lastIndexOf("}"));
                         //String info = infoString.replace(", ", "\n");
-                        //String avatarURL = socialPerson.avatarURL;
+                        String avatarURL = socialPerson.avatarURL;
 
                         //String ACCESS_TOKEN,String MEDIA_TYPE,String MEDIA_ID,String EMAIL,String DEVICE_ID
-                        SocialLoginDetails details= new SocialLoginDetails(accessToken.token,getMediaType(socialNetworkId),id,email,Utils.getDeviceId());
-                           details.setName(name);
+                        SocialLoginDetails details= new SocialLoginDetails(accessToken.token,getMediaType(socialNetworkId),id,email,Utils.getDeviceId(),name,avatarURL);
+                          // details.setName(name);
                         if (facebookLoginListener != null) {
                             facebookLoginListener.getLoginDetails(details);
                         }

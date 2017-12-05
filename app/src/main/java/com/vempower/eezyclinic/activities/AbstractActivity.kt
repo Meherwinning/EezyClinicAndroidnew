@@ -195,8 +195,8 @@ abstract class AbstractActivity : AppCompatActivity() {
 
         (builder as SimpleDialog.Builder).message(message)
                 .title(title)
-                .positiveAction("Retry")
-                .negativeAction("Close")
+                .positiveAction(Utils.getStringFromResources(R.string.retry_lbl))
+                .negativeAction(Utils.getStringFromResources(R.string.close_lbl))//"Close")
 
 
         val fragment = DialogFragment.newInstance(builder)
@@ -382,7 +382,7 @@ abstract class AbstractActivity : AppCompatActivity() {
         }
 
 
-            alertDialog.setNegativeButton("Cancel") { dialog, which ->
+            alertDialog.setNegativeButton(Utils.getStringFromResources(R.string.cancel_lbl)) { dialog, which ->
                 dialog.dismiss()
 
             }

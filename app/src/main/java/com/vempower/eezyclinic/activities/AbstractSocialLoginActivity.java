@@ -100,9 +100,32 @@ public class AbstractSocialLoginActivity extends AbstractFragmentActivity {
 
         if(loginAPI!=null && loginAPI.getIs_account_activated().equalsIgnoreCase(Constants.ACCOUNT_NOT_ACTIVATE_STATUS_CODE))
         {
+            if(true)
+            {
+                ResendOTPMapper otpMapper= new ResendOTPMapper(loginAPI.getId());
+                otpMapper.setOnResendOTPListener(new ResendOTPMapper.ResendOTPListener() {
+                    @Override
+                    public void getSignupAPI(SignupAPI signupAPI, String errorMessage) {
+                        if(!isValidResponse(signupAPI,errorMessage))
+                        {
+                            return;
+                        }
+                        Intent intent= new Intent(MyApplication.getCurrentActivityContext(),VerifyOTPActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.putExtra(Constants.Pref.OTP_KEY,signupAPI.getOtp());
+                        intent.putExtra(VerifyOTPActivity.IS_FROM_RESEND_OTP_KEY,true);
+                        intent.putExtra(Constants.Pref.PATIENT_ID_KEY,signupAPI.getData().patientId);
+
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                return;
+            }
+
 
             //title: String, message: String,  positiveBtnName: String="Retry",negativeBtnName: String="Close", dialogInterface: ApiErrorDialogInterface?
-            showMyDialog("Alert", loginAPI.getStatusMessage(), "Continue", "Close", new ApiErrorDialogInterface() {
+            showMyDialog("Alert", loginAPI.getStatusMessage(), Utils.getStringFromResources(R.string.continue_lbl), Utils.getStringFromResources(R.string.close_lbl), new ApiErrorDialogInterface() {
                 @Override
                 public void onCloseClick() {
                     //TODO nothing
@@ -159,12 +182,14 @@ public class AbstractSocialLoginActivity extends AbstractFragmentActivity {
 
         if(loginAPI.getPatientData()==null || TextUtils.isEmpty(loginAPI.getAccessToken()))
         {
-            showMyAlertDialog("Alert", "Invalid service response.\nPlease check Network/Try again","Ok",false);
+            showMyAlertDialog("Alert", Utils.getStringFromResources(R.string.invalid_service_response_lbl),"Ok",false);
             return;
         }
         MyApplication.getInstance().setLoggedUserDetailsToSharedPref(loginAPI.getPatientData());
         SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,loginAPI.getAccessToken());
-        startActivity(new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class));
+        Intent intent= new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
         showToastMessage("Success to login "+details.MEDIA_TYPE);
     }
@@ -232,8 +257,8 @@ public class AbstractSocialLoginActivity extends AbstractFragmentActivity {
             Picasso.with(this).load(response.getString("pictureUrl"))
                     .into(profile_pic);*/
            //showToastMessage(linkedinDetail);
-            SocialLoginDetails details= new SocialLoginDetails(accesstoken, Constants.MediaType.LINKEDIN_TYPE,id,email,Utils.getDeviceId());
-            details.setName(name);
+            SocialLoginDetails details= new SocialLoginDetails(accesstoken, Constants.MediaType.LINKEDIN_TYPE,id,email,Utils.getDeviceId(),name,response.getString("pictureUrl"));
+           // details.setName(name);
             if (socialLoginListener != null) {
                 socialLoginListener.getLoginDetails(details);
             }

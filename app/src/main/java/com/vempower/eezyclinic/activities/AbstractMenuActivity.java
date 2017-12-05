@@ -16,6 +16,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,6 +29,8 @@ import com.vempower.eezyclinic.interfaces.MenuScreenListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.eezyclinic.views.MyTextViewRM;
+import com.vempower.eezyclinic.views.MyTextViewRR;
 
 
 /**
@@ -42,7 +45,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     private LinearLayout linearLayout;
     private ActionBarDrawerToggle drawerToggle;
 
-    private  TextView nameTv;
+    private MyTextViewRM nameTv,emailTv;
 
     private AbstractFragment currentFragment,prevoiusFragment;
 
@@ -74,7 +77,8 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
 
        // if(nameTv==null) {
-            nameTv = findViewById(R.id.entity_name_tv);
+            nameTv = findViewById(R.id.patient_name_tv);
+            emailTv = findViewById(R.id.patient_email_tv);
         //}
         //titleRightImageview=findViewById(R.id.title_right_iv);
 
@@ -243,12 +247,20 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 logout();
                 return;
             }
+            //Picasso.with(activity).load(mayorShipImageLink).transform(new CircleTransform()).into(ImageView);
+            //String imgUrl="https://media.istockphoto.com/photos/friendly-doctor-at-the-hospital-picture-id511583494?s=2048x2048";
+            ImageView imageView  = findViewById(R.id.profile_iv);
+            if(imageView!=null)
+            {
+                //int defaultImageId, ImageView imageView,String imageUrl
+               MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon,imageView,user.getPatientLogo());
+            }
 
             if (!TextUtils.isEmpty(user.getPatientName())) {
-                nameTv.setText(user.getPatientName()+"\n"+user.getPatientUniqueId());
+                nameTv.setText(user.getPatientName());
             }
-            else if (!TextUtils.isEmpty(user.getPatientUniqueId())) {
-                nameTv.setText(user.getPatientUniqueId());
+            if (!TextUtils.isEmpty(user.getPatentEmail())) {
+                emailTv.setText(user.getPatentEmail());
             }
             refreshSideMenuItems(true);
 

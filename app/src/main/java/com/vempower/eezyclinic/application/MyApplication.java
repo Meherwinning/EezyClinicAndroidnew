@@ -21,7 +21,6 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 
 import java.io.File;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import retrofit.GsonConverterFactory;
@@ -213,8 +212,18 @@ public class MyApplication extends MultiDexApplication {
                 .into(imageView);
 
     }
+    public void setBitmapToImageviewCircular(int defaultImageId, ImageView imageView,
+                                     String imageUrl) {
+        if (TextUtils.isEmpty(imageUrl)) {
+            Picasso.with(this).load(defaultImageId).placeholder(defaultImageId)
+                    .into(imageView);
 
+            return;
+        }
 
+        Picasso.with(this).load(imageUrl).transform(new CircleTransform()).placeholder(defaultImageId).into(imageView);
+
+    }
 
 
     public void setBitmapToImageview(ImageView imageView,

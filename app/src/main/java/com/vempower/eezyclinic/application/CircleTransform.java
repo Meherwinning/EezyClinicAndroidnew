@@ -1,4 +1,4 @@
-package com.vempower.eezyclinic.views;
+package com.vempower.eezyclinic.application;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

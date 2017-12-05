@@ -13,6 +13,7 @@ import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.mappers.ResetPasswordMapper;
 import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
 import com.vempower.eezyclinic.views.MyEditTextRR;
 
@@ -40,14 +41,14 @@ public class ResetPasswordActivity extends AbstractFragmentActivity {
 
         if(getIntent()==null || !getIntent().hasExtra(Constants.Pref.PATIENT_ID_KEY))
         {
-            showMyDialog("Alert","Invalid user details\nPlease try again",true);
+            showMyDialog("Alert", Utils.getStringFromResources(R.string.invalid_user_details_lbl),true);
             return;
         }
          id=getIntent().getStringExtra(Constants.Pref.PATIENT_ID_KEY);
 
         if(TextUtils.isEmpty(id))
         {
-            showMyDialog("Alert","Invalid user details\nPlease try again",true);
+            showMyDialog("Alert",Utils.getStringFromResources(R.string.invalid_user_details_lbl),true);
             return;
 
         }
@@ -140,8 +141,8 @@ public class ResetPasswordActivity extends AbstractFragmentActivity {
             String otp = otp_et.getText().toString();
 
             if (TextUtils.isEmpty(otp)) {
-                showToastMessage("Please enter valid OTP");
-                otp_et.setError("Please enter valid OTP");
+                showToastMessage(R.string.please_enter_valid_otp_lbl);
+                //otp_et.setError("Please enter valid OTP");
                 return false;
             }
 
@@ -151,7 +152,7 @@ public class ResetPasswordActivity extends AbstractFragmentActivity {
 
 
             if (TextUtils.isEmpty(password)) {
-                showToastMessage("Please enter valid new password");
+                showToastMessage(R.string.please_enter_valid_new_enter_password_lbl);
                 //login_password_et.setError("Please enter valid password");
                 return false;
             }
@@ -162,7 +163,8 @@ public class ResetPasswordActivity extends AbstractFragmentActivity {
 
 
             if (TextUtils.isEmpty(repassword)) {
-                showToastMessage("Please enter valid re password");
+                //showToastMessage("Please enter valid re password");
+                showToastMessage(R.string.please_enter_valid_re_enter_password_lbl);
                 //login_password_et.setError("Please enter valid password");
                 return false;
             }
@@ -172,7 +174,7 @@ public class ResetPasswordActivity extends AbstractFragmentActivity {
 
 
             if (!repassword.equals(password)) {
-                showToastMessage("New password and re password should be same");
+                showToastMessage(R.string.new_password_and_re_password_should_be_same_lbl);
                 //login_password_et.setError("Please enter valid password");
                 return false;
             }

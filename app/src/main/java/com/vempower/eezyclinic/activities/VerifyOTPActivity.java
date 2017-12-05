@@ -61,13 +61,13 @@ public class VerifyOTPActivity extends AbstractFragmentActivity  {
 
         otp_str = getIntent().getStringExtra(Constants.Pref.OTP_KEY);
         if (TextUtils.isEmpty(otp_str)) {
-            showMyDialog("Alert", "Invalid OTP details\nplease try again", true, new Intent(this, SigninActivity.class));
+            showMyDialog("Alert", Utils.getStringFromResources(R.string.please_enter_valid_otp_lbl), true, new Intent(this, SigninActivity.class));
             return;
         }
 
         patient_id = getIntent().getStringExtra(Constants.Pref.PATIENT_ID_KEY);
         if (TextUtils.isEmpty(patient_id)) {
-            showMyDialog("Alert", "Invalid patient details\nplease try again", true, new Intent(this, SigninActivity.class));
+            showMyDialog("Alert", Utils.getStringFromResources(R.string.invalid_patient_details_lbl) , true, new Intent(this, SigninActivity.class));
             return;
         }
         if(Constants.IS_TESTING) {
@@ -99,7 +99,7 @@ public class VerifyOTPActivity extends AbstractFragmentActivity  {
         String enteredOTP=otp_et.getText().toString();
         if(TextUtils.isEmpty(enteredOTP))
         {
-            showToastMessage("Please enter valid OTP");
+            showToastMessage(R.string.please_enter_valid_otp_lbl);
             return;
         }
         // if(enteredOTP.equalsIgnoreCase(otp_str)) {
@@ -149,7 +149,7 @@ public class VerifyOTPActivity extends AbstractFragmentActivity  {
     private void validateLoginUserDetails(final VerifyOTPAPI loginAPI) {
         if(loginAPI==null)
         {
-            showMyAlertDialog("Alert", "Invalid service response.\nPlease check Network/Try again","Ok",false);
+            showMyAlertDialog("Alert", Utils.getStringFromResources(R.string.invalid_service_response_lbl),"Ok",false);
             return;
         }
         if(!loginAPI.getStatusCode().equalsIgnoreCase(Constants.SUCCESS_STATUS_CODE))
@@ -161,7 +161,7 @@ public class VerifyOTPActivity extends AbstractFragmentActivity  {
 
         if(loginAPI.getData()==null || TextUtils.isEmpty(loginAPI.getAccessToken()))
         {
-            showMyAlertDialog("Alert", "Invalid service response.\nPlease check Network/Try again","Ok",false);
+            showMyAlertDialog("Alert", Utils.getStringFromResources(R.string.invalid_service_response_lbl),"Ok",false);
             return;
         }
         showToastMessage(R.string.signup_success_msg);

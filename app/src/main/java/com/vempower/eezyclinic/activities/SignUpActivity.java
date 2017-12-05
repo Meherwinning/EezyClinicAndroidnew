@@ -146,8 +146,8 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
             String name = name_et.getText().toString();
 
             if (TextUtils.isEmpty(name)) {
-                showToastMessage("Please enter name ");
-                name_et.setError("Please enter name");
+                showToastMessage(R.string.please_enter_name_lbl);
+               // name_et.setError(R.string.please_enter_name_lbl);
                 return true;
             }
 
@@ -179,12 +179,12 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
             String email = email_et.getText().toString();
 
             if (TextUtils.isEmpty(email)) {
-                showToastMessage("Please enter email address");
+                showToastMessage(R.string.please_enter_valid_email_id_lbl);
                 // email_et.setError("Please enter email address");
                 return true;
             }
             if (!Utils.isValidEmail(email)) {
-                showToastMessage("Please enter valid email address");
+                showToastMessage(R.string.please_enter_valid_email_id_lbl);
                 // email_et.setError("Please enter valid email address");
                 return true;
             }
@@ -193,7 +193,7 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
                 String mobile_num = mobile_num_et.getText().toString();
 
                 if (TextUtils.isEmpty(mobile_num)) {
-                    showToastMessage("Please enter Mobile number");
+                    showToastMessage(R.string.please_enter_valid_mobile_number_lbl);
                     //email_et.setError("Please enter name address");
                     return true;
                 }
@@ -207,14 +207,14 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
 
 
             if (TextUtils.isEmpty(password)) {
-                showToastMessage("Please enter password");
-                password_et.setError("Please enter password");
+                showToastMessage(R.string.please_enter_password_lbl);
+               // password_et.setError("Please enter password");
                 return true;
             }
 
             if (password.length() < Constants.PASSWORD_MIN_LENGTH) {
                 showToastMessage("Password should be grater than "+Constants.PASSWORD_MIN_LENGTH);
-               password_et.setError("Password should be grater than "+Constants.PASSWORD_MIN_LENGTH);
+             //  password_et.setError("Password should be grater than "+Constants.PASSWORD_MIN_LENGTH);
                 return true;
             }
         }
@@ -223,7 +223,7 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
            MyCheckBoxRR terms_and_cond_checkbox= findViewById(R.id.terms_and_cond_checkbox);
            if(terms_and_cond_checkbox!=null && !terms_and_cond_checkbox.isChecked())
            {
-               showToastMessage("Please agree the Terms & Conditions");
+               showToastMessage(R.string.please_agree_terms_and_conditions_lbl);
                return true;
 
            }
@@ -257,7 +257,7 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
         Pair<Boolean, SublimeOptions> optionsPair = getOptions();
 
         if (!optionsPair.first) { // If options are not valid
-            showToastMessage("No pickers activated");
+           // showToastMessage("No pickers activated");
             return;
         }
 
