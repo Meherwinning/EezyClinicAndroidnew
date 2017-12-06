@@ -85,5 +85,9 @@
     <string name="please_enter_valid_re_enter_password_lbl">Please enter password</string>
     <string name="new_password_and_re_password_should_be_same_lbl">Password and confirm password should be same</string>
     <string name="invalid_patient_details_lbl">Invalid patient details\nplease try again</string>
+    <string name="medical_records_lbl">Medical Records</string>
+    <string name="settings_lbl">Settings</string>
+    <string name="social_signup_msg_lbl">You are successfully logged in with </string>
+    <string name="normal_signup_or_signin_msg_lbl">You are successfully logged in</string>
 
 </resources>

@@ -191,7 +191,7 @@ public class AbstractSocialLoginActivity extends AbstractFragmentActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
-        showToastMessage("Success to login "+details.MEDIA_TYPE);
+        showToastMessage(Utils.getStringFromResources(R.string.social_signup_msg_lbl)+" "+details.MEDIA_TYPE);
     }
 
 

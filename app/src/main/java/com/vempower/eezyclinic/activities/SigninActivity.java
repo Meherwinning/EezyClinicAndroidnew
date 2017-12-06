@@ -173,6 +173,7 @@ public class SigninActivity extends AbstractSocialLoginActivity {
         Intent intent= new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        showToastMessage(R.string.normal_signup_or_signin_msg_lbl);
         finish();
     }
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/scrollView"
+android:scrollbarThumbVertical="@color/white"
+android:layout_width="wrap_content"
+android:background="@color/white"
+android:scrollbars="none"
+android:layout_height="match_parent"
+android:layout_gravity="left|bottom">
+
+<LinearLayout
+    android:id="@+id/left_drawer"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="@android:color/white"
+    android:scrollbars="none"
+    android:background="@color/white">
+    <include layout="@layout/side_menu_header_layout">
+
+    </include>
+    <!--<android.support.v7.widget.RecyclerView
+        android:id="@+id/side_menu_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />-->
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/side_menu_layout">
+
+    </include>
+</LinearLayout>
+</ScrollView>

@@ -11,6 +11,7 @@
     <color name="transparent">#00000000</color>
     <color name="text_color">#deffffff</color>
     <color name="text_color_light_black">#098d69</color>
+    <color name="view_selector_color">#10000000</color>
 
     <color name="text_hint_color">#c3ffffff</color>
 
@@ -44,4 +45,6 @@
     <color name="mdtp_accent_color_dark">#00796b</color>
 
     <color name="side_menu_text_color">#212121</color>
+    <color name="bottom_text_color">#969696</color>
+
 </resources>

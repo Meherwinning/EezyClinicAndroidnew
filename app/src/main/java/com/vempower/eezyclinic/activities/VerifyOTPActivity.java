@@ -109,45 +109,18 @@ public class VerifyOTPActivity extends AbstractFragmentActivity  {
         mapper.setOnVerifyOtpListener(new VerifyOTPMapper.VerifyOtpListener() {
             @Override
             public void getVerifyOTPAPI(VerifyOTPAPI loginAPI,String errorMessage) {
-
-                /*if(loginAPI==null && TextUtils.isEmpty(errorMessage))
-                {
-                    showMyAlertDialog("Alert",  Utils.getStringFromResources(R.string.invalid_service_response_lbl),"Ok",false);
-                    return;
-                }*/
-                if(loginAPI==null && !TextUtils.isEmpty(errorMessage))
-                {
-                    showMyAlertDialog("Alert", errorMessage,"Ok",false);
-                    return;
-                }
-
-                if(loginAPI==null && TextUtils.isEmpty(errorMessage))
-                {
-
-                    showMyDialog("Alert", Utils.getStringFromResources(R.string.invalid_service_response_lbl), new ApiErrorDialogInterface() {
-                        @Override
-                        public void onCloseClick() {
-                          /*  Intent intent= new Intent(MyApplication.getCurrentActivityContext(),SignupMapper.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                            finish();*/
-                        }
-
-                        @Override
-                        public void retryClick() {
-                            callOTP_VerifyMapper();
-                        }
-                    });
-                    return;
-                }
-
-                validateLoginUserDetails(loginAPI) ;
+                validateLoginUserDetails(loginAPI,errorMessage) ;
             }
         });
     }
 
-    private void validateLoginUserDetails(final VerifyOTPAPI loginAPI) {
-        if(loginAPI==null)
+    private void validateLoginUserDetails(final VerifyOTPAPI loginAPI,String errorMessage) {
+        if(!isValidResponse(loginAPI,errorMessage))
+        {
+            return;
+
+        }
+       /* if(loginAPI==null)
         {
             showMyAlertDialog("Alert", Utils.getStringFromResources(R.string.invalid_service_response_lbl),"Ok",false);
             return;
@@ -157,14 +130,15 @@ public class VerifyOTPActivity extends AbstractFragmentActivity  {
             showMyAlertDialog("Alert",loginAPI.getStatusMessage() ,"Ok",false);
             return;
 
-        }
+        }*/
 
         if(loginAPI.getData()==null || TextUtils.isEmpty(loginAPI.getAccessToken()))
         {
             showMyAlertDialog("Alert", Utils.getStringFromResources(R.string.invalid_service_response_lbl),"Ok",false);
             return;
         }
-        showToastMessage(R.string.signup_success_msg);
+        //showToastMessage(R.string.signup_success_msg);
+
         //title: String, message: String,  positiveBtnName: String="Retry",negativeBtnName: String="Close", dialogInterface: ApiErrorDialogInterface?
 /*        showMyDialog1("Alert", "Ok","Message", new ApiErrorDialogInterface() {
             @Override
@@ -181,6 +155,7 @@ public class VerifyOTPActivity extends AbstractFragmentActivity  {
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
+               showToastMessage(R.string.normal_signup_or_signin_msg_lbl);
            // }
       //  });
 

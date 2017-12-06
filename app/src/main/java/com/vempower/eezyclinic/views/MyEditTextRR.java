@@ -8,11 +8,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.vempower.eezyclinic.R;
+
 /**
  * Created by satish on 20/11/17.
  */
 
-public class MyEditTextRR extends EditText {
+public class MyEditTextRR extends MyEditText {
     public MyEditTextRR(Context context) {
         super(context);
         setFontStyle();
@@ -36,7 +38,8 @@ public class MyEditTextRR extends EditText {
     public void setInputType(int type) {
         super.setInputType(type);
         setFontStyle();
-        setDisableCopyPaste();
+        //setDisableCopyPaste();
+        //setCursorDrawableColor(this, R.color.white);
     }
 
     private void setFontStyle()
@@ -44,10 +47,13 @@ public class MyEditTextRR extends EditText {
         Typeface face = Typeface.createFromAsset(getContext().getAssets(),
                 "fonts/Roboto-Regular.ttf");
         setTypeface(face);
+        setDisableCopyPaste();
+        //setCursorColor();
+        //setCursorDrawableColor(this, R.color.white);
 
     }
 
-    private void setDisableCopyPaste()
+    /*private void setDisableCopyPaste()
     {
         setCustomSelectionActionModeCallback(new ActionMode.Callback() {
 
@@ -69,6 +75,8 @@ public class MyEditTextRR extends EditText {
         setLongClickable(false);
         setTextIsSelectable(false);
 
-    }
+        setCursorVisible(true);
+
+    }*/
 
 }

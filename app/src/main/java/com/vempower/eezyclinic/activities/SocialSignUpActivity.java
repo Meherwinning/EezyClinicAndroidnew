@@ -32,6 +32,7 @@ import com.vempower.eezyclinic.views.MyTextViewRR;
 //import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -45,6 +46,8 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
     private Spinner gender_type_spinner;
     private String selectedGender;
 
+    private String mySelectedDate;
+
 
     private MyEditTextRR name_et, email_et, mobile_num_et;
     private MyButtonRectangleRM signup_bt;
@@ -53,6 +56,7 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
     private String form_Id;
     private String login_Id;
     private String media_type;
+    private SelectedDate selectedDateObj;
 
 
     @Override
@@ -135,12 +139,12 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
             return;
         }
         String name = name_et.getText().toString();
-        String dob = dateofBirth_tv.getText().toString();
+        //String dob = dateofBirth_tv.getText().toString();
 
         String email = email_et.getText().toString();
         String mobile_num = mobile_num_et.getText().toString();
         //String name, String dob,String gender,String email,String mobile,String password
-        SignupMapper mapper= new SignupMapper(name,dob,selectedGender,email,mobile_num,null);
+        SignupMapper mapper= new SignupMapper(name,mySelectedDate,selectedGender,email,mobile_num,null);
         //String formid,String  social_media_type,String  social_login_id
         mapper.setSocialSignupValues(form_Id,media_type,login_Id);
         mapper.setOnSignUpListener(new SignupMapper.SignUpListener() {
@@ -296,7 +300,7 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
         pickerFrag.setCallback(mFragmentCallback);
 
         // Options
-        Pair<Boolean, SublimeOptions> optionsPair = getOptions();
+        Pair<Boolean, SublimeOptions> optionsPair = getOptions(selectedDateObj);
 
         if (!optionsPair.first) { // If options are not valid
             showToastMessage("No pickers activated");
@@ -314,13 +318,16 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
 
     }
 
-    Pair<Boolean, SublimeOptions> getOptions() {
+    Pair<Boolean, SublimeOptions> getOptions(SelectedDate selectedDate) {
         Calendar endCalendar=Calendar.getInstance();
         Calendar startCalendar=Calendar.getInstance();
         startCalendar.set(Calendar.YEAR,startCalendar.get(Calendar.YEAR)-120);
         SublimeOptions options = new SublimeOptions();
         options.setDateRange(startCalendar.getTimeInMillis(),endCalendar.getTimeInMillis());
 
+        if(selectedDate!=null) {
+            options.setDateParams(selectedDate);
+        }
         int displayOptions = SublimeOptions.ACTIVATE_DATE_PICKER;
 
 
@@ -356,6 +363,7 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
     }
 
 
+
     SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
         @Override
         public void onCancelled() {
@@ -373,10 +381,15 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
             {
                 return;
             }
+            selectedDateObj=selectedDate;
             Calendar selectedCal = selectedDate.getFirstDate();
 
             String date =  selectedCal.get(Calendar.YEAR)+"-"+(selectedCal.get(Calendar.MONTH)+1)+"-"+selectedCal.get(Calendar.DAY_OF_MONTH);
-            dateofBirth_tv.setText(date);
+           // dateofBirth_tv.setText(date);
+
+            SimpleDateFormat format= new SimpleDateFormat(Constants.DISPLAY_DATE_FORMAT);
+            dateofBirth_tv.setText(format.format(selectedCal.getTime()));
+            mySelectedDate=date;
           //  showToastMessage("You picked the following date: "+date);
 
            /* mSelectedDate = selectedDate;

@@ -6,7 +6,8 @@
 
    <include layout="@layout/content_layout"></include>
    <!-- android:layout_marginTop="?attr/actionBarSize"-->
-    <ScrollView
+    <include layout="@layout/side_menu_scroll_view"></include>
+   <!-- <ScrollView
 
         android:id="@+id/scrollView"
         android:scrollbarThumbVertical="@color/white"
@@ -25,11 +26,11 @@
             <include layout="@layout/side_menu_header_layout">
 
             </include>
-            <!--<android.support.v7.widget.RecyclerView
+            &lt;!&ndash;<android.support.v7.widget.RecyclerView
                 android:id="@+id/side_menu_recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="vertical" />-->
+                android:scrollbars="vertical" />&ndash;&gt;
             <include
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -37,5 +38,5 @@
 
             </include>
         </LinearLayout>
-    </ScrollView>
+    </ScrollView>-->
 </android.support.v4.widget.DrawerLayout>

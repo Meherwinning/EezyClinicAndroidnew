@@ -2,10 +2,15 @@
 <resources>
 
 
+
+
     <dimen name="app_tour_text_size">@dimen/_20sp</dimen>
+    <dimen name="text_size_header">@dimen/_18sp</dimen>
     <dimen name="text_size_normal">@dimen/_14sp</dimen>
     <dimen name="text_size_small">@dimen/_12sp</dimen>
+    <dimen name="text_size_small1">@dimen/_10sp</dimen>
     <dimen name="button_text_size">@dimen/_16sp</dimen>
+
 
     <dimen name="_1dp">
         1.2dp

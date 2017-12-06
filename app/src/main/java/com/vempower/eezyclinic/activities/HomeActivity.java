@@ -18,21 +18,20 @@
 
 package com.vempower.eezyclinic.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.HomeFragment;
+import com.vempower.eezyclinic.fragments.MedicalRecordsFragment;
+import com.vempower.eezyclinic.fragments.MyProfileFragment;
+import com.vempower.eezyclinic.fragments.SettingsFragment;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 
@@ -42,37 +41,30 @@ import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 
 public class HomeActivity extends AbstractMenuActivity {
 
+    private static final String BOTTOM_IMAGE_ID_STR = "bottom_linear_image", BOTTOM_TEXTVIEW_ID_STR = "bottom_linear_textview";
 
-    /*@Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_layout);
-        init();
+
+    private int[] imageUnselectIds={R.drawable.group_2,R.drawable.group_6,R.drawable.group_8,R.drawable.group_10};
+    private int[] imageSelectIds={R.drawable.group_6_blue,R.drawable.group_7_blue,R.drawable.group_8_blue,R.drawable.group_9_blue};
+
+    private AbstractFragment homeFragment,myProfileFragment,medicalRecordsFragment,settingsFragment;
+
+    protected void setMyContectntView()
+    {
+        setContentView(R.layout.activity_home_menu_layout);
+        onDashBoardClick(null);
     }
-*/
 
 
-    public void setActionBar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        //setSupportActionBar(toolbar);
-        // setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        getSupportActionBar().setTitle("");
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
 
-
-        if (Build.VERSION.SDK_INT >= 18) {
-            getSupportActionBar().setHomeAsUpIndicator(
-                    getResources().getDrawable(R.drawable.menu));
-        }
-        super.setActionBar(true);
-
-    }
 
     @Override
     protected AbstractFragment getFragment() {
-        return getHomeFragment();
+        if(homeFragment==null)
+        {
+            homeFragment= new HomeFragment();
+        }
+        return homeFragment;
     }
 
     public void onLogoutButtonClick(View view)
@@ -119,4 +111,119 @@ public class HomeActivity extends AbstractMenuActivity {
         //setTitleRightMenuImage(id);
         return fragment;
     }
+
+    public void setActionBar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
+        // setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            getSupportActionBar().setHomeAsUpIndicator(
+                    getResources().getDrawable(R.drawable.menu));
+        }
+        super.setActionBar(true);
+
+    }
+
+    @Override
+    protected void setFragment() {
+        //super.setFragment();
+    }
+
+    public void onDashBoardClick(View view)
+    {
+        if(homeFragment==null)
+        {
+            homeFragment= new HomeFragment();
+        }
+       setFragment(homeFragment);
+        unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,1);
+
+    }
+    public void onMyProfileClick(View view)
+    {
+        if(myProfileFragment==null)
+        {
+            myProfileFragment= new MyProfileFragment();
+        }
+        setFragment(myProfileFragment);
+        unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,2);
+
+    }
+    public void onMedicalRecordsClick(View view)
+    {
+        if(medicalRecordsFragment==null)
+        {
+            medicalRecordsFragment= new MedicalRecordsFragment();
+        }
+        setFragment(medicalRecordsFragment);
+        unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,3);
+
+    }
+    public void onSettingsClick(View view)
+    {
+        if(settingsFragment==null)
+        {
+            settingsFragment= new SettingsFragment();
+        }
+        setFragment(settingsFragment);
+        unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,4);
+    }
+
+    private void computeBottomViews(View view,int viewNum)
+    {
+        unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,viewNum);
+
+
+    }
+
+    private void unSelectAllDistance(String textviewStr,String imageViewStr,int selectedViewNum) {
+        for (int i = 1; i <= 4; i++) {
+            //Textview
+            {
+                String str = textviewStr + "" + i;
+                int resID = getResources().getIdentifier(str,
+                        "id", MyApplication.getCurrentActivityContext().getPackageName());
+                unselectTextView((TextView) findViewById(resID), selectedViewNum==i);
+            }
+
+            {
+                String str = imageViewStr + "" + i;
+                int resID = getResources().getIdentifier(str,
+                        "id", MyApplication.getCurrentActivityContext().getPackageName());
+                unselectImageView((ImageView) findViewById(resID),selectedViewNum==i?imageSelectIds[i-1]:imageUnselectIds[i-1]);
+            }
+        }
+        // selectedDistance = -1;
+        //View addButton = findViewById(resID);
+    }
+    private void unselectImageView(ImageView  imageView,int id) {
+        if (imageView == null || id<0) {
+            return;
+        }
+        imageView.setImageResource(0);
+        //imageView.setImageResource();
+        imageView.setImageResource(id);
+       // textView.setTextColor(getResources().getColor(R.color.bottom_text_color));
+    }
+
+
+    private void unselectTextView(TextView textView,boolean isSelected) {
+        if (textView == null) {
+            return;
+        }
+        //textView.setBackground(MyApplication.getCurrentActivityContext().getResources().getDrawable(R.drawable.circle_shape_light_gray));
+       if(isSelected)
+       {
+           textView.setTextColor(getResources().getColor(R.color.colorPrimary));
+       }else {
+           textView.setTextColor(getResources().getColor(R.color.bottom_text_color));
+       }
+    }
+
 }

@@ -32,6 +32,7 @@ import com.vempower.eezyclinic.views.MyEditTextRR;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 //import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -44,13 +45,14 @@ import static com.vempower.eezyclinic.utils.Utils.showToastMessage;
 public class SignUpActivity extends AbstractSocialLoginActivity /*implements DatePickerDialog.OnDateSetListener*/ {
 
     private MyTextViewRR dateofBirth_tv;
+    private String mySelectedDate;
     private Spinner gender_type_spinner;
     private String selectedGender;
 
 
     private MyEditTextRR name_et, email_et, mobile_num_et,password_et;
     private MyButtonRectangleRM signup_bt;
-
+    private SelectedDate selectedDateObj;
 
 
     @Override
@@ -64,6 +66,7 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
     private void init() {
 
         dateofBirth_tv = findViewById(R.id.dateofBirth_tv);
+        mySelectedDate="";
         gender_type_spinner = findViewById(R.id.gender_type_spinner);
         name_et = findViewById(R.id.name_et);
         email_et = findViewById(R.id.email_et);
@@ -89,13 +92,13 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
             return;
         }
         String name = name_et.getText().toString();
-        String dob = dateofBirth_tv.getText().toString();
+        //String dob = selectedDate;//dateofBirth_tv.getText().toString();
 
         String email = email_et.getText().toString();
         String mobile_num = mobile_num_et.getText().toString();
         String password = password_et.getText().toString();
         //String name, String dob,String gender,String email,String mobile,String password
-        SignupMapper mapper= new SignupMapper(name,dob,selectedGender,email,mobile_num,password);
+        SignupMapper mapper= new SignupMapper(name,mySelectedDate,selectedGender,email,mobile_num,password);
 //String formid,String  social_media_type,String  social_login_id
        // mapper.setSocialSignupValues(form_Id,media_type,login_Id);
         mapper.setOnSignUpListener(new SignupMapper.SignUpListener() {
@@ -254,7 +257,7 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
         pickerFrag.setCallback(mFragmentCallback);
 
         // Options
-        Pair<Boolean, SublimeOptions> optionsPair = getOptions();
+        Pair<Boolean, SublimeOptions> optionsPair = getOptions(selectedDateObj);
 
         if (!optionsPair.first) { // If options are not valid
            // showToastMessage("No pickers activated");
@@ -272,13 +275,15 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
 
           }
 
-    Pair<Boolean, SublimeOptions> getOptions() {
+    Pair<Boolean, SublimeOptions> getOptions(SelectedDate selectedDate) {
         Calendar endCalendar=Calendar.getInstance();
         Calendar startCalendar=Calendar.getInstance();
         startCalendar.set(Calendar.YEAR,startCalendar.get(Calendar.YEAR)-120);
         SublimeOptions options = new SublimeOptions();
         options.setDateRange(startCalendar.getTimeInMillis(),endCalendar.getTimeInMillis());
-
+        if(selectedDate!=null) {
+            options.setDateParams(selectedDate);
+        }
         int displayOptions = SublimeOptions.ACTIVATE_DATE_PICKER;
 
 
@@ -321,20 +326,23 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
         }
 
         @Override
-        public void onDateTimeRecurrenceSet(SelectedDate selectedDate,
+        public void onDateTimeRecurrenceSet(SelectedDate selectedDate1,
                                             int hourOfDay, int minute,
                                             SublimeRecurrencePicker.RecurrenceOption recurrenceOption,
                                             String recurrenceRule) {
 
 
-            if(selectedDate==null || selectedDate.getFirstDate()==null)
+            if(selectedDate1==null || selectedDate1.getFirstDate()==null)
             {
                 return;
             }
-            Calendar selectedCal = selectedDate.getFirstDate();
+            selectedDateObj=selectedDate1;
+            Calendar selectedCal = selectedDate1.getFirstDate();
 
             String date =  selectedCal.get(Calendar.YEAR)+"-"+(selectedCal.get(Calendar.MONTH)+1)+"-"+selectedCal.get(Calendar.DAY_OF_MONTH);
-            dateofBirth_tv.setText(date);
+            SimpleDateFormat format= new SimpleDateFormat(Constants.DISPLAY_DATE_FORMAT);
+            dateofBirth_tv.setText(format.format(selectedCal.getTime()));
+            mySelectedDate=date;
            // showToastMessage("You picked the following date: "+date);
 
            /* mSelectedDate = selectedDate;

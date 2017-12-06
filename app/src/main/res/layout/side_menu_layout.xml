@@ -8,6 +8,7 @@
         android:layout_marginTop="@dimen/_18dp"
         android:layout_width="match_parent"
         android:minHeight="@dimen/_35dp"
+        android:background="@drawable/view_selector"
         android:orientation="horizontal"
         android:paddingTop="@dimen/_8dp"
         android:paddingBottom="@dimen/_8dp"
@@ -36,6 +37,7 @@
         android:id="@+id/book_appointment_linear"
         android:layout_marginTop="@dimen/_13dp"
         android:minHeight="@dimen/_35dp"
+        android:background="@drawable/view_selector"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:paddingTop="@dimen/_8dp"
@@ -64,6 +66,7 @@
     <LinearLayout
         android:id="@+id/my_profile_linear"
         android:layout_marginTop="@dimen/_13dp"
+        android:background="@drawable/view_selector"
         android:minHeight="@dimen/_35dp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
@@ -93,6 +96,7 @@
     <LinearLayout
         android:id="@+id/notification_linear"
         android:layout_marginTop="@dimen/_13dp"
+        android:background="@drawable/view_selector"
         android:minHeight="@dimen/_35dp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
@@ -120,6 +124,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:background="@drawable/view_selector"
         android:id="@+id/health_checks_linear"
         android:layout_marginTop="@dimen/_13dp"
         android:minHeight="@dimen/_35dp"
@@ -149,6 +154,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:background="@drawable/view_selector"
         android:id="@+id/medical_history_linear"
         android:layout_marginTop="@dimen/_13dp"
         android:minHeight="@dimen/_35dp"
@@ -178,6 +184,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:background="@drawable/view_selector"
         android:id="@+id/notes_linear"
         android:layout_marginTop="@dimen/_13dp"
         android:minHeight="@dimen/_35dp"
@@ -206,6 +213,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:background="@drawable/view_selector"
         android:id="@+id/family_members_linear"
         android:layout_marginTop="@dimen/_13dp"
         android:minHeight="@dimen/_35dp"
@@ -234,6 +242,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:background="@drawable/view_selector"
         android:id="@+id/appointment_history_linear"
         android:layout_marginTop="@dimen/_13dp"
         android:minHeight="@dimen/_35dp"
@@ -262,6 +271,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:background="@drawable/view_selector"
         android:id="@+id/health_records_linear"
         android:layout_marginTop="@dimen/_13dp"
         android:minHeight="@dimen/_35dp"
@@ -290,6 +300,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:background="@drawable/view_selector"
         android:id="@+id/my_account_settings_linear"
         android:layout_marginTop="@dimen/_13dp"
         android:minHeight="@dimen/_35dp"
@@ -318,6 +329,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:background="@drawable/view_selector"
         android:id="@+id/feedback_linear"
         android:layout_marginTop="@dimen/_13dp"
         android:minHeight="@dimen/_35dp"
@@ -346,6 +358,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:background="@drawable/view_selector"
         android:id="@+id/features_and_benefits_linear"
         android:layout_marginTop="@dimen/_13dp"
         android:minHeight="@dimen/_35dp"
@@ -374,6 +387,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:background="@drawable/view_selector"
         android:id="@+id/logout_tv"
         android:layout_marginTop="@dimen/_13dp"
         android:minHeight="@dimen/_35dp"
