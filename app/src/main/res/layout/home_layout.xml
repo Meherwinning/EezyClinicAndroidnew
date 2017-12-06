@@ -2,21 +2,347 @@
 
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
 
     android:background="@drawable/app_gradient_bg"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/welcome_tv"
-        android:layout_width="wrap_content"
-        android:text="Dash board\n(Coming soon) "
-        android:textSize="@dimen/_18sp"
-        android:gravity="center"
-        android:textColor="@color/text_color"
-        android:layout_centerInParent="true"
-        android:layout_height="wrap_content" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_alignParentTop="true"
+        android:scrollbars="none"
+        android:layout_marginLeft="@dimen/_17dp"
+        android:layout_marginRight="@dimen/_17dp"
+        android:layout_marginTop="@dimen/_10dp"
 
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/image_linear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:background="@drawable/canvas_85x85"
+                android:gravity="center"
+
+                >
+
+                <ImageView
+                    android:id="@+id/profile_iv"
+                    style="@style/image_fit_toparent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/profile_icon" />
+            </LinearLayout>
+            <!-- <ImageView
+                 android:id="@+id/profile_iv"
+                 android:padding="@dimen/_5dp"
+                 android:layout_width="@dimen/_60dp"
+                 android:layout_centerVertical="true"
+                 android:src="@mipmap/ic_launcher"
+                 android:layout_height="@dimen/_60dp" />-->
+
+            <com.vempower.eezyclinic.views.MyTextViewRM
+                android:id="@+id/patient_name_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_linear"
+                android:layout_marginTop="@dimen/_5dp"
+                android:gravity="center"
+                android:hint="Patient Name"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_header" />
+
+            <com.vempower.eezyclinic.views.MyTextViewRM
+                android:id="@+id/patient_email_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/patient_name_tv"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:gravity="center"
+                android:hint="Patient email"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_normal" />
+
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_4dp"
+            android:layout_marginRight="@dimen/_4dp"
+            android:layout_marginTop="@dimen/_4dp"
+            android:layout_marginBottom="@dimen/_4dp"
+            android:layout_weight="1"
+            card_view:cardCornerRadius="@dimen/_4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/_20dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/_30dp"
+                    android:layout_marginTop="@dimen/_30dp"
+                    android:src="@drawable/healthtips_icon" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_20dp"
+                    android:layout_marginRight="@dimen/_14dp"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.vempower.eezyclinic.views.MyTextViewRM
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_5dp"
+                        android:text="@string/health_tips_lbl"
+                        android:textColor="@color/health_tips_color"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+
+
+                        android:text="Choose whole grains. Try brown rice insted of white. Switch to whole wheat Choose whole grains."
+                        android:textColor="@color/dash_board_text_color"
+                        android:textSize="@dimen/text_size_small"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_4dp"
+            android:layout_marginRight="@dimen/_4dp"
+            android:layout_marginTop="@dimen/_7dp"
+            android:layout_marginBottom="@dimen/_4dp"
+            android:layout_weight="1"
+            card_view:cardCornerRadius="@dimen/_4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/_20dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/_30dp"
+                    android:layout_marginTop="@dimen/_30dp"
+                    android:src="@drawable/health_goal_icon" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_20dp"
+                    android:layout_marginRight="@dimen/_14dp"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.vempower.eezyclinic.views.MyTextViewRM
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_5dp"
+                        android:text="@string/health_goal_lbl"
+                        android:textColor="@color/health_goal_color"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+
+
+                        android:text="Choose whole grains. Try brown rice insted of white. Switch to whole wheat Choose whole grains."
+                        android:textColor="@color/dash_board_text_color"
+                        android:textSize="@dimen/text_size_small"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_4dp"
+            android:layout_marginRight="@dimen/_4dp"
+            android:layout_marginTop="@dimen/_7dp"
+            android:layout_marginBottom="@dimen/_4dp"
+            android:layout_weight="1"
+            card_view:cardCornerRadius="@dimen/_4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/_20dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/_30dp"
+                    android:layout_marginTop="@dimen/_30dp"
+                    android:src="@drawable/upcoming_appointment_icon" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_20dp"
+                    android:layout_marginRight="@dimen/_14dp"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.vempower.eezyclinic.views.MyTextViewRM
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_5dp"
+                        android:text="@string/upcoming_appointment_lbl"
+                        android:textColor="@color/upcoming_appointment_color"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+
+
+                        android:text="Choose whole grains. Try brown rice insted of white. Switch to whole wheat Choose whole grains."
+                        android:textColor="@color/dash_board_text_color"
+                        android:textSize="@dimen/text_size_small"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_4dp"
+            android:layout_marginRight="@dimen/_4dp"
+            android:layout_marginTop="@dimen/_7dp"
+            android:layout_marginBottom="@dimen/_4dp"
+            android:layout_weight="1"
+            card_view:cardCornerRadius="@dimen/_4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/_20dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/_30dp"
+                    android:layout_marginTop="@dimen/_30dp"
+                    android:src="@drawable/upcomin_followups_icon" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_20dp"
+                    android:layout_marginRight="@dimen/_14dp"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.vempower.eezyclinic.views.MyTextViewRM
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_5dp"
+                        android:text="@string/upcoming_folloups_lbl"
+                        android:textColor="@color/upcoming_folloups_color"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+
+
+                        android:text="Choose whole grains. Try brown rice insted of white. Switch to whole wheat Choose whole grains."
+                        android:textColor="@color/dash_board_text_color"
+                        android:textSize="@dimen/text_size_small"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <com.vempower.eezyclinic.views.MyButtonRectangleRM
+
+            android:id="@+id/login_bt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48dp"
+            android:layout_marginRight="@dimen/_7dp"
+            android:layout_marginLeft="@dimen/_7dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:layout_marginBottom="@dimen/_23dp"
+            android:background="@color/white"
+            android:clickable="true"
+            android:fontFamily="sans-serif"
+            android:maxLines="1"
+            android:padding="@dimen/_4dp"
+            android:text="Search for Doctor/Clinic"
+            android:textAllCaps="false"
+            android:textColor="@color/button_text_color"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+    </ScrollView>
 
 
 </RelativeLayout>

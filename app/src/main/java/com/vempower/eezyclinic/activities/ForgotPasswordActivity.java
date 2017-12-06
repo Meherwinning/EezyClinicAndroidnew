@@ -75,7 +75,7 @@ public class ForgotPasswordActivity extends AbstractFragmentActivity {
     }
 
     private void submitButtonClick() {
-        MyApplication.showTransparentDialog();
+        //MyApplication.showTransparentDialog();
 
         isEmail = false;
 
@@ -83,12 +83,12 @@ public class ForgotPasswordActivity extends AbstractFragmentActivity {
         String mobileNum = mobile_num_et.getText().toString();
         if (TextUtils.isEmpty(mobileNum) && TextUtils.isEmpty(email)) {
             showToastMessage("Please enter valid email id/mobile number");
-            MyApplication.hideTransaprentDialog();
+            //MyApplication.hideTransaprentDialog();
             return;
         } else if (!TextUtils.isEmpty(email)) {
             if (!Utils.isValidEmail(email)) {
                 showToastMessage("Please enter valid email id.");
-                MyApplication.hideTransaprentDialog();
+                //MyApplication.hideTransaprentDialog();
                 return;
             }
             //TODO call a mapper with email id
@@ -104,9 +104,10 @@ public class ForgotPasswordActivity extends AbstractFragmentActivity {
         mapper.setOnForgotPasswordListener(new ForgotPasswordMapper.ForgotPasswordListener() {
             @Override
             public void getForgotPasswordAPI(ForgotPasswordAPI forgotPasswordAPI, String errorMessage) {
-                MyApplication.hideTransaprentDialog();
+                //MyApplication.hideTransaprentDialog();
+
                 if (!isValidResponse(forgotPasswordAPI, errorMessage)) {
-                    MyApplication.hideTransaprentDialog();
+                    //MyApplication.hideTransaprentDialog();
                     return;
                 }
 
@@ -114,7 +115,7 @@ public class ForgotPasswordActivity extends AbstractFragmentActivity {
 
                 if (userAccounts == null || userAccounts.size() == 0) {
                     showMyAlertDialog("Alert", Utils.getStringFromResources(R.string.no_accounts_found_in_database_lbl), "Ok", false);
-                    MyApplication.hideTransaprentDialog();
+                    //MyApplication.hideTransaprentDialog();
                     return;
                 }
 
@@ -123,7 +124,7 @@ public class ForgotPasswordActivity extends AbstractFragmentActivity {
                    /* intent.putExtra(Constants.Pref.USER_ACCOUNT_OBJ_KEY,userAccounts.get(0));
                     startActivity(intent);
                     finish();*/
-                    MyApplication.hideTransaprentDialog();
+                    //MyApplication.hideTransaprentDialog();
                     return;
                 } else {
 
@@ -134,7 +135,7 @@ public class ForgotPasswordActivity extends AbstractFragmentActivity {
                                 return;
                             }
                             callForgotAccountMapper(userAccounts.get(selectedItemIndex));
-                            MyApplication.hideTransaprentDialog();
+                            //MyApplication.hideTransaprentDialog();
                             return;
 
                         }
@@ -164,11 +165,14 @@ public class ForgotPasswordActivity extends AbstractFragmentActivity {
     private void callForgotAccountMapper(UserAccount account) {
 
        // showToastMessage(account.toString());
+        //MyApplication.showTransparentDialog();
         ForgotPasswordOTPMapper otpMapper = new ForgotPasswordOTPMapper(account.getId(), isEmail ? "2" : "1");
 
         otpMapper.setOnForgotPasswordOTPListener(new ForgotPasswordOTPMapper.ForgotPasswordOTPListener() {
             @Override
             public void getForgotPasswordOTPAPI(ForgotPasswordOTPAPI forgotPasswordOTPAPI, String errorMessage) {
+                //MyApplication.hideTransaprentDialog();
+
                 if (!isValidResponse(forgotPasswordOTPAPI, errorMessage)) {
                     return;
                 }

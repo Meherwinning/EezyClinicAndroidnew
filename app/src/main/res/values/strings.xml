@@ -89,5 +89,9 @@
     <string name="settings_lbl">Settings</string>
     <string name="social_signup_msg_lbl">You are successfully logged in with </string>
     <string name="normal_signup_or_signin_msg_lbl">You are successfully logged in</string>
+    <string name="health_tips_lbl">Health Tips</string>
+    <string name="health_goal_lbl">Health Goal</string>
+    <string name="upcoming_appointment_lbl">Upcoming Appointment</string>
+    <string name="upcoming_folloups_lbl">Upcoming Appointment</string>
 
 </resources>

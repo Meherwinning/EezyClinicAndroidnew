@@ -20,7 +20,7 @@ import com.vempower.eezyclinic.application.MyApplication;
 public class HomeFragment extends AbstractFragment {
 
     private View fragmentView;
-    private TextView welcome_tv;
+    //private TextView welcome_tv;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class HomeFragment extends AbstractFragment {
     }
 
     private void init() {
-        welcome_tv = fragmentView.findViewById(R.id.welcome_tv);
+        //welcome_tv = fragmentView.findViewById(R.id.welcome_tv);
 
         String str = "Welcome to Eezyclinic\n";
         PatientData patientData = MyApplication.getInstance().getLoggedUserDetailsFromSharedPref();
@@ -51,7 +51,7 @@ public class HomeFragment extends AbstractFragment {
             }
 
         }
-        welcome_tv.setText(str);
+       // welcome_tv.setText(str);
 
     }
 

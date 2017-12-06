@@ -47,4 +47,11 @@
     <color name="side_menu_text_color">#212121</color>
     <color name="bottom_text_color">#969696</color>
 
+    <color name="health_tips_color">#84d22e</color>
+    <color name="health_goal_color"> #f18fc3</color>
+    <color name="upcoming_appointment_color">#47bcff</color>
+    <color name="upcoming_folloups_color">#f5a623</color>
+    <color name="dash_board_text_color">#9f9f9f</color>
+
+
 </resources>
