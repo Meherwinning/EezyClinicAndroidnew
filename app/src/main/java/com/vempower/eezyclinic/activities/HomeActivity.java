@@ -20,6 +20,8 @@ package com.vempower.eezyclinic.activities;
 
 import android.content.Intent;
 import android.os.Build;
+import android.os.Messenger;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,6 +29,9 @@ import android.widget.TextView;
 
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.callbacks.AbstractAppHandler;
+import com.vempower.eezyclinic.callbacks.HomeBottomItemClickListener;
+import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.HomeFragment;
 import com.vempower.eezyclinic.fragments.MedicalRecordsFragment;
@@ -41,6 +46,7 @@ import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 
 public class HomeActivity extends AbstractMenuActivity {
 
+
     private static final String BOTTOM_IMAGE_ID_STR = "bottom_linear_image", BOTTOM_TEXTVIEW_ID_STR = "bottom_linear_textview";
 
 
@@ -53,10 +59,47 @@ public class HomeActivity extends AbstractMenuActivity {
     {
         setContentView(R.layout.activity_home_menu_layout);
         onDashBoardClick(null);
+        getIntent().putExtra(ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, new Messenger(getBottomSelectItemKeyListener()));
+    }
+
+    @NonNull
+    private AbstractAppHandler getBottomSelectItemKeyListener() {
+        return new AbstractAppHandler() {
+            @Override
+            public void getObject(Object obj) {
+                if (obj != null && (obj instanceof HomeBottomItemClickListener) ) {
+                    HomeBottomItemClickListener listener= (HomeBottomItemClickListener) obj;
+                    //listener.getItemClicked();
+                    bottomItemChange(listener.getItemClicked());
+
+                }
+            }
+        };
     }
 
 
+    private void bottomItemChange( int selectedItem) {
 
+           if(selectedItem==-1)
+           {
+               return;
+           }
+           switch (selectedItem)
+           {
+               case  Constants.Home.HOME_ACTIVITY:
+                   callDashboard();
+                   break;
+               case  Constants.Home.MY_PROFILE:
+                   callMyProfile();
+                   break;
+               case  Constants.Home.MEDICAL_RECORDS:
+                   callMedicalRecordds();
+                   break;
+               case  Constants.Home.SETTINGS:
+                   callSettings();
+                   break;
+           }
+    }
 
     @Override
     protected AbstractFragment getFragment() {
@@ -131,20 +174,44 @@ public class HomeActivity extends AbstractMenuActivity {
     }
 
     @Override
+    protected void callDashboard() {
+        onDashBoardClick(null);
+
+    }
+
+    @Override
+    protected void callMyProfile() {
+
+        onMyProfileClick(null);
+    }
+
+    @Override
+    protected void callMedicalRecordds() {
+        onMedicalRecordsClick(null);
+    }
+
+    @Override
+    protected void callSettings() {
+        onSettingsClick(null);
+    }
+
+    @Override
     protected void setFragment() {
         //super.setFragment();
     }
 
-    public void onDashBoardClick(View view)
+    public void onDashBoardClick(View view1)
     {
         if(homeFragment==null)
         {
             homeFragment= new HomeFragment();
         }
-       setFragment(homeFragment);
-        unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,1);
+        setFragment(homeFragment);
+        unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,Constants.Home.HOME_ACTIVITY);
 
     }
+
+
     public void onMyProfileClick(View view)
     {
         if(myProfileFragment==null)
@@ -152,7 +219,7 @@ public class HomeActivity extends AbstractMenuActivity {
             myProfileFragment= new MyProfileFragment();
         }
         setFragment(myProfileFragment);
-        unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,2);
+        unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,Constants.Home.MY_PROFILE);
 
     }
     public void onMedicalRecordsClick(View view)
@@ -162,7 +229,7 @@ public class HomeActivity extends AbstractMenuActivity {
             medicalRecordsFragment= new MedicalRecordsFragment();
         }
         setFragment(medicalRecordsFragment);
-        unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,3);
+        unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,Constants.Home.MEDICAL_RECORDS);
 
     }
     public void onSettingsClick(View view)
@@ -172,7 +239,7 @@ public class HomeActivity extends AbstractMenuActivity {
             settingsFragment= new SettingsFragment();
         }
         setFragment(settingsFragment);
-        unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,4);
+        unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,Constants.Home.SETTINGS);
     }
 
     private void computeBottomViews(View view,int viewNum)

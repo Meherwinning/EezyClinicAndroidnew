@@ -43,7 +43,7 @@
                 android:src="@drawable/categories_icon_hover"
 
                 />-->
-            <ImageView
+          <!--  <ImageView
                 android:id="@+id/title_logo_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,7 +51,20 @@
                 android:layout_gravity="left|center_horizontal"
                 android:src="@drawable/logo"
 
-                 />
+                 />-->
+            <com.vempower.eezyclinic.views.MyTextViewRM
+
+                android:id="@+id/title_logo_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="@dimen/title_text_size"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:textColor="@color/white"
+
+                />
 
         </android.support.v7.widget.Toolbar>
 

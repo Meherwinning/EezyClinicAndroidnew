@@ -65,22 +65,50 @@
                 android:layout_below="@+id/image_linear"
                 android:layout_marginTop="@dimen/_5dp"
                 android:gravity="center"
+                android:textSize="@dimen/button_text_size"
                 android:hint="Patient Name"
+                android:textColorHint="@color/white"
                 android:maxLines="1"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_header" />
+               />
 
-            <com.vempower.eezyclinic.views.MyTextViewRM
-                android:id="@+id/patient_email_tv"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/patient_name_tv"
                 android:layout_marginBottom="@dimen/_15dp"
-                android:gravity="center"
-                android:hint="Patient email"
-                android:maxLines="1"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_normal" />
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <com.vempower.eezyclinic.views.MyTextViewRM
+                   android:text="Patient ID:"
+                    android:textColor="#bbe5e4"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/text_size_small"
+
+                    android:layout_height="wrap_content" />
+                <com.vempower.eezyclinic.views.MyTextViewRM
+                    android:id="@+id/patient_id_tv"
+                    android:text="PT00130"
+                    android:layout_marginLeft="@dimen/_5dp"
+                    android:textSize="@dimen/text_size_small"
+                    android:textColor="#bbe5e4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <!--    <com.vempower.eezyclinic.views.MyTextViewRM
+                    android:id="@+id/patient_email_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Patient email"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_normal" />-->
+
+
+            </LinearLayout>
+
+
 
 
         </RelativeLayout>
@@ -129,6 +157,7 @@
                         android:textSize="@dimen/text_size_normal" />
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/health_tips_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
@@ -188,6 +217,7 @@
                         android:textSize="@dimen/text_size_normal" />
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/health_goal_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
@@ -247,6 +277,7 @@
                         android:textSize="@dimen/text_size_normal" />
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/upcoming_appointment_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
@@ -258,6 +289,12 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/arrow_right"
+                    android:layout_marginRight="@dimen/_13dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
 
@@ -298,6 +335,7 @@
                     android:orientation="vertical">
 
                     <com.vempower.eezyclinic.views.MyTextViewRM
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_5dp"
@@ -306,6 +344,7 @@
                         android:textSize="@dimen/text_size_normal" />
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/upcoming_followups_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
@@ -317,6 +356,12 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/arrow_right"
+                    android:layout_marginRight="@dimen/_13dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
 

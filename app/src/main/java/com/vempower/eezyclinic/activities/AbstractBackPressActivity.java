@@ -11,7 +11,7 @@ import java.util.TimerTask;
 /**
  * Created by sathishkumar on 20/4/16.
  */
-class AbstractBackPressActivity extends AbstractActivity {
+class AbstractBackPressActivity extends AbstractFragmentActivity {
 
     private final int DELAY_TIME = 4000;//In millis
     private boolean isBackPressed = false;

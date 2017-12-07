@@ -10,6 +10,7 @@
     <dimen name="text_size_small">@dimen/_12sp</dimen>
     <dimen name="text_size_small1">@dimen/_10sp</dimen>
     <dimen name="button_text_size">@dimen/_16sp</dimen>
+    <dimen name="title_text_size">@dimen/_19sp</dimen>
 
 
 

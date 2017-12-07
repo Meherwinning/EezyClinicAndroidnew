@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,16 +14,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.callbacks.HomeBottomItemClickListener;
+import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.HomeFragment;
 import com.vempower.eezyclinic.interfaces.MenuScreenListener;
@@ -30,7 +33,6 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRM;
-import com.vempower.eezyclinic.views.MyTextViewRR;
 
 
 /**
@@ -45,40 +47,39 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     private LinearLayout linearLayout;
     private ActionBarDrawerToggle drawerToggle;
 
-    private MyTextViewRM nameTv,emailTv;
+    private MyTextViewRM nameTv, emailTv;
 
-    private AbstractFragment currentFragment,prevoiusFragment;
+    private AbstractFragment currentFragment, prevoiusFragment;
+    private  Intent  intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setMyContectntView();
         init();
+        intent= getIntent();
     }
 
-    protected void setMyContectntView()
-    {
+    protected void setMyContectntView() {
         setContentView(R.layout.activity_menu_layout);
     }
 
 
-
-
     private void init() {
-            drawerLayout = findViewById(R.id.drawer_layout);
-            drawerLayout.setScrimColor(Color.TRANSPARENT);
-            linearLayout = (LinearLayout) findViewById(R.id.left_drawer);
-            linearLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    drawerLayout.closeDrawers();
-                }
-            });
+        drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout.setScrimColor(Color.TRANSPARENT);
+        linearLayout = (LinearLayout) findViewById(R.id.left_drawer);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.closeDrawers();
+            }
+        });
 
 
-       // if(nameTv==null) {
-            nameTv = findViewById(R.id.patient_name_tv);
-            emailTv = findViewById(R.id.patient_email_tv);
+        // if(nameTv==null) {
+        nameTv = findViewById(R.id.patient_name_tv);
+        emailTv = findViewById(R.id.patient_email_tv);
         //}
         //titleRightImageview=findViewById(R.id.title_right_iv);
 
@@ -87,6 +88,8 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         setFragment();
         setSideMenuCutomerTitle();
         setActionBar();
+
+
     }
 
 
@@ -111,45 +114,166 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         return animator;
     }*/
 
-    protected abstract  void setActionBar();
-
+    protected abstract void setActionBar();
 
 
     private void setSidemenuItemsListener() {
 
+
+        findViewById(R.id.dashdoard_linear).setOnClickListener(this);
+        findViewById(R.id.book_appointment_linear).setOnClickListener(this);
+        findViewById(R.id.my_profile_linear).setOnClickListener(this);
+        findViewById(R.id.notification_linear).setOnClickListener(this);
+        findViewById(R.id.health_checks_linear).setOnClickListener(this);
+        findViewById(R.id.medical_history_linear).setOnClickListener(this);
+        findViewById(R.id.notes_linear).setOnClickListener(this);
+        findViewById(R.id.family_members_linear).setOnClickListener(this);
+        findViewById(R.id.appointment_history_linear).setOnClickListener(this);
+        findViewById(R.id.health_records_linear).setOnClickListener(this);
+        findViewById(R.id.my_account_settings_linear).setOnClickListener(this);
+        findViewById(R.id.feedback_linear).setOnClickListener(this);
+        findViewById(R.id.features_and_benefits_linear).setOnClickListener(this);
         findViewById(R.id.logout_tv).setOnClickListener(this);
 
 
-       // findViewById(R.id.home_linear_new).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(@NonNull final View item) {
+     // Intent  intent= getIntent();
+        Log.i("Menu1","Clicked");
+        closeMenu();
+        MyApplication.hideTransaprentDialog();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                openScreen(item);
+                MyApplication.hideTransaprentDialog();
+            }
+        },250);
 
 
-        //findViewById(R.id.profile_linear).setOnClickListener(this);
-       // findViewById(R.id.edit_profile_linear).setOnClickListener(this);
-        //findViewById(R.id.change_pwd_linear).setOnClickListener(this);
-        //findViewById(R.id.order_history_linear).setOnClickListener(this);
-       // findViewById(R.id.logout_tv1).setOnClickListener(this);
-        /*findViewById(R.id.my_orders_linear).setOnClickListener(this);
-        findViewById(R.id.feed_back_linear).setOnClickListener(this);
-        findViewById(R.id.login_logout_linear).setOnClickListener(this);
-        findViewById(R.id.logout_tv1).setOnClickListener(this);
-*/
 
-        //For logout items
-       /* findViewById(R.id.categories_linear).setOnClickListener(this);
-        findViewById(R.id.refer_a_vendor_linear).setOnClickListener(this);
-        findViewById(R.id.subscribe_with_us_linear).setOnClickListener(this);
-        findViewById(R.id.customer_support_linear).setOnClickListener(this);
-        findViewById(R.id.contact_us_linear).setOnClickListener(this);*/
-       // findViewById(R.id.login_or_signup_linear).setOnClickListener(this);
 
-      /*  findViewById(R.id.view_profile_linear_new).setOnClickListener(this);
-        findViewById(R.id.signout_linear_new).setOnClickListener(this);
-        findViewById(R.id.refer_a_vendor_linear).setOnClickListener(this);
-        findViewById(R.id.side_menu_cart_linear).setOnClickListener(this);
+        // closeMenu();
+    }
 
-        findViewById(R.id.support_contact_us_linear).setOnClickListener(this);
+    private void openScreen(@NonNull View item) {
+        switch (item.getId()) {
+            case R.id.dashdoard_linear:
+               //TODO something
+                callDashboard();
 
-        findViewById(R.id.scribe_with_us_linear).setOnClickListener(this);*/
+                break;
+            case R.id.book_appointment_linear:
+                //TODO something
+
+                break;
+            case R.id. my_profile_linear:
+                //TODO something
+                callMyProfile();
+
+                break;
+            case R.id. notification_linear:
+                //TODO something
+
+
+                break;
+            case R.id.health_checks_linear:
+                //TODO something
+
+                break;
+            case R.id.medical_history_linear:
+                //TODO something
+
+                break;
+            case R.id.notes_linear:
+                //TODO something
+
+                break;
+            case R.id.family_members_linear:
+                //TODO something
+
+                break;
+            case R.id.appointment_history_linear:
+                //TODO something
+
+                break;
+            case R.id.health_records_linear:
+                //TODO something
+
+               // intent= new Intent(this,HealthRecordsActivity.class);
+                //Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
+                intent.setClass(this,HealthRecordsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                break;
+            case R.id.my_account_settings_linear:
+                //TODO something
+                callSettings();
+
+                break;
+            case R.id.feedback_linear:
+                //TODO something
+
+                break;
+            case R.id.features_and_benefits_linear:
+                //TODO something
+
+                break;
+
+            case R.id.logout_tv:
+                checkConformation();
+
+                break;
+
+            default:
+                showToastMessage("Coming soon");
+                break;
+
+        }
+    }
+
+    protected  void callDashboard(){
+      // Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
+        intent.setClass(this,HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.HOME_ACTIVITY));
+
+    }
+    protected  void callMyProfile(){
+        //Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
+        intent.setClass(this,HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.MY_PROFILE));
+
+
+    }
+    private HomeBottomItemClickListener getRecordingListTitleBarListener(final int flag) {
+        return new HomeBottomItemClickListener() {
+            public int getItemClicked() {
+                return flag;
+            }
+        };
+    }
+    protected  void callMedicalRecordds(){
+       // Intent  intent= new Intent(this,HomeActivity.class);
+        intent.setClass(this,HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.MEDICAL_RECORDS));
+
+
+    }
+    protected  void callSettings(){
+        //Intent  intent= new Intent(this,HomeActivity.class);
+        intent.setClass(this,HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.SETTINGS));
+
 
     }
 
@@ -179,7 +303,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         drawerToggle = new ActionBarDrawerToggle(
                 this,                  /* host Activity */
                 drawerLayout,         /* DrawerLayout object */
-                isShowMenu?(Toolbar) findViewById(R.id.toolbar):null,
+                isShowMenu ? (Toolbar) findViewById(R.id.toolbar) : null,
                 /*toolbar,*/  /* nav drawer icon to replace 'Up' caret */
                 R.string.drawer_open,  /* "open drawer" description */
                 R.string.drawer_close  /* "close drawer" description */
@@ -189,8 +313,8 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
             public void onDrawerClosed(View view) {
                 //super.onDrawerClosed(view);
                 //linearLayout.removeAllViews();
-                if(isShowMenu)
-                invalidateOptionsMenu();
+                if (isShowMenu)
+                    invalidateOptionsMenu();
                 linearLayout.setVisibility(View.GONE);
             }
 
@@ -203,9 +327,9 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
-               // super.onDrawerOpened(drawerView);
+                // super.onDrawerOpened(drawerView);
                 setSideMenuCutomerTitle();
-                if(isShowMenu) {
+                if (isShowMenu) {
                     invalidateOptionsMenu();
                 }
             }
@@ -223,10 +347,6 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     }
 
 
-
-
-
-
     private void setSideMenuCutomerTitle() {
 
         nameTv.setText(Utils.getStringFromResources(R.string.welcome_guest_lbl));
@@ -242,18 +362,16 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
             }
 
             PatientData user = (PatientData) obj;
-            if(user == null)
-            {
+            if (user == null) {
                 logout();
                 return;
             }
             //Picasso.with(activity).load(mayorShipImageLink).transform(new CircleTransform()).into(ImageView);
             //String imgUrl="https://media.istockphoto.com/photos/friendly-doctor-at-the-hospital-picture-id511583494?s=2048x2048";
-            ImageView imageView  = findViewById(R.id.profile_iv);
-            if(imageView!=null)
-            {
+            ImageView imageView = findViewById(R.id.profile_iv);
+            if (imageView != null) {
                 //int defaultImageId, ImageView imageView,String imageUrl
-               MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon,imageView,user.getPatientLogo());
+                MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, user.getPatientLogo());
             }
 
             if (!TextUtils.isEmpty(user.getPatientName())) {
@@ -270,11 +388,11 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
     private void refreshSideMenuItems(boolean isLoggedin) {
 
-       // my_account_view.setVisibility(isLoggedin? View.VISIBLE: View.GONE);
-       // findViewById(R.id.logout_tv1).setVisibility(/*isLoggedin?View.VISIBLE:*/View.INVISIBLE);
+        // my_account_view.setVisibility(isLoggedin? View.VISIBLE: View.GONE);
+        // findViewById(R.id.logout_tv1).setVisibility(/*isLoggedin?View.VISIBLE:*/View.INVISIBLE);
 
 
-       // findViewById(R.id.login_linear_new).setVisibility(isLoggedin? View.GONE: View.VISIBLE);
+        // findViewById(R.id.login_linear_new).setVisibility(isLoggedin? View.GONE: View.VISIBLE);
 
         //findViewById(R.id.login_or_signup_linear).setVisibility(/*isLoggedin?View.GONE:*/View.INVISIBLE);
         //For login items
@@ -298,142 +416,11 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     }
 
 
-
-
-
-    @Override
-    public void onClick(@NonNull View item) {
-        Intent intent=null;
-        closeMenu();
-        switch (item.getId())
-        {
-
-            case R.id.logout_tv:
-                checkConformation();
-
-                break;
-//            case R.id.home_linear_new:
-//                if(MyApplication.getCurrentActivityContext() instanceof HomeActivity)
-//                {
-//
-//                    return;
-//                }
-//                //setFragment(getHomeFragment());
-//                 intent= new Intent(this,HomeActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(intent);
-//                break;
-//
-//            case R.id.view_profile_linear_new:
-//
-//                if(expandableLayout_account!=null)
-//                {
-//                    expandableLayout_account.toggle();
-//                }
-//
-//                 intent= new Intent(this,ViewProfileActivity.class);
-//               // intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//               // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(intent);
-//                break;
-//
-//            case R.id.edit_profile_linear:
-//                if(expandableLayout_account!=null)
-//                {
-//                    expandableLayout_account.toggle();
-//                }
-//                //setFragment(getEditProfileFragment());
-//                intent= new Intent(this,EditProfileActivity.class);
-//                startActivity(intent);
-//                break;
-//
-//            case R.id.change_pwd_linear:
-//                if(expandableLayout_account!=null)
-//                {
-//                    expandableLayout_account.toggle();
-//                }
-//                //setFragment(getChangePasswordFragment());
-//                intent= new Intent(this,ChangePasswordActivity.class);
-//                startActivity(intent);
-//                break;
-//
-//           case R.id.order_history_linear:
-//               if(expandableLayout_account!=null)
-//               {
-//                   expandableLayout_account.toggle();
-//               }
-//               //setFragment(getChangePasswordFragment());
-//               intent= new Intent(this,OrderHistoryActivity.class);
-//               startActivity(intent);
-//               break;
-//
-//
-//
-//            case R.id.side_menu_cart_linear:
-//                callCartActivity();
-//                break;
-//
-//            case R.id.scribe_with_us_linear:
-//                callScribeWithUsActivity();
-//                break;
-//
-//            case R.id.support_contact_us_linear:
-//                callTawkChatWebView();
-//                break;
-
-
-/*
-            case R.id.categories_linear:
-                showToastMessage("coming soon.");
-                break;
-            case R.id.refer_a_vendor_linear:
-                showToastMessage("coming soon.");
-                break;
-            case R.id.subscribe_with_us_linear:
-                showToastMessage("coming soon.");
-                break;
-            case R.id.customer_support_linear:
-                showToastMessage("coming soon.");
-                break;
-            case R.id.contact_us_linear:
-                showToastMessage("coming soon.");
-                break;
-
-            case R.id.login_logout_linear:*/
-           /* case R.id.refer_a_vendor_linear:
-                if(expandableLayout_account!=null)
-                {
-                    expandableLayout_account.toggle();
-                }
-                //setFragment(getChangePasswordFragment());
-                intent= new Intent(this,ReferAVendorActivity.class);
-                startActivity(intent);
-                break;
-
-           // case R.id.logout_tv1:
-            case R.id.signout_linear_new:
-                checkConformation();
-                break;*/
-
-                default:
-                    showToastMessage("Coming soon");
-                    break;
-
-        }
-
-
-
-        closeMenu();
-    }
-
-    private MenuScreenListener getMenuScreenListener()
-    {
-        return  new MenuScreenListener() {
+    private MenuScreenListener getMenuScreenListener() {
+        return new MenuScreenListener() {
             @Override
             public void onFinishScreen() {
-                if(currentFragment==null)
-                {
+                if (currentFragment == null) {
                     setFragment(getHomeFragment());
                     return;
                 }
@@ -449,9 +436,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 }*/
 
 
-
-                if((!(currentFragment instanceof HomeFragment)))
-                {
+                if ((!(currentFragment instanceof HomeFragment))) {
                     setFragment(getHomeFragment());
                     return;
                 }
@@ -461,8 +446,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
             @Override
             public void onTitleMenuClick(Object obj) {
-                if(currentFragment==null)
-                {
+                if (currentFragment == null) {
                     return;
                 }
                /* if(((currentFragment instanceof ProfileFragment)))
@@ -493,7 +477,18 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawerLayout != null) {
             drawerLayout.closeDrawer(GravityCompat.START);
+
         }
+       /* new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (drawerLayout != null) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+
+                }
+            }
+        },200);*/
+
 
 
 
@@ -513,13 +508,13 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     }
 
     protected void setFragment(AbstractFragment fragment) {
-        if (fragment == null) {
+        if (fragment == null || isFinishing()) {
             return;
         }
-        prevoiusFragment=currentFragment;
+        prevoiusFragment = currentFragment;
         fragment.setOnMenuScreenListener(getMenuScreenListener());
 
-        currentFragment=fragment;
+        currentFragment = fragment;
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -529,8 +524,21 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         {
              contactDetailsFragment= (ContactDetailsFragment) abstractFragment;
         }*/
-        fragmentTransaction.replace(R.id.fragment_layout, fragment, "FRAGMENT");
-        fragmentTransaction.commit();
+        Log.d("fragment",fragment.getClass().getSimpleName());
+       //if(fragmentManager.findFragmentByTag(fragment.getClass().getSimpleName())==null) {
+           fragmentTransaction.replace(R.id.fragment_layout, fragment, fragment.getClass().getSimpleName()/*"FRAGMENT"*/);
+       //}else {
+           //fragmentTransaction.show(fragmentManager.findFragmentByTag(fragment.getClass().getSimpleName()));
+          // fragmentTransaction.attach(fragmentManager.findFragmentByTag(fragment.getClass().getSimpleName()));
+       //}
+            //Log.d("hidden","Show");
+        //} /*else {
+            //fragmentTransaction.hide(fragment);
+            //Log.d("Shown","Hide");
+       // }
+        fragmentTransaction.commitAllowingStateLoss();
+        //fragmentTransaction.commit();
+
                 /*if(!TextUtils.isEmpty(getScreenTitle())) {
                     toolbar.setTitle(getScreenTitle());
                 }*/
@@ -618,30 +626,28 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
-        currentFragment=null;
-        prevoiusFragment=null;
+        currentFragment = null;
+        prevoiusFragment = null;
         refreshSideMenuItems(false);
         //setFragment(getHomeFragment());
-        Intent intent= new Intent(this,SigninActivity.class);
+        Intent intent = new Intent(this, SigninActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         //startActivity(new Intent(this,HomeActivity.class));
-       // finish();
+        // finish();
 
         //startActivity(new Intent(this,HomeActivity.class));
         //finish();
     }
 
 
-
-    public void onTitleRightButtonClick(View view)
-    {
-        if(currentFragment!=null)
-        {
+    public void onTitleRightButtonClick(View view) {
+        if (currentFragment != null) {
             currentFragment.onTitleRightButtonClick();
         }
     }
+
     private void setTitleRightMenuImage(int imageId) {
         /*if(titleRightImageview!=null)
         {
@@ -657,13 +663,11 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     }
 
 
-
     public void onCategoriesRelativeClick(View view1) {
 
         //findViewById(R.id.categories_title_relative).setBackground(getResources().getDrawable(R.drawable.background_shape_button1));
-       // findViewById(R.id.cat_iv).setBackground(getResources().getDrawable(R.drawable.categories_icon));
+        // findViewById(R.id.cat_iv).setBackground(getResources().getDrawable(R.drawable.categories_icon));
         //((TextView)findViewById(R.id.cat_tv)).setTextColor(getResources().getColor(R.color.black));
-
 
 
     }
@@ -677,9 +681,6 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         super.setFinishOnTouchOutside(finish);
         //findViewById(R.id.categories_list_linear).setVisibility(View.GONE);
     }
-
-
-
 
 
     @Override
@@ -700,7 +701,6 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
         super.onBackPressed();
     }
-
 
 
 //    private AbstractFragment getProfileFragment() {
@@ -738,7 +738,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 //    }
 
     public AbstractFragment getHomeFragment() {
-        HomeFragment fragment=new HomeFragment();
+        HomeFragment fragment = new HomeFragment();
 
         // int id=R.drawable.cart;
         //setTitleRightMenuImage(id);
@@ -769,13 +769,12 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     }
 */
 
-   // AutocompleteCustomArrayAdapter arrayAdapter;
+    // AutocompleteCustomArrayAdapter arrayAdapter;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch(item.getItemId())
-        {
+        switch (item.getItemId()) {
         }
 
         return super.onOptionsItemSelected(item);

@@ -57,6 +57,13 @@ public interface Constants {
         String FEMALE="Female";
     }
 
+    public interface Home {
+        int HOME_ACTIVITY = 1;
+        int MY_PROFILE=2;
+        int MEDICAL_RECORDS=3;
+        int SETTINGS=4;
+    }
+
     //http://202.63.103.194:8008/api/patient/signin
     class URL_MANAGE
     {

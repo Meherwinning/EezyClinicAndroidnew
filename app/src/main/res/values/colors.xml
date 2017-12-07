@@ -10,6 +10,7 @@
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
     <color name="text_color">#deffffff</color>
+
     <color name="text_color_light_black">#098d69</color>
     <color name="view_selector_color">#10000000</color>
 
@@ -44,7 +45,7 @@
     <color name="mdtp_accent_color">#009688</color>
     <color name="mdtp_accent_color_dark">#00796b</color>
 
-    <color name="side_menu_text_color">#212121</color>
+    <color name="side_menu_text_color">#de000000</color>
     <color name="bottom_text_color">#969696</color>
 
     <color name="health_tips_color">#84d22e</color>
@@ -52,6 +53,7 @@
     <color name="upcoming_appointment_color">#47bcff</color>
     <color name="upcoming_folloups_color">#f5a623</color>
     <color name="dash_board_text_color">#9f9f9f</color>
+    <color name="side_menu_bg_color">#fafafa</color>
 
 
 </resources>

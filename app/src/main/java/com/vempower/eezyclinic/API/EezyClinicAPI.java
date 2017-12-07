@@ -2,6 +2,7 @@ package com.vempower.eezyclinic.API;
 
 import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
+import com.vempower.eezyclinic.APIResponce.DashboardAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordOTPAPI;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
@@ -56,5 +57,11 @@ public interface EezyClinicAPI {
     //http://202.63.103.194:8008/api/patient/resendotp
     @POST(data+"patient/resendotp")
     Call<SignupAPI> resendOTPAPI(@Body RequestBody postBody);
+
+
+
+    //http://202.63.103.194:8008/api/patient/dashboard
+    @POST(data+"patient/dashboard")
+    Call<DashboardAPI> getDashboardAPI(@Body RequestBody postBody);
 
 }

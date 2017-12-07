@@ -7,7 +7,6 @@
     <string name="app_tour_page3_msg">Create your own\nhealth goals</string>
 
 
-
     <!--<string name="facebook_app_id">367880220327154</string>--><!--312054032307399-->
     <string name="facebook_app_scrate_key">f9a79089f30f9fc9ce5f2f3c9e9b55a0</string>
 
@@ -19,8 +18,6 @@
 
     <string name="linkedin_consumer_key">81hi89snk3m9t0</string>
     <string name="linkedin_consumer_secret">1vavLeWuoDiwq5Bn</string>
-
-
 
 
     <string name="Screen">Normal</string>
@@ -37,7 +34,7 @@
 
     <string name="signup_success_msg">Your signup is successful.</string>
 
-   <!-- https://stackoverflow.com/questions/3656371/dynamic-string-using-string-xml-->
+    <!-- https://stackoverflow.com/questions/3656371/dynamic-string-using-string-xml-->
     <string name="social_login_header_message">Your %1$s login is successful! Please fill in the mandatory information in the following form:</string>
     <string name="press_again_to_exit">Press again to exit.</string>
     <string name="drawer_open">Open</string>
@@ -92,6 +89,8 @@
     <string name="health_tips_lbl">Health Tips</string>
     <string name="health_goal_lbl">Health Goal</string>
     <string name="upcoming_appointment_lbl">Upcoming Appointment</string>
-    <string name="upcoming_folloups_lbl">Upcoming Appointment</string>
+    <string name="upcoming_folloups_lbl">Upcoming Followups</string>
+    <string name="title_activity_health_records">Health Records</string>
+    <string name="title_health_records">Health Records</string>
 
 </resources>

@@ -5,6 +5,8 @@ import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
+import android.os.Messenger;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -29,6 +31,8 @@ import com.vempower.stashdealcustomer.activities.AbstractActivity;
 public class AbstractFragmentActivity extends AbstractActivity  /*implements OTPListener*/ {
 
    // private InputMethodManager keyBoardHide;
+
+
 
 
     @Override
@@ -171,6 +175,28 @@ public class AbstractFragmentActivity extends AbstractActivity  /*implements OTP
             }
         }
 
+    }
+
+
+    private Messenger getMessenger(Intent intent, String key) {
+        if (intent == null || key == null) {
+            return null;
+        }
+        return (Messenger) intent.getParcelableExtra(key);
+    }
+
+    protected void sendHandlerMessage(Intent intent, String key, Object obj) {
+        Messenger messenger = getMessenger(intent, key);
+        if (messenger != null) {
+            Message message = new Message();
+            message.obj = obj;
+            message.replyTo = messenger;
+            try {
+                messenger.send(message);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
