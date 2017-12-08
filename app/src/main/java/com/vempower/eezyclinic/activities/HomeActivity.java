@@ -137,7 +137,7 @@ public class HomeActivity extends AbstractMenuActivity {
 
                 @Override
                 public void onUpcomingAppointmentClick(List<Appointment> list) {
-                    Utils.showToastMsg("Now click appointments");
+                   // Utils.showToastMsg("Now click appointments");
                     Intent intent = getIntent();
                     intent.setClass(HomeActivity.this,AppointmentListActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -146,12 +146,22 @@ public class HomeActivity extends AbstractMenuActivity {
 
                 @Override
                 public void onUpcomingFollowupsClick(List<Followup> followups) {
-                    Utils.showToastMsg("Now click followups");
+                    Intent intent = getIntent();
+                    intent.setClass(HomeActivity.this,UpcomingFollowupsActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
                 }
 
                 @Override
                 public void onSearchDocatorsClick() {
-                    Utils.showToastMsg("Now click search doctors");
+                   // Utils.showToastMsg("Now click search doctors");
+
+
+
+                    Intent intent = getIntent();
+                    intent.setClass(HomeActivity.this,SearchActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
                 }
             });
 

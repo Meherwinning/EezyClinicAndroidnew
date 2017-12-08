@@ -136,6 +136,24 @@
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeOverlay.MyNoTitleActivity"></activity>
+
+        <activity
+            android:name=".activities.UpcomingFollowupsActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeOverlay.MyNoTitleActivity"></activity>
+
+
+
+        <activity
+            android:name=".activities.SearchActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeOverlay.MyNoTitleActivity"></activity>
+
+
+
+
         <!--
         <activity
             android:name="ru.ok.android.sdk.OkAuthActivity"
