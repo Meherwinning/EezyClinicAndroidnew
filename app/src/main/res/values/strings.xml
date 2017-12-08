@@ -92,5 +92,6 @@
     <string name="upcoming_folloups_lbl">Upcoming Followups</string>
     <string name="title_activity_health_records">Health Records</string>
     <string name="title_health_records">Health Records</string>
+    <string name="title_activity_appointments">Appointments</string>
 
 </resources>

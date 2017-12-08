@@ -7,6 +7,8 @@ import android.view.View;
 
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.interfaces.AbstractListener;
+import com.vempower.eezyclinic.interfaces.HomeListener;
 import com.vempower.eezyclinic.interfaces.MenuScreenListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
@@ -17,6 +19,7 @@ import com.vempower.eezyclinic.utils.Utils;
 
 public abstract class AbstractFragment extends Fragment {
     protected MenuScreenListener listener;
+    protected AbstractListener myListener;
 
 
     public void setOnMenuScreenListener(MenuScreenListener listener) {
@@ -69,5 +72,10 @@ public abstract class AbstractFragment extends Fragment {
 
         }
         return true;
+    }
+
+    public void setOnMyListener(AbstractListener myListener)
+    {
+        this.myListener=myListener;
     }
 }

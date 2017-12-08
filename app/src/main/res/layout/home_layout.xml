@@ -10,383 +10,537 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:fillViewport="true"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:scrollbars="none"
         android:layout_marginLeft="@dimen/_17dp"
         android:layout_marginRight="@dimen/_17dp"
-        android:layout_marginTop="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_2dp"
+        android:fillViewport="true"
 
-        android:layout_height="match_parent">
+        android:scrollbars="none">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_5dp"
-        android:orientation="vertical">
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center">
+            android:layout_marginTop="@dimen/_5dp"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/image_linear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:background="@drawable/canvas_85x85"
-                android:gravity="center"
-
-                >
-
-                <ImageView
-                    android:id="@+id/profile_iv"
-                    style="@style/image_fit_toparent"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/profile_icon" />
-            </LinearLayout>
-            <!-- <ImageView
-                 android:id="@+id/profile_iv"
-                 android:padding="@dimen/_5dp"
-                 android:layout_width="@dimen/_60dp"
-                 android:layout_centerVertical="true"
-                 android:src="@mipmap/ic_launcher"
-                 android:layout_height="@dimen/_60dp" />-->
-
-            <com.vempower.eezyclinic.views.MyTextViewRM
-                android:id="@+id/patient_name_tv"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/image_linear"
-                android:layout_marginTop="@dimen/_5dp"
-                android:gravity="center"
-                android:textSize="@dimen/button_text_size"
-                android:hint="Patient Name"
-                android:textColorHint="@color/white"
-                android:maxLines="1"
-                android:textColor="@color/white"
-               />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/patient_name_tv"
-                android:layout_marginBottom="@dimen/_15dp"
-                android:layout_centerHorizontal="true"
-                android:orientation="horizontal"
+                android:layout_gravity="center"
                 android:gravity="center">
-                <com.vempower.eezyclinic.views.MyTextViewRM
-                   android:text="Patient ID:"
-                    android:textColor="#bbe5e4"
-                    android:layout_width="wrap_content"
-                    android:textSize="@dimen/text_size_small"
 
-                    android:layout_height="wrap_content" />
-                <com.vempower.eezyclinic.views.MyTextViewRM
-                    android:id="@+id/patient_id_tv"
-                    android:text="PT00130"
-                    android:layout_marginLeft="@dimen/_5dp"
-                    android:textSize="@dimen/text_size_small"
-                    android:textColor="#bbe5e4"
+                <LinearLayout
+                    android:id="@+id/image_linear"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/canvas_100x100"
+                    android:gravity="center"
 
-            <!--    <com.vempower.eezyclinic.views.MyTextViewRM
-                    android:id="@+id/patient_email_tv"
+                    >
+
+                    <ImageView
+                        android:id="@+id/profile_iv"
+                        style="@style/image_fit_toparent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/profile_icon" />
+                </LinearLayout>
+                <!-- <ImageView
+                     android:id="@+id/profile_iv"
+                     android:padding="@dimen/_5dp"
+                     android:layout_width="@dimen/_60dp"
+                     android:layout_centerVertical="true"
+                     android:src="@mipmap/ic_launcher"
+                     android:layout_height="@dimen/_60dp" />-->
+
+                <com.vempower.eezyclinic.views.MyTextViewRM
+                    android:id="@+id/patient_name_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Patient email"
+                    android:layout_below="@+id/image_linear"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:gravity="center"
+                    android:hint="Patient Name"
                     android:maxLines="1"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_normal" />-->
-
-
-            </LinearLayout>
-
-
-
-
-        </RelativeLayout>
-
-        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/_4dp"
-            android:layout_marginRight="@dimen/_4dp"
-            android:layout_marginTop="@dimen/_4dp"
-            android:layout_marginBottom="@dimen/_4dp"
-            android:layout_weight="1"
-            card_view:cardCornerRadius="@dimen/_4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/_20dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="@dimen/_30dp"
-                    android:layout_marginTop="@dimen/_30dp"
-                    android:src="@drawable/healthtips_icon" />
+                    android:textColorHint="@color/white"
+                    android:textSize="@dimen/button_text_size" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_20dp"
-                    android:layout_marginRight="@dimen/_14dp"
-                    android:layout_marginTop="@dimen/_16dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <com.vempower.eezyclinic.views.MyTextViewRM
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_5dp"
-                        android:text="@string/health_tips_lbl"
-                        android:textColor="@color/health_tips_color"
-                        android:textSize="@dimen/text_size_normal" />
-
-                    <com.vempower.eezyclinic.views.MyTextViewRR
-                        android:id="@+id/health_tips_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-
-
-                        android:text="Choose whole grains. Try brown rice insted of white. Switch to whole wheat Choose whole grains."
-                        android:textColor="@color/dash_board_text_color"
-                        android:textSize="@dimen/text_size_small"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/_4dp"
-            android:layout_marginRight="@dimen/_4dp"
-            android:layout_marginTop="@dimen/_7dp"
-            android:layout_marginBottom="@dimen/_4dp"
-            android:layout_weight="1"
-            card_view:cardCornerRadius="@dimen/_4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/_20dp">
-
-                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="@dimen/_30dp"
-                    android:layout_marginTop="@dimen/_30dp"
-                    android:src="@drawable/health_goal_icon" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_20dp"
-                    android:layout_marginRight="@dimen/_14dp"
-                    android:layout_marginTop="@dimen/_16dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_below="@+id/patient_name_tv"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/_15dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <com.vempower.eezyclinic.views.MyTextViewRM
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_5dp"
-                        android:text="@string/health_goal_lbl"
-                        android:textColor="@color/health_goal_color"
-                        android:textSize="@dimen/text_size_normal" />
+                        android:text="Patient ID:"
+                        android:textColor="#bbe5e4"
 
-                    <com.vempower.eezyclinic.views.MyTextViewRR
-                        android:id="@+id/health_goal_tv"
-                        android:layout_width="match_parent"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <com.vempower.eezyclinic.views.MyTextViewRM
+                        android:id="@+id/patient_id_tv"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="left"
+                        android:layout_marginLeft="@dimen/_5dp"
+                        android:text="PT00130"
+                        android:textColor="#bbe5e4"
+                        android:textSize="@dimen/text_size_small" />
 
+                    <!--    <com.vempower.eezyclinic.views.MyTextViewRM
+                            android:id="@+id/patient_email_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Patient email"
+                            android:maxLines="1"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_normal" />-->
 
-                        android:text="Choose whole grains. Try brown rice insted of white. Switch to whole wheat Choose whole grains."
-                        android:textColor="@color/dash_board_text_color"
-                        android:textSize="@dimen/text_size_small"
-                        android:textStyle="bold" />
 
                 </LinearLayout>
-            </LinearLayout>
 
 
-        </android.support.v7.widget.CardView>
+            </RelativeLayout>
 
-        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/_4dp"
-            android:layout_marginRight="@dimen/_4dp"
-            android:layout_marginTop="@dimen/_7dp"
-            android:layout_marginBottom="@dimen/_4dp"
-            android:layout_weight="1"
-            card_view:cardCornerRadius="@dimen/_4dp">
 
-            <LinearLayout
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/_20dp">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_4dp"
+                android:layout_marginLeft="@dimen/_4dp"
+                android:layout_marginRight="@dimen/_4dp"
+                android:layout_marginTop="@dimen/_7dp"
+                card_view:cardCornerRadius="@dimen/_4dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="@dimen/_30dp"
-                    android:layout_marginTop="@dimen/_30dp"
-                    android:src="@drawable/upcoming_appointment_icon" />
+                    android:orientation="horizontal"
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_20dp"
-                    android:layout_marginRight="@dimen/_14dp"
-                    android:layout_marginTop="@dimen/_16dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:paddingLeft="@dimen/_20dp">
 
-                    <com.vempower.eezyclinic.views.MyTextViewRM
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:id="@+id/img_linear1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_5dp"
-                        android:text="@string/upcoming_appointment_lbl"
-                        android:textColor="@color/upcoming_appointment_color"
-                        android:textSize="@dimen/text_size_normal" />
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/_25dp"
+                        android:layout_marginTop="@dimen/_25dp"
+                        android:gravity="center"
 
-                    <com.vempower.eezyclinic.views.MyTextViewRR
-                        android:id="@+id/upcoming_appointment_tv"
+                        >
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+
+                            android:src="@drawable/healthtips_icon" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/content_linear1"
                         android:layout_width="match_parent"
+
                         android:layout_height="wrap_content"
-                        android:gravity="left"
+                        android:layout_marginBottom="@dimen/_10dp"
+                        android:layout_marginLeft="@dimen/_20dp"
+                        android:layout_marginRight="@dimen/_14dp"
+                        android:layout_marginTop="@dimen/_16dp"
+
+                        android:layout_toRightOf="@+id/img_linear1"
+                        android:orientation="vertical">
+
+                        <com.vempower.eezyclinic.views.MyTextViewRM
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_5dp"
+                            android:text="@string/health_tips_lbl"
+                            android:textColor="@color/health_tips_color"
+                            android:textSize="@dimen/text_size_normal" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.vempower.eezyclinic.views.MyTextViewRR
+                                android:id="@+id/health_tips_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:text="-"
+                                android:textColor="@color/dash_board_text_color"
+                                android:textSize="@dimen/text_size_small"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/left_indicator1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+
+                        android:layout_marginRight="@dimen/_13dp"
+                        android:src="@drawable/arrow_right"
+                        android:visibility="gone" />
+                </RelativeLayout>
 
 
-                        android:text="Choose whole grains. Try brown rice insted of white. Switch to whole wheat Choose whole grains."
-                        android:textColor="@color/dash_board_text_color"
-                        android:textSize="@dimen/text_size_small"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:src="@drawable/arrow_right"
-                    android:layout_marginRight="@dimen/_13dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+            </android.support.v7.widget.CardView>
 
 
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/_4dp"
-            android:layout_marginRight="@dimen/_4dp"
-            android:layout_marginTop="@dimen/_7dp"
-            android:layout_marginBottom="@dimen/_4dp"
-            android:layout_weight="1"
-            card_view:cardCornerRadius="@dimen/_4dp">
-
-            <LinearLayout
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/_20dp">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_4dp"
+                android:layout_marginLeft="@dimen/_4dp"
+                android:layout_marginRight="@dimen/_4dp"
+                android:layout_marginTop="@dimen/_7dp"
+                card_view:cardCornerRadius="@dimen/_4dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="@dimen/_30dp"
-                    android:layout_marginTop="@dimen/_30dp"
-                    android:src="@drawable/upcomin_followups_icon" />
+                    android:orientation="horizontal"
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/_20dp"
-                    android:layout_marginRight="@dimen/_14dp"
-                    android:layout_marginTop="@dimen/_16dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:paddingLeft="@dimen/_20dp">
 
-                    <com.vempower.eezyclinic.views.MyTextViewRM
+                    <LinearLayout
+                        android:id="@+id/img_linear2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/_25dp"
+                        android:layout_marginTop="@dimen/_25dp"
+                        android:gravity="center"
 
+                        >
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+
+                            android:src="@drawable/health_goal_icon" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/content_linear2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_5dp"
-                        android:text="@string/upcoming_folloups_lbl"
-                        android:textColor="@color/upcoming_folloups_color"
-                        android:textSize="@dimen/text_size_normal" />
 
-                    <com.vempower.eezyclinic.views.MyTextViewRR
-                        android:id="@+id/upcoming_followups_tv"
+                        android:layout_marginBottom="@dimen/_10dp"
+                        android:layout_marginLeft="@dimen/_20dp"
+                        android:layout_marginRight="@dimen/_14dp"
+                        android:layout_marginTop="@dimen/_16dp"
+                        android:layout_toLeftOf="@+id/left_indicator"
+
+                        android:layout_toRightOf="@+id/img_linear2"
+                        android:orientation="vertical">
+
+                        <com.vempower.eezyclinic.views.MyTextViewRM
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_5dp"
+                            android:text="@string/health_goal_lbl"
+                            android:textColor="@color/health_goal_color"
+                            android:textSize="@dimen/text_size_normal" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.vempower.eezyclinic.views.MyTextViewRR
+                                android:id="@+id/health_goal_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:text="-"
+                                android:textColor="@color/dash_board_text_color"
+                                android:textSize="@dimen/text_size_small"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/left_indicator2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+
+                        android:layout_marginRight="@dimen/_13dp"
+                        android:src="@drawable/arrow_right"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+               android:id="@+id/upcoming_appointment_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_4dp"
+                android:layout_marginLeft="@dimen/_4dp"
+                android:layout_marginRight="@dimen/_4dp"
+                android:layout_marginTop="@dimen/_7dp"
+                card_view:cardCornerRadius="@dimen/_4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+
+                    android:paddingLeft="@dimen/_20dp">
+
+                    <LinearLayout
+                        android:id="@+id/img_linear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/_25dp"
+                        android:layout_marginTop="@dimen/_25dp"
+                        android:gravity="center"
+
+                        >
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+
+                            android:src="@drawable/upcoming_appointment_icon" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/content_linear"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="left"
+
+                        android:layout_marginBottom="@dimen/_10dp"
+                        android:layout_marginLeft="@dimen/_20dp"
+                        android:layout_marginRight="@dimen/_14dp"
+                        android:layout_marginTop="@dimen/_16dp"
+                        android:layout_toLeftOf="@+id/left_indicator"
+
+                        android:layout_toRightOf="@+id/img_linear"
+                        android:orientation="vertical">
+
+                        <com.vempower.eezyclinic.views.MyTextViewRM
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_5dp"
+                            android:text="@string/upcoming_appointment_lbl"
+                            android:textColor="@color/upcoming_appointment_color"
+                            android:textSize="@dimen/text_size_normal" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.vempower.eezyclinic.views.MyTextViewRR
+                                android:id="@+id/upcoming_appointment_name_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:lineSpacingExtra="2sp"
+                                android:text="-"
+                                android:textColor="#616161"
+                                android:textSize="@dimen/text_size_normal"
+                                android:textStyle="bold" />
 
 
-                        android:text="Choose whole grains. Try brown rice insted of white. Switch to whole wheat Choose whole grains."
-                        android:textColor="@color/dash_board_text_color"
-                        android:textSize="@dimen/text_size_small"
-                        android:textStyle="bold" />
+                            <com.vempower.eezyclinic.views.MyTextViewRR
+                                android:id="@+id/upcoming_appointment_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:text="-"
+                                android:textColor="@color/dash_board_text_color"
+                                android:textSize="@dimen/text_size_small"
+                                android:textStyle="bold" />
+                        </LinearLayout>
 
-                </LinearLayout>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:src="@drawable/arrow_right"
-                    android:layout_marginRight="@dimen/_13dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/left_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/_13dp"
+                        android:src="@drawable/arrow_right" />
+                </RelativeLayout>
 
 
-        </android.support.v7.widget.CardView>
+            </android.support.v7.widget.CardView>
 
-        <com.vempower.eezyclinic.views.MyButtonRectangleRM
 
-            android:id="@+id/login_bt"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_48dp"
-            android:layout_marginRight="@dimen/_7dp"
-            android:layout_marginLeft="@dimen/_7dp"
-            android:layout_marginTop="@dimen/_8dp"
-            android:layout_marginBottom="@dimen/_23dp"
-            android:background="@color/white"
-            android:clickable="true"
-            android:fontFamily="sans-serif"
-            android:maxLines="1"
-            android:padding="@dimen/_4dp"
-            android:text="Search for Doctor/Clinic"
-            android:textAllCaps="false"
-            android:textColor="@color/button_text_color"
-            android:textSize="@dimen/button_text_size"
-            android:textStyle="bold" />
-    </LinearLayout>
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+               android:id="@+id/upcoming_followups_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_4dp"
+                android:layout_marginRight="@dimen/_4dp"
+                android:layout_marginTop="@dimen/_7dp"
+                card_view:cardCornerRadius="@dimen/_4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+
+                    android:paddingLeft="@dimen/_20dp">
+
+                    <LinearLayout
+                        android:id="@+id/img_linear4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/_25dp"
+                        android:layout_marginTop="@dimen/_25dp"
+                        android:gravity="center"
+
+                        >
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+
+                            android:src="@drawable/upcomin_followups_icon" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/content_linear4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginBottom="@dimen/_10dp"
+                        android:layout_marginLeft="@dimen/_20dp"
+                        android:layout_marginRight="@dimen/_14dp"
+                        android:layout_marginTop="@dimen/_16dp"
+                        android:layout_toLeftOf="@+id/left_indicator4"
+
+                        android:layout_toRightOf="@+id/img_linear4"
+                        android:orientation="vertical">
+
+                        <com.vempower.eezyclinic.views.MyTextViewRM
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_5dp"
+                            android:text="@string/upcoming_folloups_lbl"
+                            android:textColor="@color/upcoming_folloups_color"
+                            android:textSize="@dimen/text_size_normal" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                            <com.vempower.eezyclinic.views.MyTextViewRR
+                                android:id="@+id/upcoming_followups_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:text="-"
+                                android:textColor="@color/dash_board_text_color"
+                                android:textSize="@dimen/text_size_small"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/left_indicator4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/_13dp"
+                        android:src="@drawable/arrow_right" />
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+            <com.vempower.eezyclinic.views.MyButtonRectangleRM
+
+                android:id="@+id/search_doctors_bt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_48dp"
+                android:layout_marginBottom="@dimen/_23dp"
+                android:layout_marginLeft="@dimen/_7dp"
+                android:layout_marginRight="@dimen/_7dp"
+                android:layout_marginTop="@dimen/_8dp"
+                android:background="@color/white"
+                android:clickable="true"
+
+                android:fontFamily="sans-serif"
+                android:maxLines="1"
+                android:padding="@dimen/_4dp"
+                android:text="Search for Doctor/Clinic"
+                android:textAllCaps="false"
+                android:textColor="@color/button_text_color"
+                android:textSize="@dimen/button_text_size"
+                android:textStyle="bold" />
+        </LinearLayout>
     </ScrollView>
 
 

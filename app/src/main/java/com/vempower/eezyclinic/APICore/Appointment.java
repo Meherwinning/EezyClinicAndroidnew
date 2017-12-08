@@ -88,6 +88,13 @@ public class Appointment {
     @Expose
     private String city;
 
+
+
+
+    @SerializedName("specalities")
+    @Expose
+    private String specalities;
+
     public String getId() {
         return id;
     }
@@ -304,4 +311,7 @@ public class Appointment {
         this.city = city;
     }
 
+    public String getSpecalities() {
+        return specalities;
+    }
 }

@@ -27,6 +27,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.vempower.eezyclinic.APICore.Appointment;
+import com.vempower.eezyclinic.APICore.Followup;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.AbstractAppHandler;
@@ -37,8 +39,12 @@ import com.vempower.eezyclinic.fragments.HomeFragment;
 import com.vempower.eezyclinic.fragments.MedicalRecordsFragment;
 import com.vempower.eezyclinic.fragments.MyProfileFragment;
 import com.vempower.eezyclinic.fragments.SettingsFragment;
+import com.vempower.eezyclinic.interfaces.HomeListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
+import com.vempower.eezyclinic.utils.Utils;
+
+import java.util.List;
 
 /**
  * Created by Satish on 11/15/2017.
@@ -103,11 +109,8 @@ public class HomeActivity extends AbstractMenuActivity {
 
     @Override
     protected AbstractFragment getFragment() {
-        if(homeFragment==null)
-        {
-            homeFragment= new HomeFragment();
-        }
-        return homeFragment;
+
+        return getHomeFragment();
     }
 
     public void onLogoutButtonClick(View view)
@@ -126,7 +129,34 @@ public class HomeActivity extends AbstractMenuActivity {
     }
 
     public AbstractFragment getHomeFragment() {
-        HomeFragment fragment=new HomeFragment();
+       // HomeFragment fragment=new HomeFragment();
+        if(homeFragment==null)
+        {
+            homeFragment= new HomeFragment();
+            homeFragment.setOnMyListener(new HomeListener() {
+
+                @Override
+                public void onUpcomingAppointmentClick(List<Appointment> list) {
+                    Utils.showToastMsg("Now click appointments");
+                    Intent intent = getIntent();
+                    intent.setClass(HomeActivity.this,AppointmentListActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onUpcomingFollowupsClick(List<Followup> followups) {
+                    Utils.showToastMsg("Now click followups");
+                }
+
+                @Override
+                public void onSearchDocatorsClick() {
+                    Utils.showToastMsg("Now click search doctors");
+                }
+            });
+
+        }
+        return homeFragment;
       /*  fragment.setOnHomeScreenListener(new HomeScreenListener(){
             @Override
             public void onViewAllButtonClick(CategoryDeals categoryDeals) {
@@ -152,7 +182,7 @@ public class HomeActivity extends AbstractMenuActivity {
         });*/
         // int id=R.drawable.cart;
         //setTitleRightMenuImage(id);
-        return fragment;
+        //return fragment;
     }
 
     public void setActionBar() {
@@ -204,8 +234,9 @@ public class HomeActivity extends AbstractMenuActivity {
     {
         if(homeFragment==null)
         {
-            homeFragment= new HomeFragment();
+            homeFragment= getHomeFragment();
         }
+
         setFragment(homeFragment);
         unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,Constants.Home.HOME_ACTIVITY);
 

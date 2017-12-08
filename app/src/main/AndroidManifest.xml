@@ -129,6 +129,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/ThemeOverlay.MyNoTitleActivity"
             android:label="@string/title_activity_health_records"></activity>
+
+
+        <activity
+            android:name=".activities.AppointmentListActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeOverlay.MyNoTitleActivity"></activity>
         <!--
         <activity
             android:name="ru.ok.android.sdk.OkAuthActivity"

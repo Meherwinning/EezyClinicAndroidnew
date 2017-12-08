@@ -5,7 +5,6 @@
     android:background="@color/white"
     android:paddingLeft="@dimen/_21dp"
     android:paddingRight="@dimen/_26dp"
-    android:paddingBottom="@dimen/_7dp"
     android:weightSum="4"
     android:layout_height="@dimen/_56dp">
 
@@ -30,12 +29,12 @@
 
         <com.vempower.eezyclinic.views.MyTextViewRR
             android:id="@+id/bottom_linear_textview1"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/_2dp"
-            android:layout_gravity="center|center_vertical"
-             android:textSize="@dimen/text_size_small1"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_1dp"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_small1"
             android:text="@string/dashboard_lbl"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
     </LinearLayout>
     <LinearLayout
@@ -59,12 +58,13 @@
 
         <com.vempower.eezyclinic.views.MyTextViewRR
             android:id="@+id/bottom_linear_textview2"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/_2dp"
-            android:layout_gravity="center|center_vertical"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_1dp"
+            android:layout_gravity="bottom|center|center_vertical"
             android:textSize="@dimen/text_size_small1"
             android:text="@string/my_profile_lbl"
-            android:layout_height="wrap_content" />
+            android:gravity="center"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
     <LinearLayout
@@ -88,12 +88,13 @@
 
         <com.vempower.eezyclinic.views.MyTextViewRR
             android:id="@+id/bottom_linear_textview3"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/_2dp"
-            android:layout_gravity="center|center_vertical"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_1dp"
+            android:layout_gravity="bottom|center|center_vertical"
             android:textSize="@dimen/text_size_small1"
             android:text="@string/medical_records_lbl"
-            android:layout_height="wrap_content" />
+            android:gravity="center"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
     <LinearLayout
@@ -117,12 +118,12 @@
 
         <com.vempower.eezyclinic.views.MyTextViewRR
             android:id="@+id/bottom_linear_textview4"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/_2dp"
-            android:layout_gravity="center|center_vertical"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_1dp"
+            android:gravity="center"
             android:textSize="@dimen/text_size_small1"
             android:text="@string/settings_lbl"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

@@ -50,14 +50,14 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     private MyTextViewRM nameTv, emailTv;
 
     private AbstractFragment currentFragment, prevoiusFragment;
-    private  Intent  intent;
+   // private  Intent  intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setMyContectntView();
         init();
-        intent= getIntent();
+        //intent= getIntent();
     }
 
     protected void setMyContectntView() {
@@ -140,7 +140,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
     @Override
     public void onClick(@NonNull final View item) {
-     // Intent  intent= getIntent();
+      Intent  intent= getIntent();
         Log.i("Menu1","Clicked");
         closeMenu();
         MyApplication.hideTransaprentDialog();
@@ -159,6 +159,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     }
 
     private void openScreen(@NonNull View item) {
+        Intent  intent= getIntent();
         switch (item.getId()) {
             case R.id.dashdoard_linear:
                //TODO something
@@ -235,7 +236,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     }
 
     protected  void callDashboard(){
-      // Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
+      Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
         intent.setClass(this,HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
@@ -243,7 +244,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
     }
     protected  void callMyProfile(){
-        //Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
+        Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
         intent.setClass(this,HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
@@ -259,7 +260,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         };
     }
     protected  void callMedicalRecordds(){
-       // Intent  intent= new Intent(this,HomeActivity.class);
+        Intent  intent= getIntent(); //= new Intent(this,HomeActivity.class);
         intent.setClass(this,HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
@@ -268,7 +269,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
     }
     protected  void callSettings(){
-        //Intent  intent= new Intent(this,HomeActivity.class);
+        Intent  intent= getIntent(); //= new Intent(this,HomeActivity.class);
         intent.setClass(this,HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
