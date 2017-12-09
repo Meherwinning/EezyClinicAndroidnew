@@ -162,65 +162,60 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         Intent  intent= getIntent();
         switch (item.getId()) {
             case R.id.dashdoard_linear:
-               //TODO something
                 callDashboard();
 
                 break;
             case R.id.book_appointment_linear:
                 //TODO something
-
+                showToastMessage("Coming soon");
                 break;
             case R.id. my_profile_linear:
-                //TODO something
                 callMyProfile();
 
                 break;
             case R.id. notification_linear:
                 //TODO something
-
+                showToastMessage("Coming soon");
 
                 break;
             case R.id.health_checks_linear:
                 //TODO something
-
+                showToastMessage("Coming soon");
                 break;
             case R.id.medical_history_linear:
                 //TODO something
-
+                showToastMessage("Coming soon");
                 break;
             case R.id.notes_linear:
                 //TODO something
-
+                showToastMessage("Coming soon");
                 break;
             case R.id.family_members_linear:
                 //TODO something
-
+                showToastMessage("Coming soon");
                 break;
             case R.id.appointment_history_linear:
                 //TODO something
-
+                showToastMessage("Coming soon");
                 break;
             case R.id.health_records_linear:
-                //TODO something
-
+                showToastMessage("Coming soon");
                // intent= new Intent(this,HealthRecordsActivity.class);
                 //Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
-                intent.setClass(this,HealthRecordsActivity.class);
+
+                /*intent.setClass(this,HealthRecordsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
+                startActivity(intent);*/
                 break;
             case R.id.my_account_settings_linear:
-                //TODO something
                 callSettings();
 
                 break;
             case R.id.feedback_linear:
-                //TODO something
-
+                showToastMessage("Coming soon");
                 break;
             case R.id.features_and_benefits_linear:
-                //TODO something
-
+                showToastMessage("Coming soon");
                 break;
 
             case R.id.logout_tv:

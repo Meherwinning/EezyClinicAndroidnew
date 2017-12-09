@@ -93,5 +93,7 @@
     <string name="title_activity_health_records">Health Records</string>
     <string name="title_health_records">Health Records</string>
     <string name="title_activity_appointments">Appointments</string>
+    <string name="title_activity_upcoming_followups">Followups</string>
+    <string name="title_activity_search">Search</string>
 
 </resources>
