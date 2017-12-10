@@ -5,104 +5,120 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_gradient_bg"
+    android:paddingRight="@dimen/_24dp"
+
+    android:paddingLeft="@dimen/_24dp"
     tools:context=".activities.HealthRecordsActivity">
 
     <LinearLayout
+        android:id="@+id/top_view_linear"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_43dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-android:orientation="vertical"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_marginTop="@dimen/_10dp"
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_height="wrap_content">
+        android:orientation="vertical">
 
-            <com.vempower.eezyclinic.views.MyTextViewRR
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.vempower.eezyclinic.views.MyTextViewRL
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
+                android:textSize="@dimen/_24sp"
+                android:lineSpacingExtra="2sp"
                 android:gravity="center"
                 android:text="We spare the queue"
                 android:textColor="@color/white"
 
-                android:textSize="@dimen/title_text_size" />
-            <com.vempower.eezyclinic.views.MyTextViewRR
+                />
+
+            <com.vempower.eezyclinic.views.MyTextViewRL
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
+                android:lineSpacingExtra="2sp"
                 android:gravity="center"
                 android:text="at the doctor's for you"
                 android:textColor="@color/white"
 
-                android:textSize="@dimen/text_size_normal" />
+                android:textSize="@dimen/title_text_size" />
 
 
         </LinearLayout>
+
         <LinearLayout
-            android:layout_marginTop="@dimen/_20dp"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
             android:orientation="horizontal"
-            android:weightSum="6"
-            android:layout_height="wrap_content">
+            android:weightSum="5.5">
+
+
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="0.25"
-                android:orientation="vertical"
-                android:layout_height="match_parent">
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                android:orientation="vertical"
-                android:layout_height="match_parent">
+                android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:src="@drawable/search_img"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_height="wrap_content" />
+                    android:src="@drawable/search_img" />
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                <com.vempower.eezyclinic.views.MyTextViewRM
+                    android:layout_marginTop="@dimen/_11dp"
+                    android:textSize="@dimen/text_size_small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:layout_gravity="center_horizontal"
                     android:clickable="true"
                     android:gravity="center"
                     android:text="Search Doctor\nby speciality"
                     android:textColor="@color/white"
 
-                    android:textSize="@dimen/text_size_normal" />
+                     />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:orientation="vertical"
-                android:layout_height="match_parent">
+                android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:src="@drawable/arrw_img"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_height="wrap_content" />
+                    android:src="@drawable/arrw_img" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                android:orientation="vertical"
-                android:layout_height="match_parent">
+                android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:src="@drawable/location_img"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_height="wrap_content" />
+                    android:src="@drawable/location_img" />
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                <com.vempower.eezyclinic.views.MyTextViewRM
+                    android:layout_marginTop="@dimen/_11dp"
+                    android:textSize="@dimen/text_size_small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -111,40 +127,43 @@ android:orientation="vertical"
                     android:text="Search by\nLocality"
                     android:textColor="@color/white"
 
-                    android:textSize="@dimen/text_size_normal" />
+                   />
 
 
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:orientation="vertical"
                 android:gravity="bottom"
-                android:layout_height="match_parent">
+                android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:src="@drawable/arrw_b_img"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
 
-                    android:layout_height="wrap_content" />
+                    android:src="@drawable/arrw_b_img" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                android:orientation="vertical"
-                android:layout_height="match_parent">
+                android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:src="@drawable/location_img"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_height="wrap_content" />
+                    android:src="@drawable/location_img" />
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                <com.vempower.eezyclinic.views.MyTextViewRM
+                    android:layout_marginTop="@dimen/_11dp"
+                    android:textSize="@dimen/text_size_small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -153,29 +172,242 @@ android:orientation="vertical"
                     android:text="Schedule\nAppointment"
                     android:textColor="@color/white"
 
-                    android:textSize="@dimen/text_size_normal" />
+                     />
 
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="0.25"
-                android:orientation="vertical"
-                android:layout_height="match_parent">
-            </LinearLayout>
+
 
         </LinearLayout>
 
 
 
     </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_centerInParent="true"
-        android:textColor="@color/white"
-        android:gravity="center"
-        android:text="Search\n(coming soon)"
-        android:textSize="@dimen/_20sp"
-        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/_33dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_view_linear"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_15dp"
+
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="@dimen/_50dp"
+            android:background="@drawable/background_shape_idle"
+
+            android:textColorHint="@color/text_hint_color"
+            app:errorEnabled="true"
+            app:hintEnabled="true"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+            <com.vempower.eezyclinic.views.MyEditTextRR
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/_2dp"
+                android:background="@null"
+                android:gravity="left|center_vertical"
+                android:hint="Cardiology"
+                android:imeOptions="actionUnspecified"
+                android:inputType="text"
+                android:maxLength="50"
+                android:maxLines="1"
+                android:padding="@dimen/_2dp"
+                android:singleLine="true"
+
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color"
+                android:textSize="@dimen/text_size_normal" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="@dimen/_12dp"
+            android:background="@color/white" />
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_15dp"
+            android:orientation="vertical">
+            <!--
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_50dp"
+                                    android:background="@drawable/background_shape_idle"
+                                    android:textColorHint="@color/text_hint_color"
+                                    app:errorEnabled="true"
+                                    app:hintEnabled="true">-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50dp"
+                android:orientation="horizontal"
+                android:padding="@dimen/_2dp">
+
+                <Spinner
+                    android:id="@+id/speciality_type_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/white"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:foregroundTint="@color/black"
+
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/text_size_normal" />
+
+            </LinearLayout>
+
+            <!-- </android.support.design.widget.TextInputLayout>-->
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="@dimen/_12dp"
+                android:background="@color/white" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_15dp"
+
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="@dimen/_50dp"
+                android:background="@drawable/background_shape_idle"
+
+                android:textColorHint="@color/text_hint_color"
+                app:errorEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                <!--<com.vempower.eezyclinic.views.MyEditTextRR
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/_2dp"
+                    android:background="@null"
+                    android:gravity="left|center_vertical"
+                    android:hint="Locality"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="text"
+                    android:maxLength="50"
+                    android:maxLines="1"
+                    android:padding="@dimen/_2dp"
+                    android:singleLine="true"
+
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/text_hint_color"
+                    android:textSize="@dimen/text_size_normal" />-->
+                <AutoCompleteTextView
+                    android:id="@+id/google_places_actv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/_5dp"
+                    android:background="@null"
+                    android:maxLines="1"
+                    android:hint="Locality"
+                    android:maxLength="60"
+                    android:inputType="text"
+                    android:paddingRight="@dimen/_5dp"
+                    android:paddingTop="@dimen/_3dp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/text_size_normal"
+
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/text_hint_color"
+
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="@dimen/_12dp"
+                android:background="@color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_15dp"
+
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="@dimen/_50dp"
+                android:background="@drawable/background_shape_idle"
+
+                android:textColorHint="@color/text_hint_color"
+                app:errorEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                <com.vempower.eezyclinic.views.MyEditTextRR
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/_2dp"
+                    android:background="@null"
+                    android:gravity="left|center_vertical"
+                    android:hint="Doctor/Clinic Name"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="text"
+                    android:maxLength="50"
+                    android:maxLines="1"
+                    android:padding="@dimen/_2dp"
+                    android:singleLine="true"
+
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/text_hint_color"
+                    android:textSize="@dimen/text_size_normal" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="@dimen/_12dp"
+                android:background="@color/white" />
+
+        </LinearLayout>
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:gravity="right"
+            android:text="+ Advance Search"
+            android:textColor="@color/white"
+
+            android:textSize="@dimen/button_text_size" />
+
+    </LinearLayout>
 
 </RelativeLayout>

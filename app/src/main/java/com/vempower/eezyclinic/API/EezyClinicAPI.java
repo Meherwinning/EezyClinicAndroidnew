@@ -7,10 +7,12 @@ import com.vempower.eezyclinic.APIResponce.ForgotPasswordAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordOTPAPI;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
+import com.vempower.eezyclinic.APIResponce.SpecalitiesAPI;
 import com.vempower.eezyclinic.APIResponce.VerifyOTPAPI;
 
 import retrofit.Call;
 import retrofit.http.Body;
+import retrofit.http.GET;
 import retrofit.http.POST;
 
 /**
@@ -63,5 +65,10 @@ public interface EezyClinicAPI {
     //http://202.63.103.194:8008/api/patient/dashboard
     @POST(data+"patient/dashboard")
     Call<DashboardAPI> getDashboardAPI(@Body RequestBody postBody);
+
+
+    //http://202.63.103.194:8008/api/search/specalities
+    @GET(data+"search/specalities")
+    Call<SpecalitiesAPI> getSpecalitiesAPI();
 
 }

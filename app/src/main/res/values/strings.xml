@@ -95,5 +95,6 @@
     <string name="title_activity_appointments">Appointments</string>
     <string name="title_activity_upcoming_followups">Followups</string>
     <string name="title_activity_search">Search</string>
+    <string name="please_enter_valid_location">Please enter valid location name</string>
 
 </resources>
