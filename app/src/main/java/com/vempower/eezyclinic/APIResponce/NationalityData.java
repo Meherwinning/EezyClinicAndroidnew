@@ -51,4 +51,8 @@ public class NationalityData {
         this.createdDate = createdDate;
     }
 
+    @Override
+    public String toString() {
+        return nationalityName ;
+    }
 }

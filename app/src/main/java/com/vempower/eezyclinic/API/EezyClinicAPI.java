@@ -10,6 +10,7 @@ import com.vempower.eezyclinic.APIResponce.ForgotPasswordOTPAPI;
 import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
 import com.vempower.eezyclinic.APIResponce.LanguageListAPI;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
+import com.vempower.eezyclinic.APIResponce.NationalityListAPI;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiesAPI;
 import com.vempower.eezyclinic.APIResponce.VerifyOTPAPI;
@@ -25,75 +26,76 @@ import retrofit.http.Query;
  */
 
 public interface EezyClinicAPI {
-    String data="/api/";
+    String data = "/api/";
 
 
     //http://202.63.103.194:8008/api/patient/signin
-    @POST(data+"patient/signin")
+    @POST(data + "patient/signin")
     Call<LoginAPI> getLoginAPI(@Body RequestBody postBody);
 
 
     //http://202.63.103.194:8008/api/patient/socialsignin
-    @POST(data+"patient/socialsignin")
+    @POST(data + "patient/socialsignin")
     Call<LoginAPI> getSocialLoginAPI(@Body RequestBody postBody);
 
     //http://202.63.103.194:8008/api/patient/signup
-    @POST(data+"patient/signup")
+    @POST(data + "patient/signup")
     Call<SignupAPI> getSignupAPI(@Body RequestBody postBody);
 
     //http://202.63.103.194:8008/api/patient/verifyotp
-    @POST(data+"patient/verifyotp")
+    @POST(data + "patient/verifyotp")
     Call<VerifyOTPAPI> verifyOTP_API(@Body RequestBody postBody);
 
     //http://202.63.103.194:8008/api/patient/forgotpassword
-    @POST(data+"patient/forgotpassword")
+    @POST(data + "patient/forgotpassword")
     Call<ForgotPasswordAPI> forgorPasswordAPI(@Body RequestBody postBody);
 
     //http://202.63.103.194:8008/api/patient/forgotpasswordsendotp
-    @POST(data+"patient/forgotpasswordsendotp")
+    @POST(data + "patient/forgotpasswordsendotp")
     Call<ForgotPasswordOTPAPI> forgotPasswordOTPAPI(@Body RequestBody postBody);
 
 
     //http://202.63.103.194:8008/api/patient/resetpassword
-    @POST(data+"patient/resetpassword")
+    @POST(data + "patient/resetpassword")
     Call<AbstractResponse> resetPasswordAPI(@Body RequestBody postBody);
 
 
     //
 
     //http://202.63.103.194:8008/api/patient/resendotp
-    @POST(data+"patient/resendotp")
+    @POST(data + "patient/resendotp")
     Call<SignupAPI> resendOTPAPI(@Body RequestBody postBody);
 
 
-
     //http://202.63.103.194:8008/api/patient/dashboard
-    @POST(data+"patient/dashboard")
+    @POST(data + "patient/dashboard")
     Call<DashboardAPI> getDashboardAPI(@Body RequestBody postBody);
 
 
     //http://202.63.103.194:8008/api/search/specalities
-    @GET(data+"search/specalities")
+    @GET(data + "search/specalities")
     Call<SpecalitiesAPI> getSpecalitiesAPI();
 
     //http://202.63.103.194:8008/api/search/cities?country=1
-    @GET(data+"search/cities")
+    @GET(data + "search/cities")
     Call<CityListAPI> getCityListAPI(@Query("country") String country);
 
 
-
-
     //http://202.63.103.194:8008/api/search/insurance
-    @GET(data+"search/insurance")
+    @GET(data + "search/insurance")
     Call<InsuranceListAPI> getInsuranceListAPI();
 
 
     //http://202.63.103.194:8008/api/search/languages
-    @GET(data+"search/languages")
+    @GET(data + "search/languages")
     Call<LanguageListAPI> getLanguageListAPI();
 
     //http://202.63.103.194:8008/api/search/country
-    @GET(data+"search/country")
+    @GET(data + "search/country")
     Call<CountryListAPI> getCountryListApi();
 
+
+    //http://202.63.103.194:8008/api/search/nationality
+    @GET(data + "search/nationality")
+    Call<NationalityListAPI> getNationalityListApi();
 }

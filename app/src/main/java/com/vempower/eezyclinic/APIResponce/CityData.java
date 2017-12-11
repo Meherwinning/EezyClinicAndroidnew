@@ -29,4 +29,9 @@ public class CityData {
         this.cityName = cityName;
     }
 
+
+    @Override
+    public String toString() {
+        return  cityName;
+    }
 }
