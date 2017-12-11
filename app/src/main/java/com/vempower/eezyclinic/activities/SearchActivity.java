@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.activities;
 
+import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
@@ -12,6 +13,8 @@ import com.vempower.eezyclinic.utils.Utils;
 
 public class SearchActivity extends AbstractMenuActivity {
 
+
+    private SearchFragment searchFragment;
 
     public void setActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -41,7 +44,10 @@ public class SearchActivity extends AbstractMenuActivity {
 
     @Override
     protected AbstractFragment getFragment() {
-        return new SearchFragment();
+        if(searchFragment==null) {
+            searchFragment = new SearchFragment();
+        }
+        return searchFragment;
     }
 
     @Override
@@ -54,5 +60,19 @@ public class SearchActivity extends AbstractMenuActivity {
     public void onBackPressed() {
         //super.onBackPressed();
         finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //hideKeyBord(dateofBirth_tv);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                hideKeyBord(getFragment().getView());
+            }
+        },100);
+
+
     }
 }

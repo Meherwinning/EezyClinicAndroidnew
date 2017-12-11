@@ -1,1 +1,1 @@
-include ':app', ':MaterialDesign', ':material', ':linkedin-sdk', ':sublimepickerlibrary'
+include ':app', ':MaterialDesign', ':material', ':linkedin-sdk', ':sublimepickerlibrary', ':MyExpandableLayoutLibrary'

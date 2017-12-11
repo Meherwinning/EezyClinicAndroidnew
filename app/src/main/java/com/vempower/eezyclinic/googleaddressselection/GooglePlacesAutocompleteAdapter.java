@@ -134,7 +134,10 @@ public class GooglePlacesAutocompleteAdapter extends ArrayAdapter<GeoData>
         try {
             StringBuilder sb = new StringBuilder(PLACES_API_BASE
                     + TYPE_AUTOCOMPLETE + OUT_JSON);
+            //Lombardia
+            //https://maps.googleapis.com/maps/api/place/textsearch/json?query=Lombardia&lang‌​uage=Your_language&key=YOUR_API_KEY
             sb.append("?key=" + API_KEY);
+           // sb.append("&query=" + "Hyderabad");
             sb.append("&location=" + latLang.lat + "," + latLang.lng);
             sb.append("&input=" + URLEncoder.encode(input, "utf8"));
 

@@ -75,6 +75,7 @@ dependencies {
     implementation project(':sublimepickerlibrary')
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
     //implementation 'swarajsaaj:otpreader:1.1'
+    implementation project(':MyExpandableLayoutLibrary')
 }
 repositories {
     mavenCentral()

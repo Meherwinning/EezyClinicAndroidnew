@@ -1,0 +1,56 @@
+apply plugin: 'com.android.library'
+//apply plugin: 'com.novoda.bintray-release'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '27.0.1'
+    /*compileSdkVersion 25
+    buildToolsVersion '25.0.2'*/
+
+    defaultConfig {
+        minSdkVersion 11
+        targetSdkVersion 23
+        versionCode 11
+        versionName "1.6.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+}
+dependencies {
+    implementation 'com.android.support:appcompat-v7:23.2.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.0'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.0'
+    androidTestImplementation 'com.android.support:support-annotations:23.2.1'
+    //androidTestImplementation "com.android.support.test:runner:0.4.1"
+    //androidTestImplementation "com.android.support.test:rules:0.4.1"
+}
+
+
+def getBintrayUserProperty() {
+    return hasProperty('bintrayUser') ? bintrayUser : ""
+}
+
+def getBintrayApiKeyProperty() {
+    return hasProperty('bintrayApiKey') ? bintrayApiKey : ""
+}
+
+
+
+/*publish {
+    userOrg = POM_DEVELOPER_ID
+    repoName = 'maven'
+    groupId = GROUP
+    artifactId = ARTIFACT_ID
+    publishVersion = VERSION_NAME
+    licences = ['Apache-2.0']
+    desc = POM_DESCRIPTION
+    website = POM_URL
+    issueTracker = ISSUE_URL
+    repository = POM_SCM_URL
+    autoPublish = false
+    bintrayUser = bintrayUserProperty
+    bintrayKey = bintrayApiKeyProperty
+    dryRun = false
+    publications = ['maven']
+}*/

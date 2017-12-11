@@ -138,14 +138,15 @@ public class HomeFragment extends AbstractFragment {
             return;
         }
         health_tips_tv.setText(dashboardData.getHealthtips()==null?"-":dashboardData.getHealthtips());
-        health_goal_tv.setText(dashboardData.getHealthgoals()==null?"-":dashboardData.getHealthgoals());
+        health_goal_tv.setText(dashboardData.getHealthgoals()==null?Utils.getStringFromResources(R.string.health_goal_empty_msg):dashboardData.getHealthgoals());
 
-        upcoming_appointment_name_tv.setText("-");
-        upcoming_appointment_tv.setText("-");
+        upcoming_appointment_name_tv.setText(null);
+        upcoming_appointment_tv.setText(Utils.getStringFromResources(R.string.upcoming_empty_appointment_list_msg));
         upcoming_appointment_cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utils.showToastMsg("No upcoming appointment(s).");
+                //Utils.showToastMsg("No upcoming appointment(s).");
+                     Utils.showToastMsg(R.string.upcoming_empty_appointment_list_msg);
             }
         });
         if(dashboardData.getComingappointments()!=null && dashboardData.getComingappointments().size()>0)
@@ -171,11 +172,11 @@ public class HomeFragment extends AbstractFragment {
             }
 
         }
-        upcoming_followups_tv.setText("-");
+        upcoming_followups_tv.setText(Utils.getStringFromResources(R.string.upcoming_empty_followups_list_msg));
         upcoming_followups_cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utils.showToastMsg("No upcoming followup(s).");
+                Utils.showToastMsg(R.string.upcoming_empty_followups_list_msg);
             }
         });
         if(dashboardData.getFollowups()!=null && dashboardData.getFollowups().size()>0)

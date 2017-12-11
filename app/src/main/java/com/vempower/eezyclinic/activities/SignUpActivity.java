@@ -381,49 +381,9 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
         genderTypeList.add(Constants.GenderValues.FEMALE);
         genderTypeList.add(Constants.GenderValues.GENDER);
        // selectedGender= genderTypeList.get(2);
-        HintAdapter aa = new HintAdapter(MyApplication.getCurrentActivityContext(),R.layout.spinner_textview,genderTypeList);
+       final HintAdapter aa = new HintAdapter(MyApplication.getCurrentActivityContext(),R.layout.spinner_textview,genderTypeList);
 
-       /* {
 
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                // return super.getView(position, convertView, parent);
-                View view =super.getView(position, convertView, parent);
-                MyTextViewRR textView=view.findViewById(android.R.id.text1);
-                //(int left, int top, int right, int bottom)
-               int padding= (int) MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._6sdp);
-                textView.setPadding(padding,padding,padding,padding);
-                // do whatever you want with this text view
-               *//* if(Utils.isTablet()) {
-                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, (MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._7sdp)));
-                }*//**//*else
-                 {
-                     textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, (MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._13sdp)));
-
-                 }*//*
-                return view;
-            }
-
-            @Override
-            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                //return super.getDropDownView(position, convertView, parent);
-                View view =super.getView(position, convertView, parent);
-                MyTextViewRR textView=view.findViewById(android.R.id.text1);
-                int pading= (int) MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._6sdp);
-                textView.setPadding(pading,pading,pading,pading);
-
-                // do whatever you want with this text view
-                *//*if(Utils.isTablet()) {
-                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, (MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._7sdp)));
-                }*//**//*else
-                 {
-                     textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, (MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._13sdp)));
-
-                 }*//*
-                return view;
-            }
-        };*/
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gender_type_spinner.setAdapter(aa);
         gender_type_spinner.setSelection(aa.getCount());
@@ -432,11 +392,11 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedGender= null;
-                if(position!=0)
+                if(position!=(aa.getCount()))
                 {
-                    selectedGender= genderTypeList.get(position-1);
+                    selectedGender= genderTypeList.get(position);
                 }
-               // showToastMessage("selectedGender "+selectedGender);
+                showToastMessage("selectedGender "+selectedGender);
             }
 
             @Override

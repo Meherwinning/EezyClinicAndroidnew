@@ -2,9 +2,13 @@ package com.vempower.eezyclinic.API;
 
 import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
+import com.vempower.eezyclinic.APIResponce.CityListAPI;
+import com.vempower.eezyclinic.APIResponce.CountryListAPI;
 import com.vempower.eezyclinic.APIResponce.DashboardAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordOTPAPI;
+import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
+import com.vempower.eezyclinic.APIResponce.LanguageListAPI;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiesAPI;
@@ -14,6 +18,7 @@ import retrofit.Call;
 import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;
+import retrofit.http.Query;
 
 /**
  * Created by Satish on 11/15/2017.
@@ -70,5 +75,25 @@ public interface EezyClinicAPI {
     //http://202.63.103.194:8008/api/search/specalities
     @GET(data+"search/specalities")
     Call<SpecalitiesAPI> getSpecalitiesAPI();
+
+    //http://202.63.103.194:8008/api/search/cities?country=1
+    @GET(data+"search/cities")
+    Call<CityListAPI> getCityListAPI(@Query("country") String country);
+
+
+
+
+    //http://202.63.103.194:8008/api/search/insurance
+    @GET(data+"search/insurance")
+    Call<InsuranceListAPI> getInsuranceListAPI();
+
+
+    //http://202.63.103.194:8008/api/search/languages
+    @GET(data+"search/languages")
+    Call<LanguageListAPI> getLanguageListAPI();
+
+    //http://202.63.103.194:8008/api/search/country
+    @GET(data+"search/country")
+    Call<CountryListAPI> getCountryListApi();
 
 }

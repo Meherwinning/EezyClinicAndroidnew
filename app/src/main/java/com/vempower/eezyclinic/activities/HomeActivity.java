@@ -156,7 +156,7 @@ public class HomeActivity extends AbstractMenuActivity {
                 public void onSearchDocatorsClick() {
                    // Utils.showToastMsg("Now click search doctors");
 
-
+                    //Utils.showToastMsg("Coming soon.");
 
                     Intent intent = getIntent();
                     intent.setClass(HomeActivity.this,SearchActivity.class);

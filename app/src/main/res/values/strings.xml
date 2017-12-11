@@ -97,4 +97,9 @@
     <string name="title_activity_search">Search</string>
     <string name="please_enter_valid_location">Please enter valid location name</string>
 
+    <string name="health_goal_empty_msg">You haven’t set up your health goals</string>
+
+    <string name="upcoming_empty_appointment_list_msg">You do not have any upcoming appointments.</string>
+    <string name="upcoming_empty_followups_list_msg">You do not have any upcoming appointments.</string>
+
 </resources>
