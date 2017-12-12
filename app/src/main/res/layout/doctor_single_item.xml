@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_5dp"
+    android:layout_marginLeft="@dimen/_5dp"
+    android:layout_marginRight="@dimen/_5dp"
+    android:layout_marginTop="@dimen/_7dp"
+    android:background="@drawable/view_selector"
+    android:clickable="true"
+    card_view:cardBackgroundColor="@color/white"
+    android:elevation="@dimen/_5dp"
+
+
+    card_view:cardElevation="@dimen/_6dp"
+    card_view:cardCornerRadius="@dimen/_5dp"
+    >
+
+   <!-- <FrameLayout
+        android:background="@drawable/card_edge"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"/>-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:paddingLeft="@dimen/_10dp"
+        android:paddingRight="@dimen/_10dp"
+        android:paddingTop="@dimen/_12dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/img_linear1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:gravity="center"
+
+            >
+
+            <LinearLayout
+                android:id="@+id/image_linear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:background="@drawable/canvas_85x85"
+                android:gravity="center"
+
+                >
+
+                <ImageView
+                    android:id="@+id/profile_iv"
+                    style="@style/image_fit_toparent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/profile_icon" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/content_linear1"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:layout_marginLeft="@dimen/_20dp"
+            android:layout_marginRight="@dimen/_14dp"
+
+            android:layout_toRightOf="@+id/img_linear1"
+            android:orientation="vertical">
+
+            <com.vempower.eezyclinic.views.MyTextViewRM
+                android:id="@+id/title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5dp"
+                android:text="Title"
+                android:textColor="#212121"
+                android:textSize="@dimen/_16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:id="@+id/designation_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Designation"
+                    android:textColor="#777777"
+                    android:textSize="@dimen/_13sp"
+                     />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:id="@+id/time_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Text1"
+                    android:textColor="#777777"
+                    android:textSize="@dimen/_13sp"
+                    />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:id="@+id/address_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Text1"
+                    android:textColor="@color/dash_board_text_color"
+                    android:textSize="@dimen/_13sp"
+                     />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_below="@+id/img_linear1"
+            android:id="@+id/devider_view"
+            android:layout_width="match_parent"
+            android:alpha="0.4"
+            android:background="@color/dash_board_text_color"
+
+            android:layout_height="1dp" />
+
+        <LinearLayout
+            android:layout_below="@+id/devider_view"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/_5dp"
+            android:layout_marginRight="@dimen/_5dp"
+            android:orientation="horizontal"
+            android:layout_height="@dimen/_45sp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Reviews"
+                    android:padding="@dimen/_3dp"
+                    android:textSize="13sp"
+                    android:textColor="#cc212121"
+                    android:textStyle="bold" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="1"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:layout_marginLeft="@dimen/_4dp"
+                    android:layout_marginRight="@dimen/_4dp"
+                    android:textSize="13sp"
+                    android:textColor="#cc212121"
+                    android:textStyle="bold" />
+
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Reviews"
+                    android:paddingTop="@dimen/_3dp"
+                    android:paddingBottom="@dimen/_3dp"
+                    android:paddingRight="@dimen/_10dp"
+                    android:textSize="13sp"
+                    android:src="@drawable/reccom_icon"
+                    android:textColor="#cc212121"
+                    android:textStyle="bold" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="1"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:layout_marginLeft="@dimen/_4dp"
+                    android:layout_marginRight="@dimen/_4dp"
+                    android:textSize="13sp"
+                    android:textColor="#cc212121"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1.5"
+
+                android:layout_height="match_parent">
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center_vertical"
+                    android:text="Book Appointment"
+                    android:textSize="15sp"
+                    android:layout_margin="@dimen/_3dp"
+                    android:textColor="#28b0e2"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

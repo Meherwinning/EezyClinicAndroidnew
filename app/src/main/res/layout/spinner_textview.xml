@@ -8,7 +8,6 @@
     android:ellipsize="marquee"
     android:textSize="@dimen/_16sp"
     android:paddingTop="@dimen/_5dp"
-    android:paddingLeft="@dimen/_5dp"
     android:paddingBottom="@dimen/_5dp"
     android:textColor="@color/text_color"
     android:textAlignment="inherit"/>
