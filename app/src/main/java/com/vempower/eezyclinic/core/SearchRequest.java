@@ -1,5 +1,8 @@
 package com.vempower.eezyclinic.core;
 
+import android.text.TextUtils;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,11 +17,11 @@ public class SearchRequest {
     private String city;
     private String longitude;
     private String latitude;
-    private List<Integer> insurenceList = null;
-    private List<Integer> nationalityList = null;
-    private List<String> gendersearch = null;
+    private ArrayList<String> insurenceList = null;
+    private ArrayList<String> nationalityList = null;
+    private ArrayList<String> gendersearch = null;
     private String locality;
-    private List<String> launguage = null;
+    private ArrayList<String> launguage = null;
     private String searchName;
     private String onlinebooking;
     private String amountRange;
@@ -73,28 +76,46 @@ public class SearchRequest {
         this.latitude = latitude;
     }
 
-    public List<Integer> getInsurenceList() {
+    public ArrayList<String> getInsurenceList() {
         return insurenceList;
     }
 
-    public void setInsurenceList(List<Integer> insurenceList) {
-        this.insurenceList = insurenceList;
+    public void setInsurenceList(String insurace) {
+        if(insurenceList==null)
+        {
+            this.insurenceList= new ArrayList<>();
+        }
+        if(!TextUtils.isEmpty(insurace)) {
+            this.insurenceList.add(insurace);
+        }
     }
 
-    public List<Integer> getNationalityList() {
+    public ArrayList<String> getNationalityList() {
         return nationalityList;
     }
 
-    public void setNationalityList(List<Integer> nationalityList) {
-        this.nationalityList = nationalityList;
+    public void setNationalityList(String nationality) {
+        if(this.nationalityList==null)
+        {
+            this.nationalityList= new ArrayList<>();
+        }
+        if(!TextUtils.isEmpty(nationality)) {
+            this.nationalityList.add(nationality);
+        }
     }
 
-    public List<String> getGendersearch() {
+    public ArrayList<String> getGendersearch() {
         return gendersearch;
     }
 
-    public void setGendersearch(List<String> gendersearch) {
-        this.gendersearch = gendersearch;
+    public void setGendersearch(String gender) {
+        if(gendersearch==null)
+        {
+            gendersearch= new ArrayList<>();
+        }
+        if(!TextUtils.isEmpty(gender)) {
+            this.gendersearch.add(gender);
+        }
     }
 
     public String getLocality() {
@@ -105,12 +126,18 @@ public class SearchRequest {
         this.locality = locality;
     }
 
-    public List<String> getLaunguage() {
+    public ArrayList<String> getLaunguage() {
         return launguage;
     }
 
-    public void setLaunguage(List<String> launguage) {
-        this.launguage = launguage;
+    public void setLaunguage(String launStr) {
+        if(launguage==null)
+        {
+            this.launguage= new ArrayList<>();
+        }
+        if(!TextUtils.isEmpty(launStr)) {
+            this.launguage.add(launStr);
+        }
     }
 
     public String getSearchName() {
@@ -151,5 +178,27 @@ public class SearchRequest {
 
     public void setPage(String page) {
         this.page = page;
+    }
+
+    @Override
+    public String toString() {
+        return "SearchRequest{" +
+                "searchtype='" + searchtype + '\'' +
+                ", specality='" + specality + '\'' +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", insurenceList=" + insurenceList +
+                ", nationalityList=" + nationalityList +
+                ", gendersearch=" + gendersearch +
+                ", locality='" + locality + '\'' +
+                ", launguage=" + launguage +
+                ", searchName='" + searchName + '\'' +
+                ", onlinebooking='" + onlinebooking + '\'' +
+                ", amountRange='" + amountRange + '\'' +
+                ", perpage='" + perpage + '\'' +
+                ", page='" + page + '\'' +
+                '}';
     }
 }

@@ -53,8 +53,8 @@ public interface Constants {
 
      interface GenderValues {
         String GENDER = "Gender";
-        String MALE = "Male";
-        String FEMALE="Female";
+        String MALE = "male";
+        String FEMALE="female";
     }
 
     public interface Home {

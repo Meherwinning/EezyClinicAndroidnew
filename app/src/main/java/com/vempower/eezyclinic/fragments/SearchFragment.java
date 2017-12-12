@@ -37,6 +37,7 @@ import com.vempower.eezyclinic.activities.SearchDoctorsListActivity;
 import com.vempower.eezyclinic.adapters.HintAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.DoctorClinicNamesSearch;
+import com.vempower.eezyclinic.core.SearchRequest;
 import com.vempower.eezyclinic.googleaddressselection.GeoData;
 import com.vempower.eezyclinic.googleaddressselection.GooglePlacesAutocompleteAdapter;
 import com.vempower.eezyclinic.mappers.CityListMapper;
@@ -76,23 +77,24 @@ public class SearchFragment extends AbstractFragment {
 
     private GeoData myGeodata;
     private LinearLayout advance_search_linear;
-    private String selectedSpeciality;
-    private String selectedGender;
-    private CountryData selectedCountry;
-    private CityData selectedCity;
+    //private String selectedSpeciality;
+    //private String selectedGender;
+    //private CountryData selectedCountry;
+    //private CityData selectedCity;
     private HintAdapter<InsuranceData> insuranceAdapter;
-    private InsuranceData selectedInsurance;
+   // private InsuranceData selectedInsurance;
     private HintAdapter<NationalityData> nationalityAdapter;
-    private NationalityData selectedNationality;
+    //private NationalityData selectedNationality;
 
     private HintAdapter<LanguageData> languageAdapter;
-    private LanguageData selectedLanguage;
+  //  private LanguageData selectedLanguage;
 
     private MyButtonRectangleRM search_bt;
-    private DoctorClinicNameData selectedDoctorClinicName;
+    //private DoctorClinicNameData selectedDoctorClinicName;
     private DoctorClinicNamesSearch namesSearch;
 
     private ExpandableLinearLayout expandableLayout_city_view;
+    private SearchRequest searchRequestParams;
 
     @Nullable
     @Override
@@ -117,6 +119,7 @@ public class SearchFragment extends AbstractFragment {
         advance_search_linear  = getFragemtView().findViewById(R.id.advance_search_linear);
         city_type_spinner  = getFragemtView().findViewById(R.id.city_type_spinner);
         namesSearch= new DoctorClinicNamesSearch();
+        searchRequestParams = new SearchRequest();
 
         search_bt  = getFragemtView().findViewById(R.id.search_bt);
 
@@ -128,7 +131,9 @@ public class SearchFragment extends AbstractFragment {
         search_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MyApplication.getCurrentActivityContext(), SearchDoctorsListActivity.class));
+
+                Utils.showToastMessage(searchRequestParams.toString());
+                //startActivity(new Intent(MyApplication.getCurrentActivityContext(), SearchDoctorsListActivity.class));
             }
         });
 
@@ -198,13 +203,17 @@ public class SearchFragment extends AbstractFragment {
         language_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedLanguage= null;
+              //  selectedLanguage= null;
                 //if(position!=0)
                 //{
                 if(position!=(languageAdapter.getCount()))
                 {
-                    selectedLanguage = languageTypeList.get(position);
-                    Utils.showToastMessage("selected language " + selectedLanguage);
+                    LanguageData  selectedLanguage = languageTypeList.get(position);
+                    //Utils.showToastMessage("selected language " + selectedLanguage);
+
+                    if(selectedLanguage!=null) {
+                        searchRequestParams.setLaunguage(selectedLanguage.getLanguageName());
+                    }
                 }
 
 
@@ -267,13 +276,17 @@ public class SearchFragment extends AbstractFragment {
         nationality_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedNationality= null;
+               // selectedNationality= null;
                 //if(position!=0)
                 //{
                 if(position!=(nationalityAdapter.getCount()))
                 {
-                    selectedNationality = nationalityTypeList.get(position);
-                    Utils.showToastMessage("selected Nationality " + selectedNationality);
+                    NationalityData  selectedNationality = nationalityTypeList.get(position);
+                  //  Utils.showToastMessage("selected Nationality " + selectedNationality);
+
+                    if(selectedNationality!=null) {
+                        searchRequestParams.setNationalityList(selectedNationality.getId());
+                    }
                 }
 
 
@@ -329,13 +342,16 @@ public class SearchFragment extends AbstractFragment {
         insurance_accepted_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedInsurance= null;
                 //if(position!=0)
                 //{
                 if(position!=(insuranceAdapter.getCount()))
                 {
-                    selectedInsurance = insuranceTypeList.get(position);
-                    Utils.showToastMessage("selected insurance " + selectedInsurance);
+                    InsuranceData selectedInsurance = insuranceTypeList.get(position);
+                   // Utils.showToastMessage("selected insurance " + selectedInsurance);
+
+                    if(selectedInsurance!=null) {
+                        searchRequestParams.setInsurenceList(selectedInsurance.getId());
+                    }
                 }
 
 
@@ -417,9 +433,10 @@ public class SearchFragment extends AbstractFragment {
                 GeoData tmpData = (GeoData) view.getTag();
 
                 myGeodata = tmpData;
-                addressAutoCompleteTextView.setText(tmpData.getAddress());
+                gettingLatLanFromGoogle(myGeodata);
+                /*addressAutoCompleteTextView.setText(tmpData.getAddress());
                 namesSearch.setLocality(tmpData.getAddress());
-                callDoctorsClinicNamesMapper();
+                callDoctorsClinicNamesMapper();*/
             } else {
                 addressAutoCompleteTextView.setText("");
             }
@@ -490,8 +507,18 @@ public class SearchFragment extends AbstractFragment {
             MyApplication.hideTransaprentDialog();
             if (latLan == null) {
                 Utils.showToastMessage(getResources().getString(R.string.please_enter_valid_location));
+                addressAutoCompleteTextView.setText("");
                 return;
             }
+
+            searchRequestParams.setLatitude(latLan.lat);
+            searchRequestParams.setLongitude(latLan.lan);
+
+            addressAutoCompleteTextView.setText(myGeodata.getAddress());
+            namesSearch.setLocality(myGeodata.getAddress());
+            callDoctorsClinicNamesMapper();
+
+
           /*  myGeodata.setLat(latLan.lat);
             myGeodata.setLng(latLan.lan);
             setFilterDataAsResult();*/
@@ -556,12 +583,15 @@ public class SearchFragment extends AbstractFragment {
         gender_type_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedGender= null;
                 if(position!=(aa.getCount()))
                 {
-                    selectedGender= genderTypeList.get(position);
+                    String selectedGender= genderTypeList.get(position);
+                    if(selectedGender!=null)
+                    {
+                        searchRequestParams.setGendersearch(selectedGender);
+                    }
                 }
-                Utils.showToastMessage("selectedGender "+selectedGender);
+                //Utils.showToastMessage("selectedGender "+selectedGender);
             }
 
             @Override
@@ -623,7 +653,6 @@ public class SearchFragment extends AbstractFragment {
         city_type_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedCity= null;
 
                /* if(aa.getCount()==1)
                 {
@@ -634,11 +663,12 @@ public class SearchFragment extends AbstractFragment {
                 //{
                 if(position!=(aa.getCount()))
                 {
-                    selectedCity = cityTypeList.get(position);
+                    CityData  selectedCity = cityTypeList.get(position);
                     Utils.showToastMessage("selected city " + selectedCity);
                     if(selectedCity!=null) {
                         namesSearch.setCity(selectedCity.getId());
                         callDoctorsClinicNamesMapper();
+                        searchRequestParams.setCity(selectedCity.getId());
                     }
                 }
 
@@ -678,20 +708,19 @@ public class SearchFragment extends AbstractFragment {
         country_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedCountry = null;
                 //if(position!=0)
                 //{
                // expandableLayout_city_view.collapse();
                 if(position!=(aa.getCount()))
                 {
-                    selectedCountry = countryTypeList.get(position);
+                    CountryData selectedCountry = countryTypeList.get(position);
                     if(selectedCountry!=null) {
-                        Utils.showToastMessage("selected country " + selectedCountry);
+                       // Utils.showToastMessage("selected country " + selectedCountry);
                         if(!expandableLayout_city_view.isExpanded()) {
                             expandableLayout_city_view.toggle();
                         }
                         callCityListMapper(selectedCountry.getId());
-
+                        searchRequestParams.setCountry(selectedCountry.getId());
                         namesSearch.setCountryId(selectedCountry.getId());
                         callDoctorsClinicNamesMapper();
                     }
@@ -750,12 +779,16 @@ public class SearchFragment extends AbstractFragment {
         doctor_clinic_names_actv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedDoctorClinicName = null;
                 //if(position!=0)
                 //{
-                selectedDoctorClinicName = doctorClinicNameList.get(position);
+                DoctorClinicNameData  selectedDoctorClinicName = doctorClinicNameList.get(position);
+                if(selectedDoctorClinicName!=null)
+                {
+                    searchRequestParams.setSearchName(selectedDoctorClinicName.getLabel());
+                }
+
                 //}
-                Utils.showToastMessage("selected DoctorClinicName " + selectedDoctorClinicName);
+                //Utils.showToastMessage("selected DoctorClinicName " + selectedDoctorClinicName);
             }
 
             @Override
@@ -767,14 +800,14 @@ public class SearchFragment extends AbstractFragment {
 
     }
 
-    public void setToAutoComepteAdapter(List<SpecalitiyData> dataList) {
-        final ArrayList<String> specalitiyTypeList = new ArrayList<>();
+    public void setToAutoComepteAdapter(final List<SpecalitiyData> dataList) {
+        /*final ArrayList<String> specalitiyTypeList = new ArrayList<>();
         if (dataList != null && dataList.size() > 0) {
             specalitiyTypeList.addAll(getStringArray(dataList));
 
-        }
+        }*/
 
-        HintAdapter aa = new HintAdapter<String >(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, specalitiyTypeList);
+        HintAdapter aa = new HintAdapter<SpecalitiyData >(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, dataList);
 
         speciality_actv.setAdapter(aa);
        // speciality_actv.setSelection(aa.getCount());
@@ -782,15 +815,15 @@ public class SearchFragment extends AbstractFragment {
         speciality_actv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedSpeciality = null;
                 //if(position!=0)
                 //{
-                selectedSpeciality = specalitiyTypeList.get(position);
+                SpecalitiyData selectedSpeciality = dataList.get(position);
                 if(selectedSpeciality!=null) {
-                    namesSearch.setSpeciality(selectedSpeciality);
+                    namesSearch.setSpeciality(selectedSpeciality.getName());
                     callDoctorsClinicNamesMapper();
+                    searchRequestParams.setSpecality(selectedSpeciality.getName());
                     //}
-                    Utils.showToastMessage("selected Speciality " + selectedSpeciality);
+                    //Utils.showToastMessage("selected Speciality " + selectedSpeciality);
                 }
             }
 
