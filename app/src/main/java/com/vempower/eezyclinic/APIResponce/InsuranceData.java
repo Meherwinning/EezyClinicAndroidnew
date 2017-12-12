@@ -62,4 +62,8 @@ public class InsuranceData {
         this.createdDate = createdDate;
     }
 
+    @Override
+    public String toString() {
+        return companyName;
+    }
 }

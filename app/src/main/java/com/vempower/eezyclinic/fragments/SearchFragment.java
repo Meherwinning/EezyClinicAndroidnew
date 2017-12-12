@@ -15,7 +15,16 @@ import android.widget.ScrollView;
 
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
+import com.vempower.eezyclinic.APIResponce.CityData;
 import com.vempower.eezyclinic.APIResponce.CityListAPI;
+import com.vempower.eezyclinic.APIResponce.CountryData;
+import com.vempower.eezyclinic.APIResponce.CountryListAPI;
+import com.vempower.eezyclinic.APIResponce.InsuranceData;
+import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
+import com.vempower.eezyclinic.APIResponce.LanguageData;
+import com.vempower.eezyclinic.APIResponce.LanguageListAPI;
+import com.vempower.eezyclinic.APIResponce.NationalityData;
+import com.vempower.eezyclinic.APIResponce.NationalityListAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiesAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.R;
@@ -24,6 +33,10 @@ import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.googleaddressselection.GeoData;
 import com.vempower.eezyclinic.googleaddressselection.GooglePlacesAutocompleteAdapter;
 import com.vempower.eezyclinic.mappers.CityListMapper;
+import com.vempower.eezyclinic.mappers.CountryListMapper;
+import com.vempower.eezyclinic.mappers.InsuranceListMapper;
+import com.vempower.eezyclinic.mappers.LanguageListMapper;
+import com.vempower.eezyclinic.mappers.NationalityMapper;
 import com.vempower.eezyclinic.mappers.SpecalitiesMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
@@ -49,13 +62,22 @@ public class SearchFragment extends AbstractFragment {
     private MyAutoCompleteTextView addressAutoCompleteTextView,speciality_actv;
     private GooglePlacesAutocompleteAdapter googlePlacesAutocompleteAdapter;
 
-    private CustomSpinnerSelection country_spinner,
+    private CustomSpinnerSelection country_spinner,city_type_spinner,
             insurance_accepted_spinner, nationality_spinner, gender_type_spinner, language_spinner;
 
     private GeoData myGeodata;
     private LinearLayout advance_search_linear;
     private String selectedSpeciality;
     private String selectedGender;
+    private CountryData selectedCountry;
+    private CityData selectedCity;
+    private HintAdapter<InsuranceData> insuranceAdapter;
+    private InsuranceData selectedInsurance;
+    private HintAdapter<NationalityData> nationalityAdapter;
+    private NationalityData selectedNationality;
+
+    private HintAdapter<LanguageData> languageAdapter;
+    private LanguageData selectedLanguage;
 
     @Nullable
     @Override
@@ -76,7 +98,7 @@ public class SearchFragment extends AbstractFragment {
         gender_type_spinner = getFragemtView().findViewById(R.id.gender_spinner);
         language_spinner = getFragemtView().findViewById(R.id.language_spinner);
         advance_search_linear  = getFragemtView().findViewById(R.id.advance_search_linear);
-
+        city_type_spinner  = getFragemtView().findViewById(R.id.city_type_spinner);
         final ExpandableLinearLayout expandableLayout_advance_search = getFragemtView().findViewById(R.id.expandableLayout_advance_search);
 
         setExpandedViewListener(expandableLayout_advance_search,advance_search_linear);
@@ -84,6 +106,9 @@ public class SearchFragment extends AbstractFragment {
             @Override
             public void onClick(View view) {
                 expandableLayout_advance_search.toggle();
+                callInsuranceAcceptedMapper();
+                callNatinalityMapper();
+                callLanguageMapper();
             }
         });
 
@@ -95,8 +120,219 @@ public class SearchFragment extends AbstractFragment {
 
     }
 
+
+    private void callLanguageMapper() {
+
+        if(languageAdapter!=null)
+        {
+            return;
+        }
+
+        LanguageListMapper mapper= new LanguageListMapper();
+        mapper.setOnLanguageListListener(new LanguageListMapper.LanguageListListener() {
+            @Override
+            public void getLanguageListAPII(LanguageListAPI languageListAPI, String errorMessage) {
+                if(!isValidResponse(languageListAPI,errorMessage))
+                {
+                    return;
+                }
+                setToLanguagesAdapter(languageListAPI.getData());
+            }
+        });
+
+
+    }
+
+    public void setToLanguagesAdapter(List<LanguageData> list) {
+        final ArrayList<LanguageData> languageTypeList = new ArrayList<>();
+        if (list != null && list.size() > 0) {
+            languageTypeList.addAll(list);
+
+        }
+
+        LanguageData hintData= new LanguageData();
+        hintData.setLanguageName("Language");
+        languageTypeList.add(languageTypeList.size(),hintData);
+
+
+       languageAdapter = new HintAdapter<LanguageData>(MyApplication.getCurrentActivityContext(), R.layout.spinner_textview, languageTypeList);
+
+        languageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        language_spinner.setAdapter(languageAdapter);
+        language_spinner.setSelection(languageAdapter.getCount());
+
+        language_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedLanguage= null;
+                //if(position!=0)
+                //{
+                if(position!=(languageAdapter.getCount()))
+                {
+                    selectedLanguage = languageTypeList.get(position);
+                    Utils.showToastMessage("selected language " + selectedLanguage);
+                }
+
+
+                //}
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+
+
+
+    private void callNatinalityMapper() {
+
+        if(nationalityAdapter!=null)
+        {
+            return;
+        }
+
+        NationalityMapper mapper= new NationalityMapper();
+
+        mapper.setOnNationalityListListener(new NationalityMapper.NationalityListListener() {
+            @Override
+            public void getNationalityListAPI(NationalityListAPI nationalityListAPI, String errorMessage) {
+
+                if(!isValidResponse(nationalityListAPI,errorMessage))
+                {
+                    return;
+                }
+                setToNationalityListAdapter(nationalityListAPI.getData());
+            }
+        });
+
+    }
+
+    public void setToNationalityListAdapter(List<NationalityData> list) {
+        final ArrayList<NationalityData> nationalityTypeList = new ArrayList<>();
+        if (list != null && list.size() > 0) {
+            nationalityTypeList.addAll(list);
+
+        }
+
+        NationalityData hintData= new NationalityData();
+        hintData.setNationalityName("Nationality");
+        nationalityTypeList.add(nationalityTypeList.size(),hintData);
+
+
+        nationalityAdapter = new HintAdapter<NationalityData>(MyApplication.getCurrentActivityContext(), R.layout.spinner_textview, nationalityTypeList);
+
+        nationalityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        nationality_spinner.setAdapter(nationalityAdapter);
+        nationality_spinner.setSelection(nationalityAdapter.getCount());
+
+        nationality_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedNationality= null;
+                //if(position!=0)
+                //{
+                if(position!=(nationalityAdapter.getCount()))
+                {
+                    selectedNationality = nationalityTypeList.get(position);
+                    Utils.showToastMessage("selected Nationality " + selectedNationality);
+                }
+
+
+                //}
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+
+    private void callInsuranceAcceptedMapper() {
+        if(insuranceAdapter!=null)
+        {
+            return;
+        }
+        InsuranceListMapper mapper = new InsuranceListMapper();
+        mapper.setOnInsuranceListListener(new InsuranceListMapper.InsuranceListListener() {
+            @Override
+            public void getInsuranceListAPI(InsuranceListAPI insuranceListAPI, String errorMessage) {
+                if(!isValidResponse(insuranceListAPI,errorMessage))
+                {
+                    return;
+                }
+                setToInsuranceAdapter(insuranceListAPI.getData());
+            }
+        });
+    }
+
+    public void setToInsuranceAdapter(List<InsuranceData> list) {
+        final ArrayList<InsuranceData> insuranceTypeList = new ArrayList<>();
+        if (list != null && list.size() > 0) {
+            insuranceTypeList.addAll(list);
+
+        }
+
+        InsuranceData hintData= new InsuranceData();
+        hintData.setCompanyName("Insurance");
+        insuranceTypeList.add(insuranceTypeList.size(),hintData);
+
+
+       insuranceAdapter = new HintAdapter<InsuranceData>(MyApplication.getCurrentActivityContext(), R.layout.spinner_textview, insuranceTypeList);
+
+        insuranceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        insurance_accepted_spinner.setAdapter(insuranceAdapter);
+        insurance_accepted_spinner.setSelection(insuranceAdapter.getCount());
+
+        insurance_accepted_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedInsurance= null;
+                //if(position!=0)
+                //{
+                if(position!=(insuranceAdapter.getCount()))
+                {
+                    selectedInsurance = insuranceTypeList.get(position);
+                    Utils.showToastMessage("selected insurance " + selectedInsurance);
+                }
+
+
+                //}
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+
     private void callCountryListMapper() {
         //TODO call country list mapper
+        CountryListMapper mapper= new CountryListMapper();
+        mapper.setOnCountryListListener(new CountryListMapper.CountryListListener() {
+            @Override
+            public void getCountryListAPI(CountryListAPI countryListAPI, String errorMessage) {
+                if(!isValidResponse(countryListAPI,errorMessage))
+                {
+                    return;
+                }
+
+                setToCountryAdapter(countryListAPI.getData());
+
+            }
+        });
 
     }
 
@@ -105,8 +341,7 @@ public class SearchFragment extends AbstractFragment {
 
     }
 
-    private void callCityListMapper(int country) {
-        //TODO call language list mapper
+    private void callCityListMapper(String country) {
         CityListMapper cityListMapper= new CityListMapper(country);
         cityListMapper.setOnCityListListener(new CityListMapper.CityListListener() {
             @Override
@@ -115,7 +350,7 @@ public class SearchFragment extends AbstractFragment {
                 {
                     return;
                 }
-
+                setToCityListAdapter(cityListAPI.getData());
 
             }
         });
@@ -258,7 +493,7 @@ public class SearchFragment extends AbstractFragment {
         genderTypeList.add(Constants.GenderValues.FEMALE);
         genderTypeList.add(Constants.GenderValues.GENDER);
         // selectedGender= genderTypeList.get(2);
-      final  HintAdapter aa = new HintAdapter(MyApplication.getCurrentActivityContext(),R.layout.spinner_textview,genderTypeList);
+      final  HintAdapter aa = new HintAdapter<String >(MyApplication.getCurrentActivityContext(),R.layout.spinner_textview,genderTypeList);
 
 
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -288,9 +523,120 @@ public class SearchFragment extends AbstractFragment {
     }
 
 
+    public void setToCityListAdapter(List<CityData> list) {
+        final ArrayList<CityData> cityTypeList = new ArrayList<>();
+        if (list != null && list.size() > 0) {
+            cityTypeList.addAll(list);
+
+        }
+
+        CityData hintData= new CityData();
+        hintData.setCityName("City");
+        cityTypeList.add(cityTypeList.size(),hintData);
+
+        if(list==null)
+        {
+            cityTypeList.add(cityTypeList.size(),hintData);
+        }
 
 
+        city_type_spinner = getFragemtView().findViewById(R.id.city_type_spinner);
+        final   HintAdapter aa = new HintAdapter<CityData>(MyApplication.getCurrentActivityContext(), R.layout.spinner_textview, cityTypeList);
 
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        city_type_spinner.setAdapter(aa);
+        city_type_spinner.setSelection(aa.getCount());
+       /* if(cityTypeList.size()==1)
+        {
+            aa.isHintEnable(false);
+            aa.notifyDataSetChanged();
+        }else
+        {
+            cityTypeList.add(cityTypeList.size(),hintData);
+            aa.isHintEnable(true);
+            aa.notifyDataSetInvalidated();
+            city_type_spinner.setSelection(aa.getCount());
+        }*/
+
+        city_type_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedCity= null;
+
+               /* if(aa.getCount()==1)
+                {
+                    Utils.showToastMessage("Please select country");
+                    return;
+                }*/
+                //if(position!=0)
+                //{
+                if(position!=(aa.getCount()))
+                {
+                    selectedCity = cityTypeList.get(position);
+                    Utils.showToastMessage("selected city " + selectedCity);
+                }
+
+
+                //}
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+
+    public void setToCountryAdapter(List<CountryData> list) {
+        final ArrayList<CountryData> countryTypeList = new ArrayList<>();
+        if (list != null && list.size() > 0) {
+            countryTypeList.addAll(list);
+
+        }
+
+        CountryData hintData= new CountryData();
+        hintData.setCountry("Country");
+        countryTypeList.add(countryTypeList.size(),hintData);
+        setToCityListAdapter(null);
+
+
+      final   HintAdapter aa = new HintAdapter<CountryData>(MyApplication.getCurrentActivityContext(), R.layout.spinner_textview, countryTypeList);
+
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        country_spinner.setAdapter(aa);
+        country_spinner.setSelection(aa.getCount());
+
+        country_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedCountry = null;
+                //if(position!=0)
+                //{
+                if(position!=(aa.getCount()))
+                {
+                    selectedCountry = countryTypeList.get(position);
+                    Utils.showToastMessage("selected country " + selectedCountry);
+                    callCityListMapper(selectedCountry.getId());
+                }
+
+
+                //}
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
 
     public void setToAutoComepteAdapter(List<SpecalitiyData> dataList) {
         final ArrayList<String> specalitiyTypeList = new ArrayList<>();
@@ -307,7 +653,7 @@ public class SearchFragment extends AbstractFragment {
         genderTypeList.add(Constants.GenderValues.FEMALE);
         genderTypeList.add(Constants.GenderValues.GENDER);*/
         // selectedGender= genderTypeList.get(2);
-        HintAdapter aa = new HintAdapter(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, specalitiyTypeList);
+        HintAdapter aa = new HintAdapter<String >(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, specalitiyTypeList);
      /*   {
 
 

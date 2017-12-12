@@ -24,9 +24,9 @@ public class CityListMapper extends  AbstractMapper  implements Callback<CityLis
 
 
     private CityListListener listener;
-    private final int  countryCode;
+    private final String  countryCode;
 
-    public CityListMapper(int countryCode) {
+    public CityListMapper(String countryCode) {
         this.countryCode = countryCode;
     }
 
@@ -61,7 +61,7 @@ public class CityListMapper extends  AbstractMapper  implements Callback<CityLis
             return;
         }*/
 
-        Call<CityListAPI> apiResponseCall = stashDealAPI.getCityListAPI(countryCode+"");
+        Call<CityListAPI> apiResponseCall = stashDealAPI.getCityListAPI(countryCode);
 
         apiResponseCall.enqueue(this);
     }
