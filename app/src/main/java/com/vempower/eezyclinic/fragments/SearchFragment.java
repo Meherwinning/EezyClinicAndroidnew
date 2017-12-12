@@ -1,10 +1,13 @@
 package com.vempower.eezyclinic.fragments;
 
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +22,8 @@ import com.vempower.eezyclinic.APIResponce.CityData;
 import com.vempower.eezyclinic.APIResponce.CityListAPI;
 import com.vempower.eezyclinic.APIResponce.CountryData;
 import com.vempower.eezyclinic.APIResponce.CountryListAPI;
+import com.vempower.eezyclinic.APIResponce.DoctorClinicNameData;
+import com.vempower.eezyclinic.APIResponce.DoctorClinicNameListAPI;
 import com.vempower.eezyclinic.APIResponce.InsuranceData;
 import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
 import com.vempower.eezyclinic.APIResponce.LanguageData;
@@ -28,12 +33,15 @@ import com.vempower.eezyclinic.APIResponce.NationalityListAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiesAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.SearchDoctorsListActivity;
 import com.vempower.eezyclinic.adapters.HintAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.core.DoctorClinicNamesSearch;
 import com.vempower.eezyclinic.googleaddressselection.GeoData;
 import com.vempower.eezyclinic.googleaddressselection.GooglePlacesAutocompleteAdapter;
 import com.vempower.eezyclinic.mappers.CityListMapper;
 import com.vempower.eezyclinic.mappers.CountryListMapper;
+import com.vempower.eezyclinic.mappers.DoctorClinicNamesListMapper;
 import com.vempower.eezyclinic.mappers.InsuranceListMapper;
 import com.vempower.eezyclinic.mappers.LanguageListMapper;
 import com.vempower.eezyclinic.mappers.NationalityMapper;
@@ -42,6 +50,7 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.CustomSpinnerSelection;
 import com.vempower.eezyclinic.views.MyAutoCompleteTextView;
+import com.vempower.eezyclinic.views.MyButtonRectangleRM;
 
 import org.json.JSONObject;
 
@@ -59,7 +68,7 @@ public class SearchFragment extends AbstractFragment {
 
     private View fragmentView;
 
-    private MyAutoCompleteTextView addressAutoCompleteTextView,speciality_actv;
+    private MyAutoCompleteTextView addressAutoCompleteTextView,speciality_actv,doctor_clinic_names_actv;
     private GooglePlacesAutocompleteAdapter googlePlacesAutocompleteAdapter;
 
     private CustomSpinnerSelection country_spinner,city_type_spinner,
@@ -79,6 +88,12 @@ public class SearchFragment extends AbstractFragment {
     private HintAdapter<LanguageData> languageAdapter;
     private LanguageData selectedLanguage;
 
+    private MyButtonRectangleRM search_bt;
+    private DoctorClinicNameData selectedDoctorClinicName;
+    private DoctorClinicNamesSearch namesSearch;
+
+    private ExpandableLinearLayout expandableLayout_city_view;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -92,6 +107,8 @@ public class SearchFragment extends AbstractFragment {
     private void init() {
         addressAutoCompleteTextView = getFragemtView().findViewById(R.id.google_places_actv);
         speciality_actv= getFragemtView().findViewById(R.id.speciality_actv);
+        doctor_clinic_names_actv  = getFragemtView().findViewById(R.id.doctor_clinic_names_actv);
+        doctor_clinic_names_actv.addTextChangedListener(doctorClinicNameTextWatcher);
         country_spinner = getFragemtView().findViewById(R.id.country_spinner);
         insurance_accepted_spinner = getFragemtView().findViewById(R.id.insurance_accepted_spinner);
         nationality_spinner = getFragemtView().findViewById(R.id.nationality_spinner);
@@ -99,6 +116,22 @@ public class SearchFragment extends AbstractFragment {
         language_spinner = getFragemtView().findViewById(R.id.language_spinner);
         advance_search_linear  = getFragemtView().findViewById(R.id.advance_search_linear);
         city_type_spinner  = getFragemtView().findViewById(R.id.city_type_spinner);
+        namesSearch= new DoctorClinicNamesSearch();
+
+        search_bt  = getFragemtView().findViewById(R.id.search_bt);
+
+        expandableLayout_city_view = getFragemtView().findViewById(R.id.expandableLayout_city_view);
+
+        setExpandedCityViewListener(expandableLayout_city_view);
+
+
+        search_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyApplication.getCurrentActivityContext(), SearchDoctorsListActivity.class));
+            }
+        });
+
         final ExpandableLinearLayout expandableLayout_advance_search = getFragemtView().findViewById(R.id.expandableLayout_advance_search);
 
         setExpandedViewListener(expandableLayout_advance_search,advance_search_linear);
@@ -117,6 +150,7 @@ public class SearchFragment extends AbstractFragment {
         callSpecialityMapper();
         callCountryListMapper();
         setToGenderSpinnerAdapter();
+        callDoctorsClinicNamesMapper();
 
     }
 
@@ -384,6 +418,8 @@ public class SearchFragment extends AbstractFragment {
 
                 myGeodata = tmpData;
                 addressAutoCompleteTextView.setText(tmpData.getAddress());
+                namesSearch.setLocality(tmpData.getAddress());
+                callDoctorsClinicNamesMapper();
             } else {
                 addressAutoCompleteTextView.setText("");
             }
@@ -485,6 +521,23 @@ public class SearchFragment extends AbstractFragment {
             }
         });
     }
+
+    private void callDoctorsClinicNamesMapper() {
+        DoctorClinicNamesListMapper listMapper= new DoctorClinicNamesListMapper(namesSearch);
+
+        listMapper.setOnDoctorClinicNameListListener(new DoctorClinicNamesListMapper.DoctorClinicNameListListener() {
+            @Override
+            public void getDoctorClinicNameListAPI(DoctorClinicNameListAPI nameListAPI, String errorMessage) {
+                if (!isValidResponse(nameListAPI, errorMessage)) {
+                    return;
+                }
+
+                setToDoctorsClinicAutoCompleteAdapter(nameListAPI.getData());
+            }
+        });
+
+
+    }
     public void setToGenderSpinnerAdapter() {
 
         final ArrayList<String> genderTypeList= new ArrayList<>();
@@ -524,20 +577,27 @@ public class SearchFragment extends AbstractFragment {
 
 
     public void setToCityListAdapter(List<CityData> list) {
+        if(list==null)
+        {
+            expandableLayout_city_view.collapse();
+            return;
+        }else
+        {
+            expandableLayout_city_view.expand();
+        }
         final ArrayList<CityData> cityTypeList = new ArrayList<>();
         if (list != null && list.size() > 0) {
             cityTypeList.addAll(list);
 
         }
 
+
+
         CityData hintData= new CityData();
         hintData.setCityName("City");
         cityTypeList.add(cityTypeList.size(),hintData);
 
-        if(list==null)
-        {
-            cityTypeList.add(cityTypeList.size(),hintData);
-        }
+
 
 
         city_type_spinner = getFragemtView().findViewById(R.id.city_type_spinner);
@@ -576,6 +636,10 @@ public class SearchFragment extends AbstractFragment {
                 {
                     selectedCity = cityTypeList.get(position);
                     Utils.showToastMessage("selected city " + selectedCity);
+                    if(selectedCity!=null) {
+                        namesSearch.setCity(selectedCity.getId());
+                        callDoctorsClinicNamesMapper();
+                    }
                 }
 
 
@@ -617,16 +681,81 @@ public class SearchFragment extends AbstractFragment {
                 selectedCountry = null;
                 //if(position!=0)
                 //{
+               // expandableLayout_city_view.collapse();
                 if(position!=(aa.getCount()))
                 {
                     selectedCountry = countryTypeList.get(position);
-                    Utils.showToastMessage("selected country " + selectedCountry);
-                    callCityListMapper(selectedCountry.getId());
+                    if(selectedCountry!=null) {
+                        Utils.showToastMessage("selected country " + selectedCountry);
+                        if(!expandableLayout_city_view.isExpanded()) {
+                            expandableLayout_city_view.toggle();
+                        }
+                        callCityListMapper(selectedCountry.getId());
+
+                        namesSearch.setCountryId(selectedCountry.getId());
+                        callDoctorsClinicNamesMapper();
+                    }
                 }
 
 
                 //}
 
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+
+    private TextWatcher doctorClinicNameTextWatcher =new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            doctor_clinic_names_actv.removeTextChangedListener(this);
+            namesSearch.setSearch_text(charSequence.toString());
+           // Log.i("TextWatcher :",charSequence.toString());
+            callDoctorsClinicNamesMapper();
+            doctor_clinic_names_actv.addTextChangedListener(doctorClinicNameTextWatcher);
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+
+        }
+    };
+
+
+    public void setToDoctorsClinicAutoCompleteAdapter(List<DoctorClinicNameData> dataList) {
+        final ArrayList<DoctorClinicNameData> doctorClinicNameList = new ArrayList<>();
+        if (dataList != null && dataList.size() > 0) {
+            doctorClinicNameList.addAll(dataList);
+
+        }
+
+
+        HintAdapter aa = new HintAdapter<DoctorClinicNameData >(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, doctorClinicNameList);
+
+        doctor_clinic_names_actv.setAdapter(aa);
+        // speciality_actv.setSelection(aa.getCount());
+
+        doctor_clinic_names_actv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedDoctorClinicName = null;
+                //if(position!=0)
+                //{
+                selectedDoctorClinicName = doctorClinicNameList.get(position);
+                //}
+                Utils.showToastMessage("selected DoctorClinicName " + selectedDoctorClinicName);
             }
 
             @Override
@@ -645,61 +774,8 @@ public class SearchFragment extends AbstractFragment {
 
         }
 
-        //  SpecalitiyData hintData= new SpecalitiyData();
-        // hintData.setName("Speciality");
-       // specalitiyTypeList.add(specalitiyTypeList.size(), "Speciality");
-
-       /* genderTypeList.add(Constants.GenderValues.MALE);
-        genderTypeList.add(Constants.GenderValues.FEMALE);
-        genderTypeList.add(Constants.GenderValues.GENDER);*/
-        // selectedGender= genderTypeList.get(2);
         HintAdapter aa = new HintAdapter<String >(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, specalitiyTypeList);
-     /*   {
 
-
-
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                // return super.getView(position, convertView, parent);
-                View view =super.getView(position, convertView, parent);
-                MyTextViewRR textView=view.findViewById(android.R.id.text1);
-                textView.setText(getItem(position).getName());
-                //(int left, int top, int right, int bottom)
-               *//*int padding= (int) MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._6sdp);
-                textView.setPadding(padding,padding,padding,padding);
-                // do whatever you want with this text view
-                if(Utils.isTablet()) {
-                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, (MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._7sdp)));
-                }else
-                 {
-                     textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, (MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._13sdp)));
-
-                 }*//*
-                return view;
-            }
-
-            @Override
-            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                //return super.getDropDownView(position, convertView, parent);
-                View view =super.getView(position, convertView, parent);
-                MyTextViewRR textView=view.findViewById(android.R.id.text1);
-                textView.setText(getItem(position).getName());
-               *//* int pading= (int) MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._6sdp);
-                textView.setPadding(pading,pading,pading,pading);
-
-                // do whatever you want with this text view
-                if(Utils.isTablet()) {
-                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, (MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._7sdp)));
-                }else
-                 {
-                     textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, (MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._13sdp)));
-
-                 }*//*
-                return view;
-            }
-        };*/
-        //aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         speciality_actv.setAdapter(aa);
        // speciality_actv.setSelection(aa.getCount());
 
@@ -710,8 +786,12 @@ public class SearchFragment extends AbstractFragment {
                 //if(position!=0)
                 //{
                 selectedSpeciality = specalitiyTypeList.get(position);
-                //}
-                Utils.showToastMessage("selected Speciality " + selectedSpeciality);
+                if(selectedSpeciality!=null) {
+                    namesSearch.setSpeciality(selectedSpeciality);
+                    callDoctorsClinicNamesMapper();
+                    //}
+                    Utils.showToastMessage("selected Speciality " + selectedSpeciality);
+                }
             }
 
             @Override
@@ -766,6 +846,42 @@ public class SearchFragment extends AbstractFragment {
             public void onPreClose() {
                 //imageView.setBackgroundResource(0);
                 imageView.setBackgroundResource(R.drawable.plus_icon);
+                //createRotateAnimator(buttonLayout, 180f, 0f).start();
+                // expandState.put(position, false);
+            }
+        });
+    }
+
+    private void setExpandedCityViewListener(ExpandableLinearLayout expandableLayout)
+    {
+        expandableLayout.setInRecyclerView(false);
+        //expandableLayout.setBackgroundColor(ContextCompat.getColor(this, item.colorId2));
+        expandableLayout.setInterpolator(com.github.aakira.expandablelayout.Utils.createInterpolator(com.github.aakira.expandablelayout.Utils.LINEAR_OUT_SLOW_IN_INTERPOLATOR));
+        //expandableLayout.setExpanded(expandState.get(position));
+        expandableLayout.setExpanded(false);
+        //final ImageView imageView= view.findViewById(R.id.advanced_search_iv);
+       // imageView.setBackgroundResource(R.drawable.plus_icon);
+        expandableLayout.setListener(new ExpandableLayoutListenerAdapter() {
+            @Override
+            public void onPreOpen() {
+                //imageView.setBackgroundResource(0);
+
+                //createRotateAnimator(buttonLayout, 0f, 180f).start();
+                //expandState.put(position, true);
+               /* new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        imageView.setBackgroundResource(R.drawable.minus_icon);
+                        ((ScrollView)getFragemtView().findViewById(R.id.scroll)).fullScroll(View.FOCUS_DOWN);
+
+                    }
+                },300);*/
+            }
+
+            @Override
+            public void onPreClose() {
+                //imageView.setBackgroundResource(0);
+                //imageView.setBackgroundResource(R.drawable.plus_icon);
                 //createRotateAnimator(buttonLayout, 180f, 0f).start();
                 // expandState.put(position, false);
             }

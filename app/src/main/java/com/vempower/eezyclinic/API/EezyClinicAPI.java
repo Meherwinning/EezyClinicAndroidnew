@@ -5,6 +5,7 @@ import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.APIResponce.CityListAPI;
 import com.vempower.eezyclinic.APIResponce.CountryListAPI;
 import com.vempower.eezyclinic.APIResponce.DashboardAPI;
+import com.vempower.eezyclinic.APIResponce.DoctorClinicNameListAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordOTPAPI;
 import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
@@ -98,4 +99,32 @@ public interface EezyClinicAPI {
     //http://202.63.103.194:8008/api/search/nationality
     @GET(data + "search/nationality")
     Call<NationalityListAPI> getNationalityListApi();
+
+
+    //http://202.63.103.194:8008/api/search/clinicdoctors
+    @POST(data + "search/clinicdoctors")
+    Call<DoctorClinicNameListAPI> getDoctorClinicNameListAPI(@Body RequestBody postBody);
+
+
+    /*{
+            "searchtype":"doctor",
+            "specality":"Cardiologist",
+            "city":"1",
+            "locality":"",
+            "latitude":"",
+            "search_name":"",
+
+            "launguage":["english"],
+            "onlinebooking":"",
+            "amount_range":"",
+            "perpage":"",
+            "page":""
+
+
+    }*/
+    // http://202.63.103.194:8008/api/search/doctorsclinicsearch
+    // @POST(data + "search/doctorsclinicsearch")
+    // Call<DoctorClinicNameListAPI> getDoctorClinicNameListAPI(@Body RequestBody postBody);
+
+
 }
