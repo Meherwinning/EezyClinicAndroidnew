@@ -32,14 +32,33 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
     private DoctorsListAdapter adapter;
     private ArrayList<SearchResultDoctorListData> doctorsList;
     private SearchRequest requestParms;
+
+    private boolean isOnlyViewList;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.search_doctor_list, container, false);
 
         setupSwipeRefreshLayout(fragmentView);
-        init();
+
+        if(isOnlyViewList)
+        {
+            viewList();
+        }else
+        {
+            refreshList();
+        }
+
         return fragmentView;
+    }
+
+    public ArrayList<SearchResultDoctorListData> getDoctorsList() {
+        return doctorsList;
+    }
+
+    public void isViewOnlyList(boolean isOnlyViewList)
+    {
+        this.isOnlyViewList=isOnlyViewList;
     }
 
     private void init() {
@@ -54,10 +73,16 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
         callSearchResultDoctorsListMapper();
     }
 
-    public void refreshList()
+    private void viewList()
     {
-        //TODO refresh the list
-        //adapter=null;
+        adapter=null;
+        setOrderItemsToAdapter(doctorsList);
+    }
+
+    private void refreshList()
+    {
+        init();
+
     }
 
     @Override

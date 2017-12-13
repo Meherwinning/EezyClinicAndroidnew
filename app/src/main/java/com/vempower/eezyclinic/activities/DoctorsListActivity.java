@@ -61,9 +61,8 @@ public class DoctorsListActivity extends AbstractMenuActivity {
     private static final String BOTTOM_IMAGE_ID_STR = "bottom_linear_image", BOTTOM_TEXTVIEW_ID_STR = "bottom_linear_textview";
 
     private boolean isDoctorsListShow;
+    private boolean isShowFilterIcon=true;;
 
-    private int[] imageUnselectIds={R.drawable.group_2,R.drawable.group_6,R.drawable.group_8,R.drawable.group_10};
-    private int[] imageSelectIds={R.drawable.group_6_blue,R.drawable.group_7_blue,R.drawable.group_8_blue,R.drawable.group_9_blue};
 
     private SearchDoctorsListFragment doctorsList;
     private MapFragment doctorsMap;
@@ -85,17 +84,24 @@ public class DoctorsListActivity extends AbstractMenuActivity {
                 public void onClick(View view) {
                     //Intent intent = new Intent(MyApplication.getCurrentActivityContext(), MapDoctorsActivity.class);
                     //startActivity(intent);
-                    if(isDoctorsListShow)
-                    {
-                        onDoctorMapClick();
-
-                    }else
-                    {
-                        onDoctorsListClick();
-                    }
+                    buttonClick();
                 }
             });
         }
+    }
+
+    private void buttonClick() {
+        if(isDoctorsListShow)
+        {
+            onDoctorMapClick();
+            isShowFilterIcon=false;
+
+        }else
+        {
+            onDoctorsListClick();
+            isShowFilterIcon=true;
+        }
+        invalidateOptionsMenu();
     }
 
 
@@ -134,7 +140,11 @@ public class DoctorsListActivity extends AbstractMenuActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.filter_menu, menu);
 
-       // MenuItem item = menu.findItem(R.id.action_search);
+        MenuItem item = menu.findItem(R.id.action_filter);
+        if(item!=null )
+        {
+            item.setVisible(isShowFilterIcon);
+        }
         //searchView.setMenuItem(item);
 
        // initDisplayCart(menu,R.id.action_cart);
@@ -171,13 +181,25 @@ public class DoctorsListActivity extends AbstractMenuActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+        if(!isShowFilterIcon)
+        {
+            buttonClick();
+            return false;
+        }
         onBackPressed();
         return true;
     }
 
-
-
-
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        if(!isShowFilterIcon)
+        {
+            buttonClick();
+            return;
+        }
+        finish();
+    }
 
     @Override
     protected void setFragment() {
@@ -188,10 +210,10 @@ public class DoctorsListActivity extends AbstractMenuActivity {
     {
         if(doctorsList==null) {
             doctorsList = new SearchDoctorsListFragment();
-
+            doctorsList.isViewOnlyList(false);
         }else
         {
-            doctorsList.refreshList();
+            doctorsList.isViewOnlyList(true);
         }
 
         setFragment(doctorsList);
@@ -205,9 +227,11 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         if(doctorsMap==null)
         {
             doctorsMap= new MapFragment();
-        }else
+
+        }
+        if(doctorsList!=null)
         {
-            doctorsMap.refreshMap();
+            doctorsMap.setDoctorsLsit( doctorsList.getDoctorsList());
         }
         setFragment(doctorsMap);
         isDoctorsListShow=false;
