@@ -3,6 +3,13 @@
     package="com.vempower.eezyclinic"
     android:installLocation="preferExternal">
 
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"/>
+
+
+
     <permission
         android:name="com.vempower.eezyclinic.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
@@ -171,11 +178,30 @@
             android:theme="@style/ThemeOverlay.MyNoTitleActivity">
 
         </activity>
-        <activity
+        <!--<activity
             android:name=".activities.MapsActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:screenOrientation="portrait"
+            android:theme="@style/ThemeOverlay.MyNoTitleActivity"/>-->
+
+
+
+        <activity
+            android:name=".activities.MapDoctorsActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:screenOrientation="portrait"
             android:theme="@style/ThemeOverlay.MyNoTitleActivity"/>
+
+
+        <activity
+            android:name=".activities.DoctorsListActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeOverlay.MyNoTitleActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize|adjustPan"></activity>
+
+
 
 
 
@@ -290,9 +316,13 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
         <!-- [END fcm_default_channel] -->
-        <meta-data
+       <!-- <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyASY1ag6QjorjncSq--r43Hs7JmclP1_IM" />
+            android:value="AIzaSyASY1ag6QjorjncSq&#45;&#45;r43Hs7JmclP1_IM" />-->
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyASY1ag6QjorjncSq--r43Hs7JmclP1_IM"/>
 
 
 

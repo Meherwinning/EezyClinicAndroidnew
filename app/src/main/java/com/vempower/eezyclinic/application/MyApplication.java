@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.core.SearchRequest;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 
@@ -37,6 +38,7 @@ public class MyApplication extends MultiDexApplication {
     private static ProgressDialog pd;
     private static Context mContext;
     private EezyClinicAPI eezyClinicAPI;
+    private SearchRequest searchRequestParms;
 
     // private RefWatcher refWatcher;
 
@@ -376,6 +378,14 @@ public class MyApplication extends MultiDexApplication {
 
     public void setCartValue(int cartValue) {
         SharedPreferenceUtils.setIntValueToSharedPrefarence(Constants.Pref.CART_VALUE_KEY,cartValue);
+    }
+
+    public void setSearchRequestParms(SearchRequest searchRequestParms) {
+        this.searchRequestParms = searchRequestParms;
+    }
+
+    public SearchRequest getSearchRequestParms() {
+        return searchRequestParms;
     }
 
     /*

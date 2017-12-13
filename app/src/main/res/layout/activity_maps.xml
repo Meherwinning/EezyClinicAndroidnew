@@ -60,6 +60,19 @@
         android:background="@color/white"
         />-->
 
+    <com.gc.materialdesign.views.ButtonFloat
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fab_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_15dp"
+        android:layout_marginBottom="@dimen/_40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        app:iconDrawable="@drawable/list_view_icon"
+        android:background="@color/white"
+        />
+
 </RelativeLayout>
 
 

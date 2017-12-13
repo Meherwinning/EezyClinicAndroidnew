@@ -1,25 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:fillViewport="true"
+        android:orientation="vertical"
         android:layout_height="match_parent">
-        <LinearLayout
+        <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
-<include layout="@layout/doctor_single_item"></include>
-    <include layout="@layout/doctor_single_item"></include>
-    <include layout="@layout/doctor_single_item"></include>
-    <include layout="@layout/doctor_single_item"></include>
-        <include layout="@layout/doctor_single_item"></include>
-        </LinearLayout>
-    </ScrollView>
+            android:layout_height="match_parent"
+            android:id="@+id/swipeContainer"
+            >
+            <com.vempower.eezyclinic.views.FixedRecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-</LinearLayout>
+            </com.vempower.eezyclinic.views.FixedRecyclerView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </RelativeLayout>
+
+   <!-- <com.gc.materialdesign.views.ButtonFloat
+        android:id="@+id/fab_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_15dp"
+        android:layout_marginBottom="@dimen/_40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        app:iconDrawable="@drawable/location_icon"
+        android:background="@color/white"
+        />-->
+
+</RelativeLayout>

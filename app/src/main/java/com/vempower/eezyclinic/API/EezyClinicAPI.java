@@ -107,22 +107,7 @@ public interface EezyClinicAPI {
     Call<DoctorClinicNameListAPI> getDoctorClinicNameListAPI(@Body RequestBody postBody);
 
 
-    /*{
-            "searchtype":"doctor",
-            "specality":"Cardiologist",
-            "city":"1",
-            "locality":"",
-            "latitude":"",
-            "search_name":"",
 
-            "launguage":["english"],
-            "onlinebooking":"",
-            "amount_range":"",
-            "perpage":"",
-            "page":""
-
-
-    }*/
     // http://202.63.103.194:8008/api/search/doctorsclinicsearch
      @POST(data + "search/doctorsclinicsearch")
      Call<SearchResultDoctorListAPI> getSearchResultDoctorListAPI(@Body RequestBody postBody);

@@ -1,14 +1,17 @@
-package com.vempower.eezyclinic.activities;
+package com.vempower.eezyclinic.fragments;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.view.ViewGroup;
 
 import com.gc.materialdesign.views.ButtonFloat;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -16,30 +19,49 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.SearchDoctorsListActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by challa on 12/12/17.
  */
 
-public class MapsActivity extends AbstractActivity implements OnMapReadyCallback/*, GoogleMap.OnMarkerClickListener */{
+public class MapFragment extends AbstractFragment implements OnMapReadyCallback/*, GoogleMap.OnMarkerClickListener */{
 
     public static final String LOCATION_OBJECT_KEY = "location_object_key";
     public static final String ENTITY_NAME_KEY = "entity_name_key";
 
     private GoogleMap mMap;
     //private ActiveDealsGeoLocation geoLocation;
+    private View  fragmentView;
+    private MapView mapView;
 
+    @Nullable
     @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        fragmentView = inflater.inflate(R.layout.some_layout, container, false);
+
+        mapView = (MapView) fragmentView.findViewById(R.id.mapview);
+        mapView.onCreate(savedInstanceState);
+
+
+        mapView.getMapAsync(this);
+
+        init();
+
+        return fragmentView;
+    }
+   /* @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         init();
 
-    }
+    }*/
 
     private void init() {
         //TODO
@@ -60,10 +82,27 @@ public class MapsActivity extends AbstractActivity implements OnMapReadyCallback
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+   /*     SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+*/
+
+
         //setFloatingActionButtonListners();
+
+        /*{
+            ButtonFloat fab = getFragemtView().findViewById(R.id.fab_list);
+
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MyApplication.getCurrentActivityContext(), SearchDoctorsListActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }*/
+
+
     }
 
     /*private void setFloatingActionButtonListners() {
@@ -202,6 +241,10 @@ public class MapsActivity extends AbstractActivity implements OnMapReadyCallback
 
     }
 
+    public void refreshMap() {
+        //TODO refresh the map
+    }
+
     private class MyLatLang
     {
         double lat,lng;
@@ -240,9 +283,35 @@ public class MapsActivity extends AbstractActivity implements OnMapReadyCallback
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return true;
+    public void onResume() {
+        if(mapView!=null)
+        mapView.onResume();
+        super.onResume();
     }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(mapView!=null)
+        mapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(mapView!=null)
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        if(mapView!=null)
+        mapView.onLowMemory();
+    }
+
+
 
    /* @Override
     public boolean onMarkerClick(Marker marker) {

@@ -102,5 +102,6 @@
     <string name="upcoming_empty_appointment_list_msg">You do not have any upcoming appointments.</string>
     <string name="upcoming_empty_followups_list_msg">You do not have any upcoming appointments.</string>
     <string name="title_activity_find_docotor">Find Doctor</string>
+    <string name="no_more_doctors_found_lbl">No more doctor(s) found.</string>
 
 </resources>

@@ -28,6 +28,21 @@ public class SearchRequest {
     private String perpage;
     private String page;
 
+    public SearchRequest(int limit) {
+        this.searchtype = "doctor";
+       // onlinebooking="0";
+        perpage=limit+"";
+        page="1";
+
+
+
+       /* "search_name":"",  //doctor/clinic name
+                "onlinebooking":"",  // 1 //0
+                "amount_range":"",   // 520-1000
+                "perpage":"",   //10 (Limit)
+                "page":""       //1   (Page No)*/
+    }
+
     public String getSearchtype() {
         return searchtype;
     }
@@ -80,42 +95,85 @@ public class SearchRequest {
         return insurenceList;
     }
 
-    public void setInsurenceList(String insurace) {
+    public void addInsurence(String insurace) {
         if(insurenceList==null)
         {
             this.insurenceList= new ArrayList<>();
         }
-        if(!TextUtils.isEmpty(insurace)) {
+        if(!TextUtils.isEmpty(insurace) && !insurenceList.contains(insurace)) {
+
             this.insurenceList.add(insurace);
         }
+    }
+    public void setInsurenceList(ArrayList<String> newInsuraceList) {
+        if(insurenceList==null)
+        {
+            this.insurenceList= new ArrayList<>();
+        }
+        if(newInsuraceList==null)
+        {
+            insurenceList.clear();
+            this.insurenceList= new ArrayList<>();
+            return;
+        }
+        insurenceList.addAll(newInsuraceList);
     }
 
     public ArrayList<String> getNationalityList() {
         return nationalityList;
     }
 
-    public void setNationalityList(String nationality) {
+    public void addNationality(String nationality) {
         if(this.nationalityList==null)
         {
             this.nationalityList= new ArrayList<>();
         }
-        if(!TextUtils.isEmpty(nationality)) {
+        if(!TextUtils.isEmpty(nationality) && !nationalityList.contains(nationality)) {
             this.nationalityList.add(nationality);
         }
+    }
+    public void setNationalityList(ArrayList<String> newNationality) {
+        if(this.nationalityList==null)
+        {
+            this.nationalityList= new ArrayList<>();
+        }
+        if(newNationality==null)
+        {
+            nationalityList.clear();
+            this.nationalityList= new ArrayList<>();
+            return;
+        }
+        nationalityList.addAll(newNationality);
+
     }
 
     public ArrayList<String> getGendersearch() {
         return gendersearch;
     }
 
-    public void setGendersearch(String gender) {
+    public void addGendersearch(String gender) {
         if(gendersearch==null)
         {
             gendersearch= new ArrayList<>();
         }
-        if(!TextUtils.isEmpty(gender)) {
+
+        if(!TextUtils.isEmpty(gender)&& !gendersearch.contains(gender)) {
             this.gendersearch.add(gender);
         }
+    }
+
+    public void setGendersearch(ArrayList<String> newGenderList) {
+        if(gendersearch==null)
+        {
+            gendersearch= new ArrayList<>();
+        }
+        if(newGenderList==null)
+        {
+            gendersearch.clear();
+            this.gendersearch= new ArrayList<>();
+            return;
+        }
+        gendersearch.addAll(newGenderList);
     }
 
     public String getLocality() {
@@ -130,14 +188,29 @@ public class SearchRequest {
         return launguage;
     }
 
-    public void setLaunguage(String launStr) {
+    public void addLaunguage(String launStr) {
         if(launguage==null)
         {
             this.launguage= new ArrayList<>();
         }
-        if(!TextUtils.isEmpty(launStr)) {
+        if(!TextUtils.isEmpty(launStr)&& !launguage.contains(launStr)) {
             this.launguage.add(launStr);
         }
+    }
+
+
+    public void setLaunguage(ArrayList<String> launStrList) {
+        if(launguage==null)
+        {
+            this.launguage= new ArrayList<>();
+        }
+        if(launStrList==null)
+        {
+            launguage.clear();
+            this.launguage= new ArrayList<>();
+            return;
+        }
+        launguage.addAll(launStrList);
     }
 
     public String getSearchName() {
@@ -168,15 +241,23 @@ public class SearchRequest {
         return perpage;
     }
 
-    public void setPerpage(String perpage) {
+    /*public void setPerpage(String perpage) {
         this.perpage = perpage;
-    }
+    }*/
 
     public String getPage() {
+        if(TextUtils.isEmpty(page))
+        {
+            page="1";
+        }
         return page;
     }
 
     public void setPage(String page) {
+        if(TextUtils.isEmpty(page))
+        {
+            page="1";
+        }
         this.page = page;
     }
 

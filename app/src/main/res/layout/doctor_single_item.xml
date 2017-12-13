@@ -73,7 +73,7 @@
             android:layout_width="match_parent"
 
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_10dp"
+            android:layout_marginBottom="@dimen/_5dp"
             android:layout_marginLeft="@dimen/_20dp"
             android:layout_marginRight="@dimen/_14dp"
 
@@ -85,7 +85,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_5dp"
-                android:text="Title"
                 android:textColor="#212121"
                 android:textSize="@dimen/_16dp" />
 
@@ -99,7 +98,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:text="Designation"
                     android:textColor="#777777"
                     android:textSize="@dimen/_13sp"
                      />
@@ -108,7 +106,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:text="Text1"
                     android:textColor="#777777"
                     android:textSize="@dimen/_13sp"
                     />
@@ -117,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:text="Text1"
+                    android:layout_marginBottom="@dimen/_3dp"
                     android:textColor="@color/dash_board_text_color"
                     android:textSize="@dimen/_13sp"
                      />
@@ -126,9 +123,10 @@
         </LinearLayout>
 
         <TextView
-            android:layout_below="@+id/img_linear1"
+            android:layout_below="@+id/content_linear1"
             android:id="@+id/devider_view"
             android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_5dp"
             android:alpha="0.4"
             android:background="@color/dash_board_text_color"
 
@@ -159,11 +157,11 @@
                     android:textColor="#cc212121"
                     android:textStyle="bold" />
                 <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:id="@+id/reviews_count_tv"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:text="1"
                     android:singleLine="true"
                     android:maxLines="1"
                     android:layout_marginLeft="@dimen/_4dp"
@@ -195,11 +193,11 @@
                     android:textColor="#cc212121"
                     android:textStyle="bold" />
                 <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:id="@+id/recommendations_count_tv"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:text="1"
                     android:singleLine="true"
                     android:maxLines="1"
                     android:layout_marginLeft="@dimen/_4dp"
@@ -216,6 +214,7 @@
 
                 android:layout_height="match_parent">
                 <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:id="@+id/book_appointment_tv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="left|center_vertical"
