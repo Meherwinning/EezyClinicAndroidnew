@@ -4,14 +4,15 @@ package com.vempower.eezyclinic.APIResponce;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.vempower.eezyclinic.APICore.SearchResultClinicData;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 
-public class SearchResultClickListAPI extends AbstractResponse {
+public class SearchResultClinicListAPI extends AbstractResponse {
 
 
     @SerializedName("data")
     @Expose
-    private List<Datum> data = null;
+    private List<SearchResultClinicData> data = null;
 
    // @SerializedName("meta_data")
    /* @Expose
@@ -19,11 +20,11 @@ public class SearchResultClickListAPI extends AbstractResponse {
 
 
 
-    public List<Datum> getData() {
+    public List<SearchResultClinicData> getData() {
         return data;
     }
 
-    public void setData(List<Datum> data) {
+    public void setData(List<SearchResultClinicData> data) {
         this.data = data;
     }
 

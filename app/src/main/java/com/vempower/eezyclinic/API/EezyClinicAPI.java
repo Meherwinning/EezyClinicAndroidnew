@@ -12,6 +12,7 @@ import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
 import com.vempower.eezyclinic.APIResponce.LanguageListAPI;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
 import com.vempower.eezyclinic.APIResponce.NationalityListAPI;
+import com.vempower.eezyclinic.APIResponce.SearchResultClinicListAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiesAPI;
@@ -111,6 +112,13 @@ public interface EezyClinicAPI {
     // http://202.63.103.194:8008/api/search/doctorsclinicsearch
      @POST(data + "search/doctorsclinicsearch")
      Call<SearchResultDoctorListAPI> getSearchResultDoctorListAPI(@Body RequestBody postBody);
+
+
+
+
+    // http://202.63.103.194:8008/api/search/doctorsclinicsearch
+    @POST(data + "search/doctorsclinicsearch")
+    Call<SearchResultClinicListAPI> getSearchResultClinicListAPI(@Body RequestBody postBody);
 
 
 }

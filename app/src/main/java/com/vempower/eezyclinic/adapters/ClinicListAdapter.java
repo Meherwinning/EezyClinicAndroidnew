@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.vempower.eezyclinic.APICore.SearchResultClinicData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
@@ -21,14 +22,14 @@ import java.util.List;
  * Created by Satishk on 9/7/2017.
  */
 
-public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.OrdersListHolder> {
+public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.OrdersListHolder> {
 
-    private List<SearchResultDoctorListData> doctorsList;
+    private List<SearchResultClinicData> doctorsList;
 
     private LayoutInflater inflater;
 
 
-    public DoctorsListAdapter(List<SearchResultDoctorListData> doctorsList) {
+    public ClinicListAdapter(List<SearchResultClinicData> doctorsList) {
         this.doctorsList = doctorsList;
         inflater = (LayoutInflater) MyApplication.getCurrentActivityContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -61,7 +62,7 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
     }
 
 
-    public void setUpdatedList(List<SearchResultDoctorListData> newList) {
+    public void setUpdatedList(List<SearchResultClinicData> newList) {
         if (newList == null || newList.size() == 0) {
             if (this.doctorsList == null) {
                 return;
@@ -98,43 +99,44 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
 
         }
 
-        public void bindData(final SearchResultDoctorListData data, final int position) {
+        public void bindData(final SearchResultClinicData data, final int position) {
             if (data == null) {
                 return;
             }
 
-            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, data.getDoctorLogo());
+            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, data.getMainDisplayImage());
 
 
-            title_tv.setText(data.getDoctorName());
-            designation_tv.setText(data.getSpecalities());
-            String timings = data.getConsultTimings();
+            title_tv.setText(data.getClinicName());
+            designation_tv.setText("Services Offered");
+         /*   String timings = data.getConsultTimings();
             if(timings!=null) {
                 timings = timings.replaceAll("\\r\\n", " ");
                 time_tv.setText(timings);
             }else
-            {
-                time_tv.setText("-");
-            }
+            {*/
+                time_tv.setText(data.getClinicService());
+            //}
 
 
-            String address = data.getAddress();
+            /*String address = data.getAddress();
             if(address!=null) {
                 address = address.replaceAll("\\r\\n", " ");
                 address_tv.setText(address);
             }else
             {
                 address_tv.setText("-");
-            }
+            }*/
 
 
-            reviews_count_tv.setText(TextUtils.isEmpty(data.getReviews_count())?"0":data.getReviews_count());
+            reviews_count_tv.setText(TextUtils.isEmpty(data.getTotalreviews())?"0":data.getTotalreviews());
 
-            recommendations_count_tv.setText(TextUtils.isEmpty(data.getRecommendations_count())?"0":data.getRecommendations_count());
+            recommendations_count_tv.setText(TextUtils.isEmpty(data.getTotalrecommend())?"0":data.getTotalrecommend());
+            book_appointment_tv.setText("View Doctors");
             book_appointment_tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Utils.showToastMsg(data.getDoctorName()+"");
+                    Utils.showToastMsg(data.getClinicName()+"");
                 }
             });
 

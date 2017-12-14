@@ -1,5 +1,5 @@
 
-package com.vempower.eezyclinic.APIResponce;
+package com.vempower.eezyclinic.APICore;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -50,7 +50,7 @@ public class SearchResultClinicData {
     private String totalrecommend;
     @SerializedName("clinic_service")
     @Expose
-    private ClinicService clinicService;
+    private String clinicService;
 
     public String getMainDisplayImage() {
         return mainDisplayImage;
@@ -164,11 +164,11 @@ public class SearchResultClinicData {
         this.totalrecommend = totalrecommend;
     }
 
-    public ClinicService getClinicService() {
+    public String getClinicService() {
         return clinicService;
     }
 
-    public void setClinicService(ClinicService clinicService) {
+    public void setClinicService(String clinicService) {
         this.clinicService = clinicService;
     }
 

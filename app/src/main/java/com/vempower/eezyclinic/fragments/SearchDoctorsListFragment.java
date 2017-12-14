@@ -48,6 +48,7 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
         {
             refreshList();
         }
+        isOnlyViewList=true;
 
         return fragmentView;
     }
@@ -69,7 +70,7 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
         {
             requestParms= new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT);
         }
-
+        requestParms.setPage("1");
         callSearchResultDoctorsListMapper();
     }
 

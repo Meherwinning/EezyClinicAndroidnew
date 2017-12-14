@@ -1,20 +1,21 @@
 package com.vempower.eezyclinic.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.gc.materialdesign.views.ButtonFloat;
+import com.vempower.eezyclinic.APICore.SearchResultClinicData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
+import com.vempower.eezyclinic.APIResponce.SearchResultClinicListAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.activities.MapDoctorsActivity;
+import com.vempower.eezyclinic.adapters.ClinicListAdapter;
 import com.vempower.eezyclinic.adapters.DoctorsListAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.SearchRequest;
+import com.vempower.eezyclinic.mappers.SearchResultClinicListMapper;
 import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
@@ -26,11 +27,11 @@ import java.util.List;
  * Created by satish on 6/12/17.
  */
 
-public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
+public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
 
     private View fragmentView;
-    private DoctorsListAdapter adapter;
-    private ArrayList<SearchResultDoctorListData> doctorsList;
+    private ClinicListAdapter adapter;
+    private ArrayList<SearchResultClinicData> clinicList;
     private SearchRequest requestParms;
 
     private boolean isOnlyViewList;
@@ -48,12 +49,13 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
         {
             refreshList();
         }
+        isOnlyViewList=true;
 
         return fragmentView;
     }
 
-    public ArrayList<SearchResultDoctorListData> getDoctorsList() {
-        return doctorsList;
+    public ArrayList<SearchResultClinicData> getDoctorsList() {
+        return clinicList;
     }
 
     public void isViewOnlyList(boolean isOnlyViewList)
@@ -63,12 +65,13 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
 
     private void init() {
         adapter=null;
-        doctorsList= new ArrayList<>();
+        clinicList= new ArrayList<>();
         requestParms = MyApplication.getInstance().getSearchRequestParms();
         if(requestParms==null)
         {
             requestParms= new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT);
         }
+        requestParms.setPage("1");
 
         callSearchResultDoctorsListMapper();
     }
@@ -76,7 +79,7 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
     private void viewList()
     {
         adapter=null;
-        setOrderItemsToAdapter(doctorsList);
+        setOrderItemsToAdapter(clinicList);
     }
 
     private void refreshList()
@@ -99,9 +102,32 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
 
     private void callSearchResultDoctorsListMapper()
     {
-        SearchResultDoctorsListMapper mapper=new SearchResultDoctorsListMapper(requestParms);
 
-        mapper.setOnSearchResultDoctorListAPItListener(new SearchResultDoctorsListMapper.SearchResultDoctorListAPItListener() {
+        SearchResultClinicListMapper mapper=new SearchResultClinicListMapper(requestParms);
+
+        mapper.setOnSearchResultClinicListAPItListener(new SearchResultClinicListMapper.SearchResultClinicListAPItListener() {
+            @Override
+            public void getSearchResultClinicListAPI(SearchResultClinicListAPI searchResultClinicListAPI, String errorMessage) {
+                if(!isValidResponse(searchResultClinicListAPI,errorMessage))
+                {
+                    return;
+                }
+                if(!(requestParms.getPage().equalsIgnoreCase("1")) && (searchResultClinicListAPI.getData()==null ||searchResultClinicListAPI.getData().size()==0) )
+                {
+                    Utils.showToastMsg(R.string.no_more_clinic_found_lbl);
+                    return;
+
+                }
+                if(searchResultClinicListAPI.getData()!=null )
+                {
+                    clinicList.addAll(searchResultClinicListAPI.getData());
+                }
+                // Utils.showToastMessage(searchResultDoctorListAPI.toString());
+                setOrderItemsToAdapter(clinicList);
+            }
+        });
+
+      /*  mapper.setOnSearchResultClinicListAPItListener(new SearchResultDoctorsListMapper.SearchResultDoctorListAPItListener() {
             @Override
             public void getSearchResultDoctorListAPI(SearchResultDoctorListAPI searchResultDoctorListAPI, String errorMessage) {
                 if(!isValidResponse(searchResultDoctorListAPI,errorMessage))
@@ -116,21 +142,21 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
                 }
                 if(searchResultDoctorListAPI.getData()!=null )
                 {
-                    doctorsList.addAll(searchResultDoctorListAPI.getData());
+                    clinicList.addAll(searchResultDoctorListAPI.getData());
                 }
                // Utils.showToastMessage(searchResultDoctorListAPI.toString());
-                setOrderItemsToAdapter(doctorsList);
+                setOrderItemsToAdapter(clinicList);
             }
-        });
+        });*/
     }
 
-    public void setOrderItemsToAdapter(List<SearchResultDoctorListData> orders) {
+    public void setOrderItemsToAdapter(List<SearchResultClinicData> orders) {
         hideProgressView();
 
 
         if (adapter == null) {
 
-            adapter = new DoctorsListAdapter(orders);
+            adapter = new ClinicListAdapter(orders);
 
             recyclerView.setAdapter(adapter);
         } else {
@@ -145,7 +171,7 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
         if (swipeLayout != null) {
             swipeLayout.setRefreshing(false);
         }
-        doctorsList= new ArrayList<>();
+        clinicList= new ArrayList<>();
         requestParms.setPage("1");
         callSearchResultDoctorsListMapper();
 

@@ -1,4 +1,4 @@
-package me.relex.viewpagerheaderscrolldemo.tools;
+package com.vempower.eezyclinic.tools;
 
 public interface ScrollableFragmentListener {
 

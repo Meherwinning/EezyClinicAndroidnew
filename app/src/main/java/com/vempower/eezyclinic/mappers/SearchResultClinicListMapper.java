@@ -5,9 +5,8 @@ import android.util.Log;
 
 import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
-import com.vempower.eezyclinic.APIResponce.LanguageListAPI;
+import com.vempower.eezyclinic.APIResponce.SearchResultClinicListAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
-import com.vempower.eezyclinic.activities.SearchActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.SearchRequest;
 import com.vempower.eezyclinic.utils.Utils;
@@ -25,20 +24,20 @@ import retrofit.Retrofit;
  * Created by Satishk on 4/10/2017.
  */
 
-public class SearchResultDoctorsListMapper extends  AbstractMapper  implements Callback<SearchResultDoctorListAPI> {
+public class SearchResultClinicListMapper extends  AbstractMapper  implements Callback<SearchResultClinicListAPI> {
 
 
-    private SearchResultDoctorListAPItListener listener;
+    private SearchResultClinicListAPItListener listener;
     private final SearchRequest searchRequestParams;
 
 
-    public SearchResultDoctorsListMapper(SearchRequest searchRequestParams) {
+    public SearchResultClinicListMapper(SearchRequest searchRequestParams) {
         this.searchRequestParams = searchRequestParams;
     }
 
-    public void setOnSearchResultDoctorListAPItListener(SearchResultDoctorListAPItListener listener) {
+    public void setOnSearchResultClinicListAPItListener(SearchResultClinicListAPItListener listener) {
         if (listener == null) {
-            Log.i(MyApplication.getCurrentActivityContext().getClass().getName(), "Invalid SearchResultDoctorListAPItListener instance.");
+            Log.i(MyApplication.getCurrentActivityContext().getClass().getName(), "Invalid SearchResultClinicListAPI instance.");
             return;
 
         }
@@ -62,24 +61,24 @@ public class SearchResultDoctorsListMapper extends  AbstractMapper  implements C
         if (requestBody == null) {
             MyApplication.hideTransaprentDialog();
             if (listener != null) {
-                listener.getSearchResultDoctorListAPI(null,null);
+                listener.getSearchResultClinicListAPI(null,null);
             }
             return;
         }
 
-        Call<SearchResultDoctorListAPI> apiResponseCall = stashDealAPI.getSearchResultDoctorListAPI(requestBody);
+        Call<SearchResultClinicListAPI> apiResponseCall = stashDealAPI.getSearchResultClinicListAPI(requestBody);
 
         apiResponseCall.enqueue(this);
     }
 
     @Override
-    public void onResponse(Response<SearchResultDoctorListAPI> response, Retrofit retrofit) {
+    public void onResponse(Response<SearchResultClinicListAPI> response, Retrofit retrofit) {
         MyApplication.hideTransaprentDialog();
 
-        getMyResponse(response, new MyResponse<SearchResultDoctorListAPI>() {
+        getMyResponse(response, new MyResponse<SearchResultClinicListAPI>() {
             @Override
-            public void getMyResponse(SearchResultDoctorListAPI responseBody, String errorMsg) {
-                listener.getSearchResultDoctorListAPI(responseBody,errorMsg);
+            public void getMyResponse(SearchResultClinicListAPI responseBody, String errorMsg) {
+                listener.getSearchResultClinicListAPI(responseBody,errorMsg);
             }
         });
 
@@ -92,10 +91,10 @@ public class SearchResultDoctorsListMapper extends  AbstractMapper  implements C
     public void onFailure(Throwable error) {
         MyApplication.hideTransaprentDialog();
 
-        onMyFailure(error, new MyResponse<SearchResultDoctorListAPI>() {
+        onMyFailure(error, new MyResponse<SearchResultClinicListAPI>() {
             @Override
-            public void getMyResponse(SearchResultDoctorListAPI responseBody, String errorMsg) {
-                listener.getSearchResultDoctorListAPI(responseBody,errorMsg);
+            public void getMyResponse(SearchResultClinicListAPI responseBody, String errorMsg) {
+                listener.getSearchResultClinicListAPI(responseBody,errorMsg);
             }
         });
 
@@ -238,7 +237,7 @@ public class SearchResultDoctorsListMapper extends  AbstractMapper  implements C
         return getRequestBody(jsonObject);
     }
 
-    public interface SearchResultDoctorListAPItListener {
-        public void getSearchResultDoctorListAPI(SearchResultDoctorListAPI searchResultDoctorListAPI, String errorMessage);
+    public interface SearchResultClinicListAPItListener {
+        public void getSearchResultClinicListAPI(SearchResultClinicListAPI searchResultClinicListAPI, String errorMessage);
     }
 }

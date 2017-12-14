@@ -54,6 +54,7 @@
     <color name="upcoming_folloups_color">#f5a623</color>
     <color name="dash_board_text_color">#9f9f9f</color>
     <color name="side_menu_bg_color">#fafafa</color>
+    <color name="white_with_alpha">#bcffffff</color>
 
 
 </resources>

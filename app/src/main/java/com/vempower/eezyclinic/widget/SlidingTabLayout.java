@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.relex.viewpagerheaderscrolldemo.widget;
+package com.vempower.eezyclinic.widget;
 
 import android.content.Context;
 import android.graphics.Color;
