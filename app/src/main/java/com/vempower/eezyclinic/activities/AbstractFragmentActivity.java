@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.activities;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentTransaction;
@@ -174,6 +175,15 @@ public class AbstractFragmentActivity extends AbstractActivity  /*implements OTP
                 dialog.getWindow().setLayout(width, height);
             }
         }
+
+    }
+
+    protected void myStartActivity(Class<? extends Activity> myClass)
+    {
+        Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
+        intent.setClass(this,myClass);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
 
     }
 

@@ -101,10 +101,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/_15dp"
-        android:layout_marginBottom="@dimen/_40dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_50dp"
         android:layout_alignParentEnd="true"
-        app:iconDrawable="@drawable/list_view_icon"
-        android:background="@color/white"
+
+        android:background="#62bb50"
         />
 </RelativeLayout>
+
+    <!--app:iconDrawable="@drawable/list_view_icon"-->

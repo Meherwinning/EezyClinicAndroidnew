@@ -19,37 +19,31 @@
 package com.vempower.eezyclinic.activities;
 
 import android.content.Intent;
-import android.os.Build;
+import android.os.Handler;
 import android.os.Messenger;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonFloat;
-import com.vempower.eezyclinic.APICore.Appointment;
-import com.vempower.eezyclinic.APICore.Followup;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.AbstractAppHandler;
+import com.vempower.eezyclinic.callbacks.FilterRefreshListListener;
 import com.vempower.eezyclinic.callbacks.HomeBottomItemClickListener;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
+import com.vempower.eezyclinic.core.SearchRequest;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
-import com.vempower.eezyclinic.fragments.HomeFragment;
 import com.vempower.eezyclinic.fragments.MapFragment;
-import com.vempower.eezyclinic.fragments.MedicalRecordsFragment;
-import com.vempower.eezyclinic.fragments.MyProfileFragment;
+import com.vempower.eezyclinic.fragments.SearchClinicListFragment;
 import com.vempower.eezyclinic.fragments.SearchDoctorsListFragment;
-import com.vempower.eezyclinic.fragments.SettingsFragment;
-import com.vempower.eezyclinic.interfaces.HomeListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
-
-import java.util.List;
 
 /**
  * Created by Satish on 11/15/2017.
@@ -62,22 +56,36 @@ public class DoctorsListActivity extends AbstractMenuActivity {
 
     private boolean isDoctorsListShow;
     private boolean isShowFilterIcon=true;;
+    private boolean isClinicListShow=false;
 
 
-    private SearchDoctorsListFragment doctorsList;
-    private MapFragment doctorsMap;
+    private SearchDoctorsListFragment doctorsListFragment;
+    private SearchClinicListFragment clinicListFragment;
+    private MapFragment doctorsMapFragment;
+    private ButtonFloat fab;
+    private TextView titleName;
 
     protected void setMyContectntView()
     {
         setContentView(R.layout.activity_doctors_list_menu_layout);
+        fab = findViewById(R.id.fab_all);
+
         onDoctorsListClick();
+        //onClinicListClick();
         myInit();
+        getIntent().putExtra(ListenerKey.FILTER_REFRESH_LIST_LISTENER_KEY, new Messenger(getFilterRefreshListListener()));
+
         //getIntent().putExtra(ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, new Messenger(getBottomSelectItemKeyListener()));
     }
 
+
+
     private void myInit() {
         {
-            ButtonFloat fab = findViewById(R.id.fab_all);
+
+            fab.setDrawableIcon(getResources().getDrawable(R.drawable.location_icon));
+
+            handleFAB();
 
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -90,16 +98,31 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         }
     }
 
+    private void handleFAB() {
+        if(!isClinicListShow)
+        {
+            fab.setVisibility(View.VISIBLE);
+        }else
+        {
+            fab.setVisibility(View.GONE);
+        }
+    }
+
     private void buttonClick() {
+        //handleFAB();
         if(isDoctorsListShow)
         {
             onDoctorMapClick();
             isShowFilterIcon=false;
+            fab.setDrawableIcon(getResources().getDrawable(R.drawable.list_view_icon));
+
 
         }else
         {
             onDoctorsListClick();
             isShowFilterIcon=true;
+            fab.setDrawableIcon(getResources().getDrawable(R.drawable.location_icon));
+
         }
         invalidateOptionsMenu();
     }
@@ -128,11 +151,11 @@ public class DoctorsListActivity extends AbstractMenuActivity {
 
    /* public AbstractFragment getSearchDoctorsListFragment() {
        // HomeFragment fragment=new HomeFragment();
-        if(doctorsList==null) {
-            doctorsList = new SearchDoctorsListFragment();
+        if(doctorsListFragment==null) {
+            doctorsListFragment = new SearchDoctorsListFragment();
 
         }
-        return doctorsList;
+        return doctorsListFragment;
 
     }*/
 
@@ -152,19 +175,42 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.action_filter:
+                Intent  intent= getIntent();
+                intent.setClass(this,FilterActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     public void setActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+       // getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        TextView titleName = toolbar.findViewById(R.id.title_logo_tv);
+         titleName = toolbar.findViewById(R.id.title_logo_tv);
         //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
+        if(titleName!=null)
         titleName.setText(Utils.getStringFromResources(R.string.title_activity_find_docotor));
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //do something you want
+                if(!isShowFilterIcon && !isClinicListShow)
+                {
+                    buttonClick();
+                    return;
+                }
                 finish();
             }
         });
@@ -181,7 +227,7 @@ public class DoctorsListActivity extends AbstractMenuActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        if(!isShowFilterIcon)
+        if(!isShowFilterIcon && !isClinicListShow)
         {
             buttonClick();
             return false;
@@ -193,7 +239,7 @@ public class DoctorsListActivity extends AbstractMenuActivity {
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        if(!isShowFilterIcon)
+        if(!isShowFilterIcon && !isClinicListShow)
         {
             buttonClick();
             return;
@@ -208,37 +254,101 @@ public class DoctorsListActivity extends AbstractMenuActivity {
 
     public void onDoctorsListClick()
     {
-        if(doctorsList==null) {
-            doctorsList = new SearchDoctorsListFragment();
-            doctorsList.isViewOnlyList(false);
+        isClinicListShow=false;
+        myInit();
+        if(titleName!=null) {
+            titleName.setText(Utils.getStringFromResources(R.string.title_activity_find_docotor));
+        }
+            if(doctorsListFragment ==null) {
+            doctorsListFragment = new SearchDoctorsListFragment();
+            doctorsListFragment.isViewOnlyList(false);
         }else
         {
-            doctorsList.isViewOnlyList(true);
+            doctorsListFragment.isViewOnlyList(true);
         }
 
-        setFragment(doctorsList);
+        setFragment(doctorsListFragment);
+        isDoctorsListShow=true;
+
+
+    }
+
+    public void onClinicListClick()
+    {
+        isClinicListShow=true;
+        myInit();
+        if(titleName!=null) {
+            titleName.setText(Utils.getStringFromResources(R.string.title_activity_find_clinic));
+        }
+        if(clinicListFragment ==null) {
+            clinicListFragment = new SearchClinicListFragment();
+            clinicListFragment.isViewOnlyList(false);
+        }else
+        {
+            clinicListFragment.isViewOnlyList(true);
+        }
+
+        setFragment(clinicListFragment);
         isDoctorsListShow=true;
 
     }
 
 
+
+
     public void onDoctorMapClick()
     {
-        if(doctorsMap==null)
+        isClinicListShow=false;
+        handleFAB();
+        if(doctorsMapFragment ==null)
         {
-            doctorsMap= new MapFragment();
+            doctorsMapFragment = new MapFragment();
 
         }
-        if(doctorsList!=null)
+        if(doctorsListFragment !=null)
         {
-            doctorsMap.setDoctorsLsit( doctorsList.getDoctorsList());
+            doctorsMapFragment.setDoctorsLsit( doctorsListFragment.getDoctorsList());
         }
-        setFragment(doctorsMap);
+        setFragment(doctorsMapFragment);
         isDoctorsListShow=false;
 
     }
 
 
+    @NonNull
+    private AbstractAppHandler getFilterRefreshListListener() {
+        return new AbstractAppHandler() {
+            @Override
+            public void getObject(Object obj) {
+                if (obj != null && (obj instanceof FilterRefreshListListener) ) {
+                    FilterRefreshListListener listener= (FilterRefreshListListener) obj;
 
+                      refreshTheList(listener.refreshList());
+
+                }
+            }
+        };
+    }
+
+    private void refreshTheList(String searchRequestStr) {
+
+        if(TextUtils.isEmpty(searchRequestStr))
+        {
+            return;
+        }
+        if(searchRequestStr.equalsIgnoreCase(SearchRequest.DOCTOR_TYPE))
+        {
+            doctorsListFragment=null;
+            onDoctorsListClick();
+            //if()
+
+        }else if(searchRequestStr.equalsIgnoreCase(SearchRequest.CLINIC_TYPE))
+        {
+            clinicListFragment=null;
+            onClinicListClick();
+        }
+
+
+    }
 
 }

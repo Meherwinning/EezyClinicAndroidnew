@@ -11,6 +11,7 @@ import java.util.List;
 
 public class SearchRequest {
 
+    public static final String DOCTOR_TYPE="doctor",CLINIC_TYPE="clinic";
     private String searchtype;
     private String specality;
     private String country;
@@ -28,8 +29,9 @@ public class SearchRequest {
     private String perpage;
     private String page;
 
+
     public SearchRequest(int limit) {
-        this.searchtype = "doctor";
+        this.searchtype = DOCTOR_TYPE;
        // onlinebooking="0";
         perpage=limit+"";
         page="1";
