@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.appscumen.example;
+package com.vempower.eezyclinic.views;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -45,6 +45,8 @@ import android.view.ViewConfiguration;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.CompoundButton;
+
+import com.vempower.eezyclinic.R;
 
 /**
  * A Switch is a two-state toggle switch widget that can select between two
@@ -499,7 +501,7 @@ public class MySwitch extends CompoundButton {
 
     private Layout makeLayout(CharSequence text) {
         return new StaticLayout(text, mTextPaint,
-                (int) android.util.FloatMath.ceil(Layout.getDesiredWidth(text, mTextPaint)),
+                (int) Math.ceil(Layout.getDesiredWidth(text, mTextPaint)),
                 Layout.Alignment.ALIGN_NORMAL, 1.f, 0, true);
     }
 
@@ -1593,5 +1595,8 @@ public class MySwitch extends CompoundButton {
     @Override
     protected boolean verifyDrawable(Drawable who) {
         return super.verifyDrawable(who) || who == mThumbDrawable || who == mTrackDrawable;
+    }
+    public void setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener listener) {
+       super.setOnCheckedChangeListener(listener);
     }
 }

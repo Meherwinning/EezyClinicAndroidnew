@@ -55,6 +55,12 @@
     <color name="dash_board_text_color">#9f9f9f</color>
     <color name="side_menu_bg_color">#fafafa</color>
     <color name="white_with_alpha">#bcffffff</color>
+    <color name="switch_button_line_color">#ffb0daa4</color>
+    <color name="switch_button_color">#c262bb50</color>
+    <color name="colorControlNormal">#b162bb50</color>
+    <color name="colorControlActivated">#62bb50</color>
+    <color name="colorSwitchThumbNormal">#ffb0daa4</color>
+    <color name="colorSwitchBackground">#FFC1C1C1</color>
 
 
 </resources>

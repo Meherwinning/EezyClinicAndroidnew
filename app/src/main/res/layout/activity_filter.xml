@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/transparent"
+    xmlns:mySwitch="http://schemas.android.com/apk/res-auto"
+
+    android:background="@color/white"
     android:layout_height="match_parent">
     <FrameLayout
         android:layout_alignParentTop="true"
@@ -61,11 +63,13 @@
         android:layout_below="@+id/toolbar_container"
         android:layout_above="@+id/bottom_linear"
         android:layout_width="match_parent"
-        android:padding="@dimen/_20dp"
+        android:layout_marginTop="@dimen/_16dp"
+
+
         android:layout_height="match_parent">
     <LinearLayout
 
-        android:orientation="horizontal"
+        android:orientation="vertical"
 
 
         android:background="@color/white"
@@ -75,24 +79,431 @@
 
 
 
-        <com.rey.material.widget.Switch
-            android:id="@+id/search_type_switch"
-            android:layout_width="wrap_content"
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
             android:layout_height="wrap_content">
-            ></com.rey.material.widget.Switch>
-        <TextView
-            android:id="@+id/search_type_switch_tv"
-            android:layout_width="wrap_content"
-            android:text="Filter"
-            android:textColor="@color/black"
 
-            android:layout_marginLeft="@dimen/_10dp"
-            android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/doctor_or_clinic_liniear"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:paddingLeft="@dimen/_10dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_18dp"
+                android:paddingRight="@dimen/_10dp"
+
+                android:paddingTop="@dimen/_8dp"
+                android:paddingBottom="@dimen/_8dp"
+
+                android:layout_height="wrap_content">
+                <!--<attr name="sw_trackCap" format="integer">
+                    <enum name="butt" value="0x00000000" />
+                    <enum name="round" value="0x00000001" />
+                    <enum name="square" value="0x00000002" />
+                </attr>-->
+                <!--<com.nightonke.jellytogglebutton.JellyToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:jtbJelly="itself"
+                    android:visibility="gone"
+                    />-->
+                <com.vempower.eezyclinic.views.MySwitch
+                    android:id="@+id/switch1"
+                    style="@style/mySwitchStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="9dp"
+                    android:gravity="center"
+                    mySwitch:textOff="  Doctor  "
+                    mySwitch:textOn="  Clinic  " />
+
+
+                    <!-- <com.rey.material.widget.Switch
+                    android:id="@+id/search_type_switch"
+                    android:layout_width="wrap_content"
+                    app:sw_trackSize="@dimen/_14dp"
+                    app:sw_thumbRadius="@dimen/_12dp"
+                    app:sw_trackCap="round"
+                    app:sw_thumbElevation="2dp"
+
+                    android:layout_height="wrap_content">
+                    ></com.rey.material.widget.Switch>-->
+                <!--<TextView
+                    android:id="@+id/search_type_switch_tv"
+                    android:layout_width="wrap_content"
+                    android:text="Filter"
+                    android:textColor="@color/black"
+
+                    android:layout_marginLeft="@dimen/_10dp"
+                    android:layout_height="wrap_content" />-->
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:background="#000000"
+                android:alpha="0.5"
+                android:layout_marginLeft="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginBottom="@dimen/_3dp"
+                android:layout_height="0.5dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:paddingLeft="@dimen/_10dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_18dp"
+                android:paddingRight="@dimen/_10dp"
+
+                android:layout_height="wrap_content">
+
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:clickable="true"
+                    android:paddingTop="@dimen/_8dp"
+                    android:paddingBottom="@dimen/_8dp"
+                    android:text="Consultation Fee"
+                    android:textColor="#212121"
+
+                    android:textSize="@dimen/_16dp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/plus_icon_grey"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:background="#000000"
+                android:alpha="0.5"
+                android:layout_marginLeft="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginBottom="@dimen/_3dp"
+                android:layout_height="0.5dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:paddingLeft="@dimen/_10dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_18dp"
+                android:paddingRight="@dimen/_10dp"
+
+                android:layout_height="wrap_content">
+
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:paddingBottom="@dimen/_8dp"
+                    android:paddingTop="@dimen/_8dp"
+                    android:text="Online booking"
+                    android:textColor="#212121"
+
+                    android:textSize="@dimen/_16dp" />
+
+               <!-- <attr name="sw_trackSize" format="reference|dimension"/>
+                <attr name="sw_trackColor" format="reference|color"/>
+                <attr name="sw_trackCap" format="integer">
+                    <enum name="butt" value="0x00000000" />
+                    <enum name="round" value="0x00000001" />
+                    <enum name="square" value="0x00000002" />
+                </attr>
+                <attr name="sw_thumbColor" format="reference|color"/>
+                <attr name="sw_thumbRadius" format="reference|dimension"/>
+                <attr name="sw_thumbElevation" format="reference|dimension"/>
+                <attr name="sw_animDuration" format="reference|integer"/>
+                <attr name="sw_interpolator" format="reference"/>
+                <attr name="android:gravity" />
+                <attr name="android:checked" />-->
+                <com.rey.material.widget.Switch
+                    android:id="@+id/online_booking_switch"
+                    android:layout_width="wrap_content"
+                    app:sw_trackSize="@dimen/_14dp"
+                    app:sw_thumbRadius="@dimen/_12dp"
+                    app:sw_thumbElevation="2dp"
+
+                    android:layout_height="wrap_content">
+                    ></com.rey.material.widget.Switch>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:background="#000000"
+                android:alpha="0.5"
+                android:layout_marginLeft="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginBottom="@dimen/_3dp"
+                android:layout_height="0.5dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:paddingLeft="@dimen/_10dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_18dp"
+                android:paddingRight="@dimen/_10dp"
+
+                android:layout_height="wrap_content">
+
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:clickable="true"
+                    android:paddingTop="@dimen/_8dp"
+                    android:paddingBottom="@dimen/_8dp"
+                    android:text="Gender"
+                    android:textColor="#212121"
+
+                    android:textSize="@dimen/_16dp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/plus_icon_grey"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:background="#000000"
+                android:alpha="0.5"
+                android:layout_marginLeft="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginBottom="@dimen/_3dp"
+                android:layout_height="0.5dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:paddingLeft="@dimen/_10dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_18dp"
+                android:paddingRight="@dimen/_10dp"
+
+                android:layout_height="wrap_content">
+
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:clickable="true"
+                    android:paddingTop="@dimen/_8dp"
+                    android:paddingBottom="@dimen/_8dp"
+                    android:text="Language Known"
+                    android:textColor="#212121"
+
+                    android:textSize="@dimen/_16dp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/plus_icon_grey"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:background="#000000"
+                android:alpha="0.5"
+                android:layout_marginLeft="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginBottom="@dimen/_3dp"
+                android:layout_height="0.5dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:paddingLeft="@dimen/_10dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_18dp"
+                android:paddingRight="@dimen/_10dp"
+
+                android:layout_height="wrap_content">
+
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:clickable="true"
+                    android:paddingTop="@dimen/_8dp"
+                    android:paddingBottom="@dimen/_8dp"
+                    android:text="Nationality"
+                    android:textColor="#212121"
+
+                    android:textSize="@dimen/_16dp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/plus_icon_grey"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:background="#000000"
+                android:alpha="0.5"
+                android:layout_marginLeft="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginBottom="@dimen/_3dp"
+                android:layout_height="0.5dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:paddingLeft="@dimen/_10dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_18dp"
+                android:paddingRight="@dimen/_10dp"
+
+                android:layout_height="wrap_content">
+
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:clickable="true"
+                    android:paddingTop="@dimen/_8dp"
+                    android:paddingBottom="@dimen/_8dp"
+                    android:text="Insurance Accepted"
+                    android:textColor="#212121"
+
+                    android:textSize="@dimen/_16dp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/plus_icon_grey"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:background="#000000"
+                android:alpha="0.5"
+                android:layout_marginLeft="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginBottom="@dimen/_3dp"
+                android:layout_height="0.5dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:paddingLeft="@dimen/_10dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_18dp"
+                android:paddingRight="@dimen/_10dp"
+
+                android:layout_height="wrap_content">
+
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:clickable="true"
+                    android:paddingTop="@dimen/_8dp"
+                    android:paddingBottom="@dimen/_8dp"
+                    android:text="Insurance Accepted"
+                    android:textColor="#212121"
+
+                    android:textSize="@dimen/_16dp" />
+
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:background="#000000"
+                android:alpha="0.5"
+                android:layout_marginLeft="@dimen/_20dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginBottom="@dimen/_3dp"
+                android:layout_height="0.5dp" />
+
+        </LinearLayout>
+
+
+
+
 
 
     </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:background="#000000"
+            android:alpha="0.5"
+            android:layout_marginLeft="@dimen/_20dp"
+            android:layout_marginTop="@dimen/_5dp"
+            android:layout_marginBottom="@dimen/_3dp"
+            android:layout_height="0.5dp" />
         <LinearLayout
+            android:id="@+id/bottom_buttons"
             android:background="@color/black"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
@@ -113,7 +524,7 @@
                 android:layout_width="0dp"
                 android:onClick="onApplyButtonClick"
                 android:layout_weight="1"
-                android:textColor="@color/black"
+                android:textColor="#28b0e2"
                 android:text="apply"
                 android:layout_margin="1dp"
                 android:gravity="center"

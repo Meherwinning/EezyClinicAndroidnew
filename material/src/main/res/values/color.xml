@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+    <color name="colorSwitchNormal">#e7d9f4d4</color>
+    <color name="colorSwitchActivated">#62bb50</color>
+
+    <color name="colorSwitchTrackNormal">#ddd9f4d4</color>
+    <color name="colorSwitchTrackActivated">#ca98ed86</color>
+</resources>

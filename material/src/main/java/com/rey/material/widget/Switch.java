@@ -194,9 +194,15 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
                     new int[]{android.R.attr.state_checked},
             };
             int[] colors = new int[]{
-                    ColorUtil.getColor(ThemeUtil.colorControlNormal(context, 0xFF000000), 0.5f),
-                    ColorUtil.getColor(ThemeUtil.colorControlActivated(context, 0xFF000000), 0.5f),
-            };
+					getResources().getColor(R.color.colorSwitchTrackNormal),getResources().getColor(R.color.colorSwitchTrackActivated)
+
+					//R.color.colorSwitchNormal,R.color.colorSwitchActivated
+                    //ColorUtil.getColor(ThemeUtil.colorControlNormal(context, 0xFF000000), 0.5f),
+                    //ColorUtil.getColor(ThemeUtil.colorControlActivated(context, 0xFF000000), 0.5f),
+					//ColorUtil.getColor(ThemeUtil.colorControlNormal(context, 0xFF000000), 0.5f),
+					//ColorUtil.getColor(ThemeUtil.colorControlActivated(context, 0xFF000000), 0.5f),
+
+			};
 
             mTrackColors = new ColorStateList(states, colors);
         }
@@ -207,8 +213,9 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
                     new int[]{android.R.attr.state_checked},
             };
             int[] colors = new int[]{
-                    0xFAFAFA,
-                    ThemeUtil.colorControlActivated(context, 0xFF000000),
+				getResources().getColor(R.color.colorSwitchNormal),getResources().getColor(R.color.colorSwitchActivated)
+                   /* 0xFAFAFA,
+                    ThemeUtil.colorControlActivated(context, 0xFF000000),*/
             };
 
             mThumbColors = new ColorStateList(states, colors);

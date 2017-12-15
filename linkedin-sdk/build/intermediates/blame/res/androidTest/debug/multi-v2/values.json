@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/linkedin-sdk/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values/values.xml",
+            "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/linkedin-sdk/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values/values.xml",
             "map": [
                 {
-                    "source": "/home/challa/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.0.1.aar/857c389355ef2cf834e388b0195b0324/res/values/values.xml",
+                    "source": "/home/satish/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.0.1.aar/783ac40e9b5a8ce455d6496c5ed6e0f6/res/values/values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/linkedin-sdk/build/intermediates/bundles/debug/res/values/values.xml",
+                    "source": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/linkedin-sdk/build/intermediates/bundles/debug/res/values/values.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "/home/challa/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.1.aar/694bed744e2d1988ddaf537df856f2c8/res/values/values.xml",
+                    "source": "/home/satish/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.1.aar/ab12b2efcaa51250f51f057aeac90b71/res/values/values.xml",
                     "from": {
                         "startLines": "2,3,4,5,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,54,55,59,60,61",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,11 +20,12 @@ import com.vempower.eezyclinic.core.SearchRequest;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.eezyclinic.views.MySwitch;
 
-public class FilterActivity extends AbstractFragmentActivity {
+public class FilterActivity extends AbstractFragmentActivity /*implements MySwitch.OnChangeAttemptListener, CompoundButton.OnCheckedChangeListener*/ {
 
-    private com.rey.material.widget.Switch search_type_switch;
-    private TextView search_type_switch_tv;
+    private MySwitch search_type_switch;
+    //private TextView search_type_switch_tv;
     private SearchRequest requestParms;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,18 +45,19 @@ public class FilterActivity extends AbstractFragmentActivity {
         }
 
 
-        search_type_switch = findViewById(R.id.search_type_switch);
-        search_type_switch_tv = findViewById(R.id.search_type_switch_tv);
+        search_type_switch = (MySwitch)findViewById(R.id.switch1);
+        //search_type_switch_tv = findViewById(R.id.search_type_switch_tv);
 
 
-        search_type_switch.setChecked(requestParms.getSearchtype().equalsIgnoreCase(SearchRequest.DOCTOR_TYPE)?true:false);
-        search_type_switch_tv.setText(requestParms.getSearchtype());
+        search_type_switch.setChecked(requestParms.getSearchtype().equalsIgnoreCase(SearchRequest.DOCTOR_TYPE)?false:true);
+        //search_type_switch_tv.setText(requestParms.getSearchtype());
 
-
-        search_type_switch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+       // search_type_switch.setOnChangeAttemptListener(this);
+        //search_type_switch.setOnCheckedChangeListener(this);
+        search_type_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(Switch view, boolean checked) {
-                if(checked)
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(!b)
                 {
                     requestParms.setSearchtype(SearchRequest.DOCTOR_TYPE);
 
@@ -62,8 +65,6 @@ public class FilterActivity extends AbstractFragmentActivity {
                 {
                     requestParms.setSearchtype(SearchRequest.CLINIC_TYPE);
                 }
-
-                search_type_switch_tv.setText(requestParms.getSearchtype());
             }
         });
 
@@ -151,6 +152,7 @@ public class FilterActivity extends AbstractFragmentActivity {
             }
         };
     }
+
 
 
 }
