@@ -9,7 +9,7 @@ import java.util.List;
  * Created by satish on 12/12/17.
  */
 
-public class SearchRequest {
+public class SearchRequest implements Cloneable {
 
     public static final String DOCTOR_TYPE="doctor",CLINIC_TYPE="clinic";
     private String searchtype;
@@ -43,6 +43,25 @@ public class SearchRequest {
                 "amount_range":"",   // 520-1000
                 "perpage":"",   //10 (Limit)
                 "page":""       //1   (Page No)*/
+    }
+
+    public SearchRequest(String searchtype, String specality, String country, String city, String longitude, String latitude, ArrayList<String> insurenceList, ArrayList<String> nationalityList, ArrayList<String> gendersearch, String locality, ArrayList<String> launguage, String searchName, String onlinebooking, String amountRange, String perpage, String page) {
+        this.searchtype = searchtype;
+        this.specality = specality;
+        this.country = country;
+        this.city = city;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.insurenceList = insurenceList;
+        this.nationalityList = nationalityList;
+        this.gendersearch = gendersearch;
+        this.locality = locality;
+        this.launguage = launguage;
+        this.searchName = searchName;
+        this.onlinebooking = onlinebooking;
+        this.amountRange = amountRange;
+        this.perpage = perpage;
+        this.page = page;
     }
 
     public String getSearchtype() {
@@ -283,5 +302,13 @@ public class SearchRequest {
                 ", perpage='" + perpage + '\'' +
                 ", page='" + page + '\'' +
                 '}';
+    }
+
+    public SearchRequest getCloneObject()
+    {
+        return new SearchRequest( searchtype,  specality,  country,  city,
+                longitude,  latitude,  insurenceList,  nationalityList,
+                gendersearch,  locality,  launguage,  searchName,
+                onlinebooking,  amountRange,  perpage,  page);
     }
 }

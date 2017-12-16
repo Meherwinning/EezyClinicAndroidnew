@@ -78,7 +78,7 @@ dependencies {
     implementation project(':MyExpandableLayoutLibrary')
 
     //implementation 'com.github.GwonHyeok:StickySwitch:0.0.15'
-    implementation 'com.nightonke:jellytogglebutton:1.0.2'
+  //  implementation 'com.nightonke:jellytogglebutton:1.0.2'
 }
 repositories {
     mavenCentral()

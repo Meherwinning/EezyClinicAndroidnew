@@ -163,10 +163,13 @@ public class SearchFragment extends AbstractFragment {
             public void onClick(View view) {
                 expandableLayout_advance_search.toggle();
 
-                searchRequestParams.setInsurenceList(null);
-                searchRequestParams.setNationalityList(null);
-                searchRequestParams.setLaunguage(null);
-                searchRequestParams.setGendersearch(null);
+                if(false) {
+                    //reset the advanced search items
+                    searchRequestParams.setInsurenceList(null);
+                    searchRequestParams.setNationalityList(null);
+                    searchRequestParams.setLaunguage(null);
+                    searchRequestParams.setGendersearch(null);
+                }
 
                 //TODO pending code here
 
@@ -190,7 +193,7 @@ public class SearchFragment extends AbstractFragment {
     private void callLanguageMapper() {
 
         if (languageAdapter != null) {
-            language_spinner.setSelection(languageAdapter.getCount());
+           // language_spinner.setSelection(languageAdapter.getCount());
             return;
         }
 
@@ -279,7 +282,7 @@ public class SearchFragment extends AbstractFragment {
     private void callNatinalityMapper() {
 
         if (nationalityAdapter != null) {
-            nationality_spinner.setSelection(nationalityAdapter.getCount());
+           // nationality_spinner.setSelection(nationalityAdapter.getCount());
             return;
         }
 
@@ -348,7 +351,7 @@ public class SearchFragment extends AbstractFragment {
 
     private void callInsuranceAcceptedMapper() {
         if (insuranceAdapter != null) {
-            insurance_accepted_spinner.setSelection(insuranceAdapter.getCount());
+            //insurance_accepted_spinner.setSelection(insuranceAdapter.getCount());
             return;
         }
         InsuranceListMapper mapper = new InsuranceListMapper();

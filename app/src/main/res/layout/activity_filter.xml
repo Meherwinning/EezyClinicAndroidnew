@@ -68,17 +68,10 @@
 
         android:layout_height="match_parent">
     <LinearLayout
-
         android:orientation="vertical"
-
-
         android:background="@color/white"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-
-
 
 
         <LinearLayout
@@ -156,6 +149,16 @@
                 android:layout_height="0.5dp" />
 
         </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
@@ -212,7 +215,7 @@
                 android:layout_marginLeft="@dimen/_10dp"
                 android:paddingLeft="@dimen/_10dp"
                 android:layout_marginTop="@dimen/_5dp"
-                android:layout_marginRight="@dimen/_18dp"
+                android:layout_marginRight="@dimen/_8dp"
                 android:paddingRight="@dimen/_10dp"
 
                 android:layout_height="wrap_content">
@@ -266,13 +269,17 @@
 
         </LinearLayout>
         <LinearLayout
+
             android:layout_width="match_parent"
             android:orientation="vertical"
+
             android:background="@color/white"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:id="@+id/gender_linear"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
+                android:clickable="true"
                 android:layout_marginLeft="@dimen/_10dp"
                 android:paddingLeft="@dimen/_10dp"
                 android:layout_marginTop="@dimen/_5dp"
@@ -286,20 +293,50 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:clickable="true"
                     android:paddingTop="@dimen/_8dp"
+
                     android:paddingBottom="@dimen/_8dp"
                     android:text="Gender"
                     android:textColor="#212121"
 
                     android:textSize="@dimen/_16dp" />
                 <ImageView
+                    android:id="@+id/gender_expand_iv"
                     android:layout_width="wrap_content"
-                    android:src="@drawable/plus_icon_grey"
                     android:layout_gravity="center"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                android:id="@+id/expandableLayout_gender_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/top_linear"
+                android:orientation="vertical"
+
+                app:ael_duration="200"
+                app:ael_expanded="false"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_15dp"
+                    android:orientation="vertical">
+
+
+                        <include layout="@layout/male_female_view"></include>
+
+
+
+
+                    <!-- </android.support.design.widget.TextInputLayout>-->
+
+
+
+                </LinearLayout>
+
+
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:background="#000000"
@@ -316,10 +353,12 @@
             android:background="@color/white"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:id="@+id/language_linear"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_marginLeft="@dimen/_10dp"
                 android:paddingLeft="@dimen/_10dp"
+                android:clickable="true"
                 android:layout_marginTop="@dimen/_5dp"
                 android:layout_marginRight="@dimen/_18dp"
                 android:paddingRight="@dimen/_10dp"
@@ -331,7 +370,6 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:clickable="true"
                     android:paddingTop="@dimen/_8dp"
                     android:paddingBottom="@dimen/_8dp"
                     android:text="Language Known"
@@ -339,12 +377,56 @@
 
                     android:textSize="@dimen/_16dp" />
                 <ImageView
+                    android:id="@+id/language_expand_iv"
                     android:layout_width="wrap_content"
-                    android:src="@drawable/plus_icon_grey"
                     android:layout_gravity="center"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
+
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                android:id="@+id/expandableLayout_language_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/top_linear"
+                android:orientation="vertical"
+
+                app:ael_duration="300"
+                app:ael_expanded="false"
+                >
+                <android.support.v4.widget.NestedScrollView
+                    android:layout_width="match_parent"
+
+
+                    android:layout_height="@dimen/_180dp"
+                    >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_15dp"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/male_female_view"></include>
+
+                    <include layout="@layout/male_female_view"></include>
+
+                    <include layout="@layout/male_female_view"></include>
+
+                    <include layout="@layout/male_female_view"></include>
+
+                    <include layout="@layout/male_female_view"></include>
+
+                    <include layout="@layout/male_female_view"></include>
+
+                    <!-- </android.support.design.widget.TextInputLayout>-->
+
+
+
+                </LinearLayout>
+                </android.support.v4.widget.NestedScrollView>
+
+
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:background="#000000"
@@ -361,10 +443,12 @@
             android:background="@color/white"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:id="@+id/nationality_linear"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_marginLeft="@dimen/_10dp"
                 android:paddingLeft="@dimen/_10dp"
+                android:clickable="true"
                 android:layout_marginTop="@dimen/_5dp"
                 android:layout_marginRight="@dimen/_18dp"
                 android:paddingRight="@dimen/_10dp"
@@ -376,7 +460,6 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:clickable="true"
                     android:paddingTop="@dimen/_8dp"
                     android:paddingBottom="@dimen/_8dp"
                     android:text="Nationality"
@@ -384,12 +467,58 @@
 
                     android:textSize="@dimen/_16dp" />
                 <ImageView
+                    android:id="@+id/nationality_expand_iv"
                     android:layout_width="wrap_content"
-                    android:src="@drawable/plus_icon_grey"
+
                     android:layout_gravity="center"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
+
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                android:id="@+id/expandableLayout_nationality_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/top_linear"
+                android:orientation="vertical"
+
+                app:ael_duration="300"
+                app:ael_expanded="false"
+                >
+                <android.support.v4.widget.NestedScrollView
+                    android:layout_width="match_parent"
+
+
+                    android:layout_height="@dimen/_180dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_15dp"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/male_female_view"></include>
+
+                        <include layout="@layout/male_female_view"></include>
+
+                        <include layout="@layout/male_female_view"></include>
+
+                        <include layout="@layout/male_female_view"></include>
+
+                        <include layout="@layout/male_female_view"></include>
+
+                        <include layout="@layout/male_female_view"></include>
+
+                        <!-- </android.support.design.widget.TextInputLayout>-->
+
+
+
+                    </LinearLayout>
+                </android.support.v4.widget.NestedScrollView>
+
+
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:background="#000000"
@@ -406,10 +535,12 @@
             android:background="@color/white"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:id="@+id/insurance_linaer"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_marginLeft="@dimen/_10dp"
                 android:paddingLeft="@dimen/_10dp"
+                android:clickable="true"
                 android:layout_marginTop="@dimen/_5dp"
                 android:layout_marginRight="@dimen/_18dp"
                 android:paddingRight="@dimen/_10dp"
@@ -421,7 +552,6 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:clickable="true"
                     android:paddingTop="@dimen/_8dp"
                     android:paddingBottom="@dimen/_8dp"
                     android:text="Insurance Accepted"
@@ -429,12 +559,56 @@
 
                     android:textSize="@dimen/_16dp" />
                 <ImageView
+                    android:id="@+id/insurance_expand_iv"
                     android:layout_width="wrap_content"
-                    android:src="@drawable/plus_icon_grey"
                     android:layout_gravity="center"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                android:id="@+id/expandableLayout_insurance_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/top_linear"
+                android:orientation="vertical"
+
+                app:ael_duration="300"
+                app:ael_expanded="false"
+                >
+                <android.support.v4.widget.NestedScrollView
+                    android:layout_width="match_parent"
+
+
+                    android:layout_height="@dimen/_180dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_15dp"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/male_female_view"></include>
+
+                        <include layout="@layout/male_female_view"></include>
+
+                        <include layout="@layout/male_female_view"></include>
+
+                        <include layout="@layout/male_female_view"></include>
+
+                        <include layout="@layout/male_female_view"></include>
+
+                        <include layout="@layout/male_female_view"></include>
+
+                        <!-- </android.support.design.widget.TextInputLayout>-->
+
+
+
+                    </LinearLayout>
+                </android.support.v4.widget.NestedScrollView>
+
+
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:background="#000000"
@@ -446,47 +620,10 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:background="@color/white"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginLeft="@dimen/_10dp"
-                android:paddingLeft="@dimen/_10dp"
-                android:layout_marginTop="@dimen/_5dp"
-                android:layout_marginRight="@dimen/_18dp"
-                android:paddingRight="@dimen/_10dp"
-
-                android:layout_height="wrap_content">
-
-                <com.vempower.eezyclinic.views.MyTextViewRR
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:clickable="true"
-                    android:paddingTop="@dimen/_8dp"
-                    android:paddingBottom="@dimen/_8dp"
-                    android:text="Insurance Accepted"
-                    android:textColor="#212121"
-
-                    android:textSize="@dimen/_16dp" />
 
 
-            </LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:background="#000000"
-                android:alpha="0.5"
-                android:layout_marginLeft="@dimen/_20dp"
-                android:layout_marginTop="@dimen/_5dp"
-                android:layout_marginBottom="@dimen/_3dp"
-                android:layout_height="0.5dp" />
-
-        </LinearLayout>
+    </LinearLayout>
+        </ScrollView>
 
 
 
@@ -494,14 +631,14 @@
 
 
     </LinearLayout>
-        <TextView
+      <!--  <TextView
             android:layout_width="match_parent"
             android:background="#000000"
             android:alpha="0.5"
             android:layout_marginLeft="@dimen/_20dp"
             android:layout_marginTop="@dimen/_5dp"
             android:layout_marginBottom="@dimen/_3dp"
-            android:layout_height="0.5dp" />
+            android:layout_height="0.5dp" />-->
         <LinearLayout
             android:id="@+id/bottom_buttons"
             android:background="@color/black"
