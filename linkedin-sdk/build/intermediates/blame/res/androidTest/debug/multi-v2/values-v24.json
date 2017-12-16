@@ -4,7 +4,7 @@
             "outputFile": "/home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/linkedin-sdk/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "/home/challa/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.0.1.aar/857c389355ef2cf834e388b0195b0324/res/values-v24/values-v24.xml",
+                    "source": "/home/challa/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.0.1.aar/25c8a37ef6e4b1b9883408e5dfd71c6f/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

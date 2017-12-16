@@ -112,5 +112,7 @@
     <string name="tab_continent">Continent</string>
     <string name="tab_city">City</string>
     <string name="tab_scroll_view">Scroll View</string>
+    <string name="demo_min_label">min</string>
+    <string name="demo_max_label">max</string>
 
 </resources>

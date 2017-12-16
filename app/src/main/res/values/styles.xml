@@ -164,8 +164,10 @@
         <item name="trackTextPadding">@dimen/_6dp</item>
         <item name="switchMinWidth">@dimen/_100dp</item>
         <item name="switchMinHeight">@dimen/_36dp</item>
+
         <item name="switchPadding">@dimen/_6dp</item>
     </style>
+    <!---->
 
     <style name="mySwitchTextAppearance">
         <item name="textColor">@color/white</item>
