@@ -123,7 +123,7 @@ public class SearchFragment extends AbstractFragment {
         advance_search_linear = getFragemtView().findViewById(R.id.advance_search_linear);
         city_type_spinner = getFragemtView().findViewById(R.id.city_type_spinner);
         namesSearch = new DoctorClinicNamesSearch();
-        searchRequestParams = new SearchRequest(20);
+        searchRequestParams = new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
 
         search_bt = getFragemtView().findViewById(R.id.search_bt);
 

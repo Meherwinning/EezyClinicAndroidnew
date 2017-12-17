@@ -52,6 +52,20 @@ public class SearchResultClinicData {
     @Expose
     private String clinicService;
 
+
+
+
+    @SerializedName("google_map_latitude")
+    @Expose
+    private String google_map_latitude;
+
+
+    @SerializedName("google_map_longitude")
+    @Expose
+    private String google_map_longitude;
+
+
+
     public String getMainDisplayImage() {
         return mainDisplayImage;
     }
@@ -172,4 +186,12 @@ public class SearchResultClinicData {
         this.clinicService = clinicService;
     }
 
+
+    public String getGoogle_map_latitude() {
+        return google_map_latitude;
+    }
+
+    public String getGoogle_map_longitude() {
+        return google_map_longitude;
+    }
 }

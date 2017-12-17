@@ -136,9 +136,9 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
             }
 
 
-            reviews_count_tv.setText(TextUtils.isEmpty(data.getReviews_count())?"0":data.getReviews_count());
+            reviews_count_tv.setText(TextUtils.isEmpty(data.getDoctorTotalReviews())?"0":data.getDoctorTotalReviews());
 
-            recommendations_count_tv.setText(TextUtils.isEmpty(data.getRecommendations_count())?"0":data.getRecommendations_count());
+            recommendations_count_tv.setText(TextUtils.isEmpty(data.getDoctorRecommendedCount())?"0":data.getDoctorRecommendedCount());
             book_appointment_tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -9,4 +9,5 @@ import com.vempower.eezyclinic.core.SearchRequest;
 public interface FilterRefreshListListener {
 
     String refreshList();
+   // boolean isMapViewType();
 }

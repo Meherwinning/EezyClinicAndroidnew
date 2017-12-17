@@ -65,7 +65,7 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
 
         SearchRequest requestParms1 = MyApplication.getInstance().getSearchRequestParms();
         if (requestParms1 == null) {
-            requestParms1 = new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT);
+            requestParms1 = new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
         }
         requestParms = requestParms1.getCloneObject();
 

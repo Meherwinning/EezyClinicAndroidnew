@@ -68,7 +68,7 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
         requestParms = MyApplication.getInstance().getSearchRequestParms();
         if(requestParms==null)
         {
-            requestParms= new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT);
+            requestParms= new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
         }
         requestParms.setPage("1");
         callSearchResultDoctorsListMapper();

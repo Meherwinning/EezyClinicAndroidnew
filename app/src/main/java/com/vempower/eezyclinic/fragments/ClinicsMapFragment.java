@@ -1,0 +1,169 @@
+package com.vempower.eezyclinic.fragments;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.vempower.eezyclinic.APICore.SearchResultClinicData;
+import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
+import com.vempower.eezyclinic.APIResponce.SearchResultClinicListAPI;
+import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
+import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.core.SearchRequest;
+import com.vempower.eezyclinic.interfaces.GoogleMarkerClickListener;
+import com.vempower.eezyclinic.mappers.SearchResultClinicListMapper;
+import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
+import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.Utils;
+
+import java.util.List;
+
+/**
+ * Created by challa on 12/12/17.
+ */
+
+public class ClinicsMapFragment extends AbstractMapFragment /*, GoogleMap.OnMarkerClickListener */ {
+
+
+    private List<SearchResultClinicData> clinicsLsit;
+    private boolean isOnlyViewList;
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        super.onMapReady(googleMap);
+
+
+        if(isOnlyViewList)
+        {
+            showMapDetails();
+        }else
+        {
+            refreshMap();
+        }
+        isOnlyViewList=true;
+    }
+
+    public void isViewOnlyList(boolean isOnlyViewList)
+    {
+        this.isOnlyViewList=isOnlyViewList;
+    }
+
+
+
+    public ClinicsMapFragment()
+    {
+        setOnGoogleMarkerClickListener(new GoogleMarkerClickListener() {
+            @Override
+            public void onClick(int id) {
+                //TODO with id
+                Utils.showToastMessage("Id:"+id);
+            }
+        });
+    }
+
+
+    public void setClinicsList(List<SearchResultClinicData> clinicsLsit) {
+        this.clinicsLsit = clinicsLsit;
+    }
+
+    public void refreshMap() {
+        SearchRequest requestParms = MyApplication.getInstance().getSearchRequestParms();
+        if(requestParms==null)
+        {
+            requestParms= new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
+        }
+        requestParms.setPage("1");
+        callSearchResultClinisListMapper(requestParms);
+    }
+
+
+    private void callSearchResultClinisListMapper(final SearchRequest requestParms)
+    {
+
+        SearchResultClinicListMapper mapper=new SearchResultClinicListMapper(requestParms);
+
+        mapper.setOnSearchResultClinicListAPItListener(new SearchResultClinicListMapper.SearchResultClinicListAPItListener() {
+            @Override
+            public void getSearchResultClinicListAPI(SearchResultClinicListAPI searchResultClinicListAPI, String errorMessage) {
+                if(!isValidResponse(searchResultClinicListAPI,errorMessage))
+                {
+                    return;
+                }
+                if(!(requestParms.getPage().equalsIgnoreCase("1")) && (searchResultClinicListAPI.getData()==null ||searchResultClinicListAPI.getData().size()==0) )
+                {
+                    Utils.showToastMsg(R.string.no_more_clinic_found_lbl);
+                    return;
+
+                }
+               /* if(searchResultClinicListAPI.getData()!=null )
+                {
+                    clinicList.addAll(searchResultClinicListAPI.getData());
+                }*/
+                // Utils.showToastMessage(searchResultDoctorListAPI.toString());
+              //  setOrderItemsToAdapter(clinicList);
+                setClinicsList(searchResultClinicListAPI.getData());
+                showMapDetails();
+            }
+        });
+
+
+    }
+
+
+
+
+    protected LatLngBounds.Builder addAllMarkersToMap(GoogleMap mMap) {
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        if(clinicsLsit==null || clinicsLsit.size()==0)
+        {
+            return null;
+        }
+      //  MarkerOptions markerOptions = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.path_352_2));
+        BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.path_352_2);
+
+        int addedCount=0;
+        for (SearchResultClinicData data : clinicsLsit) {
+
+            if (data == null) {
+                continue;
+            }
+            double lat,lon;
+
+            try
+            {
+                lat =Double.parseDouble(data.getGoogle_map_latitude());
+                lon=Double.parseDouble(data.getGoogle_map_longitude());
+            }catch(Exception e)
+            {
+                continue;
+            }
+            // GeoLocation geoLocation= deal.getLocation().getGeoLocation();
+            LatLng latLng = new LatLng(lat, lon);
+            MarkerOptions options = new MarkerOptions();
+              options.position(latLng);
+            options.icon(bitmapDescriptor);
+            options.title(data.getClinicName());
+             String snippet = data.getBranchName() + "\n" + data.getCityName() + ", " + data.getAddress();
+             options.snippet(snippet);
+             options.zIndex(Float.parseFloat(data.getBrcId()));
+
+            builder.include(latLng);
+
+
+            mMap.addMarker(options);
+            addedCount++;
+        }
+
+        if(addedCount==0)
+        {
+            return null;
+        }
+
+        return builder;
+    }
+
+}

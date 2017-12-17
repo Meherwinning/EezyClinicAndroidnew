@@ -54,7 +54,7 @@ public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
         return fragmentView;
     }
 
-    public ArrayList<SearchResultClinicData> getDoctorsList() {
+    public ArrayList<SearchResultClinicData> getClinicList() {
         return clinicList;
     }
 
@@ -69,7 +69,7 @@ public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
         requestParms = MyApplication.getInstance().getSearchRequestParms();
         if(requestParms==null)
         {
-            requestParms= new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT);
+            requestParms= new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
         }
         requestParms.setPage("1");
 

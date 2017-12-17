@@ -98,14 +98,15 @@ public class SearchResultDoctorListData {
     private String licenceExpiryDate;
 
 
-    @SerializedName("recommendations_count")
-    @Expose
-    private String recommendations_count;
 
-    @SerializedName("reviews_count")
+   /* @SerializedName("doctorRecommendedCount")
+    @Expose
+    private String recommendations_count;*/
+
+  /*  @SerializedName("doctorTotalReviews")
     @Expose
     private String reviews_count;
-
+*/
     public String getMainDisplayImage() {
         return mainDisplayImage;
     }
@@ -346,11 +347,11 @@ public class SearchResultDoctorListData {
         this.licenceExpiryDate = licenceExpiryDate;
     }
 
-    public String getRecommendations_count() {
+  /*  public String getRecommendations_count() {
         return recommendations_count;
     }
 
     public String getReviews_count() {
         return reviews_count;
-    }
+    }*/
 }
