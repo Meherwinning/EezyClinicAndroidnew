@@ -32,7 +32,7 @@ public interface Constants {
     String TAWK_CHAT_URL = "https://tawk.to/chat/53fb249a8a6482154c000b0b/default/?$_tawk_popout=true" ;
     String SMS_SENDER_NAME="WAY2SMS";
     //int RESULT_PAGE_ITEMS_LIMIT = 20;
-    int RESULT_PAGE_ITEMS_LIMIT1 = 100000;//Integer.MAX_VALUE;
+    int RESULT_PAGE_ITEMS_LIMIT1 = Integer.MAX_VALUE;
 
     //http://cfw.samplespace.com/wp-json/cfw/v1/customer
 
@@ -55,8 +55,8 @@ public interface Constants {
 
      interface GenderValues {
         String GENDER = "Gender";
-        String MALE = "male";
-        String FEMALE="female";
+        String MALE = "Male";
+        String FEMALE="Female";
     }
 
     public interface Home {

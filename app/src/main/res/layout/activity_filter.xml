@@ -166,18 +166,17 @@
                     android:layout_height="wrap_content">
                 <include
                     android:id="@+id/doctors_layout"
-                    android:visibility="gone"
-                   layout="@layout/doctors_filter_view_layout"
+                    layout="@layout/doctors_filter_view_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"></include>
 
 
-                <include
+              <!--  <include
                     android:visibility="gone"
                     android:id="@+id/clinics_layout"
                     layout="@layout/clinics_filter_view_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></include>
+                    android:layout_height="wrap_content"></include>-->
                 </LinearLayout>
 
                 <!-- <LinearLayout

@@ -113,6 +113,10 @@ public class SearchRequest implements Cloneable {
     }
 
     public ArrayList<String> getInsurenceList() {
+        if(insurenceList==null)
+        {
+            this.insurenceList= new ArrayList<>();
+        }
         return insurenceList;
     }
 
@@ -126,6 +130,21 @@ public class SearchRequest implements Cloneable {
             this.insurenceList.add(insurace);
         }
     }
+
+
+    public void removeInsurence(String insurance) {
+        if(insurenceList==null)
+        {
+            insurenceList= new ArrayList<>();
+            return;
+        }
+
+        if(!TextUtils.isEmpty(insurance)&& insurenceList.contains(insurance)) {
+            this.insurenceList.remove(insurance);
+        }
+    }
+
+
     public void setInsurenceList(ArrayList<String> newInsuraceList) {
         if(insurenceList==null)
         {
@@ -141,6 +160,10 @@ public class SearchRequest implements Cloneable {
     }
 
     public ArrayList<String> getNationalityList() {
+        if(this.nationalityList==null)
+        {
+            this.nationalityList= new ArrayList<>();
+        }
         return nationalityList;
     }
 
@@ -153,6 +176,20 @@ public class SearchRequest implements Cloneable {
             this.nationalityList.add(nationality);
         }
     }
+
+
+    public void removeNationality(String natinality) {
+        if(nationalityList==null)
+        {
+            nationalityList= new ArrayList<>();
+            return;
+        }
+
+        if(!TextUtils.isEmpty(natinality)&& nationalityList.contains(natinality)) {
+            this.nationalityList.remove(natinality);
+        }
+    }
+
     public void setNationalityList(ArrayList<String> newNationality) {
         if(this.nationalityList==null)
         {
@@ -169,6 +206,10 @@ public class SearchRequest implements Cloneable {
     }
 
     public ArrayList<String> getGendersearch() {
+        if(gendersearch==null)
+        {
+            gendersearch= new ArrayList<>();
+        }
         return gendersearch;
     }
 
@@ -182,6 +223,19 @@ public class SearchRequest implements Cloneable {
             this.gendersearch.add(gender);
         }
     }
+
+    public void removeGendersearch(String gender) {
+        if(gendersearch==null)
+        {
+            gendersearch= new ArrayList<>();
+            return;
+        }
+
+        if(!TextUtils.isEmpty(gender)&& gendersearch.contains(gender)) {
+            this.gendersearch.remove(gender);
+        }
+    }
+
 
     public void setGendersearch(ArrayList<String> newGenderList) {
         if(gendersearch==null)
@@ -206,6 +260,10 @@ public class SearchRequest implements Cloneable {
     }
 
     public ArrayList<String> getLaunguage() {
+        if(launguage==null)
+        {
+            this.launguage= new ArrayList<>();
+        }
         return launguage;
     }
 
@@ -218,6 +276,19 @@ public class SearchRequest implements Cloneable {
             this.launguage.add(launStr);
         }
     }
+
+    public void removeLanguage(String language) {
+        if(launguage==null)
+        {
+            launguage= new ArrayList<>();
+            return;
+        }
+
+        if(!TextUtils.isEmpty(language)&& launguage.contains(language)) {
+            this.launguage.remove(language);
+        }
+    }
+
 
 
     public void setLaunguage(ArrayList<String> launStrList) {

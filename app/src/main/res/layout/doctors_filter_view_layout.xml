@@ -15,6 +15,7 @@
 
 
         <LinearLayout
+            android:id="@+id/consultation_fee_linear"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:background="@color/white"
@@ -169,6 +170,7 @@
 
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/gender_view_linear"
 
             android:layout_width="match_parent"
             android:orientation="vertical"
@@ -248,6 +250,7 @@
 
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/language_known_linear"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:background="@color/white"
@@ -340,6 +343,7 @@
 
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/nationality_view_linear"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:background="@color/white"

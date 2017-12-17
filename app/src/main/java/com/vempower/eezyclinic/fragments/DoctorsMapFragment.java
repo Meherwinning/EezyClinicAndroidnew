@@ -151,7 +151,7 @@ public class DoctorsMapFragment extends AbstractMapFragment/*, GoogleMap.OnMarke
               options.position(latLng);
             options.icon(bitmapDescriptor);
             options.title(data.getDoctorName());
-             String snippet = data.getSpecalities() + "</br>" + data.getCityName() + ", " + data.getAddress();
+             String snippet = data.getSpecalities() + "\n" + data.getCityName() + ", " + data.getAddress();
              options.snippet(snippet);
              options.zIndex(Float.parseFloat(data.getDocId()));
 

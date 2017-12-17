@@ -20,6 +20,7 @@ import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.nex3z.togglebuttongroup.MultiSelectToggleGroup;
 import com.nex3z.togglebuttongroup.SingleSelectToggleGroup;
 import com.nex3z.togglebuttongroup.button.LabelToggle;
+import com.rey.material.widget.CheckBox;
 import com.rey.material.widget.Switch;
 import com.vempower.eezyclinic.APIResponce.InsuranceData;
 import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
@@ -39,6 +40,7 @@ import com.vempower.eezyclinic.mappers.LanguageListMapper;
 import com.vempower.eezyclinic.mappers.NationalityMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.eezyclinic.views.MyCheckBoxRR;
 import com.vempower.eezyclinic.views.MySwitch;
 import com.vempower.eezyclinic.views.myseekbar.RangeSeekBar;
 
@@ -50,7 +52,11 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
     //private TextView search_type_switch_tv;
     private SearchRequest requestParms;
     private ExpandableLinearLayout expandableLayout_gender_view,expandableLayout_language_view,
-            expandableLayout_nationality_view,expandableLayout_insurance_view1,expandableLayout_insurance_view,expandableLayout_fee_view;
+            expandableLayout_nationality_view,expandableLayout_insurance_view,expandableLayout_fee_view;
+
+
+    private LinearLayout  consultation_fee_linear,gender_view_linear,
+            language_known_linear ,nationality_view_linear;
 
     // private ExpandableLinearLayout expandableLayout_gender_view;
     @Override
@@ -63,168 +69,192 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
 
     private void myInit() {
 
+        consultation_fee_linear = findViewById(R.id. consultation_fee_linear);
+        gender_view_linear= findViewById(R.id.  gender_view_linear);
+        language_known_linear = findViewById(R.id. language_known_linear);
+        nationality_view_linear  = findViewById(R.id.nationality_view_linear);
+
         SearchRequest requestParms1 = MyApplication.getInstance().getSearchRequestParms();
         if (requestParms1 == null) {
             requestParms1 = new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
         }
         requestParms = requestParms1.getCloneObject();
-
-
         search_type_switch = findViewById(R.id.switch1);
 
-       final  View doctors_layout = findViewById(R.id.doctors_layout);
-       final View clinics_layout  =findViewById(R.id.clinics_layout);
+    //   final  View doctors_layout = findViewById(R.id.doctors_layout);
+      // final View clinics_layout  =findViewById(R.id.clinics_layout);
        if(requestParms.getSearchtype().equalsIgnoreCase(SearchRequest.DOCTOR_TYPE))
        {
-           doctors_layout.setVisibility(View.VISIBLE);
-           clinics_layout.setVisibility(View.GONE);
+           showViewType(true);
        }else
        {
-           doctors_layout.setVisibility(View.GONE);
-           clinics_layout.setVisibility(View.VISIBLE);
+           showViewType(false);
        }
         search_type_switch.setChecked(requestParms.getSearchtype().equalsIgnoreCase(SearchRequest.DOCTOR_TYPE) ? false : true);
         //search_type_switch_tv.setText(requestParms.getSearchtype());
-
-        // search_type_switch.setOnChangeAttemptListener(this);
-        //search_type_switch.setOnCheckedChangeListener(this);
         search_type_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (!b) {
                     requestParms.setSearchtype(SearchRequest.DOCTOR_TYPE);
-                    doctors_layout.setVisibility(View.VISIBLE);
-                    clinics_layout.setVisibility(View.GONE);
+                    showViewType(true);
 
                 } else {
                     requestParms.setSearchtype(SearchRequest.CLINIC_TYPE);
-                    doctors_layout.setVisibility(View.GONE);
-                    clinics_layout.setVisibility(View.VISIBLE);
+                    showViewType(false);
                 }
             }
         });
 
+        computeGenderView();
+        computeLanguageView();
+        computeNationalityView();
+        computeInsuranceView();
 
+        computeConsultationFeeView();
+    }
 
+    public void onApplyButtonClick(View view) {
 
-        {
-             expandableLayout_gender_view = findViewById(R.id.expandableLayout_gender_view);
-            LinearLayout gender_linear = findViewById(R.id.gender_linear);
+        //showToastMessage(requestParms.toString());
+       // MyApplication.getInstance().setSearchRequestParms(requestParms);
 
-            setExpandedGenderViewListener(expandableLayout_gender_view,R.id.gender_expand_iv,true);
-            gender_linear.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    colapseAllViews();
-                    expandableLayout_gender_view.toggle();
-                }
-            });
-        }
+       MyApplication.getInstance().setSearchRequestParms(requestParms);
 
-        {
-            expandableLayout_language_view = findViewById(R.id.expandableLayout_language_view);
-            LinearLayout language_linear = findViewById(R.id.language_linear);
-            callLanguageListMapper();
-
-            setExpandedGenderViewListener(expandableLayout_language_view,R.id.language_expand_iv,true);
-            language_linear.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    colapseAllViews();
-                    expandableLayout_language_view.toggle();
-                }
-            });
-        }
-
-        {
-          /*  expandableLayout_nationality_view   expandableLayout_nationality_view
-            nationality_expand_iv  nationality_expand_iv
-            nationality_linear  nationality_linear*/
-
-           expandableLayout_nationality_view = findViewById(R.id.expandableLayout_nationality_view);
-            LinearLayout nationality_linear = findViewById(R.id.nationality_linear);
-            callNationalityMapper();
-            setExpandedGenderViewListener(expandableLayout_nationality_view,R.id.nationality_expand_iv,true);
-            nationality_linear.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    colapseAllViews();
-                    expandableLayout_nationality_view.toggle();
-                }
-            });
-        }
-
-
-
-        {
-           // expandableLayout_insurance_view  expandableLayout_insurance_view
-            //insurance_linaer  insurance_linaer
-          //  insurance_expand_iv  insurance_expand_iv
-
-            expandableLayout_insurance_view = findViewById(R.id.expandableLayout_insurance_view);
-            LinearLayout insurance_linaer = findViewById(R.id.insurance_linaer);
-            callInsuranceMapper(R.id.insurance_group_toggle_views);
-
-            setExpandedGenderViewListener(expandableLayout_insurance_view,R.id.insurance_expand_iv,true);
-            insurance_linaer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    colapseAllViews();
-                    expandableLayout_insurance_view.toggle();
-                }
-            });
-        }
-        {
-            // expandableLayout_insurance_view  expandableLayout_insurance_view
-            //insurance_linaer  insurance_linaer
-            //  insurance_expand_iv  insurance_expand_iv
-
-            expandableLayout_insurance_view1 = findViewById(R.id.expandableLayout_insurance_view1);
-            LinearLayout insurance_linaer = findViewById(R.id.insurance_linaer1);
-            callInsuranceMapper(R.id.insurance_group_toggle_views1);
-
-            setExpandedGenderViewListener(expandableLayout_insurance_view1,R.id.insurance_expand_iv1,true);
-            insurance_linaer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    colapseAllViews();
-                    expandableLayout_insurance_view1.toggle();
-                }
-            });
-        }
-
-        {
-            RangeSeekBar rangeSeekbar = (RangeSeekBar) findViewById(R.id.rangeSeekbar);
-            rangeSeekbar.setNotifyWhileDragging(true);
-            rangeSeekbar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener() {
-                @Override
-                public void onRangeSeekBarValuesChanged(RangeSeekBar bar, Object minValue, Object maxValue) {
-
-                    Log.i("Seekbar","Min Value- " + minValue + " & " + "Max Value- " + maxValue);
-                   // Toast.makeText(getApplicationContext(), "Min Value- " + minValue + " & " + "Max Value- " + maxValue, Toast.LENGTH_LONG).show();
-                }
-            });
-            expandableLayout_fee_view = findViewById(R.id.expandableLayout_fee_view);
-            LinearLayout fee_linear = findViewById(R.id.fee_linear);
-           // callInsuranceMapper();
-
-            setExpandedGenderViewListener(expandableLayout_fee_view,R.id.fee_expand_iv,true);
-            fee_linear.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    colapseAllViews();
-                    expandableLayout_fee_view.toggle();
-                }
-            });
-        }
-
-
-        //search_type_switch_tv = findViewById(R.id.search_type_switch_tv);
-
-
+        Intent intent = getIntent(); //new Intent(this,HomeActivity.class);
+        intent.setClass(this, DoctorsListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        sendHandlerMessage(getIntent(), ListenerKey.FILTER_REFRESH_LIST_LISTENER_KEY, getFilterRefreshListListener(requestParms.getSearchtype()));
 
 
     }
+
+    private void computeConsultationFeeView() {
+        RangeSeekBar rangeSeekbar = (RangeSeekBar) findViewById(R.id.rangeSeekbar);
+        rangeSeekbar.setNotifyWhileDragging(true);
+        rangeSeekbar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener() {
+            @Override
+            public void onRangeSeekBarValuesChanged(RangeSeekBar bar, Object minValue, Object maxValue) {
+
+                Log.i("Seekbar","Min Value- " + minValue + " & " + "Max Value- " + maxValue);
+               // Toast.makeText(getApplicationContext(), "Min Value- " + minValue + " & " + "Max Value- " + maxValue, Toast.LENGTH_LONG).show();
+            }
+        });
+        expandableLayout_fee_view = findViewById(R.id.expandableLayout_fee_view);
+        LinearLayout fee_linear = findViewById(R.id.fee_linear);
+        // callInsuranceMapper();
+
+        setExpandedGenderViewListener(expandableLayout_fee_view,R.id.fee_expand_iv,true);
+        fee_linear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                colapseAllViews();
+                expandableLayout_fee_view.toggle();
+            }
+        });
+    }
+
+    private void computeInsuranceView() {
+        expandableLayout_insurance_view = findViewById(R.id.expandableLayout_insurance_view);
+        LinearLayout insurance_linaer = findViewById(R.id.insurance_linaer);
+
+        setExpandedGenderViewListener(expandableLayout_insurance_view,R.id.insurance_expand_iv,true);
+        // setExpandedGenderViewListener(expandableLayout_insurance_view1,R.id.insurance_expand_iv1,true);
+
+        insurance_linaer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                colapseAllViews();
+                expandableLayout_insurance_view.toggle();
+                //expandableLayout_insurance_view1.toggle();
+            }
+        });
+
+        callInsuranceMapper(R.id.insurance_group_toggle_views);
+    }
+
+    private void computeNationalityView() {
+        expandableLayout_nationality_view = findViewById(R.id.expandableLayout_nationality_view);
+        LinearLayout nationality_linear = findViewById(R.id.nationality_linear);
+        callNationalityMapper();
+        setExpandedGenderViewListener(expandableLayout_nationality_view,R.id.nationality_expand_iv,true);
+        nationality_linear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                colapseAllViews();
+                expandableLayout_nationality_view.toggle();
+            }
+        });
+    }
+
+    private void computeLanguageView() {
+        expandableLayout_language_view = findViewById(R.id.expandableLayout_language_view);
+        LinearLayout language_linear = findViewById(R.id.language_linear);
+        callLanguageListMapper();
+
+        setExpandedGenderViewListener(expandableLayout_language_view,R.id.language_expand_iv,true);
+        language_linear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                colapseAllViews();
+                expandableLayout_language_view.toggle();
+            }
+        });
+    }
+
+    private void computeGenderView() {
+        final MyCheckBoxRR male_checkbox= findViewById(R.id.male_checkbox);
+                final MyCheckBoxRR female_checkbox = findViewById(R.id.female_checkbox);
+        male_checkbox.setChecked(requestParms.getGendersearch().contains(Constants.GenderValues.MALE));
+        female_checkbox.setChecked(requestParms.getGendersearch().contains(Constants.GenderValues.FEMALE));
+
+        male_checkbox.setOnCheckedChangeListener(new GenderCheckedListener(true));
+        female_checkbox.setOnCheckedChangeListener(new GenderCheckedListener(false));
+        expandableLayout_gender_view = findViewById(R.id.expandableLayout_gender_view);
+        LinearLayout gender_linear = findViewById(R.id.gender_linear);
+
+        setExpandedGenderViewListener(expandableLayout_gender_view,R.id.gender_expand_iv,true);
+        gender_linear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                colapseAllViews();
+                expandableLayout_gender_view.toggle();
+            }
+        });
+    }
+
+    private class GenderCheckedListener implements CompoundButton.OnCheckedChangeListener
+    {
+
+        final boolean isMale;
+        public GenderCheckedListener(boolean isMale) {
+            this.isMale=isMale;
+        }
+
+        @Override
+        public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+            if(isChecked) {
+                requestParms.addGendersearch(isMale?Constants.GenderValues.MALE:Constants.GenderValues.FEMALE);
+            }else
+            {
+                requestParms.removeGendersearch(isMale?Constants.GenderValues.MALE:Constants.GenderValues.FEMALE);
+            }
+
+        }
+    }
+
+
+
+    private void showViewType(boolean isDoctorView) {
+        consultation_fee_linear.setVisibility(isDoctorView?View.VISIBLE:View.GONE);
+                gender_view_linear.setVisibility(isDoctorView?View.VISIBLE:View.GONE);
+                language_known_linear.setVisibility(isDoctorView?View.VISIBLE:View.GONE);
+                nationality_view_linear.setVisibility(isDoctorView?View.VISIBLE:View.GONE);
+        colapseAllViews();
+    }
+
+
 
     private void callLanguageListMapper()
     {
@@ -273,15 +303,29 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
     private void setToInsuranceToggleViews(List<InsuranceData> dataList,int toggleId)
     {
         MultiSelectToggleGroup multiDummy = (MultiSelectToggleGroup) findViewById(toggleId);
+       // MultiSelectToggleGroup multiDummy1 = (MultiSelectToggleGroup) findViewById(toggleId1);
+        /*multiDummy1.setOnCheckedChangeListener(new MultiSelectToggleGroup.OnCheckedStateChangeListener() {
+            @Override
+            public void onCheckedStateChanged(MultiSelectToggleGroup group, int checkedId, boolean isChecked) {
+
+               *//* try {
+                    String str = dummyText[checkedId];
+                    showToastMessage(str + " " + isChecked);
+                }catch(Exception e){
+                }*//*
+            }
+        });*/
         multiDummy.setOnCheckedChangeListener(new MultiSelectToggleGroup.OnCheckedStateChangeListener() {
             @Override
             public void onCheckedStateChanged(MultiSelectToggleGroup group, int checkedId, boolean isChecked) {
 
-               /* try {
-                    String str = dummyText[checkedId];
-                    showToastMessage(str + " " + isChecked);
-                }catch(Exception e){
-                }*/
+                if(isChecked)
+                {
+                    requestParms.addInsurence(checkedId+"");
+                }else
+                {
+                    requestParms.removeInsurence(checkedId+"");
+                }
             }
         });
         for (InsuranceData data:dataList) {
@@ -293,7 +337,14 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
             LabelToggle toggle = new LabelToggle(this);
             toggle.setText(data.getCompanyName());
             toggle.setId(Integer.parseInt(data.getId()));
+            toggle.setChecked(requestParms.getInsurenceList().contains(data.getId()));
             multiDummy.addView(toggle);
+
+
+           /* LabelToggle toggle1 = new LabelToggle(this);
+            toggle1.setText(data.getCompanyName());
+            toggle1.setId(Integer.parseInt(data.getId()));
+            multiDummy1.addView(toggle1);*/
         }
     }
 
@@ -304,12 +355,13 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
         multiDummy.setOnCheckedChangeListener(new MultiSelectToggleGroup.OnCheckedStateChangeListener() {
             @Override
             public void onCheckedStateChanged(MultiSelectToggleGroup group, int checkedId, boolean isChecked) {
-
-               /* try {
-                    String str = dummyText[checkedId];
-                    showToastMessage(str + " " + isChecked);
-                }catch(Exception e){
-                }*/
+                    if(isChecked)
+                    {
+                        requestParms.addNationality(checkedId+"");
+                    }else
+                    {
+                        requestParms.removeNationality(checkedId+"");
+                    }
             }
         });
         for (NationalityData data:nationalityList) {
@@ -321,19 +373,40 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
             LabelToggle toggle = new LabelToggle(this);
             toggle.setText(data.getNationalityName());
             toggle.setId(Integer.parseInt(data.getId()));
+            toggle.setChecked(requestParms.getNationalityList().contains(data.getId()));
             multiDummy.addView(toggle);
         }
 
     }
 
-    private void setToLanguagesToggleViews(List<LanguageData> dataList) {
+    private void setToLanguagesToggleViews(final List<LanguageData> dataList) {
 
         MultiSelectToggleGroup multiDummy = (MultiSelectToggleGroup) findViewById(R.id.launguage_group_toggle_views);
         multiDummy.setOnCheckedChangeListener(new MultiSelectToggleGroup.OnCheckedStateChangeListener() {
             @Override
             public void onCheckedStateChanged(MultiSelectToggleGroup group, int checkedId, boolean isChecked) {
 
-               /* try {
+
+                LanguageData data= new LanguageData();
+                data.setId(checkedId+"");
+               int index= dataList.indexOf(data);
+
+               if(index>=0)
+               {
+                   LanguageData languageData=dataList.get(index);
+                   if(isChecked)
+                   {
+                       requestParms.addLaunguage(languageData.getLanguageName());
+                   }else
+                   {
+                       requestParms.removeLanguage(languageData.getLanguageName());
+                   }
+
+
+               }
+               /* requestParms.addLaunguage(selectedLanguage.getLanguageName());
+
+                try {
                     String str = dummyText[checkedId];
                     showToastMessage(str + " " + isChecked);
                 }catch(Exception e){
@@ -349,6 +422,7 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
             LabelToggle toggle = new LabelToggle(this);
             toggle.setText(data.getLanguageName());
             toggle.setId(Integer.parseInt(data.getId()));
+            toggle.setChecked(requestParms.getLaunguage().contains(data.getLanguageName()));
             multiDummy.addView(toggle);
         }
     }
@@ -392,18 +466,7 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
     }
 
 
-    public void onApplyButtonClick(View view) {
 
-        MyApplication.getInstance().setSearchRequestParms(requestParms);
-
-        Intent intent = getIntent(); //new Intent(this,HomeActivity.class);
-        intent.setClass(this, DoctorsListActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(intent);
-        sendHandlerMessage(getIntent(), ListenerKey.FILTER_REFRESH_LIST_LISTENER_KEY, getFilterRefreshListListener(requestParms.getSearchtype()));
-
-
-    }
 
 
     public void onClearAllButtonClick(View view) {
@@ -490,10 +553,10 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
         {
             expandableLayout_insurance_view.collapse();
         }
-        if(expandableLayout_insurance_view1!=null && expandableLayout_insurance_view1.isExpanded())
+       /* if(expandableLayout_insurance_view1!=null && expandableLayout_insurance_view1.isExpanded())
         {
             expandableLayout_insurance_view1.collapse();
-        }
+        }*/
 
 
         if(expandableLayout_fee_view!=null && expandableLayout_fee_view.isExpanded())

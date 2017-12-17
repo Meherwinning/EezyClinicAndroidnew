@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.adapters.PopupAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.GoogleMarkerClickListener;
 
@@ -90,6 +91,7 @@ public abstract class AbstractMapFragment extends AbstractFragment implements On
                     int padding = 50; // offset from edges of the map in pixels
                     CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
                     mMap.animateCamera(cu);
+                    mMap.setInfoWindowAdapter(new PopupAdapter(getLayoutInflater()));
                 }
             });
 

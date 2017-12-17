@@ -55,4 +55,19 @@ public class LanguageData {
     public String toString() {
         return languageName ;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof  LanguageData)
+        {
+            LanguageData data= (LanguageData) obj;
+
+            if(data.getId().equalsIgnoreCase(getId()))
+            {
+                return true;
+            }
+        }
+
+        return super.equals(obj);
+    }
 }
