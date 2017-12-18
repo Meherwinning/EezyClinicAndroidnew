@@ -1,6 +1,8 @@
 package com.vempower.eezyclinic.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Messenger;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,7 +13,12 @@ import android.widget.ImageView;
 import com.vempower.eezyclinic.APICore.SearchResultClinicData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.ClinicProfileActivity;
+import com.vempower.eezyclinic.activities.DoctorProfileActivity;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.callbacks.ListenerKey;
+import com.vempower.eezyclinic.interfaces.AbstractIBinder;
+import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRM;
 import com.vempower.eezyclinic.views.MyTextViewRR;
@@ -104,6 +111,32 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Or
                 return;
             }
 
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                   /* "doctorid":"46",
+                            "clinicid":"21",
+                            "branchid":40*/
+                    Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),ClinicProfileActivity.class);
+                           /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+                    intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_CLINIC_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
+                        @Override
+                        protected IntentObjectListener getMyObject() {
+                            return new IntentObjectListener(){
+
+                                @Override
+                                public Object getObject() {
+                                    return data;
+                                }
+                            };
+                        }
+                    }));
+
+                    MyApplication.getCurrentActivityContext().startActivity(intent);
+                }
+            });
             MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, data.getMainDisplayImage());
 
 

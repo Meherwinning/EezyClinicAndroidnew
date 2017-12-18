@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.support.annotation.Nullable;
@@ -17,10 +18,14 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.callbacks.ListenerKey;
+import com.vempower.eezyclinic.interfaces.AbstractIBinder;
+import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.stashdealcustomer.activities.AbstractActivity;
@@ -208,5 +213,30 @@ public class AbstractFragmentActivity extends AbstractActivity  /*implements OTP
             }
         }
     }
+
+    protected Object getObjectFromIntent(Intent intent,String key)
+    {
+        if(intent==null || TextUtils.isEmpty(key))
+        {
+            return null;
+        }
+            Messenger messenger= intent.getParcelableExtra(key);
+
+            if(messenger==null)
+            {
+                return null;
+            }
+                IBinder binder = messenger.getBinder();
+                if(!(binder instanceof AbstractIBinder))
+                {
+                    return null;
+                }
+                    AbstractIBinder abstractIBinder= (AbstractIBinder) binder;
+        if(abstractIBinder==null || !(abstractIBinder.asBinder() instanceof IntentObjectListener))
+        {
+            return null;
+        }
+        return ((IntentObjectListener) abstractIBinder.asBinder()).getObject();
+       }
 
 }

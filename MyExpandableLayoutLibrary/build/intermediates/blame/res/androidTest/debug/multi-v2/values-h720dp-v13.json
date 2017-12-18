@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-h720dp-v13/values-h720dp-v13.xml",
+            "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-h720dp-v13/values-h720dp-v13.xml",
             "map": [
                 {
-                    "source": "/home/challa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/2824c78dfb690638a7b1a2c4f71c505d/res/values-h720dp-v13/values-h720dp-v13.xml",
+                    "source": "/home/satish/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/643ee1da9b9b18b0379fa6829d4a575f/res/values-h720dp-v13/values-h720dp-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

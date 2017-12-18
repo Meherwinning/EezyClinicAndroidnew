@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -42,14 +43,29 @@ public class ButtonRectangle extends Button {
 
 
 	// Set atributtes of XML to View
-	protected void setAttributes(AttributeSet attrs){
+	protected void setAttributes(AttributeSet attrs) {
 
 		//Set background Color
 		// Color by resource
+
+		/*TypedArray a = getContext().obtainStyledAttributes(attrs, "background");
+		Drawable drawable = a.getDrawable(R.styleable.MyLayout_icon);
+		if (drawable != null)
+		{
+			myIcon.setBackgroundDrawable(drawable);
+	}*/
+
 		int bacgroundColor = attrs.getAttributeResourceValue(ANDROIDXML,"background",-1);
 		if(bacgroundColor != -1){
-			setBackgroundColor(getResources().getColor(bacgroundColor));
-		}else{
+			try {
+				setBackgroundColor(getResources().getColor(bacgroundColor));
+			}catch (Exception e)
+			{
+
+			}
+
+		} else{
+
 			// Color by hexadecimal
 			// Color by hexadecimal
 			background = attrs.getAttributeIntValue(ANDROIDXML, "background", -1);

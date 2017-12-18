@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+<com.vempower.eezyclinic.widget.TouchCallbackLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout"
+    android:layout_alignParentTop="true"
+    android:layout_above="@+id/appointment_bt"
+    android:background="@color/white"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_marginTop="@dimen/_50dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:background="@drawable/app_gradient_bg"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:background="@drawable/app_gradient_bg"
+
+            android:id="@+id/header_view_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:id="@+id/image_linear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/canvas_100x100"
+                    android:gravity="center"
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/profile_iv"
+                        style="@style/image_fit_toparent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/profile_icon" />
+                </LinearLayout>
+                <!-- <ImageView
+                     android:id="@+id/profile_iv"
+                     android:padding="@dimen/_5dp"
+                     android:layout_width="@dimen/_60dp"
+                     android:layout_centerVertical="true"
+                     android:src="@mipmap/ic_launcher"
+                     android:layout_height="@dimen/_60dp" />-->
+
+                <com.vempower.eezyclinic.views.MyTextViewRB
+                    android:id="@+id/clinic_name_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/image_linear"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:gravity="center"
+                    android:hint="Clinic Name"
+                    android:maxLines="1"
+                    android:textColorHint="@color/white"
+
+
+                    android:textSize="15sp"
+                    android:textStyle="normal"
+                    android:textColor="#ffffff"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/designation_linear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/clinic_name_tv"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/_15sp"
+                    android:orientation="horizontal">
+
+
+
+                    <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/patient_id_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5dp"
+                        android:text="Address"
+
+
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        android:textColor="#ffffff"
+                        />
+
+                    <!--    <com.vempower.eezyclinic.views.MyTextViewRM
+                            android:id="@+id/patient_email_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Patient email"
+                            android:maxLines="1"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_normal" />-->
+
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabHost"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50dp"
+            app:tabMinWidth="@dimen/_28dp"
+            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+
+            android:background="@color/colorPrimary"
+            android:textSize="@dimen/_16dp"
+
+            app:tabIndicatorColor="@color/white"
+            app:tabTextColor="@color/white_with_alpha"
+            app:tabSelectedTextColor="@color/white"
+
+            app:tabPaddingBottom="@dimen/_1dp"
+            app:tabIndicatorHeight="@dimen/_3dp"
+            app:tabMaxWidth="0dp"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+
+            />
+
+
+     <!--   <com.vempower.eezyclinic.widget.SlidingTabLayout
+            android:id="@+id/tabs"
+            android:visibility="gone"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            app:tabIndicatorColor="@color/white"
+            app:tabTextColor="@color/white_with_alpha"
+            app:tabSelectedTextColor="@color/white"
+            android:layout_height="@dimen/_50sp"/>
+ -->   </LinearLayout>
+
+
+</com.vempower.eezyclinic.widget.TouchCallbackLayout>
+
+    <Button
+
+        android:layout_alignParentBottom="true"
+        android:id="@+id/view_contact_number_bt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48dp"
+        android:layout_marginTop="@dimen/_5dp"
+        android:layout_marginBottom="@dimen/_5dp"
+        android:clickable="true"
+        android:layout_marginLeft="@dimen/_24dp"
+        android:layout_marginRight="@dimen/_24dp"
+        android:maxLines="1"
+        android:padding="@dimen/_4dp"
+        android:textAllCaps="false"
+        android:background="@drawable/button_bg"
+
+        android:textSize="@dimen/_16sp"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="normal"
+        android:textColor="#ffffff"
+        android:text="View Contact Number"
+
+        />
+</RelativeLayout>

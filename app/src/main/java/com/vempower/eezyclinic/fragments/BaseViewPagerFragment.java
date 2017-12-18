@@ -1,6 +1,7 @@
 package com.vempower.eezyclinic.fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
@@ -8,7 +9,7 @@ import com.vempower.eezyclinic.tools.ScrollableFragmentListener;
 import com.vempower.eezyclinic.tools.ScrollableListener;
 
 
-public abstract class BaseViewPagerFragment extends Fragment implements ScrollableListener {
+public abstract class BaseViewPagerFragment extends AbstractFragment implements ScrollableListener {
 
     protected ScrollableFragmentListener mListener;
     protected static final String BUNDLE_FRAGMENT_INDEX = "BaseFragment.BUNDLE_FRAGMENT_INDEX";
@@ -28,7 +29,7 @@ public abstract class BaseViewPagerFragment extends Fragment implements Scrollab
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         try {
             mListener = (ScrollableFragmentListener) activity;
@@ -37,6 +38,18 @@ public abstract class BaseViewPagerFragment extends Fragment implements Scrollab
                     activity.toString() + " must implement ScrollableFragmentListener");
         }
     }
+
+
+   /* @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (ScrollableFragmentListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(
+                    activity.toString() + " must implement ScrollableFragmentListener");
+        }
+    }*/
 
     @Override
     public void onDetach() {

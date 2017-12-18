@@ -1,6 +1,5 @@
 package com.vempower.eezyclinic.activities;
 
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,17 +17,16 @@ import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.adapters.DoctorProfileViewPagerAdapter;
+import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
-import com.vempower.eezyclinic.fragments.AppointmentListFragment;
-import com.vempower.eezyclinic.fragments.DoctorProfileFragment;
 import com.vempower.eezyclinic.fragments.ListViewFragment;
 import com.vempower.eezyclinic.fragments.ScrollViewFragment;
 import com.vempower.eezyclinic.tools.ScrollableFragmentListener;
 import com.vempower.eezyclinic.tools.ScrollableListener;
 import com.vempower.eezyclinic.tools.ViewPagerHeaderHelper;
-import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.widget.SlidingTabLayout;
 import com.vempower.eezyclinic.widget.TouchCallbackLayout;
 
 public class DoctorProfileActivity extends AbstractMenuActivity
@@ -54,8 +52,22 @@ public class DoctorProfileActivity extends AbstractMenuActivity
     protected void setMyContectntView() {
         super.setMyContectntView();
         setContentView(R.layout.activity_menu_profile_layout);
-       // myInit();
-        temp();
+        // myInit();
+
+
+        Object obj = getObjectFromIntent(getIntent(), ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY);
+
+        if (obj!=null && obj instanceof SearchResultDoctorListData) {
+            SearchResultDoctorListData data = (SearchResultDoctorListData) obj;
+            showToastMessage("Data :" + data);
+        }else
+        {
+            showMyAlertDialog("Alert","Invalid Doctor profile.Please try again","Close",true);
+           return;
+        }
+        computeHeaderHeight();
+
+
     }
 
     public void setActionBar() {
@@ -64,7 +76,7 @@ public class DoctorProfileActivity extends AbstractMenuActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView titleName = toolbar.findViewById(R.id.title_logo_tv);
         //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
-       // titleName.setText(Utils.getStringFromResources(R.string.title_activity_appointments));
+        // titleName.setText(Utils.getStringFromResources(R.string.title_activity_appointments));
         titleName.setText("Profile");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,14 +101,13 @@ public class DoctorProfileActivity extends AbstractMenuActivity
         return null;
     }
 
-    private void temp()
-    {
-       final LinearLayout view =findViewById(R.id.header_view_linear);
+    private void computeHeaderHeight() {
+        final LinearLayout view = findViewById(R.id.header_view_linear);
         view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                mHeaderHeight= view.getHeight(); //height is ready
+                mHeaderHeight = view.getHeight(); //height is ready
                 myInit();
             }
         });
@@ -105,7 +116,7 @@ public class DoctorProfileActivity extends AbstractMenuActivity
     private void myInit() {
 
         mTouchSlop = ViewConfiguration.get(this).getScaledTouchSlop();
-       // mTabHeight = getResources().getDimensionPixelSize(R.dimen._50dp);
+        // mTabHeight = getResources().getDimensionPixelSize(R.dimen._50dp);
         //mHeaderHeight = getResources().getDimensionPixelSize(R.dimen._180dp);
 
         mViewPagerHeaderHelper = new ViewPagerHeaderHelper(this, this);
@@ -138,7 +149,7 @@ public class DoctorProfileActivity extends AbstractMenuActivity
 
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
+        mViewPager.setAdapter(new DoctorProfileViewPagerAdapter(getSupportFragmentManager()));
 
         //slidingTabLayout.setViewPager(mViewPager);
         tabLayout.setupWithViewPager(mViewPager);
@@ -146,26 +157,35 @@ public class DoctorProfileActivity extends AbstractMenuActivity
         mViewPager.setTranslationY(mHeaderHeight);
     }
 
-    @Override public boolean onLayoutInterceptTouchEvent(MotionEvent event) {
+    @Override
+    public boolean onLayoutInterceptTouchEvent(MotionEvent event) {
 
         return mViewPagerHeaderHelper.onLayoutInterceptTouchEvent(event,
                 /*mTabHeight +*/ mHeaderHeight);
     }
 
-    @Override public boolean onLayoutTouchEvent(MotionEvent event) {
+    @Override
+    public boolean onLayoutTouchEvent(MotionEvent event) {
         return mViewPagerHeaderHelper.onLayoutTouchEvent(event);
     }
 
-    @Override public boolean isViewBeingDragged(MotionEvent event) {
+    @Override
+    public boolean isViewBeingDragged(MotionEvent event) {
+        /*if(mScrollableListenerArrays==null || mViewPager==null || mScrollableListenerArrays.valueAt(mViewPager.getCurrentItem())==null)
+        {
+            return true;
+        }*/
         return mScrollableListenerArrays.valueAt(mViewPager.getCurrentItem())
                 .isViewBeingDragged(event);
     }
 
-    @Override public void onMoveStarted(float y) {
+    @Override
+    public void onMoveStarted(float y) {
 
     }
 
-    @Override public void onMove(float y, float yDx) {
+    @Override
+    public void onMove(float y, float yDx) {
         float headerTranslationY = mHeaderLayoutView.getTranslationY() + yDx;
         if (headerTranslationY >= 0) { // pull end
             headerExpand(0L);
@@ -183,7 +203,8 @@ public class DoctorProfileActivity extends AbstractMenuActivity
         }
     }
 
-    @Override public void onMoveEnded(boolean isFling, float flingVelocityY) {
+    @Override
+    public void onMoveEnded(boolean isFling, float flingVelocityY) {
 
         float headerY = mHeaderLayoutView.getTranslationY(); // 0到负数
         if (headerY == 0 || headerY == -mHeaderHeight) {
@@ -254,11 +275,13 @@ public class DoctorProfileActivity extends AbstractMenuActivity
         mViewPagerHeaderHelper.setHeaderExpand(true);
     }
 
-    @Override public void onFragmentAttached(ScrollableListener listener, int position) {
+    @Override
+    public void onFragmentAttached(ScrollableListener listener, int position) {
         mScrollableListenerArrays.put(position, listener);
     }
 
-    @Override public void onFragmentDetached(ScrollableListener listener, int position) {
+    @Override
+    public void onFragmentDetached(ScrollableListener listener, int position) {
         mScrollableListenerArrays.remove(position);
     }
 
@@ -271,9 +294,9 @@ public class DoctorProfileActivity extends AbstractMenuActivity
         @Override
         public Fragment getItem(int position) {
 
-           /* if (position == 3) {
+            if (position == 3) {
                 return ScrollViewFragment.newInstance(position);
-            }*/
+            }
             return ListViewFragment.newInstance(position);
         }
 
@@ -294,5 +317,11 @@ public class DoctorProfileActivity extends AbstractMenuActivity
 
             return "";
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        finish();
     }
 }

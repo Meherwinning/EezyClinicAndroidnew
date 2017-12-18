@@ -1,6 +1,8 @@
 
 package com.vempower.eezyclinic.APICore;
 
+import android.text.TextUtils;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -260,6 +262,10 @@ public class SearchResultDoctorListData {
     }
 
     public String getDocId() {
+        if(docId==null)
+        {
+            docId="";
+        }
         return docId;
     }
 
@@ -354,4 +360,56 @@ public class SearchResultDoctorListData {
     public String getReviews_count() {
         return reviews_count;
     }*/
+
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if(obj!=null && obj instanceof  SearchResultDoctorListData)
+        {
+            SearchResultDoctorListData data= (SearchResultDoctorListData) obj;
+           if(data.getDocId().equalsIgnoreCase(getDocId()))
+            {
+                return true;
+            }
+        }
+
+        return super.equals(obj);
+    }
+
+    @Override
+    public String toString() {
+        return "SearchResultDoctorListData{" +
+                "mainDisplayImage='" + mainDisplayImage + '\'' +
+                ", cityName='" + cityName + '\'' +
+                ", consultTimings='" + consultTimings + '\'' +
+                ", branchName='" + branchName + '\'' +
+                ", insurancesAccepted='" + insurancesAccepted + '\'' +
+                ", gender='" + gender + '\'' +
+                ", languagesKnown='" + languagesKnown + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", locality='" + locality + '\'' +
+                ", doctorLogo='" + doctorLogo + '\'' +
+                ", briefProfile='" + briefProfile + '\'' +
+                ", consultancyFeeCurrency='" + consultancyFeeCurrency + '\'' +
+                ", instantBooking='" + instantBooking + '\'' +
+                ", primaryMobileNo='" + primaryMobileNo + '\'' +
+                ", counsultancyPrice='" + counsultancyPrice + '\'' +
+                ", branchTimings='" + branchTimings + '\'' +
+                ", specalities='" + specalities + '\'' +
+                ", docId='" + docId + '\'' +
+                ", branchId='" + branchId + '\'' +
+                ", clinicId='" + clinicId + '\'' +
+                ", address='" + address + '\'' +
+                ", googleMapLatitude='" + googleMapLatitude + '\'' +
+                ", googleMapLongitude='" + googleMapLongitude + '\'' +
+                ", doctorName='" + doctorName + '\'' +
+                ", doctorRecommendedCount='" + doctorRecommendedCount + '\'' +
+                ", doctorTotalReviews='" + doctorTotalReviews + '\'' +
+                ", clinicName='" + clinicName + '\'' +
+                ", licenceExpiryDate='" + licenceExpiryDate + '\'' +
+                '}';
+    }
 }

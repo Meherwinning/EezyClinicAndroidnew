@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollview"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_25dp"
+        android:layout_marginTop="@dimen/_20dp"
+        android:orientation="vertical">
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:fontFamily="sans-serif-medium"
+            android:text="Doctor Profile"
+            android:textColor="#0ebf7c"
+            android:textSize="@dimen/_18sp"
+            android:textStyle="normal" />
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_12dp"
+
+            android:text="Gender"
+            android:textColor="#212121"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="normal" />
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+
+            android:layout_marginTop="@dimen/_3dp"
+
+            android:fontFamily="sans-serif"
+            android:text="Male"
+            android:textColor="#777777"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_7dp"
+            android:background="#ededed" />
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+
+            android:layout_marginTop="@dimen/_10dp"
+
+            android:fontFamily="sans-serif-medium"
+            android:text="Nationality"
+            android:textColor="#212121"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="normal" />
+
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+
+            android:layout_marginTop="@dimen/_3dp"
+
+
+            android:fontFamily="sans-serif"
+            android:text="Indian"
+            android:textColor="#777777"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_10dp"
+            android:background="#ededed" />
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+
+            android:layout_marginTop="@dimen/_7dp"
+
+            android:fontFamily="sans-serif-medium"
+            android:text="Languages Known"
+            android:textColor="#212121"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="normal" />
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+
+            android:layout_marginTop="@dimen/_3dp"
+
+
+            android:fontFamily="sans-serif"
+            android:text="Telugu, Tamil, English"
+            android:textColor="#777777"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_12dp"
+            android:background="#ededed" />
+
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+
+            android:layout_marginTop="@dimen/_9dp"
+
+
+            android:fontFamily="sans-serif-medium"
+            android:text="About"
+            android:textColor="#212121"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="normal" />
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+
+            android:layout_marginTop="@dimen/_3dp"
+
+            android:fontFamily="sans-serif"
+            android:text="Profile Complete Profile Complete Profile Profile Complete Profile Complete Profile Profile Complete Profile Complete Profile"
+            android:textColor="#777777"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_10dp"
+            android:background="#ededed" />
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+
+            android:layout_marginTop="@dimen/_7dp"
+
+
+            android:fontFamily="sans-serif-medium"
+            android:text="Consultation Fee"
+            android:textColor="#212121"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="normal" />
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+
+            android:layout_marginTop="@dimen/_3dp"
+
+
+            android:fontFamily="sans-serif"
+            android:text="AED 250"
+            android:textColor="#777777"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_20dp"
+            android:background="#ededed" />
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_13dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Specializations"
+            android:textColor="#212121"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="normal" />
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_3dp"
+            android:fontFamily="sans-serif"
+            android:text="Sports Medicine Specialist"
+            android:textColor="#777777"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="normal" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_11dp"
+            android:background="#ededed" />
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_13dp"
+
+            android:fontFamily="sans-serif-medium"
+            android:text="Services"
+            android:textColor="#212121"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="normal" />
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_3dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#777777"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="normal"
+            android:text="Consultation" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_11dp"
+            android:background="#ededed" />
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_20dp"
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#212121"
+            android:text="Education Details"
+
+            />
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_3dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#777777"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="normal"
+            android:text="Consultation" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_11dp"
+            android:background="#ededed" />
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_12dp"
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#212121"
+            android:text="Experience"
+
+            />
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_3dp"
+
+
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#777777"
+            android:text="Exp details line 1 exp details line 2"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_12dp"
+            android:background="#ededed" />
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_12dp"
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#212121"
+            android:text="Awards and Recognitions"
+
+            />
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_3dp"
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#777777"
+            android:text="No awards yet"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_12dp"
+            android:background="#ededed" />
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_12dp"
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#212121"
+            android:text="Memberships"
+
+            />
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_3dp"
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#777777"
+            android:text="Sports med Membership"
+        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_12dp"
+            android:background="#ededed" />
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_12dp"
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#212121"
+            android:text="Registrations"
+
+            />
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_3dp"
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#777777"
+            android:text="Sports med Membership"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_20dp"
+            android:background="#ededed" />
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_12dp"
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#212121"
+            android:text="Clinic Details"
+
+            />
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_3dp"
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#777777"
+            android:text="Sports med Membership"
+            />
+
+    </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</ScrollView>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+
+
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_10dp"
+        android:layout_marginLeft="@dimen/_15dp"
+        android:layout_marginRight="@dimen/_15sp"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+
+        android:paddingTop="@dimen/_5dp"
+        android:paddingBottom="@dimen/_7dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:id="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:gravity="center_vertical"
+
+
+            android:textSize="@dimen/_15sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#212121"
+            android:text="Margie Hill"
+            />
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/date_tv"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/_3dp"
+
+            android:textSize="@dimen/_12sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#777777"
+            android:text="15 July 2017"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:src="@drawable/reccom_uncheck"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+    <com.vempower.eezyclinic.views.MyTextViewRR
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginRight="@dimen/_5dp"
+        android:textSize="@dimen/_14sp"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:textColor="#de555555"
+        android:text="Five centuries, but also the leap into electronic typesetting, essentially unchanged."
+        />
+    <LinearLayout
+        android:layout_marginTop="@dimen/_5dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/_8dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <com.vempower.eezyclinic.views.MyTextViewRR
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingTop="@dimen/_3dp"
+                android:paddingBottom="@dimen/_3dp"
+                android:textSize="@dimen/_12sp"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="normal"
+                android:textColor="#555555"
+                android:text="Waiting time"
+                />
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_3dp"
+                app:mrb_progressTint="#ffc400"
+                app:mrb_fillBackgroundStars="true"
+
+                app:mrb_progressBackgroundTint="@color/bottom_text_color"
+                android:rating="3"
+                app:mrb_secondaryProgressTint="@color/white"
+                style="@style/Widget.MaterialRatingBar.RatingBar" />
+
+            <com.vempower.eezyclinic.views.MyTextViewRR
+                android:visibility="gone"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_marginLeft="@dimen/_4dp"
+                android:layout_marginRight="@dimen/_4dp"
+                android:textSize="13sp"
+                android:textColor="#cc212121"
+                android:textStyle="bold" />
+
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/_8dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <com.vempower.eezyclinic.views.MyTextViewRR
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingTop="@dimen/_3dp"
+                android:paddingBottom="@dimen/_3dp"
+                android:textSize="@dimen/_12sp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="normal"
+                android:textColor="#555555"
+                android:text="Diagnosis"
+                />
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_3dp"
+                app:mrb_progressTint="#ffc400"
+                app:mrb_fillBackgroundStars="true"
+
+                app:mrb_progressBackgroundTint="@color/bottom_text_color"
+                android:rating="3"
+                app:mrb_secondaryProgressTint="@color/white"
+                style="@style/Widget.MaterialRatingBar.RatingBar" />
+
+            <com.vempower.eezyclinic.views.MyTextViewRR
+                android:visibility="gone"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_marginLeft="@dimen/_4dp"
+                android:layout_marginRight="@dimen/_4dp"
+                android:textSize="13sp"
+                android:textColor="#cc212121"
+                android:textStyle="bold" />
+
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/_8dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <com.vempower.eezyclinic.views.MyTextViewRR
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingTop="@dimen/_3dp"
+                android:paddingBottom="@dimen/_3dp"
+                android:textSize="@dimen/_12sp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="normal"
+                android:textColor="#555555"
+                android:text="Customer Service"
+                />
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:id="@+id/feedback_rating_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_3dp"
+                app:mrb_progressTint="#ffc400"
+                app:mrb_fillBackgroundStars="true"
+
+                app:mrb_progressBackgroundTint="@color/bottom_text_color"
+                android:rating="3"
+                app:mrb_secondaryProgressTint="@color/white"
+                style="@style/Widget.MaterialRatingBar.RatingBar" />
+
+            <com.vempower.eezyclinic.views.MyTextViewRR
+                android:visibility="gone"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_marginLeft="@dimen/_4dp"
+                android:layout_marginRight="@dimen/_4dp"
+                android:textSize="13sp"
+                android:textColor="#cc212121"
+                android:textStyle="bold" />
+
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_15dp"
+        android:background="#ededed" />
+
+
+</LinearLayout>

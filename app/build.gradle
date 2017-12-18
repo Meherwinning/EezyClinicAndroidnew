@@ -79,6 +79,8 @@ dependencies {
     //implementation 'com.github.GwonHyeok:StickySwitch:0.0.15'
     //  implementation 'com.nightonke:jellytogglebutton:1.0.2'
     implementation project(':togglebuttongroup')
+    implementation 'me.zhanghai.android.materialratingbar:library:1.1.1'
+
 }
 repositories {
     mavenCentral()

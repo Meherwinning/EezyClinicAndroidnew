@@ -1,6 +1,8 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Messenger;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +22,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.DoctorProfileActivity;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.core.SearchRequest;
+import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.GoogleMarkerClickListener;
+import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
@@ -67,8 +73,30 @@ public class DoctorsMapFragment extends AbstractMapFragment/*, GoogleMap.OnMarke
         setOnGoogleMarkerClickListener(new GoogleMarkerClickListener() {
             @Override
             public void onClick(int id) {
-                //TODO with id
-                Utils.showToastMessage("Id:"+id);
+
+                SearchResultDoctorListData temp= new SearchResultDoctorListData();
+                temp.setDocId(id+"");
+              final int index= doctorsLsit.lastIndexOf(temp);
+               if(index>=0 && doctorsLsit.get(index)!=null) {
+
+                   Intent intent = new Intent(MyApplication.getCurrentActivityContext(), DoctorProfileActivity.class);
+                           /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+                   intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
+                       @Override
+                       protected IntentObjectListener getMyObject() {
+                           return new IntentObjectListener() {
+
+                               @Override
+                               public Object getObject() {
+                                   return doctorsLsit.get(index);
+                               }
+                           };
+                       }
+                   }));
+                   MyApplication.getCurrentActivityContext().startActivity(intent);
+               }
+
+
             }
         });
     }

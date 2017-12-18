@@ -1,6 +1,7 @@
 package com.vempower.eezyclinic.interfaces;
 
 import android.os.IBinder;
+import android.support.annotation.Nullable;
 
 import com.vempower.eezyclinic.IMyAidlInterface;
 
@@ -8,10 +9,13 @@ import com.vempower.eezyclinic.IMyAidlInterface;
  * Created by satish on 7/12/17.
  */
 
-public class AbstractIBinder extends IMyAidlInterface.Stub {
+public abstract class AbstractIBinder extends IMyAidlInterface.Stub {
 
     @Override
     public IBinder asBinder() {
-        return null;
+        return  getMyObject();
     }
+
+    protected abstract IntentObjectListener getMyObject();
+
 }

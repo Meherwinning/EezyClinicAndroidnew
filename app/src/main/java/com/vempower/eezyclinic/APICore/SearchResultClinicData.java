@@ -194,4 +194,28 @@ public class SearchResultClinicData {
     public String getGoogle_map_longitude() {
         return google_map_longitude;
     }
+
+
+    @Override
+    public String toString() {
+        return "SearchResultClinicData{" +
+                "mainDisplayImage='" + mainDisplayImage + '\'' +
+                ", locality='" + locality + '\'' +
+                ", branchName='" + branchName + '\'' +
+                ", country=" + country +
+                ", address='" + address + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", clinicName='" + clinicName + '\'' +
+                ", clinicServices='" + clinicServices + '\'' +
+                ", clinicSpecalities='" + clinicSpecalities + '\'' +
+                ", clncId='" + clncId + '\'' +
+                ", brcId='" + brcId + '\'' +
+                ", cityName='" + cityName + '\'' +
+                ", totalreviews='" + totalreviews + '\'' +
+                ", totalrecommend='" + totalrecommend + '\'' +
+                ", clinicService='" + clinicService + '\'' +
+                ", google_map_latitude='" + google_map_latitude + '\'' +
+                ", google_map_longitude='" + google_map_longitude + '\'' +
+                '}';
+    }
 }
