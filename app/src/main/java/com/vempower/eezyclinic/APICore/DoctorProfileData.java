@@ -60,13 +60,13 @@ public class DoctorProfileData {
     private List<String> experience = null;
     @SerializedName("awards_recognitions")
     @Expose
-    private List<Object> awardsRecognitions = null;
+    private List<String> awardsRecognitions = null;
     @SerializedName("memberships")
     @Expose
-    private List<Object> memberships = null;
+    private List<String> memberships = null;
     @SerializedName("registrations")
     @Expose
-    private Object registrations;
+    private String registrations;
     @SerializedName("clinicdetails")
     @Expose
     private DoctorClinicdetails clinicdetails;
@@ -178,16 +178,43 @@ public class DoctorProfileData {
         this.doctorsProfile = doctorsProfile;
     }
 
-    public List<String> getSpecializations() {
-        return specializations;
+    public String getSpecializations() {
+        String spec="";
+        if(specializations==null)
+        {
+            return spec;
+        }
+        for(String str:specializations)
+        {
+            if(str!=null)
+            {
+                spec=spec+str+",";
+            }
+        }
+
+        return spec;
     }
 
     public void setSpecializations(List<String> specializations) {
         this.specializations = specializations;
     }
 
-    public List<String> getServices() {
-        return services;
+    public String getServices() {
+
+        String ser="";
+        if(services==null)
+        {
+            return ser;
+        }
+        for(String str:services)
+        {
+            if(str!=null)
+            {
+                ser=ser+str+",";
+            }
+        }
+
+        return ser;
     }
 
     public void setServices(List<String> services) {
@@ -202,40 +229,95 @@ public class DoctorProfileData {
         this.educationalQualifications = educationalQualifications;
     }
 
-    public List<String> getExperience() {
-        return experience;
+    public String getExperience() {
+
+        String exp="";
+        if(experience==null)
+        {
+            return exp;
+        }
+        for(String str:experience)
+        {
+            if(str!=null)
+            {
+                exp=exp+str+",";
+            }
+        }
+
+        return exp;
     }
 
     public void setExperience(List<String> experience) {
         this.experience = experience;
     }
 
-    public List<Object> getAwardsRecognitions() {
-        return awardsRecognitions;
+    public String getAwardsRecognitions() {
+
+        String award="";
+        if(awardsRecognitions==null)
+        {
+            return award;
+        }
+        for(String str:awardsRecognitions)
+        {
+            if(str!=null)
+            {
+                award=award+str+",";
+            }
+        }
+
+        return award;
     }
 
-    public void setAwardsRecognitions(List<Object> awardsRecognitions) {
+    public void setAwardsRecognitions(List<String> awardsRecognitions) {
         this.awardsRecognitions = awardsRecognitions;
     }
 
-    public List<Object> getMemberships() {
-        return memberships;
+    public String getMemberships() {
+        String member="";
+        if(memberships==null)
+        {
+            return member;
+        }
+        for(String str:memberships)
+        {
+            if(str!=null)
+            {
+                member=member+str+",";
+            }
+        }
+
+        return member;
+
     }
 
-    public void setMemberships(List<Object> memberships) {
+    public void setMemberships(List<String> memberships) {
         this.memberships = memberships;
     }
 
-    public Object getRegistrations() {
+    public String getRegistrations() {
         return registrations;
     }
 
-    public void setRegistrations(Object registrations) {
+    public void setRegistrations(String registrations) {
         this.registrations = registrations;
     }
 
-    public DoctorClinicdetails getClinicdetails() {
-        return clinicdetails;
+    public String getClinicdetails() {
+        String details="";
+
+        if(clinicdetails==null)
+        {
+            return details;
+        }
+        details=clinicname+"\n";
+        details=details+""+clinicdetails.getClinic1()+"\n";
+        details=details+"Clinic Time:"+clinicdetails.getClinictimings()+"\n";
+        details=details+"Doctor Time:"+clinicdetails.getDoctortimings()+"\n";
+        details=details+"Contact:"+clinicdetails.getContact()+"";
+
+
+        return details;
     }
 
     public void setClinicdetails(DoctorClinicdetails clinicdetails) {

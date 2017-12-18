@@ -1,5 +1,7 @@
 package com.vempower.eezyclinic.activities;
 
+import android.os.Build;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,16 +19,22 @@ import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.vempower.eezyclinic.APICore.DoctorProfileData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
+import com.vempower.eezyclinic.APIResponce.DoctorProfileAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.DoctorProfileViewPagerAdapter;
+import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.ListViewFragment;
 import com.vempower.eezyclinic.fragments.ScrollViewFragment;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.mappers.DoctorProfileMapper;
 import com.vempower.eezyclinic.tools.ScrollableFragmentListener;
 import com.vempower.eezyclinic.tools.ScrollableListener;
 import com.vempower.eezyclinic.tools.ViewPagerHeaderHelper;
+import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.widget.TouchCallbackLayout;
 
 public class DoctorProfileActivity extends AbstractMenuActivity
@@ -47,6 +55,8 @@ public class DoctorProfileActivity extends AbstractMenuActivity
     private int mHeaderHeight;
 
     private Interpolator mInterpolator = new DecelerateInterpolator();
+    private LinearLayout myView;
+    private  DoctorProfileData profileData;
 
     @Override
     protected void setMyContectntView() {
@@ -56,19 +66,85 @@ public class DoctorProfileActivity extends AbstractMenuActivity
 
 
         Object obj = getObjectFromIntent(getIntent(), ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY);
+        SearchResultDoctorListData data;
+        if (obj != null && obj instanceof SearchResultDoctorListData) {
+            data = (SearchResultDoctorListData) obj;
 
-        if (obj!=null && obj instanceof SearchResultDoctorListData) {
-            SearchResultDoctorListData data = (SearchResultDoctorListData) obj;
-            showToastMessage("Data :" + data);
-        }else
-        {
-            showMyAlertDialog("Alert","Invalid Doctor profile.Please try again","Close",true);
-           return;
+            // showToastMessage("Data :" + data);
+        } else {
+            showMyAlertDialog("Alert", "Invalid Doctor profile.Please try again", "Close", true);
+            return;
         }
-        computeHeaderHeight();
+
+        if (data == null) {
+            showMyAlertDialog("Alert", "Invalid Doctor profile.Please try again", "Close", true);
+            return;
+
+        }
+
+          myView = findViewById(R.id.header_view_linear);
+        callDoctorProfileMapper(data);
 
 
     }
+
+    private void callDoctorProfileMapper(final SearchResultDoctorListData data) {
+        //String doctorid, String clinicid,String branchid
+       // Utils.showToastMessage("callDoctorProfileMapper");
+        DoctorProfileMapper mapper = new DoctorProfileMapper(data.getDocId(), data.getClinicId(), data.getBranchId());
+        mapper.setOnDoctorProfileListenerr(new DoctorProfileMapper.DoctorProfileListener() {
+            @Override
+            public void getDoctorProfileAPI(DoctorProfileAPI doctorProfileAPI, String errorMessage) {
+                if (!isValidResponse(doctorProfileAPI, errorMessage) || doctorProfileAPI.getData() == null) {
+                    showMyDialog("Alert", "Unable to get Doctor profile,Please try again", new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+                            finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callDoctorProfileMapper(data);
+                        }
+                    });
+                    return;
+                }
+                if (doctorProfileAPI.getData() == null) {
+                    showMyDialog("Alert", "Unable to get Doctor profile,Please try again", new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+                            finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callDoctorProfileMapper(data);
+                        }
+                    });
+                    return;
+                }
+                profileData=doctorProfileAPI.getData();
+                myInit(profileData);
+
+            }
+        });
+    }
+
+  /*  @Override
+    protected void onResume() {
+        super.onResume();
+
+        MyApplication.showTransparentDialog();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                MyApplication.hideTransaprentDialog();
+                if(profileData!=null)
+                    computeHeaderHeight();
+            }
+        },500);
+
+    }*/
 
     public void setActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -101,23 +177,16 @@ public class DoctorProfileActivity extends AbstractMenuActivity
         return null;
     }
 
-    private void computeHeaderHeight() {
-        final LinearLayout view = findViewById(R.id.header_view_linear);
-        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                mHeaderHeight = view.getHeight(); //height is ready
-                myInit();
-            }
-        });
-    }
 
-    private void myInit() {
+
+
+
+    private void myInit(final DoctorProfileData profileData) {
 
         mTouchSlop = ViewConfiguration.get(this).getScaledTouchSlop();
         // mTabHeight = getResources().getDimensionPixelSize(R.dimen._50dp);
-        //mHeaderHeight = getResources().getDimensionPixelSize(R.dimen._180dp);
+        mHeaderHeight = getResources().getDimensionPixelSize(R.dimen._190dp);
+        //Utils.showToastMessage("mHeaderHeight "+mHeaderHeight);
 
         mViewPagerHeaderHelper = new ViewPagerHeaderHelper(this, this);
 
@@ -125,34 +194,13 @@ public class DoctorProfileActivity extends AbstractMenuActivity
         touchCallbackLayout.setTouchEventListener(this);
 
         mHeaderLayoutView = findViewById(R.id.header);
-        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabHost);
-
-       /* SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.tabs);
-        //slidingTabLayout.setCustomTabView(R.layout.custom_tab,R.id.tab);
-        slidingTabLayout.setDistributeEvenly(true);
-        slidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.white_with_alpha));
-*/       /* slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
-            @Override
-            public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.white);
-            }
-        });*/
-
-
-        /*tabLayout.setupWithViewPager(pager);
-        tabLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });*/
-
+       // final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabHost);
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        mViewPager.setAdapter(new DoctorProfileViewPagerAdapter(getSupportFragmentManager()));
+        mViewPager.setAdapter(new DoctorProfileViewPagerAdapter(profileData,getSupportFragmentManager()));
 
         //slidingTabLayout.setViewPager(mViewPager);
-        tabLayout.setupWithViewPager(mViewPager);
+        ((TabLayout) findViewById(R.id.tabHost)).setupWithViewPager(mViewPager);
 
         mViewPager.setTranslationY(mHeaderHeight);
     }

@@ -13,12 +13,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.vempower.eezyclinic.APICore.DoctorProfileData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.DoctorsListAdapter;
 import com.vempower.eezyclinic.adapters.ReviewsListAdapter;
 import com.vempower.eezyclinic.delegate.AbsListViewDelegate;
 import com.vempower.eezyclinic.delegate.RecyclerViewDelegate;
+import com.vempower.eezyclinic.utils.Utils;
 
 import java.util.List;
 
@@ -32,12 +34,22 @@ public class DoctorReviewsTabFragment extends SwipedRecyclerViewFragment1 implem
     private ListAdapter mAdapter;*/
     private RecyclerViewDelegate recyclerViewDelegate = new RecyclerViewDelegate();
     private ReviewsListAdapter adapter;
+    private DoctorProfileData doctorProfileData;
 
     public DoctorReviewsTabFragment()
     {
         Bundle args = new Bundle();
         args.putInt(BUNDLE_FRAGMENT_INDEX, 1);
         setArguments(args);
+    }
+
+    public static DoctorReviewsTabFragment getInstance(final DoctorProfileData profileData) {
+        DoctorReviewsTabFragment fragment = new DoctorReviewsTabFragment();
+
+        fragment.setDoctorProfileData(profileData);
+       // Utils.showToastMessage("DoctorReviewsTabFragment");
+        return fragment;
+
     }
   /*  public static ListViewFragment newInstance(int index) {
         ListViewFragment fragment = new ListViewFragment();
@@ -130,5 +142,9 @@ public class DoctorReviewsTabFragment extends SwipedRecyclerViewFragment1 implem
             swipeLayout.setRefreshing(false);
         }
 
+    }
+
+    public void setDoctorProfileData(DoctorProfileData doctorProfileData) {
+        this.doctorProfileData = doctorProfileData;
     }
 }

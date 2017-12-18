@@ -39,6 +39,7 @@
             android:textStyle="normal" />
 
         <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/gender_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -46,7 +47,7 @@
             android:layout_marginTop="@dimen/_3dp"
 
             android:fontFamily="sans-serif"
-            android:text="Male"
+            android:text="-"
             android:textColor="#777777"
             android:textSize="@dimen/_14sp"
             android:textStyle="normal" />
@@ -72,6 +73,7 @@
 
 
         <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/nationality_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -80,7 +82,7 @@
 
 
             android:fontFamily="sans-serif"
-            android:text="Indian"
+            android:text="-"
             android:textColor="#777777"
             android:textSize="@dimen/_14sp"
             android:textStyle="normal" />
@@ -105,6 +107,7 @@
             android:textStyle="normal" />
 
         <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/language_known_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -113,7 +116,7 @@
 
 
             android:fontFamily="sans-serif"
-            android:text="Telugu, Tamil, English"
+            android:text="-"
             android:textColor="#777777"
             android:textSize="@dimen/_14sp"
             android:textStyle="normal" />
@@ -140,6 +143,7 @@
             android:textStyle="normal" />
 
         <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/about_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -147,7 +151,7 @@
             android:layout_marginTop="@dimen/_3dp"
 
             android:fontFamily="sans-serif"
-            android:text="Profile Complete Profile Complete Profile Profile Complete Profile Complete Profile Profile Complete Profile Complete Profile"
+            android:text="-"
             android:textColor="#777777"
             android:textSize="@dimen/_14sp"
             android:textStyle="normal" />
@@ -173,6 +177,7 @@
             android:textStyle="normal" />
 
         <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/consultation_fee_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -181,7 +186,7 @@
 
 
             android:fontFamily="sans-serif"
-            android:text="AED 250"
+            android:text="-"
             android:textColor="#777777"
             android:textSize="@dimen/_14sp"
             android:textStyle="normal" />
@@ -203,12 +208,13 @@
             android:textSize="@dimen/_14sp"
             android:textStyle="normal" />
         <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/specialization_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginTop="@dimen/_3dp"
             android:fontFamily="sans-serif"
-            android:text="Sports Medicine Specialist"
+            android:text="-"
             android:textColor="#777777"
             android:textSize="@dimen/_14sp"
             android:textStyle="normal" />
@@ -230,6 +236,7 @@
             android:textStyle="normal" />
 
         <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/service_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -238,7 +245,7 @@
             android:textColor="#777777"
             android:textSize="@dimen/_14sp"
             android:textStyle="normal"
-            android:text="Consultation" />
+            android:text="-" />
 
         <TextView
             android:layout_width="match_parent"
@@ -259,6 +266,7 @@
 
             />
         <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/education_details_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -267,7 +275,7 @@
             android:textColor="#777777"
             android:textSize="@dimen/_14sp"
             android:textStyle="normal"
-            android:text="Consultation" />
+            android:text="-" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -288,6 +296,7 @@
             />
 
         <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/experiance_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -298,7 +307,7 @@
             android:fontFamily="sans-serif"
             android:textStyle="normal"
             android:textColor="#777777"
-            android:text="Exp details line 1 exp details line 2"
+            android:text="-"
             />
 
         <TextView
@@ -321,6 +330,7 @@
             />
 
         <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/awards_and_recognitions_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -329,7 +339,7 @@
             android:fontFamily="sans-serif"
             android:textStyle="normal"
             android:textColor="#777777"
-            android:text="No awards yet"
+            android:text="-"
             />
 
         <TextView
@@ -352,6 +362,7 @@
             />
 
         <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/memberships_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -360,7 +371,7 @@
             android:fontFamily="sans-serif"
             android:textStyle="normal"
             android:textColor="#777777"
-            android:text="Sports med Membership"
+            android:text="-"
         />
         <TextView
             android:layout_width="match_parent"
@@ -381,6 +392,7 @@
 
             />
         <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/registrations_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -389,7 +401,7 @@
             android:fontFamily="sans-serif"
             android:textStyle="normal"
             android:textColor="#777777"
-            android:text="Sports med Membership"
+            android:text="-"
             />
         <TextView
             android:layout_width="match_parent"
@@ -411,6 +423,7 @@
             />
 
         <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/clinic_details_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -419,7 +432,7 @@
             android:fontFamily="sans-serif"
             android:textStyle="normal"
             android:textColor="#777777"
-            android:text="Sports med Membership"
+            android:text="-"
             />
 
     </LinearLayout>
