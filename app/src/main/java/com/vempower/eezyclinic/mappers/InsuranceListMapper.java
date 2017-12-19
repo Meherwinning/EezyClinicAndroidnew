@@ -46,7 +46,7 @@ public class InsuranceListMapper extends  AbstractMapper  implements Callback<In
             return;
         }
 
-       // MyApplication.showTransparentDialog();
+        //MyApplication.showTransparentDialog();
         EezyClinicAPI stashDealAPI = MyApplication.getInstance().getEezyClinicAPI();
 
        /* RequestBody requestBody = getMyRequestBody();
@@ -65,7 +65,7 @@ public class InsuranceListMapper extends  AbstractMapper  implements Callback<In
 
     @Override
     public void onResponse(Response<InsuranceListAPI> response, Retrofit retrofit) {
-        //MyApplication.hideTransaprentDialog();
+       // MyApplication.hideTransaprentDialog();
 
         getMyResponse(response, new MyResponse<InsuranceListAPI>() {
             @Override

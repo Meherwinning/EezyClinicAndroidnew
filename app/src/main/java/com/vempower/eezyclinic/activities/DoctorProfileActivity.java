@@ -16,9 +16,11 @@ import android.view.ViewConfiguration;
 import android.view.ViewTreeObserver;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.gc.materialdesign.views.ButtonFloat;
 import com.vempower.eezyclinic.APICore.DoctorProfileData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.APIResponce.DoctorProfileAPI;
@@ -35,7 +37,11 @@ import com.vempower.eezyclinic.tools.ScrollableFragmentListener;
 import com.vempower.eezyclinic.tools.ScrollableListener;
 import com.vempower.eezyclinic.tools.ViewPagerHeaderHelper;
 import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.eezyclinic.views.MyTextViewRB;
+import com.vempower.eezyclinic.views.MyTextViewRR;
 import com.vempower.eezyclinic.widget.TouchCallbackLayout;
+
+import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 
 public class DoctorProfileActivity extends AbstractMenuActivity
         implements TouchCallbackLayout.TouchEventListener, ScrollableFragmentListener,
@@ -83,10 +89,13 @@ public class DoctorProfileActivity extends AbstractMenuActivity
         }
 
           myView = findViewById(R.id.header_view_linear);
+       // myInit();
         callDoctorProfileMapper(data);
 
 
+
     }
+
 
     private void callDoctorProfileMapper(final SearchResultDoctorListData data) {
         //String doctorid, String clinicid,String branchid
@@ -182,10 +191,38 @@ public class DoctorProfileActivity extends AbstractMenuActivity
 
 
     private void myInit(final DoctorProfileData profileData) {
+        ButtonFloat fab = findViewById(R.id.fab_all);
+
+        fab.setOnMyClickListener(new ButtonFloat.MyClickListener() {
+            @Override
+            public void onClick(View view) {
+                showToastMessage("Now click");
+            }
+        });
+
+        ImageView imageView = findViewById(R.id.profile_iv);
+        if (imageView != null) {
+            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, profileData.getDoctorLogo());
+        }
+
+        ((MyTextViewRB)findViewById(R.id.doctor_name_tv)).setText(profileData.getDoctorfullname());
+        ((MyTextViewRR)findViewById(R.id.doctor_designation_tv)).setText(profileData.getDoctorsdegrees());
+
+        MaterialRatingBar ratingBar=findViewById(R.id.doctor_rating_bar);
+        ratingBar.setRating(profileData.getDoctoroverallrating());
+       // ratingBar.setEnabled(false);
+        ratingBar.setClickable(false);
+
+        ((MyTextViewRR)findViewById(R.id.recommendations_count_tv)).setText(profileData.getTotalrecommend());
+
+
+
+        //  ((MaterialRatingBar)findViewById(R.id.doctor_designation_tv)).setText(profileData.getDoctorsdegrees());
+
 
         mTouchSlop = ViewConfiguration.get(this).getScaledTouchSlop();
         // mTabHeight = getResources().getDimensionPixelSize(R.dimen._50dp);
-        mHeaderHeight = getResources().getDimensionPixelSize(R.dimen._190dp);
+        mHeaderHeight = getResources().getDimensionPixelSize(R.dimen._185dp);
         //Utils.showToastMessage("mHeaderHeight "+mHeaderHeight);
 
         mViewPagerHeaderHelper = new ViewPagerHeaderHelper(this, this);

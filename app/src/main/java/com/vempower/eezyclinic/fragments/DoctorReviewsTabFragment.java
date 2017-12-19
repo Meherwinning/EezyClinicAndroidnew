@@ -14,6 +14,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.vempower.eezyclinic.APICore.DoctorProfileData;
+import com.vempower.eezyclinic.APICore.DoctorReview;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.DoctorsListAdapter;
@@ -22,6 +23,7 @@ import com.vempower.eezyclinic.delegate.AbsListViewDelegate;
 import com.vempower.eezyclinic.delegate.RecyclerViewDelegate;
 import com.vempower.eezyclinic.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +37,7 @@ public class DoctorReviewsTabFragment extends SwipedRecyclerViewFragment1 implem
     private RecyclerViewDelegate recyclerViewDelegate = new RecyclerViewDelegate();
     private ReviewsListAdapter adapter;
     private DoctorProfileData doctorProfileData;
+    private View fragment;
 
     public DoctorReviewsTabFragment()
     {
@@ -51,44 +54,15 @@ public class DoctorReviewsTabFragment extends SwipedRecyclerViewFragment1 implem
         return fragment;
 
     }
-  /*  public static ListViewFragment newInstance(int index) {
-        ListViewFragment fragment = new ListViewFragment();
-        Bundle args = new Bundle();
-        args.putInt(BUNDLE_FRAGMENT_INDEX, index);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
-    public ListViewFragment() {
-    }*/
-
-  /*  @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        String[] listArrays = getResources().getStringArray(R.array.countries);
-       *//* switch (mFragmentIndex) {
-            case 1:
-                listArrays = getResources().getStringArray(R.array.countries);
-                break;
-           *//**//* case 2:
-                //listArrays = getResources().getStringArray(R.array.cities);
-                listArrays = getResources().getStringArray(R.array.continents);
-                break;*//**//*
-            default:
-                listArrays = getResources().getStringArray(R.array.cities);
-                break;
-        }*//*
-        mAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,
-                android.R.id.text1, listArrays);
-    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list_view, container, false);
+         fragment = inflater.inflate(R.layout.fragment_list_view, container, false);
 
-        setupSwipeRefreshLayout(view);
-        return view;
+        setupSwipeRefreshLayout(fragment);
+        return fragment;
     }
 
     @Override
@@ -99,17 +73,31 @@ public class DoctorReviewsTabFragment extends SwipedRecyclerViewFragment1 implem
 
     public void setOrderItemsToAdapter() {
         hideProgressView();
-
+        ArrayList< DoctorReview > reviews= new ArrayList<>();
+        if(doctorProfileData!=null || doctorProfileData.getReviews()!=null || doctorProfileData.getReviews().size()!=0)
+        {
+            reviews.addAll(doctorProfileData.getReviews());
+        }
 
        // if (adapter == null) {
-        String[] listArrays = getResources().getStringArray(R.array.countries);
+       // String[] listArrays = getResources().getStringArray(R.array.countries);
 
-            adapter = new ReviewsListAdapter(listArrays);
+            adapter = new ReviewsListAdapter(reviews);
 
             recyclerView.setAdapter(adapter);
        /* } else {
             adapter.setUpdatedList(orders);
         }*/
+
+        if(reviews==null || reviews.size()==0)
+        {
+            fragment.findViewById(R.id.no_matching_result_tv).setVisibility(View.VISIBLE);
+        }else
+        {
+            fragment.findViewById(R.id.no_matching_result_tv).setVisibility(View.GONE);
+        }
+
+
 
 
     }

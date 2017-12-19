@@ -71,7 +71,7 @@ public class SearchActivity extends AbstractMenuActivity {
             public void run() {
                 hideKeyBord(getFragment().getView());
             }
-        },100);
+        },500);
 
 
     }

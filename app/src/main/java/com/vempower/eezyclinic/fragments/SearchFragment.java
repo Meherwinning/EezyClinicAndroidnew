@@ -170,22 +170,50 @@ public class SearchFragment extends AbstractFragment {
                     searchRequestParams.setLaunguage(null);
                     searchRequestParams.setGendersearch(null);
                 }
-
+                MyApplication.showTransparentDialog();
                 //TODO pending code here
-
                 callInsuranceAcceptedMapper();
-                callNatinalityMapper();
-                callLanguageMapper();
-                setToGenderSpinnerAdapter();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callNatinalityMapper();
+                    }
+                },200);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callLanguageMapper();
+                    }
+                },250);
+
+             setToGenderSpinnerAdapter();
+
+
+
             }
         });
 
 
         setInitForGooglePlacesAutocompleteTextView();
+        MyApplication.showTransparentDialog();
         callSpecialityMapper();
-        callCountryListMapper();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                callCountryListMapper();
+            }
+        },200);
 
-        callDoctorsClinicNamesMapper();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                callDoctorsClinicNamesMapper();
+            }
+        },300);
+
+
+
+
 
     }
 
@@ -194,6 +222,7 @@ public class SearchFragment extends AbstractFragment {
 
         if (languageAdapter != null) {
            // language_spinner.setSelection(languageAdapter.getCount());
+            MyApplication.hideTransaprentDialog();
             return;
         }
 
@@ -201,6 +230,7 @@ public class SearchFragment extends AbstractFragment {
         mapper.setOnLanguageListListener(new LanguageListMapper.LanguageListListener() {
             @Override
             public void getLanguageListAPII(LanguageListAPI languageListAPI, String errorMessage) {
+                MyApplication.hideTransaprentDialog();
                 if (!isValidResponse(languageListAPI, errorMessage)) {
                     return;
                 }
@@ -579,6 +609,17 @@ public class SearchFragment extends AbstractFragment {
         public String lat, lan;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                hideKeyBord(fragmentView);
+            }
+        },1000);
+
+    }
 
     private void callSpecialityMapper() {
         SpecalitiesMapper mapper = new SpecalitiesMapper();
@@ -601,6 +642,7 @@ public class SearchFragment extends AbstractFragment {
         listMapper.setOnDoctorClinicNameListListener(new DoctorClinicNamesListMapper.DoctorClinicNameListListener() {
             @Override
             public void getDoctorClinicNameListAPI(DoctorClinicNameListAPI nameListAPI, String errorMessage) {
+                MyApplication.hideTransaprentDialog();
                 if (!isValidResponse(nameListAPI, errorMessage)) {
                     return;
                 }

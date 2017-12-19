@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.vempower.eezyclinic.APICore.ClinicProfileData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.fragments.ClinicProfileTabFragment;
 import com.vempower.eezyclinic.fragments.DoctorProfileTabFragment;
@@ -18,9 +19,10 @@ import java.util.ArrayList;
  */
 
 public class ClinicProfileViewPagerAdapter extends FragmentPagerAdapter {
-
-    public ClinicProfileViewPagerAdapter(FragmentManager fm) {
+private ClinicProfileData  clinicProfileData;
+    public ClinicProfileViewPagerAdapter(ClinicProfileData clinicProfileData,FragmentManager fm) {
         super(fm);
+        this.clinicProfileData=clinicProfileData;
     }
 
     @Override
@@ -29,11 +31,10 @@ public class ClinicProfileViewPagerAdapter extends FragmentPagerAdapter {
         switch (position)
         {
             case 0:
-                return new ClinicProfileTabFragment();
-            case 1:
-                return  ViewDoctorsTabFragment.getInstance(new ArrayList<SearchResultDoctorListData>());
-                default:
-                    return ListViewFragment.newInstance(2);
+                return  ClinicProfileTabFragment.getInstance(clinicProfileData);
+            default:
+                return  ViewDoctorsTabFragment.getInstance(clinicProfileData.getDoctorsList());
+
         }
 
     }

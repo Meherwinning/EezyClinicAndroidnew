@@ -153,6 +153,13 @@ public class DoctorsMapFragment extends AbstractMapFragment/*, GoogleMap.OnMarke
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         if(doctorsLsit==null || doctorsLsit.size()==0)
         {
+            fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.VISIBLE);
+        }else
+        {
+            fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.GONE);
+        }
+        if(doctorsLsit==null || doctorsLsit.size()==0)
+        {
             return null;
         }
       //  MarkerOptions markerOptions = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.path_352_2));

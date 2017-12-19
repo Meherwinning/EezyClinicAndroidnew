@@ -73,8 +73,8 @@ public interface Constants {
         {
             if(IS_TESTING)
             {
-                return "http://202.63.103.194:8008";
-               // return "http://202.63.103.194:8003";
+               // return "http://202.63.103.194:8008";
+                return "http://202.63.103.194:8003";
             }else
             {
                 return "https://www.stashdeal.com";
@@ -99,6 +99,7 @@ public interface Constants {
         String PATIENT_ID_KEY = "patient_id_key";
         String USER_ACCOUNT_OBJ_KEY="user_account_obj_key";
         String FORGOT_OTP_KEY="forgot_otp_key";
+        String IS_FROM_VIEW_DOCTORS_CLICK_KEY ="is_from_view_doctors_click_key" ;
     }
 
     interface ActivityResult

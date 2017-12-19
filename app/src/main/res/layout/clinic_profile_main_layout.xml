@@ -10,7 +10,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout"
     android:layout_alignParentTop="true"
-    android:layout_above="@+id/appointment_bt"
+    android:layout_above="@+id/view_contact_number_bt"
     android:background="@color/white"
 
     android:layout_width="match_parent"
@@ -36,7 +36,7 @@
 
             android:id="@+id/header_view_linear"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/_160dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -100,11 +100,11 @@
 
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
-                        android:id="@+id/patient_id_tv"
+                        android:id="@+id/branch_name_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_5dp"
-                        android:text="Address"
+                        android:text="Branch"
 
 
                         android:textSize="12sp"
@@ -129,6 +129,7 @@
             </RelativeLayout>
         </LinearLayout>
 
+
         <android.support.design.widget.TabLayout
             android:id="@+id/tabHost"
             android:layout_width="match_parent"
@@ -150,6 +151,7 @@
             app:tabMode="fixed"
 
             />
+
 
 
      <!--   <com.vempower.eezyclinic.widget.SlidingTabLayout
@@ -188,5 +190,19 @@
         android:textColor="#ffffff"
         android:text="View Contact Number"
 
+        />
+    <com.gc.materialdesign.views.ButtonFloat
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fab_all"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_60dp"
+        android:layout_alignParentEnd="true"
+        app:iconDrawable="@drawable/location_icon1"
+
+        android:background="#62bb50"
         />
 </RelativeLayout>

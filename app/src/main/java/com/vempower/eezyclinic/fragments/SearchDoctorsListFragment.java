@@ -18,6 +18,7 @@ import com.vempower.eezyclinic.core.SearchRequest;
 import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.eezyclinic.views.MyTextViewRR;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,8 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
     private SearchRequest requestParms;
 
     private boolean isOnlyViewList;
+    //private MyTextViewRR match_found_tv;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,6 +66,9 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
     }
 
     private void init() {
+
+       // match_found_tv=  fragmentView.findViewById(R.id.match_found_tv);
+       // match_found_tv.setText("0");
         adapter=null;
         doctorsList= new ArrayList<>();
         requestParms = MyApplication.getInstance().getSearchRequestParms();
@@ -121,13 +127,14 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
                 }
                // Utils.showToastMessage(searchResultDoctorListAPI.toString());
                 setOrderItemsToAdapter(doctorsList);
+
             }
         });
     }
 
     public void setOrderItemsToAdapter(List<SearchResultDoctorListData> orders) {
         hideProgressView();
-
+        ((MyTextViewRR)fragmentView.findViewById(R.id.match_found_tv)).setText(orders.size()+"");
 
         if (adapter == null) {
 
@@ -137,6 +144,15 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
         } else {
             adapter.setUpdatedList(orders);
         }
+        if(orders==null || orders.size()==0)
+        {
+            fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.VISIBLE);
+        }else
+        {
+            fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.GONE);
+        }
+
+
 
 
     }

@@ -115,6 +115,12 @@
     <string name="demo_min_label">min</string>
     <string name="demo_max_label">max</string>
     <string name="sample_txt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="search_doctors_lbl">Search Doctors</string>
+    <string name="search_result_doctors_lbl">Search Result - Doctors</string>
+    <string name="search_result_clinic_lbl">Search Result – Clinics</string>
+    <string name="view_doctors_lbl">View Doctors</string>
+    <string name="no_matching_resuly_lbl">There are no matching results</string>
+    <string name="no_reviews_yet_lbl">No reviews given yet</string>
 
 
 </resources>

@@ -545,7 +545,7 @@
                 android:fontFamily="sans-serif"
                 android:maxLines="1"
                 android:padding="@dimen/_4dp"
-                android:text="Search for Doctor/Clinic"
+                android:text="@string/search_doctors_lbl"
                 android:textAllCaps="false"
                 android:textColor="@color/button_text_color"
                 android:textSize="@dimen/button_text_size"

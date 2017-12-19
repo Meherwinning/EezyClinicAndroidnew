@@ -36,7 +36,7 @@
 
             android:id="@+id/header_view_linear"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_190dp">
+            android:layout_height="@dimen/_185dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -99,7 +99,7 @@
 
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
-                        android:id="@+id/patient_id_tv"
+                        android:id="@+id/doctor_designation_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_5dp"
@@ -126,25 +126,28 @@
 
                     android:layout_below="@+id/designation_linear"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/_5dp"
+                    android:layout_marginTop="@dimen/_3dp"
                     android:layout_marginRight="@dimen/_5dp"
                     android:layout_marginBottom="@dimen/_5dp"
                     android:orientation="horizontal"
                     android:weightSum="6"
-                    android:gravity="center"
+                    android:gravity="center|center_vertical"
                     android:layout_height="@dimen/_30sp">
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_weight="3.5"
-                        android:layout_gravity="center"
-                        android:gravity="center"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+
+                        android:clickable="false"
                         android:orientation="horizontal"
                         android:layout_height="match_parent">
 
                         <com.vempower.eezyclinic.views.MyTextViewRR
+                            android:id="@+id/label_tv"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
+                            android:layout_height="match_parent"
+                            android:gravity="left|center_vertical"
                             android:padding="@dimen/_3dp"
 
                             android:textSize="12sp"
@@ -153,38 +156,30 @@
                             android:text="Overal Rating"
                             />
                         <me.zhanghai.android.materialratingbar.MaterialRatingBar
-                            android:id="@+id/feedback_rating_bar"
+                            android:id="@+id/doctor_rating_bar"
+                            android:layout_toRightOf="@+id/label_tv"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/_3dp"
                             android:layout_marginRight="@dimen/_3dp"
                             app:mrb_progressTint="#ffc400"
                             app:mrb_fillBackgroundStars="true"
 
                             app:mrb_progressBackgroundTint="@color/white"
-                            android:rating="3"
                             app:mrb_secondaryProgressTint="@color/white"
                             style="@style/Widget.MaterialRatingBar.RatingBar" />
 
-                        <com.vempower.eezyclinic.views.MyTextViewRR
-                            android:visibility="gone"
-                            android:id="@+id/reviews_count_tv"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:singleLine="true"
-                            android:maxLines="1"
-                            android:layout_marginLeft="@dimen/_4dp"
-                            android:layout_marginRight="@dimen/_4dp"
-                            android:textSize="13sp"
-                            android:textColor="#cc212121"
-                            android:textStyle="bold" />
 
 
+                        <RelativeLayout
+                            android:id="@+id/rating_layer"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/transparent"
+                            android:clickable="true"></RelativeLayout>
 
 
-                    </LinearLayout>
+                    </RelativeLayout>
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_weight="2"
@@ -196,8 +191,6 @@
                             android:layout_height="wrap_content"
                             android:gravity="left"
                             android:text="Reviews"
-                            android:paddingTop="@dimen/_3dp"
-                            android:paddingBottom="@dimen/_3dp"
                             android:paddingRight="@dimen/_5dp"
                             android:textSize="13sp"
                             android:src="@drawable/recomm"
@@ -210,7 +203,7 @@
                             android:gravity="left"
                             android:singleLine="true"
                             android:maxLines="1"
-                            android:text="1234"
+                            android:text="0"
                             android:layout_marginRight="@dimen/_4dp"
 
 
@@ -291,4 +284,20 @@
         android:text="Book Appointment"
 
         />
+
+    <com.gc.materialdesign.views.ButtonFloat
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fab_all"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_60dp"
+        android:layout_alignParentEnd="true"
+        app:iconDrawable="@drawable/location_icon1"
+
+        android:background="#62bb50"
+        />
+
 </RelativeLayout>
