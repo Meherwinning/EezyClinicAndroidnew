@@ -2,52 +2,51 @@ package com.vempower.eezyclinic.activities;
 
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.TextView;
 
+import com.vempower.eezyclinic.APICore.SearchResultClinicData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.activities.AbstractMenuActivity;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
-import com.vempower.eezyclinic.fragments.AppointmentListFragment;
+import com.vempower.eezyclinic.fragments.ClinicsMapFragment;
 import com.vempower.eezyclinic.fragments.DoctorsMapFragment;
-import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRM;
 
 import java.util.ArrayList;
 
-public class SingleDoctorMapActivity extends AbstractMenuActivity {
-    SearchResultDoctorListData data;
+public class SingleClinicMapActivity extends AbstractMenuActivity {
+    SearchResultClinicData data;
     private MyTextViewRM titleName;
 
     protected void init()
     {
         super.init();
 
-        Object obj = getObjectFromIntent(getIntent(), ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY);
+        Object obj = getObjectFromIntent(getIntent(), ListenerKey.ObjectKey.SEARCH_RESULT_CLINIC_LIST_DATA_KEY);
 
-        if (obj != null && obj instanceof SearchResultDoctorListData) {
-            data = (SearchResultDoctorListData) obj;
-
+        if (obj!=null && obj instanceof SearchResultClinicData) {
+            data = (SearchResultClinicData) obj;
             // showToastMessage("Data :" + data);
-        } else {
-            showMyAlertDialog("Alert", "Invalid Doctor profile location details.Please try again", "Close", true);
+        }else
+        {
+            showMyAlertDialog("Alert","Invalid Clinic profile location details.Please try again","Close",true);
             return;
         }
 
-        if (data == null) {
-            showMyAlertDialog("Alert", "Invalid Doctor profile location details.Please try again", "Close", true);
+        if(data==null)
+        {
+            showMyAlertDialog("Alert","Invalid Clinic profile location details.Please try again","Close",true);
             return;
 
         }
 
         try
         {
-           double lat= Double.parseDouble(data.getGoogleMapLatitude());
-          double lon=Double.parseDouble(data.getGoogleMapLongitude());
+           double lat= Double.parseDouble(data.getGoogle_map_latitude());
+          double lon=Double.parseDouble(data.getGoogle_map_latitude());
         }catch(Exception e)
         {
-            showMyAlertDialog("Alert", "Invalid Doctor profile location .Please try again", "Close", true);
+            showMyAlertDialog("Alert", "Invalid Clinic profile location .Please try again", "Close", true);
             return;
 
         }
@@ -60,18 +59,21 @@ public class SingleDoctorMapActivity extends AbstractMenuActivity {
 
     private void callDoctrMapFragemt() {
         if(titleName!=null) {
-            titleName.setText(data.getDoctorName());
+            titleName.setText(data.getClinicName());
         }
 
 
-        ArrayList<SearchResultDoctorListData> listData= new ArrayList<>();
+        ArrayList<SearchResultClinicData> listData= new ArrayList<>();
         listData.add(data);
-        DoctorsMapFragment    doctorsMapFragment = new DoctorsMapFragment();
-            doctorsMapFragment.setDoctorsList( listData);
-            doctorsMapFragment.isViewOnlyList(true);
-        doctorsMapFragment.isFinishAfterMarkerClick(true);
+        ClinicsMapFragment  clinicsMapFragment = new ClinicsMapFragment();
 
-        setFragment(doctorsMapFragment);
+            clinicsMapFragment.setClinicsList( listData);
+            clinicsMapFragment.isViewOnlyList(true);
+
+
+        clinicsMapFragment.isFinishAfterMarkerClick(true);
+
+        setFragment(clinicsMapFragment);
     }
 
     public void setActionBar() {

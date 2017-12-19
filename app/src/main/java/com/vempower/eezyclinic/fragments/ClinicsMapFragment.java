@@ -27,6 +27,7 @@ import com.vempower.eezyclinic.mappers.SearchResultClinicListMapper;
 import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class ClinicsMapFragment extends AbstractMapFragment /*, GoogleMap.OnMark
 
     private List<SearchResultClinicData> clinicsLsit;
     private boolean isOnlyViewList;
+    private boolean isFinish;
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -88,8 +90,14 @@ public class ClinicsMapFragment extends AbstractMapFragment /*, GoogleMap.OnMark
                             };
                         }
                     }));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
                     MyApplication.getCurrentActivityContext().startActivity(intent);
+
+                    if(isFinish)
+                    {
+                        ((AbstractActivity) MyApplication.getCurrentActivityContext()).finish();
+                    }
                 }
 
             }
@@ -204,4 +212,7 @@ public class ClinicsMapFragment extends AbstractMapFragment /*, GoogleMap.OnMark
         return builder;
     }
 
+    public void isFinishAfterMarkerClick(boolean isFinish) {
+        this.isFinish=isFinish;
+    }
 }

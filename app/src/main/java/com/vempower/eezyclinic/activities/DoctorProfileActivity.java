@@ -1,7 +1,9 @@
 package com.vempower.eezyclinic.activities;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Messenger;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -31,7 +33,9 @@ import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.ListViewFragment;
 import com.vempower.eezyclinic.fragments.ScrollViewFragment;
+import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.mappers.DoctorProfileMapper;
 import com.vempower.eezyclinic.tools.ScrollableFragmentListener;
 import com.vempower.eezyclinic.tools.ScrollableListener;
@@ -64,6 +68,8 @@ public class DoctorProfileActivity extends AbstractMenuActivity
     private LinearLayout myView;
     private  DoctorProfileData profileData;
 
+    private  SearchResultDoctorListData data;
+
     @Override
     protected void setMyContectntView() {
         super.setMyContectntView();
@@ -72,7 +78,7 @@ public class DoctorProfileActivity extends AbstractMenuActivity
 
 
         Object obj = getObjectFromIntent(getIntent(), ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY);
-        SearchResultDoctorListData data;
+
         if (obj != null && obj instanceof SearchResultDoctorListData) {
             data = (SearchResultDoctorListData) obj;
 
@@ -196,7 +202,22 @@ public class DoctorProfileActivity extends AbstractMenuActivity
         fab.setOnMyClickListener(new ButtonFloat.MyClickListener() {
             @Override
             public void onClick(View view) {
-                showToastMessage("Now click");
+                Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),SingleDoctorMapActivity.class);
+                           /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+                intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
+                    @Override
+                    protected IntentObjectListener getMyObject() {
+                        return new IntentObjectListener(){
+
+                            @Override
+                            public Object getObject() {
+                                return data;
+                            }
+                        };
+                    }
+                }));
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                MyApplication.getCurrentActivityContext().startActivity(intent);
             }
         });
 
