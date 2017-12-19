@@ -1,6 +1,8 @@
 
 package com.vempower.eezyclinic.APICore;
 
+import android.text.TextUtils;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -36,24 +38,54 @@ public class DoctorReview {
         this.description = description;
     }
 
-    public String getWaitingTime() {
-        return waitingTime;
+    public int getWaitingTime() {
+        if(TextUtils.isEmpty(waitingTime))
+        {
+            return 0;
+        }
+        try
+        {
+            return Integer.parseInt(waitingTime);
+        }catch(Exception e)
+        {
+            return 0;
+        }
     }
 
     public void setWaitingTime(String waitingTime) {
         this.waitingTime = waitingTime;
     }
 
-    public String getDiagnasis() {
-        return diagnasis;
+    public int getDiagnasis() {
+        if(TextUtils.isEmpty(diagnasis))
+        {
+            return 0;
+        }
+        try
+        {
+            return Integer.parseInt(diagnasis);
+        }catch(Exception e)
+        {
+            return 0;
+        }
     }
 
     public void setDiagnasis(String diagnasis) {
         this.diagnasis = diagnasis;
     }
 
-    public String getCustomerservice() {
-        return customerservice;
+    public int getCustomerservice() {
+        if(TextUtils.isEmpty(customerservice))
+        {
+            return 0;
+        }
+        try
+        {
+            return Integer.parseInt(customerservice);
+        }catch(Exception e)
+        {
+            return 0;
+        }
     }
 
     public void setCustomerservice(String customerservice) {

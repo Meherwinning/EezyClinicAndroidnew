@@ -1,6 +1,7 @@
 
 package com.vempower.eezyclinic.APICore;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -72,7 +73,7 @@ public class ClinicProfileData {
     private List<OtherBrnach> otherBrnaches = null;
     @SerializedName("doctors_list")
     @Expose
-    private List<SearchResultDoctorListData> doctorsList = null;
+    private ArrayList<SearchResultDoctorListData> doctorsList = null;
 
     public String getClinicImage() {
         return clinicImage;
@@ -218,16 +219,34 @@ public class ClinicProfileData {
         this.clinicContactNumber = clinicContactNumber;
     }
 
-    public List<String> getSpecializations() {
-        return specializations;
+    public String getSpecializations() {
+        String spe="";
+        if(specializations==null)
+        {
+            return spe;
+        }
+        for(String str:specializations)
+        {
+            spe=spe+str+",";
+        }
+        return spe;
     }
 
     public void setSpecializations(List<String> specializations) {
         this.specializations = specializations;
     }
 
-    public List<String> getServices() {
-        return services;
+    public String getServices() {
+        String ser="";
+        if(services==null)
+        {
+            return ser;
+        }
+        for(String str:services)
+        {
+            ser=ser+str+",";
+        }
+        return ser;
     }
 
     public void setServices(List<String> services) {
@@ -242,11 +261,11 @@ public class ClinicProfileData {
         this.otherBrnaches = otherBrnaches;
     }
 
-    public List<SearchResultDoctorListData> getDoctorsList() {
+    public ArrayList<SearchResultDoctorListData> getDoctorsList() {
         return doctorsList;
     }
 
-    public void setDoctorsList(List<SearchResultDoctorListData> doctorsList) {
+    public void setDoctorsList(ArrayList<SearchResultDoctorListData> doctorsList) {
         this.doctorsList = doctorsList;
     }
 

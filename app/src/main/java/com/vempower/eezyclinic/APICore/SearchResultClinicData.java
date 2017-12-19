@@ -197,6 +197,21 @@ public class SearchResultClinicData {
 
 
     @Override
+    public boolean equals(Object obj) {
+
+        if(obj!=null && obj instanceof  SearchResultClinicData)
+        {
+            SearchResultClinicData data= (SearchResultClinicData) obj;
+            if(data.getClncId().equalsIgnoreCase(getClncId()))
+            {
+                return true;
+            }
+        }
+
+        return super.equals(obj);
+    }
+
+    @Override
     public String toString() {
         return "SearchResultClinicData{" +
                 "mainDisplayImage='" + mainDisplayImage + '\'' +

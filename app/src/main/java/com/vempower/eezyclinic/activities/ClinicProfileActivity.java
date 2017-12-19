@@ -14,21 +14,29 @@ import android.view.ViewConfiguration;
 import android.view.ViewTreeObserver;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.vempower.eezyclinic.APICore.ClinicProfileData;
 import com.vempower.eezyclinic.APICore.SearchResultClinicData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
+import com.vempower.eezyclinic.APIResponce.ClinicProfileAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.ClinicProfileViewPagerAdapter;
 import com.vempower.eezyclinic.adapters.DoctorProfileViewPagerAdapter;
+import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.ListViewFragment;
 import com.vempower.eezyclinic.fragments.ScrollViewFragment;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.mappers.ClinicProfileMapper;
 import com.vempower.eezyclinic.tools.ScrollableFragmentListener;
 import com.vempower.eezyclinic.tools.ScrollableListener;
 import com.vempower.eezyclinic.tools.ViewPagerHeaderHelper;
+import com.vempower.eezyclinic.views.MyTextViewRB;
+import com.vempower.eezyclinic.views.MyTextViewRR;
 import com.vempower.eezyclinic.widget.TouchCallbackLayout;
 
 public class ClinicProfileActivity extends AbstractMenuActivity
@@ -47,6 +55,7 @@ public class ClinicProfileActivity extends AbstractMenuActivity
     private int mTouchSlop;
     //private int mTabHeight;
     private int mHeaderHeight;
+    private ClinicProfileData clinicProfileData;
 
     private Interpolator mInterpolator = new DecelerateInterpolator();
 
@@ -56,20 +65,69 @@ public class ClinicProfileActivity extends AbstractMenuActivity
         setContentView(R.layout.activity_menu_clinic_profile_layout);
         // myInit();
 
-
+        SearchResultClinicData data;
         Object obj = getObjectFromIntent(getIntent(), ListenerKey.ObjectKey.SEARCH_RESULT_CLINIC_LIST_DATA_KEY);
 
         if (obj!=null && obj instanceof SearchResultClinicData) {
-            SearchResultClinicData data = (SearchResultClinicData) obj;
+            data = (SearchResultClinicData) obj;
             showToastMessage("Data :" + data);
         }else
         {
-            showMyAlertDialog("Alert","Invalid Doctor profile.Please try again","Close",true);
+            showMyAlertDialog("Alert","Invalid Clinic profile.Please try again","Close",true);
            return;
         }
-        computeHeaderHeight();
+
+        if(data==null)
+        {
+            showMyAlertDialog("Alert","Invalid Clinic profile.Please try again","Close",true);
+            return;
+
+        }
+       // computeHeaderHeight();
+
+        callClinicProfileMapper(data);
 
 
+    }
+
+    private void callClinicProfileMapper(final SearchResultClinicData data) {
+        //String clinicid, String branchid
+        ClinicProfileMapper mapper= new ClinicProfileMapper(data.getClncId(),data.getBrcId());
+        mapper.setOnClinicProfileAPIListener(new ClinicProfileMapper.ClinicProfileAPIListener() {
+            @Override
+            public void getClinicProfileAPI(ClinicProfileAPI clinicProfileAPI, String errorMessage) {
+                if (!isValidResponse(clinicProfileAPI, errorMessage) || clinicProfileAPI.getData() == null) {
+                    showMyDialog("Alert", "Unable to get Clinic profile,Please try again", new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+                            finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callClinicProfileMapper(data);
+                        }
+                    });
+                    return;
+                }
+                if (clinicProfileAPI.getData() == null) {
+                    showMyDialog("Alert", "Unable to get Clinic profile,Please try again", new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+                            finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callClinicProfileMapper(data);
+                        }
+                    });
+                    return;
+                }
+                clinicProfileData=clinicProfileAPI.getData();
+                myInit(clinicProfileData);
+            }
+        });
     }
 
     public void setActionBar() {
@@ -103,7 +161,7 @@ public class ClinicProfileActivity extends AbstractMenuActivity
         return null;
     }
 
-    private void computeHeaderHeight() {
+   /* private void computeHeaderHeight() {
         final LinearLayout view = findViewById(R.id.header_view_linear);
         view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -113,13 +171,25 @@ public class ClinicProfileActivity extends AbstractMenuActivity
                 myInit();
             }
         });
-    }
+    }*/
 
-    private void myInit() {
+    private void myInit(ClinicProfileData  clinicProfileData) {
+
+
+
+        ImageView imageView = findViewById(R.id.profile_iv);
+        if (imageView != null) {
+            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, clinicProfileData.getClinicImage());
+        }
+
+        ((MyTextViewRB)findViewById(R.id.clinic_name_tv)).setText(clinicProfileData.getClinicName());
+        ((MyTextViewRR)findViewById(R.id.branch_name_tv)).setText(clinicProfileData.getBranchName());
+
+
 
         mTouchSlop = ViewConfiguration.get(this).getScaledTouchSlop();
         // mTabHeight = getResources().getDimensionPixelSize(R.dimen._50dp);
-        //mHeaderHeight = getResources().getDimensionPixelSize(R.dimen._180dp);
+        mHeaderHeight = getResources().getDimensionPixelSize(R.dimen._160dp);
 
         mViewPagerHeaderHelper = new ViewPagerHeaderHelper(this, this);
 
@@ -127,34 +197,13 @@ public class ClinicProfileActivity extends AbstractMenuActivity
         touchCallbackLayout.setTouchEventListener(this);
 
         mHeaderLayoutView = findViewById(R.id.header);
-        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabHost);
-
-       /* SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.tabs);
-        //slidingTabLayout.setCustomTabView(R.layout.custom_tab,R.id.tab);
-        slidingTabLayout.setDistributeEvenly(true);
-        slidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.white_with_alpha));
-*/       /* slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
-            @Override
-            public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.white);
-            }
-        });*/
-
-
-        /*tabLayout.setupWithViewPager(pager);
-        tabLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });*/
-
+        //final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabHost);
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        mViewPager.setAdapter(new ClinicProfileViewPagerAdapter(getSupportFragmentManager()));
+        mViewPager.setAdapter(new ClinicProfileViewPagerAdapter(clinicProfileData,getSupportFragmentManager()));
 
         //slidingTabLayout.setViewPager(mViewPager);
-        tabLayout.setupWithViewPager(mViewPager);
+        ((TabLayout) findViewById(R.id.tabHost)).setupWithViewPager(mViewPager);
 
         mViewPager.setTranslationY(mHeaderHeight);
     }

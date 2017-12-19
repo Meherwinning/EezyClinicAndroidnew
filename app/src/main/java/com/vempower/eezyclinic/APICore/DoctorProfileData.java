@@ -1,6 +1,9 @@
 
 package com.vempower.eezyclinic.APICore;
 
+import android.text.TextUtils;
+
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -122,8 +125,19 @@ public class DoctorProfileData {
         this.totalrecommend = totalrecommend;
     }
 
-    public String getDoctoroverallrating() {
-        return doctoroverallrating;
+    public int getDoctoroverallrating() {
+
+        if(TextUtils.isEmpty(doctoroverallrating))
+        {
+            return 0;
+        }
+        try
+        {
+         return Integer.parseInt(doctoroverallrating);
+        }catch(Exception e)
+        {
+            return 0;
+        }
     }
 
     public void setDoctoroverallrating(String doctoroverallrating) {
@@ -325,6 +339,10 @@ public class DoctorProfileData {
     }
 
     public List<DoctorReview> getReviews() {
+        if(reviews==null)
+        {
+            reviews= new ArrayList<>();
+        }
         return reviews;
     }
 

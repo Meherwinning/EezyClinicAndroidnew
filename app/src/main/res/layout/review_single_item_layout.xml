@@ -32,7 +32,7 @@
             android:fontFamily="sans-serif-medium"
             android:textStyle="normal"
             android:textColor="#212121"
-            android:text="Margie Hill"
+            android:text="-"
             />
         <com.vempower.eezyclinic.views.MyTextViewRR
             android:id="@+id/date_tv"
@@ -47,18 +47,20 @@
             android:fontFamily="sans-serif"
             android:textStyle="normal"
             android:textColor="#777777"
-            android:text="15 July 2017"
+            android:text="-"
             />
 
         <ImageView
+            android:id="@+id/recamended_iv"
             android:layout_width="wrap_content"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
-            android:src="@drawable/reccom_uncheck"
             android:layout_height="wrap_content" />
 
     </RelativeLayout>
     <com.vempower.eezyclinic.views.MyTextViewRR
+
+        android:id="@+id/description_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
@@ -67,13 +69,20 @@
         android:fontFamily="sans-serif"
         android:textStyle="normal"
         android:textColor="#de555555"
-        android:text="Five centuries, but also the leap into electronic typesetting, essentially unchanged."
+        android:text="-"
         />
-    <LinearLayout
-        android:layout_marginTop="@dimen/_5dp"
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_5dp"
+            android:layout_width="match_parent"
+            android:background="@color/transparent"
+            android:layout_height="@dimen/_55dp">
+
+        <LinearLayout
+
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -95,6 +104,7 @@
                 android:text="Waiting time"
                 />
             <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:id="@+id/waiting_time_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/_3dp"
@@ -102,7 +112,6 @@
                 app:mrb_fillBackgroundStars="true"
 
                 app:mrb_progressBackgroundTint="@color/bottom_text_color"
-                android:rating="3"
                 app:mrb_secondaryProgressTint="@color/white"
                 style="@style/Widget.MaterialRatingBar.RatingBar" />
 
@@ -147,6 +156,7 @@
                 android:text="Diagnosis"
                 />
             <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:id="@+id/diagnasis_ratingbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/_3dp"
@@ -154,7 +164,6 @@
                 app:mrb_fillBackgroundStars="true"
 
                 app:mrb_progressBackgroundTint="@color/bottom_text_color"
-                android:rating="3"
                 app:mrb_secondaryProgressTint="@color/white"
                 style="@style/Widget.MaterialRatingBar.RatingBar" />
 
@@ -199,7 +208,7 @@
                 android:text="Customer Service"
                 />
             <me.zhanghai.android.materialratingbar.MaterialRatingBar
-                android:id="@+id/feedback_rating_bar"
+                android:id="@+id/customer_service_rating_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/_3dp"
@@ -207,7 +216,6 @@
                 app:mrb_fillBackgroundStars="true"
 
                 app:mrb_progressBackgroundTint="@color/bottom_text_color"
-                android:rating="3"
                 app:mrb_secondaryProgressTint="@color/white"
                 style="@style/Widget.MaterialRatingBar.RatingBar" />
 
@@ -232,7 +240,16 @@
 
 
 
+
     </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@color/transparent"
+            android:clickable="true"
+            android:layout_height="match_parent">
+        </RelativeLayout>
+
+        </RelativeLayout>
     </LinearLayout>
     <TextView
         android:layout_width="match_parent"

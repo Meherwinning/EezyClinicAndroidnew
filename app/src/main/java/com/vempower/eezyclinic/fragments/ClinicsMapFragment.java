@@ -1,5 +1,8 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.content.Intent;
+import android.os.Messenger;
+
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptor;
@@ -12,9 +15,13 @@ import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.APIResponce.SearchResultClinicListAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.ClinicProfileActivity;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.core.SearchRequest;
+import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.GoogleMarkerClickListener;
+import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.mappers.SearchResultClinicListMapper;
 import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
@@ -59,8 +66,31 @@ public class ClinicsMapFragment extends AbstractMapFragment /*, GoogleMap.OnMark
         setOnGoogleMarkerClickListener(new GoogleMarkerClickListener() {
             @Override
             public void onClick(int id) {
-                //TODO with id
-                Utils.showToastMessage("Id:"+id);
+
+                SearchResultClinicData temp= new SearchResultClinicData();
+                temp.setClncId(id+"");
+                final int index= clinicsLsit.lastIndexOf(temp);
+                if(index>=0 && clinicsLsit.get(index)!=null) {
+
+
+                    Intent intent = new Intent(MyApplication.getCurrentActivityContext(), ClinicProfileActivity.class);
+                           /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+                    intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_CLINIC_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
+                        @Override
+                        protected IntentObjectListener getMyObject() {
+                            return new IntentObjectListener() {
+
+                                @Override
+                                public Object getObject() {
+                                    return clinicsLsit.get(index);
+                                }
+                            };
+                        }
+                    }));
+
+                    MyApplication.getCurrentActivityContext().startActivity(intent);
+                }
+
             }
         });
     }
@@ -149,7 +179,7 @@ public class ClinicsMapFragment extends AbstractMapFragment /*, GoogleMap.OnMark
             options.title(data.getClinicName());
              String snippet = data.getBranchName() + "\n" + data.getCityName() + ", " + data.getAddress();
              options.snippet(snippet);
-             options.zIndex(Float.parseFloat(data.getBrcId()));
+             options.zIndex(Float.parseFloat(data.getClncId()));
 
             builder.include(latLng);
 
