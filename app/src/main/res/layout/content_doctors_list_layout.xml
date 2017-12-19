@@ -107,6 +107,39 @@
 
         android:background="#62bb50"
         />
+
+    <!--<com.vempower.eezyclinic.views.myDragButton.DragButton
+        android:layout_width="wrap_content"
+        android:background="@drawable/location_icon"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content" />-->
+
+  <!--  <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/fab_relative"
+        android:layout_below="@+id/toolbar_container"
+        android:background="@color/transparent"
+        android:clickable="false"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/my_drag_iv"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:src="@drawable/location_icon"
+        android:scaleType="fitXY"
+        android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <com.vempower.eezyclinic.views.MovableFloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/location_icon"/>-->
+
+
 </RelativeLayout>
 
     <!--app:iconDrawable="@drawable/list_view_icon"-->

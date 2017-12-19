@@ -168,7 +168,7 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
             book_appointment_tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Utils.showToastMsg(data.getDoctorName()+"");
+                    Utils.showToastMsg("Coming soon");
                 }
             });
 

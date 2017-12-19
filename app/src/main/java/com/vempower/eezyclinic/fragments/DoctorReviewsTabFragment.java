@@ -37,6 +37,7 @@ public class DoctorReviewsTabFragment extends SwipedRecyclerViewFragment1 implem
     private RecyclerViewDelegate recyclerViewDelegate = new RecyclerViewDelegate();
     private ReviewsListAdapter adapter;
     private DoctorProfileData doctorProfileData;
+    private View fragment;
 
     public DoctorReviewsTabFragment()
     {
@@ -58,10 +59,10 @@ public class DoctorReviewsTabFragment extends SwipedRecyclerViewFragment1 implem
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list_view, container, false);
+         fragment = inflater.inflate(R.layout.fragment_list_view, container, false);
 
-        setupSwipeRefreshLayout(view);
-        return view;
+        setupSwipeRefreshLayout(fragment);
+        return fragment;
     }
 
     @Override
@@ -87,6 +88,16 @@ public class DoctorReviewsTabFragment extends SwipedRecyclerViewFragment1 implem
        /* } else {
             adapter.setUpdatedList(orders);
         }*/
+
+        if(reviews==null || reviews.size()==0)
+        {
+            fragment.findViewById(R.id.no_matching_result_tv).setVisibility(View.VISIBLE);
+        }else
+        {
+            fragment.findViewById(R.id.no_matching_result_tv).setVisibility(View.GONE);
+        }
+
+
 
 
     }

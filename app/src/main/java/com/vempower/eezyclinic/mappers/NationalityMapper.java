@@ -46,7 +46,7 @@ public class NationalityMapper extends  AbstractMapper  implements Callback<Nati
             return;
         }
 
-       // MyApplication.showTransparentDialog();
+        //MyApplication.showTransparentDialog();
         EezyClinicAPI stashDealAPI = MyApplication.getInstance().getEezyClinicAPI();
 
        /* RequestBody requestBody = getMyRequestBody();

@@ -129,6 +129,7 @@
             </RelativeLayout>
         </LinearLayout>
 
+
         <android.support.design.widget.TabLayout
             android:id="@+id/tabHost"
             android:layout_width="match_parent"
@@ -150,6 +151,7 @@
             app:tabMode="fixed"
 
             />
+
 
 
      <!--   <com.vempower.eezyclinic.widget.SlidingTabLayout
@@ -188,5 +190,19 @@
         android:textColor="#ffffff"
         android:text="View Contact Number"
 
+        />
+    <com.gc.materialdesign.views.ButtonFloat
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fab_all"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_60dp"
+        android:layout_alignParentEnd="true"
+        app:iconDrawable="@drawable/location_icon1"
+
+        android:background="#62bb50"
         />
 </RelativeLayout>

@@ -21,4 +21,17 @@
         app:iconDrawable="@drawable/list_view_icon"
         android:background="@color/white"
         />-->
+    <com.vempower.eezyclinic.views.MyTextViewRR
+        android:id="@+id/no_matching_result_tv"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_16sp"
+        android:fontFamily="sans-serif"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:textStyle="normal"
+        android:textColor="#5d5d5d"
+        android:text="@string/no_matching_resuly_lbl" />
 </RelativeLayout>

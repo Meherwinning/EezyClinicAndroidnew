@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.gc.materialdesign.views.ButtonFloat;
 import com.vempower.eezyclinic.APICore.DoctorProfileData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.APIResponce.DoctorProfileAPI;
@@ -190,6 +191,14 @@ public class DoctorProfileActivity extends AbstractMenuActivity
 
 
     private void myInit(final DoctorProfileData profileData) {
+        ButtonFloat fab = findViewById(R.id.fab_all);
+
+        fab.setOnMyClickListener(new ButtonFloat.MyClickListener() {
+            @Override
+            public void onClick(View view) {
+                showToastMessage("Now click");
+            }
+        });
 
         ImageView imageView = findViewById(R.id.profile_iv);
         if (imageView != null) {

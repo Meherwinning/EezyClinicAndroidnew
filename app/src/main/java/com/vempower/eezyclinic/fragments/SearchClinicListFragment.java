@@ -19,6 +19,7 @@ import com.vempower.eezyclinic.mappers.SearchResultClinicListMapper;
 import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.eezyclinic.views.MyTextViewRR;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -152,6 +153,7 @@ public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
 
     public void setOrderItemsToAdapter(List<SearchResultClinicData> orders) {
         hideProgressView();
+        ((MyTextViewRR)fragmentView.findViewById(R.id.match_found_tv)).setText(orders.size()+"");
 
 
         if (adapter == null) {
@@ -162,6 +164,15 @@ public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
         } else {
             adapter.setUpdatedList(orders);
         }
+
+        if(orders==null || orders.size()==0)
+        {
+            fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.VISIBLE);
+        }else
+        {
+            fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.GONE);
+        }
+
 
 
     }

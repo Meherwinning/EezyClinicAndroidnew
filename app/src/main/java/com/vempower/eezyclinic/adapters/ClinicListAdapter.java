@@ -19,6 +19,7 @@ import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRM;
 import com.vempower.eezyclinic.views.MyTextViewRR;
@@ -165,11 +166,29 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Or
             reviews_count_tv.setText(TextUtils.isEmpty(data.getTotalreviews())?"0":data.getTotalreviews());
 
             recommendations_count_tv.setText(TextUtils.isEmpty(data.getTotalrecommend())?"0":data.getTotalrecommend());
-            book_appointment_tv.setText("View Doctors");
+            book_appointment_tv.setText(Utils.getStringFromResources(R.string.view_doctors_lbl));
             book_appointment_tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Utils.showToastMsg(data.getClinicName()+"");
+                   // Utils.showToastMsg(data.getClinicName()+"");
+                    Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),ClinicProfileActivity.class);
+                           /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+                    intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_CLINIC_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
+                        @Override
+                        protected IntentObjectListener getMyObject() {
+                            return new IntentObjectListener(){
+
+                                @Override
+                                public Object getObject() {
+                                    return data;
+                                }
+                            };
+                        }
+                    }));
+                    intent.putExtra(Constants.Pref.IS_FROM_VIEW_DOCTORS_CLICK_KEY,true);
+
+                    MyApplication.getCurrentActivityContext().startActivity(intent);
+
                 }
             });
 

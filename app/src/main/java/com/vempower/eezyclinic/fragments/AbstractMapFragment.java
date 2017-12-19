@@ -37,7 +37,7 @@ public abstract class AbstractMapFragment extends AbstractFragment implements On
 
     private GoogleMap mMap;
     //private ActiveDealsGeoLocation geoLocation;
-    private View fragmentView;
+    protected View fragmentView;
     private MapView mapView;
     private GoogleMarkerClickListener markerClickListener;
 
@@ -70,6 +70,7 @@ public abstract class AbstractMapFragment extends AbstractFragment implements On
         }
         mMap.clear();
     }
+
 
    protected void showMapDetails() {
        clearMap();

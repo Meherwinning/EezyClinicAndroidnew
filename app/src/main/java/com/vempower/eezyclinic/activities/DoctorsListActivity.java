@@ -98,18 +98,25 @@ public class DoctorsListActivity extends AbstractMenuActivity {
     private void myInit() {
         {
 
-            fab.setDrawableIcon(getResources().getDrawable(R.drawable.location_icon));
+            fab.setDrawableIcon(getResources().getDrawable(R.drawable.location_icon1));
 
             handleFAB();
+            fab.setOnMyClickListener(new ButtonFloat.MyClickListener() {
+                @Override
+                public void onClick(View view) {
+                    buttonClick();
+                }
+            });
 
-            fab.setOnClickListener(new View.OnClickListener() {
+           /* fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //Intent intent = new Intent(MyApplication.getCurrentActivityContext(), MapDoctorsActivity.class);
                     //startActivity(intent);
                     buttonClick();
                 }
-            });
+            });*/
+
         }
     }
 
@@ -202,9 +209,9 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
          titleName = toolbar.findViewById(R.id.title_logo_tv);
         //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
-        if(titleName!=null)
-        titleName.setText(Utils.getStringFromResources(R.string.title_activity_find_docotor));
-
+        if(titleName!=null) {
+            titleName.setText(Utils.getStringFromResources(R.string.search_result_doctors_lbl));
+        }
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -312,7 +319,8 @@ public class DoctorsListActivity extends AbstractMenuActivity {
             titleName.setText(Utils.getStringFromResources(R.string.title_activity_find_docotor));
         }*/
         if(titleName!=null) {
-            titleName.setText("Doctors-List");
+           // titleName.setText("Doctors-List");
+            titleName.setText(Utils.getStringFromResources(R.string.search_result_doctors_lbl));
         }
             if(doctorsListFragment ==null) {
             doctorsListFragment = new SearchDoctorsListFragment();
@@ -323,7 +331,7 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         }
 
         setFragment(doctorsListFragment);
-        fab.setDrawableIcon(getResources().getDrawable(R.drawable.location_icon));
+        fab.setDrawableIcon(getResources().getDrawable(R.drawable.location_icon1));
 
 
     }
@@ -337,7 +345,8 @@ public class DoctorsListActivity extends AbstractMenuActivity {
             titleName.setText(Utils.getStringFromResources(R.string.title_activity_find_clinic));
         }*/
         if(titleName!=null) {
-            titleName.setText("Clinics-List");
+            //titleName.setText("Clinics-List");
+            titleName.setText(Utils.getStringFromResources(R.string.search_result_clinic_lbl));
         }
         if(clinicListFragment ==null) {
             clinicListFragment = new SearchClinicListFragment();
@@ -348,7 +357,7 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         }
 
         setFragment(clinicListFragment);
-        fab.setDrawableIcon(getResources().getDrawable(R.drawable.location_icon));
+        fab.setDrawableIcon(getResources().getDrawable(R.drawable.location_icon1));
 
     }
 
@@ -362,7 +371,8 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         isCurrentShowMap=true;
         handleFAB();
         if(titleName!=null) {
-            titleName.setText("Doctors-Map");
+           // titleName.setText("Doctors-Map");
+            titleName.setText(Utils.getStringFromResources(R.string.search_result_doctors_lbl));
         }
         /*if(doctorsMapFragment ==null)
         {
@@ -394,7 +404,7 @@ public class DoctorsListActivity extends AbstractMenuActivity {
 
 
         setFragment(doctorsMapFragment);
-        fab.setDrawableIcon(getResources().getDrawable(R.drawable.list_view_icon));
+        fab.setDrawableIcon(getResources().getDrawable(R.drawable.list_view_icon1));
 
     }
 
@@ -404,7 +414,9 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         isCurrentShowMap=true;
         handleFAB();
         if(titleName!=null) {
-            titleName.setText("Clinics-Map");
+           // titleName.setText("Clinics-Map");
+            titleName.setText(Utils.getStringFromResources(R.string.search_result_clinic_lbl));
+
         }
         /*if(doctorsMapFragment ==null)
         {
@@ -428,7 +440,7 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         }
 
         setFragment(clinicsMapFragment);
-        fab.setDrawableIcon(getResources().getDrawable(R.drawable.list_view_icon));
+        fab.setDrawableIcon(getResources().getDrawable(R.drawable.list_view_icon1));
 
     }
 

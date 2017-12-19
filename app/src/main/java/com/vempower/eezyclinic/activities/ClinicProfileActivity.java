@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.gc.materialdesign.views.ButtonFloat;
 import com.vempower.eezyclinic.APICore.ClinicProfileData;
 import com.vempower.eezyclinic.APICore.SearchResultClinicData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
@@ -35,6 +36,7 @@ import com.vempower.eezyclinic.mappers.ClinicProfileMapper;
 import com.vempower.eezyclinic.tools.ScrollableFragmentListener;
 import com.vempower.eezyclinic.tools.ScrollableListener;
 import com.vempower.eezyclinic.tools.ViewPagerHeaderHelper;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.views.MyTextViewRB;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 import com.vempower.eezyclinic.widget.TouchCallbackLayout;
@@ -70,7 +72,7 @@ public class ClinicProfileActivity extends AbstractMenuActivity
 
         if (obj!=null && obj instanceof SearchResultClinicData) {
             data = (SearchResultClinicData) obj;
-            showToastMessage("Data :" + data);
+           // showToastMessage("Data :" + data);
         }else
         {
             showMyAlertDialog("Alert","Invalid Clinic profile.Please try again","Close",true);
@@ -174,8 +176,14 @@ public class ClinicProfileActivity extends AbstractMenuActivity
     }*/
 
     private void myInit(ClinicProfileData  clinicProfileData) {
+        ButtonFloat fab = findViewById(R.id.fab_all);
 
-
+        fab.setOnMyClickListener(new ButtonFloat.MyClickListener() {
+            @Override
+            public void onClick(View view) {
+                showToastMessage("Now click");
+            }
+        });
 
         ImageView imageView = findViewById(R.id.profile_iv);
         if (imageView != null) {
@@ -206,6 +214,9 @@ public class ClinicProfileActivity extends AbstractMenuActivity
         ((TabLayout) findViewById(R.id.tabHost)).setupWithViewPager(mViewPager);
 
         mViewPager.setTranslationY(mHeaderHeight);
+        if(getIntent()!=null && getIntent().getBooleanExtra(Constants.Pref.IS_FROM_VIEW_DOCTORS_CLICK_KEY,false)) {
+             mViewPager.setCurrentItem(1);
+        }
     }
 
     @Override

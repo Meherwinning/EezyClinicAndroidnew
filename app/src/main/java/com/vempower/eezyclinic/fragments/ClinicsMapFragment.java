@@ -2,6 +2,7 @@ package com.vempower.eezyclinic.fragments;
 
 import android.content.Intent;
 import android.os.Messenger;
+import android.view.View;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -148,6 +149,13 @@ public class ClinicsMapFragment extends AbstractMapFragment /*, GoogleMap.OnMark
 
     protected LatLngBounds.Builder addAllMarkersToMap(GoogleMap mMap) {
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        if(clinicsLsit==null || clinicsLsit.size()==0)
+        {
+            fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.VISIBLE);
+        }else
+        {
+            fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.GONE);
+        }
         if(clinicsLsit==null || clinicsLsit.size()==0)
         {
             return null;

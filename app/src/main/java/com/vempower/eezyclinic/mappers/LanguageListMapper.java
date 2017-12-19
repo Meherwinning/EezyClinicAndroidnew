@@ -46,7 +46,7 @@ public class LanguageListMapper extends  AbstractMapper  implements Callback<Lan
             return;
         }
 
-       // MyApplication.showTransparentDialog();
+        //MyApplication.showTransparentDialog();
         EezyClinicAPI stashDealAPI = MyApplication.getInstance().getEezyClinicAPI();
 
        /* RequestBody requestBody = getMyRequestBody();
