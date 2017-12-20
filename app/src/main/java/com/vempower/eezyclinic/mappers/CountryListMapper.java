@@ -6,6 +6,7 @@ import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.APIResponce.CountryListAPI;
 import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
+import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Utils;
 
@@ -42,7 +43,10 @@ public class CountryListMapper extends  AbstractMapper  implements Callback<Coun
 
         if (!Utils.isNetworkAvailable(MyApplication
                 .getCurrentActivityContext())) {
-            Utils.showToastMsgForNetworkNotAvalable();
+            //Utils.showToastMsgForNetworkNotAvalable();
+            if (listener != null) {
+                listener.getCountryListAPI(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
+            }
             return;
         }
 

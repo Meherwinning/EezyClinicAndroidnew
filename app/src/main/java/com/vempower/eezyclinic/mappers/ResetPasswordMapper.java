@@ -6,6 +6,7 @@ import android.util.Log;
 import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
+import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Utils;
 
@@ -51,7 +52,10 @@ public class ResetPasswordMapper extends  AbstractMapper  implements Callback<Ab
 
         if (!Utils.isNetworkAvailable(MyApplication
                 .getCurrentActivityContext())) {
-            Utils.showToastMsgForNetworkNotAvalable();
+           // Utils.showToastMsgForNetworkNotAvalable();
+            if (listener != null) {
+                listener.getResetPasswordAPI(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
+            }
             return;
         }
 

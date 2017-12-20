@@ -43,6 +43,7 @@ import com.vempower.eezyclinic.core.DoctorClinicNamesSearch;
 import com.vempower.eezyclinic.core.SearchRequest;
 import com.vempower.eezyclinic.googleaddressselection.GeoData;
 import com.vempower.eezyclinic.googleaddressselection.GooglePlacesAutocompleteAdapter;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.CityListMapper;
 import com.vempower.eezyclinic.mappers.CountryListMapper;
 import com.vempower.eezyclinic.mappers.DoctorClinicNamesListMapper;
@@ -56,6 +57,7 @@ import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.CustomSpinnerSelection;
 import com.vempower.eezyclinic.views.MyAutoCompleteTextView;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
+import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
 import org.json.JSONObject;
 
@@ -162,6 +164,7 @@ public class SearchFragment extends AbstractFragment {
             @Override
             public void onClick(View view) {
                 expandableLayout_advance_search.toggle();
+                hideKeyBord(expandableLayout_advance_search);
 
                 if(false) {
                     //reset the advanced search items
@@ -170,21 +173,10 @@ public class SearchFragment extends AbstractFragment {
                     searchRequestParams.setLaunguage(null);
                     searchRequestParams.setGendersearch(null);
                 }
-                MyApplication.showTransparentDialog();
-                //TODO pending code here
+
+                //MyApplication.showTransparentDialog();
                 callInsuranceAcceptedMapper();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        callNatinalityMapper();
-                    }
-                },200);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        callLanguageMapper();
-                    }
-                },250);
+
 
              setToGenderSpinnerAdapter();
 
@@ -225,13 +217,26 @@ public class SearchFragment extends AbstractFragment {
             MyApplication.hideTransaprentDialog();
             return;
         }
-
+        MyApplication.showTransparentDialog();
         LanguageListMapper mapper = new LanguageListMapper();
         mapper.setOnLanguageListListener(new LanguageListMapper.LanguageListListener() {
             @Override
             public void getLanguageListAPII(LanguageListAPI languageListAPI, String errorMessage) {
                 MyApplication.hideTransaprentDialog();
                 if (!isValidResponse(languageListAPI, errorMessage)) {
+                    showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_languages_list_lbl), new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+
+                            ((AbstractActivity) MyApplication.getCurrentActivityContext()). finish();
+
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callLanguageMapper();
+                        }
+                    });
                     return;
                 }
                 setToLanguagesAdapter(languageListAPI.getData());
@@ -315,17 +320,31 @@ public class SearchFragment extends AbstractFragment {
            // nationality_spinner.setSelection(nationalityAdapter.getCount());
             return;
         }
-
+        MyApplication.showTransparentDialog();
         NationalityMapper mapper = new NationalityMapper();
 
         mapper.setOnNationalityListListener(new NationalityMapper.NationalityListListener() {
             @Override
             public void getNationalityListAPI(NationalityListAPI nationalityListAPI, String errorMessage) {
-
+MyApplication.hideTransaprentDialog();
                 if (!isValidResponse(nationalityListAPI, errorMessage)) {
+                    showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_nationality_list_lbl), new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+
+                            ((AbstractActivity) MyApplication.getCurrentActivityContext()). finish();
+
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callNatinalityMapper();
+                        }
+                    });
                     return;
                 }
                 setToNationalityListAdapter(nationalityListAPI.getData());
+                callLanguageMapper();
             }
         });
 
@@ -381,17 +400,33 @@ public class SearchFragment extends AbstractFragment {
 
     private void callInsuranceAcceptedMapper() {
         if (insuranceAdapter != null) {
+            MyApplication.hideTransaprentDialog();
             //insurance_accepted_spinner.setSelection(insuranceAdapter.getCount());
             return;
         }
+        MyApplication.showTransparentDialog();
         InsuranceListMapper mapper = new InsuranceListMapper();
         mapper.setOnInsuranceListListener(new InsuranceListMapper.InsuranceListListener() {
             @Override
             public void getInsuranceListAPI(InsuranceListAPI insuranceListAPI, String errorMessage) {
+               MyApplication.hideTransaprentDialog();
                 if (!isValidResponse(insuranceListAPI, errorMessage)) {
+                    showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_insurance_list_lbl), new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+
+                            ((AbstractActivity) MyApplication.getCurrentActivityContext()). finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callInsuranceAcceptedMapper();
+                        }
+                    });
                     return;
                 }
                 setToInsuranceAdapter(insuranceListAPI.getData());
+                callNatinalityMapper();
             }
         });
     }
@@ -425,7 +460,7 @@ public class SearchFragment extends AbstractFragment {
 
                     if (selectedInsurance != null) {
                         searchRequestParams.setInsurenceList(null);
-                        searchRequestParams.addInsurence(selectedInsurance.getId());
+                        searchRequestParams.addInsurence(selectedInsurance.getCompanyName());
                     }
                 }
 
@@ -622,11 +657,25 @@ public class SearchFragment extends AbstractFragment {
     }
 
     private void callSpecialityMapper() {
+        MyApplication.showTransparentDialog();
         SpecalitiesMapper mapper = new SpecalitiesMapper();
         mapper.setOnSpecalitiesdListener(new SpecalitiesMapper.SpecalitiesdListener() {
             @Override
             public void getSpecalitiesAPII(SpecalitiesAPI specalitiesAPI, String errorMessage) {
+                MyApplication.hideTransaprentDialog();
                 if (!isValidResponse(specalitiesAPI, errorMessage)) {
+                    showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_speciality_list_lbl), new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+
+                            ((AbstractActivity) MyApplication.getCurrentActivityContext()). finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callSpecialityMapper();
+                        }
+                    });
                     return;
                 }
                 List<SpecalitiyData> dataList = specalitiesAPI.getData();
@@ -676,7 +725,7 @@ public class SearchFragment extends AbstractFragment {
                     String selectedGender = genderTypeList.get(position);
                     if (selectedGender != null) {
                         searchRequestParams.setGendersearch(null);
-                        searchRequestParams.addGendersearch(selectedGender);
+                        searchRequestParams.addGendersearch(selectedGender.toLowerCase());
                     }
                 }
                 //Utils.showToastMessage("selectedGender "+selectedGender);

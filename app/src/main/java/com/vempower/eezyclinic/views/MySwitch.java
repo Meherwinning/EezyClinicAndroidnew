@@ -994,7 +994,7 @@ public class MySwitch extends CompoundButton {
         mSwitchWidth = switchWidth;
         mSwitchHeight = switchHeight;
 
-        Log.d(TAG, "onMeasure():mSwitchWidth="+mSwitchWidth+" mSwitchHeight="+mSwitchHeight);
+       // Log.d(TAG, "onMeasure():mSwitchWidth="+mSwitchWidth+" mSwitchHeight="+mSwitchHeight);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         final int measuredHeight = getMeasuredHeight();
         final int measuredWidth = getMeasuredWidth();

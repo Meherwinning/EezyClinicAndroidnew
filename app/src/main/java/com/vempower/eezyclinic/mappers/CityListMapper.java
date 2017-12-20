@@ -6,6 +6,7 @@ import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.APIResponce.CityListAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiesAPI;
+import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Utils;
 
@@ -46,6 +47,9 @@ public class CityListMapper extends  AbstractMapper  implements Callback<CityLis
         if (!Utils.isNetworkAvailable(MyApplication
                 .getCurrentActivityContext())) {
             Utils.showToastMsgForNetworkNotAvalable();
+            if (listener != null) {
+                listener.getCityListAPI(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
+            }
             return;
         }
 

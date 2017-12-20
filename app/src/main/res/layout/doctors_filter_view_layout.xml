@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
+
     <LinearLayout
         android:orientation="vertical"
         android:background="@color/white"
@@ -55,6 +56,7 @@
 
 
 
+
             <com.github.aakira.expandablelayout.ExpandableLinearLayout
                 android:id="@+id/expandableLayout_fee_view"
                 android:layout_width="match_parent"
@@ -75,8 +77,22 @@
 
                     android:orientation="vertical">
 
+                    <include layout="@layout/amount_range_seekbar"></include>
+                   <!-- <com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar
+                        android:id="@+id/rangeSeekbar1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:min_value="50"
+                        app:max_value="150"
+                        app:bar_color="#C69E89"
+                        app:bar_highlight_color="#A54B17"
+                        app:left_thumb_color="#775E4F"
+                        app:left_thumb_color_pressed="#4C2D1A"
+                        app:data_type="_integer"
+                        />-->
 
-                    <com.vempower.eezyclinic.views.myseekbar.RangeSeekBar
+                   <!-- <com.vempower.eezyclinic.views.myseekbar.RangeSeekBar
+
                         xmlns:rsb="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/rangeSeekbar"
                         android:layout_width="fill_parent"
@@ -84,7 +100,7 @@
                         rsb:absoluteMaxValue="999"
 
                         rsb:singleThumb="true"
-                        rsb:absoluteMinValue="0" />
+                        rsb:absoluteMinValue="0" />-->
 
 
                     <!-- </android.support.design.widget.TextInputLayout>-->
@@ -129,7 +145,7 @@
                     android:clickable="true"
                     android:paddingBottom="@dimen/_8dp"
                     android:paddingTop="@dimen/_8dp"
-                    android:text="Online booking"
+                    android:text="Online Booking"
                     android:textColor="#212121"
 
                     android:textSize="@dimen/_16dp" />

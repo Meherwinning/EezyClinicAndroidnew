@@ -2,6 +2,8 @@ package com.vempower.eezyclinic.core;
 
 import android.text.TextUtils;
 
+import com.vempower.eezyclinic.utils.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,16 +26,22 @@ public class SearchRequest implements Cloneable {
     private String locality;
     private ArrayList<String> launguage = null;
     private String searchName;
-    private String onlinebooking;
+    private int onlinebooking;
     private String amountRange;
-    private String perpage;
+    private int perpage;
     private String page;
+
+    private float amountRangeMin,amountRangeMax;
 
 
     public SearchRequest(int limit) {
         this.searchtype = DOCTOR_TYPE;
        // onlinebooking="0";
-        perpage=limit+"";
+        perpage=limit;
+        amountRangeMin=Constants.RangeBarValues.MIN_VALUE;
+        amountRangeMax=Constants.RangeBarValues.MAX_VALUE;
+
+
         page="1";
 
 
@@ -45,7 +53,14 @@ public class SearchRequest implements Cloneable {
                 "page":""       //1   (Page No)*/
     }
 
-    public SearchRequest(String searchtype, String specality, String country, String city, String longitude, String latitude, ArrayList<String> insurenceList, ArrayList<String> nationalityList, ArrayList<String> gendersearch, String locality, ArrayList<String> launguage, String searchName, String onlinebooking, String amountRange, String perpage, String page) {
+    public SearchRequest(String searchtype, String specality, String country,
+                         String city, String longitude, String latitude,
+                         ArrayList<String> insurenceList,
+                         ArrayList<String> nationalityList,
+                         ArrayList<String> gendersearch, String locality,
+                         ArrayList<String> launguage, String searchName,
+                         int onlinebooking, String amountRange, int perpage,
+                         String page,float amountRangeMin,float amountRangeMax) {
         this.searchtype = searchtype;
         this.specality = specality;
         this.country = country;
@@ -62,6 +77,9 @@ public class SearchRequest implements Cloneable {
         this.amountRange = amountRange;
         this.perpage = perpage;
         this.page = page;
+        this.amountRangeMin=amountRangeMin;
+                this.amountRangeMax=amountRangeMax;
+
     }
 
     public String getSearchtype() {
@@ -313,23 +331,50 @@ public class SearchRequest implements Cloneable {
         this.searchName = searchName;
     }
 
-    public String getOnlinebooking() {
+    public int getOnlinebooking() {
+        if(onlinebooking<0)
+        {
+            onlinebooking=0;
+        }
         return onlinebooking;
     }
 
-    public void setOnlinebooking(String onlinebooking) {
+    public void setOnlinebooking(int onlinebooking) {
         this.onlinebooking = onlinebooking;
     }
 
     public String getAmountRange() {
-        return amountRange;
+        try {
+            amountRange= Math.round(amountRangeMin)+"-"+ Math.round(amountRangeMax);
+
+        }catch (Exception e)
+        {
+            amountRange="0-10000";
+        }
+         return amountRange;
+    }
+
+    public float getAmountRangeMin() {
+        return amountRangeMin;
+    }
+
+    public float getAmountRangeMax() {
+        return amountRangeMax;
+    }
+
+    public void setAmountRangeMin(float amountRangeMin) {
+        this.amountRangeMin = amountRangeMin;
+    }
+
+    public void setAmountRangeMax(float amountRangeMax) {
+        this.amountRangeMax = amountRangeMax;
     }
 
     public void setAmountRange(String amountRange) {
         this.amountRange = amountRange;
     }
 
-    public String getPerpage() {
+    public int getPerpage() {
         return perpage;
     }
 
@@ -380,6 +425,6 @@ public class SearchRequest implements Cloneable {
         return new SearchRequest( searchtype,  specality,  country,  city,
                 longitude,  latitude,  insurenceList,  nationalityList,
                 gendersearch,  locality,  launguage,  searchName,
-                onlinebooking,  amountRange,  perpage,  page);
+                onlinebooking,  amountRange,  perpage,  page,amountRangeMin,amountRangeMax);
     }
 }

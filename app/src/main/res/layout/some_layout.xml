@@ -34,4 +34,34 @@
         android:textStyle="normal"
         android:textColor="#5d5d5d"
         android:text="@string/no_matching_resuly_lbl" />
+
+    <LinearLayout
+        android:id="@+id/top_linear"
+        android:paddingRight="@dimen/_20dp"
+        android:paddingLeft="@dimen/_20dp"
+        android:paddingTop="@dimen/_3dp"
+        android:paddingBottom="@dimen/_3dp"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:background="#f4f4f4"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/match_found_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_14sp"
+            android:textStyle="normal"
+            android:layout_marginRight="@dimen/_5dp"
+            android:textColor="#5d5d5d"
+            android:text="0" />
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#5d5d5d"
+            android:text="matches found" />
+    </LinearLayout>
 </RelativeLayout>

@@ -143,6 +143,7 @@ public class RangeSeekBar<T extends Number> extends ImageView {
                 DEFAULT_TEXT_DISTANCE_TO_BUTTON_IN_DP) + this.mDistanceToTop;
 
         float lineHeight = PixelUtil.dpToPx(context, LINE_HEIGHT_IN_DP);
+        //float left, float top, float right, float bottom
         mRect = new RectF(padding,
                 mTextOffset + thumbHalfHeight - lineHeight / 2,
                 getWidth() - padding,

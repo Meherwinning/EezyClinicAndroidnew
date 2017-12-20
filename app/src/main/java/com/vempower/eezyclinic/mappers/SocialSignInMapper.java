@@ -7,6 +7,7 @@ import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
+import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.SocialLoginDetails;
 import com.vempower.eezyclinic.utils.Utils;
@@ -48,7 +49,10 @@ public class SocialSignInMapper extends  AbstractMapper  implements Callback<Log
 
         if (!Utils.isNetworkAvailable(MyApplication
                 .getCurrentActivityContext())) {
-            Utils.showToastMsgForNetworkNotAvalable();
+           // Utils.showToastMsgForNetworkNotAvalable();
+            if (listener != null) {
+                listener.getLoginAPI(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
+            }
             return;
         }
 

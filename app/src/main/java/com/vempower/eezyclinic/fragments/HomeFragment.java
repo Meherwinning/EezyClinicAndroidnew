@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
@@ -16,7 +17,9 @@ import com.vempower.eezyclinic.APICore.Followup;
 import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.APIResponce.DashboardAPI;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.SigninActivity;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.interfaces.HomeListener;
 import com.vempower.eezyclinic.mappers.DashboardMapper;
 import com.vempower.eezyclinic.utils.Constants;
@@ -25,6 +28,7 @@ import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
 import com.vempower.eezyclinic.views.MyTextViewRM;
 import com.vempower.eezyclinic.views.MyTextViewRR;
+import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
 import java.util.List;
 
@@ -110,6 +114,18 @@ public class HomeFragment extends AbstractFragment {
 
                 if(!isValidResponse(dashboardAPI,errorMessage))
                 {
+                    showMyDialog("Alert", "Something wrong to fetch data from server.Please try again", new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+                            logout();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callDashboardMapper();
+                        }
+                    });
+
                     return;
                 }
                 if(dashboardAPI.getData()!=null)
@@ -130,6 +146,16 @@ public class HomeFragment extends AbstractFragment {
         });
 
     }
+
+    private void logout() {
+        MyApplication.getInstance().setLoggedUserDetailsToSharedPref(null);
+        SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,"");
+        Intent intent= new Intent(MyApplication.getCurrentActivityContext(),SigninActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        ((AbstractActivity)MyApplication.getCurrentActivityContext()).finish();
+    }
+
 
     private void refreshDashBoard(final DashboardData dashboardData)
     {

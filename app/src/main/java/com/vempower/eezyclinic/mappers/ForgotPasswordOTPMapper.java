@@ -7,6 +7,7 @@ import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordOTPAPI;
+import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Utils;
 
@@ -49,7 +50,10 @@ public class ForgotPasswordOTPMapper extends  AbstractMapper  implements Callbac
 
         if (!Utils.isNetworkAvailable(MyApplication
                 .getCurrentActivityContext())) {
-            Utils.showToastMsgForNetworkNotAvalable();
+           // Utils.showToastMsgForNetworkNotAvalable();
+            if (listener != null) {
+                listener.getForgotPasswordOTPAPI(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
+            }
             return;
         }
 

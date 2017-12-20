@@ -15,6 +15,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
+import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarFinalValueListener;
+import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.nex3z.togglebuttongroup.MultiSelectToggleGroup;
@@ -35,6 +38,7 @@ import com.vempower.eezyclinic.callbacks.HomeBottomItemClickListener;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.core.SearchRequest;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.InsuranceListMapper;
 import com.vempower.eezyclinic.mappers.LanguageListMapper;
 import com.vempower.eezyclinic.mappers.NationalityMapper;
@@ -42,6 +46,7 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyCheckBoxRR;
 import com.vempower.eezyclinic.views.MySwitch;
+import com.vempower.eezyclinic.views.MyTextViewRR;
 import com.vempower.eezyclinic.views.myseekbar.RangeSeekBar;
 
 import java.util.List;
@@ -57,6 +62,7 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
 
     private LinearLayout  consultation_fee_linear,gender_view_linear,
             language_known_linear ,nationality_view_linear;
+    private Switch online_booking_switch;
 
     // private ExpandableLinearLayout expandableLayout_gender_view;
     @Override
@@ -74,6 +80,8 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
         language_known_linear = findViewById(R.id. language_known_linear);
         nationality_view_linear  = findViewById(R.id.nationality_view_linear);
 
+        online_booking_switch  = findViewById(R.id.online_booking_switch);
+
         SearchRequest requestParms1 = MyApplication.getInstance().getSearchRequestParms();
         if (requestParms1 == null) {
             requestParms1 = new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
@@ -83,13 +91,36 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
 
     //   final  View doctors_layout = findViewById(R.id.doctors_layout);
       // final View clinics_layout  =findViewById(R.id.clinics_layout);
-       if(requestParms.getSearchtype().equalsIgnoreCase(SearchRequest.DOCTOR_TYPE))
-       {
-           showViewType(true);
-       }else
-       {
-           showViewType(false);
-       }
+        setParamsValuesToviews();
+
+
+
+
+    }
+
+    private void setParamsValuesToviews() {
+        if(requestParms.getSearchtype().equalsIgnoreCase(SearchRequest.DOCTOR_TYPE))
+        {
+            showViewType(true);
+        }else
+        {
+            showViewType(false);
+        }
+        online_booking_switch.setOnCheckedChangeListener(null);
+        online_booking_switch.setChecked(false);
+
+        if(requestParms.getOnlinebooking()==1)
+        {
+            online_booking_switch.setChecked(true);
+        }
+
+        online_booking_switch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(Switch view, boolean checked) {
+                requestParms.setOnlinebooking(checked?1:0);
+            }
+        });
+
         search_type_switch.setChecked(requestParms.getSearchtype().equalsIgnoreCase(SearchRequest.DOCTOR_TYPE) ? false : true);
         //search_type_switch_tv.setText(requestParms.getSearchtype());
         search_type_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -108,10 +139,26 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
 
         computeGenderView();
         computeLanguageView();
-        computeNationalityView();
-        computeInsuranceView();
-
         computeConsultationFeeView();
+    }
+
+    public void onClearAllButtonClick(View view) {
+
+        showMyDialog("Clear Filters", Utils.getStringFromResources(R.string.claer_filter_message_lbl), "Clear", "Cancel", new ApiErrorDialogInterface() {
+            @Override
+            public void onCloseClick() {
+                //TODO nothing
+            }
+
+            @Override
+            public void retryClick() {
+                requestParms = new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
+                setParamsValuesToviews();
+            }
+        });
+
+
+       // Utils.showToastMsg("Coming soon");
     }
 
     public void onApplyButtonClick(View view) {
@@ -131,8 +178,11 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
     }
 
     private void computeConsultationFeeView() {
-        RangeSeekBar rangeSeekbar = (RangeSeekBar) findViewById(R.id.rangeSeekbar);
+
+        setAmountRageSeekBar();
+        /*RangeSeekBar rangeSeekbar = (RangeSeekBar) findViewById(R.id.rangeSeekbar);
         rangeSeekbar.setNotifyWhileDragging(true);
+        rangeSeekbar.resetSelectedValues();
         rangeSeekbar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener() {
             @Override
             public void onRangeSeekBarValuesChanged(RangeSeekBar bar, Object minValue, Object maxValue) {
@@ -140,7 +190,7 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
                 Log.i("Seekbar","Min Value- " + minValue + " & " + "Max Value- " + maxValue);
                // Toast.makeText(getApplicationContext(), "Min Value- " + minValue + " & " + "Max Value- " + maxValue, Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
         expandableLayout_fee_view = findViewById(R.id.expandableLayout_fee_view);
         LinearLayout fee_linear = findViewById(R.id.fee_linear);
         // callInsuranceMapper();
@@ -151,6 +201,41 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
             public void onClick(View view) {
                 colapseAllViews();
                 expandableLayout_fee_view.toggle();
+            }
+        });
+    }
+
+    private void setAmountRageSeekBar() {
+        final CrystalRangeSeekbar rangeSeekbar = findViewById(R.id.rangeSeekbar1);
+
+// get min and max text view
+        final MyTextViewRR tvMin =  findViewById(R.id.textMin1);
+        final MyTextViewRR tvMax = findViewById(R.id.textMax1);
+       rangeSeekbar.setOnRangeSeekbarChangeListener(null);
+        rangeSeekbar.setMinValue(Constants.RangeBarValues.MIN_VALUE);
+        rangeSeekbar.setMaxValue(Constants.RangeBarValues.MAX_VALUE);
+        rangeSeekbar.setMinStartValue(requestParms.getAmountRangeMin());
+        rangeSeekbar.setMaxStartValue(requestParms.getAmountRangeMax());
+
+        rangeSeekbar.apply();
+
+// set listener
+        rangeSeekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
+            @Override
+            public void valueChanged(Number minValue, Number maxValue) {
+                tvMin.setText(String.valueOf(minValue));
+                tvMax.setText(String.valueOf(maxValue));
+             }
+        });
+
+// set final value listener
+        rangeSeekbar.setOnRangeSeekbarFinalValueListener(new OnRangeSeekbarFinalValueListener() {
+            @Override
+            public void finalValue(Number minValue, Number maxValue) {
+                requestParms.setAmountRangeMin(minValue.floatValue());
+                requestParms.setAmountRangeMax(maxValue.floatValue());
+
+                // Log.d("CRS=>", String.valueOf(minValue) + " : " + String.valueOf(maxValue));
             }
         });
     }
@@ -189,6 +274,7 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
     }
 
     private void computeLanguageView() {
+
         expandableLayout_language_view = findViewById(R.id.expandableLayout_language_view);
         LinearLayout language_linear = findViewById(R.id.language_linear);
         callLanguageListMapper();
@@ -206,8 +292,8 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
     private void computeGenderView() {
         final MyCheckBoxRR male_checkbox= findViewById(R.id.male_checkbox);
                 final MyCheckBoxRR female_checkbox = findViewById(R.id.female_checkbox);
-        male_checkbox.setChecked(requestParms.getGendersearch().contains(Constants.GenderValues.MALE));
-        female_checkbox.setChecked(requestParms.getGendersearch().contains(Constants.GenderValues.FEMALE));
+        male_checkbox.setChecked(requestParms.getGendersearch().contains(Constants.GenderValues.MALE.toLowerCase()));
+        female_checkbox.setChecked(requestParms.getGendersearch().contains(Constants.GenderValues.FEMALE.toLowerCase()));
 
         male_checkbox.setOnCheckedChangeListener(new GenderCheckedListener(true));
         female_checkbox.setOnCheckedChangeListener(new GenderCheckedListener(false));
@@ -238,7 +324,7 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
                 requestParms.addGendersearch(isMale?Constants.GenderValues.MALE:Constants.GenderValues.FEMALE);
             }else
             {
-                requestParms.removeGendersearch(isMale?Constants.GenderValues.MALE:Constants.GenderValues.FEMALE);
+                requestParms.removeGendersearch(isMale?Constants.GenderValues.MALE.toLowerCase():Constants.GenderValues.FEMALE.toLowerCase());
             }
 
         }
@@ -258,14 +344,29 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
 
     private void callLanguageListMapper()
     {
+        MyApplication.showTransparentDialog();
         LanguageListMapper mapper = new LanguageListMapper();
         mapper.setOnLanguageListListener(new LanguageListMapper.LanguageListListener() {
             @Override
             public void getLanguageListAPII(LanguageListAPI languageListAPI, String errorMessage) {
+                //fsdfdsf
+                MyApplication.hideTransaprentDialog();
                 if (!isValidResponse(languageListAPI, errorMessage)) {
+                    showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_languages_list_lbl), new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+                            finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callLanguageListMapper();
+                        }
+                    });
                     return;
                 }
                 setToLanguagesToggleViews(languageListAPI.getData());
+                computeNationalityView();
             }
         });
 
@@ -273,26 +374,52 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
 
     private void callNationalityMapper()
     {
+        MyApplication.showTransparentDialog();
         NationalityMapper mapper = new NationalityMapper();
 
         mapper.setOnNationalityListListener(new NationalityMapper.NationalityListListener() {
             @Override
             public void getNationalityListAPI(NationalityListAPI nationalityListAPI, String errorMessage) {
-
+                MyApplication.hideTransaprentDialog();
                 if (!isValidResponse(nationalityListAPI, errorMessage)) {
+                    showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_nationality_list_lbl), new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+                            finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callNationalityMapper();
+                        }
+                    });
                     return;
                 }
                 setToNationalityListToggleViews(nationalityListAPI.getData());
+                computeInsuranceView();
             }
         });
     }
     private void callInsuranceMapper(final int toggleId)
     {
+        MyApplication.showTransparentDialog();
         InsuranceListMapper mapper = new InsuranceListMapper();
         mapper.setOnInsuranceListListener(new InsuranceListMapper.InsuranceListListener() {
             @Override
             public void getInsuranceListAPI(InsuranceListAPI insuranceListAPI, String errorMessage) {
+                MyApplication.hideTransaprentDialog();
                 if (!isValidResponse(insuranceListAPI, errorMessage)) {
+                    showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_insurance_list_lbl), new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+                            finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callInsuranceMapper(toggleId);
+                        }
+                    });
                     return;
                 }
                 setToInsuranceToggleViews(insuranceListAPI.getData(),toggleId);
@@ -300,7 +427,7 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
         });
     }
 
-    private void setToInsuranceToggleViews(List<InsuranceData> dataList,int toggleId)
+    private void setToInsuranceToggleViews(final List<InsuranceData> dataList,int toggleId)
     {
         MultiSelectToggleGroup multiDummy = (MultiSelectToggleGroup) findViewById(toggleId);
        // MultiSelectToggleGroup multiDummy1 = (MultiSelectToggleGroup) findViewById(toggleId1);
@@ -315,17 +442,31 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
                 }*//*
             }
         });*/
+        multiDummy.clearCheck();
         multiDummy.setOnCheckedChangeListener(new MultiSelectToggleGroup.OnCheckedStateChangeListener() {
             @Override
             public void onCheckedStateChanged(MultiSelectToggleGroup group, int checkedId, boolean isChecked) {
 
-                if(isChecked)
+                //start
+                InsuranceData data= new InsuranceData();
+                data.setId(checkedId+"");
+                int index= dataList.indexOf(data);
+
+                if(index>=0)
                 {
-                    requestParms.addInsurence(checkedId+"");
-                }else
-                {
-                    requestParms.removeInsurence(checkedId+"");
+                    InsuranceData insuranceData=dataList.get(index);
+                    if(isChecked)
+                    {
+                        requestParms.addInsurence(insuranceData.getCompanyName());
+                    }else
+                    {
+                        requestParms.removeInsurence(insuranceData.getCompanyName());
+                    }
+
+
                 }
+
+
             }
         });
         for (InsuranceData data:dataList) {
@@ -337,7 +478,7 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
             LabelToggle toggle = new LabelToggle(this);
             toggle.setText(data.getCompanyName());
             toggle.setId(Integer.parseInt(data.getId()));
-            toggle.setChecked(requestParms.getInsurenceList().contains(data.getId()));
+            toggle.setChecked(requestParms.getInsurenceList().contains(data.getCompanyName()));
             multiDummy.addView(toggle);
 
 
@@ -352,6 +493,7 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
 
     public void setToNationalityListToggleViews(List<NationalityData> nationalityList) {
         MultiSelectToggleGroup multiDummy = (MultiSelectToggleGroup) findViewById(R.id.nationality_group_toggle_views);
+        multiDummy.clearCheck();
         multiDummy.setOnCheckedChangeListener(new MultiSelectToggleGroup.OnCheckedStateChangeListener() {
             @Override
             public void onCheckedStateChanged(MultiSelectToggleGroup group, int checkedId, boolean isChecked) {
@@ -382,6 +524,7 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
     private void setToLanguagesToggleViews(final List<LanguageData> dataList) {
 
         MultiSelectToggleGroup multiDummy = (MultiSelectToggleGroup) findViewById(R.id.launguage_group_toggle_views);
+        multiDummy.clearCheck();
         multiDummy.setOnCheckedChangeListener(new MultiSelectToggleGroup.OnCheckedStateChangeListener() {
             @Override
             public void onCheckedStateChanged(MultiSelectToggleGroup group, int checkedId, boolean isChecked) {
@@ -469,10 +612,7 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
 
 
 
-    public void onClearAllButtonClick(View view) {
 
-        Utils.showToastMsg("Coming soon");
-    }
 
 
     @Override

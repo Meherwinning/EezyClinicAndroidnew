@@ -61,6 +61,8 @@
     <color name="colorControlActivated">#62bb50</color>
     <color name="colorSwitchThumbNormal">#ffb0daa4</color>
     <color name="colorSwitchBackground">#FFC1C1C1</color>
+    <color name="amount_range_bar_color">#FF6BBC53</color>
+    <color name="amount_range_bar_press_color">#00b4ef</color>
 
 
 </resources>

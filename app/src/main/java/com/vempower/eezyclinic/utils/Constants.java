@@ -126,4 +126,9 @@ public interface Constants {
         String SOCIAL_MEDIA_TYPE="social_media_type";
         String SOCIAL_LOGIN_ID_KEY="social_login_id";
     }
+
+    interface RangeBarValues {
+        float MIN_VALUE = 100;
+        float MAX_VALUE = 10000;
+    }
 }

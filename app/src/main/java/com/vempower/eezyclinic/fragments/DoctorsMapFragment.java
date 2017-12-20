@@ -32,6 +32,7 @@ import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.eezyclinic.views.MyTextViewRR;
 import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
 import java.util.ArrayList;
@@ -157,51 +158,59 @@ public class DoctorsMapFragment extends AbstractMapFragment/*, GoogleMap.OnMarke
 
 
     protected LatLngBounds.Builder addAllMarkersToMap(GoogleMap mMap) {
+        fragmentView.findViewById(R.id.top_linear).setVisibility(View.GONE);
+
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        if(doctorsLsit==null || doctorsLsit.size()==0)
-        {
+        if (doctorsLsit == null || doctorsLsit.size() == 0) {
             fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.VISIBLE);
-        }else
-        {
+        } else {
             fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.GONE);
         }
-        if(doctorsLsit==null || doctorsLsit.size()==0)
-        {
+        if (doctorsLsit == null || doctorsLsit.size() == 0) {
             return null;
         }
-      //  MarkerOptions markerOptions = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.path_352_2));
+        //  MarkerOptions markerOptions = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.path_352_2));
         BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.path_352_2);
-
+        int addedCount = 0;
         for (SearchResultDoctorListData data : doctorsLsit) {
 
             if (data == null) {
                 continue;
             }
-            double lat,lon;
+            double lat, lon;
 
-            try
-            {
-                lat =Double.parseDouble(data.getGoogleMapLatitude());
-                lon=Double.parseDouble(data.getGoogleMapLongitude());
-            }catch(Exception e)
-            {
+            try {
+                lat = Double.parseDouble(data.getGoogleMapLatitude());
+                lon = Double.parseDouble(data.getGoogleMapLongitude());
+            } catch (Exception e) {
                 continue;
             }
             // GeoLocation geoLocation= deal.getLocation().getGeoLocation();
             LatLng latLng = new LatLng(lat, lon);
             MarkerOptions options = new MarkerOptions();
-              options.position(latLng);
+            options.position(latLng);
             options.icon(bitmapDescriptor);
             options.title(data.getDoctorName());
-             String snippet = data.getSpecalities() + "\n" + data.getCityName() + ", " + data.getAddress();
-             options.snippet(snippet);
-             options.zIndex(Float.parseFloat(data.getDocId()));
+            String snippet = data.getSpecalities() + "\n" + data.getCityName() + ", " + data.getAddress();
+            options.snippet(snippet);
+            options.zIndex(Float.parseFloat(data.getDocId()));
 
             builder.include(latLng);
 
 
             mMap.addMarker(options);
+            addedCount++;
         }
+        if (addedCount == 0) {
+            return null;
+        }
+
+        if (!isFinish)
+        {
+            fragmentView.findViewById(R.id.top_linear).setVisibility(View.VISIBLE);
+        ((MyTextViewRR) fragmentView.findViewById(R.id.match_found_tv)).setText(addedCount + "");
+    }
+
         return builder;
     }
 

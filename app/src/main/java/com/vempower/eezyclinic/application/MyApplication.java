@@ -134,7 +134,7 @@ public class MyApplication extends MultiDexApplication {
             // pd.show();
             // }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
     }

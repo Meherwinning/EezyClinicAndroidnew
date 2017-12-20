@@ -47,6 +47,9 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by Satish on 11/15/2017.
  */
@@ -221,7 +224,7 @@ public class DoctorsListActivity extends AbstractMenuActivity {
                     buttonClick();
                     return;
                 }*/
-                finish();
+                finishScreen();
             }
         });
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -242,7 +245,7 @@ public class DoctorsListActivity extends AbstractMenuActivity {
             buttonClick();
             return false;
         }*/
-        onBackPressed();
+       finishScreen();
         return true;
     }
 
@@ -254,7 +257,7 @@ public class DoctorsListActivity extends AbstractMenuActivity {
             buttonClick();
             return;
         }*/
-        finish();
+        finishScreen();
     }
 
     @Override
@@ -495,5 +498,27 @@ public class DoctorsListActivity extends AbstractMenuActivity {
 
 
     }
+    private final int DELAY_TIME = 4000;//In millis
+    private boolean isBackArrowPressed = false;
+    private void autoStopBackPressCallback() {
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                isBackArrowPressed = false;
+            }
+        }, DELAY_TIME);
+    }
+
+    protected void finishScreen() {
+        if (!isBackArrowPressed) {
+            showToastMessage(getResources().getString(R.string.press_again_to_exit_from_search));
+            isBackArrowPressed = true;
+            autoStopBackPressCallback();
+            return;
+        }
+        finish();
+    }
+
 
 }

@@ -7,6 +7,7 @@ import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordAPI;
 import com.vempower.eezyclinic.APIResponce.VerifyOTPAPI;
+import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.ForgotPasswordActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Utils;
@@ -49,7 +50,10 @@ public class ForgotPasswordMapper extends  AbstractMapper  implements Callback<F
 
         if (!Utils.isNetworkAvailable(MyApplication
                 .getCurrentActivityContext())) {
-            Utils.showToastMsgForNetworkNotAvalable();
+            //Utils.showToastMsgForNetworkNotAvalable();
+            if (listener != null) {
+                listener.getForgotPasswordAPI(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
+            }
             return;
         }
 

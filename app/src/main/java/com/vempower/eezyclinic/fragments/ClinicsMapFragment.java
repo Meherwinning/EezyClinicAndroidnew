@@ -27,6 +27,7 @@ import com.vempower.eezyclinic.mappers.SearchResultClinicListMapper;
 import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.eezyclinic.views.MyTextViewRR;
 import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
 import java.util.List;
@@ -156,6 +157,8 @@ public class ClinicsMapFragment extends AbstractMapFragment /*, GoogleMap.OnMark
 
 
     protected LatLngBounds.Builder addAllMarkersToMap(GoogleMap mMap) {
+        fragmentView.findViewById(R.id.top_linear).setVisibility(View.GONE);
+
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         if(clinicsLsit==null || clinicsLsit.size()==0)
         {
@@ -208,7 +211,10 @@ public class ClinicsMapFragment extends AbstractMapFragment /*, GoogleMap.OnMark
         {
             return null;
         }
-
+        if (!isFinish) {
+            fragmentView.findViewById(R.id.top_linear).setVisibility(View.VISIBLE);
+            ((MyTextViewRR) fragmentView.findViewById(R.id.match_found_tv)).setText(addedCount + "");
+        }
         return builder;
     }
 

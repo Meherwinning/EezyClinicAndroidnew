@@ -7,6 +7,7 @@ import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.APIResponce.LanguageListAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
+import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.SearchActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.SearchRequest;
@@ -51,7 +52,10 @@ public class SearchResultDoctorsListMapper extends  AbstractMapper  implements C
 
         if (!Utils.isNetworkAvailable(MyApplication
                 .getCurrentActivityContext())) {
-            Utils.showToastMsgForNetworkNotAvalable();
+            //Utils.showToastMsgForNetworkNotAvalable();
+            if (listener != null) {
+                listener.getSearchResultDoctorListAPI(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
+            }
             return;
         }
 
@@ -155,17 +159,17 @@ public class SearchResultDoctorsListMapper extends  AbstractMapper  implements C
              if(!TextUtils.isEmpty(searchRequestParams.getSearchName())) {
                  jsonObject.put("search_name", searchRequestParams.getSearchName());
              }
-             if(!TextUtils.isEmpty(searchRequestParams.getOnlinebooking())) {
+            // if(!TextUtils.isEmpty(searchRequestParams.getOnlinebooking())) {
                  jsonObject.put("onlinebooking", searchRequestParams.getOnlinebooking());
-             }
+            // }
 
              if(!TextUtils.isEmpty(searchRequestParams.getAmountRange())) {
                  jsonObject.put("amount_range", searchRequestParams.getAmountRange());
              }
 
-             if(!TextUtils.isEmpty(searchRequestParams.getPerpage())) {
+            // if(!TextUtils.isEmpty(searchRequestParams.getPerpage())) {
                  jsonObject.put("perpage", searchRequestParams.getPerpage());
-             }
+            // }
 
              if(!TextUtils.isEmpty(searchRequestParams.getPage())) {
                  jsonObject.put("page", searchRequestParams.getPage());

@@ -39,6 +39,7 @@ import com.vempower.eezyclinic.fragments.HomeFragment;
 import com.vempower.eezyclinic.fragments.MedicalRecordsFragment;
 import com.vempower.eezyclinic.fragments.MyProfileFragment;
 import com.vempower.eezyclinic.fragments.SettingsFragment;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.interfaces.HomeListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
@@ -64,9 +65,13 @@ public class HomeActivity extends AbstractMenuActivity {
     protected void setMyContectntView()
     {
         setContentView(R.layout.activity_home_menu_layout);
-        onDashBoardClick(null);
+
         getIntent().putExtra(ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, new Messenger(getBottomSelectItemKeyListener()));
+        callDashboard();
+
     }
+
+
 
     @NonNull
     private AbstractAppHandler getBottomSelectItemKeyListener() {
@@ -110,23 +115,16 @@ public class HomeActivity extends AbstractMenuActivity {
     @Override
     protected AbstractFragment getFragment() {
 
-        return getHomeFragment();
+        return null;
     }
 
     public void onLogoutButtonClick(View view)
     {
-        logout();
+        //logout();
 
     }
 
-    private void logout() {
-        MyApplication.getInstance().setLoggedUserDetailsToSharedPref(null);
-        SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,"");
-        Intent intent= new Intent(MyApplication.getCurrentActivityContext(),SigninActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        finish();
-    }
+
 
     public AbstractFragment getHomeFragment() {
        // HomeFragment fragment=new HomeFragment();

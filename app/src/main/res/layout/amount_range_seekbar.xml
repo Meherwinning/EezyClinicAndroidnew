@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--    https://github.com/syedowaisali/crystal-range-seekbar-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.vempower.eezyclinic.views.MyTextViewRR
+        android:id="@+id/label_tv"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="@dimen/_3dp"
+        android:paddingBottom="@dimen/_4dp"
+        android:text="AUD"
+        android:textColor="#746e6e"
+        android:layout_marginStart="@dimen/_10dp"
+
+        android:textSize="@dimen/_16dp" />
+
+    <RelativeLayout
+        android:layout_below="@+id/label_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5dp"
+        android:clipChildren="false">
+
+        <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+            android:id="@+id/rangeSeekbar1"
+            android:layout_width="match_parent"
+
+            app:bar_color="#FFC1C1C1"
+            app:bar_height="@dimen/_6dp"
+            app:bar_highlight_color="@color/amount_range_bar_color"
+            app:left_thumb_color="@color/amount_range_bar_color"
+            app:right_thumb_color="@color/amount_range_bar_color"
+            app:right_thumb_color_pressed="@color/amount_range_bar_press_color"
+            app:left_thumb_color_pressed="@color/amount_range_bar_press_color"
+            android:layout_height="wrap_content"/>
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/textMin1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_below="@id/rangeSeekbar1"
+            android:layout_marginTop="@dimen/_5dp"
+            android:layout_marginStart="@dimen/_10dp"
+            android:textSize="@dimen/_16dp"
+            android:textColor="#746e6e"
+            />
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/textMax1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_below="@id/rangeSeekbar1"
+            android:layout_marginTop="@dimen/_5dp"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:textSize="@dimen/_16dp"
+            android:textColor="#746e6e"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

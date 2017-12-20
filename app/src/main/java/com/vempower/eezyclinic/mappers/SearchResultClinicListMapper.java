@@ -7,6 +7,7 @@ import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultClinicListAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
+import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.SearchRequest;
 import com.vempower.eezyclinic.utils.Utils;
@@ -50,7 +51,10 @@ public class SearchResultClinicListMapper extends  AbstractMapper  implements Ca
 
         if (!Utils.isNetworkAvailable(MyApplication
                 .getCurrentActivityContext())) {
-            Utils.showToastMsgForNetworkNotAvalable();
+           // Utils.showToastMsgForNetworkNotAvalable();
+            if (listener != null) {
+                listener.getSearchResultClinicListAPI(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
+            }
             return;
         }
 
@@ -154,17 +158,17 @@ public class SearchResultClinicListMapper extends  AbstractMapper  implements Ca
              if(!TextUtils.isEmpty(searchRequestParams.getSearchName())) {
                  jsonObject.put("search_name", searchRequestParams.getSearchName());
              }
-             if(!TextUtils.isEmpty(searchRequestParams.getOnlinebooking())) {
+             //if(!TextUtils.isEmpty(searchRequestParams.getOnlinebooking())) {
                  jsonObject.put("onlinebooking", searchRequestParams.getOnlinebooking());
-             }
+            // }
 
              if(!TextUtils.isEmpty(searchRequestParams.getAmountRange())) {
                  jsonObject.put("amount_range", searchRequestParams.getAmountRange());
              }
 
-             if(!TextUtils.isEmpty(searchRequestParams.getPerpage())) {
+             //if(!TextUtils.isEmpty(searchRequestParams.getPerpage())) {
                  jsonObject.put("perpage", searchRequestParams.getPerpage());
-             }
+             //}
 
              if(!TextUtils.isEmpty(searchRequestParams.getPage())) {
                  jsonObject.put("page", searchRequestParams.getPage());

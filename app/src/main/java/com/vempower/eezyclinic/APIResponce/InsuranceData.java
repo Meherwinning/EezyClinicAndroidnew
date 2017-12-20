@@ -66,4 +66,19 @@ public class InsuranceData {
     public String toString() {
         return companyName;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof  InsuranceData)
+        {
+            InsuranceData data= (InsuranceData) obj;
+
+            if(data.getId().equalsIgnoreCase(getId()))
+            {
+                return true;
+            }
+        }
+
+        return super.equals(obj);
+    }
 }

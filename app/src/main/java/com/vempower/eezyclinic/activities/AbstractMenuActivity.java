@@ -28,6 +28,7 @@ import com.vempower.eezyclinic.callbacks.HomeBottomItemClickListener;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.HomeFragment;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.interfaces.MenuScreenListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
@@ -55,9 +56,28 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checkNetwork();
+
+        //intent= getIntent();
+    }
+    protected void checkNetwork() {
+        if(!Utils.isNetworkAvailable(this))
+        {
+            showMyDialog("Alert", "Network not available", new ApiErrorDialogInterface() {
+                @Override
+                public void onCloseClick() {
+                    finish();
+                }
+
+                @Override
+                public void retryClick() {
+                    checkNetwork();
+                }
+            });
+            return;
+        }
         setMyContectntView();
         init();
-        //intent= getIntent();
     }
 
     protected void setMyContectntView() {
@@ -97,7 +117,11 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     protected void onResume() {
         super.onResume();
         hideKeyBord(nameTv);
+
+        //checkNetwork();
     }
+
+
 
     private void setSideMenuLayout() {
 
@@ -609,6 +633,8 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         alertDialog.show();
     }
 
+
+
     private void logout() {
 
 
@@ -630,6 +656,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        finish();
         //startActivity(new Intent(this,HomeActivity.class));
         // finish();
 
