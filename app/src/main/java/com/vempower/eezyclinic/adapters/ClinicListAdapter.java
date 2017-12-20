@@ -134,7 +134,7 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Or
                             };
                         }
                     }));
-
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     MyApplication.getCurrentActivityContext().startActivity(intent);
                 }
             });
@@ -186,7 +186,7 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Or
                         }
                     }));
                     intent.putExtra(Constants.Pref.IS_FROM_VIEW_DOCTORS_CLICK_KEY,true);
-
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     MyApplication.getCurrentActivityContext().startActivity(intent);
 
                 }

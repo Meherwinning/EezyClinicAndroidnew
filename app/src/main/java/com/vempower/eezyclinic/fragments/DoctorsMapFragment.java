@@ -32,6 +32,7 @@ import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,7 @@ public class DoctorsMapFragment extends AbstractMapFragment/*, GoogleMap.OnMarke
 
     private List<SearchResultDoctorListData> doctorsLsit;
     private boolean isOnlyViewList;
+    private boolean isFinish;
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -93,7 +95,12 @@ public class DoctorsMapFragment extends AbstractMapFragment/*, GoogleMap.OnMarke
                            };
                        }
                    }));
+                   intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                    MyApplication.getCurrentActivityContext().startActivity(intent);
+               if(isFinish)
+               {
+                   ((AbstractActivity)  MyApplication.getCurrentActivityContext()).finish();
+               }
                }
 
 
@@ -198,4 +205,8 @@ public class DoctorsMapFragment extends AbstractMapFragment/*, GoogleMap.OnMarke
         return builder;
     }
 
+    public void isFinishAfterMarkerClick(boolean isFinish) {
+        this.isFinish=isFinish;
+
+    }
 }

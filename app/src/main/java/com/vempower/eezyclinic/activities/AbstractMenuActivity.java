@@ -65,7 +65,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     }
 
 
-    private void init() {
+    protected void init() {
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerLayout.setScrimColor(Color.TRANSPARENT);
         linearLayout = (LinearLayout) findViewById(R.id.left_drawer);
