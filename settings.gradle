@@ -1,1 +1,1 @@
-include ':app', ':MaterialDesign', ':material', ':linkedin-sdk', ':sublimepickerlibrary', ':MyExpandableLayoutLibrary', ':togglebuttongroup', ':crystalrangeseekbar'
+include ':app', ':MaterialDesign', ':material', ':linkedin-sdk', ':sublimepickerlibrary', ':MyExpandableLayoutLibrary', ':togglebuttongroup', ':crystalrangeseekbar', ':myCalenderLibrary'
