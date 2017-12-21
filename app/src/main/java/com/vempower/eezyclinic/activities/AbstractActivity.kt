@@ -34,6 +34,7 @@ abstract class AbstractActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         MyApplication.setCurrentActivityContext(this)
+
         //FirebaseApp.initializeApp(this)
         //FirebaseCrash.report(Exception("My first Android non-fatal error"));
     }

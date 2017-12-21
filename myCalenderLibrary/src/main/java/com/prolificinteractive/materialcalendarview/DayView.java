@@ -16,6 +16,8 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.util.Log;
+import android.util.StateSet;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckedTextView;
@@ -179,7 +181,7 @@ class DayView extends CheckedTextView {
 
         mCircleDrawable.setBounds(circleDrawableRect);
 
-        super.onDraw(canvas);
+              super.onDraw(canvas);
     }
 
     private void regenerateBackground() {
@@ -192,7 +194,7 @@ class DayView extends CheckedTextView {
     }
 
     private static Drawable generateBackground(int color, int fadeTime, Rect bounds) {
-        StateListDrawable drawable = new StateListDrawable();
+       final StateListDrawable drawable = new StateListDrawable();
         drawable.setExitFadeDuration(fadeTime);
         drawable.addState(new int[]{android.R.attr.state_checked}, generateCircleDrawable(color));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -202,6 +204,35 @@ class DayView extends CheckedTextView {
         }
 
         drawable.addState(new int[]{}, generateCircleDrawable(Color.TRANSPARENT));
+
+        /*drawable.setCallback(new Drawable.Callback() {
+            @Override
+            public void invalidateDrawable(@NonNull Drawable who) {
+                int[] state = who.getState();
+                if(state.length>0 && state[0]==android.R.attr.state_checked )
+                {
+                    drawable.setCallback(null);
+                    DayView.this.setTextColor(getResources().getColor(android.R.color.white));
+                    drawable.setCallback(this);
+                }else
+                {
+                    drawable.setCallback(null);
+                    setTextColor(getResources().getColor(android.R.color.black));
+                    drawable.setCallback(this);
+                }
+
+            }
+
+            @Override
+            public void scheduleDrawable(@NonNull Drawable who, @NonNull Runnable what, long when) {
+
+            }
+
+            @Override
+            public void unscheduleDrawable(@NonNull Drawable who, @NonNull Runnable what) {
+
+            }
+        });*/
 
         return drawable;
     }

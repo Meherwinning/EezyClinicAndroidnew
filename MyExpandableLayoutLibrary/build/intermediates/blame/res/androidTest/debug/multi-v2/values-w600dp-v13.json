@@ -1,6 +1,21 @@
 {
     "logs": [
         {
+            "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-w600dp-v13/values-w600dp-v13.xml",
+            "map": [
+                {
+                    "source": "/home/satish/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/643ee1da9b9b18b0379fa6829d4a575f/res/values-w600dp-v13/values-w600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,119",
+                        "endColumns": "63,54",
+                        "endOffsets": "114,169"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "/home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-w600dp-v13/values-w600dp-v13.xml",
             "map": [
                 {
