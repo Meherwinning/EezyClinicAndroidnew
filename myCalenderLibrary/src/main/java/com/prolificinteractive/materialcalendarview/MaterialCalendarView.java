@@ -67,6 +67,7 @@ import java.util.List;
 public class MaterialCalendarView extends ViewGroup {
 
     public static final int INVALID_TILE_DIMENSION = -10;
+    private MyDayChangeLister onMyDayChangeLister;
 
     /**
      * {@linkplain IntDef} annotation for selection mode.
@@ -262,6 +263,7 @@ public class MaterialCalendarView extends ViewGroup {
         pager = new CalendarPager(getContext());
 
         buttonPast.setOnClickListener(onClickListener);
+
         buttonFuture.setOnClickListener(onClickListener);
 
         titleChanger = new TitleChanger(title);
@@ -349,6 +351,7 @@ public class MaterialCalendarView extends ViewGroup {
             }
 
             array = a.getTextArray(R.styleable.MaterialCalendarView_mcv_monthLabels);
+
             if (array != null) {
                 setTitleFormatter(new MonthArrayTitleFormatter(array));
             }
@@ -423,6 +426,10 @@ public class MaterialCalendarView extends ViewGroup {
     }
 
     private void updateUi() {
+        if(onMyDayChangeLister!=null)
+        {
+            onMyDayChangeLister.changeDate(currentMonth);
+        }
         titleChanger.change(currentMonth);
         buttonPast.setEnabled(canGoBack());
         buttonFuture.setEnabled(canGoForward());
@@ -1483,10 +1490,18 @@ public class MaterialCalendarView extends ViewGroup {
      * @param dayView
      */
     protected void onDateClicked(final DayView dayView) {
+
         final CalendarDay currentDate = getCurrentDate();
         final CalendarDay selectedDate = dayView.getDate();
         final int currentMonth = currentDate.getMonth();
         final int selectedMonth = selectedDate.getMonth();
+        //dayView.setSelectionColor(android.R.color.black);
+       /* if(!dayView.isChecked()) {
+            dayView.setTextColor(getResources().getColor(android.R.color.black));
+        }else
+        {
+            dayView.setTextColor(getResources().getColor(android.R.color.white));
+        }*/
 
         if (calendarMode == CalendarMode.MONTHS
                 && allowClickDaysOutsideCurrentMonth
@@ -2016,4 +2031,29 @@ public class MaterialCalendarView extends ViewGroup {
         invalidateDecorators();
         updateUi();
     }
+
+    public void onPastButtonClick()
+    {
+        if(buttonPast!=null)
+        {
+            buttonPast.performClick();
+        }
+    }
+    public void onFutureButtonClick()
+    {
+        if(buttonFuture!=null)
+        {
+            buttonFuture.performClick();
+        }
+    }
+    public void setOnMyDayChangeLister(MyDayChangeLister onMyDayChangeLister)
+    {
+        this.onMyDayChangeLister=onMyDayChangeLister;
+    }
+
+    public interface MyDayChangeLister
+    {
+        void changeDate(CalendarDay calendarDay);
+    }
+
 }

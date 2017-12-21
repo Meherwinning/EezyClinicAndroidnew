@@ -3,6 +3,8 @@ package com.prolificinteractive.materialcalendarview;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Build;
+import android.support.annotation.Nullable;
+import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.ImageView;
 
@@ -17,6 +19,18 @@ class DirectionButton extends ImageView {
 
         setBackgroundResource(getThemeSelectableBackgroundId(context));
     }
+
+    public DirectionButton(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        setBackgroundResource(getThemeSelectableBackgroundId(context));
+    }
+
+    public DirectionButton(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        setBackgroundResource(getThemeSelectableBackgroundId(context));
+    }
+
+
 
     public void setColor(int color) {
         setColorFilter(color, PorterDuff.Mode.SRC_ATOP);

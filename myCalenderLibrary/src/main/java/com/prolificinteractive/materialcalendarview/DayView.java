@@ -16,6 +16,8 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.util.Log;
+import android.util.StateSet;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckedTextView;
@@ -62,6 +64,8 @@ class DayView extends CheckedTextView {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             setTextAlignment(TEXT_ALIGNMENT_CENTER);
         }
+        //setWidth(30);
+        ///setHeight(30);
 
         setDay(day);
     }
@@ -179,7 +183,7 @@ class DayView extends CheckedTextView {
 
         mCircleDrawable.setBounds(circleDrawableRect);
 
-        super.onDraw(canvas);
+              super.onDraw(canvas);
     }
 
     private void regenerateBackground() {
@@ -192,7 +196,7 @@ class DayView extends CheckedTextView {
     }
 
     private static Drawable generateBackground(int color, int fadeTime, Rect bounds) {
-        StateListDrawable drawable = new StateListDrawable();
+       final StateListDrawable drawable = new StateListDrawable();
         drawable.setExitFadeDuration(fadeTime);
         drawable.addState(new int[]{android.R.attr.state_checked}, generateCircleDrawable(color));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -202,6 +206,35 @@ class DayView extends CheckedTextView {
         }
 
         drawable.addState(new int[]{}, generateCircleDrawable(Color.TRANSPARENT));
+
+        /*drawable.setCallback(new Drawable.Callback() {
+            @Override
+            public void invalidateDrawable(@NonNull Drawable who) {
+                int[] state = who.getState();
+                if(state.length>0 && state[0]==android.R.attr.state_checked )
+                {
+                    drawable.setCallback(null);
+                    DayView.this.setTextColor(getResources().getColor(android.R.color.white));
+                    drawable.setCallback(this);
+                }else
+                {
+                    drawable.setCallback(null);
+                    setTextColor(getResources().getColor(android.R.color.black));
+                    drawable.setCallback(this);
+                }
+
+            }
+
+            @Override
+            public void scheduleDrawable(@NonNull Drawable who, @NonNull Runnable what, long when) {
+
+            }
+
+            @Override
+            public void unscheduleDrawable(@NonNull Drawable who, @NonNull Runnable what) {
+
+            }
+        });*/
 
         return drawable;
     }
@@ -260,12 +293,16 @@ class DayView extends CheckedTextView {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
+        //calculateBounds(((right - left)*2)/3, ((bottom - top)*2)/3);
         calculateBounds(right - left, bottom - top);
         regenerateBackground();
     }
 
     private void calculateBounds(int width, int height) {
-        final int radius = Math.min(height, width);
+      //  width=width/2;
+       // height=height/2;
+
+        final int radius = (Math.min(height, width));
         final int offset = Math.abs(height - width) / 2;
 
         // Lollipop platform bug. Circle drawable offset needs to be half of normal offset

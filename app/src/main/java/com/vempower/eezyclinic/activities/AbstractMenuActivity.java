@@ -34,6 +34,7 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRM;
+import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
 
 /**
@@ -190,8 +191,8 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
                 break;
             case R.id.book_appointment_linear:
-                //TODO something
-                showToastMessage("Coming soon");
+               // showToastMessage("Coming soon");
+                callSideMenuScreen(AbstractCalenderActivity.class);
                 break;
             case R.id. my_profile_linear:
                 callMyProfile();
@@ -254,14 +255,6 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         }
     }
 
-    protected  void callDashboard(){
-      Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
-        intent.setClass(this,HomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(intent);
-        sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.HOME_ACTIVITY));
-
-    }
     protected  void callMyProfile(){
         Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
         intent.setClass(this,HomeActivity.class);
@@ -271,6 +264,27 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
 
     }
+
+    protected  void callDashboard(){
+      Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
+        intent.setClass(this,HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.HOME_ACTIVITY));
+
+    }
+    //
+    protected  void callSideMenuScreen(Class<? extends AbstractActivity> myClass){
+        Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
+        intent.setClass(this,myClass);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+       // sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.MY_PROFILE));
+
+
+    }
+
+
     private HomeBottomItemClickListener getRecordingListTitleBarListener(final int flag) {
         return new HomeBottomItemClickListener() {
             public int getItemClicked() {
