@@ -38,7 +38,7 @@ public class BasicActivity extends AppCompatActivity implements OnDateSelectedLi
 
     @BindView(R.id.textView)
     */
-  TextView textView,title_tv;
+    TextView textView,title_tv;
 
     MaterialCalendarView widget;
 
@@ -102,12 +102,12 @@ public class BasicActivity extends AppCompatActivity implements OnDateSelectedLi
        widget.setOnMyDayChangeLister(new MaterialCalendarView.MyDayChangeLister() {
            @Override
            public void changeDate(CalendarDay calendarDay) {
-               final CharSequence newTitle = DEFAULT_TITLE_FORMATTER.format(calendarDay);
+              final CharSequence newTitle = DEFAULT_TITLE_FORMATTER.format(calendarDay);
                title_tv.setText(newTitle);
            }
        });
 
-
+        title_tv.setText(getSelectedMonthString(widget.getSelectedDate()));
         textView.setText(getSelectedDatesString());
 
     }
@@ -115,14 +115,15 @@ public class BasicActivity extends AppCompatActivity implements OnDateSelectedLi
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @Nullable CalendarDay date, boolean selected) {
         textView.setText(getSelectedDatesString());
-        final CharSequence newTitle = DEFAULT_TITLE_FORMATTER.format(date);
-        title_tv.setText(newTitle);
+       // final CharSequence newTitle = DEFAULT_TITLE_FORMATTER.format(date);
+        title_tv.setText(getSelectedMonthString(date));
 
     }
 
     @Override
     public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
         //noinspection ConstantConditions
+        title_tv.setText(getSelectedMonthString(date));
         //getSupportActionBar().setTitle(FORMATTER.format(date.getDate()));
     }
 
@@ -132,6 +133,14 @@ public class BasicActivity extends AppCompatActivity implements OnDateSelectedLi
             return "No Selection";
         }
         return FORMATTER.format(date.getDate());
+    }
+
+    private String getSelectedMonthString(CalendarDay date) {
+       // CalendarDay date = widget.getSelectedDate();
+        if (date == null) {
+            return "-";
+        }
+        return DEFAULT_TITLE_FORMATTER.format(date).toString().toUpperCase();
     }
 
     public void onFutureButtonClick(View view)

@@ -404,7 +404,6 @@ public class MaterialCalendarView extends ViewGroup {
 
     private void setupChildren() {
         topbar = new LinearLayout(getContext());
-        topbar.setVisibility(View.GONE);
         topbar.setOrientation(LinearLayout.HORIZONTAL);
         topbar.setClipChildren(false);
         topbar.setClipToPadding(false);

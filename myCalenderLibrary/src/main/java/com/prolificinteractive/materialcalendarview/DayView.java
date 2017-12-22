@@ -64,6 +64,8 @@ class DayView extends CheckedTextView {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             setTextAlignment(TEXT_ALIGNMENT_CENTER);
         }
+        //setWidth(30);
+        ///setHeight(30);
 
         setDay(day);
     }
@@ -291,12 +293,16 @@ class DayView extends CheckedTextView {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
+        //calculateBounds(((right - left)*2)/3, ((bottom - top)*2)/3);
         calculateBounds(right - left, bottom - top);
         regenerateBackground();
     }
 
     private void calculateBounds(int width, int height) {
-        final int radius = Math.min(height, width);
+      //  width=width/2;
+       // height=height/2;
+
+        final int radius = (Math.min(height, width));
         final int offset = Math.abs(height - width) / 2;
 
         // Lollipop platform bug. Circle drawable offset needs to be half of normal offset

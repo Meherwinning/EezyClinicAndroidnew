@@ -17,6 +17,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:paddingLeft="@dimen/_20dp"
+        android:paddingRight="@dimen/_20dp"
+        android:paddingBottom="@dimen/_5dp"
         android:background="@drawable/app_gradient_bg"
         android:layout_height="wrap_content">
         <include layout="@layout/cal_top_bar_view"></include>

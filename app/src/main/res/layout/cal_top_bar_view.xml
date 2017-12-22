@@ -14,7 +14,6 @@
         android:gravity="center"
         android:layout_height="wrap_content">
         <com.prolificinteractive.materialcalendarview.DirectionButton
-            android:onClick="onPastButtonClick"
             android:id="@+id/button_past"
              android:layout_width="wrap_content"
             android:padding="8dp"
