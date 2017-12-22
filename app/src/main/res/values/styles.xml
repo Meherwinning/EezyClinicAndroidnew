@@ -191,23 +191,33 @@
 
     <style name="my_TextAppearance.MaterialCalendarWidget.Header"
         parent="android:TextAppearance.DeviceDefault.Small">
-        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/_15sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="my_TextAppearance.MaterialCalendarWidget.Date"
         parent="android:TextAppearance.DeviceDefault.Small">
-        <item name="android:textSize">12sp</item>
-        <item name="android:maxHeight">@dimen/_5dp</item>
-        <item name="android:maxWidth">@dimen/_5dp</item>
+        <item name="android:textSize">@dimen/_15sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@color/my_mcv_text_date_light</item>
 
+       <!-- android:textSize="15sp"
+        android:fontFamily="sans-serif-black"
+        android:textStyle="normal"
+        android:textColor="#ffffff"
+-->
     </style>
 
     <style name="my_TextAppearance.MaterialCalendarWidget.WeekDay"
         parent="android:TextAppearance.DeviceDefault.Small">
-        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/_15sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+
     </style>
 
 

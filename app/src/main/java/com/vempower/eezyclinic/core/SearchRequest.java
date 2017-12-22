@@ -86,8 +86,18 @@ public class SearchRequest implements Cloneable {
         return searchtype;
     }
 
-    public void setSearchtype(String searchtype) {
-        this.searchtype = searchtype;
+    public void setSearchtype(String searchType) {
+
+        if(!TextUtils.isEmpty(searchType) && searchType.equalsIgnoreCase(CLINIC_TYPE) )
+        {
+            this.searchtype = CLINIC_TYPE;
+
+        }else
+        {
+
+            this.searchtype = DOCTOR_TYPE;
+        }
+
     }
 
     public String getSpecality() {
