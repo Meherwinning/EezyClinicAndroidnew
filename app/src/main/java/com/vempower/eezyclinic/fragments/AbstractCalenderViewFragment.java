@@ -16,6 +16,7 @@ import com.prolificinteractive.materialcalendarview.OnRangeSelectedListener;
 import com.prolificinteractive.materialcalendarview.format.DateFormatTitleFormatter;
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.views.MyTextViewRR;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -37,7 +38,8 @@ public class AbstractCalenderViewFragment extends AbstractFragment implements On
 
     @BindView(R.id.textView)
     */
-    TextView textView,title_tv;
+    TextView textView;
+    MyTextViewRR title_tv;
 
     MaterialCalendarView widget;
 

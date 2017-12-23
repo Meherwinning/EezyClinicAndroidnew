@@ -64,6 +64,8 @@ public class DoctorsListActivity extends AbstractMenuActivity {
    // private boolean isClinicListShow=false;
    // private boolean isShowMapViewType;
 
+    private  String titleNameStr;
+
 
     private SearchDoctorsListFragment doctorsListFragment;
     private SearchClinicListFragment clinicListFragment;
@@ -86,16 +88,28 @@ public class DoctorsListActivity extends AbstractMenuActivity {
     {
         setContentView(R.layout.activity_doctors_list_menu_layout);
         fab = findViewById(R.id.fab_all);
+        titleNameStr="Search Result";
 
         //showView(ViewState.DOCTORS_LIST_VIEW,false,false);
-        onDoctorsListClick();
+        //onDoctorsListClick();
         //onClinicListClick();
         myInit();
         getIntent().putExtra(ListenerKey.FILTER_REFRESH_LIST_LISTENER_KEY, new Messenger(getFilterRefreshListListener()));
 
+        openInitialSeachScreen();
+
         //getIntent().putExtra(ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, new Messenger(getBottomSelectItemKeyListener()));
     }
 
+    private void openInitialSeachScreen() {
+        SearchRequest requestParms = MyApplication.getInstance().getSearchRequestParms();
+        if(requestParms==null)
+        {
+            requestParms= new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
+        }
+        showView(requestParms.getSearchtype().equalsIgnoreCase(SearchRequest.DOCTOR_TYPE)?ViewState.DOCTORS_LIST_VIEW:ViewState.CLINIC_LIST_VIEW,false,false);
+
+    }
 
 
     private void myInit() {
@@ -138,6 +152,7 @@ public class DoctorsListActivity extends AbstractMenuActivity {
 
         showView(currentStateView,false,true);
         invalidateOptionsMenu();
+
     }
 
 
@@ -205,38 +220,7 @@ public class DoctorsListActivity extends AbstractMenuActivity {
     }
 
 
-    public void setActionBar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-       // getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-         titleName = toolbar.findViewById(R.id.title_logo_tv);
-        //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
-        if(titleName!=null) {
-            titleName.setText(Utils.getStringFromResources(R.string.search_result_doctors_lbl));
-        }
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //do something you want
-               /* if(!isShowFilterIcon && !isClinicListShow)
-                {
-                    buttonClick();
-                    return;
-                }*/
-                finishScreen();
-            }
-        });
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
-        //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_USE_LOGO);
-        //mImageView = findViewById(R.id.image);
-        //View  mToolbarView = findViewById(R.id.toolbar);
-        //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
-        getSupportActionBar().setTitle("");
-        // mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.app_red)));
 
-        //super.setActionBar(false);
-    }
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -267,6 +251,7 @@ public class DoctorsListActivity extends AbstractMenuActivity {
 
     private void showView(int viewState,boolean isRefreshMap,boolean isOppisitViewShow)
     {
+        invalidateOptionsMenu();
         switch (viewState)
         {
             case ViewState.DOCTORS_LIST_VIEW:
@@ -318,13 +303,15 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         currentStateView=ViewState.DOCTORS_LIST_VIEW;
         isCurrentShowMap=false;
         myInit();
-       /* if(titleName!=null) {
-            titleName.setText(Utils.getStringFromResources(R.string.title_activity_find_docotor));
-        }*/
+        titleNameStr =(Utils.getStringFromResources(R.string.search_result_doctors_lbl));
         if(titleName!=null) {
-           // titleName.setText("Doctors-List");
-            titleName.setText(Utils.getStringFromResources(R.string.search_result_doctors_lbl));
+            titleName.setText(titleNameStr);
+
         }
+        //if(titleName!=null) {
+           // titleName.setText("Doctors-List");
+
+       // }
             if(doctorsListFragment ==null) {
             doctorsListFragment = new SearchDoctorsListFragment();
             doctorsListFragment.isViewOnlyList(false);
@@ -344,13 +331,17 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         currentStateView=ViewState.CLINIC_LIST_VIEW;
         isCurrentShowMap=false;
         myInit();
-       /* if(titleName!=null) {
-            titleName.setText(Utils.getStringFromResources(R.string.title_activity_find_clinic));
-        }*/
+        titleNameStr =Utils.getStringFromResources(R.string.search_result_clinic_lbl);
         if(titleName!=null) {
-            //titleName.setText("Clinics-List");
-            titleName.setText(Utils.getStringFromResources(R.string.search_result_clinic_lbl));
+            titleName.setText(titleNameStr);
         }
+
+        //if(titleName!=null) {
+            //titleName.setText("Clinics-List");
+
+
+
+        //}
         if(clinicListFragment ==null) {
             clinicListFragment = new SearchClinicListFragment();
             clinicListFragment.isViewOnlyList(false);
@@ -373,10 +364,12 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         currentStateView=ViewState.DOCTORS_MAP_VIEW;
         isCurrentShowMap=true;
         handleFAB();
-        if(titleName!=null) {
            // titleName.setText("Doctors-Map");
-            titleName.setText(Utils.getStringFromResources(R.string.search_result_doctors_lbl));
+            titleNameStr =Utils.getStringFromResources(R.string.search_result_doctors_lbl);
+        if(titleName!=null) {
+            titleName.setText(titleNameStr);
         }
+
         /*if(doctorsMapFragment ==null)
         {
             doctorsMapFragment = new MapFragment();
@@ -416,11 +409,15 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         currentStateView=ViewState.CLINIC_MAP_VIEW;
         isCurrentShowMap=true;
         handleFAB();
-        if(titleName!=null) {
+        //if(titleName!=null) {
            // titleName.setText("Clinics-Map");
-            titleName.setText(Utils.getStringFromResources(R.string.search_result_clinic_lbl));
-
+            titleNameStr =(Utils.getStringFromResources(R.string.search_result_clinic_lbl));
+        if(titleName!=null) {
+            titleName.setText(titleNameStr);
         }
+
+
+        //}
         /*if(doctorsMapFragment ==null)
         {
             doctorsMapFragment = new MapFragment();
@@ -519,6 +516,39 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         }
         finish();
     }
+    public void setActionBar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        // getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(titleName==null) {
+            titleName = toolbar.findViewById(R.id.title_logo_tv);
+        }
+        //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
+        if(titleName!=null) {
+            titleName.setText(titleNameStr);
+        }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //do something you want
+               /* if(!isShowFilterIcon && !isClinicListShow)
+                {
+                    buttonClick();
+                    return;
+                }*/
+                finishScreen();
+            }
+        });
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_USE_LOGO);
+        //mImageView = findViewById(R.id.image);
+        //View  mToolbarView = findViewById(R.id.toolbar);
+        //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
+        getSupportActionBar().setTitle("");
+        // mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.app_red)));
 
+        //super.setActionBar(false);
+    }
 
 }

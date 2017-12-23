@@ -4,16 +4,19 @@
     android:exitFadeDuration="@android:integer/config_shortAnimTime">
 
     <item android:state_checked="true"
-        android:color="@color/colorAccent" />
+        android:color="#28b0e2" />
 
     <item android:state_pressed="true"
-        android:color="@color/colorAccent" />
+        android:color="@color/text_color_light_black" />
 
     <item android:state_enabled="false"
-        android:color="#808080" />
+        android:color="#e5e5e5" />
+
+    <item android:state_enabled="true"
+        android:color="@color/transparent" />
 
 
-    <item android:color="@color/white" />
+    <item android:color="@color/transparent" />
 
 
     <!--    <item android:state_checked="true"

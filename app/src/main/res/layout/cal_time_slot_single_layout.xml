@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.vempower.eezyclinic.views.MyCheckedTextViewRR
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+        android:layout_width="@dimen/_85dp"
+
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_5dp"
+        android:background="@drawable/cal_bottom_date_item_bg"
+        android:clickable="true"
+
+        android:textSize="@dimen/_12sp"
+        android:gravity="center"
+        android:paddingBottom="@dimen/_8dp"
+        android:paddingLeft="@dimen/_14dp"
+        android:paddingRight="@dimen/_14dp"
+        android:paddingTop="@dimen/_8dp"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:text="12:59 am"
+        android:textColor="@color/cal_bootom_date_text_color" />
+

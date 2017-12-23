@@ -913,6 +913,7 @@ MyApplication.hideTransaprentDialog();
                                                                 if (selectedDoctorClinicName != null) {
                                                                     searchRequestParams.setSearchName(selectedDoctorClinicName.getLabel());
                                                                     searchRequestParams.setSearchtype(selectedDoctorClinicName.getValue());
+                                                                   // searchRequestParams.setSearchtype();
                                                                 }
                                                             }
                                                         });

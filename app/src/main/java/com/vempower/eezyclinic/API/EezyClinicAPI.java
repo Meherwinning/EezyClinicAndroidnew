@@ -2,6 +2,7 @@ package com.vempower.eezyclinic.API;
 
 import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
+import com.vempower.eezyclinic.APIResponce.AppointmentTimeSlotsAPI;
 import com.vempower.eezyclinic.APIResponce.CityListAPI;
 import com.vempower.eezyclinic.APIResponce.ClinicProfileAPI;
 import com.vempower.eezyclinic.APIResponce.CountryListAPI;
@@ -130,6 +131,16 @@ public interface EezyClinicAPI {
     //http://202.63.103.194:8008/api/patient/clinicprofile
     @POST(data + "patient/clinicprofile")
     Call<ClinicProfileAPI> getClinicProfileAPI(@Body RequestBody postBody);
+
+
+    //http://202.63.103.194:8003/api/appointment/appointmentslots
+    @POST(data + "appointment/appointmentslots")
+    Call<AppointmentTimeSlotsAPI> getAppintmentTimeSlots(@Body RequestBody postBody);
+
+    //http://202.63.103.194:8003/api/appointment/booking
+    @POST(data + "appointment/booking")
+    Call<AbstractResponse> appintmentBooking(@Body RequestBody postBody);
+
 
 
 }
