@@ -135,11 +135,11 @@ public interface EezyClinicAPI {
 
     //http://202.63.103.194:8003/api/appointment/appointmentslots
     @POST(data + "appointment/appointmentslots")
-    Call<AppointmentTimeSlotsAPI> getAppintmentTimeSlots(@Body RequestBody postBody);
+    Call<AppointmentTimeSlotsAPI> getAppointmentTimeSlots(@Body RequestBody postBody);
 
     //http://202.63.103.194:8003/api/appointment/booking
     @POST(data + "appointment/booking")
-    Call<AbstractResponse> appintmentBooking(@Body RequestBody postBody);
+    Call<AbstractResponse> appointmentBooking(@Body RequestBody postBody);
 
 
 

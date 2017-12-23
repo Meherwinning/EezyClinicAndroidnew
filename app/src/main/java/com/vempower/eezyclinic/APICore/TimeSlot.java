@@ -9,6 +9,7 @@ public class TimeSlot {
 
     @SerializedName("date")
     @Expose
+
     private String date;
     @SerializedName("slots")
     @Expose

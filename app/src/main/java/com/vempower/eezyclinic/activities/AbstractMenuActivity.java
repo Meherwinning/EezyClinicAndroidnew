@@ -192,7 +192,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 break;
             case R.id.book_appointment_linear:
                // showToastMessage("Coming soon");
-                callSideMenuScreen(AbstractCalenderActivity.class);
+                callSideMenuScreen(ScheduleAppointmentActivity.class);
                 break;
             case R.id. my_profile_linear:
                 callMyProfile();

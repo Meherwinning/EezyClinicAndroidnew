@@ -7,18 +7,18 @@ import android.view.View;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.eezyclinic.views.AutoFitFixedRecyclerView;
 import com.vempower.eezyclinic.views.FixedRecyclerView;
 import com.vempower.eezyclinic.views.FullToRefreshGridLayoutManager;
 import com.vempower.eezyclinic.views.FullToRefreshLinerLayoutManager;
-import com.vempower.eezyclinic.views.FullToRefreshVarColumnGridLayoutManager;
 
 
 /**
  * Created by sathishkumar on 9/6/16.
  */
-abstract class SwipedRecyclerViewFragment extends AbstractFragment {
+abstract class SwipedAutoFitRecyclerViewFragment extends AbstractFragment {
     protected SwipeRefreshLayout swipeLayout;
-    protected FixedRecyclerView recyclerView;
+    protected AutoFitFixedRecyclerView recyclerView;
     protected boolean loading = false;
     protected boolean isFirstLoading;
 
@@ -74,31 +74,32 @@ abstract class SwipedRecyclerViewFragment extends AbstractFragment {
 
 
 
-        if(Utils.isTablet() && isCheckTabletOrNot())
-        {
+       /* if(Utils.isTablet() && isCheckTabletOrNot())
+        {*/
             //Context context, int spanCount, int orientation,boolean reverseLayout
-            FullToRefreshGridLayoutManager gridLayoutManager= new FullToRefreshGridLayoutManager(MyApplication.getCurrentActivityContext(),2, RecyclerView.VERTICAL,false);
+            FullToRefreshGridLayoutManager gridLayoutManager= new FullToRefreshGridLayoutManager(MyApplication.getCurrentActivityContext(),1);
             gridLayoutManager.setOnMyScrollListener(new FullToRefreshLinerLayoutManager.MyScrollListener() {
                 @Override
                 public void fromBottomScroll() {
                     // Utils.showToastMessage("Now from bottom scroll "+(page++));
-                    SwipedRecyclerViewFragment.this.fromBottomScroll();
+                    SwipedAutoFitRecyclerViewFragment.this.fromBottomScroll();
                 }
 
             });
-            recyclerView.setLayoutManager(gridLayoutManager);
-        }else {
+        recyclerView.setFullToRefreshGridLayoutManager(gridLayoutManager);
+           // recyclerView.setLayoutManager(gridLayoutManager);
+      /*  }else {
             FullToRefreshLinerLayoutManager layoutManager1 = new FullToRefreshLinerLayoutManager(MyApplication.getCurrentActivityContext(), RecyclerView.VERTICAL, false);
             layoutManager1.setOnMyScrollListener(new FullToRefreshLinerLayoutManager.MyScrollListener() {
                 @Override
                 public void fromBottomScroll() {
                     // Utils.showToastMessage("Now from bottom scroll "+(page++));
-                    SwipedRecyclerViewFragment.this.fromBottomScroll();
+                    SwipedAutoFitRecyclerViewFragment.this.fromBottomScroll();
                 }
 
             });
             recyclerView.setLayoutManager(layoutManager1);
-        }
+        }*/
     }
 
     /*protected void showNoRecordFoundTextView(boolean isShow) {

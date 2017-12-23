@@ -128,6 +128,7 @@
     <string name="unable_to_get_languages_list_lbl">Something problem to fetch languages list from server, Please try again</string>
     <string name="unable_to_get_speciality_list_lbl">Something problem to fetch Insurance List from server, Please try again</string>
     <string name="network_not_available_lbl">Network not available</string>
+    <string name="no_time_slots_available_lbl">No booking available for this day</string>
 
 
 </resources>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,6 +9,13 @@
     android:orientation="vertical"
 
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_above="@+id/conform_time_bt"
+        android:layout_height="match_parent">
+
+
     <!-- <LinearLayout
          android:layout_width="match_parent"
          android:layout_weight="1"
@@ -60,138 +67,68 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_5dp"
             android:orientation="vertical">
-            <LinearLayout
+
+            <RelativeLayout
+                android:layout_below="@+id/top_linear"
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-               </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <android.support.v4.widget.SwipeRefreshLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/swipeContainer"
+                    >
+                    <com.vempower.eezyclinic.views.AutoFitFixedRecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="match_parent"
+                        android:columnWidth="@dimen/_85dp"
+                        android:layout_height="match_parent">
 
-                <com.vempower.eezyclinic.views.MyCheckedTextViewRR
-                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    </com.vempower.eezyclinic.views.AutoFitFixedRecyclerView>
+                </android.support.v4.widget.SwipeRefreshLayout>
 
-
-                    android:layout_width="@dimen/_85dp"
-                    android:checked="true"
-
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:id="@+id/no_matching_result_tv"
+                    android:layout_width="wrap_content"
+                    android:visibility="gone"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_5dp"
-                    android:background="@drawable/cal_bottom_date_item_bg"
-                    android:clickable="true"
-
-                    android:textSize="@dimen/_12sp"
-                    android:gravity="center"
-                    android:paddingBottom="@dimen/_8dp"
-                    android:paddingLeft="@dimen/_14dp"
-                    android:paddingRight="@dimen/_14dp"
-                    android:paddingTop="@dimen/_8dp"
-                    android:singleLine="true"
-                    android:maxLines="1"
-                    android:text="12:59 am"
-                    android:textColor="@color/cal_bootom_date_text_color" />
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-                <com.vempower.eezyclinic.views.MyCheckedTextViewRR
-                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:textSize="@dimen/_16sp"
+                    android:fontFamily="sans-serif"
+                    android:layout_centerInParent="true"
+                    android:textStyle="normal"
+                    android:textColor="#5d5d5d"
+                    android:text="@string/no_time_slots_available_lbl" />
+            </RelativeLayout>
 
 
-                    android:layout_width="@dimen/_85dp"
-                    android:enabled="false"
 
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_5dp"
-                    android:background="@drawable/cal_bottom_date_item_bg"
-                    android:clickable="true"
-
-                    android:textSize="@dimen/_12sp"
-                    android:gravity="center"
-                    android:paddingBottom="@dimen/_8dp"
-                    android:paddingLeft="@dimen/_14dp"
-                    android:paddingRight="@dimen/_14dp"
-                    android:paddingTop="@dimen/_8dp"
-                    android:singleLine="true"
-                    android:maxLines="1"
-                    android:text="12:59 am"
-                    android:textColor="@color/cal_bootom_date_text_color" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-                <include layout="@layout/cal_time_slot_single_layout"
-                    android:checked="true" />
-            </LinearLayout>
-
-          <!--  <com.vempower.eezyclinic.views.MyCheckedTextViewRR
-                android:layout_width="@dimen/_85dp"
-
-                android:visibility="gone"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_5dp"
-                android:background="@drawable/cal_bottom_date_item_bg"
-                android:clickable="true"
-                android:checked="true"
-                android:textSize="@dimen/_12sp"
-                android:gravity="center"
-                android:paddingBottom="@dimen/_8dp"
-                android:paddingLeft="@dimen/_14dp"
-                android:paddingRight="@dimen/_14dp"
-                android:paddingTop="@dimen/_8dp"
-                android:singleLine="true"
-                android:maxLines="1"
-                android:text="12:59 am"
-                android:textColor="@color/cal_bootom_date_text_color" />
--->
 
         </LinearLayout>
 
     </RelativeLayout>
+    </LinearLayout>
+    <Button
 
+        android:layout_alignParentBottom="true"
+        android:id="@+id/conform_time_bt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48dp"
+        android:layout_marginTop="@dimen/_5dp"
+        android:layout_marginBottom="@dimen/_5dp"
+        android:clickable="true"
+        android:layout_marginLeft="@dimen/_24dp"
+        android:layout_marginRight="@dimen/_24dp"
+        android:maxLines="1"
+        android:padding="@dimen/_4dp"
+        android:textAllCaps="false"
+        android:background="@drawable/button_bg"
 
-</LinearLayout>
+        android:textSize="@dimen/_16sp"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="normal"
+        android:textColor="#ffffff"
+        android:text="Conform Time"
+
+        />
+
+</RelativeLayout>

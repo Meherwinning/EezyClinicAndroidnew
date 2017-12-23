@@ -7,10 +7,9 @@ import android.widget.TextView;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.fragments.AbstractCalenderViewFragment;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
-import com.vempower.eezyclinic.fragments.AppointmentListFragment;
-import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.eezyclinic.fragments.ScheduleAppointmentTimeSlotFragment;
 
-public class AbstractCalenderActivity extends AbstractMenuActivity {
+public class ScheduleAppointmentActivity extends AbstractMenuActivity {
 
 
     public void setActionBar() {
@@ -20,7 +19,7 @@ public class AbstractCalenderActivity extends AbstractMenuActivity {
         TextView titleName = toolbar.findViewById(R.id.title_logo_tv);
         //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
        // titleName.setText(Utils.getStringFromResources(R.string.title_activity_appointments));
-        titleName.setText("Schedule Appointment");
+        titleName.setText("Schedule your Appointment");
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +41,7 @@ public class AbstractCalenderActivity extends AbstractMenuActivity {
 
     @Override
     protected AbstractFragment getFragment() {
-        return null;
+        return new ScheduleAppointmentTimeSlotFragment();
     }
 
     @Override
