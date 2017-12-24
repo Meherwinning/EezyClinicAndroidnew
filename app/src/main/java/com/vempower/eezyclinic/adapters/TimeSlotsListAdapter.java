@@ -66,11 +66,7 @@ public class TimeSlotsListAdapter extends RecyclerView.Adapter<TimeSlotsListAdap
 
     @Override
     public void onBindViewHolder(OrdersListHolder holder, int position) {
-
-
         holder.bindData(timeSlotsList.get(position), position);
-
-
     }
 
     @Override
@@ -103,9 +99,6 @@ public class TimeSlotsListAdapter extends RecyclerView.Adapter<TimeSlotsListAdap
         public OrdersListHolder(View itemView) {
             super(itemView);
             time_slot_ctv = itemView.findViewById(R.id.time_slot_ctv);
-
-
-
 
         }
 

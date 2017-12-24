@@ -4,7 +4,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractCalenderViewFragment;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.ScheduleAppointmentTimeSlotFragment;
@@ -12,13 +14,65 @@ import com.vempower.eezyclinic.fragments.ScheduleAppointmentTimeSlotFragment;
 public class ScheduleAppointmentActivity extends AbstractMenuActivity {
 
 
+    private SearchResultDoctorListData data;
+
+    @Override
+    protected void setMyContectntView() {
+        super.setMyContectntView();
+        myInit();
+    }
+
+    private void myInit() {
+        Object obj = getObjectFromIntent(getIntent(), ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY);
+
+        if (obj != null && obj instanceof SearchResultDoctorListData) {
+            data = (SearchResultDoctorListData) obj;
+
+            // showToastMessage("Data :" + data);
+        } else {
+            showMyAlertDialog("Alert", "Invalid Doctor profile.Please try again", "Close", true);
+            return;
+        }
+
+        if (data == null) {
+            showMyAlertDialog("Alert", "Invalid Doctor profile.Please try again", "Close", true);
+            return;
+
+        }
+
+
+      //  myView = findViewById(R.id.header_view_linear);
+        // myInit();
+        //callDoctorProfileMapper(data);
+
+        ScheduleAppointmentTimeSlotFragment fragment= new ScheduleAppointmentTimeSlotFragment();
+        fragment.setSearchResultDoctorListData(data);
+        setFragment(fragment);
+
+
+    }
+
+
+
+    @Override
+    protected AbstractFragment getFragment() {
+        return null;
+    }
+
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
     public void setActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView titleName = toolbar.findViewById(R.id.title_logo_tv);
         //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
-       // titleName.setText(Utils.getStringFromResources(R.string.title_activity_appointments));
+        // titleName.setText(Utils.getStringFromResources(R.string.title_activity_appointments));
         titleName.setText("Schedule your Appointment");
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -37,17 +91,6 @@ public class ScheduleAppointmentActivity extends AbstractMenuActivity {
         // mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.app_red)));
 
         //super.setActionBar(false);
-    }
-
-    @Override
-    protected AbstractFragment getFragment() {
-        return new ScheduleAppointmentTimeSlotFragment();
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
     }
 
     @Override

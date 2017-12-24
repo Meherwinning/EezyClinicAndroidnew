@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="true"
+        />
+
+
+    <ScrollView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/appointment_bt">
+
+    <LinearLayout
+
+        android:background="@color/white"
+        android:orientation="vertical"
+
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:background="@drawable/app_gradient_bg"
+
+            android:id="@+id/header_view_linear"
+            android:layout_width="match_parent"
+           android:paddingBottom="@dimen/_10dp"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:gravity="center">
+
+                <LinearLayout
+                    android:id="@+id/image_linear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/canvas_100x100"
+                    android:gravity="center"
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/profile_iv"
+                        style="@style/image_fit_toparent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/profile_icon" />
+                </LinearLayout>
+
+
+                <com.vempower.eezyclinic.views.MyTextViewRB
+                    android:id="@+id/doctor_name_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/image_linear"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:gravity="center"
+                    android:hint="Doctor Name"
+                    android:maxLines="1"
+                    android:textColorHint="@color/white"
+
+
+                    android:textSize="15sp"
+                    android:textStyle="normal"
+                    android:textColor="#ffffff"
+                    />
+
+
+                    <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:layout_below="@+id/doctor_name_tv"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:id="@+id/doctor_designation_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5dp"
+                        android:text="Designation"
+
+
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        android:textColor="#ffffff"
+                        />
+
+                <com.vempower.eezyclinic.views.MyTextViewRB
+                    android:id="@+id/clinic_name_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/doctor_designation_tv"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:gravity="center"
+                    android:hint="Doctor Name"
+                    android:maxLines="1"
+                    android:textColorHint="@color/white"
+
+
+                    android:textSize="15sp"
+                    android:textStyle="normal"
+                    android:textColor="#ffffff"
+                    />
+
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_below="@+id/clinic_name_tv"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:id="@+id/clinic_address_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5dp"
+                    android:text="Designation"
+
+
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    android:textColor="#ffffff"
+                    />
+
+
+
+
+
+
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_15dp"
+            android:layout_marginRight="@dimen/_20dp"
+            android:layout_marginLeft="@dimen/_20dp"
+            android:background="@color/white"
+            android:layout_height="match_parent">
+
+            <com.vempower.eezyclinic.views.MyTextViewRR
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_15sp"
+                android:textStyle="normal"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="#28b0e2"
+                android:text="Appointment:"
+                ></com.vempower.eezyclinic.views.MyTextViewRR>
+            <com.vempower.eezyclinic.views.MyTextViewRR
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_15sp"
+                android:textStyle="normal"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="#28b0e2"
+                android:text="at 12:15 PM on Friday,  Mar 27th, 2017"
+                ></com.vempower.eezyclinic.views.MyTextViewRR>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_15dp"
+                android:layout_height="wrap_content">
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="left|center"
+                    android:textSize="@dimen/_13sp"
+                    android:textStyle="normal"
+
+                    android:textColor="#000000"
+                    android:text="Appointment for"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="@dimen/_10dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+
+                    android:layout_height="wrap_content">
+
+                    <com.vempower.eezyclinic.views.MyCheckBoxRR
+                        android:id="@+id/male_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_marginRight="@dimen/_10dp"
+                        android:layout_height="match_parent"
+                        android:button="@drawable/checkbox_selector2"
+                        android:padding="@dimen/_5dp"
+
+                        android:text="Self"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_small" />
+                    <com.vempower.eezyclinic.views.MyCheckBoxRR
+                        android:id="@+id/female_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="@dimen/_10dp"
+                        android:layout_height="match_parent"
+                        android:button="@drawable/checkbox_selector2"
+                        android:padding="@dimen/_5dp"
+
+                        android:text="Others"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_small" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10dp"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#de000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                        android:id="@+id/patient_name_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:gravity="left|center_vertical"
+                        android:hint="Patient Name*"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="50"
+                        android:maxLines="1"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+
+                        android:textColor="#de000000"
+                        android:textColorHint="#de000000"
+                        android:textSize="@dimen/text_size_normal" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.3"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10dp"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#de000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                        android:id="@+id/relation_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:gravity="left|center_vertical"
+                        android:hint="Relation"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="50"
+                        android:maxLines="1"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+
+                        android:textColor="#de000000"
+                        android:textColorHint="#de000000"
+                        android:textSize="@dimen/text_size_normal" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.3"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10dp"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#de000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                        android:id="@+id/reason_for_appointment_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:gravity="left|center_vertical"
+                        android:hint="Reason for Appointment"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="50"
+                        android:maxLines="1"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+
+                        android:textColor="#de000000"
+                        android:textColorHint="#de000000"
+                        android:textSize="@dimen/text_size_normal" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.3"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+
+     <!--   <com.vempower.eezyclinic.widget.SlidingTabLayout
+            android:id="@+id/tabs"
+            android:visibility="gone"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            app:tabIndicatorColor="@color/white"
+            app:tabTextColor="@color/white_with_alpha"
+            app:tabSelectedTextColor="@color/white"
+            android:layout_height="@dimen/_50sp"/>
+ -->   </LinearLayout>
+    </ScrollView>
+
+
+
+    <Button
+
+        android:layout_alignParentBottom="true"
+        android:id="@+id/appointment_bt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48dp"
+        android:layout_marginTop="@dimen/_5dp"
+        android:layout_marginBottom="@dimen/_5dp"
+        android:clickable="true"
+        android:layout_marginLeft="@dimen/_24dp"
+        android:layout_marginRight="@dimen/_24dp"
+        android:maxLines="1"
+        android:padding="@dimen/_4dp"
+        android:textAllCaps="false"
+        android:background="@drawable/button_bg"
+
+        android:textSize="@dimen/_16sp"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="normal"
+        android:textColor="#ffffff"
+        android:text="Book Appointment"
+
+        />
+
+
+
+</RelativeLayout>

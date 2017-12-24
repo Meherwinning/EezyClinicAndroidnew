@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.DoctorProfileActivity;
+import com.vempower.eezyclinic.activities.ScheduleAppointmentActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
@@ -170,6 +171,24 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
                 @Override
                 public void onClick(View view) {
                     Utils.showToastMsg("Coming soon");
+
+                    Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),ScheduleAppointmentActivity.class);
+                           /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+                    intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
+                        @Override
+                        protected IntentObjectListener getMyObject() {
+                            return new IntentObjectListener(){
+
+                                @Override
+                                public Object getObject() {
+                                    return data;
+                                }
+                            };
+                        }
+                    }));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                    MyApplication.getCurrentActivityContext().startActivity(intent);
                 }
             });
 
