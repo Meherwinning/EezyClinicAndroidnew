@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.callbacks.FromActivityListener;
 import com.vempower.eezyclinic.callbacks.HomeBottomItemClickListener;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
@@ -192,7 +193,22 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 break;
             case R.id.book_appointment_linear:
                // showToastMessage("Coming soon");
-                callSideMenuScreen(ScheduleAppointmentActivity.class);
+               // callSideMenuScreen(ScheduleAppointmentActivity.class);
+                //Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
+                intent.setClass(this,SearchActivity.class);
+                intent.putExtra(Constants.Pref.TITLE_BAR_NAME_KEY,"New Appointment");
+                intent.putExtra(Constants.Pref.IS_FROM_DASH_BOARD,false);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                sendHandlerMessage(intent, ListenerKey.FROM_ACTIVITY_LISTENER_KEY, new FromActivityListener() {
+                    @Override
+                    public boolean isFromSearchActivity() {
+                        return false;
+                    }
+                });
+
+
+                startActivity(intent);
+
                 break;
             case R.id. my_profile_linear:
                 callMyProfile();

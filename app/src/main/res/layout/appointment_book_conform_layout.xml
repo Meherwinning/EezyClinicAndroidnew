@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="true"
+        />
+
+
+
+    <LinearLayout
+
+        android:background="@color/white"
+        android:orientation="vertical"
+
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/done"
+                     android:layout_gravity="center"
+                    android:layout_height="wrap_content" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/_13dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_15sp"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"
+                    android:textColor="#000000"
+                    android:text="Appointment Confirmed"
+                    />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_marginTop="@dimen/_13dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"
+                    android:textColor="#78000000"
+                    tools:text="with Dr. first doctor last doctor has been fixed at 12:15 PM on Friday,  Mar 27th, 2017"
+                    />
+            </LinearLayout>
+
+
+
+
+
+
+     <!--   <com.vempower.eezyclinic.widget.SlidingTabLayout
+            android:id="@+id/tabs"
+            android:visibility="gone"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            app:tabIndicatorColor="@color/white"
+            app:tabTextColor="@color/white_with_alpha"
+            app:tabSelectedTextColor="@color/white"
+            android:layout_height="@dimen/_50sp"/>
+ -->   </LinearLayout>
+
+
+
+
+
+
+
+</RelativeLayout>

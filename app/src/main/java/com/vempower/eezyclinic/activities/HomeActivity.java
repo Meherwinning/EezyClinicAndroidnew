@@ -32,6 +32,7 @@ import com.vempower.eezyclinic.APICore.Followup;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.AbstractAppHandler;
+import com.vempower.eezyclinic.callbacks.FromActivityListener;
 import com.vempower.eezyclinic.callbacks.HomeBottomItemClickListener;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
@@ -158,8 +159,15 @@ public class HomeActivity extends AbstractMenuActivity {
 
                     Intent intent = getIntent();
                     intent.setClass(HomeActivity.this,SearchActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra(Constants.Pref.IS_FROM_DASH_BOARD,true);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
+                    sendHandlerMessage(intent, ListenerKey.FROM_ACTIVITY_LISTENER_KEY, new FromActivityListener() {
+                        @Override
+                        public boolean isFromSearchActivity() {
+                            return true;
+                        }
+                    });
                 }
             });
 

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -101,6 +102,7 @@ public class SearchFragment extends AbstractFragment {
 
     private ExpandableLinearLayout expandableLayout_city_view;
     private SearchRequest searchRequestParams;
+    private boolean isFromDashboard;
 
     @Nullable
     @Override
@@ -110,6 +112,12 @@ public class SearchFragment extends AbstractFragment {
         init();
 
         return fragmentView;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        refreshUI();
     }
 
     private void init() {
@@ -556,6 +564,22 @@ MyApplication.hideTransaprentDialog();
 
         String url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + myGeodata.getPlaceId() + "&sensor=nil&key=" + GooglePlacesAutocompleteAdapter.API_KEY;
         new GooglePlaceLatLangAsynTask(url).execute();
+
+    }
+
+    public void isFromDashBoard(boolean isFromDashboard) {
+        this.isFromDashboard=isFromDashboard;
+
+    }
+
+    public void refreshUI() {
+        if(fragmentView==null|| true)
+        {
+            return;
+        }
+       fragmentView.findViewById(R.id.title_linear).setVisibility(isFromDashboard?View.VISIBLE:View.GONE);
+        fragmentView.findViewById(R.id.search_demo_linear).setVisibility(isFromDashboard?View.VISIBLE:View.GONE);
+
 
     }
 
