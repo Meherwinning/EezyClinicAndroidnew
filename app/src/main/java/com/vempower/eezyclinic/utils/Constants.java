@@ -102,6 +102,7 @@ public interface Constants {
         String IS_FROM_VIEW_DOCTORS_CLICK_KEY ="is_from_view_doctors_click_key" ;
         String TITLE_BAR_NAME_KEY = "title_bar_name_key";
         String IS_FROM_DASH_BOARD = "is_from_dash_board";
+        String SELECTED_SCHDULE_DATE_TIME_KEY = "selected_schdule_date_time_key";
     }
 
     interface ActivityResult
