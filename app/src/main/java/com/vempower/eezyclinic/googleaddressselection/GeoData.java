@@ -47,8 +47,7 @@ public class GeoData implements Serializable {
 
 	@Override
 	public String toString() {
-		return "GeoData [address=" + address + ", lat=" + lat + ", lng=" + lng
-				+ "]";
+		return address;
 	}
 
 	public String getPlaceId() {

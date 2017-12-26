@@ -75,25 +75,39 @@ public class Appointment {
     @SerializedName("createdDate")
     @Expose
     private String createdDate;
+    @SerializedName("main_display_image")
+    @Expose
+    private Object mainDisplayImage;
+    @SerializedName("clinic_name")
+    @Expose
+    private String clinicName;
+    @SerializedName("doctorLogo")
+    @Expose
+    private String doctorLogo;
     @SerializedName("doctorName")
     @Expose
     private String doctorName;
-    @SerializedName("clinicName")
+    @SerializedName("branch_timings")
     @Expose
-    private String clinicName;
+    private String branchTimings;
+    @SerializedName("specalities")
+    @Expose
+    private String specalities;
+    @SerializedName("address")
+    @Expose
+    private String address;
     @SerializedName("locality")
     @Expose
     private String locality;
     @SerializedName("city")
     @Expose
     private String city;
-
-
-
-
-    @SerializedName("specalities")
+    @SerializedName("google_map_latitude")
     @Expose
-    private String specalities;
+    private String googleMapLatitude;
+    @SerializedName("google_map_longitude")
+    @Expose
+    private String googleMapLongitude;
 
     public String getId() {
         return id;
@@ -279,12 +293,12 @@ public class Appointment {
         this.createdDate = createdDate;
     }
 
-    public String getDoctorName() {
-        return doctorName;
+    public Object getMainDisplayImage() {
+        return mainDisplayImage;
     }
 
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
+    public void setMainDisplayImage(Object mainDisplayImage) {
+        this.mainDisplayImage = mainDisplayImage;
     }
 
     public String getClinicName() {
@@ -293,6 +307,46 @@ public class Appointment {
 
     public void setClinicName(String clinicName) {
         this.clinicName = clinicName;
+    }
+
+    public String getDoctorLogo() {
+        return doctorLogo;
+    }
+
+    public void setDoctorLogo(String doctorLogo) {
+        this.doctorLogo = doctorLogo;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+
+    public String getBranchTimings() {
+        return branchTimings;
+    }
+
+    public void setBranchTimings(String branchTimings) {
+        this.branchTimings = branchTimings;
+    }
+
+    public String getSpecalities() {
+        return specalities;
+    }
+
+    public void setSpecalities(String specalities) {
+        this.specalities = specalities;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getLocality() {
@@ -311,7 +365,20 @@ public class Appointment {
         this.city = city;
     }
 
-    public String getSpecalities() {
-        return specalities;
+    public String getGoogleMapLatitude() {
+        return googleMapLatitude;
     }
+
+    public void setGoogleMapLatitude(String googleMapLatitude) {
+        this.googleMapLatitude = googleMapLatitude;
+    }
+
+    public String getGoogleMapLongitude() {
+        return googleMapLongitude;
+    }
+
+    public void setGoogleMapLongitude(String googleMapLongitude) {
+        this.googleMapLongitude = googleMapLongitude;
+    }
+
 }

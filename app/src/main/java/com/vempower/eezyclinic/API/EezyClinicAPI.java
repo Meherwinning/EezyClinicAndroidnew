@@ -19,6 +19,7 @@ import com.vempower.eezyclinic.APIResponce.SearchResultClinicListAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiesAPI;
+import com.vempower.eezyclinic.APIResponce.UpcomingAppointmentListAPI;
 import com.vempower.eezyclinic.APIResponce.VerifyOTPAPI;
 
 import retrofit.Call;
@@ -135,12 +136,20 @@ public interface EezyClinicAPI {
 
     //http://202.63.103.194:8003/api/appointment/appointmentslots
     @POST(data + "appointment/appointmentslots")
-    Call<AppointmentTimeSlotsAPI> getAppintmentTimeSlots(@Body RequestBody postBody);
+    Call<AppointmentTimeSlotsAPI> getAppointmentTimeSlots(@Body RequestBody postBody);
 
     //http://202.63.103.194:8003/api/appointment/booking
     @POST(data + "appointment/booking")
-    Call<AbstractResponse> appintmentBooking(@Body RequestBody postBody);
+    Call<AbstractResponse> appointmentBooking(@Body RequestBody postBody);
 
 
+    //http://202.63.103.194:8003/api/appointment/upcomingappointments
+    @POST(data + "appointment/upcomingappointments")
+    Call<UpcomingAppointmentListAPI> getAppointmentList(@Body RequestBody postBody);
+
+
+    //http://202.63.103.194:8003/api/appointment/reschedule
+    @POST(data + "appointment/reschedule")
+    Call<AbstractResponse> rescheduleAppointment(@Body RequestBody postBody);
 
 }

@@ -54,7 +54,7 @@ public class SpecalitiesMapper extends  AbstractMapper  implements Callback<Spec
             return;
         }
 
-       // MyApplication.showTransparentDialog();
+        MyApplication.showTransparentDialog();
         EezyClinicAPI stashDealAPI = MyApplication.getInstance().getEezyClinicAPI();
 
        /* RequestBody requestBody = getMyRequestBody();
@@ -73,7 +73,7 @@ public class SpecalitiesMapper extends  AbstractMapper  implements Callback<Spec
 
     @Override
     public void onResponse(Response<SpecalitiesAPI> response, Retrofit retrofit) {
-        //MyApplication.hideTransaprentDialog();
+        MyApplication.hideTransaprentDialog();
 
         getMyResponse(response, new MyResponse<SpecalitiesAPI>() {
             @Override
@@ -89,7 +89,7 @@ public class SpecalitiesMapper extends  AbstractMapper  implements Callback<Spec
 
     @Override
     public void onFailure(Throwable error) {
-        //MyApplication.hideTransaprentDialog();
+        MyApplication.hideTransaprentDialog();
 
         onMyFailure(error, new MyResponse<SpecalitiesAPI>() {
             @Override

@@ -17,6 +17,7 @@ public class VarColumnGridLayoutManager extends GridLayoutManager {
         this.minItemWidth = minItemWidth;
     }
 
+
     @Override
     public void onLayoutChildren(RecyclerView.Recycler recycler,
                                  RecyclerView.State state) {
@@ -30,4 +31,5 @@ public class VarColumnGridLayoutManager extends GridLayoutManager {
             spanCount = 1;
         }
         this.setSpanCount(spanCount);
-    }}
+    }
+}

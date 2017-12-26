@@ -15,4 +15,5 @@ public abstract class IntentObjectListener  extends IMyAidlInterface.Stub {
     }*/
 
     public abstract Object getObject();
+
 }

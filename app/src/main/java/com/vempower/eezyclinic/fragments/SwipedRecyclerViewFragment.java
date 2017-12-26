@@ -10,6 +10,7 @@ import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.FixedRecyclerView;
 import com.vempower.eezyclinic.views.FullToRefreshGridLayoutManager;
 import com.vempower.eezyclinic.views.FullToRefreshLinerLayoutManager;
+import com.vempower.eezyclinic.views.FullToRefreshVarColumnGridLayoutManager;
 
 
 /**
@@ -70,6 +71,7 @@ abstract class SwipedRecyclerViewFragment extends AbstractFragment {
     protected abstract boolean isCheckTabletOrNot();
 
     private void checkTabletOrNot() {
+
 
 
         if(Utils.isTablet() && isCheckTabletOrNot())
@@ -135,6 +137,8 @@ abstract class SwipedRecyclerViewFragment extends AbstractFragment {
     }
     abstract protected void fromTopScroll();
     abstract  protected void fromBottomScroll();
+
+
    /* abstract protected void onSwipeLayoutSetToDefaultPage();
 
     abstract  protected void recylerViewScrollListener();*/

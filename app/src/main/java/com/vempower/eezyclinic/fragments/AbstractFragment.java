@@ -69,22 +69,41 @@ public abstract class AbstractFragment extends Fragment {
 
     protected boolean isValidResponse(AbstractResponse response, String errorMessage/*,boolean isShowDialog,boolean isShowNothing*/)
     {
+
+        return isValidResponse( response,  errorMessage, false,false);
+    }
+
+    protected boolean isValidResponse(AbstractResponse response, String errorMessage,boolean isShowDialog,boolean isFinish)
+    {
         if(response==null && TextUtils.isEmpty(errorMessage))
         {
-            //showMyAlertDialog("Alert",  Utils.getStringFromResources(R.string.invalid_service_response_lbl),"Ok",false);
-            Utils.showToastMsg(R.string.invalid_service_response_lbl);
+            if(isShowDialog)
+            {
+                showAlertDialog("Alert",  Utils.getStringFromResources(R.string.invalid_service_response_lbl),isFinish);
+            }else {
+                Utils.showToastMsg(R.string.invalid_service_response_lbl);
+            }
             return false;
         }
         if(response==null && !TextUtils.isEmpty(errorMessage))
         {
-            //showMyAlertDialog("Alert", errorMessage,"Ok",false);
-            Utils.showToastMsg(errorMessage);
+            if(isShowDialog) {
+                showAlertDialog("Alert", errorMessage,isFinish);
+            }else {
+                Utils.showToastMsg(errorMessage);
+            }
             return false;
         }
         if(!response.getStatusCode().equalsIgnoreCase(Constants.SUCCESS_STATUS_CODE))
         {
+            if(isShowDialog) {
+                showAlertDialog("Alert",response.getStatusMessage() ,isFinish);
+            }else
+            {
+                Utils.showToastMsg(response.getStatusMessage());
+            }
             //showMyAlertDialog("Alert",response.getStatusMessage() ,"Ok",false);
-            Utils.showToastMsg(response.getStatusMessage());
+
             return false;
 
         }
@@ -226,7 +245,36 @@ public abstract class AbstractFragment extends Fragment {
         fragment.show(getChildFragmentManager(), null);
     }
 
+    protected void showMyDialog(String title,String message,String positiveButtonName,final ApiErrorDialogInterface dialogInterface)
+    {
+        SimpleDialog.Builder builder = new SimpleDialog.Builder(R.style.SimpleDialogLight){
+            @Override
+            public void onPositiveActionClicked(DialogFragment fragment) {
+                //Toast.makeText(mActivity, "Agreed", Toast.LENGTH_SHORT).show();
+                super.onPositiveActionClicked(fragment);
+                if(dialogInterface!=null) {
+                    dialogInterface.retryClick();
+                }
+            }
 
+            /*@Override
+            public void onNegativeActionClicked(DialogFragment fragment) {
+                //Toast.makeText(mActivity, "Disagreed", Toast.LENGTH_SHORT).show();
+                super.onNegativeActionClicked(fragment);
+                if(dialogInterface!=null) {
+                    dialogInterface.onCloseClick();
+                }
+            }*/
+        };
+
+        ((SimpleDialog.Builder)builder).message(message)
+                .title(title)
+                .positiveAction(positiveButtonName);
+               // .negativeAction("Close");
+        DialogFragment fragment = DialogFragment.newInstance(builder);
+        fragment.setCancelable(false);
+        fragment.show(getChildFragmentManager(), null);
+    }
 
 
     protected void showMyDialog(String title,String message,final ApiErrorDialogInterface dialogInterface)

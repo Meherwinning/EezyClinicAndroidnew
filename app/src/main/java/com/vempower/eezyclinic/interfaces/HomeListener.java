@@ -1,7 +1,7 @@
 package com.vempower.eezyclinic.interfaces;
 
-import com.vempower.eezyclinic.APICore.Appointment;
 import com.vempower.eezyclinic.APICore.Followup;
+import com.vempower.eezyclinic.APICore.Appointment;
 
 import java.util.List;
 

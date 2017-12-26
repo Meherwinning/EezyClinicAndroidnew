@@ -42,7 +42,7 @@ public class AbstractCalenderActivity extends AbstractMenuActivity {
 
     @Override
     protected AbstractFragment getFragment() {
-        return new AbstractCalenderViewFragment();
+        return null;
     }
 
     @Override

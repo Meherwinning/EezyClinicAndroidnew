@@ -50,7 +50,7 @@ public class CountryListMapper extends  AbstractMapper  implements Callback<Coun
             return;
         }
 
-       // MyApplication.showTransparentDialog();
+        MyApplication.showTransparentDialog();
         EezyClinicAPI stashDealAPI = MyApplication.getInstance().getEezyClinicAPI();
 
        /* RequestBody requestBody = getMyRequestBody();
@@ -69,7 +69,7 @@ public class CountryListMapper extends  AbstractMapper  implements Callback<Coun
 
     @Override
     public void onResponse(Response<CountryListAPI> response, Retrofit retrofit) {
-        //MyApplication.hideTransaprentDialog();
+        MyApplication.hideTransaprentDialog();
 
         getMyResponse(response, new MyResponse<CountryListAPI>() {
             @Override
@@ -85,7 +85,7 @@ public class CountryListMapper extends  AbstractMapper  implements Callback<Coun
 
     @Override
     public void onFailure(Throwable error) {
-        //MyApplication.hideTransaprentDialog();
+        MyApplication.hideTransaprentDialog();
 
         onMyFailure(error, new MyResponse<CountryListAPI>() {
             @Override
