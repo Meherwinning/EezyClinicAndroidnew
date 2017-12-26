@@ -27,8 +27,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.vempower.eezyclinic.APICore.Appointment;
 import com.vempower.eezyclinic.APICore.Followup;
+import com.vempower.eezyclinic.APICore.Appointment;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.AbstractAppHandler;
@@ -40,11 +40,10 @@ import com.vempower.eezyclinic.fragments.HomeFragment;
 import com.vempower.eezyclinic.fragments.MedicalRecordsFragment;
 import com.vempower.eezyclinic.fragments.MyProfileFragment;
 import com.vempower.eezyclinic.fragments.SettingsFragment;
-import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.HomeListener;
+import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.utils.Constants;
-import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
-import com.vempower.eezyclinic.utils.Utils;
 
 import java.util.List;
 
@@ -135,11 +134,32 @@ public class HomeActivity extends AbstractMenuActivity {
             homeFragment.setOnMyListener(new HomeListener() {
 
                 @Override
-                public void onUpcomingAppointmentClick(List<Appointment> list) {
+                public void onUpcomingAppointmentClick(final List<Appointment> list) {
                    // Utils.showToastMsg("Now click appointments");
+
+                  //  Intent  intent=new Intent(MyApplication.getCurrentActivityContext(),UpComingAppointmentListActivity.class);
+                       //startActivity(intent);
+
+                    //
+
                     Intent intent = getIntent();
-                    intent.setClass(HomeActivity.this,AppointmentListActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.setClass(HomeActivity.this,UpComingAppointmentListActivity.class);
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra(ListenerKey.ObjectKey.UPCOMING_APPOINTMENT_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
+                        @Override
+                        protected IntentObjectListener getMyObject() {
+                            return new IntentObjectListener(){
+
+                                @Override
+                                public Object getObject() {
+                                    return list;
+                                }
+                            };
+                        }
+                    }));
+
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
                     startActivity(intent);
                 }
 

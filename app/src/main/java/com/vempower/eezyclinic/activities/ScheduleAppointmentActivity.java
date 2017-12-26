@@ -10,11 +10,13 @@ import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractCalenderViewFragment;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.ScheduleAppointmentTimeSlotFragment;
+import com.vempower.eezyclinic.utils.Constants;
 
 public class ScheduleAppointmentActivity extends AbstractMenuActivity {
 
 
     private SearchResultDoctorListData data;
+
 
     @Override
     protected void setMyContectntView() {
@@ -23,6 +25,9 @@ public class ScheduleAppointmentActivity extends AbstractMenuActivity {
     }
 
     private void myInit() {
+
+
+
         Object obj = getObjectFromIntent(getIntent(), ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY);
 
         if (obj != null && obj instanceof SearchResultDoctorListData) {
@@ -70,10 +75,10 @@ public class ScheduleAppointmentActivity extends AbstractMenuActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        TextView titleName = toolbar.findViewById(R.id.title_logo_tv);
+        TextView titleNametv = toolbar.findViewById(R.id.title_logo_tv);
         //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
         // titleName.setText(Utils.getStringFromResources(R.string.title_activity_appointments));
-        titleName.setText("Schedule your Appointment");
+        titleNametv.setText("Schedule your Appointment");
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

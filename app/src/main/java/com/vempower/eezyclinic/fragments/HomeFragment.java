@@ -9,19 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.Appointment;
 import com.vempower.eezyclinic.APICore.DashboardData;
 import com.vempower.eezyclinic.APICore.Followup;
 import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.APIResponce.DashboardAPI;
+import com.vempower.eezyclinic.APIResponce.UpcomingAppointmentListAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.SigninActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.interfaces.HomeListener;
 import com.vempower.eezyclinic.mappers.DashboardMapper;
+import com.vempower.eezyclinic.mappers.UpcomingAppointmentListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
@@ -29,8 +30,6 @@ import com.vempower.eezyclinic.views.MyButtonRectangleRM;
 import com.vempower.eezyclinic.views.MyTextViewRM;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 import com.vempower.stashdealcustomer.activities.AbstractActivity;
-
-import java.util.List;
 
 /**
  * Created by satish on 4/12/17.
@@ -141,7 +140,60 @@ public class HomeFragment extends AbstractFragment {
                     }
                 }
 
+                callUpcomingAppointmentsMapper();
 
+
+            }
+        });
+
+    }
+
+    private void callUpcomingAppointmentsMapper() {
+        UpcomingAppointmentListMapper appointmentListMapper= new UpcomingAppointmentListMapper();
+        appointmentListMapper.setOnUpcomingAppointmentListListener(new UpcomingAppointmentListMapper.UpcomingAppointmentListListener() {
+            @Override
+            public void getAppointments(final UpcomingAppointmentListAPI upcomingAppointmentListAPI, String errorMessage) {
+
+                if(!isValidResponse(upcomingAppointmentListAPI,errorMessage))
+                {
+                    upcoming_appointment_name_tv.setText(null);
+                    upcoming_appointment_tv.setText(Utils.getStringFromResources(R.string.upcoming_empty_appointment_list_msg));
+                    upcoming_appointment_cardview.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            //Utils.showToastMsg("No upcoming appointment(s).");
+                            Utils.showToastMsg(R.string.upcoming_empty_appointment_list_msg);
+                        }
+                    });
+                    return;
+                }
+
+
+                  if(upcomingAppointmentListAPI.getData()!=null && upcomingAppointmentListAPI.getData().size()>0)
+        {
+            Appointment appointment = upcomingAppointmentListAPI.getData().get(0);
+            if(appointment!=null)
+            {
+                //WithDr. M J Korian at08:45 AMonFriday, 08-12-2017
+                //atClinic 1, Al Karama, Dubai
+                upcoming_appointment_name_tv.setText(appointment.getDoctorName());
+                upcoming_appointment_tv.setText(appointment.getSpecalities()+
+                        "\nat "+appointment.getAppointmentDateTime()+"\n"+appointment.getLocality()+","+appointment.getCity());
+                upcoming_appointment_cardview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(myListener!=null && myListener instanceof HomeListener)
+                        {
+                            HomeListener homeListener= (HomeListener) myListener;
+                            homeListener.onUpcomingAppointmentClick(upcomingAppointmentListAPI.getData());
+
+                            // homeListener.onUpcomingAppointmentClick(dashboardData.getComingappointments());
+                        }
+                    }
+                });
+                }
+
+                }
             }
         });
 
@@ -166,38 +218,8 @@ public class HomeFragment extends AbstractFragment {
         health_tips_tv.setText(dashboardData.getHealthtips()==null?"-":dashboardData.getHealthtips());
         health_goal_tv.setText(dashboardData.getHealthgoals()==null?Utils.getStringFromResources(R.string.health_goal_empty_msg):dashboardData.getHealthgoals());
 
-        upcoming_appointment_name_tv.setText(null);
-        upcoming_appointment_tv.setText(Utils.getStringFromResources(R.string.upcoming_empty_appointment_list_msg));
-        upcoming_appointment_cardview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Utils.showToastMsg("No upcoming appointment(s).");
-                     Utils.showToastMsg(R.string.upcoming_empty_appointment_list_msg);
-            }
-        });
-        if(dashboardData.getComingappointments()!=null && dashboardData.getComingappointments().size()>0)
-        {
-            Appointment appointment = dashboardData.getComingappointments().get(0);
-            if(appointment!=null)
-            {
-                //WithDr. M J Korian at08:45 AMonFriday, 08-12-2017
-                //atClinic 1, Al Karama, Dubai
-                upcoming_appointment_name_tv.setText(appointment.getDoctorName());
-                upcoming_appointment_tv.setText(appointment.getSpecalities()+
-                        "\nat "+appointment.getAppointmentDateTime()+"\n"+appointment.getLocality()+","+appointment.getCity());
-                upcoming_appointment_cardview.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if(myListener!=null && myListener instanceof HomeListener)
-                        {
-                            HomeListener homeListener= (HomeListener) myListener;
-                            homeListener.onUpcomingAppointmentClick(dashboardData.getComingappointments());
-                        }
-                    }
-                });
-            }
 
-        }
+
         upcoming_followups_tv.setText(Utils.getStringFromResources(R.string.upcoming_empty_followups_list_msg));
         upcoming_followups_cardview.setOnClickListener(new View.OnClickListener() {
             @Override

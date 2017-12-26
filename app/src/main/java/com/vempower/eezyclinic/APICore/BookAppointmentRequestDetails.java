@@ -54,7 +54,9 @@ private static final String APP_FOR_SELF="Self";
         }
     }
 
-
+    public String getAppfor() {
+        return appfor;
+    }
 
     public boolean isSelfAppointment() {
         return isSelfAppointment;

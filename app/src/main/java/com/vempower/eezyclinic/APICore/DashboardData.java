@@ -16,9 +16,7 @@ public class DashboardData {
     @SerializedName("healthgoals")
     @Expose
     private String healthgoals;
-    @SerializedName("comingappointments")
-    @Expose
-    private List<Appointment> comingappointments = null;
+
     @SerializedName("followups")
     @Expose
     private List<Followup> followups = null;
@@ -48,13 +46,7 @@ public class DashboardData {
         this.healthgoals = healthgoals;
     }
 
-    public List<Appointment> getComingappointments() {
-        return comingappointments;
-    }
 
-    public void setComingappointments(List<Appointment> comingappointments) {
-        this.comingappointments = comingappointments;
-    }
 
     public List<Followup> getFollowups() {
         return followups;

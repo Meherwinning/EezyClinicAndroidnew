@@ -14,6 +14,9 @@ public interface ListenerKey {
     {
         String SEARCH_RESULT_DOCTOR_LIST_DATA_KEY="doctor_list_data_key";
         String SEARCH_RESULT_CLINIC_LIST_DATA_KEY="clinic_list_data_key";
+        String UPCOMING_APPOINTMENT_LIST_DATA_KEY="upcoming_appointment_list_data_key";
+        //String APPOINTMENT_OBJECT_KEY="appointment_object_key";
+        String RESCHEDULE_APPOINTMENT_OBJECT_KEY="ReScheduleAppointment_object";
     }
 
 }

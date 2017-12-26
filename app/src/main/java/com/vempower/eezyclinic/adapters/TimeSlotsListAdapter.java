@@ -36,6 +36,8 @@ public class TimeSlotsListAdapter extends RecyclerView.Adapter<TimeSlotsListAdap
     private LayoutInflater inflater;
     private  String preSelectedDate,preSelectedTimeSlot;
     private  String dateStr;
+    //private String diabledDateAndtime;
+    private DiasableDateListener diasableDateListener;
 
 
     public TimeSlotsListAdapter(String dateStr,List<String> timeSlotsList) {
@@ -124,6 +126,22 @@ public class TimeSlotsListAdapter extends RecyclerView.Adapter<TimeSlotsListAdap
 
                 }
             }
+            String diabledDateAndtime=null;
+
+            if(diasableDateListener!=null)
+            {
+                diabledDateAndtime=diasableDateListener.getDisableDateTime();
+            }
+
+
+            if(diabledDateAndtime!=null && timeSlot!=null && diabledDateAndtime.equalsIgnoreCase(dateStr+" "+timeSlot))
+            {
+                time_slot_ctv.setEnabled(false);
+            }else
+            {
+                time_slot_ctv.setEnabled(true);
+            }
+
 
             if(preSelectedDate!=null && preSelectedTimeSlot!=null && dateStr!=null && timeSlot!=null)
             {
@@ -232,6 +250,16 @@ public class TimeSlotsListAdapter extends RecyclerView.Adapter<TimeSlotsListAdap
 
 
         }
+    }
+
+    public void setOnDiasableDateListener(DiasableDateListener diasableDateListener)
+    {
+        this.diasableDateListener=diasableDateListener;
+    }
+
+    public interface  DiasableDateListener
+    {
+        String getDisableDateTime();
     }
 
 

@@ -282,7 +282,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     }
 
     protected  void callDashboard(){
-      Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
+        Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
         intent.setClass(this,HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);

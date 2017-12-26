@@ -2,6 +2,7 @@ package com.vempower.eezyclinic.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +13,14 @@ import android.widget.RadioGroup;
 
 import com.rey.material.widget.Button;
 import com.vempower.eezyclinic.APICore.BookAppointmentRequestDetails;
+import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
+import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.HintAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.mappers.AppointmentBookingMapper;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.CustomSpinnerSelection;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
@@ -48,6 +53,10 @@ public class AppointmentReviewFragment extends AbstractFragment {
     private SearchResultDoctorListData searchResultDoctorListData;
     private String dateTimeStr;
     private MyTextViewRR time_date_display_tv;
+    private PatientData patientData;
+    private View success_view;
+    private LinearLayout review_view;
+    private DoneButtonClickListener doneButtonClickListener;
 
     @Nullable
     @Override
@@ -60,8 +69,33 @@ public class AppointmentReviewFragment extends AbstractFragment {
     }
 
     private void myInit() {
+        MyApplication.showTransparentDialog();
+         patientData = MyApplication.getInstance().getLoggedUserDetailsFromSharedPref();
+         MyApplication.hideTransaprentDialog();
 
-       setHeaderDetails();
+        if(patientData==null)
+        {
+            showAlertDialog("Alert","Something wrong with user details.\nPlease try again",true);
+
+            return;
+        }
+
+
+        setHeaderDetails();
+        appointment_bt =fragmentView.findViewById(R.id. appointment_bt);
+
+        review_view  =fragmentView.findViewById(R.id. review_view);
+
+        success_view  =fragmentView.findViewById(R.id.success_view);
+        review_view.setVisibility(View.VISIBLE);
+        success_view.setVisibility(View.GONE);
+        appointment_bt.setText("Book Appointment");
+
+
+
+
+
+
 
 
         appointment_radio_group   =fragmentView.findViewById(R.id. appointment_radio_group);
@@ -86,6 +120,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
                     case R.id.self_radio_button:
                         if(requestDetails!=null)
                         {
+                            patient_name_et.setText(patientData.getPatientName());
                             requestDetails.setSelfAppointment(true);
                         }
                         updateUIelements(true);
@@ -94,6 +129,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
                     case R.id.others_radio_button:
                         if(requestDetails!=null)
                         {
+                            patient_name_et.setText(null);
                             requestDetails.setSelfAppointment(false);
                         }
                         updateUIelements(false);
@@ -109,10 +145,35 @@ public class AppointmentReviewFragment extends AbstractFragment {
         ((MyRadioButtonRR)fragmentView.findViewById(R.id.self_radio_button)).setChecked(true);
 
 
-        appointment_bt =fragmentView.findViewById(R.id. appointment_bt);
+
         appointment_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(success_view.getVisibility()==View.VISIBLE)
+                {
+                    Utils.showToastMsg("Now click Done" );
+                    if(doneButtonClickListener!=null)
+                    {
+                        doneButtonClickListener.onClick();
+                    }
+                    return;
+                }
+
+               String patientName= patient_name_et.getText().toString();
+               if(TextUtils.isEmpty(patientName))
+               {
+                   Utils.showToastMsg("Please enter patient name");
+
+                   return;
+               }
+               String email=email_et.getText().toString();
+               if(!requestDetails.isSelfAppointment()) {
+                   if (!TextUtils.isEmpty(email) && !Utils.isValidEmail(email)) {
+                       Utils.showToastMsg("Please enter valid email");
+                       return;
+                   }
+               }
                 if(requestDetails!=null)
                 {
                     /*patient_name_et  =fragmentView.findViewById(R.id.patient_name_et);
@@ -122,8 +183,27 @@ public class AppointmentReviewFragment extends AbstractFragment {
 
                     requestDetails.setPatientname(patient_name_et.getText().toString());
                     requestDetails.setReasonsforappoinment(reason_for_appointment_et.getText().toString());
-                    requestDetails.setEmail(email_et.getText().toString());
+                    requestDetails.setEmail(email);
                     requestDetails.setMobilenum(phone_et.getText().toString());
+
+                    if(!requestDetails.isSelfAppointment() && TextUtils.isEmpty(requestDetails.getEmail()))
+                    {
+                        showMyDialog("Alert", "Patient account will be created and Email will be send to you","Ok", new ApiErrorDialogInterface() {
+
+
+                            @Override
+                            public void retryClick() {
+                                callAppointmentBookingMapper();
+                            }
+                            @Override
+                            public void onCloseClick() {
+
+                            }
+                        });
+                        return;
+                    }
+                    callAppointmentBookingMapper();
+
                 }
                 /*if(requestDetails!=null && requestDetails.isSelfAppointment())
                 {
@@ -133,10 +213,58 @@ public class AppointmentReviewFragment extends AbstractFragment {
                 {
                     Utils.showToastMessage("Others");
                 }*/
+
+
                 Utils.showToastMessage(requestDetails.toString());
             }
         });
 
+    }
+
+    private void callAppointmentBookingMapper() {
+
+        AppointmentBookingMapper mapper= new AppointmentBookingMapper(requestDetails);
+        mapper.setOnAppointmentBookingListener(new AppointmentBookingMapper.AppointmentBookingListener() {
+            @Override
+            public void getAppointmentBookingAPI(AbstractResponse response, String errorMessage) {
+                if(!isValidResponse(response,errorMessage,true,false))
+                {
+                    return;
+                }
+                showSuccessAppoiintmentView(response);
+            }
+        });
+
+    }
+
+    private void showSuccessAppoiintmentView(AbstractResponse response) {
+        review_view.setVisibility(View.GONE);
+        success_view.setVisibility(View.VISIBLE);
+
+        //
+        appointment_bt.setText("Done");
+
+
+
+        String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd h:mm a";//"2017-11-22 10:23 AM"
+
+        String DISPLAY_DATE="MMM d,yyyy";
+        String DISPLAY_TIME="h:mm a 'on' EEEE";
+
+
+        SimpleDateFormat DISPLAY_DATE_FORMATTER = new SimpleDateFormat(DISPLAY_DATE);
+        SimpleDateFormat DISPLAY_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_TIME);
+        MyTextViewRR appointment_conform_tv = fragmentView.findViewById(R.id.appointment_conform_tv);
+
+        try {
+            Date date = Utils.changeStringToDateFormat(dateTimeStr, SERVER_DATE_FORMAT_NEW);
+            String dateStr= DISPLAY_DATE_FORMATTER.format(date);
+            String timeStr= DISPLAY_TIME_FORMATTER.format(date);
+            appointment_conform_tv.setText("with "+ searchResultDoctorListData.getDoctorName() +" has been fixed\n at "+ timeStr+","+ dateStr);
+        }catch (Exception e)
+        {
+
+        }
     }
 
     private void setHeaderDetails() {
@@ -162,7 +290,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
 
 
 
-      String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd h:mm a";//"2017-11-22";"2018-01-16"
+        String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd h:mm a";//"2017-11-22 10:23 AM"
 
         String DISPLAY_DATE="MMM d,yyyy";
         String DISPLAY_TIME="h:mm a 'on' EEEE";
@@ -244,6 +372,12 @@ public class AppointmentReviewFragment extends AbstractFragment {
 
     }
 
+    public boolean isSuccesViewShown()
+    {
+        return success_view.getVisibility()==View.VISIBLE;
+    }
+
+
     @Override
     public void onResume() {
         super.onResume();
@@ -259,6 +393,18 @@ public class AppointmentReviewFragment extends AbstractFragment {
         this.searchResultDoctorListData = searchResultDoctorListData;
         //String doctor_id, String branch_id, String appointmenttime
         requestDetails= new BookAppointmentRequestDetails(searchResultDoctorListData.getDocId(),searchResultDoctorListData.getBranchId(),dateTimeStr);
+
+
         this.dateTimeStr=dateTimeStr;
+    }
+
+    public void setOnDoneButtonClickListener(DoneButtonClickListener doneButtonClickListener)
+    {
+        this.doneButtonClickListener=doneButtonClickListener;
+    }
+
+    public interface DoneButtonClickListener
+    {
+        void onClick();
     }
 }

@@ -200,14 +200,14 @@ public class SearchFragment extends AbstractFragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                callCountryListMapper();
+               // callCountryListMapper();
             }
         },200);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                callDoctorsClinicNamesMapper();
+               // callDoctorsClinicNamesMapper();
             }
         },300);
 
@@ -493,10 +493,24 @@ MyApplication.hideTransaprentDialog();
             @Override
             public void getCountryListAPI(CountryListAPI countryListAPI, String errorMessage) {
                 if (!isValidResponse(countryListAPI, errorMessage)) {
+
+                    showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_country_list_lbl), new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+
+                            ((AbstractActivity) MyApplication.getCurrentActivityContext()). finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callCountryListMapper();
+                        }
+                    });
                     return;
                 }
 
                 setToCountryAdapter(countryListAPI.getData());
+                callDoctorsClinicNamesMapper();
 
             }
         });
@@ -704,6 +718,7 @@ MyApplication.hideTransaprentDialog();
                 }
                 List<SpecalitiyData> dataList = specalitiesAPI.getData();
                 setToAutoComepteAdapter(dataList);
+                callCountryListMapper();
 
             }
         });

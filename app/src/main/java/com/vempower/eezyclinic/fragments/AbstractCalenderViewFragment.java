@@ -16,9 +16,7 @@ import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import com.prolificinteractive.materialcalendarview.OnRangeSelectedListener;
 import com.prolificinteractive.materialcalendarview.format.DateFormatTitleFormatter;
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
-import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.adapters.DoctorsListAdapter;
 import com.vempower.eezyclinic.adapters.TimeSlotsListAdapter;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 
@@ -141,24 +139,32 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
             }
         });
 
-        title_tv.setText(getSelectedMonthString(widget.getSelectedDate()));
-        //textView.setText(getSelectedDatesString());
+
+
         widget.setDynamicHeightEnabled(true);
         widget.setShowOtherDates(MaterialCalendarView.SHOW_OUT_OF_RANGE);
         widget.setTopbarVisible(false);
         widget.setTileHeightDp((int)getResources().getDimension(R.dimen._11dp));
 
-        setCurrentDate();
+
 
     }
 
-    private void setCurrentDate()
+    protected void setCurrentDate()
     {
-        widget.setSelectedDate(Calendar.getInstance());
-        widget.setCurrentDate(Calendar.getInstance());
-        String dateStr=getSelectedServerREquestDateString();
-        callTimeSlotsMapper(dateStr);
+        setCalderDay(Calendar.getInstance());
 
+    }
+
+    protected void setCalderDay(Calendar calendar)
+    {
+        widget.setSelectedDate(calendar);
+        widget.setCurrentDate(calendar);
+
+        String dateStr= getSelectedServerRequestDateString();
+        callTimeSlotsMapper(dateStr);
+        title_tv.setText(getSelectedMonthString(widget.getSelectedDate()));
+        textView.setText(getSelectedDatesString());
     }
 
     public void setOrderItemsToAdapter(String dateStr,List<String> slots) {
@@ -168,6 +174,12 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
         if (adapter == null) {
 
             adapter = new TimeSlotsListAdapter(dateStr,slots);
+            adapter.setOnDiasableDateListener(new TimeSlotsListAdapter.DiasableDateListener() {
+                @Override
+                public String getDisableDateTime() {
+                    return getDiabledDateAndtime();
+                }
+            });
 
             recyclerView.setAdapter(adapter);
         } else {
@@ -200,7 +212,7 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @Nullable CalendarDay date, boolean selected) {
         textView.setText(getSelectedDatesString());
-        String dateStr=getSelectedServerREquestDateString();
+        String dateStr= getSelectedServerRequestDateString();
         callTimeSlotsMapper(dateStr);
         // final CharSequence newTitle = DEFAULT_TITLE_FORMATTER.format(date);
         title_tv.setText(getSelectedMonthString(date));
@@ -221,7 +233,7 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
         }
         return FORMATTER.format(date.getDate());
     }
-    private String getSelectedServerREquestDateString() {
+    private String getSelectedServerRequestDateString() {
         CalendarDay date = widget.getSelectedDate();
         if (date == null) {
             return "-";
@@ -273,5 +285,9 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
             swipeLayout.setRefreshing(false);
         }
 
+    }
+
+    public String getDiabledDateAndtime() {
+        return null;
     }
 }

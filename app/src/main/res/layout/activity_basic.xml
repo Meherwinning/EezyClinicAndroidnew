@@ -127,7 +127,7 @@
         android:fontFamily="sans-serif-medium"
         android:textStyle="normal"
         android:textColor="#ffffff"
-        android:text="Conform Time"
+        android:text="Confirm Time"
 
         />
 

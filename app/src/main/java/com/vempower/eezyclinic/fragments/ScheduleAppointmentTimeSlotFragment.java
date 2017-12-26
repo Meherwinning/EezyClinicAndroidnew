@@ -1,8 +1,12 @@
 package com.vempower.eezyclinic.fragments;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Messenger;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.view.View;
 
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.APIResponce.AppointmentTimeSlotsAPI;
@@ -34,6 +38,13 @@ public class ScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewFra
             "appt_date": "2018-01-16"
     }
          */
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setCurrentDate();
+    }
+
     protected  void dateSelectFromCalender(final String dateStr)
     {
         if(searchResultDoctorListData==null)

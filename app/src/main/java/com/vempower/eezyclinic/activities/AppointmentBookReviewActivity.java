@@ -18,6 +18,7 @@ import com.vempower.eezyclinic.utils.Utils;
 public class AppointmentBookReviewActivity extends AbstractMenuActivity {
 
     private SearchResultDoctorListData data;
+    private AppointmentReviewFragment fragment;
 
     @Override
     protected void setMyContectntView() {
@@ -57,7 +58,21 @@ public class AppointmentBookReviewActivity extends AbstractMenuActivity {
         // myInit();
         //callDoctorProfileMapper(data);
 
-        AppointmentReviewFragment fragment= new AppointmentReviewFragment();
+        fragment= new AppointmentReviewFragment();
+        fragment.setOnDoneButtonClickListener(new AppointmentReviewFragment.DoneButtonClickListener() {
+            @Override
+            public void onClick() {
+                if(fragment!=null && fragment.isSuccesViewShown())
+                {
+                    callDashboard();
+                    finish();
+                }else
+                {
+                    finish();
+                }
+            }
+        });
+
         fragment.setSearchResultDoctorListData(data,dateTimeStr);
         setFragment(fragment);
 
@@ -83,7 +98,15 @@ public class AppointmentBookReviewActivity extends AbstractMenuActivity {
             @Override
             public void onClick(View view) {
                 //do something you want
-                finish();
+                if(fragment!=null && fragment.isSuccesViewShown())
+                {
+                    callDashboard();
+                    finish();
+                }else
+                {
+                    finish();
+                }
+
             }
         });
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -111,6 +134,13 @@ public class AppointmentBookReviewActivity extends AbstractMenuActivity {
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        finish();
+        if(fragment!=null && fragment.isSuccesViewShown())
+        {
+            callDashboard();
+            finish();
+        }else
+        {
+            finish();
+        }
     }
 }

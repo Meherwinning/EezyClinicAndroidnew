@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/top_linear"
+        android:paddingLeft="@dimen/_20dp"
+        android:paddingTop="@dimen/_3dp"
+        android:paddingBottom="@dimen/_3dp"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:background="#f4f4f4"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+    <com.vempower.eezyclinic.views.MyTextViewRR
+        android:id="@+id/match_found_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_14sp"
+        android:textStyle="normal"
+        android:layout_marginRight="@dimen/_5dp"
+        android:textColor="#5d5d5d"
+        android:text="0" />
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#5d5d5d"
+            android:text="found" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/top_linear"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/swipeContainer"
+            >
+            <com.vempower.eezyclinic.views.FixedRecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.vempower.eezyclinic.views.FixedRecyclerView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/no_appointment_result_tv"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_16sp"
+            android:fontFamily="sans-serif"
+            android:layout_centerInParent="true"
+            android:textStyle="normal"
+            android:textColor="#5d5d5d"
+            android:text="@string/no_upcoming_appointments_lbl" />
+    </RelativeLayout>
+
+   <!-- <com.gc.materialdesign.views.ButtonFloat
+        android:id="@+id/fab_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_15dp"
+        android:layout_marginBottom="@dimen/_40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        app:iconDrawable="@drawable/location_icon"
+        android:background="@color/white"
+        />-->
+
+</RelativeLayout>
