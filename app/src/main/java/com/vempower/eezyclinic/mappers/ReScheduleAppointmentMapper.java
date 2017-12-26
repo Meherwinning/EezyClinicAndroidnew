@@ -163,10 +163,10 @@ public class ReScheduleAppointmentMapper extends  AbstractMapper  implements Cal
             // }
 
             // if(docId!=-1) {
-                 jsonObject.put("doctor_id", requestDetails.doctor_id);
+                 jsonObject.put("doctorId", requestDetails.doctor_id);
             // }
              //if(branchId!=-1) {
-                 jsonObject.put("branch_id", requestDetails.branch_id);
+                 jsonObject.put("branchId", requestDetails.branch_id);
             // }
             // if(!TextUtils.isEmpty(requestDetails.appointmenttime)) {
                  jsonObject.put("appointmentDateTime", requestDetails.getNew_appointmenttime());

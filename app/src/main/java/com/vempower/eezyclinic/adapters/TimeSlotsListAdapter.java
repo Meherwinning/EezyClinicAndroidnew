@@ -22,6 +22,8 @@ import com.vempower.eezyclinic.views.MyCheckedTextViewRR;
 import com.vempower.eezyclinic.views.MyTextViewRM;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -132,9 +134,15 @@ public class TimeSlotsListAdapter extends RecyclerView.Adapter<TimeSlotsListAdap
             {
                 diabledDateAndtime=diasableDateListener.getDisableDateTime();
             }
+            String DISPLAY_DATE_TIME="h:mm a";//15-12-2017 05:00 PM     2017-12-26
+            // String DISPLAY_TIME="h:mm a 'on' EEEE";
+            String  SERVER_DATE_FORMAT_NEW="h:mm a";//"2017-12-26 16:55:00"
+            SimpleDateFormat DISPLAY_DATE_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_DATE_TIME);
+            Date date = Utils.changeStringToDateFormat(timeSlot, SERVER_DATE_FORMAT_NEW);
+          String   myTimeSlot= DISPLAY_DATE_TIME_FORMATTER.format(date);
 
 
-            if(diabledDateAndtime!=null && timeSlot!=null && diabledDateAndtime.equalsIgnoreCase(dateStr+" "+timeSlot))
+            if(diabledDateAndtime!=null && timeSlot!=null && diabledDateAndtime.equalsIgnoreCase(dateStr+" "+myTimeSlot))
             {
                 time_slot_ctv.setEnabled(false);
             }else

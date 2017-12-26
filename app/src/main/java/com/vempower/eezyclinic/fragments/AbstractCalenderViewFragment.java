@@ -33,7 +33,7 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
 
     private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
     private static final TitleFormatter DEFAULT_TITLE_FORMATTER = new DateFormatTitleFormatter();
-    static final String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd";//"2017-11-22";"2018-01-16"
+    static final String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd";//"2017-11-22";"2018-01-16"/ /15-12-2017 05:00 PM
     private static final SimpleDateFormat REQUEST_DATE_FORMATTER = new SimpleDateFormat(SERVER_DATE_FORMAT_NEW);
 
 

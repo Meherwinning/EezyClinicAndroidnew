@@ -11,14 +11,18 @@ import android.view.View;
 import com.vempower.eezyclinic.APICore.Appointment;
 import com.vempower.eezyclinic.APICore.ReScheduleAppointmentRequestDetails;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
+import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.APIResponce.AppointmentTimeSlotsAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.AppointmentBookReviewActivity;
+import com.vempower.eezyclinic.activities.HomeActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.mappers.DoctorAppointmentTimeSlotsListMapper;
+import com.vempower.eezyclinic.mappers.ReScheduleAppointmentMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRR;
@@ -34,6 +38,8 @@ import java.util.List;
 public class ReScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewFragment {
 
     private ReScheduleAppointmentRequestDetails reScheduleDetails;
+
+  //  private boolean isRefresh;
 
     private String disabledDateTime;
 
@@ -65,6 +71,31 @@ public class ReScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewF
 
     @Override
     protected void clickOnConfirmButton(String confirmDateTime) {
+        //2017-12-28 02:15 PM
+        //15-12-2017 05:00 PM
+
+
+        String DISPLAY_DATE_TIME="dd-MM-yyyy h:mm a";//15-12-2017 05:00 PM
+        // String DISPLAY_TIME="h:mm a 'on' EEEE";
+        String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd h:mm a";//"2017-12-26 16:55:00"
+        SimpleDateFormat DISPLAY_DATE_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_DATE_TIME);
+        // SimpleDateFormat DISPLAY_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_TIME);
+
+        try {
+            Date date = Utils.changeStringToDateFormat(confirmDateTime, SERVER_DATE_FORMAT_NEW);
+            confirmDateTime= DISPLAY_DATE_TIME_FORMATTER.format(date);
+            //String timeStr= DISPLAY_TIME_FORMATTER.format(date);
+            //With Dr. First name Middle name Last Name at 07:00 PM on Tuesday, 26-12-2017
+            // appointment_details_tv.setText("With "+ data.getDoctorName() +" at "+ timeStr+", "+ dateStr+"\nat "+data.getAddress());
+        }catch (Exception e)
+        {
+            //appointment_details_tv.setText("-");
+            Utils.showToastMessage("Invalid date format");
+            return;
+
+        }
+
+
         Utils.showToastMessage(confirmDateTime);
         if(!TextUtils.isEmpty(confirmDateTime))
         {
@@ -73,6 +104,30 @@ public class ReScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewF
             Utils.showToastMsg(reScheduleDetails.toString());
 
 
+            ReScheduleAppointmentMapper mapper= new ReScheduleAppointmentMapper(reScheduleDetails);
+            mapper.setOnAppointmentBookingListener(new ReScheduleAppointmentMapper.AppointmentBookingListener() {
+                @Override
+                public void getAppointmentBookingAPI(AbstractResponse response, String errorMessage) {
+                    if(!isValidResponse(response,errorMessage,true,false))
+                    {
+                        return;
+                    }
+                   showMyDialog("Success", response.getStatusMessage(), "Ok", new ApiErrorDialogInterface() {
+                       @Override
+                       public void onCloseClick() {
+
+                       }
+
+                       @Override
+                       public void retryClick() {
+                           Intent  intent= new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class);
+                           //intent.setClass(this,HomeActivity.class);
+                           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                           startActivity(intent);
+                       }
+                   });
+                }
+            });
 
 
         }
@@ -117,7 +172,7 @@ public class ReScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewF
     public void setReScheduleDetails(ReScheduleAppointmentRequestDetails reScheduleDetails) {
         this.reScheduleDetails = reScheduleDetails;
 
-        String DISPLAY_DATE_TIME="yyyy-MM-dd h:mm a";//15-12-2017 05:00 PM
+        String DISPLAY_DATE_TIME="yyyy-MM-dd h:mm a";//15-12-2017 05:00 PM     2017-12-26
        // String DISPLAY_TIME="h:mm a 'on' EEEE";
         String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd HH:mm:ss";//"2017-12-26 16:55:00"
         SimpleDateFormat DISPLAY_DATE_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_DATE_TIME);
