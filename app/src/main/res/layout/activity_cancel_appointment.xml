@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:mySwitch="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:theme="@style/Toolbar">
+            <!--  <ImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="match_parent"
+                  android:layout_gravity="left"
+                  android:onClick="onCategoriesRelativeClick"
+
+                  android:src="@drawable/categories_icon_hover"
+
+                  />-->
+            <ImageView
+                android:id="@+id/close_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:src="@drawable/close_icon"
+
+                />
+
+            <com.vempower.eezyclinic.views.MyTextViewRM
+
+                android:id="@+id/title_logo_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title_text_size"
+
+                />
+
+        </android.support.v7.widget.Toolbar>
+
+
+        <com.miguelcatalan.materialsearchview.MaterialSearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_linear"
+        android:layout_below="@+id/toolbar_container"
+
+
+        android:layout_marginTop="@dimen/_5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_buttons"
+            android:layout_alignParentTop="true"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+
+
+            <com.vempower.eezyclinic.views.MyTextViewRR
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sp"
+                android:layout_marginTop="@dimen/_15dp"
+
+                android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:layout_marginRight="@dimen/_15dp"
+
+                android:textColor="#212121"
+                android:text="Reasons for Cancellation"
+                />
+
+
+            <ScrollView
+                android:id="@+id/scroll"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_15dp"
+                    android:orientation="vertical"
+                     android:layout_marginLeft="@dimen/_15dp"
+                    android:layout_marginRight="@dimen/_15dp"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:background="#e6e6e6"
+                        android:gravity="left|top"
+                        android:padding="@dimen/_6dp"
+                        android:maxLength="255"
+                        android:textSize="@dimen/_14sp"
+                        android:textColor="@color/black"
+
+                        android:minHeight="@dimen/_200dp" />
+
+
+              <!--  <include
+                    android:visibility="gone"
+                    android:id="@+id/clinics_layout"
+                    layout="@layout/clinics_filter_view_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></include>-->
+                </LinearLayout>
+
+
+
+
+            </ScrollView>
+
+
+        </LinearLayout>
+               <LinearLayout
+            android:id="@+id/bottom_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48dp"
+                   android:layout_marginTop="@dimen/_20dp"
+            android:layout_alignParentBottom="true"
+                   android:layout_marginBottom="@dimen/_15dp"
+                   android:layout_marginLeft="@dimen/_15dp"
+                   android:layout_marginRight="@dimen/_15dp"
+
+            android:background="#212121"
+            android:orientation="horizontal">
+
+
+
+            <com.vempower.eezyclinic.views.MyTextViewRR
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ef6b53"
+                android:gravity="center"
+                android:onClick="onCancelButtonClick"
+
+                android:textSize="@dimen/_15sp"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="normal"
+                android:textColor="#ffffff"
+                android:text="Cancel Appointment"
+
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <!--<include
+
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        layout="@layout/title_bar_layout"></include>-->
+    <LinearLayout
+        android:id="@+id/bottom_view"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="gone"></LinearLayout>
+
+
+</RelativeLayout>
+
+    <!--app:iconDrawable="@drawable/list_view_icon"-->

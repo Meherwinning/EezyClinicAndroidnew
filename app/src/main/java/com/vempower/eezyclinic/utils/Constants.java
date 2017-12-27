@@ -104,6 +104,7 @@ public interface Constants {
         String IS_FROM_DASH_BOARD = "is_from_dash_board";
         String SELECTED_SCHDULE_DATE_TIME_KEY = "selected_schdule_date_time_key";
         String IS_FROM_RE_SCHUDULE_KEY="is_from_re_schudule_key";
+        String APPOINTMENT_ID_KEY = "appointment_id_key";
     }
 
     interface ActivityResult

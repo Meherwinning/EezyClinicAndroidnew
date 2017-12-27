@@ -17,6 +17,7 @@ public interface ListenerKey {
         String UPCOMING_APPOINTMENT_LIST_DATA_KEY="upcoming_appointment_list_data_key";
         //String APPOINTMENT_OBJECT_KEY="appointment_object_key";
         String RESCHEDULE_APPOINTMENT_OBJECT_KEY="ReScheduleAppointment_object";
+        String APPOINTMENT_OBJECT_KEY="appointment_object_key";
     }
 
 }

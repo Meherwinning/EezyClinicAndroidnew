@@ -36,12 +36,12 @@ public class ReScheduleAppointmentActivity extends AbstractMenuActivity {
 
             // showToastMessage("Data :" + data);
         } else {
-            showMyAlertDialog("Alert", "Invalid Doctor profile.Please try again", "Close", true);
+            showMyAlertDialog("Alert", "Invalid Appointment details.Please try again", "Close", true);
             return;
         }
 
         if (data == null) {
-            showMyAlertDialog("Alert", "Invalid Doctor profile.Please try again", "Close", true);
+            showMyAlertDialog("Alert", "Invalid Appointment details.Please try again", "Close", true);
             return;
 
         }
