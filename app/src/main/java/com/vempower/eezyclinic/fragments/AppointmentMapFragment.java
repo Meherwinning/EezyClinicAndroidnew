@@ -33,7 +33,7 @@ import java.util.List;
  * Created by challa on 12/12/17.
  */
 
-public class MarkerMapFragment extends AbstractMapFragment/*, GoogleMap.OnMarkerClickListener */ {
+public class AppointmentMapFragment extends AbstractMapFragment/*, GoogleMap.OnMarkerClickListener */ {
 
 
     private Appointment appointment;
@@ -47,7 +47,7 @@ public class MarkerMapFragment extends AbstractMapFragment/*, GoogleMap.OnMarker
 
 
 
-    public MarkerMapFragment()
+    public AppointmentMapFragment()
     {
         setOnGoogleMarkerClickListener(new GoogleMarkerClickListener() {
             @Override

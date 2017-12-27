@@ -152,4 +152,9 @@ public interface EezyClinicAPI {
     @POST(data + "appointment/reschedule")
     Call<AbstractResponse> rescheduleAppointment(@Body RequestBody postBody);
 
+    //http://202.63.103.194:8003/api/appointment/cancel
+    @POST(data + "appointment/cancel")
+    Call<AbstractResponse> cancelAppointment(@Body RequestBody postBody);
+
+
 }

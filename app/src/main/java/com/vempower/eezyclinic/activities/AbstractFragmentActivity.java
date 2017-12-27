@@ -107,7 +107,50 @@ public class AbstractFragmentActivity extends AbstractActivity  /*implements OTP
 
     }*/
 
-    protected boolean isValidResponse(AbstractResponse response, String errorMessage)
+    protected boolean isValidResponse(AbstractResponse response, String errorMessage/*,boolean isShowDialog,boolean isShowNothing*/)
+    {
+
+        return isValidResponse( response,  errorMessage, false,false);
+    }
+
+    protected boolean isValidResponse(AbstractResponse response, String errorMessage,boolean isShowDialog,boolean isFinish)
+    {
+        if(response==null && TextUtils.isEmpty(errorMessage))
+        {
+            if(isShowDialog)
+            {
+                showAlertDialog("Alert",  Utils.getStringFromResources(R.string.invalid_service_response_lbl),isFinish);
+            }else {
+                Utils.showToastMsg(R.string.invalid_service_response_lbl);
+            }
+            return false;
+        }
+        if(response==null && !TextUtils.isEmpty(errorMessage))
+        {
+            if(isShowDialog) {
+                showAlertDialog("Alert", errorMessage,isFinish);
+            }else {
+                Utils.showToastMsg(errorMessage);
+            }
+            return false;
+        }
+        if(!response.getStatusCode().equalsIgnoreCase(Constants.SUCCESS_STATUS_CODE))
+        {
+            if(isShowDialog) {
+                showAlertDialog("Alert",response.getStatusMessage() ,isFinish);
+            }else
+            {
+                Utils.showToastMsg(response.getStatusMessage());
+            }
+            //showMyAlertDialog("Alert",response.getStatusMessage() ,"Ok",false);
+
+            return false;
+
+        }
+        return true;
+    }
+
+  /*  protected boolean isValidResponse(AbstractResponse response, String errorMessage)
     {
         if(response==null && TextUtils.isEmpty(errorMessage))
         {
@@ -126,7 +169,7 @@ public class AbstractFragmentActivity extends AbstractActivity  /*implements OTP
 
         }
         return true;
-    }
+    }*/
 
     public void onTermsAndConditionsClick(View view)
     {

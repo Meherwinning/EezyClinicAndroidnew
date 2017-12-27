@@ -91,6 +91,7 @@ public abstract class AbstractMapFragment extends AbstractFragment implements On
                     //mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 30));
                     int padding = 50; // offset from edges of the map in pixels
                     CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+
                     mMap.animateCamera(cu);
                     mMap.setInfoWindowAdapter(new PopupAdapter(getLayoutInflater()));
                 }

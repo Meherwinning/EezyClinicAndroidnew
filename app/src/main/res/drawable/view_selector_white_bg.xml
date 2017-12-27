@@ -11,5 +11,5 @@
         <item android:drawable="@drawable/btn_stand_focused" android:state_enabled="true" android:state_focused="true"/>
 -->
         <!-- enabled state -->
-        <item android:drawable="@drawable/view_normal_color" />
+        <item android:drawable="@drawable/view_white_color" />
 </selector>

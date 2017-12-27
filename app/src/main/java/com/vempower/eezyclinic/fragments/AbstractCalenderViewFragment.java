@@ -18,11 +18,13 @@ import com.prolificinteractive.materialcalendarview.format.DateFormatTitleFormat
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.TimeSlotsListAdapter;
+import com.vempower.eezyclinic.views.MyCheckedTextViewRR;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,12 +34,16 @@ import java.util.List;
 public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecyclerViewFragment implements OnDateSelectedListener, OnMonthChangedListener {
 
     private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
+    //private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
+    static final String   DATE_DISPLAY_FORMAT_NEW="dd-MM-yyyy'\n'EEE";
+    private static final SimpleDateFormat DATE_DISPLAY_FORMATTER = new SimpleDateFormat(DATE_DISPLAY_FORMAT_NEW);
+
     private static final TitleFormatter DEFAULT_TITLE_FORMATTER = new DateFormatTitleFormatter();
     static final String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd";//"2017-11-22";"2018-01-16"/ /15-12-2017 05:00 PM
     private static final SimpleDateFormat REQUEST_DATE_FORMATTER = new SimpleDateFormat(SERVER_DATE_FORMAT_NEW);
 
 
-    private TextView textView;
+    private MyTextViewRR textView;
     private MyTextViewRR title_tv;
 
     private MaterialCalendarView widget;
@@ -47,6 +53,9 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
     private View fragmentView;
     private TimeSlotsListAdapter adapter;
     private Button conform_time_bt;
+    private MyCheckedTextViewRR today_ctv;
+    private Calendar startCalendar;
+    private Calendar endCalendar;
 
     @Nullable
     @Override
@@ -69,6 +78,7 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
         widget =fragmentView.findViewById(R.id.calendarView);
         textView =fragmentView.findViewById(R.id. textView);
         title_tv =fragmentView.findViewById(R.id. title_tv);
+        today_ctv = fragmentView.findViewById(R.id.today_ctv);
 
         conform_time_bt  =fragmentView.findViewById(R.id.conform_time_bt);
 
@@ -112,10 +122,10 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
         widget.setWeekDayLabels(getResources().getStringArray(R.array.days));
 
 
-        Calendar startCalendar=Calendar.getInstance();
+         startCalendar=Calendar.getInstance();
 
 
-        Calendar endCalendar=Calendar.getInstance();
+         endCalendar=Calendar.getInstance();
         endCalendar.set(Calendar.YEAR,startCalendar.get(Calendar.YEAR)+10);
 
 
@@ -148,23 +158,95 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
 
 
 
+        fragmentView.findViewById(R.id.pre_day_iv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar=Calendar.getInstance();
+
+                widget.getSelectedDate().copyTo(calendar);
+                if(calendar!=null) {
+                    calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) - 1);
+
+
+                    if(compareToDay(startCalendar.getTime(),calendar.getTime())<=0)
+                    {
+                        setCalderDay(calendar);
+                    }
+                }
+            }
+        });
+
+        fragmentView.findViewById(R.id.next_day_iv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar=Calendar.getInstance();
+
+                widget.getSelectedDate().copyTo(calendar);
+                if(calendar!=null) {
+                    calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) + 1);
+
+                    if(compareToDay(endCalendar.getTime(),calendar.getTime())>=0)
+                    {
+                        setCalderDay(calendar);
+                    }
+                }
+            }
+        });
+
+
+        today_ctv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!today_ctv.isChecked())
+                {
+                    setCurrentDate();
+                }
+
+            }
+        });
+
+
+
     }
 
     protected void setCurrentDate()
     {
         setCalderDay(Calendar.getInstance());
 
+
+    }
+
+    public  int compareToDay(Date date1, Date date2) {
+        if (date1 == null || date2 == null) {
+            return 0;
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        return sdf.format(date1).compareTo(sdf.format(date2));
     }
 
     protected void setCalderDay(Calendar calendar)
     {
+        today_ctv.setChecked(false);
         widget.setSelectedDate(calendar);
         widget.setCurrentDate(calendar);
+
+        computeTodayButton(calendar);
+
 
         String dateStr= getSelectedServerRequestDateString();
         callTimeSlotsMapper(dateStr);
         title_tv.setText(getSelectedMonthString(widget.getSelectedDate()));
         textView.setText(getSelectedDatesString());
+    }
+
+    private void computeTodayButton(Calendar calendar) {
+        if(compareToDay(Calendar.getInstance().getTime(),calendar.getTime())==0)
+        {
+            today_ctv.setChecked(true);
+        }else
+        {
+            today_ctv.setChecked(false);
+        }
     }
 
     public void setOrderItemsToAdapter(String dateStr,List<String> slots) {
@@ -211,6 +293,11 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
 
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @Nullable CalendarDay date, boolean selected) {
+        Calendar calendar=Calendar.getInstance();
+        date.copyTo(calendar);
+
+        computeTodayButton(calendar);
+
         textView.setText(getSelectedDatesString());
         String dateStr= getSelectedServerRequestDateString();
         callTimeSlotsMapper(dateStr);
@@ -229,9 +316,9 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
     private String getSelectedDatesString() {
         CalendarDay date = widget.getSelectedDate();
         if (date == null) {
-            return "No Selection";
+            return "-";
         }
-        return FORMATTER.format(date.getDate());
+        return DATE_DISPLAY_FORMATTER.format(date.getDate());
     }
     private String getSelectedServerRequestDateString() {
         CalendarDay date = widget.getSelectedDate();

@@ -14,6 +14,8 @@ import com.vempower.eezyclinic.APICore.Appointment;
 import com.vempower.eezyclinic.APICore.ReScheduleAppointmentRequestDetails;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.AppointmentDetailsActivity;
+import com.vempower.eezyclinic.activities.CancelAppointmentActivity;
 import com.vempower.eezyclinic.activities.DoctorProfileActivity;
 import com.vempower.eezyclinic.activities.ReScheduleAppointmentActivity;
 import com.vempower.eezyclinic.activities.ScheduleAppointmentActivity;
@@ -21,6 +23,7 @@ import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRM;
 import com.vempower.eezyclinic.views.MyTextViewRR;
@@ -131,7 +134,39 @@ public class UpcomingAppointmentListAdapter extends RecyclerView.Adapter<Upcomin
             cancel_app_tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Utils.showToastMsg("Cancel :"+data.getId());
+
+                    Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),CancelAppointmentActivity.class);
+
+                    intent.putExtra(Constants.Pref.APPOINTMENT_ID_KEY,data.getId()+"");
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                    MyApplication.getCurrentActivityContext().startActivity(intent);
+
+
+                }
+            });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),AppointmentDetailsActivity.class);
+                           /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+                    intent.putExtra(ListenerKey.ObjectKey.APPOINTMENT_OBJECT_KEY,new Messenger(new AbstractIBinder(){
+                        @Override
+                        protected IntentObjectListener getMyObject() {
+                            return new IntentObjectListener(){
+
+                                @Override
+                                public Object getObject() {
+                                    return data;
+                                }
+                            };
+                        }
+                    }));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                    MyApplication.getCurrentActivityContext().startActivity(intent);
 
                 }
             });
@@ -139,7 +174,7 @@ public class UpcomingAppointmentListAdapter extends RecyclerView.Adapter<Upcomin
             re_schedule_tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Utils.showToastMsg("Re schedule :"+data.getId());
+                   // Utils.showToastMsg("Re schedule :"+data.getId());
 //int doctor_id, int branch_id,
                     //String patientId,String appointmentDateTime,
                            // String oldAppointmentId

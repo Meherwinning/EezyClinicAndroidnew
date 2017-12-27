@@ -5,9 +5,12 @@ import android.util.Log;
 
 import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
+import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 
 import org.json.JSONException;
@@ -22,21 +25,24 @@ import retrofit.Retrofit;
  * Created by Satishk on 4/10/2017.
  */
 
-public class ResendOTPMapper extends  AbstractMapper  implements Callback<SignupAPI> {
+public class CancelAppointmentMapper extends  AbstractMapper  implements Callback<AbstractResponse> {
 
 
-    private ResendOTPListener listener;
+    private CancelAppointmentListener listener;
     //private final String userId,password;
-    private final String id;
-    public ResendOTPMapper(String id) {
-        this.id=id;
+   /* cancelResaon(0)
+    appointmentId(1)*/
+    private final String appointmentId,cancelResaon;
+    public CancelAppointmentMapper(String appointmentId,String cancelResaon) {
+        this.appointmentId=appointmentId;
+        this.cancelResaon=cancelResaon;
 
     }
 
 
-    public void setOnResendOTPListener(ResendOTPListener listener) {
+    public void setOnCancelAppointmentListener(CancelAppointmentListener listener) {
         if (listener == null) {
-            Log.i(MyApplication.getCurrentActivityContext().getClass().getName(), "Invalid ResendOTPListener instance.");
+            Log.i(MyApplication.getCurrentActivityContext().getClass().getName(), "Invalid CancelAppointmentListener instance.");
             return;
 
         }
@@ -51,7 +57,7 @@ public class ResendOTPMapper extends  AbstractMapper  implements Callback<Signup
                 .getCurrentActivityContext())) {
             //Utils.showToastMsgForNetworkNotAvalable();
             if (listener != null) {
-                listener.getSignupAPI(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
+                listener.cancelAppointment(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
             }
             return;
         }
@@ -63,24 +69,24 @@ public class ResendOTPMapper extends  AbstractMapper  implements Callback<Signup
         if (requestBody == null) {
             MyApplication.hideTransaprentDialog();
             if (listener != null) {
-                listener.getSignupAPI(null,null);
+                listener.cancelAppointment(null,null);
             }
             return;
         }
 
-        Call<SignupAPI> apiResponseCall = stashDealAPI.resendOTPAPI(requestBody);
+        Call<AbstractResponse> apiResponseCall = stashDealAPI.cancelAppointment(requestBody);
 
         apiResponseCall.enqueue(this);
     }
 
     @Override
-    public void onResponse(Response<SignupAPI> response, Retrofit retrofit) {
+    public void onResponse(Response<AbstractResponse> response, Retrofit retrofit) {
         MyApplication.hideTransaprentDialog();
        // listener.getSignupAPI(response.body());
-        getMyResponse(response, new MyResponse<SignupAPI>() {
+        getMyResponse(response, new MyResponse<AbstractResponse>() {
             @Override
-            public void getMyResponse(SignupAPI responseBody, String errorMsg) {
-                listener.getSignupAPI(responseBody,errorMsg);
+            public void getMyResponse(AbstractResponse responseBody, String errorMsg) {
+                listener.cancelAppointment(responseBody,errorMsg);
             }
         });
 
@@ -90,10 +96,10 @@ public class ResendOTPMapper extends  AbstractMapper  implements Callback<Signup
     public void onFailure(Throwable error) {
         MyApplication.hideTransaprentDialog();
         //listener.getSignupAPI(null);
-        onMyFailure(error, new MyResponse<SignupAPI>() {
+        onMyFailure(error, new MyResponse<AbstractResponse>() {
             @Override
-            public void getMyResponse(SignupAPI responseBody, String errorMsg) {
-                listener.getSignupAPI(responseBody,errorMsg);
+            public void getMyResponse(AbstractResponse responseBody, String errorMsg) {
+                listener.cancelAppointment(responseBody,errorMsg);
             }
         });
 
@@ -101,13 +107,30 @@ public class ResendOTPMapper extends  AbstractMapper  implements Callback<Signup
 
     public RequestBody getMyRequestBody() {
 
-        if (TextUtils.isEmpty(id)) {
+
+
+        String access_key= SharedPreferenceUtils.getStringValueFromSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,null);
+        if (TextUtils.isEmpty(access_key) ) {
             return null;
         }
 
+        if (TextUtils.isEmpty(appointmentId)) {
+            return null;
+        }
+
+
+  /*
+        access_key (1)
+cancelResaon(0)
+appointmentId(1)
+         */
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("id", id);
+            jsonObject.put("access_key", access_key);
+            jsonObject.put("appointmentId", appointmentId);
+            if(!TextUtils.isEmpty(cancelResaon)) {
+                jsonObject.put("cancelResaon", cancelResaon);
+            }
 
 
         } catch (JSONException e) {
@@ -117,7 +140,7 @@ public class ResendOTPMapper extends  AbstractMapper  implements Callback<Signup
         return getRequestBody(jsonObject);
     }
 
-    public interface ResendOTPListener {
-        public void getSignupAPI(SignupAPI signupAPI, String errorMessage);
+    public interface CancelAppointmentListener {
+        public void cancelAppointment(AbstractResponse abstractResponse, String errorMessage);
     }
 }

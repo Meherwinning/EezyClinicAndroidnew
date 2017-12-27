@@ -3,14 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:focusable="true"
-        />
 
 
     <ScrollView
@@ -19,7 +15,7 @@
         android:fillViewport="true"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/appointment_bt">
+        android:layout_above="@+id/bottom_buttons">
 
     <LinearLayout
 
@@ -100,7 +96,7 @@
                         android:textColor="#ffffff"
                         />
 
-                <com.vempower.eezyclinic.views.MyTextViewRB
+     <!--           <com.vempower.eezyclinic.views.MyTextViewRB
                     android:id="@+id/clinic_name_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -132,7 +128,7 @@
                     android:textStyle="normal"
                     android:textColor="#ffffff"
                     />
-
+-->
 
 
 
@@ -142,418 +138,171 @@
 
             </RelativeLayout>
         </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="@dimen/_20dp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_20dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
 
         <LinearLayout
+
+            android:background="@drawable/view_selector"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/_15dp"
-            android:layout_marginRight="@dimen/_20dp"
-            android:layout_marginLeft="@dimen/_20dp"
-            android:background="@color/white"
-            android:layout_height="match_parent">
-
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginRight="@dimen/_12dp"
+                android:layout_width="wrap_content"
+                android:src="@drawable/date_time_icon"
+                android:gravity="left|center"
+                android:layout_height="wrap_content"
+                />
             <LinearLayout
-                android:visibility="gone"
-                android:id="@+id/review_view"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-
-                android:layout_height="match_parent">
-            <com.vempower.eezyclinic.views.MyTextViewRR
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/_15sp"
-                android:textStyle="normal"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:textColor="#28b0e2"
-                android:text="Appointment:"
-                />
-            <com.vempower.eezyclinic.views.MyTextViewRR
-                android:id="@+id/time_date_display_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/_15sp"
-                android:textStyle="normal"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:textColor="#28b0e2"
-                android:text="-"
-                />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/_15dp"
                 android:layout_height="wrap_content">
+            <com.vempower.eezyclinic.views.MyTextViewRM
+
+                android:layout_width="match_parent"
+                android:textSize="@dimen/_14sp"
+                android:textColor="#212121"
+                android:text="Date &amp; Time"
+                android:gravity="left|center"
+                android:layout_height="match_parent"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="normal"
+
+
+                />
+
                 <com.vempower.eezyclinic.views.MyTextViewRR
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="left|center"
-                    android:textSize="@dimen/_13sp"
-                    android:textStyle="normal"
-
-                    android:textColor="#000000"
-                    android:text="Appointment for"/>
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="@dimen/_10dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-
-                    android:layout_height="wrap_content">
-                    <RadioGroup
-                        android:id="@+id/appointment_radio_group"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                    <com.vempower.eezyclinic.views.MyRadioButtonRR
-                        android:id="@+id/self_radio_button"
-                        android:layout_width="wrap_content"
-                        android:layout_marginRight="@dimen/_10dp"
-                        android:layout_height="match_parent"
-                        android:button="@drawable/checkbox_selector2"
-                        android:padding="@dimen/_5dp"
-
-                        android:text="Self"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_small" />
-                    <com.vempower.eezyclinic.views.MyRadioButtonRR
-                        android:id="@+id/others_radio_button"
-                        android:layout_width="wrap_content"
-                        android:layout_marginLeft="@dimen/_10dp"
-                        android:layout_height="match_parent"
-                        android:button="@drawable/checkbox_selector2"
-                        android:padding="@dimen/_5dp"
-
-                        android:text="Others"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_small" />
-                    </RadioGroup>
-
-                </LinearLayout>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10dp"
-                android:orientation="vertical">
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-
-                    android:layout_height="@dimen/_50dp"
-                    android:background="@drawable/background_shape_idle"
-
-                    android:textColorHint="#de000000"
-                    app:errorEnabled="true"
-                    app:hintEnabled="true"
-                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
-                        android:id="@+id/patient_name_et"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="@dimen/_2dp"
-                        android:background="@null"
-                        android:gravity="left|center_vertical"
-                        android:hint="Patient Name*"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="text"
-                        android:maxLength="50"
-                        android:maxLines="1"
-                        android:padding="@dimen/_2dp"
-                        android:singleLine="true"
-
-                        android:textColor="#de000000"
-                        android:textColorHint="#de000000"
-                        android:textSize="@dimen/text_size_normal" />
-
-                </android.support.design.widget.TextInputLayout>
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:alpha="0.3"
-                    android:layout_marginRight="@dimen/_12dp"
-                    android:background="@color/black" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/relation_linear"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_marginBottom="@dimen/_15dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50dp"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/_2dp">
-
-                    <com.vempower.eezyclinic.views.CustomSpinnerSelection
-                        android:id="@+id/relation_spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:backgroundTint="#de000000"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:foregroundTint="#de000000"
-
-                        android:layout_marginRight="@dimen/_5dp"
-                        android:spinnerMode="dropdown"
-                        android:textColor="#de000000"
-                        android:textSize="@dimen/button_text_size" />
-
-                </LinearLayout>
-
-                <!-- </android.support.design.widget.TextInputLayout>-->
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:alpha="0.3"
-                    android:layout_marginRight="@dimen/_12dp"
-                    android:background="@color/black" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10dp"
-                android:orientation="vertical">
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-
-                    android:layout_height="@dimen/_50dp"
-                    android:background="@drawable/background_shape_idle"
-
-                    android:textColorHint="#de000000"
-                    app:errorEnabled="true"
-                    app:hintEnabled="true"
-                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
-                        android:id="@+id/reason_for_appointment_et"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="@dimen/_2dp"
-                        android:background="@null"
-                        android:gravity="left|center_vertical"
-                        android:hint="Reason for Appointment"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="text"
-                        android:maxLength="50"
-                        android:maxLines="1"
-                        android:padding="@dimen/_2dp"
-                        android:singleLine="true"
-
-                        android:textColor="#de000000"
-                        android:textColorHint="#de000000"
-                        android:textSize="@dimen/text_size_normal" />
-
-                </android.support.design.widget.TextInputLayout>
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:alpha="0.3"
-                    android:layout_marginRight="@dimen/_12dp"
-                    android:background="@color/black" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/patient_email_id_linear"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10dp"
-                android:orientation="vertical">
-
-                <android.support.design.widget.TextInputLayout
-
-                    android:layout_width="match_parent"
-
-                    android:layout_height="@dimen/_50dp"
-                    android:background="@drawable/background_shape_idle"
-
-                    android:textColorHint="#de000000"
-                    app:errorEnabled="true"
-                    app:hintEnabled="true"
-                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
-                        android:id="@+id/email_et"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="@dimen/_2dp"
-                        android:background="@null"
-                        android:gravity="left|center_vertical"
-                        android:hint="Patient's email Id"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="text"
-                        android:maxLength="50"
-                        android:maxLines="1"
-                        android:padding="@dimen/_2dp"
-                        android:singleLine="true"
-
-                        android:textColor="#de000000"
-                        android:textColorHint="#de000000"
-                        android:textSize="@dimen/text_size_normal" />
-
-                </android.support.design.widget.TextInputLayout>
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:alpha="0.3"
-                    android:layout_marginRight="@dimen/_12dp"
-                    android:background="@color/black" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/patient_phone_number_linear"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10dp"
-                android:orientation="vertical">
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-
-                    android:layout_height="@dimen/_50dp"
-                    android:background="@drawable/background_shape_idle"
-
-                    android:textColorHint="#de000000"
-                    app:errorEnabled="true"
-                    app:hintEnabled="true"
-                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
-                        android:id="@+id/phone_et"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="@dimen/_2dp"
-                        android:background="@null"
-                        android:gravity="left|center_vertical"
-                        android:hint="Patient's phone number"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="text"
-                        android:maxLength="50"
-                        android:maxLines="1"
-                        android:padding="@dimen/_2dp"
-                        android:singleLine="true"
-
-                        android:textColor="#de000000"
-                        android:textColorHint="#de000000"
-                        android:textSize="@dimen/text_size_normal" />
-
-                </android.support.design.widget.TextInputLayout>
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:alpha="0.3"
-                    android:layout_marginRight="@dimen/_12dp"
-                    android:background="@color/black" />
-
-            </LinearLayout>
-            </LinearLayout>
-            <include
-                android:id="@+id/success_view"
-                layout="@layout/appointment_book_conform_layout"></include>
-           <!-- <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_height="match_parent">
-                <ImageView
+                   android:id="@+id/date_and_time_tv"
                     android:layout_width="wrap_content"
-                    android:src="@drawable/done"
-                     android:layout_gravity="center"
-                    android:layout_height="wrap_content" />
-                <com.vempower.eezyclinic.views.MyTextViewRR
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="@dimen/_13dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/_15sp"
-                    android:layout_gravity="center"
-                    android:fontFamily="sans-serif"
-                    android:textStyle="normal"
-                    android:textColor="#000000"
-                    android:text="Appointment Confirmed"
-                    />
-                <com.vempower.eezyclinic.views.MyTextViewRR
-                    android:layout_marginTop="@dimen/_13dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_14sp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/_4dp"
                     android:fontFamily="sans-serif"
                     android:textStyle="normal"
-                    android:textColor="#78000000"
-                    tools:text="with Dr. first doctor last doctor has been fixed at 12:15 PM on Friday,  Mar 27th, 2017"
+                    android:textColor="#555555"
+                    android:text="9.30 AM , Saturday,  28-09-2017"
                     />
-            </LinearLayout>-->
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/_20dp"
+
+
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/address_icon"
+                    android:gravity="left|center"
+                    android:layout_height="wrap_content"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <com.vempower.eezyclinic.views.MyTextViewRM
+
+                        android:layout_width="match_parent"
+                        android:textSize="@dimen/_14sp"
+                        android:textColor="#212121"
+                        android:text="Address"
+                        android:gravity="left|center"
+                        android:layout_height="match_parent"
+                        android:fontFamily="sans-serif-medium"
+                        android:textStyle="normal"
+
+
+                        />
+
+                    <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/address_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_14sp"
+                        android:layout_marginTop="@dimen/_4dp"
+                        android:fontFamily="sans-serif"
+                        android:textStyle="normal"
+                        android:textColor="#555555"
+                        android:text="Sunshine Clinic, Mehdipatnam, Hyd"
+                        />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="@dimen/_25dp"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:layout_width="match_parent"
+            android:minHeight="@dimen/_250dp"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/my_fragment_layout"
+                android:layout_above="@+id/bottom_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </FrameLayout>
+
+
         </LinearLayout>
 
 
 
 
-
-
-     <!--   <com.vempower.eezyclinic.widget.SlidingTabLayout
-            android:id="@+id/tabs"
-            android:visibility="gone"
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent"
-            app:tabIndicatorColor="@color/white"
-            app:tabTextColor="@color/white_with_alpha"
-            app:tabSelectedTextColor="@color/white"
-            android:layout_height="@dimen/_50sp"/>
- -->   </LinearLayout>
+  </LinearLayout>
     </ScrollView>
 
 
 
-    <com.rey.material.widget.Button
-
-        android:layout_alignParentBottom="true"
-        android:id="@+id/appointment_bt"
+    <LinearLayout
+        android:id="@+id/bottom_buttons"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_48dp"
-        android:layout_marginTop="@dimen/_5dp"
-        android:layout_marginBottom="@dimen/_5dp"
-        android:clickable="true"
-        android:layout_marginLeft="@dimen/_24dp"
-        android:layout_marginRight="@dimen/_24dp"
-        android:maxLines="1"
-        android:padding="@dimen/_4dp"
-        android:textAllCaps="false"
-        android:background="@drawable/button_bg"
+        android:layout_height="@dimen/_50dp"
+        android:layout_alignParentBottom="true"
 
-        android:textSize="@dimen/_16sp"
-        android:fontFamily="sans-serif-medium"
-        android:textStyle="normal"
-        android:textColor="#ffffff"
-        android:text="Book Appointment"
+        android:background="#aa212121"
+        android:orientation="horizontal">
 
-        />
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/cancel_tv"
+            android:background="@drawable/view_selector_white_bg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="Cancel"
+            android:textColor="#FFFF0000" />
 
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/re_schedule_tv"
+            android:background="@drawable/view_selector_white_bg"
+            android:layout_width="0dp"
+            android:clickable="true"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Reschedule"
+            android:textColor="#28b0e2" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>

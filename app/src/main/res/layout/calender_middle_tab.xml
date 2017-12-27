@@ -1,6 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
 
-</android.support.constraint.ConstraintLayout>
+    android:background="@color/transparent"
+    android:layout_height="@dimen/_45dp">
+
+    <RelativeLayout
+        android:layout_marginLeft="@dimen/_5dp"
+        android:layout_marginRight="@dimen/_5dp"
+        android:layout_width="@dimen/_90dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_height="match_parent">
+
+    <com.vempower.eezyclinic.views.MyCheckedTextViewRR
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/today_ctv"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_3dp"
+        android:background="@drawable/cal_bottom_date_item_bg"
+        android:clickable="true"
+
+        android:textSize="@dimen/_14sp"
+        android:gravity="center"
+        android:paddingBottom="@dimen/_8dp"
+        android:paddingLeft="@dimen/_20dp"
+        android:paddingRight="@dimen/_20dp"
+        android:paddingTop="@dimen/_8dp"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:text="Today"
+        android:textColor="@color/cal_bootom_date_text_color" />
+        <TextView
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:clickable="true"
+            android:gravity="center"
+            android:layout_gravity="center"
+
+            android:background="@color/transparent"
+            android:layout_height="match_parent"></TextView>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/pre_day_iv"
+            android:layout_width="wrap_content"
+            android:src="@drawable/cal_left_arrow"
+            android:layout_gravity="center"
+
+            android:paddingLeft="@dimen/_20dp"
+            android:paddingRight="@dimen/_10dp"
+            android:paddingTop="@dimen/_10dp"
+            android:paddingBottom="@dimen/_10dp"
+            android:layout_height="wrap_content" />
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="#28b0e2"
+            android:layout_gravity="center"
+            android:textSize="@dimen/_15sp"
+            android:gravity="center"
+
+            android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/next_day_iv"
+            android:layout_width="wrap_content"
+            android:src="@drawable/cal_left_arrow"
+            android:layout_gravity="center"
+            android:rotation="180"
+            android:paddingLeft="@dimen/_20dp"
+            android:paddingRight="@dimen/_10dp"
+            android:paddingTop="@dimen/_10dp"
+            android:paddingBottom="@dimen/_10dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>

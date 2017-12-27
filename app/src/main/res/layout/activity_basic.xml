@@ -51,9 +51,26 @@
         android:background="@color/white"
 
         android:padding="@dimen/_1dp">
-
+        <include
+            android:id="@+id/middle_tab"
+            android:layout_width="match_parent"
+            android:background="@color/transparent"
+            android:layout_height="@dimen/_45dp"
+            android:layout_alignParentTop="true"
+            layout="@layout/calender_middle_tab"></include>
         <TextView
-            android:id="@+id/textView"
+            android:layout_below="@+id/middle_tab"
+            android:id="@+id/devider_view"
+            android:layout_marginTop="@dimen/_4dp"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/_3dp"
+            android:alpha="0.4"
+            android:background="@color/dash_board_text_color"
+
+            android:layout_height="1dp" />
+        <TextView
+            android:visibility="gone"
+            android:layout_below="@+id/devider_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -63,9 +80,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView"
+            android:layout_below="@+id/devider_view"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_5dp"
+            android:layout_marginTop="@dimen/_3dp"
             android:orientation="vertical">
 
             <RelativeLayout
