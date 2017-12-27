@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:mySwitch="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:theme="@style/Toolbar">
+            <!--  <ImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="match_parent"
+                  android:layout_gravity="left"
+                  android:onClick="onCategoriesRelativeClick"
+
+                  android:src="@drawable/categories_icon_hover"
+
+                  />-->
+            <ImageView
+                android:id="@+id/close_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:src="@drawable/close_icon"
+
+                />
+
+            <com.vempower.eezyclinic.views.MyTextViewRM
+
+                android:id="@+id/title_logo_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title_text_size"
+
+                />
+
+        </android.support.v7.widget.Toolbar>
+
+
+        <com.miguelcatalan.materialsearchview.MaterialSearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_linear"
+        android:layout_below="@+id/toolbar_container"
+
+
+        android:layout_marginTop="@dimen/_5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_buttons"
+            android:layout_alignParentTop="true"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/doctor_or_clinic_liniear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10dp"
+                    android:layout_marginRight="@dimen/_18dp"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/_4dp"
+
+                    android:paddingLeft="@dimen/_10dp"
+                    android:paddingRight="@dimen/_10dp"
+
+                    android:paddingTop="@dimen/_4dp">
+                    <!--<attr name="sw_trackCap" format="integer">
+                        <enum name="butt" value="0x00000000" />
+                        <enum name="round" value="0x00000001" />
+                        <enum name="square" value="0x00000002" />
+                    </attr>-->
+                    <!--<com.nightonke.jellytogglebutton.JellyToggleButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:jtbJelly="itself"
+                        android:visibility="gone"
+                        />-->
+                    <com.vempower.eezyclinic.views.MySwitch
+                        android:id="@+id/switch1"
+                        style="@style/mySwitchStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_38dp"
+                        android:layout_gravity="left"
+                        android:gravity="center"
+                        mySwitch:textOff="  Doctor  "
+                        mySwitch:textOn="  Clinic  " />
+
+
+                    <!-- <com.rey.material.widget.Switch
+                    android:id="@+id/search_type_switch"
+                    android:layout_width="wrap_content"
+                    app:sw_trackSize="@dimen/_14dp"
+                    app:sw_thumbRadius="@dimen/_12dp"
+                    app:sw_trackCap="round"
+                    app:sw_thumbElevation="2dp"
+
+                    android:layout_height="wrap_content">
+                    ></com.rey.material.widget.Switch>-->
+                    <!--<TextView
+                        android:id="@+id/search_type_switch_tv"
+                        android:layout_width="wrap_content"
+                        android:text="Filter"
+                        android:textColor="@color/black"
+
+                        android:layout_marginLeft="@dimen/_10dp"
+                        android:layout_height="wrap_content" />-->
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginBottom="@dimen/_3dp"
+                    android:layout_marginLeft="@dimen/_20dp"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:alpha="0.5"
+                    android:background="#000000" />
+
+            </LinearLayout>
+
+
+            <ScrollView
+                android:id="@+id/scroll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <include
+                    android:id="@+id/doctors_layout"
+                    layout="@layout/doctors_filter_view_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></include>
+
+
+              <!--  <include
+                    android:visibility="gone"
+                    android:id="@+id/clinics_layout"
+                    layout="@layout/clinics_filter_view_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></include>-->
+                </LinearLayout>
+
+                <!-- <LinearLayout
+                 android:orientation="vertical"
+                 android:background="@color/white"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:orientation="vertical"
+                 android:background="@color/white"
+                 android:layout_height="wrap_content">
+                 <LinearLayout
+                     android:id="@+id/fee_linear"
+                     android:layout_width="match_parent"
+                     android:orientation="horizontal"
+                     android:layout_marginLeft="@dimen/_10dp"
+                     android:paddingLeft="@dimen/_10dp"
+                     android:layout_marginTop="@dimen/_5dp"
+                     android:layout_marginRight="@dimen/_18dp"
+                     android:paddingRight="@dimen/_10dp"
+
+                     android:layout_height="wrap_content">
+
+                     <com.vempower.eezyclinic.views.MyTextViewRR
+                         android:layout_width="0dp"
+                         android:layout_weight="1"
+                         android:layout_height="wrap_content"
+                         android:layout_gravity="center_horizontal"
+                         android:paddingTop="@dimen/_8dp"
+                         android:paddingBottom="@dimen/_8dp"
+                         android:text="Consultation Fee"
+                         android:textColor="#212121"
+
+                         android:textSize="@dimen/_16dp" />
+                     <ImageView
+
+
+                         android:id="@+id/fee_expand_iv"
+                         android:layout_width="wrap_content"
+                         android:layout_gravity="center"
+                         android:layout_height="wrap_content" />
+
+                 </LinearLayout>
+
+
+
+                 <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                     android:id="@+id/expandableLayout_fee_view"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+
+                     android:layout_below="@+id/top_linear"
+                     android:orientation="vertical"
+
+                     app:ael_duration="200"
+                     app:ael_expanded="false"
+                     android:layout_marginRight="@dimen/_10dp"
+                     android:layout_marginLeft="@dimen/_10dp"
+                     android:paddingLeft="@dimen/_10dp"
+                     >
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+
+                         android:orientation="vertical">
+
+
+                         <com.vempower.eezyclinic.views.myseekbar.RangeSeekBar
+                             xmlns:rsb="http://schemas.android.com/apk/res-auto"
+                             android:id="@+id/rangeSeekbar"
+                             android:layout_width="fill_parent"
+                             android:layout_height="wrap_content"
+                             rsb:absoluteMaxValue="999"
+
+                             rsb:singleThumb="true"
+                             rsb:absoluteMinValue="0" />
+
+
+                         &lt;!&ndash; </android.support.design.widget.TextInputLayout>&ndash;&gt;
+
+
+
+                     </LinearLayout>
+
+
+                 </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:background="#000000"
+                     android:alpha="0.5"
+                     android:layout_marginLeft="@dimen/_20dp"
+                     android:layout_marginTop="@dimen/_5dp"
+                     android:layout_marginBottom="@dimen/_3dp"
+                     android:layout_height="0.5dp" />
+
+             </LinearLayout>
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:orientation="vertical"
+                 android:background="@color/white"
+                 android:layout_height="wrap_content">
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:orientation="horizontal"
+                     android:layout_marginLeft="@dimen/_10dp"
+                     android:paddingLeft="@dimen/_10dp"
+                     android:layout_marginTop="@dimen/_5dp"
+                     android:layout_marginRight="@dimen/_8dp"
+                     android:paddingRight="@dimen/_10dp"
+
+                     android:layout_height="wrap_content">
+
+                     <com.vempower.eezyclinic.views.MyTextViewRR
+                         android:layout_width="0dp"
+                         android:layout_height="wrap_content"
+                         android:layout_gravity="center_horizontal"
+                         android:layout_weight="1"
+                         android:clickable="true"
+                         android:paddingBottom="@dimen/_8dp"
+                         android:paddingTop="@dimen/_8dp"
+                         android:text="Online booking"
+                         android:textColor="#212121"
+
+                         android:textSize="@dimen/_16dp" />
+
+                    &lt;!&ndash; <attr name="sw_trackSize" format="reference|dimension"/>
+                     <attr name="sw_trackColor" format="reference|color"/>
+                     <attr name="sw_trackCap" format="integer">
+                         <enum name="butt" value="0x00000000" />
+                         <enum name="round" value="0x00000001" />
+                         <enum name="square" value="0x00000002" />
+                     </attr>
+                     <attr name="sw_thumbColor" format="reference|color"/>
+                     <attr name="sw_thumbRadius" format="reference|dimension"/>
+                     <attr name="sw_thumbElevation" format="reference|dimension"/>
+                     <attr name="sw_animDuration" format="reference|integer"/>
+                     <attr name="sw_interpolator" format="reference"/>
+                     <attr name="android:gravity" />
+                     <attr name="android:checked" />&ndash;&gt;
+                     <com.rey.material.widget.Switch
+                         android:id="@+id/online_booking_switch"
+                         android:layout_width="wrap_content"
+                         app:sw_trackSize="@dimen/_14dp"
+                         app:sw_thumbRadius="@dimen/_12dp"
+                         app:sw_thumbElevation="2dp"
+
+                         android:layout_height="wrap_content">
+                         ></com.rey.material.widget.Switch>
+
+                 </LinearLayout>
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:background="#000000"
+                     android:alpha="0.5"
+                     android:layout_marginLeft="@dimen/_20dp"
+                     android:layout_marginTop="@dimen/_5dp"
+                     android:layout_marginBottom="@dimen/_3dp"
+                     android:layout_height="0.5dp" />
+
+             </LinearLayout>
+             <LinearLayout
+
+                 android:layout_width="match_parent"
+                 android:orientation="vertical"
+
+                 android:background="@color/white"
+                 android:layout_height="wrap_content">
+                 <LinearLayout
+                     android:id="@+id/gender_linear"
+                     android:layout_width="match_parent"
+                     android:orientation="horizontal"
+                     android:clickable="true"
+                     android:layout_marginLeft="@dimen/_10dp"
+                     android:paddingLeft="@dimen/_10dp"
+                     android:layout_marginTop="@dimen/_5dp"
+                     android:layout_marginRight="@dimen/_18dp"
+                     android:paddingRight="@dimen/_10dp"
+
+                     android:layout_height="wrap_content">
+
+                     <com.vempower.eezyclinic.views.MyTextViewRR
+                         android:layout_width="0dp"
+                         android:layout_weight="1"
+                         android:layout_height="wrap_content"
+                         android:layout_gravity="center_horizontal"
+                         android:paddingTop="@dimen/_8dp"
+
+                         android:paddingBottom="@dimen/_8dp"
+                         android:text="Gender"
+                         android:textColor="#212121"
+
+                         android:textSize="@dimen/_16dp" />
+                     <ImageView
+                         android:id="@+id/gender_expand_iv"
+                         android:layout_width="wrap_content"
+                         android:layout_gravity="center"
+                         android:layout_height="wrap_content" />
+
+                 </LinearLayout>
+                 <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                     android:id="@+id/expandableLayout_gender_view"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@+id/top_linear"
+                     android:orientation="vertical"
+
+                     app:ael_duration="200"
+                     app:ael_expanded="false"
+                     >
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginBottom="@dimen/_5dp"
+                         android:orientation="vertical">
+
+
+                             <include layout="@layout/male_female_view"></include>
+
+
+
+
+                         &lt;!&ndash; </android.support.design.widget.TextInputLayout>&ndash;&gt;
+
+
+
+                     </LinearLayout>
+
+
+                 </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:background="#000000"
+                     android:alpha="0.5"
+                     android:layout_marginLeft="@dimen/_20dp"
+                     android:layout_marginTop="@dimen/_5dp"
+                     android:layout_marginBottom="@dimen/_3dp"
+                     android:layout_height="0.5dp" />
+
+             </LinearLayout>
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:orientation="vertical"
+                 android:background="@color/white"
+                 android:layout_height="wrap_content">
+                 <LinearLayout
+                     android:id="@+id/language_linear"
+                     android:layout_width="match_parent"
+                     android:orientation="horizontal"
+                     android:layout_marginLeft="@dimen/_10dp"
+                     android:paddingLeft="@dimen/_10dp"
+                     android:clickable="true"
+                     android:layout_marginTop="@dimen/_5dp"
+                     android:layout_marginRight="@dimen/_18dp"
+                     android:paddingRight="@dimen/_10dp"
+
+                     android:layout_height="wrap_content">
+
+                     <com.vempower.eezyclinic.views.MyTextViewRR
+                         android:layout_width="0dp"
+                         android:layout_weight="1"
+                         android:layout_height="wrap_content"
+                         android:layout_gravity="center_horizontal"
+                         android:paddingTop="@dimen/_8dp"
+                         android:paddingBottom="@dimen/_8dp"
+                         android:text="Language Known"
+                         android:textColor="#212121"
+
+                         android:textSize="@dimen/_16dp" />
+                     <ImageView
+                         android:id="@+id/language_expand_iv"
+                         android:layout_width="wrap_content"
+                         android:layout_gravity="center"
+                         android:layout_height="wrap_content" />
+
+                 </LinearLayout>
+
+                 <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                     android:id="@+id/expandableLayout_language_view"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@+id/top_linear"
+                     android:orientation="vertical"
+                     app:ael_duration="300"
+                     app:ael_expanded="false"
+
+                     android:layout_marginLeft="@dimen/_10dp"
+                     android:paddingLeft="@dimen/_10dp"
+
+                     >
+                     <android.support.v4.widget.NestedScrollView
+                         android:layout_width="match_parent"
+
+
+                         android:layout_height="@dimen/_180dp"
+                         >
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginBottom="@dimen/_15dp"
+                         android:orientation="vertical">
+                         &lt;!&ndash;https://github.com/nex3z/ToggleButtonGroup&ndash;&gt;
+                         <com.nex3z.togglebuttongroup.MultiSelectToggleGroup
+                             android:id="@+id/launguage_group_toggle_views"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             app:tbgChildSpacing="3dp"
+
+                             app:tbgChildSpacingForLastRow="3dp"
+                             app:tbgFlow="true"
+
+                             app:tbgRowSpacing="3dp">
+
+                         </com.nex3z.togglebuttongroup.MultiSelectToggleGroup>
+
+
+
+                     </LinearLayout>
+                     </android.support.v4.widget.NestedScrollView>
+
+
+                 </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:background="#000000"
+                     android:alpha="0.5"
+                     android:layout_marginLeft="@dimen/_20dp"
+                     android:layout_marginTop="@dimen/_5dp"
+                     android:layout_marginBottom="@dimen/_3dp"
+                     android:layout_height="0.5dp" />
+
+             </LinearLayout>
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:orientation="vertical"
+                 android:background="@color/white"
+                 android:layout_height="wrap_content">
+                 <LinearLayout
+                     android:id="@+id/nationality_linear"
+                     android:layout_width="match_parent"
+                     android:orientation="horizontal"
+                     android:layout_marginLeft="@dimen/_10dp"
+                     android:paddingLeft="@dimen/_10dp"
+                     android:clickable="true"
+                     android:layout_marginTop="@dimen/_5dp"
+                     android:layout_marginRight="@dimen/_18dp"
+                     android:paddingRight="@dimen/_10dp"
+
+                     android:layout_height="wrap_content">
+
+                     <com.vempower.eezyclinic.views.MyTextViewRR
+                         android:layout_width="0dp"
+                         android:layout_weight="1"
+                         android:layout_height="wrap_content"
+                         android:layout_gravity="center_horizontal"
+                         android:paddingTop="@dimen/_8dp"
+                         android:paddingBottom="@dimen/_8dp"
+                         android:text="Nationality"
+                         android:textColor="#212121"
+
+                         android:textSize="@dimen/_16dp" />
+                     <ImageView
+                         android:id="@+id/nationality_expand_iv"
+                         android:layout_width="wrap_content"
+
+                         android:layout_gravity="center"
+                         android:layout_height="wrap_content" />
+
+                 </LinearLayout>
+
+                 <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                     android:id="@+id/expandableLayout_nationality_view"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@+id/top_linear"
+                     android:orientation="vertical"
+
+                     app:ael_duration="300"
+                     app:ael_expanded="false"
+                     android:layout_marginLeft="@dimen/_10dp"
+                     android:paddingLeft="@dimen/_10dp"
+                     >
+                     <android.support.v4.widget.NestedScrollView
+                         android:layout_width="match_parent"
+
+
+                         android:layout_height="@dimen/_180dp"
+                         >
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginBottom="@dimen/_15dp"
+                             android:orientation="vertical">
+
+                             <com.nex3z.togglebuttongroup.MultiSelectToggleGroup
+                                 android:id="@+id/nationality_group_toggle_views"
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 app:tbgChildSpacing="3dp"
+
+                                 app:tbgChildSpacingForLastRow="3dp"
+                                 app:tbgFlow="true"
+
+                                 app:tbgRowSpacing="3dp">
+
+                             </com.nex3z.togglebuttongroup.MultiSelectToggleGroup>
+                         </LinearLayout>
+                     </android.support.v4.widget.NestedScrollView>
+
+
+                 </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:background="#000000"
+                     android:alpha="0.5"
+                     android:layout_marginLeft="@dimen/_20dp"
+                     android:layout_marginTop="@dimen/_5dp"
+                     android:layout_marginBottom="@dimen/_3dp"
+                     android:layout_height="0.5dp" />
+
+             </LinearLayout>
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:orientation="vertical"
+                 android:background="@color/white"
+                 android:layout_height="wrap_content">
+                 <LinearLayout
+                     android:id="@+id/insurance_linaer"
+                     android:layout_width="match_parent"
+                     android:orientation="horizontal"
+                     android:layout_marginLeft="@dimen/_10dp"
+                     android:paddingLeft="@dimen/_10dp"
+                     android:clickable="true"
+                     android:layout_marginTop="@dimen/_5dp"
+                     android:layout_marginRight="@dimen/_18dp"
+                     android:paddingRight="@dimen/_10dp"
+
+                     android:layout_height="wrap_content">
+
+                     <com.vempower.eezyclinic.views.MyTextViewRR
+                         android:layout_width="0dp"
+                         android:layout_weight="1"
+                         android:layout_height="wrap_content"
+                         android:layout_gravity="center_horizontal"
+                         android:paddingTop="@dimen/_8dp"
+                         android:paddingBottom="@dimen/_8dp"
+                         android:text="Insurance Accepted"
+                         android:textColor="#212121"
+
+                         android:textSize="@dimen/_16dp" />
+                     <ImageView
+                         android:id="@+id/insurance_expand_iv"
+                         android:layout_width="wrap_content"
+                         android:layout_gravity="center"
+                         android:layout_height="wrap_content" />
+
+                 </LinearLayout>
+                 <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                     android:id="@+id/expandableLayout_insurance_view"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@+id/top_linear"
+                     android:orientation="vertical"
+
+                     app:ael_duration="300"
+                     app:ael_expanded="false"
+                     android:layout_marginLeft="@dimen/_10dp"
+                     android:paddingLeft="@dimen/_10dp"
+                     >
+                     <android.support.v4.widget.NestedScrollView
+                         android:layout_width="match_parent"
+
+
+                         android:layout_height="@dimen/_180dp"
+                         >
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginBottom="@dimen/_15dp"
+                             android:orientation="vertical">
+
+                             <com.nex3z.togglebuttongroup.MultiSelectToggleGroup
+                                 android:id="@+id/insurance_group_toggle_views"
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 app:tbgChildSpacing="3dp"
+
+                                 app:tbgChildSpacingForLastRow="3dp"
+                                 app:tbgFlow="true"
+
+                                 app:tbgRowSpacing="3dp">
+
+                             </com.nex3z.togglebuttongroup.MultiSelectToggleGroup>
+                         </LinearLayout>
+                     </android.support.v4.widget.NestedScrollView>
+
+
+                 </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:background="#000000"
+                     android:alpha="0.5"
+                     android:layout_marginLeft="@dimen/_20dp"
+                     android:layout_marginTop="@dimen/_5dp"
+                     android:layout_marginBottom="@dimen/_3dp"
+                     android:layout_height="0.5dp" />
+
+             </LinearLayout>
+
+
+
+         </LinearLayout>-->
+
+
+            </ScrollView>
+
+
+        </LinearLayout>
+        <!--  <TextView
+              android:layout_width="match_parent"
+              android:background="#000000"
+              android:alpha="0.5"
+              android:layout_marginLeft="@dimen/_20dp"
+              android:layout_marginTop="@dimen/_5dp"
+              android:layout_marginBottom="@dimen/_3dp"
+              android:layout_height="0.5dp" />-->
+        <LinearLayout
+            android:id="@+id/bottom_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50dp"
+            android:layout_alignParentBottom="true"
+
+            android:background="#212121"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="1dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:onClick="onClearAllButtonClick"
+                android:text="Clear All"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:onClick="onApplyButtonClick"
+                android:text="Apply"
+                android:textColor="#28b0e2" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <!--<include
+
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        layout="@layout/title_bar_layout"></include>-->
+    <LinearLayout
+        android:id="@+id/bottom_view"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="gone"></LinearLayout>
+
+
+</RelativeLayout>
+
+    <!--app:iconDrawable="@drawable/list_view_icon"-->
