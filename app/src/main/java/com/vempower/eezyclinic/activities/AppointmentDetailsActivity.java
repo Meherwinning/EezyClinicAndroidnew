@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.activities;
 
+import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.vempower.eezyclinic.utils.Constants;
 
 public class AppointmentDetailsActivity extends AbstractMenuActivity {
 
+    public static final int REQUESTCODE = 2343;
     private Appointment data;
     private AppointmentDetailsFragment fragment;
 
@@ -72,7 +74,19 @@ public class AppointmentDetailsActivity extends AbstractMenuActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if(resultCode== RESULT_OK)
+        {
+            if(requestCode==REQUESTCODE)
+            {
+                setResult(RESULT_OK);
+                finish();
+            }
+        }
+    }
 
     @Override
     protected AbstractFragment getFragment() {

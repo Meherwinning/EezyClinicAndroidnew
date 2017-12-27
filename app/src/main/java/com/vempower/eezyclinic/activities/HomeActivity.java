@@ -124,7 +124,15 @@ public class HomeActivity extends AbstractMenuActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        /*if(homeFragment!=null)
+        {
+            ((HomeFragment)homeFragment).refresh();
+        }*/
+    }
 
     public AbstractFragment getHomeFragment() {
        // HomeFragment fragment=new HomeFragment();

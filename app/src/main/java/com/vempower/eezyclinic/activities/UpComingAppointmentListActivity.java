@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.activities;
 
+import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
@@ -17,7 +18,9 @@ import java.util.List;
 
 public class UpComingAppointmentListActivity extends AbstractMenuActivity {
 
+    public static final int REQUESTCODE = 6234;
     private List<Appointment> list;
+    private UpcomingAppointmentListFragment fragment;
 
     @Override
     protected void setMyContectntView() {
@@ -46,9 +49,22 @@ public class UpComingAppointmentListActivity extends AbstractMenuActivity {
 
         }*/
 
-        UpcomingAppointmentListFragment fragment= new  UpcomingAppointmentListFragment() ;
+         fragment= new  UpcomingAppointmentListFragment() ;
         fragment.setAppointmentList(list);
         setFragment(fragment);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK)
+        {
+            if(requestCode==REQUESTCODE && fragment!=null)
+            {
+                fragment.refreshList();
+            }
+        }
     }
 
     @Override
@@ -65,6 +81,7 @@ public class UpComingAppointmentListActivity extends AbstractMenuActivity {
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
+      //  callDashboard();
         finish();
     }
     public void setActionBar() {
@@ -79,6 +96,7 @@ public class UpComingAppointmentListActivity extends AbstractMenuActivity {
             @Override
             public void onClick(View view) {
                 //do something you want
+               // callDashboard();
                 finish();
             }
         });
@@ -93,4 +111,9 @@ public class UpComingAppointmentListActivity extends AbstractMenuActivity {
         //super.setActionBar(false);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        callDashboard();
+    }
 }

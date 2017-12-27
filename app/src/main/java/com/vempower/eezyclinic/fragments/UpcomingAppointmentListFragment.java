@@ -35,7 +35,7 @@ public class UpcomingAppointmentListFragment extends SwipedRecyclerViewFragment 
     private UpcomingAppointmentListAdapter adapter;
     //private ArrayList<SearchResultDoctorListData> doctorsList;
 
-    private boolean isOnlyViewList;
+    //private boolean isOnlyViewList;
     private List<Appointment> appointmentList;
     //private MyTextViewRR match_found_tv;
 
@@ -46,24 +46,15 @@ public class UpcomingAppointmentListFragment extends SwipedRecyclerViewFragment 
 
         setupSwipeRefreshLayout(fragmentView);
 
-        if(isOnlyViewList)
-        {
-            viewList();
-        }else
-        {
-            refreshList();
-        }
-        isOnlyViewList=true;
+
+        refreshList();
+
 
         return fragmentView;
     }
 
 
 
-    public void isViewOnlyList(boolean isOnlyViewList)
-    {
-        this.isOnlyViewList=isOnlyViewList;
-    }
 
     private void init() {
 
@@ -81,10 +72,10 @@ public class UpcomingAppointmentListFragment extends SwipedRecyclerViewFragment 
         setOrderItemsToAdapter(appointmentList);
     }
 
-    private void refreshList()
+    public void refreshList()
     {
-        init();
 
+        callUpcomingAppointmentsMapper();
     }
 
     @Override
@@ -164,4 +155,6 @@ public class UpcomingAppointmentListFragment extends SwipedRecyclerViewFragment 
     public void setAppointmentList(List<Appointment> appointmentList) {
         this.appointmentList = appointmentList;
     }
+
+
 }

@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import com.vempower.eezyclinic.APICore.Appointment;
 import com.vempower.eezyclinic.APICore.ReScheduleAppointmentRequestDetails;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.AppointmentDetailsActivity;
 import com.vempower.eezyclinic.activities.CancelAppointmentActivity;
 import com.vempower.eezyclinic.activities.ReScheduleAppointmentActivity;
 import com.vempower.eezyclinic.application.MyApplication;
@@ -71,13 +72,27 @@ public class AppointmentDetailsFragment extends AbstractFragment {
         fragmentView.findViewById(R.id.cancel_tv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=null;
 
-                Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),CancelAppointmentActivity.class);
+                if(MyApplication.getCurrentActivityContext() instanceof AppointmentDetailsActivity)
+                {
+                    AppointmentDetailsActivity activity=  (AppointmentDetailsActivity)(MyApplication.getCurrentActivityContext());
+                     intent=  activity.getIntent();
+                    intent.setClass(MyApplication.getCurrentActivityContext(),CancelAppointmentActivity.class);
+                    intent.putExtra(Constants.Pref.APPOINTMENT_ID_KEY,appointment.getId());
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    activity.startActivityForResult(intent,AppointmentDetailsActivity.REQUESTCODE);
 
-                intent.putExtra(Constants.Pref.APPOINTMENT_ID_KEY,appointment.getId());
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                }else {
+                     intent=  new Intent(MyApplication.getCurrentActivityContext(),CancelAppointmentActivity.class);
+                    intent.putExtra(Constants.Pref.APPOINTMENT_ID_KEY,appointment.getId());
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                MyApplication.getCurrentActivityContext().startActivity(intent);
+                    MyApplication.getCurrentActivityContext().startActivity(intent);
+                }
+
+
+
 
             }
         });

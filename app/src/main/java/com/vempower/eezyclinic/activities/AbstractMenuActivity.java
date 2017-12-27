@@ -281,14 +281,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
     }
 
-    protected  void callDashboard(){
-        Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
-        intent.setClass(this,HomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(intent);
-        sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.HOME_ACTIVITY));
 
-    }
     //
     protected  void callSideMenuScreen(Class<? extends AbstractActivity> myClass){
         Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
@@ -301,13 +294,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     }
 
 
-    private HomeBottomItemClickListener getRecordingListTitleBarListener(final int flag) {
-        return new HomeBottomItemClickListener() {
-            public int getItemClicked() {
-                return flag;
-            }
-        };
-    }
+
     protected  void callMedicalRecordds(){
         Intent  intent= getIntent(); //= new Intent(this,HomeActivity.class);
         intent.setClass(this,HomeActivity.class);

@@ -19,6 +19,7 @@ import com.vempower.eezyclinic.activities.CancelAppointmentActivity;
 import com.vempower.eezyclinic.activities.DoctorProfileActivity;
 import com.vempower.eezyclinic.activities.ReScheduleAppointmentActivity;
 import com.vempower.eezyclinic.activities.ScheduleAppointmentActivity;
+import com.vempower.eezyclinic.activities.UpComingAppointmentListActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
@@ -134,13 +135,29 @@ public class UpcomingAppointmentListAdapter extends RecyclerView.Adapter<Upcomin
             cancel_app_tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Intent intent=null;
+                    if(MyApplication.getCurrentActivityContext() instanceof UpComingAppointmentListActivity) {
+                        intent=  ((UpComingAppointmentListActivity)(MyApplication.getCurrentActivityContext())).getIntent();
+                        intent.setClass(MyApplication.getCurrentActivityContext(),CancelAppointmentActivity.class);
 
-                    Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),CancelAppointmentActivity.class);
+                    }else
+                    {
+                        intent=  new Intent(MyApplication.getCurrentActivityContext(),CancelAppointmentActivity.class);
+
+                    }
+                   // Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),CancelAppointmentActivity.class);
 
                     intent.putExtra(Constants.Pref.APPOINTMENT_ID_KEY,data.getId()+"");
                     intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra(CancelAppointmentActivity.IS_FROM_APPOINTMENT_LIST_KEY,true);
 
-                    MyApplication.getCurrentActivityContext().startActivity(intent);
+                    if(MyApplication.getCurrentActivityContext() instanceof UpComingAppointmentListActivity)
+                    {
+                        UpComingAppointmentListActivity activity= (UpComingAppointmentListActivity) MyApplication.getCurrentActivityContext();
+                        activity.startActivityForResult(intent,UpComingAppointmentListActivity.REQUESTCODE);
+                    }else {
+                        MyApplication.getCurrentActivityContext().startActivity(intent);
+                    }
 
 
                 }
@@ -150,8 +167,18 @@ public class UpcomingAppointmentListAdapter extends RecyclerView.Adapter<Upcomin
                 @Override
                 public void onClick(View v) {
 
-                    Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),AppointmentDetailsActivity.class);
+                    Intent intent=  null;//new Intent(MyApplication.getCurrentActivityContext(),AppointmentDetailsActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+
+                    if(MyApplication.getCurrentActivityContext() instanceof UpComingAppointmentListActivity) {
+                         intent=  ((UpComingAppointmentListActivity)(MyApplication.getCurrentActivityContext())).getIntent();
+                        intent.setClass(MyApplication.getCurrentActivityContext(),AppointmentDetailsActivity.class);
+
+                    }else
+                    {
+                         intent=  new Intent(MyApplication.getCurrentActivityContext(),AppointmentDetailsActivity.class);
+
+                    }
                     intent.putExtra(ListenerKey.ObjectKey.APPOINTMENT_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                         @Override
                         protected IntentObjectListener getMyObject() {
@@ -165,8 +192,13 @@ public class UpcomingAppointmentListAdapter extends RecyclerView.Adapter<Upcomin
                         }
                     }));
                     intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                    MyApplication.getCurrentActivityContext().startActivity(intent);
+                    if(MyApplication.getCurrentActivityContext() instanceof UpComingAppointmentListActivity)
+                    {
+                        UpComingAppointmentListActivity activity= (UpComingAppointmentListActivity) MyApplication.getCurrentActivityContext();
+                        activity.startActivityForResult(intent,UpComingAppointmentListActivity.REQUESTCODE);
+                    }else {
+                        MyApplication.getCurrentActivityContext().startActivity(intent);
+                    }
 
                 }
             });
@@ -192,6 +224,8 @@ public class UpcomingAppointmentListAdapter extends RecyclerView.Adapter<Upcomin
                         return;
                     }
                     final ReScheduleAppointmentRequestDetails details=requestDetails;
+
+
 
                     Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),ReScheduleAppointmentActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/

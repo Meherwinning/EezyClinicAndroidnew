@@ -33,6 +33,7 @@ import com.vempower.eezyclinic.activities.AbstractFragmentActivity;
 import com.vempower.eezyclinic.activities.DoctorsListActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.FilterRefreshListListener;
+import com.vempower.eezyclinic.callbacks.HomeBottomItemClickListener;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.core.SearchRequest;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
@@ -51,6 +52,7 @@ import java.util.List;
 public class CancelAppointmentActivity extends AbstractFragmentActivity /*implements MySwitch.OnChangeAttemptListener, CompoundButton.OnCheckedChangeListener*/ {
 
 
+    public static final String IS_FROM_APPOINTMENT_LIST_KEY = "is_from_appointment_list_key";
     private String appointmentId;
 
     // private ExpandableLinearLayout expandableLayout_gender_view;
@@ -111,11 +113,15 @@ public class CancelAppointmentActivity extends AbstractFragmentActivity /*implem
 
                    @Override
                    public void retryClick() {
-                       Intent  intent= new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class);
-                       //intent.setClass(this,HomeActivity.class);
-                       intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                       startActivity(intent);
+                      /* if(getIntent()!=null && getIntent().getBooleanExtra(CancelAppointmentActivity.IS_FROM_APPOINTMENT_LIST_KEY,false))
+                       {*/ setResult(RESULT_OK);
+                       finish();
                    }
+                      /* else {
+                           callDashboard();
+                           finish();
+                       }*/
+                  // }
                });
            }
        });

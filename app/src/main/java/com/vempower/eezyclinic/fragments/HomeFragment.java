@@ -99,6 +99,12 @@ public class HomeFragment extends AbstractFragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        callUpcomingAppointmentsMapper();
+    }
+
     private void callDashboardMapper()
     {
         String access_key= SharedPreferenceUtils.getStringValueFromSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,null);
@@ -140,7 +146,7 @@ public class HomeFragment extends AbstractFragment {
                     }
                 }
 
-                callUpcomingAppointmentsMapper();
+
 
 
             }
@@ -157,6 +163,7 @@ public class HomeFragment extends AbstractFragment {
                 if(!isValidResponse(upcomingAppointmentListAPI,errorMessage))
                 {
                     upcoming_appointment_name_tv.setText(null);
+                    upcoming_appointment_name_tv.setVisibility(View.GONE);
                     upcoming_appointment_tv.setText(Utils.getStringFromResources(R.string.upcoming_empty_appointment_list_msg));
                     upcoming_appointment_cardview.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -177,6 +184,7 @@ public class HomeFragment extends AbstractFragment {
                 //WithDr. M J Korian at08:45 AMonFriday, 08-12-2017
                 //atClinic 1, Al Karama, Dubai
                 upcoming_appointment_name_tv.setText(appointment.getDoctorName());
+                upcoming_appointment_name_tv.setVisibility(View.VISIBLE);
                 upcoming_appointment_tv.setText(appointment.getSpecalities()+
                         "\nat "+appointment.getAppointmentDateTime()+"\n"+appointment.getLocality()+","+appointment.getCity());
                 upcoming_appointment_cardview.setOnClickListener(new View.OnClickListener() {
@@ -193,7 +201,19 @@ public class HomeFragment extends AbstractFragment {
                 });
                 }
 
-                }
+                }else
+                  {
+                      upcoming_appointment_name_tv.setText(null);
+                      upcoming_appointment_name_tv.setVisibility(View.GONE);
+                      upcoming_appointment_tv.setText(Utils.getStringFromResources(R.string.upcoming_empty_appointment_list_msg));
+                      upcoming_appointment_cardview.setOnClickListener(new View.OnClickListener() {
+                          @Override
+                          public void onClick(View view) {
+                              //Utils.showToastMsg("No upcoming appointment(s).");
+                              Utils.showToastMsg(R.string.upcoming_empty_appointment_list_msg);
+                          }
+                      });
+                  }
             }
         });
 
@@ -271,6 +291,12 @@ public class HomeFragment extends AbstractFragment {
         }
 
 
+    }
+
+    public void refresh() {
+        refreshPatientData(null);
+        callDashboardMapper();
+        callUpcomingAppointmentsMapper();
     }
 
 

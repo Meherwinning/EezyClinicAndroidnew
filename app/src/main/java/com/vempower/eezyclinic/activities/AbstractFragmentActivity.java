@@ -24,6 +24,7 @@ import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.callbacks.HomeBottomItemClickListener;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
@@ -65,6 +66,15 @@ public class AbstractFragmentActivity extends AbstractActivity  /*implements OTP
         Log.v("FCM ID :", "FCM :"+ Utils.getFireBaseCloudMessageId());
     }
 
+    protected  void callDashboard(){
+        Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
+        intent.setClass(this,HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.HOME_ACTIVITY));
+
+    }
+
 
     protected void validateSignupReponse(SignupAPI signupAPI) {
         if(!signupAPI.getStatusCode().equalsIgnoreCase(Constants.SUCCESS_STATUS_CODE) || signupAPI.getData()==null)
@@ -79,6 +89,14 @@ public class AbstractFragmentActivity extends AbstractActivity  /*implements OTP
 
         startActivity(intent);
         finish();
+    }
+
+     HomeBottomItemClickListener getRecordingListTitleBarListener(final int flag) {
+        return new HomeBottomItemClickListener() {
+            public int getItemClicked() {
+                return flag;
+            }
+        };
     }
 
 
