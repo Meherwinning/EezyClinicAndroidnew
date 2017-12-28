@@ -3,6 +3,7 @@ package com.vempower.eezyclinic.views;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -13,7 +14,7 @@ import android.widget.TextView;
  * Created by satish on 20/11/17.
  */
 
-public class MyTextViewRR extends TextView {
+public class MyTextViewRR extends AppCompatTextView {
     public MyTextViewRR(Context context) {
         super(context);
         setFontStyle(context);

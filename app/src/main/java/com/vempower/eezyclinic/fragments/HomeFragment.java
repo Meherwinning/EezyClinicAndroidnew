@@ -31,6 +31,9 @@ import com.vempower.eezyclinic.views.MyTextViewRM;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by satish on 4/12/17.
  */
@@ -154,6 +157,11 @@ public class HomeFragment extends AbstractFragment {
 
     }
 
+    String DISPLAY_DATE_TIME="d MMM yyyy, EEEE h:mm a";
+    String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd HH:mm:ss";
+    SimpleDateFormat DISPLAY_DATE_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_DATE_TIME);
+
+
     private void callUpcomingAppointmentsMapper() {
         UpcomingAppointmentListMapper appointmentListMapper= new UpcomingAppointmentListMapper();
         appointmentListMapper.setOnUpcomingAppointmentListListener(new UpcomingAppointmentListMapper.UpcomingAppointmentListListener() {
@@ -185,8 +193,20 @@ public class HomeFragment extends AbstractFragment {
                 //atClinic 1, Al Karama, Dubai
                 upcoming_appointment_name_tv.setText(appointment.getDoctorName());
                 upcoming_appointment_name_tv.setVisibility(View.VISIBLE);
+
+                String dateTimeStr=appointment.getAppointmentDateTime();
+                try {
+                    Date date = Utils.changeStringToDateFormat(appointment.getAppointmentDateTime(), SERVER_DATE_FORMAT_NEW);
+                    String dateStr= DISPLAY_DATE_TIME_FORMATTER.format(date);
+                    // String timeStr= DISPLAY_TIME_FORMATTER.format(date);
+                    //With Dr. First name Middle name Last Name at 07:00 PM on Tuesday, 26-12-2017
+                    dateTimeStr=dateStr;
+                }catch (Exception e)
+                {
+
+                }
                 upcoming_appointment_tv.setText(appointment.getSpecalities()+
-                        "\nat "+appointment.getAppointmentDateTime()+"\n"+appointment.getLocality()+","+appointment.getCity());
+                        "\nat "+dateTimeStr+"\n"+appointment.getLocality()+","+appointment.getCity());
                 upcoming_appointment_cardview.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

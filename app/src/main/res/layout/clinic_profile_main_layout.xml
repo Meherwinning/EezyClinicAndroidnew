@@ -168,7 +168,7 @@
 
 </com.vempower.eezyclinic.widget.TouchCallbackLayout>
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
 
         android:layout_alignParentBottom="true"
         android:id="@+id/view_contact_number_bt"

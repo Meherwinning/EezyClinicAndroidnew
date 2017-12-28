@@ -2,6 +2,7 @@ package com.vempower.eezyclinic.views;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v7.widget.AppCompatCheckedTextView;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -12,7 +13,7 @@ import android.widget.CheckedTextView;
  * Created by satish on 22/12/17.
  */
 
-public class MyCheckedTextViewRR extends CheckedTextView {
+public class MyCheckedTextViewRR extends AppCompatCheckedTextView {
 
     public MyCheckedTextViewRR(Context context) {
         super(context);

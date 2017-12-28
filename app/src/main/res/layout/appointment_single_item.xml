@@ -112,10 +112,10 @@
         </LinearLayout>
 
         <TextView
+            android:visibility="invisible"
             android:layout_below="@+id/content_linear1"
             android:id="@+id/devider_view"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/_5dp"
             android:alpha="0.4"
             android:background="@color/dash_board_text_color"
 
@@ -127,7 +127,7 @@
             android:layout_marginBottom="@dimen/_5dp"
             android:layout_marginRight="@dimen/_5dp"
             android:orientation="horizontal"
-            android:layout_height="@dimen/_40sp">
+            android:layout_height="@dimen/_35sp">
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="0.5"

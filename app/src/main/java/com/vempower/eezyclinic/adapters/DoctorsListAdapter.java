@@ -167,30 +167,60 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
             reviews_count_tv.setText(TextUtils.isEmpty(data.getDoctorTotalReviews())?"0":data.getDoctorTotalReviews());
 
             recommendations_count_tv.setText(TextUtils.isEmpty(data.getDoctorRecommendedCount())?"0":data.getDoctorRecommendedCount());
-            book_appointment_tv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Utils.showToastMsg("Coming soon");
 
-                    Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),ScheduleAppointmentActivity.class);
+         if((!TextUtils.isEmpty(data.getInstantBooking()))  && data.getInstantBooking().equalsIgnoreCase("1")) {
+             book_appointment_tv.setText("Book Appointment");
+             book_appointment_tv.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View view) {
+                     // Utils.showToastMsg("Coming soon");
+
+                     Intent intent = new Intent(MyApplication.getCurrentActivityContext(), ScheduleAppointmentActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
-                    intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
-                        @Override
-                        protected IntentObjectListener getMyObject() {
-                            return new IntentObjectListener(){
+                     intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
+                         @Override
+                         protected IntentObjectListener getMyObject() {
+                             return new IntentObjectListener() {
 
-                                @Override
-                                public Object getObject() {
-                                    return data;
-                                }
-                            };
-                        }
-                    }));
-                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                 @Override
+                                 public Object getObject() {
+                                     return data;
+                                 }
+                             };
+                         }
+                     }));
+                     intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                    MyApplication.getCurrentActivityContext().startActivity(intent);
-                }
-            });
+                     MyApplication.getCurrentActivityContext().startActivity(intent);
+                 }
+             });
+         }else
+         {
+             book_appointment_tv.setText("View Contact Number");
+             book_appointment_tv.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View v) {
+
+                     if(TextUtils.isEmpty(data.getPrimaryMobileNo()))
+                     {
+                         book_appointment_tv.setText("Not Available");
+                         book_appointment_tv.setOnClickListener(null);
+                     }else
+                     {
+                         book_appointment_tv.setText(data.getPrimaryMobileNo());
+                         book_appointment_tv.setOnClickListener(new View.OnClickListener() {
+                             @Override
+                             public void onClick(View v) {
+                                 Utils.openPhoneDialScreen(data.getPrimaryMobileNo());
+                             }
+                         });
+
+                     }
+
+                 }
+             });
+
+         }
 
 
 

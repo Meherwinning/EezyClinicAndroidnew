@@ -114,20 +114,7 @@ public class TimeSlotsListAdapter extends RecyclerView.Adapter<TimeSlotsListAdap
             final String timeSlot=split[0];
             time_slot_ctv.setText(timeSlot);
             time_slot_ctv.setEnabled(false);
-            if(split.length>1)
-            {
-                try
-                {
-                    int flag=Integer.parseInt(split[1].trim());
-                    if(flag==1)
-                    {
-                        time_slot_ctv.setEnabled(true);
-                    }
-                }catch (Exception e)
-                {
 
-                }
-            }
             String diabledDateAndtime=null;
 
             if(diasableDateListener!=null)
@@ -139,7 +126,7 @@ public class TimeSlotsListAdapter extends RecyclerView.Adapter<TimeSlotsListAdap
             String  SERVER_DATE_FORMAT_NEW="h:mm a";//"2017-12-26 16:55:00"
             SimpleDateFormat DISPLAY_DATE_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_DATE_TIME);
             Date date = Utils.changeStringToDateFormat(timeSlot, SERVER_DATE_FORMAT_NEW);
-          String   myTimeSlot= DISPLAY_DATE_TIME_FORMATTER.format(date);
+            String   myTimeSlot= DISPLAY_DATE_TIME_FORMATTER.format(date);
 
 
             if(diabledDateAndtime!=null && timeSlot!=null && diabledDateAndtime.equalsIgnoreCase(dateStr+" "+myTimeSlot))
@@ -149,6 +136,25 @@ public class TimeSlotsListAdapter extends RecyclerView.Adapter<TimeSlotsListAdap
             {
                 time_slot_ctv.setEnabled(true);
             }
+            if(split.length>1)
+            {
+                try
+                {
+                    int flag=Integer.parseInt(split[1].trim());
+                    if(flag==1)
+                    {
+                        time_slot_ctv.setEnabled(true);
+                    }else
+                    {
+                        time_slot_ctv.setEnabled(false);
+                        //return;
+                    }
+                }catch (Exception e)
+                {
+                    time_slot_ctv.setEnabled(false);
+                }
+            }
+
 
 
             if(preSelectedDate!=null && preSelectedTimeSlot!=null && dateStr!=null && timeSlot!=null)

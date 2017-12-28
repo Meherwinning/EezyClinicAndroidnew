@@ -27,6 +27,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static com.prolificinteractive.materialcalendarview.MaterialCalendarView.SELECTION_MODE_MULTIPLE;
+
 /**
  * Created by satish on 6/12/17.
  */
@@ -155,6 +157,8 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
         widget.setShowOtherDates(MaterialCalendarView.SHOW_OUT_OF_RANGE);
         widget.setTopbarVisible(false);
         widget.setTileHeightDp((int)getResources().getDimension(R.dimen._11dp));
+
+        widget.setSelectionMode(MaterialCalendarView.SELECTION_MODE_SINGLE);
 
 
 

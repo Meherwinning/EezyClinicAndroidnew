@@ -1,6 +1,7 @@
 package com.vempower.eezyclinic.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -149,10 +150,11 @@ public class AppointmentReviewFragment extends AbstractFragment {
         appointment_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hideKeyBord(fragmentView);
 
                 if(success_view.getVisibility()==View.VISIBLE)
                 {
-                    Utils.showToastMsg("Now click Done" );
+                   // Utils.showToastMsg("Now click Done" );
                     if(doneButtonClickListener!=null)
                     {
                         doneButtonClickListener.onClick();
@@ -205,21 +207,12 @@ public class AppointmentReviewFragment extends AbstractFragment {
                     callAppointmentBookingMapper();
 
                 }
-                /*if(requestDetails!=null && requestDetails.isSelfAppointment())
-                {
-                    Utils.showToastMessage("Self");
 
-                }else
-                {
-                    Utils.showToastMessage("Others");
-                }*/
-
-
-                Utils.showToastMessage(requestDetails.toString());
             }
         });
 
     }
+
 
     private void callAppointmentBookingMapper() {
 
@@ -246,7 +239,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
 
 
 
-        String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd h:mm a";//"2017-11-22 10:23 AM"
+        String  SERVER_DATE_FORMAT_NEW="dd-MM-yyyy h:mm a";//"yyyy-MM-dd h:mm a";//"2017-11-22 10:23 AM"
 
         String DISPLAY_DATE="MMM d,yyyy";
         String DISPLAY_TIME="h:mm a 'on' EEEE";
@@ -290,7 +283,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
 
 
 
-        String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd h:mm a";//"2017-11-22 10:23 AM"
+        String  SERVER_DATE_FORMAT_NEW="dd-MM-yyyy h:mm a";//"yyyy-MM-dd h:mm a";//"2017-11-22 10:23 AM" //29-12-2017 2:00 AM
 
         String DISPLAY_DATE="MMM d,yyyy";
         String DISPLAY_TIME="h:mm a 'on' EEEE";
@@ -381,7 +374,13 @@ public class AppointmentReviewFragment extends AbstractFragment {
     @Override
     public void onResume() {
         super.onResume();
-        hideKeyBord(fragmentView);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                hideKeyBord(fragmentView);
+            }
+        },200);
     }
 
     @Override

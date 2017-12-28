@@ -100,7 +100,7 @@
     <string name="health_goal_empty_msg">You haven’t set up your health goals</string>
 
     <string name="upcoming_empty_appointment_list_msg">You do not have any upcoming appointments.</string>
-    <string name="upcoming_empty_followups_list_msg">You do not have any upcoming appointments.</string>
+    <string name="upcoming_empty_followups_list_msg">You do not have any upcoming followups.</string>
     <string name="title_activity_find_docotor">Find Doctor</string>
     <string name="no_more_doctors_found_lbl">No more doctor(s) found.</string>
     <string name="title_activity_filter_title">Filter</string>
@@ -115,7 +115,7 @@
     <string name="demo_min_label">min</string>
     <string name="demo_max_label">max</string>
     <string name="sample_txt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
-    <string name="search_doctors_lbl">Search Doctors</string>
+    <string name="search_doctors_lbl">Search for Doctor/Clinic</string>
     <string name="search_result_doctors_lbl">Search Result - Doctors</string>
     <string name="search_result_clinic_lbl">Search Result – Clinics</string>
     <string name="view_doctors_lbl">View Doctors</string>
@@ -131,6 +131,7 @@
     <string name="no_time_slots_available_lbl">No booking available for this day</string>
     <string name="unable_to_get_country_list_lbl">Unable to get country list. Please try again</string>
     <string name="no_upcoming_appointments_lbl">You do not have any upcoming appointment</string>
+    <string name="new_appointment_lbl">New Appointment</string>
 
 
 </resources>

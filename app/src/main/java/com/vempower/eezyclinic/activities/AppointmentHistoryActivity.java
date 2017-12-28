@@ -1,6 +1,5 @@
 package com.vempower.eezyclinic.activities;
 
-import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
@@ -10,53 +9,42 @@ import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
-import com.vempower.eezyclinic.fragments.AppointmentListFragment;
-import com.vempower.eezyclinic.fragments.UpcomingAppointmentListFragment;
-import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.eezyclinic.fragments.AppointmentHistoryFragment;
+import com.vempower.eezyclinic.fragments.AppointmentHistoryListFragment;
 
-import java.util.List;
+public class AppointmentHistoryActivity extends AbstractMenuActivity {
 
-public class UpComingAppointmentListActivity extends AbstractMenuActivity {
-
-    public static final int REQUESTCODE = 6234;
-    private List<Appointment> list;
-    private UpcomingAppointmentListFragment fragment;
+    private Appointment appointment;
 
     @Override
     protected void setMyContectntView() {
         super.setMyContectntView();
+
         myInit();
     }
 
     private void myInit() {
+        Object obj = getObjectFromIntent(getIntent(), ListenerKey.ObjectKey.APPOINTMENT_OBJECT_KEY);
 
-
-
-        Object obj = getObjectFromIntent(getIntent(), ListenerKey.ObjectKey.UPCOMING_APPOINTMENT_LIST_DATA_KEY);
-
-        if (obj != null && obj instanceof List) {
-            list = (List) obj;
+        if (obj != null && obj instanceof Appointment) {
+            appointment = (Appointment) obj;
 
             // showToastMessage("Data :" + data);
+        } else {
+            showMyAlertDialog("Alert", "Invalid Appointment details.Please try again", "Close", true);
+            return;
         }
 
+        if (appointment == null) {
+            showMyAlertDialog("Alert", "Invalid Appointment details .Please try again", "Close", true);
+            return;
 
-        fragment= new  UpcomingAppointmentListFragment() ;
-        fragment.setAppointmentList(list);
+        }
+
+        AppointmentHistoryFragment fragment= new AppointmentHistoryFragment();
+        fragment.setAppointment(appointment);
         setFragment(fragment);
-    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(resultCode == RESULT_OK)
-        {
-            if(requestCode==REQUESTCODE && fragment!=null)
-            {
-                fragment.refreshList();
-            }
-        }
     }
 
     @Override
@@ -82,7 +70,7 @@ public class UpComingAppointmentListActivity extends AbstractMenuActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView titleName = toolbar.findViewById(R.id.title_logo_tv);
         //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
-        titleName.setText("Upcoming Appointments");
+        titleName.setText("My Appointments History");
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,9 +91,5 @@ public class UpComingAppointmentListActivity extends AbstractMenuActivity {
         //super.setActionBar(false);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        callDashboard();
-    }
+
 }

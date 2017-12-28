@@ -217,9 +217,10 @@
                     android:id="@+id/book_appointment_tv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="left|center_vertical"
+                    android:gravity="center"
                     android:text="Book Appointment"
-                    android:textSize="@dimen/_15sp"
+
+                    android:textSize="@dimen/_14sp"
                     android:layout_margin="@dimen/_3dp"
                     android:textColor="#28b0e2"
                     android:textStyle="bold" />

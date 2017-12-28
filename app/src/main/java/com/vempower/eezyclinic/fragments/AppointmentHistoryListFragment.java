@@ -7,18 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vempower.eezyclinic.APICore.Appointment;
-import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
-import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
+import com.vempower.eezyclinic.APIResponce.AppointmentHistoryListAPI;
 import com.vempower.eezyclinic.APIResponce.UpcomingAppointmentListAPI;
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.adapters.DoctorsListAdapter;
+import com.vempower.eezyclinic.adapters.AppointmentHistoryListAdapter;
 import com.vempower.eezyclinic.adapters.UpcomingAppointmentListAdapter;
-import com.vempower.eezyclinic.application.MyApplication;
-import com.vempower.eezyclinic.core.SearchRequest;
-import com.vempower.eezyclinic.interfaces.HomeListener;
-import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
+import com.vempower.eezyclinic.mappers.AppointmentHistoryListMapper;
 import com.vempower.eezyclinic.mappers.UpcomingAppointmentListMapper;
-import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 
@@ -29,22 +24,24 @@ import java.util.List;
  * Created by satish on 6/12/17.
  */
 
-public class UpcomingAppointmentListFragment extends SwipedRecyclerViewFragment {
+public class AppointmentHistoryListFragment extends SwipedRecyclerViewFragment {
 
     private View fragmentView;
-    private UpcomingAppointmentListAdapter adapter;
+    private AppointmentHistoryListAdapter adapter;
     //private ArrayList<SearchResultDoctorListData> doctorsList;
 
     //private boolean isOnlyViewList;
     private List<Appointment> appointmentList;
     //private MyTextViewRR match_found_tv;
+    private int page;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.appointment_list_fragment, container, false);
-
+        appointmentList= new ArrayList<>();
         setupSwipeRefreshLayout(fragmentView);
+        page=1;
 
 
         refreshList();
@@ -96,9 +93,10 @@ public class UpcomingAppointmentListFragment extends SwipedRecyclerViewFragment 
         hideProgressView();
         ((MyTextViewRR)fragmentView.findViewById(R.id.match_found_tv)).setText(appointments==null?"0":appointments.size()+"");
         fragmentView.findViewById(R.id.top_linear).setVisibility(View.GONE);
+
         if (adapter == null) {
 
-            adapter = new UpcomingAppointmentListAdapter(appointments);
+            adapter = new AppointmentHistoryListAdapter(appointments);
 
             recyclerView.setAdapter(adapter);
         } else {
@@ -112,27 +110,34 @@ public class UpcomingAppointmentListFragment extends SwipedRecyclerViewFragment 
             fragmentView.findViewById(R.id.no_appointment_result_tv).setVisibility(View.GONE);
         }
 
-
-
-
     }
 
     private void callUpcomingAppointmentsMapper() {
-        UpcomingAppointmentListMapper appointmentListMapper= new UpcomingAppointmentListMapper();
-        appointmentListMapper.setOnUpcomingAppointmentListListener(new UpcomingAppointmentListMapper.UpcomingAppointmentListListener() {
-            @Override
-            public void getAppointments(final UpcomingAppointmentListAPI upcomingAppointmentListAPI, String errorMessage) {
 
-                if(!isValidResponse(upcomingAppointmentListAPI,errorMessage))
+        AppointmentHistoryListMapper mapper= new AppointmentHistoryListMapper(page) ;
+
+        mapper.setOnAppointmentHistoryListListener(new AppointmentHistoryListMapper.AppointmentHistoryListListener() {
+            @Override
+            public void getAppointments(AppointmentHistoryListAPI appointmentHistoryListAPI, String errorMessage) {
+
+                if(!isValidResponse(appointmentHistoryListAPI,errorMessage))
                 {
-                     return;
+                    return;
                 }
 
-                appointmentList=upcomingAppointmentListAPI.getData();
+                if((appointmentHistoryListAPI.getData()==null || appointmentHistoryListAPI.getData().size()==0) && page!=1 )
+                {
+                    Utils.showToastMsg("No more Appointment(s) found");
+                    page--;
+                    return;
+                }
+
+                if(appointmentHistoryListAPI.getData()!=null) {
+                    appointmentList.addAll(appointmentHistoryListAPI.getData());
+                }
                 viewList();
             }
         });
-
     }
 
     @Override
@@ -140,6 +145,8 @@ public class UpcomingAppointmentListFragment extends SwipedRecyclerViewFragment 
         if (swipeLayout != null) {
             swipeLayout.setRefreshing(false);
         }
+        appointmentList= new ArrayList<>();
+        page=1;
         callUpcomingAppointmentsMapper();
 
     }
@@ -149,6 +156,8 @@ public class UpcomingAppointmentListFragment extends SwipedRecyclerViewFragment 
         if (swipeLayout != null) {
             swipeLayout.setRefreshing(false);
         }
+        page=page+1;
+        callUpcomingAppointmentsMapper();
       //  callSearchResultDoctorsListMapper();
     }
 

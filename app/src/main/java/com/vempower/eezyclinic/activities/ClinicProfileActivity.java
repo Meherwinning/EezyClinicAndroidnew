@@ -9,7 +9,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -41,6 +43,7 @@ import com.vempower.eezyclinic.tools.ScrollableFragmentListener;
 import com.vempower.eezyclinic.tools.ScrollableListener;
 import com.vempower.eezyclinic.tools.ViewPagerHeaderHelper;
 import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRB;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 import com.vempower.eezyclinic.widget.TouchCallbackLayout;
@@ -180,7 +183,7 @@ public class ClinicProfileActivity extends AbstractMenuActivity
         });
     }*/
 
-    private void myInit(ClinicProfileData  clinicProfileData) {
+    private void myInit(final ClinicProfileData  clinicProfileData) {
         ButtonFloat fab = findViewById(R.id.fab_all);
 
         fab.setOnMyClickListener(new ButtonFloat.MyClickListener() {
@@ -204,6 +207,35 @@ public class ClinicProfileActivity extends AbstractMenuActivity
                 MyApplication.getCurrentActivityContext().startActivity(intent);
             }
         });
+
+
+      final  AppCompatButton view_contact_number_bt =  findViewById(R.id.view_contact_number_bt);
+
+        view_contact_number_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(TextUtils.isEmpty(clinicProfileData.getClinicContactNumber()))
+                {
+                    view_contact_number_bt.setText("Not Available");
+                    view_contact_number_bt.setOnClickListener(null);
+                }else
+                {
+                    view_contact_number_bt.setText(clinicProfileData.getClinicContactNumber());
+                    view_contact_number_bt.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Utils.openPhoneDialScreen(clinicProfileData.getClinicContactNumber());
+                        }
+                    });
+
+                }
+
+            }
+        });
+
+
+
 
         ImageView imageView = findViewById(R.id.profile_iv);
         if (imageView != null) {

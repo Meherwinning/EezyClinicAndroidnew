@@ -40,10 +40,10 @@ public class SearchActivity extends AbstractMenuActivity {
 
             if(isFromDashboard)
             {
-                title="Search";
+                title=Utils.getStringFromResources(R.string.search_doctors_lbl);
             }else
             {
-                title="New Appointment";
+                title=Utils.getStringFromResources(R.string.new_appointment_lbl);
             }
 
             /*if(!TextUtils.isEmpty(titleNameStr))

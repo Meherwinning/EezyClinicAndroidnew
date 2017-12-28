@@ -54,11 +54,12 @@ import java.util.zip.ZipOutputStream;
  * Created by Satishk on 4/10/2017.
  */
 
-public  class Utils {
+public class Utils {
 
     private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     private static final int BUFFER = 120;
+
     public static boolean isNetworkAvailable() {
 
         Context context = MyApplication.getCurrentActivityContext();
@@ -103,6 +104,15 @@ public  class Utils {
         if (!TextUtils.isEmpty(msz)) {
             showToastMsg(msz);
         }
+    }
+
+    public static void openPhoneDialScreen(String phoneNum) {
+        if (MyApplication.getCurrentActivityContext() == null) {
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + phoneNum));
+        MyApplication.getCurrentActivityContext().startActivity(intent);
     }
 
     public static void showToastMsg(String msg) {
@@ -180,6 +190,7 @@ public  class Utils {
         return false;
 
     }
+
     public static boolean hasAbovMarshmallowe() {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {// Marshmellow
             return true;
@@ -207,7 +218,6 @@ public  class Utils {
     {
         return SharedPreferenceUtils.getStringValueFromSharedPrefarence(MyFirebaseInstanceIDService.FIRE_BASE_TOKEN_ID,"");
     }*/
-
 
 
     public static String getDeviceId() {
@@ -242,7 +252,7 @@ public  class Utils {
 
 
     public static void showToastMessage(String message) {
-        if (message == null || MyApplication.getCurrentActivityContext()==null) {
+        if (message == null || MyApplication.getCurrentActivityContext() == null) {
             return;
         }
         Log.i(MyApplication.getCurrentActivityContext().getPackageName(), message);
@@ -277,9 +287,8 @@ public  class Utils {
         return   changeToDateFormat(fromDateStr, Constants.SERVER_DATE_FORMAT,Constants.DISPLAY_DATE_FORMAT) ;
     }*/
 
-    public static String changeToDateFormat(String fromDateStr, String fromDateFormat,String destDateFormat) {
-        if(TextUtils.isEmpty(fromDateStr))
-        {
+    public static String changeToDateFormat(String fromDateStr, String fromDateFormat, String destDateFormat) {
+        if (TextUtils.isEmpty(fromDateStr)) {
             return fromDateStr;
         }
 
@@ -295,8 +304,7 @@ public  class Utils {
     }
 
     public static Date changeStringToDateFormat(String dateStr, String dateFormat) {
-        if(TextUtils.isEmpty(dateStr))
-        {
+        if (TextUtils.isEmpty(dateStr)) {
             return new Date();
         }
 
@@ -310,29 +318,28 @@ public  class Utils {
     }
 
     public static boolean hasPermissions(Context context, String... permissions) {
-        if(context == null || permissions == null)
-        {
+        if (context == null || permissions == null) {
             return false;
         }
         //if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
-            for (String permission : permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                    return false;
-                }
+        for (String permission : permissions) {
+            if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                return false;
             }
-       // }
+        }
+        // }
         return true;
     }
 
     public static void makeACall(String phoneNumber) {
-        if (TextUtils.isEmpty(phoneNumber) || MyApplication.getCurrentActivityContext()==null) {
+        if (TextUtils.isEmpty(phoneNumber) || MyApplication.getCurrentActivityContext() == null) {
             return;
         }
         int PERMISSION_ALL = 1;
         String[] PERMISSIONS = {Manifest.permission.CALL_PHONE};
 
         if (!Utils.hasPermissions(MyApplication.getCurrentActivityContext(), PERMISSIONS)) {
-            ActivityCompat.requestPermissions((Activity)MyApplication.getCurrentActivityContext(), PERMISSIONS, PERMISSION_ALL);
+            ActivityCompat.requestPermissions((Activity) MyApplication.getCurrentActivityContext(), PERMISSIONS, PERMISSION_ALL);
         } else {
             Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -341,10 +348,8 @@ public  class Utils {
     }
 
 
-    public static void sendMail(String toMailId,String subject,String bodyMessage)
-    {
-        if(!isNetworkAvailable(MyApplication.getCurrentActivityContext()))
-        {
+    public static void sendMail(String toMailId, String subject, String bodyMessage) {
+        if (!isNetworkAvailable(MyApplication.getCurrentActivityContext())) {
             showToastMsg(getStringFromResources(R.string.internet_connection_not_available_msg));
             return;
         }
@@ -355,9 +360,9 @@ public  class Utils {
             i = new Intent(Intent.ACTION_SEND);
         }else
         {*/
-            i = new Intent(Intent.ACTION_SENDTO) ;
+        i = new Intent(Intent.ACTION_SENDTO);
 
-       // }
+        // }
 
         i.setType("message/rfc822");
 
@@ -368,9 +373,9 @@ public  class Utils {
         //i.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
 
 
-        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{toMailId});
+        i.putExtra(Intent.EXTRA_EMAIL, new String[]{toMailId});
         i.putExtra(Intent.EXTRA_SUBJECT, subject);
-        i.putExtra(Intent.EXTRA_TEXT   , bodyMessage);
+        i.putExtra(Intent.EXTRA_TEXT, bodyMessage);
         try {
             MyApplication.getCurrentActivityContext().startActivity(Intent.createChooser(i, "Send mail..."));
         } catch (android.content.ActivityNotFoundException ex) {
@@ -385,10 +390,10 @@ public  class Utils {
      * @param dp A value in dp (density independent pixels) unit. Which we need to convert into pixels
      * @return A float value to represent px equivalent to dp depending on device density
      */
-    public static float convertDpToPixel(float dp){
+    public static float convertDpToPixel(float dp) {
         Resources resources = MyApplication.getCurrentActivityContext().getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
-        float px = dp * ((float)metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+        float px = dp * ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
         return px;
     }
 
@@ -398,57 +403,49 @@ public  class Utils {
      * @param px A value in px (pixels) unit. Which we need to convert into db
      * @return A float value to represent dp equivalent to px value
      */
-    public static float convertPixelsToDp(float px){
+    public static float convertPixelsToDp(float px) {
         Resources resources = MyApplication.getCurrentActivityContext().getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
-        float dp = px / ((float)metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+        float dp = px / ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
         return dp;
     }
 
-    public static String getDurationForDisplay(String  secStr)
-    {
-        String duration="";
+    public static String getDurationForDisplay(String secStr) {
+        String duration = "";
 
         int[] ints = splitToComponentTimes(secStr);
 
-        if(ints[0]==0)
-        {
-            duration=ints[1]+":"+ints[2];
-        }else
-        {
-            duration=ints[0]+":"+ints[1]+":"+ints[2];
+        if (ints[0] == 0) {
+            duration = ints[1] + ":" + ints[2];
+        } else {
+            duration = ints[0] + ":" + ints[1] + ":" + ints[2];
         }
 
         return duration;
 
     }
-    public static String getDurationForDisplay(long  mySec)
-    {
-        String duration="";
+
+    public static String getDurationForDisplay(long mySec) {
+        String duration = "";
 
         int[] ints = splitToComponentTimes(mySec);
 
-        if(ints[0]==0)
-        {
-            duration=ints[1]+":"+ints[2];
-        }else
-        {
-            duration=ints[0]+":"+ints[1]+":"+ints[2];
+        if (ints[0] == 0) {
+            duration = ints[1] + ":" + ints[2];
+        } else {
+            duration = ints[0] + ":" + ints[1] + ":" + ints[2];
         }
 
         return duration;
 
     }
 
-    public static int[] splitToComponentTimes(String  secStr)
-    {
-        long sec=0;
-        if(!TextUtils.isEmpty(secStr))
-        {
+    public static int[] splitToComponentTimes(String secStr) {
+        long sec = 0;
+        if (!TextUtils.isEmpty(secStr)) {
             try {
-                sec=Long.parseLong(secStr);
-            }catch(Exception e)
-            {
+                sec = Long.parseLong(secStr);
+            } catch (Exception e) {
 
             }
 
@@ -459,12 +456,11 @@ public  class Utils {
         remainder = remainder - mins * 60;
         int secs = remainder;
 
-        int[] ints = {hours , mins , secs};
+        int[] ints = {hours, mins, secs};
         return ints;
     }
 
-    public static int[] splitToComponentTimes(long  sec)
-    {
+    public static int[] splitToComponentTimes(long sec) {
         //long sec=0;
 
         int hours = (int) sec / 3600;
@@ -473,20 +469,18 @@ public  class Utils {
         remainder = remainder - mins * 60;
         int secs = remainder;
 
-        int[] ints = {hours , mins , secs};
+        int[] ints = {hours, mins, secs};
         return ints;
     }
 
-    public static int getScreenHeight()
-    {
+    public static int getScreenHeight() {
         try {
 
             Display display = ((Activity) MyApplication.getCurrentActivityContext()).getWindowManager().getDefaultDisplay();
             Point size = new Point();
             display.getSize(size);
             return size.y;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
 
         }
 
@@ -495,22 +489,20 @@ public  class Utils {
         // int height = size.y;
     }
 
-    public static int getScreenWidth()
-    {
+    public static int getScreenWidth() {
         try {
 
             Display display = ((Activity) MyApplication.getCurrentActivityContext()).getWindowManager().getDefaultDisplay();
             Point size = new Point();
             display.getSize(size);
             return size.x;
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
 
         }
 
         return 0;
         //int width = size.x;
-       // int height = size.y;
+        // int height = size.y;
     }
 
    /* public static void shareAudioFile(String audioFilePath)
@@ -578,12 +570,11 @@ public  class Utils {
     }*/
 
 
-    public static void downloadAudioFile(Activity activity,int requestCode )
-    {
+    public static void downloadAudioFile(Activity activity, int requestCode) {
         Intent intent_upload = new Intent(Intent.ACTION_PICK, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
         intent_upload.setType("application/zip");
         intent_upload.setAction(Intent.ACTION_GET_CONTENT);
-        activity.startActivityForResult(intent_upload,requestCode);
+        activity.startActivityForResult(intent_upload, requestCode);
     }
 
     /*@Override
@@ -642,7 +633,7 @@ public  class Utils {
 
                 //create dir if required while unzipping
                 if (ze.isDirectory()) {
-                   // dirChecker(ze.getName());
+                    // dirChecker(ze.getName());
                 } else {
                     FileOutputStream fout = new FileOutputStream(_targetLocation + ze.getName());
                     for (int c = zin.read(); c != -1; c = zin.read()) {
@@ -660,9 +651,8 @@ public  class Utils {
         }
     }
 
-    public static String getHtmlFormatedText(String str)
-    {
-       // myTextView.setText(Html.fromHtml("<h2>Title</h2><br><p>Description here</p>"));
+    public static String getHtmlFormatedText(String str) {
+        // myTextView.setText(Html.fromHtml("<h2>Title</h2><br><p>Description here</p>"));
         return null;
     }
 
@@ -713,13 +703,11 @@ public  class Utils {
     }
 */
 
-    public  static boolean isTablet() {
+    public static boolean isTablet() {
         boolean xlarge = ((MyApplication.getCurrentActivityContext().getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == 4);
         boolean large = ((MyApplication.getCurrentActivityContext().getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE);
         return (xlarge || large);
     }
-
-
 
 
     public static float distanceFrom_in_Km(double lat1, double lng1, double lat2, double lng2) {
@@ -730,18 +718,16 @@ public  class Utils {
         }*/
 
         double earthRadius = 6371000; //meters
-        double dLat = Math.toRadians(lat2-lat1);
-        double dLng = Math.toRadians(lng2-lng1);
-        double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLng = Math.toRadians(lng2 - lng1);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
                 Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
-                        Math.sin(dLng/2) * Math.sin(dLng/2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                        Math.sin(dLng / 2) * Math.sin(dLng / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         float dist = (float) (earthRadius * c);
 
         return dist;
     }
-
-
 
 
     public static String distanceInKms(double lat1, double lon1, double lat2, double lon2) {
@@ -754,7 +740,7 @@ public  class Utils {
         dist = Math.acos(dist);
         dist = rad2deg(dist);
         dist = dist * 60 * 1.1515;
-        return String.format("%.2f", (dist/ 0.62137))+ " Kms";
+        return String.format("%.2f", (dist / 0.62137)) + " Kms";
     }
 
     public static double distanceInKms1(double lat1, double lon1, double lat2, double lon2) {
@@ -767,7 +753,7 @@ public  class Utils {
         dist = Math.acos(dist);
         dist = rad2deg(dist);
         dist = dist * 60 * 1.1515;
-        return  (dist/ 0.62137);
+        return (dist / 0.62137);
     }
 
     private static double deg2rad(double deg) {
@@ -779,12 +765,9 @@ public  class Utils {
     }
 
 
+    public static void displayCountDownTimer(final String expDateStr, final String curDateStr, final String dateFormat, final TextView textView) {
 
-    public static void displayCountDownTimer(final String expDateStr, final String curDateStr, final String dateFormat, final TextView textView)
-    {
-
-        if(textView==null)
-        {
+        if (textView == null) {
             return;
         }
 
@@ -800,11 +783,9 @@ public  class Utils {
 
         long milliDiff = confMillis - nowMillis;*/
 
-       Date expDate= changeStringToDateFormat(expDateStr,dateFormat);
-        Date curDate= changeStringToDateFormat(curDateStr,dateFormat);
-        long milliDiff = expDate.getTime()- curDate.getTime();
-
-
+        Date expDate = changeStringToDateFormat(expDateStr, dateFormat);
+        Date curDate = changeStringToDateFormat(curDateStr, dateFormat);
+        long milliDiff = expDate.getTime() - curDate.getTime();
 
 
         new CountDownTimer(milliDiff, 1000) {
@@ -816,22 +797,21 @@ public  class Utils {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                if(textView==null)
-                {
+                if (textView == null) {
                     return;
                 }
                 // decompose difference into days, hours, minutes and seconds
-                 mDisplayDays = (int) ((millisUntilFinished / 1000) / 86400);
-                 mDisplayHours = (int) (((millisUntilFinished / 1000) - (mDisplayDays * 86400)) / 3600);
-                 mDisplayMinutes = (int) (((millisUntilFinished / 1000) - ((mDisplayDays * 86400) + (mDisplayHours * 3600))) / 60);
-                 mDisplaySeconds = (int) ((millisUntilFinished / 1000) % 60);
+                mDisplayDays = (int) ((millisUntilFinished / 1000) / 86400);
+                mDisplayHours = (int) (((millisUntilFinished / 1000) - (mDisplayDays * 86400)) / 3600);
+                mDisplayMinutes = (int) (((millisUntilFinished / 1000) - ((mDisplayDays * 86400) + (mDisplayHours * 3600))) / 60);
+                mDisplaySeconds = (int) ((millisUntilFinished / 1000) % 60);
 
                 //displayTime=mDisplayDays+"d "+mDisplayHours+":"+mDisplayMinutes+":"+mDisplaySeconds;
 
-                textView.setText(mDisplayDays+"d "+mDisplayHours+":"+mDisplayMinutes+":"+mDisplaySeconds);
+                textView.setText(mDisplayDays + "d " + mDisplayHours + ":" + mDisplayMinutes + ":" + mDisplaySeconds);
 
 
-               }
+            }
 
             @Override
             public void onFinish() {
@@ -865,21 +845,18 @@ public  class Utils {
 
     }*/
 
-    public static String getFireBaseCloudMessageId()
-    {
-        String token=SharedPreferenceUtils.getStringValueFromSharedPrefarence(MyFirebaseInstanceIDService.FIRE_BASE_TOKEN_ID,"");
-        if(TextUtils.isEmpty(token))
-        {
-            token =FirebaseInstanceId.getInstance().getToken();
-            if(!TextUtils.isEmpty(token))
-            {
-                SharedPreferenceUtils.setStringValueToSharedPrefarence(MyFirebaseInstanceIDService.FIRE_BASE_TOKEN_ID,token);
+    public static String getFireBaseCloudMessageId() {
+        String token = SharedPreferenceUtils.getStringValueFromSharedPrefarence(MyFirebaseInstanceIDService.FIRE_BASE_TOKEN_ID, "");
+        if (TextUtils.isEmpty(token)) {
+            token = FirebaseInstanceId.getInstance().getToken();
+            if (!TextUtils.isEmpty(token)) {
+                SharedPreferenceUtils.setStringValueToSharedPrefarence(MyFirebaseInstanceIDService.FIRE_BASE_TOKEN_ID, token);
 
                 return token;
             }
             return "";
         }
-            return token;
+        return token;
     }
 
     public static String printKeyHash1(Activity context) {

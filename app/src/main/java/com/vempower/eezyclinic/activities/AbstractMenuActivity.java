@@ -236,8 +236,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 showToastMessage("Coming soon");
                 break;
             case R.id.appointment_history_linear:
-                //TODO something
-                showToastMessage("Coming soon");
+                callSideMenuScreen(AppointmentHistoryListActivity.class);
                 break;
             case R.id.health_records_linear:
                 showToastMessage("Coming soon");

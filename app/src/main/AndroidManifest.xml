@@ -285,6 +285,23 @@
             android:screenOrientation="portrait"
             android:theme="@style/ThemeOverlay.MyNoTitleActivity" />
 
+        <activity
+            android:name=".activities.AppointmentHistoryListActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeOverlay.MyNoTitleActivity" />
+
+
+
+        <activity
+            android:name=".activities.AppointmentHistoryActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeOverlay.MyNoTitleActivity" />
+
+
+
+
 
         <!--     <activity android:name=".activities.CancelAppointmentActivity"
                  android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"

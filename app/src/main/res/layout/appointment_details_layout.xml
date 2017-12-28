@@ -74,7 +74,7 @@
                     android:textColorHint="@color/white"
 
 
-                    android:textSize="15sp"
+                    android:textSize="@dimen/_15sp"
                     android:textStyle="normal"
                     android:textColor="#ffffff"
                     />
@@ -91,7 +91,7 @@
                         android:text="Designation"
 
 
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_12sp"
                         android:textStyle="normal"
                         android:textColor="#ffffff"
                         />
@@ -155,6 +155,7 @@
             <ImageView
                 android:layout_marginRight="@dimen/_12dp"
                 android:layout_width="wrap_content"
+                android:minWidth="@dimen/_20dp"
                 android:src="@drawable/date_time_icon"
                 android:gravity="left|center"
                 android:layout_height="wrap_content"
@@ -202,6 +203,7 @@
                 android:clickable="true"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:minWidth="@dimen/_20dp"
                     android:layout_marginRight="@dimen/_12dp"
                     android:layout_width="wrap_content"
                     android:src="@drawable/address_icon"
@@ -273,8 +275,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50dp"
         android:layout_alignParentBottom="true"
+        android:background="@color/white"
 
-        android:background="#aa212121"
+
         android:orientation="horizontal">
 
         <com.vempower.eezyclinic.views.MyTextViewRR
@@ -282,12 +285,20 @@
             android:background="@drawable/view_selector_white_bg"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="1dp"
             android:layout_weight="1"
             android:clickable="true"
             android:gravity="center"
+            android:textSize="@dimen/_15sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#ef6b53"
             android:text="Cancel"
-            android:textColor="#FFFF0000" />
+            />
+        <TextView
+            android:layout_width="1dp"
+            android:background="#aa212121"
+            android:alpha="0.3"
+            android:layout_height="match_parent" />
 
         <com.vempower.eezyclinic.views.MyTextViewRR
             android:id="@+id/re_schedule_tv"
@@ -296,11 +307,16 @@
             android:clickable="true"
             android:layout_height="match_parent"
             android:layout_marginLeft="1dp"
-            android:layout_marginTop="1dp"
             android:layout_weight="1"
             android:gravity="center"
+
+
+            android:textSize="15sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#28b0e2"
             android:text="Reschedule"
-            android:textColor="#28b0e2" />
+            />
 
     </LinearLayout>
 

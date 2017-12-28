@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -19,7 +20,7 @@ import java.lang.reflect.Field;
  * Created by satish on 20/11/17.
  */
 
-public class MyEditTextBlackCursor extends EditText {
+public class MyEditTextBlackCursor extends AppCompatEditText {
     public MyEditTextBlackCursor(Context context) {
         super(context);
         setDisableCopyPaste();

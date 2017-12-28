@@ -11,7 +11,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -220,6 +222,91 @@ public class DoctorProfileActivity extends AbstractMenuActivity
                 MyApplication.getCurrentActivityContext().startActivity(intent);
             }
         });
+
+
+        findViewById(R.id.appointment_bt).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),ScheduleAppointmentActivity.class);
+                           /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+                intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
+                    @Override
+                    protected IntentObjectListener getMyObject() {
+                        return new IntentObjectListener(){
+
+                            @Override
+                            public Object getObject() {
+                                return data;
+                            }
+                        };
+                    }
+                }));
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                startActivity(intent);
+
+            }
+        });
+
+
+        //Start
+       final AppCompatButton book_appointment_tv= findViewById(R.id.appointment_bt);
+
+        if((!TextUtils.isEmpty(data.getInstantBooking()))  && data.getInstantBooking().equalsIgnoreCase("1")) {
+            book_appointment_tv.setText("Book Appointment");
+            book_appointment_tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Utils.showToastMsg("Coming soon");
+
+                    Intent intent = new Intent(MyApplication.getCurrentActivityContext(), ScheduleAppointmentActivity.class);
+                           /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+                    intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
+                        @Override
+                        protected IntentObjectListener getMyObject() {
+                            return new IntentObjectListener() {
+
+                                @Override
+                                public Object getObject() {
+                                    return data;
+                                }
+                            };
+                        }
+                    }));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                    MyApplication.getCurrentActivityContext().startActivity(intent);
+                }
+            });
+        }else
+        {
+            book_appointment_tv.setText("View Contact Number");
+            book_appointment_tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(TextUtils.isEmpty(data.getPrimaryMobileNo()))
+                    {
+                        book_appointment_tv.setText("Not Available");
+                        book_appointment_tv.setOnClickListener(null);
+                    }else
+                    {
+                        book_appointment_tv.setText(data.getPrimaryMobileNo());
+                        book_appointment_tv.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Utils.openPhoneDialScreen(data.getPrimaryMobileNo());
+                            }
+                        });
+
+                    }
+
+                }
+            });
+
+        }
+
+        //End
 
         ImageView imageView = findViewById(R.id.profile_iv);
         if (imageView != null) {

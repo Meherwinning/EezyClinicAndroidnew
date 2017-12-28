@@ -65,13 +65,13 @@ public class Appointment {
     private String procedureStatus;
     @SerializedName("patientInTime")
     @Expose
-    private Object patientInTime;
+    private String patientInTime;
     @SerializedName("proceedToDoctorTime")
     @Expose
     private Object proceedToDoctorTime;
     @SerializedName("patientOutTime")
     @Expose
-    private Object patientOutTime;
+    private String patientOutTime;
     @SerializedName("createdDate")
     @Expose
     private String createdDate;
@@ -108,6 +108,16 @@ public class Appointment {
     @SerializedName("google_map_longitude")
     @Expose
     private String googleMapLongitude;
+
+
+
+    @SerializedName("waitingTime")
+    @Expose
+    private String waitingTime;
+
+    @SerializedName("consultationTime")
+    @Expose
+    private String consultationTime;
 
     public String getId() {
         return id;
@@ -261,11 +271,11 @@ public class Appointment {
         this.procedureStatus = procedureStatus;
     }
 
-    public Object getPatientInTime() {
+    public String getPatientInTime() {
         return patientInTime;
     }
 
-    public void setPatientInTime(Object patientInTime) {
+    public void setPatientInTime(String patientInTime) {
         this.patientInTime = patientInTime;
     }
 
@@ -277,11 +287,11 @@ public class Appointment {
         this.proceedToDoctorTime = proceedToDoctorTime;
     }
 
-    public Object getPatientOutTime() {
+    public String getPatientOutTime() {
         return patientOutTime;
     }
 
-    public void setPatientOutTime(Object patientOutTime) {
+    public void setPatientOutTime(String patientOutTime) {
         this.patientOutTime = patientOutTime;
     }
 
@@ -381,4 +391,11 @@ public class Appointment {
         this.googleMapLongitude = googleMapLongitude;
     }
 
+    public String getWaitingTime() {
+        return waitingTime;
+    }
+
+    public String getConsultationTime() {
+        return consultationTime;
+    }
 }

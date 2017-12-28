@@ -6,62 +6,19 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.Appointment;
-import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
-import com.vempower.eezyclinic.fragments.AppointmentListFragment;
+import com.vempower.eezyclinic.fragments.AppointmentHistoryListFragment;
 import com.vempower.eezyclinic.fragments.UpcomingAppointmentListFragment;
-import com.vempower.eezyclinic.utils.Utils;
 
 import java.util.List;
 
-public class UpComingAppointmentListActivity extends AbstractMenuActivity {
-
-    public static final int REQUESTCODE = 6234;
-    private List<Appointment> list;
-    private UpcomingAppointmentListFragment fragment;
-
-    @Override
-    protected void setMyContectntView() {
-        super.setMyContectntView();
-        myInit();
-    }
-
-    private void myInit() {
-
-
-
-        Object obj = getObjectFromIntent(getIntent(), ListenerKey.ObjectKey.UPCOMING_APPOINTMENT_LIST_DATA_KEY);
-
-        if (obj != null && obj instanceof List) {
-            list = (List) obj;
-
-            // showToastMessage("Data :" + data);
-        }
-
-
-        fragment= new  UpcomingAppointmentListFragment() ;
-        fragment.setAppointmentList(list);
-        setFragment(fragment);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(resultCode == RESULT_OK)
-        {
-            if(requestCode==REQUESTCODE && fragment!=null)
-            {
-                fragment.refreshList();
-            }
-        }
-    }
+public class AppointmentHistoryListActivity extends AbstractMenuActivity {
 
     @Override
     protected AbstractFragment getFragment() {
-        return null;
+        return new AppointmentHistoryListFragment();
     }
 
     @Override
@@ -82,7 +39,7 @@ public class UpComingAppointmentListActivity extends AbstractMenuActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView titleName = toolbar.findViewById(R.id.title_logo_tv);
         //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
-        titleName.setText("Upcoming Appointments");
+        titleName.setText("My Appointments History");
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,9 +60,5 @@ public class UpComingAppointmentListActivity extends AbstractMenuActivity {
         //super.setActionBar(false);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        callDashboard();
-    }
+
 }

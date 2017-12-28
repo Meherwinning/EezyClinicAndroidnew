@@ -83,6 +83,12 @@ public class ScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewFra
         //2017-12-28 02:15 PM
         //15-12-2017 05:00 PM
 
+        if(confirmDateTime==null)
+        {
+            Utils.showToastMsg("Please select time slot");
+            return;
+        }
+
 
         String DISPLAY_DATE_TIME="dd-MM-yyyy h:mm a";//15-12-2017 05:00 PM
         // String DISPLAY_TIME="h:mm a 'on' EEEE";
@@ -105,7 +111,7 @@ public class ScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewFra
         }
 
 
-        Utils.showToastMessage(confirmDateTime);
+       // Utils.showToastMessage(confirmDateTime);
         if(!TextUtils.isEmpty(confirmDateTime))
         {
 

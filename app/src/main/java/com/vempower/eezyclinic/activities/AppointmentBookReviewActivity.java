@@ -15,6 +15,8 @@ import com.vempower.eezyclinic.fragments.ScheduleAppointmentTimeSlotFragment;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 
+import java.util.logging.Handler;
+
 public class AppointmentBookReviewActivity extends AbstractMenuActivity {
 
     private SearchResultDoctorListData data;
@@ -24,6 +26,18 @@ public class AppointmentBookReviewActivity extends AbstractMenuActivity {
     protected void setMyContectntView() {
         super.setMyContectntView();
         myInit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                hideKeyBord(fragment.getView());
+            }
+        },500);
+
     }
 
     private void myInit() {
