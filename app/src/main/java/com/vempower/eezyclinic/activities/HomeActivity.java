@@ -90,7 +90,7 @@ public class HomeActivity extends AbstractMenuActivity {
 
 
     private void bottomItemChange( int selectedItem) {
-
+        hideKeyBord();
            if(selectedItem==-1)
            {
                return;
@@ -110,6 +110,8 @@ public class HomeActivity extends AbstractMenuActivity {
                    callSettings();
                    break;
            }
+        hideKeyBord();
+
     }
 
     @Override

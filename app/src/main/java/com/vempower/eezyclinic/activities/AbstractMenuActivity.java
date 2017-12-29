@@ -53,7 +53,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     private MyTextViewRM nameTv, emailTv;
 
     private AbstractFragment currentFragment, prevoiusFragment;
-   // private  Intent  intent;
+    // private  Intent  intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +62,9 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
         //intent= getIntent();
     }
+
     protected void checkNetwork() {
-        if(!Utils.isNetworkAvailable(this))
-        {
+        if (!Utils.isNetworkAvailable(this)) {
             showMyDialog("Alert", "Network not available", new ApiErrorDialogInterface() {
                 @Override
                 public void onCloseClick() {
@@ -119,10 +119,10 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     protected void onResume() {
         super.onResume();
         hideKeyBord(nameTv);
+        hideKeyBord();
 
         //checkNetwork();
     }
-
 
 
     private void setSideMenuLayout() {
@@ -166,8 +166,8 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
     @Override
     public void onClick(@NonNull final View item) {
-      Intent  intent= getIntent();
-        Log.i("Menu1","Clicked");
+        Intent intent = getIntent();
+        Log.i("Menu1", "Clicked");
         closeMenu();
         MyApplication.hideTransaprentDialog();
         new Handler().postDelayed(new Runnable() {
@@ -176,29 +176,30 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 openScreen(item);
                 MyApplication.hideTransaprentDialog();
             }
-        },250);
-
-
+        }, 250);
 
 
         // closeMenu();
     }
 
+
+
     private void openScreen(@NonNull View item) {
-        Intent  intent= getIntent();
+        hideKeyBord();
+        Intent intent = getIntent();
         switch (item.getId()) {
             case R.id.dashdoard_linear:
                 callDashboard();
 
                 break;
             case R.id.book_appointment_linear:
-               // showToastMessage("Coming soon");
-               // callSideMenuScreen(ScheduleAppointmentActivity.class);
+                // showToastMessage("Coming soon");
+                // callSideMenuScreen(ScheduleAppointmentActivity.class);
                 //Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
-                intent.setClass(this,SearchActivity.class);
-                intent.putExtra(Constants.Pref.TITLE_BAR_NAME_KEY,"New Appointment");
-                intent.putExtra(Constants.Pref.IS_FROM_DASH_BOARD,false);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.setClass(this, SearchActivity.class);
+                intent.putExtra(Constants.Pref.TITLE_BAR_NAME_KEY, "New Appointment");
+                intent.putExtra(Constants.Pref.IS_FROM_DASH_BOARD, false);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 sendHandlerMessage(intent, ListenerKey.FROM_ACTIVITY_LISTENER_KEY, new FromActivityListener() {
                     @Override
                     public boolean isFromSearchActivity() {
@@ -210,11 +211,11 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 startActivity(intent);
 
                 break;
-            case R.id. my_profile_linear:
+            case R.id.my_profile_linear:
                 callMyProfile();
 
                 break;
-            case R.id. notification_linear:
+            case R.id.notification_linear:
                 //TODO something
                 showToastMessage("Coming soon");
 
@@ -240,7 +241,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 break;
             case R.id.health_records_linear:
                 showToastMessage("Coming soon");
-               // intent= new Intent(this,HealthRecordsActivity.class);
+                // intent= new Intent(this,HealthRecordsActivity.class);
                 //Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
 
                 /*intent.setClass(this,HealthRecordsActivity.class);
@@ -270,10 +271,10 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         }
     }
 
-    protected  void callMyProfile(){
-        Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
-        intent.setClass(this,HomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    protected void callMyProfile() {
+        Intent intent = getIntent(); //new Intent(this,HomeActivity.class);
+        intent.setClass(this, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.MY_PROFILE));
 
@@ -282,31 +283,31 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
 
     //
-    protected  void callSideMenuScreen(Class<? extends AbstractActivity> myClass){
-        Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
-        intent.setClass(this,myClass);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    protected void callSideMenuScreen(Class<? extends AbstractActivity> myClass) {
+        Intent intent = getIntent(); //new Intent(this,HomeActivity.class);
+        intent.setClass(this, myClass);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
-       // sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.MY_PROFILE));
+        // sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.MY_PROFILE));
 
 
     }
 
 
-
-    protected  void callMedicalRecordds(){
-        Intent  intent= getIntent(); //= new Intent(this,HomeActivity.class);
-        intent.setClass(this,HomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    protected void callMedicalRecordds() {
+        Intent intent = getIntent(); //= new Intent(this,HomeActivity.class);
+        intent.setClass(this, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.MEDICAL_RECORDS));
 
 
     }
-    protected  void callSettings(){
-        Intent  intent= getIntent(); //= new Intent(this,HomeActivity.class);
-        intent.setClass(this,HomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+    protected void callSettings() {
+        Intent intent = getIntent(); //= new Intent(this,HomeActivity.class);
+        intent.setClass(this, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.SETTINGS));
 
@@ -526,8 +527,6 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         },200);*/
 
 
-
-
     }
 
     protected abstract AbstractFragment getFragment();
@@ -560,18 +559,18 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         {
              contactDetailsFragment= (ContactDetailsFragment) abstractFragment;
         }*/
-        Log.d("fragment",fragment.getClass().getSimpleName());
-       //if(fragmentManager.findFragmentByTag(fragment.getClass().getSimpleName())==null) {
-           fragmentTransaction.replace(R.id.fragment_layout, fragment, fragment.getClass().getSimpleName()/*"FRAGMENT"*/);
-       //}else {
-           //fragmentTransaction.show(fragmentManager.findFragmentByTag(fragment.getClass().getSimpleName()));
-          // fragmentTransaction.attach(fragmentManager.findFragmentByTag(fragment.getClass().getSimpleName()));
-       //}
-            //Log.d("hidden","Show");
+        Log.d("fragment", fragment.getClass().getSimpleName());
+        //if(fragmentManager.findFragmentByTag(fragment.getClass().getSimpleName())==null) {
+        fragmentTransaction.replace(R.id.fragment_layout, fragment, fragment.getClass().getSimpleName()/*"FRAGMENT"*/);
+        //}else {
+        //fragmentTransaction.show(fragmentManager.findFragmentByTag(fragment.getClass().getSimpleName()));
+        // fragmentTransaction.attach(fragmentManager.findFragmentByTag(fragment.getClass().getSimpleName()));
+        //}
+        //Log.d("hidden","Show");
         //} /*else {
-            //fragmentTransaction.hide(fragment);
-            //Log.d("Shown","Hide");
-       // }
+        //fragmentTransaction.hide(fragment);
+        //Log.d("Shown","Hide");
+        // }
         fragmentTransaction.commitAllowingStateLoss();
         //fragmentTransaction.commit();
 
@@ -648,7 +647,6 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
         alertDialog.show();
     }
-
 
 
     private void logout() {
@@ -818,5 +816,11 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
         return super.onOptionsItemSelected(item);
     }
+   protected void hideKeyBord()
+    {
+        hideKeyBord(drawerLayout);
+     }
+
+
 
 }

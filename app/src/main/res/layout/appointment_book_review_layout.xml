@@ -154,7 +154,6 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/review_view"
                 android:layout_width="match_parent"
                 android:orientation="vertical"

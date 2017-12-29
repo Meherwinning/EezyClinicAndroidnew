@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
 import com.google.firebase.FirebaseApp;
@@ -193,7 +194,7 @@ public class AbstractFragmentActivity extends AbstractActivity  /*implements OTP
     {
        // Intent intent= new Intent(this,TermsAndConditionsActivity.class);
         //startActivity(intent);
-        String fileName="EezyClinic_T_C.html";
+        String fileName=/*"chart.html";//*/"EezyClinic_T_C.html";
         webViewDisplayAsDialog(fileName);
     }
     public void onPrivacyPolicyClick(View view)
@@ -227,6 +228,16 @@ public class AbstractFragmentActivity extends AbstractActivity  /*implements OTP
             wv =  v.findViewById(R.id.terms_webView);
             //String url="file:///android_asset/EezyClinic_T_C.html";
             String url="file:///android_asset/"+htmlFileName;
+
+
+            wv.setWebChromeClient(new WebChromeClient());
+           // wv.setWebViewClient(new WebChromeClient());
+            wv.clearCache(true);
+            wv.clearHistory();
+            wv.getSettings().setJavaScriptEnabled(true);
+            wv.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+
+
             wv.loadUrl(url);
             return v;
         }

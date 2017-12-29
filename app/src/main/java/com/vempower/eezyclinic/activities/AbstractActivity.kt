@@ -437,7 +437,7 @@ abstract class AbstractActivity : AppCompatActivity() {
 
     private var keyBoardHide: InputMethodManager?=null;
 
-    fun hideKeyBord(view: View?) {
+   protected fun hideKeyBord(view: View?) {
         if (view != null) {
             if (keyBoardHide == null) {
                 keyBoardHide = MyApplication.getCurrentActivityContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
