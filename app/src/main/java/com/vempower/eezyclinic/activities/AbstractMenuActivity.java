@@ -118,8 +118,15 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     @Override
     protected void onResume() {
         super.onResume();
-        hideKeyBord(nameTv);
-        hideKeyBord();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                hideKeyBord(nameTv);
+                hideKeyBord();
+            }
+        },250);
+
 
         //checkNetwork();
     }
