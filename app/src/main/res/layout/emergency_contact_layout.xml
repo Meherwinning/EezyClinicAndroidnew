@@ -1,201 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_marginLeft="@dimen/_20dp"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_marginLeft="@dimen/_20dp"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
+            android:id="@+id/top_linear1"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="Name"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLength="100"
-                android:maxLines="1"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
 
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
 
-        </android.support.design.widget.TextInputLayout>
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
 
+                    android:textColorHint="#8a000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:gravity="left|center_vertical"
+                        android:hint="Name"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="100"
+                        android:maxLines="1"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#8a000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:gravity="left|center_vertical"
+                        android:hint="Relationship"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="100"
+                        android:maxLines="1"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+
+
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#8a000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:gravity="left|center_vertical"
+                        android:hint="Contact Number"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="phone"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+
+
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#8a000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:gravity="left|center_vertical"
+                        android:hint="Email ID"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="100"
+                        android:maxLines="1"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+
+
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <TextView
+            android:id="@+id/emergency_details_mask_tv"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="Relationship"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLength="100"
-                android:maxLines="1"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
-
-
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="Contact Number"
-                android:imeOptions="actionUnspecified"
-                android:inputType="phone"
-                android:maxLength="20"
-                android:maxLines="1"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
-
-
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="Email ID"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLength="100"
-                android:maxLines="1"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
-
-
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>
-
-
-
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/top_linear1"
+            android:layout_alignEnd="@+id/top_linear1"
+            android:layout_alignLeft="@+id/top_linear1"
+            android:layout_alignTop="@+id/top_linear1"
+            android:background="@color/transparent"
+            android:clickable="true"
+            android:visibility="gone" />
+    </RelativeLayout>
 
 
 </LinearLayout>
