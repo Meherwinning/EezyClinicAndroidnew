@@ -23,6 +23,8 @@ import android.os.Build;
 import android.os.Messenger;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,6 +46,7 @@ import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.HomeListener;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.Utils;
 
 import java.util.List;
 
@@ -61,6 +64,8 @@ public class HomeActivity extends AbstractMenuActivity {
     private int[] imageSelectIds={R.drawable.group_6_blue,R.drawable.group_7_blue,R.drawable.group_8_blue,R.drawable.group_9_blue};
 
     private AbstractFragment homeFragment,myProfileFragment,medicalRecordsFragment,settingsFragment;
+    private ImageView title_logo_iv;
+    private Toolbar toolbar;
 
     protected void setMyContectntView()
     {
@@ -99,15 +104,19 @@ public class HomeActivity extends AbstractMenuActivity {
            {
                case  Constants.Home.HOME_ACTIVITY:
                    callDashboard();
+                 //  callHomeActionBar();
                    break;
                case  Constants.Home.MY_PROFILE:
                    callMyProfile();
+                 //  callProfileActionBar();
                    break;
                case  Constants.Home.MEDICAL_RECORDS:
                    callMedicalRecordds();
+                  // callHomeActionBar();
                    break;
                case  Constants.Home.SETTINGS:
                    callSettings();
+                  // callHomeActionBar();
                    break;
            }
         hideKeyBord();
@@ -136,6 +145,7 @@ public class HomeActivity extends AbstractMenuActivity {
         }*/
     }
 
+    private boolean isHomeOptionMenu;
     public AbstractFragment getHomeFragment() {
        // HomeFragment fragment=new HomeFragment();
         if(homeFragment==null)
@@ -231,6 +241,18 @@ public class HomeActivity extends AbstractMenuActivity {
         //return fragment;
     }
 
+
+    private void  callProfileActionBar() {
+        isHomeOptionMenu=true;
+
+        invalidateOptionsMenu();
+    }
+    private void  callHomeActionBar() {
+        isHomeOptionMenu=false;
+
+        invalidateOptionsMenu();
+    }
+
     public void setActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -239,6 +261,8 @@ public class HomeActivity extends AbstractMenuActivity {
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        title_logo_iv= findViewById(R.id.title_logo_iv);
+        title_logo_iv.setVisibility(View.VISIBLE);
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -247,6 +271,132 @@ public class HomeActivity extends AbstractMenuActivity {
         }
         super.setActionBar(true);
 
+    }
+
+
+
+    public void setHomeActionBar() {
+       if(title_logo_iv!=null) {
+           title_logo_iv.setVisibility(View.VISIBLE);
+       }
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        getSupportActionBar().setTitle("");
+
+    }
+
+    private void profileActionBar() {
+        //isHomeOptionMenu=true;
+        //invalidateOptionsMenu();
+
+        if(title_logo_iv!=null)
+        {
+            title_logo_iv.setVisibility(View.GONE);
+        }
+
+
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
+        getSupportActionBar().setHomeButtonEnabled(false);
+        //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
+        // titleName.setText(Utils.getStringFromResources(R.string.title_activity_appointments));
+   /*     if(titleName!=null) {
+            titleName.setText("Profile");
+        }else
+        {*/
+            getSupportActionBar().setTitle("Profile");
+       // }
+        if(toolbar!=null) {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //do something you want
+                    finish();
+                }
+            });
+        }
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_USE_LOGO);
+        //mImageView = findViewById(R.id.image);
+        //View  mToolbarView = findViewById(R.id.toolbar);
+        //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
+
+        //// getSupportActionBar().setTitle("");
+
+        // mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.app_red)));
+
+        //super.setActionBar(false);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if(isHomeOptionMenu) {
+            getMenuInflater().inflate(R.menu.profile_view_menu, menu);
+            profileActionBar();
+        }else
+        {
+            setHomeActionBar();
+        }
+
+       // MenuItem item = menu.findItem(R.id.action_filter);
+       /* if(item!=null )
+        {
+            item.setVisible(isShowFilterIcon);
+        }*/
+        //searchView.setMenuItem(item);
+
+        // initDisplayCart(menu,R.id.action_cart);
+
+        return true;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.action_profile_edit:
+               // Utils.showToastMsg("Profile Edit");
+                Intent  intent= getIntent();
+                intent.setClass(this,EditProfileActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivityForResult(intent,EditProfileActivity.IS_REFRESH_PROFILE);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK)
+        {
+            if(requestCode== EditProfileActivity.IS_REFRESH_PROFILE)
+            {
+
+                refreshProfile();
+            }
+        }
+    }
+
+
+
+    private void refreshProfile()
+    {
+        Utils.showToastMsg("Refresh profile");
+        myProfileFragment=null;
+        callMyProfile();
     }
 
     @Override
@@ -278,6 +428,7 @@ public class HomeActivity extends AbstractMenuActivity {
 
     public void onDashBoardClick(View view1)
     {
+        callHomeActionBar();
         if(homeFragment==null)
         {
             homeFragment= getHomeFragment();
@@ -291,6 +442,7 @@ public class HomeActivity extends AbstractMenuActivity {
 
     public void onMyProfileClick(View view)
     {
+        callProfileActionBar();
         if(myProfileFragment==null)
         {
             myProfileFragment= new MyProfileFragment();
@@ -301,6 +453,7 @@ public class HomeActivity extends AbstractMenuActivity {
     }
     public void onMedicalRecordsClick(View view)
     {
+        callHomeActionBar();
         if(medicalRecordsFragment==null)
         {
             medicalRecordsFragment= new MedicalRecordsFragment();
@@ -311,6 +464,7 @@ public class HomeActivity extends AbstractMenuActivity {
     }
     public void onSettingsClick(View view)
     {
+        callHomeActionBar();
         if(settingsFragment==null)
         {
             settingsFragment= new SettingsFragment();

@@ -333,7 +333,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
                    String selectedRelation=null;
                     if (position != (aa.getCount())) {
                          selectedRelation = relations[position];
-                        Utils.showToastMessage(selectedRelation);
+                        //Utils.showToastMessage(selectedRelation);
 
                     }
                     if(requestDetails!=null)

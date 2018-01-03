@@ -67,6 +67,19 @@
         <item>Others</item>
         <item>Select family member</item>
     </string-array>
+    <string-array name="relations1">
+        <item>Father</item>
+        <item>Mother</item>
+        <item>Brother</item>
+        <item>Sister</item>
+        <item>Husband</item>
+        <item>Wife</item>
+        <item>Son</item>
+        <item>Daughter</item>
+        <item>Others</item>
+        <item>Relation</item>
+    </string-array>
+
 
 
 

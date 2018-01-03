@@ -26,6 +26,7 @@ public interface Constants {
 
     String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd HH:mm:ss";//"2017-11-22 23:59:59";
    String DISPLAY_DATE_FORMAT="dd MMMM, yyyy";//15 December, 2017
+    String REQUEST_DATE_FORMAT="MM/dd/yyyy";//01/08/1986
     int MAX_TABS_SIZE = 5;
     @Nullable
     String IS_WATCH_APP_TOUR_KEY="is_watch_app_tour_key";
@@ -57,6 +58,22 @@ public interface Constants {
         String GENDER = "Gender";
         String MALE = "Male";
         String FEMALE="Female";
+    }
+    interface MaritalStatusValues {
+        String MARITAL_STATUS = "Marital Status";
+        String MARRIED = "Married";
+        String SINGLE="Single";
+    }
+    interface BloodGroupValues {
+        String O_NEGE = "O-";
+        String O_POSI = "O+";
+        String A_NEGE = "A-";
+        String A_POSI = "A+";
+        String B_NEGE = "B-";
+        String B_POSI = "B+";
+        String AB_NEGE= "AB-";
+        String AB_POSI= "AB+";
+        String BLOOD_GROUP="Blood Group";
     }
 
     public interface Home {

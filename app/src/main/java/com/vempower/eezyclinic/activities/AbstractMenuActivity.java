@@ -114,6 +114,17 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                hideKeyBord(nameTv);
+                hideKeyBord();
+            }
+        },200);
+    }
 
     @Override
     protected void onResume() {
@@ -276,6 +287,14 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 break;
 
         }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                hideKeyBord(nameTv);
+                hideKeyBord();
+            }
+        },200);
     }
 
     protected void callMyProfile() {
@@ -320,6 +339,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
 
     }
+
 
 
     public void onMenuClick(View view) {

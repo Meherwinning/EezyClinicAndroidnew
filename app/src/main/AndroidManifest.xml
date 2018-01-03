@@ -102,7 +102,9 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeOverlay.MyNoTitleActivity"
+            android:windowSoftInputMode="adjustPan"
              />
+       <!-- android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"-->
         <activity
             android:name=".activities.AppTourActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
@@ -223,6 +225,17 @@
             android:screenOrientation="portrait"
             android:theme="@style/ThemeOverlay.MyNoTitleActivity"
             android:windowSoftInputMode="stateHidden|adjustResize|adjustPan" />
+
+
+
+        <activity
+            android:name=".activities.EditProfileActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeOverlay.MyNoTitleActivity"
+            />
+
         <activity
             android:name=".activities.SingleDoctorMapActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
@@ -298,6 +311,8 @@
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeOverlay.MyNoTitleActivity" />
+
+
 
 
 

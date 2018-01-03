@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/linkedin-sdk/src/main/jniLibs"/></dataSet><dataSet config="debug"><source path="/home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/linkedin-sdk/src/debug/jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/linkedin-sdk/src/main/jniLibs"/></dataSet><dataSet config="debug"><source path="/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/linkedin-sdk/src/debug/jniLibs"/></dataSet></merger>
