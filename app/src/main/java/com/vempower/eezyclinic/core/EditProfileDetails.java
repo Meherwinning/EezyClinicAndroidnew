@@ -67,6 +67,8 @@ public class EditProfileDetails {
     public String emergencyContactNumber;
     public String emergencyContactEmail;
 
+    public String age;
+
 
     @Override
     public String toString() {

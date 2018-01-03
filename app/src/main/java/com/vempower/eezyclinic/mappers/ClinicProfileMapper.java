@@ -27,12 +27,19 @@ public class ClinicProfileMapper extends  AbstractMapper  implements Callback<Cl
 
 
     private ClinicProfileAPIListener listener;
-    private final String clinicid,branchid;
+    private int clinicid,branchid;
 
     public ClinicProfileMapper(String clinicid, String branchid) {
        // this.doctorid=doctorid;
-        this.clinicid=clinicid;
-        this.branchid=branchid;
+        try {
+            this.clinicid = Integer.parseInt(clinicid);
+            this.branchid = Integer.parseInt(branchid);
+        }catch (Exception e)
+        {
+            this.clinicid =-1;
+            this.branchid = -1;
+
+        }
     }
 
     public void setOnClinicProfileAPIListener(ClinicProfileAPIListener listener) {
@@ -102,7 +109,7 @@ public class ClinicProfileMapper extends  AbstractMapper  implements Callback<Cl
 
     public RequestBody getMyRequestBody() {
 
-        if ( TextUtils.isEmpty(clinicid) || TextUtils.isEmpty(branchid)) {
+        if ( clinicid==-1 || branchid==-1) {
             return null;
         }
         /*{

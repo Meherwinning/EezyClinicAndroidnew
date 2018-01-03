@@ -72,10 +72,10 @@ public class EditProfileFragment extends AbstractFragment {
     private HintAdapter<IdCardTypeData> idTypeAdapter;
 
 
-    private MyEditTextBlackCursorRR patient_name_et, height_et,
-            known_allergies_et, contact_et, contact_email_et,
+    private MyEditTextBlackCursorRR patient_name_et, height_et,patient_age_et,
+            known_allergies_et, contact_et, contact_email_et,id_number_et,
             contact_address_et, contact_language_known_et, contact_nationality_et1,
-            contact_id_type_et, contact_insurance_provider_et1, contact_insurance_details_et;
+            contact_id_type_et1, contact_insurance_provider_et1, contact_insurance_details_et1;
 
     private MyEditTextBlackCursorRR emergency_contact_name_et, emergency_contact_relationship_et1,
             emergency_contact_number_et, emergency_contact_emailid_et;
@@ -334,7 +334,7 @@ public class EditProfileFragment extends AbstractFragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //if(position!=0)
                 //{
-                profileDetails.secondaryinsurancePackage=null;
+                profileDetails.insurancePackage=null;
                 if (position != (insuranceAdapter1.getCount())) {
                     InsuranceData selectedInsurance = insuranceTypeList.get(position);
                     // Utils.showToastMessage("selected insurance " + selectedInsurance);
@@ -380,7 +380,7 @@ public class EditProfileFragment extends AbstractFragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //if(position!=0)
                 //{
-                profileDetails.insurancePackage=null;
+                profileDetails.secondaryinsurancePackage=null;
                 if (position != (insuranceAdapter.getCount())) {
                     InsuranceData selectedInsurance = insuranceTypeList.get(position);
                     // Utils.showToastMessage("selected insurance " + selectedInsurance);
@@ -462,7 +462,7 @@ public class EditProfileFragment extends AbstractFragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //if(position!=0)
                 //{
-                profileDetails.insurancePackage=null;
+                profileDetails.idType=null;
                 if (position != (idTypeAdapter.getCount())) {
                     IdCardTypeData idCardTypeData = idCardTypeList.get(position);
                     // Utils.showToastMessage("selected insurance " + selectedInsurance);
@@ -603,7 +603,7 @@ public class EditProfileFragment extends AbstractFragment {
                 if (position != (aa.getCount())) {
                     String selectedGender = bloodGroupList.get(position);
                     if (selectedGender != null) {
-                        profileDetails.gender=selectedGender;
+                        profileDetails.bloodGroup=selectedGender;
                     }
                 }
                 //Utils.showToastMessage("selectedGender "+selectedGender);
@@ -622,9 +622,8 @@ public class EditProfileFragment extends AbstractFragment {
         patient_name_et = getFragemtView().findViewById(R.id. patient_name_et);
         gender_type_spinner  = getFragemtView().findViewById(R.id.gender_spinner);
         marital_status_spinner = getFragemtView().findViewById(R.id. marital_status_spinner);
-
+        patient_age_et   = getFragemtView().findViewById(R.id.patient_age_et);
         date_of_birth_tv = getFragemtView().findViewById(R.id.date_of_birth_tv);
-        //blood_group_et = getFragemtView().findViewById(R.id.blood_group_et);
         blood_group_spinner = getFragemtView().findViewById(R.id.blood_group_spinner);
         height_et = getFragemtView().findViewById(R.id.height_et);
         known_allergies_et = getFragemtView().findViewById(R.id.known_allergies_et);
@@ -636,13 +635,11 @@ public class EditProfileFragment extends AbstractFragment {
         contact_address_et = getFragemtView().findViewById(R.id.address_et);
         contact_language_known_et = getFragemtView().findViewById(R.id.language_known_et);
         nationality_spinner = getFragemtView().findViewById(R.id.nationality_spinner);
-
-        contact_id_type_et = getFragemtView().findViewById(R.id.id_type_et);
-        //contact_insurance_provider_et = getFragemtView().findViewById(R.id.insurance_provider_et);
-        insurance_secoundary_spinner  = getFragemtView().findViewById(R.id.insurance_secoundary_spinner);
-
         id_type_spinner = getFragemtView().findViewById(R.id. id_type_spinner);
-        contact_insurance_details_et = getFragemtView().findViewById(R.id.insurance_details_et);
+        id_number_et = getFragemtView().findViewById(R.id. id_number_et);
+
+
+
 
         //Emergency Contact
         emergency_contact_name_et = getFragemtView().findViewById(R.id.emergency_contact_name_et);
@@ -655,9 +652,7 @@ public class EditProfileFragment extends AbstractFragment {
 
         //Insurance
         insurance_tpa_et  = getFragemtView().findViewById(R.id.insurance_tpa_et);
-        //insurance_insurance_provider_et  = getFragemtView().findViewById(R.id.insurance_insurance_provider_et);
         insurance_provider_spinner  = getFragemtView().findViewById(R.id.insurance_provider_spinner);
-
         insurance_insurance_number_et = getFragemtView().findViewById(R.id.insurance_insurance_number_et);
         insurance_insurance_policy_et  = getFragemtView().findViewById(R.id.insurance_insurance_policy_et);
         insurance_member_id_et  = getFragemtView().findViewById(R.id.insurance_member_id_et);
@@ -669,7 +664,10 @@ public class EditProfileFragment extends AbstractFragment {
         insurance_reason_et  = getFragemtView().findViewById(R.id.insurance_reason_et);
         insurance_organisation_et  = getFragemtView().findViewById(R.id.insurance_organisation_et);
         insurance_max_limit_et  = getFragemtView().findViewById(R.id.insurance_max_limit_et);
+        insurance_secoundary_spinner  = getFragemtView().findViewById(R.id.insurance_secoundary_spinner);
         insurance_secoundary_number_et  = getFragemtView().findViewById(R.id.insurance_secoundary_number_et);
+
+          //contact_insurance_details_et = getFragemtView().findViewById(R.id.insurance_details_et);
 
     }
 
@@ -1021,49 +1019,64 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
     }
     */
 
+     /*
+
+     EditProfileDetails{
+     patientName='Sathish', gender='A+', maritialStatus='Single', dateofBirth='08/01/1987',
+      mobile='9441745857', secondarymobile='null', residencemobile='null', country='null',
+      city='null', locality='null', address='Khammam', languagesKnown='null', nationality='Indian',
+       idType='Nationality Card', idNumber='6210', occupation='null', organisation='org1',
+       bloodGroup='null', height='5.9', knownAllergies='English, Telugu', tpa='tpa1',
+       tpaid='null', insurancePackage='null', insuranceNumber='943826', policy='SBI life',
+        policyNumber='null', memberid='43281', type='type1', scheme='scheme1',
+        reason='Reason1', copay='40', maxlimit='46', fromvalidity='11/15/2017',
+         tovalidity='04/20/2018', secondaryinsurancePackage='Oman Insurance Co.',
+         secondaryinsuranceNumber='739103', emergencyContactName='Veeramma Ch',
+         emergencyContactRelationship='Mother', emergencyContactNumber='9603117395',
+          emergencyContactEmail='SathishKumarchalla.apk@gmail.com'}
+      */
+
     private void setProfileData() {
-       profileDetails.patientName= patient_name_et.getText().toString();
-       profileDetails.height= height_et.getText().toString();
-       profileDetails.knownAllergies= known_allergies_et.getText().toString();
+        profileDetails.patientName= patient_name_et.getText().toString();
+        profileDetails.age=  patient_age_et.getText().toString();//TODO add age kay in API
+        profileDetails.height=height_et.getText().toString();
+        profileDetails.knownAllergies= known_allergies_et.getText().toString();
 
 
-        //My Profile
+        //Contact details
        profileDetails.mobile= contact_et.getText().toString();
-       profileDetails.address= contact_address_et.getText().toString();
-       profileDetails.languagesKnown= contact_language_known_et.getText().toString();
+       // contact_email_et = getFragemtView().findViewById(R.id.email_et);
+        profileDetails.address= contact_address_et.getText().toString();
+        profileDetails.languagesKnown= contact_language_known_et.getText().toString();
+        profileDetails.idNumber=id_number_et.getText().toString();
 
-       if(true)
-       {
-           return;
-       }
-
-       //profileDetails.insurance= contact_insurance_details_et = getFragemtView().findViewById(R.id.insurance_details_et);
 
         //Emergency Contact
-        emergency_contact_name_et = getFragemtView().findViewById(R.id.emergency_contact_name_et);
-        //emergency_contact_relationship_et = getFragemtView().findViewById(R.id.emergency_contact_relationship_et);
-        emergency_contact_number_et = getFragemtView().findViewById(R.id.emergency_contact_number_et);
-        emergency_contact_emailid_et = getFragemtView().findViewById(R.id.emergency_contact_emailid_et);
-        relation_spinner  = getFragemtView().findViewById(R.id.relation_spinner);
+        profileDetails.emergencyContactName= emergency_contact_name_et.getText().toString();
+        profileDetails.emergencyContactNumber= emergency_contact_number_et.getText().toString();
+        profileDetails.emergencyContactEmail= emergency_contact_emailid_et.getText().toString();
+       // relation_spinner  = getFragemtView().findViewById(R.id.relation_spinner);
 
 
 
         //Insurance
-        insurance_tpa_et  = getFragemtView().findViewById(R.id.insurance_tpa_et);
-        //insurance_insurance_provider_et  = getFragemtView().findViewById(R.id.insurance_insurance_provider_et);
-        insurance_provider_spinner  = getFragemtView().findViewById(R.id.insurance_provider_spinner);
+        profileDetails.tpa= insurance_tpa_et.getText().toString();
+        //insurance_provider_spinner  = getFragemtView().findViewById(R.id.insurance_provider_spinner);
+        profileDetails.insuranceNumber= insurance_insurance_number_et.getText().toString();
+        profileDetails.policy= insurance_insurance_policy_et.getText().toString();
+        profileDetails.memberid= insurance_member_id_et.getText().toString();
+        profileDetails.type=insurance_type_et.getText().toString();
+        //insurance_valid_from_tv.getText().toString();
+       // insurance_valid_to_tv.getText().toString();
+        profileDetails.copay=insurance_co_pay_et.getText().toString();
+        profileDetails.scheme=insurance_scheme_et.getText().toString();
+        profileDetails.reason=insurance_reason_et.getText().toString();
+        profileDetails.organisation=insurance_organisation_et.getText().toString();
+        profileDetails.maxlimit=insurance_max_limit_et.getText().toString();
+       // insurance_secoundary_spinner  = getFragemtView().findViewById(R.id.insurance_secoundary_spinner);
+        profileDetails.secondaryinsuranceNumber= insurance_secoundary_number_et.getText().toString();
 
-        insurance_insurance_number_et = getFragemtView().findViewById(R.id.insurance_insurance_number_et);
-        insurance_insurance_policy_et  = getFragemtView().findViewById(R.id.insurance_insurance_policy_et);
-        insurance_member_id_et  = getFragemtView().findViewById(R.id.insurance_member_id_et);
-        insurance_type_et  = getFragemtView().findViewById(R.id.insurance_type_et);
-        insurance_valid_from_tv  = getFragemtView().findViewById(R.id.insurance_valid_from_tv);
-        insurance_valid_to_tv  = getFragemtView().findViewById(R.id.insurance_valid_to_tv);
-        insurance_co_pay_et  = getFragemtView().findViewById(R.id.insurance_co_pay_et);
-        insurance_scheme_et  = getFragemtView().findViewById(R.id.insurance_scheme_et);
-        insurance_reason_et  = getFragemtView().findViewById(R.id.insurance_reason_et);
-        insurance_organisation_et  = getFragemtView().findViewById(R.id.insurance_organisation_et);
-        insurance_max_limit_et  = getFragemtView().findViewById(R.id.insurance_max_limit_et);
+
     }
 
     public void setOnSuccessToUpdateProfileListener(SuccessToUpdateProfileListener successListener)
