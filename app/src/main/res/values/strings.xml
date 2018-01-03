@@ -124,6 +124,9 @@
     <string name="claer_filter_message_lbl">Are you sure you want to clear the filters?</string>
     <string name="press_again_to_exit_from_search">Press again to exit from search.</string>
     <string name="unable_to_get_insurance_list_lbl">Something problem to fetch Insurance List from server, Please try again</string>
+    <string name="unable_to_get_id_type_list_lbl">Something problem to fetch Id type List from server, Please try again</string>
+
+
     <string name="unable_to_get_nationality_list_lbl">Something problem to fetch Nationality from server, Please try again</string>
     <string name="unable_to_get_languages_list_lbl">Something problem to fetch languages list from server, Please try again</string>
     <string name="unable_to_get_speciality_list_lbl">Something problem to fetch Insurance List from server, Please try again</string>

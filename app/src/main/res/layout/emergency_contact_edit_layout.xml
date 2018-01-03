@@ -34,6 +34,7 @@
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                     <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                       android:id="@+id/emergency_contact_name_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_2dp"
@@ -64,54 +65,47 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/relation_linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:layout_marginBottom="@dimen/_15dp"
                 android:orientation="vertical">
 
-                <android.support.design.widget.TextInputLayout
+                <LinearLayout
+
                     android:layout_width="match_parent"
-
                     android:layout_height="@dimen/_50dp"
-                    android:background="@drawable/background_shape_idle"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_2dp">
 
-                    android:textColorHint="#8a000000"
-                    app:errorEnabled="true"
-                    app:hintEnabled="true"
-                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
-                        android:id="@+id/emergency_contact_relationship_et"
-
+                    <com.vempower.eezyclinic.views.CustomSpinnerSelection
+                        android:id="@+id/relation_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="@dimen/_2dp"
-                        android:background="@null"
-                        android:gravity="left|center_vertical"
-                        android:hint="Relationship"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="text"
-                        android:maxLength="100"
+                        android:backgroundTint="#de000000"
                         android:maxLines="1"
-                        android:padding="@dimen/_2dp"
                         android:singleLine="true"
+                        android:foregroundTint="#de000000"
 
-
+                        android:layout_marginRight="@dimen/_5dp"
+                        android:spinnerMode="dropdown"
                         android:textColor="#de000000"
-                        android:textColorHint="#8a000000"
-                        android:textSize="@dimen/_14dp" />
+                        android:textSize="@dimen/button_text_size" />
 
-                </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <!-- </android.support.design.widget.TextInputLayout>-->
 
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginRight="@dimen/_12dp"
                     android:alpha="0.3"
+                    android:layout_marginRight="@dimen/_12dp"
                     android:background="@color/black" />
-
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -131,6 +125,7 @@
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                     <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                        android:id="@+id/emergency_contact_number_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_2dp"
@@ -179,6 +174,7 @@
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                     <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                        android:id="@+id/emergency_contact_emailid_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_2dp"

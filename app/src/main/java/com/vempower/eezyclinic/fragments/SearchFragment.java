@@ -334,7 +334,7 @@ public class SearchFragment extends AbstractFragment {
         mapper.setOnNationalityListListener(new NationalityMapper.NationalityListListener() {
             @Override
             public void getNationalityListAPI(NationalityListAPI nationalityListAPI, String errorMessage) {
-MyApplication.hideTransaprentDialog();
+     MyApplication.hideTransaprentDialog();
                 if (!isValidResponse(nationalityListAPI, errorMessage)) {
                     showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_nationality_list_lbl), new ApiErrorDialogInterface() {
                         @Override

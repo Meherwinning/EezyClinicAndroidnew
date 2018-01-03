@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/view_selector"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/contact_details_linear"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:background="#f2f2f2"
+        android:layout_marginTop="@dimen/_10dp"
+        android:paddingTop="@dimen/_10dp"
+        android:paddingLeft="@dimen/_20dp"
+        android:paddingBottom="@dimen/_10dp"
+
+
+        android:clickable="true"
+        android:layout_marginBottom="2dp"
+        android:layout_height="@dimen/_38dp">
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#de000000"
+            android:text="Contact Details"
+            />
+        <ImageView
+            android:id="@+id/contact_iv"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/_15dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <com.github.aakira.expandablelayout.ExpandableLinearLayout
+        android:id="@+id/expandableLayout_contact_el"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        app:ael_duration="300"
+        app:ael_expanded="false"
+        >
+        <include layout="@layout/contact_details_edit_layout">
+
+        </include>
+
+
+    </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+
+</LinearLayout>
+
+
+
+</LinearLayout>

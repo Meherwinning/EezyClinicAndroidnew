@@ -12,6 +12,7 @@ import com.vempower.eezyclinic.APIResponce.DoctorClinicNameListAPI;
 import com.vempower.eezyclinic.APIResponce.DoctorProfileAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordOTPAPI;
+import com.vempower.eezyclinic.APIResponce.IdCardTypeAPI;
 import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
 import com.vempower.eezyclinic.APIResponce.LanguageListAPI;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
@@ -20,6 +21,7 @@ import com.vempower.eezyclinic.APIResponce.SearchResultClinicListAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiesAPI;
+import com.vempower.eezyclinic.APIResponce.TPAListAPI;
 import com.vempower.eezyclinic.APIResponce.UpcomingAppointmentListAPI;
 import com.vempower.eezyclinic.APIResponce.VerifyOTPAPI;
 
@@ -160,6 +162,16 @@ public interface EezyClinicAPI {
     //http://202.63.103.194:8003/api/appointment/appointments
     @POST(data + "appointment/appointments")
     Call<AppointmentHistoryListAPI> getAppointmentHistoryList(@Body RequestBody postBody);
+
+
+    //http://202.63.103.194:8003/api/search/idcardlist
+    @GET(data + "search/idcardlist")
+    Call<IdCardTypeAPI> getIdCardTypeAPI();
+
+    //http://202.63.103.194:8003/api/search/tpalist
+    @GET(data + "search/tpalist")
+    Call<TPAListAPI> getTPAListAPI();
+
 
 
 

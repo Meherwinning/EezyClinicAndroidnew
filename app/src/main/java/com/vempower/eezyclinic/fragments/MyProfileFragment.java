@@ -38,7 +38,7 @@ public class MyProfileFragment extends AbstractFragment {
 
     private View fragmentView;
     private ExpandableLinearLayout expandableLayout_contact_el, expandableLayout_insurance_el, expandableLayout_emergency_el;
-    private MyTextViewRR date_of_birth_et;
+    private MyTextViewRR date_of_birth_tv;
     private String mySelectedDate;
     private SelectedDate selectedDateObj;
 
@@ -46,6 +46,21 @@ public class MyProfileFragment extends AbstractFragment {
             emergency_details_mask_tv, contact_details_mask_tv;
     private boolean isEditMode;
     private ScrollView myScrollView;
+    private MyEditTextBlackCursorRR blood_group_et, height_et,
+            known_allergies_et, contact_et, contact_email_et,
+            contact_address_et, contact_language_known_et, contact_nationality_et,
+            contact_id_type_et, contact_insurance_provider_et, contact_insurance_details_et;
+
+    private MyEditTextBlackCursorRR emergency_contact_name_et, emergency_contact_relationship_et,
+            emergency_contact_number_et, emergency_contact_emailid_et;
+
+    private MyEditTextBlackCursorRR insurance_tpa_et,insurance_insurance_provider_et,
+            insurance_insurance_number_et,insurance_insurance_policy_et,
+            insurance_member_id_et,insurance_type_et,insurance_valid_from_et,
+            insurance_valid_to_et, insurance_co_pay_et,insurance_scheme_et,
+            insurance_reason_et, insurance_organisation_et,insurance_max_limit_et;
+
+
 
     @Nullable
     @Override
@@ -73,16 +88,57 @@ public class MyProfileFragment extends AbstractFragment {
         expandableLayout_emergency_el = getFragemtView().findViewById(R.id.expandableLayout_emergency_el);
 
 
-         myScrollView= ((ScrollView)getFragemtView().findViewById(R.id.scroll));
+        myScrollView = ((ScrollView) getFragemtView().findViewById(R.id.scroll));
+        initForViews();
 
 
-        date_of_birth_et = getFragemtView().findViewById(R.id.date_of_birth_et);
-        date_of_birth_et.setOnClickListener(new View.OnClickListener() {
+        date_of_birth_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onDateOfBirthTextviewClick();
             }
         });
+
+
+    }
+
+    private void initForViews() {
+        date_of_birth_tv = getFragemtView().findViewById(R.id.date_of_birth_tv);
+        blood_group_et = getFragemtView().findViewById(R.id.blood_group_et);
+        height_et = getFragemtView().findViewById(R.id.height_et);
+        known_allergies_et = getFragemtView().findViewById(R.id.known_allergies_et);
+
+
+        //My Profile
+        contact_et = getFragemtView().findViewById(R.id.contact_et);
+        contact_email_et = getFragemtView().findViewById(R.id.email_et);
+        contact_address_et = getFragemtView().findViewById(R.id.address_et);
+        contact_language_known_et = getFragemtView().findViewById(R.id.language_known_et);
+        contact_nationality_et = getFragemtView().findViewById(R.id.nationality_et);
+        contact_id_type_et = getFragemtView().findViewById(R.id.id_type_et);
+        contact_insurance_provider_et = getFragemtView().findViewById(R.id.insurance_provider_et);
+        contact_insurance_details_et = getFragemtView().findViewById(R.id.insurance_details_et);
+
+        //Emergency Contact
+        emergency_contact_name_et = getFragemtView().findViewById(R.id.emergency_contact_name_et);
+        emergency_contact_relationship_et = getFragemtView().findViewById(R.id.emergency_contact_relationship_et);
+        emergency_contact_number_et = getFragemtView().findViewById(R.id.emergency_contact_number_et);
+        emergency_contact_emailid_et = getFragemtView().findViewById(R.id.emergency_contact_emailid_et);
+
+        //Insurance
+        insurance_tpa_et  = getFragemtView().findViewById(R.id.insurance_tpa_et);
+        insurance_insurance_provider_et  = getFragemtView().findViewById(R.id.insurance_insurance_provider_et);
+        insurance_insurance_number_et = getFragemtView().findViewById(R.id.insurance_insurance_number_et);
+        insurance_insurance_policy_et  = getFragemtView().findViewById(R.id.insurance_insurance_policy_et);
+        insurance_member_id_et  = getFragemtView().findViewById(R.id.insurance_member_id_et);
+        insurance_type_et  = getFragemtView().findViewById(R.id.insurance_type_et);
+        insurance_valid_from_et  = getFragemtView().findViewById(R.id.insurance_valid_from_et);
+        insurance_valid_to_et  = getFragemtView().findViewById(R.id.insurance_valid_to_et);
+        insurance_co_pay_et  = getFragemtView().findViewById(R.id.insurance_co_pay_et);
+        insurance_scheme_et  = getFragemtView().findViewById(R.id.insurance_scheme_et);
+        insurance_reason_et  = getFragemtView().findViewById(R.id.insurance_reason_et);
+        insurance_organisation_et  = getFragemtView().findViewById(R.id.insurance_organisation_et);
+        insurance_max_limit_et  = getFragemtView().findViewById(R.id.insurance_max_limit_et);
 
 
     }
@@ -193,7 +249,7 @@ public class MyProfileFragment extends AbstractFragment {
      * Used to scroll to the given view.
      *
      * @param scrollViewParent Parent ScrollView
-     * @param view View to which we need to scroll.
+     * @param view             View to which we need to scroll.
      */
     private void scrollToView(final ScrollView scrollViewParent, final View view) {
         // Get deepChild Offset
@@ -313,7 +369,7 @@ public class MyProfileFragment extends AbstractFragment {
 
             String date = selectedCal.get(Calendar.YEAR) + "-" + (selectedCal.get(Calendar.MONTH) + 1) + "-" + selectedCal.get(Calendar.DAY_OF_MONTH);
             SimpleDateFormat format = new SimpleDateFormat(Constants.DISPLAY_DATE_FORMAT);
-            date_of_birth_et.setText(format.format(selectedCal.getTime()));
+            date_of_birth_tv.setText(format.format(selectedCal.getTime()));
             mySelectedDate = date;
             // showToastMessage("You picked the following date: "+date);
 
