@@ -34,6 +34,7 @@
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                     <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                       android:id="@+id/emergency_contact_name_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_2dp"
@@ -131,6 +132,7 @@
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                     <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                      android:id="@+id/emergency_contact_number_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_2dp"
@@ -179,6 +181,7 @@
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                     <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                        android:id="@+id/emergency_contact_emailid_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_2dp"

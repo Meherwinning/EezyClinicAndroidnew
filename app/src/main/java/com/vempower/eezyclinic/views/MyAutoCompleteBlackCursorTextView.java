@@ -14,18 +14,18 @@ import java.lang.reflect.Field;
  * Created by satish on 11/12/17.
  */
 
-public class MyAutoCompleteTextView extends android.support.v7.widget.AppCompatAutoCompleteTextView {
-    public MyAutoCompleteTextView(Context context) {
+public class MyAutoCompleteBlackCursorTextView extends android.support.v7.widget.AppCompatAutoCompleteTextView {
+    public MyAutoCompleteBlackCursorTextView(Context context) {
         super(context);
         setFontStyle();
     }
 
-    public MyAutoCompleteTextView(Context context, AttributeSet attrs) {
+    public MyAutoCompleteBlackCursorTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setFontStyle();
     }
 
-    public MyAutoCompleteTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MyAutoCompleteBlackCursorTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setFontStyle();
     }
@@ -48,7 +48,7 @@ public class MyAutoCompleteTextView extends android.support.v7.widget.AppCompatA
             // https://github.com/android/platform_frameworks_base/blob/kitkat-release/core/java/android/widget/TextView.java#L562-564
             Field f = TextView.class.getDeclaredField("mCursorDrawableRes");
             f.setAccessible(true);
-            f.set(this, R.drawable.my_cursor);
+            f.set(this, R.drawable.my_black_cursor);
         } catch (Exception ignored) {
         }
     }

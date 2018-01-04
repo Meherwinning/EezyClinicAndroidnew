@@ -1,5 +1,7 @@
 package com.vempower.eezyclinic.utils;
 
+import com.vempower.eezyclinic.R;
+
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -34,6 +36,7 @@ public interface Constants {
     String SMS_SENDER_NAME="WAY2SMS";
     int RESULT_PAGE_ITEMS_LIMIT = 1000;
     int RESULT_PAGE_ITEMS_LIMIT1 = Integer.MAX_VALUE;
+    String RECORD_FOLDER_NAME=Utils.getStringFromResources(R.string.directory_name);
 
     //http://cfw.samplespace.com/wp-json/cfw/v1/customer
 

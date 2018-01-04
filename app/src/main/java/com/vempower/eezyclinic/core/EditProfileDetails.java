@@ -67,6 +67,8 @@ public class EditProfileDetails {
     public String emergencyContactNumber;
     public String emergencyContactEmail;
 
+    public String  policy_number;
+
     public String age;
 
 
@@ -113,6 +115,8 @@ public class EditProfileDetails {
                 ", emergencyContactRelationship='" + emergencyContactRelationship + '\'' +
                 ", emergencyContactNumber='" + emergencyContactNumber + '\'' +
                 ", emergencyContactEmail='" + emergencyContactEmail + '\'' +
+                ", policy_number='" + policy_number + '\'' +
+                ", age='" + age + '\'' +
                 '}';
     }
 }

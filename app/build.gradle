@@ -103,6 +103,7 @@ dependencies {
     //implementation 'com.crystal:crystalrangeseekbar:1.1.3'
     implementation project(':crystalrangeseekbar')
     implementation project(':myCalenderLibrary')
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.3.+'
 }
 repositories {
     mavenCentral()

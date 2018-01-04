@@ -1,5 +1,7 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,6 +24,12 @@ import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
+import com.vempower.eezyclinic.APICore.PatientProfileData;
+import com.vempower.eezyclinic.APIResponce.AbstractResponse;
+import com.vempower.eezyclinic.APIResponce.CityData;
+import com.vempower.eezyclinic.APIResponce.CityListAPI;
+import com.vempower.eezyclinic.APIResponce.CountryData;
+import com.vempower.eezyclinic.APIResponce.CountryListAPI;
 import com.vempower.eezyclinic.APIResponce.IdCardTypeAPI;
 import com.vempower.eezyclinic.APIResponce.IdCardTypeData;
 import com.vempower.eezyclinic.APIResponce.InsuranceData;
@@ -32,17 +40,25 @@ import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.HintAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.EditProfileDetails;
+import com.vempower.eezyclinic.googleaddressselection.GeoData;
+import com.vempower.eezyclinic.googleaddressselection.GooglePlacesAutocompleteAdapter;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.mappers.CityListMapper;
+import com.vempower.eezyclinic.mappers.CountryListMapper;
 import com.vempower.eezyclinic.mappers.IdCardTypeMapper;
 import com.vempower.eezyclinic.mappers.InsuranceListMapper;
 import com.vempower.eezyclinic.mappers.NationalityMapper;
+import com.vempower.eezyclinic.mappers.ProfileSaveMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.CustomSpinnerSelection;
+import com.vempower.eezyclinic.views.MyAutoCompleteBlackCursorTextView;
+import com.vempower.eezyclinic.views.MyAutoCompleteTextView;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -52,7 +68,7 @@ import java.util.List;
  * Created by satish on 6/12/17.
  */
 
-public class EditProfileFragment extends AbstractFragment {
+public class EditProfileFragment extends ImageProcessFragment {
     private LinearLayout contact_details_linear, insurance_details_linear, emergency_details_linear;
 
     private View fragmentView;
@@ -72,8 +88,9 @@ public class EditProfileFragment extends AbstractFragment {
     private HintAdapter<IdCardTypeData> idTypeAdapter;
 
 
-    private MyEditTextBlackCursorRR patient_name_et, height_et,patient_age_et,
-            known_allergies_et, contact_et, contact_email_et,id_number_et,
+    private MyEditTextBlackCursorRR patient_name_et, height_et,patient_age_et1,
+            known_allergies_et, primary_contact_no_et,secondary_contact_no_et,residence_contact_no_et,
+            contact_email_et,id_number_et,
             contact_address_et, contact_language_known_et, contact_nationality_et1,
             contact_id_type_et1, contact_insurance_provider_et1, contact_insurance_details_et1;
 
@@ -86,9 +103,18 @@ public class EditProfileFragment extends AbstractFragment {
             insurance_co_pay_et,insurance_scheme_et,
             insurance_reason_et, insurance_organisation_et,insurance_max_limit_et,insurance_secoundary_number_et;
 
-    private CustomSpinnerSelection blood_group_spinner,country_spinner, city_type_spinner,id_type_spinner,
+    private CustomSpinnerSelection  blood_group_spinner,country_spinner, city_type_spinner,id_type_spinner,
             insurance_secoundary_spinner, nationality_spinner,insurance_provider_spinner, relation_spinner, gender_type_spinner,marital_status_spinner;
     private SuccessToUpdateProfileListener successListener;
+
+    private ExpandableLinearLayout expandableLayout_city_view;
+
+    private MyAutoCompleteBlackCursorTextView addressAutoCompleteTextView;
+    private GooglePlacesAutocompleteAdapter googlePlacesAutocompleteAdapter;
+    private File imageFile;
+    private LinearLayout image_linear;
+    private ImageView profile_iv;
+    private PatientProfileData patientProfileObj;
 
 
     @Nullable
@@ -149,6 +175,10 @@ public class EditProfileFragment extends AbstractFragment {
         setToGenderSpinnerAdapter();
         setToMaritalStatusSpinnerAdapter();
         setRelationSpinner();
+        //callCountryListMapper();
+        setInitForGooglePlacesAutocompleteTextView();
+
+        fillProfileDataToViews();
 
     }
 
@@ -433,6 +463,7 @@ public class EditProfileFragment extends AbstractFragment {
                     return;
                 }
                 setToIdTypeAdapter(idCardTypeAPI.getData());
+                callCountryListMapper();
             }
         });
 
@@ -619,10 +650,14 @@ public class EditProfileFragment extends AbstractFragment {
     }
 
     private void initForViews() {
+        image_linear= getFragemtView().findViewById(R.id.image_linear);
+
+        profile_iv  = getFragemtView().findViewById(R.id.profile_iv);
+
         patient_name_et = getFragemtView().findViewById(R.id. patient_name_et);
         gender_type_spinner  = getFragemtView().findViewById(R.id.gender_spinner);
         marital_status_spinner = getFragemtView().findViewById(R.id. marital_status_spinner);
-        patient_age_et   = getFragemtView().findViewById(R.id.patient_age_et);
+       // patient_age_et   = getFragemtView().findViewById(R.id.patient_age_et);
         date_of_birth_tv = getFragemtView().findViewById(R.id.date_of_birth_tv);
         blood_group_spinner = getFragemtView().findViewById(R.id.blood_group_spinner);
         height_et = getFragemtView().findViewById(R.id.height_et);
@@ -630,13 +665,18 @@ public class EditProfileFragment extends AbstractFragment {
 
 
         //My Profile
-        contact_et = getFragemtView().findViewById(R.id.contact_et);
+        primary_contact_no_et = getFragemtView().findViewById(R.id.primary_contact_no_et);
+        secondary_contact_no_et  = getFragemtView().findViewById(R.id.secondary_contact_no_et);
+        residence_contact_no_et  = getFragemtView().findViewById(R.id.residence_contact_no_et);
         contact_email_et = getFragemtView().findViewById(R.id.email_et);
         contact_address_et = getFragemtView().findViewById(R.id.address_et);
         contact_language_known_et = getFragemtView().findViewById(R.id.language_known_et);
         nationality_spinner = getFragemtView().findViewById(R.id.nationality_spinner);
         id_type_spinner = getFragemtView().findViewById(R.id. id_type_spinner);
         id_number_et = getFragemtView().findViewById(R.id. id_number_et);
+        country_spinner = getFragemtView().findViewById(R.id.country_spinner);
+        addressAutoCompleteTextView = getFragemtView().findViewById(R.id.google_places_actv);
+
 
 
 
@@ -667,8 +707,30 @@ public class EditProfileFragment extends AbstractFragment {
         insurance_secoundary_spinner  = getFragemtView().findViewById(R.id.insurance_secoundary_spinner);
         insurance_secoundary_number_et  = getFragemtView().findViewById(R.id.insurance_secoundary_number_et);
 
+
+
+
+        expandableLayout_city_view = getFragemtView().findViewById(R.id.expandableLayout_city_view);
+       // setExpandedCityViewListener(expandableLayout_city_view);
+        expandableLayout_city_view.setInRecyclerView(false);
+        //expandableLayout.setBackgroundColor(ContextCompat.getColor(this, item.colorId2));
+        expandableLayout_city_view.setInterpolator(com.github.aakira.expandablelayout.Utils.createInterpolator(com.github.aakira.expandablelayout.Utils.LINEAR_OUT_SLOW_IN_INTERPOLATOR));
+        //expandableLayout.setExpanded(expandState.get(position));
+        expandableLayout_city_view.setExpanded(false);
           //contact_insurance_details_et = getFragemtView().findViewById(R.id.insurance_details_et);
 
+    }
+
+    private void setInitForGooglePlacesAutocompleteTextView() {
+
+        googlePlacesAutocompleteAdapter = new GooglePlacesAutocompleteAdapter(
+                R.layout.list_place_items);
+
+        /*if (myLocation != null) {
+            googlePlacesAutocompleteAdapter.setMyLocation(myLocation);
+        }*/
+        addressAutoCompleteTextView.setAdapter(googlePlacesAutocompleteAdapter);
+        addressAutoCompleteTextView.setOnItemClickListener(adapterViewListener);
     }
 
 
@@ -687,6 +749,15 @@ public class EditProfileFragment extends AbstractFragment {
     }
 
     private void compute() {
+
+        {
+            image_linear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showImageSourceDialog();
+                }
+            });
+        }
 
         {
             setExpandedViewListener(expandableLayout_contact_el, contact_details_linear, R.id.contact_iv);
@@ -985,17 +1056,215 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
     }
 };
 
+
+    private void callCountryListMapper() {
+        //TODO call country list mapper
+        CountryListMapper mapper = new CountryListMapper();
+        mapper.setOnCountryListListener(new CountryListMapper.CountryListListener() {
+            @Override
+            public void getCountryListAPI(CountryListAPI countryListAPI, String errorMessage) {
+                if (!isValidResponse(countryListAPI, errorMessage)) {
+
+                    showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_country_list_lbl), new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+
+                            ((AbstractActivity) MyApplication.getCurrentActivityContext()). finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callCountryListMapper();
+                        }
+                    });
+                    return;
+                }
+
+                setToCountryAdapter(countryListAPI.getData());
+
+            }
+        });
+
+    }
+
+    public void setToCountryAdapter(List<CountryData> list) {
+        final ArrayList<CountryData> countryTypeList = new ArrayList<>();
+        if (list != null && list.size() > 0) {
+            countryTypeList.addAll(list);
+
+        }
+
+        CountryData hintData = new CountryData();
+        hintData.setCountry("Country");
+        countryTypeList.add(countryTypeList.size(), hintData);
+        setToCityListAdapter(null);
+
+
+        final HintAdapter aa = new HintAdapter<CountryData>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, countryTypeList);
+
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        country_spinner.setAdapter(aa);
+        country_spinner.setSelection(aa.getCount());
+
+        country_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //if(position!=0)
+                //{
+                // expandableLayout_city_view.collapse();
+                profileDetails.country=null;
+                if (position != (aa.getCount())) {
+                    CountryData selectedCountry = countryTypeList.get(position);
+                    if (selectedCountry != null) {
+                        // Utils.showToastMessage("selected country " + selectedCountry);
+                        if (!expandableLayout_city_view.isExpanded()) {
+                            expandableLayout_city_view.toggle();
+                        }
+                        callCityListMapper(selectedCountry.getId());
+                        profileDetails.country=selectedCountry.getCountry();
+                       // searchRequestParams.setCountry(selectedCountry.getId());
+
+                       // namesSearch.setCountryId(selectedCountry.getId());
+                    }
+                }
+
+
+                //}
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+
+    private void callCityListMapper(String country) {
+        CityListMapper cityListMapper = new CityListMapper(country);
+        cityListMapper.setOnCityListListener(new CityListMapper.CityListListener() {
+            @Override
+            public void getCityListAPI(CityListAPI cityListAPI, String errorMessage) {
+                if (!isValidResponse(cityListAPI, errorMessage)) {
+                    return;
+                }
+                setToCityListAdapter(cityListAPI.getData());
+
+            }
+        });
+
+    }
+
+
+    public void setToCityListAdapter(List<CityData> list) {
+        if (list == null) {
+            expandableLayout_city_view.collapse();
+            return;
+        } else {
+            expandableLayout_city_view.expand();
+        }
+        final ArrayList<CityData> cityTypeList = new ArrayList<>();
+        if (list != null && list.size() > 0) {
+            cityTypeList.addAll(list);
+
+        }
+
+
+        CityData hintData = new CityData();
+        hintData.setCityName("City");
+        cityTypeList.add(cityTypeList.size(), hintData);
+
+
+        city_type_spinner = getFragemtView().findViewById(R.id.city_type_spinner);
+        final HintAdapter aa = new HintAdapter<CityData>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, cityTypeList);
+
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        city_type_spinner.setAdapter(aa);
+        city_type_spinner.setSelection(aa.getCount());
+       /* if(cityTypeList.size()==1)
+        {
+            aa.isHintEnable(false);
+            aa.notifyDataSetChanged();
+        }else
+        {
+            cityTypeList.add(cityTypeList.size(),hintData);
+            aa.isHintEnable(true);
+            aa.notifyDataSetInvalidated();
+            city_type_spinner.setSelection(aa.getCount());
+        }*/
+
+        city_type_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+               /* if(aa.getCount()==1)
+                {
+                    Utils.showToastMessage("Please select country");
+                    return;
+                }*/
+                //if(position!=0)
+                //{
+                profileDetails.city=null;
+                if (position != (aa.getCount())) {
+                    CityData selectedCity = cityTypeList.get(position);
+                    Utils.showToastMessage("selected city " + selectedCity);
+                    if (selectedCity != null) {
+                        profileDetails.city=selectedCity.getCityName();
+                        //namesSearch.setCity(selectedCity.getId());
+                       // callDoctorsClinicNamesMapper();
+                        //searchRequestParams.setCity(selectedCity.getId());
+                    }
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+
     private void updateProfileDetails() {
-        Utils.showToastMsg("Now click on Save");
+       // Utils.showToastMsg("Now click on Save");
         setProfileData();
         Utils.showToastMsg(profileDetails.toString());
 
+        ProfileSaveMapper mapper= new ProfileSaveMapper(profileDetails);
+        mapper.setOnProfileSaveListener(new ProfileSaveMapper.ProfileSaveListener() {
+            @Override
+            public void profileSave(AbstractResponse response, String errorMessage) {
+                if (!isValidResponse(response, errorMessage)) {
+                    showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_save_profile_details_lbl), new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+
+                            ((AbstractActivity) MyApplication.getCurrentActivityContext()). finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            updateProfileDetails();
+                        }
+                    });
+                    return;
+                }
+                if(successListener!=null)
+                {
+                    successListener.success();
+                }
+            }
+        });
 
 
-        /*if(successListener!=null)
-        {
-            successListener.success();
-        }*/
+
+
     }
 
      /*
@@ -1019,32 +1288,18 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
     }
     */
 
-     /*
-
-     EditProfileDetails{
-     patientName='Sathish', gender='A+', maritialStatus='Single', dateofBirth='08/01/1987',
-      mobile='9441745857', secondarymobile='null', residencemobile='null', country='null',
-      city='null', locality='null', address='Khammam', languagesKnown='null', nationality='Indian',
-       idType='Nationality Card', idNumber='6210', occupation='null', organisation='org1',
-       bloodGroup='null', height='5.9', knownAllergies='English, Telugu', tpa='tpa1',
-       tpaid='null', insurancePackage='null', insuranceNumber='943826', policy='SBI life',
-        policyNumber='null', memberid='43281', type='type1', scheme='scheme1',
-        reason='Reason1', copay='40', maxlimit='46', fromvalidity='11/15/2017',
-         tovalidity='04/20/2018', secondaryinsurancePackage='Oman Insurance Co.',
-         secondaryinsuranceNumber='739103', emergencyContactName='Veeramma Ch',
-         emergencyContactRelationship='Mother', emergencyContactNumber='9603117395',
-          emergencyContactEmail='SathishKumarchalla.apk@gmail.com'}
-      */
-
     private void setProfileData() {
         profileDetails.patientName= patient_name_et.getText().toString();
-        profileDetails.age=  patient_age_et.getText().toString();//TODO add age kay in API
+       // profileDetails.age=  patient_age_et.getText().toString();//TODO add age kay in API
         profileDetails.height=height_et.getText().toString();
         profileDetails.knownAllergies= known_allergies_et.getText().toString();
 
 
         //Contact details
-       profileDetails.mobile= contact_et.getText().toString();
+      // profileDetails.mobile= contact_et.getText().toString();
+        profileDetails.mobile= primary_contact_no_et.getText().toString();
+        profileDetails.secondarymobile= secondary_contact_no_et.getText().toString();
+        profileDetails.residencemobile= residence_contact_no_et.getText().toString();
        // contact_email_et = getFragemtView().findViewById(R.id.email_et);
         profileDetails.address= contact_address_et.getText().toString();
         profileDetails.languagesKnown= contact_language_known_et.getText().toString();
@@ -1079,9 +1334,29 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
 
     }
 
+    private void fillProfileDataToViews()
+    {
+        if(patientProfileObj==null)
+        {
+            return;
+        }
+        //TODO set patient profile details to views
+    }
+
     public void setOnSuccessToUpdateProfileListener(SuccessToUpdateProfileListener successListener)
     {
         this.successListener=successListener;
+    }
+
+    @Override
+    protected void setImage(File file) {
+        this.imageFile=file;
+        MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, file);
+
+    }
+
+    public void setPatientProfileObj(PatientProfileData patientProfileObj) {
+        this.patientProfileObj = patientProfileObj;
     }
 
     public interface SuccessToUpdateProfileListener
@@ -1092,6 +1367,54 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
     public interface SaveButtonClickListener
     {
         void saveButtonClick();
+    }
+
+    AdapterView.OnItemClickListener adapterViewListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view,
+                                int position, long id) {
+            if (view.getTag() != null) {
+                GeoData tmpData = (GeoData) view.getTag();
+                addressAutoCompleteTextView.setOnItemClickListener(null);
+                // addressAutoCompleteTextView.setText(myGeodata.getAddress());
+                profileDetails.locality=tmpData.getAddress();
+                Utils.showToastMsg("Locality :"+profileDetails.locality);
+                addressAutoCompleteTextView.setOnItemClickListener(adapterViewListener);
+               // myGeodata = tmpData;
+                //gettingLatLanFromGoogle(myGeodata);
+                /*addressAutoCompleteTextView.setText(tmpData.getAddress());
+                namesSearch.setLocality(tmpData.getAddress());
+                callDoctorsClinicNamesMapper();*/
+
+            } else {
+                addressAutoCompleteTextView.setText("");
+            }
+        }
+    };
+
+    private void showImageSourceDialog() {
+        final CharSequence[] items = {"Camera", "Gallery"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MyApplication.getCurrentActivityContext());
+        builder.setTitle("Select");
+
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                // Do something with the selection
+                switch (item) {
+                    case 0:
+                        callCamera();
+                        break;
+                    case 1:
+                       callGallery();
+                        break;
+
+                }
+                dialog.dismiss();
+            }
+        });
+        final AlertDialog alert = builder.create();
+        alert.show();
     }
 
 }

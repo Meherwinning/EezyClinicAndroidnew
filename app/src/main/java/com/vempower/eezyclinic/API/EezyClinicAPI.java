@@ -12,6 +12,7 @@ import com.vempower.eezyclinic.APIResponce.DoctorClinicNameListAPI;
 import com.vempower.eezyclinic.APIResponce.DoctorProfileAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordOTPAPI;
+import com.vempower.eezyclinic.APIResponce.GetPatientProfileAPI;
 import com.vempower.eezyclinic.APIResponce.IdCardTypeAPI;
 import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
 import com.vempower.eezyclinic.APIResponce.LanguageListAPI;
@@ -171,6 +172,18 @@ public interface EezyClinicAPI {
     //http://202.63.103.194:8003/api/search/tpalist
     @GET(data + "search/tpalist")
     Call<TPAListAPI> getTPAListAPI();
+
+
+    //http://202.63.103.194:8003/api/patient/myprofile
+    @POST(data + "patient/myprofile")
+    Call<GetPatientProfileAPI> getPatientProfileAPI(@Body RequestBody postBody);
+
+
+    //http://202.63.103.194:8003/api/patient/editprofilesave
+    @POST(data + "patient/editprofilesave")
+    Call<AbstractResponse> patientProfileSave(@Body RequestBody postBody);
+
+
 
 
 
