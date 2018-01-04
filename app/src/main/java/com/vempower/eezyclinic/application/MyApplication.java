@@ -227,6 +227,23 @@ public class MyApplication extends MultiDexApplication {
 
     }
 
+    public void setBitmapToImageviewCircular(int defaultImageId, ImageView imageView,
+                                     File file) {
+        if (file == null || !file.exists()) {
+            Picasso.with(this).load(defaultImageId).placeholder(defaultImageId)
+                    .into(imageView);
+
+            return;
+        }
+
+     /*   Picasso.with(this).load(file).placeholder(defaultImageId)
+                .into(imageView);*/
+
+        Picasso.with(this).load(file).transform(new CircleTransform()).placeholder(defaultImageId).into(imageView);
+
+
+    }
+
 
     public void setBitmapToImageview(ImageView imageView,
                                      int imageResourceId) {

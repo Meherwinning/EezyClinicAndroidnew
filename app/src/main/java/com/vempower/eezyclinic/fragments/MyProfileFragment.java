@@ -21,10 +21,19 @@ import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
+import com.vempower.eezyclinic.APICore.PatientProfileAddress;
+import com.vempower.eezyclinic.APICore.PatientProfileData;
+import com.vempower.eezyclinic.APIResponce.GetPatientProfileAPI;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.mappers.GetPatientProfileMapper;
 import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
+import com.vempower.eezyclinic.views.MyTextViewRB;
 import com.vempower.eezyclinic.views.MyTextViewRR;
+import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -38,7 +47,6 @@ public class MyProfileFragment extends AbstractFragment {
 
     private View fragmentView;
     private ExpandableLinearLayout expandableLayout_contact_el, expandableLayout_insurance_el, expandableLayout_emergency_el;
-    private MyTextViewRR date_of_birth_tv;
     private String mySelectedDate;
     private SelectedDate selectedDateObj;
 
@@ -46,10 +54,12 @@ public class MyProfileFragment extends AbstractFragment {
             emergency_details_mask_tv, contact_details_mask_tv;
     private boolean isEditMode;
     private ScrollView myScrollView;
-    private MyEditTextBlackCursorRR blood_group_et, height_et,
-            known_allergies_et, contact_et, contact_email_et,
+    private MyTextViewRR patient_details_tv;
+    private MyEditTextBlackCursorRR blood_group_et, height_et,date_of_birth_tv,id_number_et,
+            known_allergies_et, contact_et1, contact_email_et,primary_contact_no_et,
+            secondary_contact_no_et,residence_contact_no_et,
             contact_address_et, contact_language_known_et, contact_nationality_et,
-            contact_id_type_et, contact_insurance_provider_et, contact_insurance_details_et;
+            contact_id_type_et, contact_insurance_provider_et1, contact_insurance_details_et1;
 
     private MyEditTextBlackCursorRR emergency_contact_name_et, emergency_contact_relationship_et,
             emergency_contact_number_et, emergency_contact_emailid_et;
@@ -59,7 +69,9 @@ public class MyProfileFragment extends AbstractFragment {
             insurance_member_id_et,insurance_type_et,insurance_valid_from_et,
             insurance_valid_to_et, insurance_co_pay_et,insurance_scheme_et,
             insurance_reason_et, insurance_organisation_et,insurance_max_limit_et;
-
+    private ImageView patient_profile_iv1;
+    private MyTextViewRB patient_name_tv;
+    private PatientProfileData profileData;
 
 
     @Nullable
@@ -72,7 +84,7 @@ public class MyProfileFragment extends AbstractFragment {
     }
 
     private void myInit() {
-
+        initForViews();
         profile_top_details_mask_tv = getFragemtView().findViewById(R.id.profile_top_details_mask_tv);
         insurance_details_mask_tv = getFragemtView().findViewById(R.id.insurance_details_mask_tv);
         emergency_details_mask_tv = getFragemtView().findViewById(R.id.emergency_details_mask_tv);
@@ -89,7 +101,7 @@ public class MyProfileFragment extends AbstractFragment {
 
 
         myScrollView = ((ScrollView) getFragemtView().findViewById(R.id.scroll));
-        initForViews();
+
 
 
         date_of_birth_tv.setOnClickListener(new View.OnClickListener() {
@@ -99,10 +111,67 @@ public class MyProfileFragment extends AbstractFragment {
             }
         });
 
+        callMyProfileMapper();
+
 
     }
 
+    private void callMyProfileMapper() {
+
+        GetPatientProfileMapper mapper= new GetPatientProfileMapper();
+        mapper.setOnGetPatientProfileListener(new GetPatientProfileMapper.GetPatientProfileListener() {
+            @Override
+            public void getPatientProfileAPI(GetPatientProfileAPI profileAPI, String errorMessage) {
+                if(!isValidResponse(profileAPI,errorMessage))
+                {
+                    showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_patient_profile_lbl), new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+
+                            ((AbstractActivity) MyApplication.getCurrentActivityContext()). finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callMyProfileMapper();
+                        }
+                    });
+                    return;
+                }
+
+                 profileData = profileAPI.getData();
+
+                if(profileData==null) {
+                    showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_patient_profile_lbl), new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+
+                            ((AbstractActivity) MyApplication.getCurrentActivityContext()). finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callMyProfileMapper();
+                        }
+                    });
+                    return;
+                }
+
+                setProfileDataToViews(profileData);
+            }
+        });
+    }
+
+    public PatientProfileData getPatientProfileObject() {
+        return profileData;
+    }
+
     private void initForViews() {
+        patient_profile_iv1 = getFragemtView().findViewById(R.id.patient_profile_iv1);
+        patient_name_tv  = getFragemtView().findViewById(R.id.patient_name_tv);
+        patient_details_tv  = getFragemtView().findViewById(R.id.patient_details_tv);
+        //patient_details_tv2 = getFragemtView().findViewById(R.id. patient_details_tv2);
+
         date_of_birth_tv = getFragemtView().findViewById(R.id.date_of_birth_tv);
         blood_group_et = getFragemtView().findViewById(R.id.blood_group_et);
         height_et = getFragemtView().findViewById(R.id.height_et);
@@ -110,14 +179,16 @@ public class MyProfileFragment extends AbstractFragment {
 
 
         //My Profile
-        contact_et = getFragemtView().findViewById(R.id.contact_et);
+        primary_contact_no_et = getFragemtView().findViewById(R.id.primary_contact_no_et);
+        secondary_contact_no_et  = getFragemtView().findViewById(R.id.secondary_contact_no_et);
+        residence_contact_no_et  = getFragemtView().findViewById(R.id.residence_contact_no_et);
         contact_email_et = getFragemtView().findViewById(R.id.email_et);
         contact_address_et = getFragemtView().findViewById(R.id.address_et);
         contact_language_known_et = getFragemtView().findViewById(R.id.language_known_et);
         contact_nationality_et = getFragemtView().findViewById(R.id.nationality_et);
         contact_id_type_et = getFragemtView().findViewById(R.id.id_type_et);
-        contact_insurance_provider_et = getFragemtView().findViewById(R.id.insurance_provider_et);
-        contact_insurance_details_et = getFragemtView().findViewById(R.id.insurance_details_et);
+        id_number_et = getFragemtView().findViewById(R.id.id_number_et);
+        //contact_insurance_details_et = getFragemtView().findViewById(R.id.insurance_details_et);
 
         //Emergency Contact
         emergency_contact_name_et = getFragemtView().findViewById(R.id.emergency_contact_name_et);
@@ -139,6 +210,74 @@ public class MyProfileFragment extends AbstractFragment {
         insurance_reason_et  = getFragemtView().findViewById(R.id.insurance_reason_et);
         insurance_organisation_et  = getFragemtView().findViewById(R.id.insurance_organisation_et);
         insurance_max_limit_et  = getFragemtView().findViewById(R.id.insurance_max_limit_et);
+
+
+    }
+
+    public void setProfileDataToViews(PatientProfileData data) {
+
+        if(data==null)
+        {
+            return;
+        }
+
+        //Header
+        MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon,patient_profile_iv1,data.getPatientlogo());
+        patient_name_tv.setText(data.getPatientname());
+        patient_details_tv.setText(data.getGender()+", "+data.getAge()+", "+data.getMaritalStatus());
+
+
+        //Below header
+        date_of_birth_tv.setText(data.getDateofbirth());
+        blood_group_et.setText(data.getBloodgroup());
+        height_et.setText(data.getHeight());
+        known_allergies_et.setText(data.getKnownallergies());
+
+
+
+        //contact Details
+        primary_contact_no_et.setText(data.getContactNo().getPrimary());
+        secondary_contact_no_et.setText(data.getContactNo().getSecondarymobile());
+        residence_contact_no_et.setText(data.getContactNo().getResidencemobile());
+        contact_email_et.setText(data.getEmail());
+        if(data.getAddress()!=null)
+        {
+            PatientProfileAddress address= data.getAddress();
+            contact_address_et.setText(address.getLocality()+","+address.getAddress()+","+address.getCity()+","+address.getCountry());
+        }else
+        {
+            contact_address_et.setText(null);
+        }
+        contact_language_known_et.setText(data.getLanguagesknown());
+        contact_nationality_et.setText(data.getNationality());
+        contact_id_type_et.setText(data.getIdtype());
+        id_number_et.setText(data.getIdnumber());
+
+
+        //Emergency Contact
+        emergency_contact_name_et.setText(data.getEmergencycontactname());
+        emergency_contact_relationship_et.setText(data.getEmergencycontactrelationship());
+        emergency_contact_number_et.setText(data.getEmergencycontactnumber());
+        emergency_contact_emailid_et.setText(data.getEmergencycontactemail());
+
+
+        //Insurance Details
+        insurance_tpa_et.setText(data.getTpa());
+        insurance_insurance_provider_et.setText(data.getInsuranceProvider());
+        insurance_insurance_number_et.setText(data.getInsuranceId());
+        insurance_insurance_policy_et.setText(data.getPolicy());
+        insurance_member_id_et.setText(data.getPolicyCardNumber());
+        insurance_type_et.setText(data.getType());
+        insurance_valid_from_et.setText(data.getValidityfrom());
+        insurance_valid_to_et.setText(data.getValidityto());
+        insurance_co_pay_et .setText(data.getCopay());
+        insurance_scheme_et.setText(data.getScheme());
+        insurance_reason_et.setText(data.getReason());
+        insurance_organisation_et.setText(data.getOrganisation());
+        insurance_max_limit_et.setText(data.getMaxlimit());
+
+
+
 
 
     }
@@ -402,4 +541,7 @@ public class MyProfileFragment extends AbstractFragment {
     public void isFromEditMode(boolean isEditMode) {
         this.isEditMode = isEditMode;
     }
+
+
+
 }

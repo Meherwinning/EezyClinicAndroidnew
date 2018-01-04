@@ -18,6 +18,8 @@ public interface ListenerKey {
         //String APPOINTMENT_OBJECT_KEY="appointment_object_key";
         String RESCHEDULE_APPOINTMENT_OBJECT_KEY="ReScheduleAppointment_object";
         String APPOINTMENT_OBJECT_KEY="appointment_object_key";
+        String PATIENT_PROFILE_OBJECT_KEY="patient_profile_object_key";
+
     }
 
 }

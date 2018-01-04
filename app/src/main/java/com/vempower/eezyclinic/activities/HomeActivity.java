@@ -364,10 +364,46 @@ public class HomeActivity extends AbstractMenuActivity {
 
             case R.id.action_profile_edit:
                // Utils.showToastMsg("Profile Edit");
-                Intent  intent= getIntent();
+              /*  Intent  intent= getIntent();
                 intent.setClass(this,EditProfileActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivityForResult(intent,EditProfileActivity.IS_REFRESH_PROFILE);
+                startActivityForResult(intent,EditProfileActivity.IS_REFRESH_PROFILE);*/
+
+               //Start
+                if(myProfileFragment==null)
+                {
+                   break;
+                }
+                Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),EditProfileActivity.class);
+                           /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+                intent.putExtra(ListenerKey.ObjectKey.PATIENT_PROFILE_OBJECT_KEY,new Messenger(new AbstractIBinder(){
+                    @Override
+                    protected IntentObjectListener getMyObject() {
+                        return new IntentObjectListener(){
+
+                            @Override
+                            public Object getObject() {
+                                if(myProfileFragment==null)
+                                {
+                                    return null;
+                                }
+                                if(myProfileFragment instanceof  MyProfileFragment)
+                                {
+                                    MyProfileFragment  fragment= (MyProfileFragment) myProfileFragment;
+                                    return fragment.getPatientProfileObject();
+                                }
+                                return null;
+                            }
+                        };
+                    }
+                }));
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                MyApplication.getCurrentActivityContext().startActivity(intent);
+
+
+                //End
+
                 break;
         }
 

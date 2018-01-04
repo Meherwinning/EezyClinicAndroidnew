@@ -137,4 +137,16 @@
     <string name="new_appointment_lbl">New Appointment</string>
 
 
+    <string name="you_need_to_insert_sd_card">Please insert the SD card</string>
+    <string name="sorry_your_device_doesnot_support_the_crop_action">Phone device does not support the crop action</string>
+    <string name="image_crop_error">Image cropping error</string>
+    <string name="directory_name">Eezyclinic</string>
+    <string name="alert_lbl">Alert</string>
+    <string name="write_on_sd_card_permission_required_msg">Write on SD card permission required</string>
+    <string name="camera_permission_required_msg">Camera permission required</string>
+
+    <string name="internet_permission_required_msg">Internet permission required</string>
+    <string name="unable_to_get_patient_profile_lbl">Unable to get patient profile, Please try again.</string>
+
+
 </resources>
