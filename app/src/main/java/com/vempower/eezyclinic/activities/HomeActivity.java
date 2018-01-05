@@ -374,7 +374,7 @@ public class HomeActivity extends AbstractMenuActivity {
                 {
                    break;
                 }
-                Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),EditProfileActivity.class);
+                Intent intent=  new Intent(this,EditProfileActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                 intent.putExtra(ListenerKey.ObjectKey.PATIENT_PROFILE_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                     @Override
@@ -398,8 +398,7 @@ public class HomeActivity extends AbstractMenuActivity {
                     }
                 }));
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                MyApplication.getCurrentActivityContext().startActivity(intent);
+                startActivityForResult(intent,EditProfileActivity.IS_REFRESH_PROFILE);
 
 
                 //End
@@ -431,8 +430,13 @@ public class HomeActivity extends AbstractMenuActivity {
     private void refreshProfile()
     {
         Utils.showToastMsg("Refresh profile");
-        myProfileFragment=null;
         callMyProfile();
+        if(myProfileFragment!=null && (myProfileFragment instanceof MyProfileFragment))
+        {
+            MyProfileFragment fragment= (MyProfileFragment) myProfileFragment;
+            fragment.refreshFragment();
+        }
+
     }
 
     @Override

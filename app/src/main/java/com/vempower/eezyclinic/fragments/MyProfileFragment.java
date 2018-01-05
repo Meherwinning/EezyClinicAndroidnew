@@ -111,9 +111,13 @@ public class MyProfileFragment extends AbstractFragment {
             }
         });
 
+
+        refreshFragment();
+
+    }
+
+    public void refreshFragment() {
         callMyProfileMapper();
-
-
     }
 
     private void callMyProfileMapper() {

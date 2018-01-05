@@ -213,6 +213,10 @@ public class PatientProfileData {
     }
 
     public PatientProfileAddress getAddress() {
+        if(address==null)
+        {
+            address= new PatientProfileAddress();
+        }
         return address;
     }
 

@@ -16,21 +16,6 @@
             ]
         },
         {
-            "outputFile": "/home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/linkedin-sdk/build/intermediates/res/merged/androidTest/debug/values-zh-rHK_values-zh-rHK.arsc.flat",
-            "map": [
-                {
-                    "source": "/home/challa/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.1.aar/1766ad5cb0a0efe6e740d5e26488d630/res/values-zh-rHK/values-zh-rHK.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "101",
-                        "endOffsets": "152"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/linkedin-sdk/build/intermediates/res/merged/androidTest/debug/values-bs_values-bs.arsc.flat",
             "map": [
                 {
@@ -41,6 +26,21 @@
                         "startOffsets": "55",
                         "endColumns": "100",
                         "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/linkedin-sdk/build/intermediates/res/merged/androidTest/debug/values-zh-rHK_values-zh-rHK.arsc.flat",
+            "map": [
+                {
+                    "source": "/home/challa/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.1.aar/1766ad5cb0a0efe6e740d5e26488d630/res/values-zh-rHK/values-zh-rHK.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "101",
+                        "endOffsets": "152"
                     }
                 }
             ]
