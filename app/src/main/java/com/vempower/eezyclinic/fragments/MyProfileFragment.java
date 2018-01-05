@@ -394,14 +394,14 @@ public class MyProfileFragment extends AbstractFragment {
      * @param scrollViewParent Parent ScrollView
      * @param view             View to which we need to scroll.
      */
-    private void scrollToView(final ScrollView scrollViewParent, final View view) {
+    /*private void scrollToView(final ScrollView scrollViewParent, final View view) {
         // Get deepChild Offset
         Point childOffset = new Point();
         getDeepChildOffset(scrollViewParent, view.getParent(), view, childOffset);
         // Scroll to child.
         scrollViewParent.smoothScrollTo(0, childOffset.y);
     }
-
+*/
     /**
      * Used to get deep child offset.
      * <p/>

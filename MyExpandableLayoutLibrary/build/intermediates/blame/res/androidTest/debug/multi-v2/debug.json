@@ -121,21 +121,6 @@
             ]
         },
         {
-            "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-en-rIN_values-en-rIN.arsc.flat",
-            "map": [
-                {
-                    "source": "/home/satish/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/643ee1da9b9b18b0379fa6829d4a575f/res/values-en-rIN/values-en-rIN.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,159,267,390,490,598,682,782,897,974,1050,1132,1235,1339,1438,1543,1646,1750,1869,1969",
-                        "endColumns": "103,107,122,99,107,83,99,114,76,75,81,102,103,98,104,102,103,118,99,100",
-                        "endOffsets": "154,262,385,485,593,677,777,892,969,1045,1127,1230,1334,1433,1538,1641,1745,1864,1964,2065"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-de_values-de.arsc.flat",
             "map": [
                 {
@@ -151,16 +136,16 @@
             ]
         },
         {
-            "outputFile": "/home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-pt-rBR_values-pt-rBR.arsc.flat",
+            "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-en-rIN_values-en-rIN.arsc.flat",
             "map": [
                 {
-                    "source": "/home/challa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/2824c78dfb690638a7b1a2c4f71c505d/res/values-pt-rBR/values-pt-rBR.xml",
+                    "source": "/home/satish/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/643ee1da9b9b18b0379fa6829d4a575f/res/values-en-rIN/values-en-rIN.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,175,283,406,512,619,708,809,927,1010,1090,1177,1284,1396,1498,1606,1713,1823,1948,2048",
-                        "endColumns": "119,107,122,105,106,88,100,117,82,79,86,106,111,101,107,106,109,124,99,100",
-                        "endOffsets": "170,278,401,507,614,703,804,922,1005,1085,1172,1279,1391,1493,1601,1708,1818,1943,2043,2144"
+                        "startOffsets": "55,159,267,390,490,598,682,782,897,974,1050,1132,1235,1339,1438,1543,1646,1750,1869,1969",
+                        "endColumns": "103,107,122,99,107,83,99,114,76,75,81,102,103,98,104,102,103,118,99,100",
+                        "endOffsets": "154,262,385,485,593,677,777,892,969,1045,1127,1230,1334,1433,1538,1641,1745,1864,1964,2065"
                     }
                 }
             ]
@@ -176,6 +161,21 @@
                         "startOffsets": "55,161,269,392,495,606,691,793,906,982,1058,1138,1244,1344,1440,1545,1647,1749,1866,1968",
                         "endColumns": "105,107,122,102,110,84,101,112,75,75,79,105,99,95,104,101,101,116,101,100",
                         "endOffsets": "156,264,387,490,601,686,788,901,977,1053,1133,1239,1339,1435,1540,1642,1744,1861,1963,2064"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-pt-rBR_values-pt-rBR.arsc.flat",
+            "map": [
+                {
+                    "source": "/home/challa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/2824c78dfb690638a7b1a2c4f71c505d/res/values-pt-rBR/values-pt-rBR.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,175,283,406,512,619,708,809,927,1010,1090,1177,1284,1396,1498,1606,1713,1823,1948,2048",
+                        "endColumns": "119,107,122,105,106,88,100,117,82,79,86,106,111,101,107,106,109,124,99,100",
+                        "endOffsets": "170,278,401,507,614,703,804,922,1005,1085,1172,1279,1391,1493,1601,1708,1818,1943,2043,2144"
                     }
                 }
             ]
@@ -256,21 +256,6 @@
             ]
         },
         {
-            "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-ne-rNP_values-ne-rNP.arsc.flat",
-            "map": [
-                {
-                    "source": "/home/satish/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/643ee1da9b9b18b0379fa6829d4a575f/res/values-ne-rNP/values-ne-rNP.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,160,268,391,495,603,694,801,928,1022,1112,1200,1310,1426,1529,1644,1746,1861,1992,2104",
-                        "endColumns": "104,107,122,103,107,90,106,126,93,89,87,109,115,102,114,101,114,130,111,100",
-                        "endOffsets": "155,263,386,490,598,689,796,923,1017,1107,1195,1305,1421,1524,1639,1741,1856,1987,2099,2200"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-gu-rIN_values-gu-rIN.arsc.flat",
             "map": [
                 {
@@ -281,6 +266,21 @@
                         "startOffsets": "55,164,272,395,499,606,693,794,917,994,1072,1152,1258,1360,1457,1566,1665,1775,1896,1999",
                         "endColumns": "108,107,122,103,106,86,100,122,76,77,79,105,101,96,108,98,109,120,102,100",
                         "endOffsets": "159,267,390,494,601,688,789,912,989,1067,1147,1253,1355,1452,1561,1660,1770,1891,1994,2095"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-ne-rNP_values-ne-rNP.arsc.flat",
+            "map": [
+                {
+                    "source": "/home/satish/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/643ee1da9b9b18b0379fa6829d4a575f/res/values-ne-rNP/values-ne-rNP.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,160,268,391,495,603,694,801,928,1022,1112,1200,1310,1426,1529,1644,1746,1861,1992,2104",
+                        "endColumns": "104,107,122,103,107,90,106,126,93,89,87,109,115,102,114,101,114,130,111,100",
+                        "endOffsets": "155,263,386,490,598,689,796,923,1017,1107,1195,1305,1421,1524,1639,1741,1856,1987,2099,2200"
                     }
                 }
             ]
@@ -677,21 +677,6 @@
             ]
         },
         {
-            "outputFile": "/home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-zh-rTW_values-zh-rTW.arsc.flat",
-            "map": [
-                {
-                    "source": "/home/challa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/2824c78dfb690638a7b1a2c4f71c505d/res/values-zh-rTW/values-zh-rTW.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,150,257,380,473,573,655,752,860,936,1012,1090,1186,1282,1377,1474,1569,1669,1782,1876",
-                        "endColumns": "94,106,122,92,99,81,96,107,75,75,77,95,95,94,96,94,99,112,93,100",
-                        "endOffsets": "145,252,375,468,568,650,747,855,931,1007,1085,1181,1277,1372,1469,1564,1664,1777,1871,1972"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-fr_values-fr.arsc.flat",
             "map": [
                 {
@@ -702,6 +687,21 @@
                         "startOffsets": "55,166,274,397,512,623,705,811,941,1024,1104,1190,1300,1412,1515,1626,1733,1840,1962,2061",
                         "endColumns": "110,107,122,114,110,81,105,129,82,79,85,109,111,102,110,106,106,121,98,100",
                         "endOffsets": "161,269,392,507,618,700,806,936,1019,1099,1185,1295,1407,1510,1621,1728,1835,1957,2056,2157"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-zh-rTW_values-zh-rTW.arsc.flat",
+            "map": [
+                {
+                    "source": "/home/challa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/2824c78dfb690638a7b1a2c4f71c505d/res/values-zh-rTW/values-zh-rTW.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,150,257,380,473,573,655,752,860,936,1012,1090,1186,1282,1377,1474,1569,1669,1782,1876",
+                        "endColumns": "94,106,122,92,99,81,96,107,75,75,77,95,95,94,96,94,99,112,93,100",
+                        "endOffsets": "145,252,375,468,568,650,747,855,931,1007,1085,1181,1277,1372,1469,1564,1664,1777,1871,1972"
                     }
                 }
             ]
@@ -722,21 +722,6 @@
             ]
         },
         {
-            "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-es-rUS_values-es-rUS.arsc.flat",
-            "map": [
-                {
-                    "source": "/home/satish/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/643ee1da9b9b18b0379fa6829d4a575f/res/values-es-rUS/values-es-rUS.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,175,283,406,515,623,708,809,932,1016,1097,1179,1291,1403,1504,1612,1719,1826,1948,2048",
-                        "endColumns": "119,107,122,108,107,84,100,122,83,80,81,111,111,100,107,106,106,121,99,100",
-                        "endOffsets": "170,278,401,510,618,703,804,927,1011,1092,1174,1286,1398,1499,1607,1714,1821,1943,2043,2144"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-gl-rES_values-gl-rES.arsc.flat",
             "map": [
                 {
@@ -747,6 +732,21 @@
                         "startOffsets": "55,167,275,398,510,618,703,805,931,1015,1096,1178,1285,1394,1493,1601,1704,1811,1933,2033",
                         "endColumns": "111,107,122,111,107,84,101,125,83,80,81,106,108,98,107,102,106,121,99,100",
                         "endOffsets": "162,270,393,505,613,698,800,926,1010,1091,1173,1280,1389,1488,1596,1699,1806,1928,2028,2129"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-es-rUS_values-es-rUS.arsc.flat",
+            "map": [
+                {
+                    "source": "/home/satish/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/643ee1da9b9b18b0379fa6829d4a575f/res/values-es-rUS/values-es-rUS.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,175,283,406,515,623,708,809,932,1016,1097,1179,1291,1403,1504,1612,1719,1826,1948,2048",
+                        "endColumns": "119,107,122,108,107,84,100,122,83,80,81,111,111,100,107,106,106,121,99,100",
+                        "endOffsets": "170,278,401,510,618,703,804,927,1011,1092,1174,1286,1398,1499,1607,1714,1821,1943,2043,2144"
                     }
                 }
             ]
@@ -797,21 +797,6 @@
             ]
         },
         {
-            "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-ka-rGE_values-ka-rGE.arsc.flat",
-            "map": [
-                {
-                    "source": "/home/satish/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/643ee1da9b9b18b0379fa6829d4a575f/res/values-ka-rGE/values-ka-rGE.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,164,272,395,499,610,698,803,916,1000,1082,1165,1278,1385,1483,1596,1700,1804,1926,2024",
-                        "endColumns": "108,107,122,103,110,87,104,112,83,81,82,112,106,97,112,103,103,121,97,100",
-                        "endOffsets": "159,267,390,494,605,693,798,911,995,1077,1160,1273,1380,1478,1591,1695,1799,1921,2019,2120"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-kn-rIN_values-kn-rIN.arsc.flat",
             "map": [
                 {
@@ -822,6 +807,21 @@
                         "startOffsets": "55,173,281,404,516,629,717,824,951,1028,1105,1187,1303,1414,1513,1626,1730,1844,1970,2070",
                         "endColumns": "117,107,122,111,112,87,106,126,76,76,81,115,110,98,112,103,113,125,99,100",
                         "endOffsets": "168,276,399,511,624,712,819,946,1023,1100,1182,1298,1409,1508,1621,1725,1839,1965,2065,2166"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/res/merged/androidTest/debug/values-ka-rGE_values-ka-rGE.arsc.flat",
+            "map": [
+                {
+                    "source": "/home/satish/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/643ee1da9b9b18b0379fa6829d4a575f/res/values-ka-rGE/values-ka-rGE.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,164,272,395,499,610,698,803,916,1000,1082,1165,1278,1385,1483,1596,1700,1804,1926,2024",
+                        "endColumns": "108,107,122,103,110,87,104,112,83,81,82,112,106,97,112,103,103,121,97,100",
+                        "endOffsets": "159,267,390,494,605,693,798,911,995,1077,1160,1273,1380,1478,1591,1695,1799,1921,2019,2120"
                     }
                 }
             ]

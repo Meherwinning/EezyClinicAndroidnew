@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activities.HealthRecordsActivity">
+
+    <ScrollView
+        android:id="@+id/settings_scroll"
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20dp"
+        android:layout_marginTop="@dimen/_20dp"
+        android:orientation="vertical">
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Specify who can view the following"
+            android:textColor="#212121"
+            android:textSize="@dimen/_16sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/_3dp"
+            android:layout_marginTop="@dimen/_23dp"
+            android:alpha="0.12"
+            android:background="#000000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:gravity="left|center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/upload_files_linear"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45dp"
+                android:layout_gravity="left|center"
+                android:layout_marginRight="@dimen/_18dp"
+                android:background="@color/white"
+                android:clickable="true"
+                android:gravity="left|center"
+
+                android:orientation="horizontal"
+
+
+                android:paddingBottom="@dimen/_5dp"
+                android:paddingTop="@dimen/_10dp">
+
+                <com.vempower.eezyclinic.views.MyTextViewRM
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:gravity="left|center"
+                    android:text="My Uploaded Files"
+                    android:textColor="#212121"
+                    android:textSize="@dimen/_14sp"
+                    android:textStyle="normal" />
+
+                <ImageView
+                    android:id="@+id/contact_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/_8dp" />
+            </LinearLayout>
+
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                android:id="@+id/expandableLayout_upload_files_el"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                app:ael_duration="300"
+                app:ael_expanded="false">
+                <include layout="@layout/privacy_settings_single_layout"></include>
+
+
+
+
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+                 <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/_3dp"
+                android:layout_marginTop="@dimen/_8dp"
+                android:alpha="0.12"
+                android:background="#000000" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:gravity="left|center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/doctor_genarated_linear"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45dp"
+                android:layout_gravity="left|center"
+                android:layout_marginRight="@dimen/_18dp"
+                android:background="@color/white"
+                android:clickable="true"
+                android:gravity="left|center"
+
+                android:orientation="horizontal"
+
+
+                android:paddingBottom="@dimen/_5dp"
+                android:paddingTop="@dimen/_10dp">
+
+                <com.vempower.eezyclinic.views.MyTextViewRM
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:gravity="left|center"
+                    android:text="Doctor generated Casesheets/Reports"
+                    android:textColor="#212121"
+                    android:textSize="@dimen/_14sp"
+                    android:textStyle="normal" />
+
+                <ImageView
+                    android:id="@+id/doctor_genarated_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/_8dp" />
+            </LinearLayout>
+
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                android:id="@+id/expandableLayout_doctor_genarated_el"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                app:ael_duration="300"
+                app:ael_expanded="false">
+
+                <include layout="@layout/privacy_settings_single_layout"></include>
+
+
+
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/_3dp"
+                android:layout_marginTop="@dimen/_8dp"
+                android:alpha="0.12"
+                android:background="#000000" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:gravity="left|center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/diagnostic_report_linear"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45dp"
+                android:layout_gravity="left|center"
+                android:layout_marginRight="@dimen/_18dp"
+                android:background="@color/white"
+                android:clickable="true"
+                android:gravity="left|center"
+
+                android:orientation="horizontal"
+
+
+                android:paddingBottom="@dimen/_5dp"
+                android:paddingTop="@dimen/_10dp">
+
+                <com.vempower.eezyclinic.views.MyTextViewRM
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:gravity="left|center"
+                    android:text="Diagnostic Report by Diagnostic Centers"
+                    android:textColor="#212121"
+                    android:textSize="@dimen/_14sp"
+                    android:textStyle="normal" />
+
+                <ImageView
+                    android:id="@+id/diagnostic_report_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/_8dp" />
+            </LinearLayout>
+
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                android:id="@+id/expandableLayout_diagnostic_report_el"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                app:ael_duration="300"
+                app:ael_expanded="false">
+
+                <include layout="@layout/privacy_settings_single_layout"></include>
+
+
+
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/_3dp"
+                android:layout_marginTop="@dimen/_8dp"
+                android:alpha="0.12"
+                android:background="#000000" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:gravity="left|center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/patient_profile_linear"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45dp"
+                android:layout_gravity="left|center"
+                android:layout_marginRight="@dimen/_18dp"
+                android:background="@color/white"
+                android:clickable="true"
+                android:gravity="left|center"
+
+                android:orientation="horizontal"
+
+
+                android:paddingBottom="@dimen/_5dp"
+                android:paddingTop="@dimen/_10dp">
+
+                <com.vempower.eezyclinic.views.MyTextViewRM
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:gravity="left|center"
+                    android:text="Patient Profile"
+                    android:textColor="#212121"
+                    android:textSize="@dimen/_14sp"
+                    android:textStyle="normal" />
+
+                <ImageView
+                    android:id="@+id/patient_profile_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/_8dp" />
+            </LinearLayout>
+
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                android:id="@+id/expandableLayout_patient_profile_el"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                app:ael_duration="300"
+                app:ael_expanded="false">
+
+                <include layout="@layout/privacy_settings_single_layout"></include>
+
+
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/_3dp"
+                android:layout_marginTop="@dimen/_8dp"
+                android:alpha="0.12"
+                android:background="#000000" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:gravity="left|center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/medical_history_linear"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45dp"
+                android:layout_gravity="left|center"
+                android:layout_marginRight="@dimen/_18dp"
+                android:background="@color/white"
+                android:clickable="true"
+                android:gravity="left|center"
+
+                android:orientation="horizontal"
+
+
+                android:paddingBottom="@dimen/_5dp"
+                android:paddingTop="@dimen/_10dp">
+
+                <com.vempower.eezyclinic.views.MyTextViewRM
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:gravity="left|center"
+                    android:text="Medical History"
+                    android:textColor="#212121"
+                    android:textSize="@dimen/_14sp"
+                    android:textStyle="normal" />
+
+                <ImageView
+                    android:id="@+id/medical_history_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/_8dp" />
+            </LinearLayout>
+
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                android:id="@+id/expandableLayout_medical_history_el"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                app:ael_duration="300"
+                app:ael_expanded="false">
+
+                <include layout="@layout/privacy_settings_single_layout"></include>
+
+
+
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/_3dp"
+                android:layout_marginTop="@dimen/_8dp"
+                android:alpha="0.12"
+                android:background="#000000" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:gravity="left|center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/patient_notes_linear"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45dp"
+                android:layout_gravity="left|center"
+                android:layout_marginRight="@dimen/_18dp"
+                android:background="@color/white"
+                android:clickable="true"
+                android:gravity="left|center"
+
+                android:orientation="horizontal"
+
+
+                android:paddingBottom="@dimen/_5dp"
+                android:paddingTop="@dimen/_10dp">
+
+                <com.vempower.eezyclinic.views.MyTextViewRM
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:gravity="left|center"
+                    android:text="My Uploaded Files"
+                    android:textColor="#212121"
+                    android:textSize="@dimen/_14sp"
+                    android:textStyle="normal" />
+
+                <ImageView
+                    android:id="@+id/patient_notes_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/_8dp" />
+            </LinearLayout>
+
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                android:id="@+id/expandableLayout_patient_notes_el"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                app:ael_duration="300"
+                app:ael_expanded="false">
+
+                <include layout="@layout/privacy_settings_single_layout"></include>
+
+
+
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/_3dp"
+                android:layout_marginTop="@dimen/_8dp"
+                android:alpha="0.12"
+                android:background="#000000" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
