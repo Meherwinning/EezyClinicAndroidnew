@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.text.TextUtils;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,9 +60,11 @@ import com.vempower.eezyclinic.views.MyTextViewRR;
 import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
 import java.io.File;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -198,6 +201,8 @@ public class EditProfileFragment extends ImageProcessFragment {
 
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         relation_spinner.setAdapter(aa);
+
+
         relation_spinner.setSelection(aa.getCount());
 
         relation_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -217,7 +222,21 @@ public class EditProfileFragment extends ImageProcessFragment {
 
             }
         });
-
+        if(patientProfileObj!=null)
+        {
+            String relation = patientProfileObj.getEmergencycontactrelationship();
+            if(!TextUtils.isEmpty(relation))
+            {
+               for(int i=0;i<relations.length;i++)
+               {
+                   String temp=relations[i];
+                   if(temp!=null && temp.equalsIgnoreCase(relation))
+                   {
+                       relation_spinner.setSelection(i);
+                   }
+               }
+            }
+        }
 
     }
 
@@ -257,6 +276,21 @@ public class EditProfileFragment extends ImageProcessFragment {
             }
         });
 
+        if(patientProfileObj!=null)
+        {
+            String gender = patientProfileObj.getGender();
+            if(!TextUtils.isEmpty(gender))
+            {
+                for(int i=0;i<genderTypeList.size();i++)
+                {
+                    String temp=genderTypeList.get(i);
+                    if(temp!=null && temp.equalsIgnoreCase(gender))
+                    {
+                        gender_type_spinner.setSelection(i);
+                    }
+                }
+            }
+        }
 
     }
 
@@ -295,6 +329,21 @@ public class EditProfileFragment extends ImageProcessFragment {
 
             }
         });
+        if(patientProfileObj!=null)
+        {
+            String marital = patientProfileObj.getMaritalStatus();
+            if(!TextUtils.isEmpty(marital))
+            {
+                for(int i=0;i<maritalStatusList.size();i++)
+                {
+                    String temp=maritalStatusList.get(i);
+                    if(temp!=null && temp.equalsIgnoreCase(marital))
+                    {
+                        marital_status_spinner.setSelection(i);
+                    }
+                }
+            }
+        }
 
 
     }
@@ -384,6 +433,23 @@ public class EditProfileFragment extends ImageProcessFragment {
             }
         });
 
+        if(patientProfileObj!=null)
+        {
+            String insurance = patientProfileObj.getInsuranceProvider();
+            if(!TextUtils.isEmpty(insurance))
+            {
+                for(int i=0;i<insuranceTypeList.size();i++)
+                {
+                    String temp=insuranceTypeList.get(i).getCompanyName();
+                    if(temp!=null && temp.equalsIgnoreCase(insurance))
+                    {
+                        insurance_provider_spinner.setSelection(i);
+                    }
+                }
+            }
+        }
+
+
 
     }
 
@@ -429,6 +495,21 @@ public class EditProfileFragment extends ImageProcessFragment {
 
             }
         });
+
+        if(patientProfileObj!=null) {
+            String insurance1 = patientProfileObj.getSecondaryinsurancepackage();
+            if(!TextUtils.isEmpty(insurance1))
+            {
+                for(int i=0;i<insuranceTypeList.size();i++)
+                {
+                    String temp=insuranceTypeList.get(i).getCompanyName();
+                    if(temp!=null && temp.equalsIgnoreCase(insurance1))
+                    {
+                        insurance_secoundary_spinner.setSelection(i);
+                    }
+                }
+            }
+        }
 
 
     }
@@ -513,6 +594,21 @@ public class EditProfileFragment extends ImageProcessFragment {
 
             }
         });
+
+        if(patientProfileObj!=null) {
+            String idtype = patientProfileObj.getIdtype();
+            if(!TextUtils.isEmpty(idtype))
+            {
+                for(int i=0;i<idCardTypeList.size();i++)
+                {
+                    String temp=idCardTypeList.get(i).getIdCardName();
+                    if(temp!=null && temp.equalsIgnoreCase(idtype))
+                    {
+                        id_type_spinner.setSelection(i);
+                    }
+                }
+            }
+        }
 
 
     }
@@ -600,6 +696,20 @@ public class EditProfileFragment extends ImageProcessFragment {
             }
         });
 
+        if(patientProfileObj!=null) {
+            String nationality = patientProfileObj.getNationality();
+            if(!TextUtils.isEmpty(nationality))
+            {
+                for(int i=0;i<nationalityTypeList.size();i++)
+                {
+                    String temp=nationalityTypeList.get(i).getNationalityName();
+                    if(temp!=null && temp.equalsIgnoreCase(nationality))
+                    {
+                        nationality_spinner.setSelection(i);
+                    }
+                }
+            }
+        }
 
     }
 
@@ -645,6 +755,21 @@ public class EditProfileFragment extends ImageProcessFragment {
 
             }
         });
+
+        if(patientProfileObj!=null) {
+            String bloodgroup = patientProfileObj.getBloodgroup();
+            if(!TextUtils.isEmpty(bloodgroup))
+            {
+                for(int i=0;i<bloodGroupList.size();i++)
+                {
+                    String temp=bloodGroupList.get(i);
+                    if(temp!=null && temp.equalsIgnoreCase(bloodgroup))
+                    {
+                        blood_group_spinner.setSelection(i);
+                    }
+                }
+            }
+        }
 
 
     }
@@ -846,40 +971,6 @@ public class EditProfileFragment extends ImageProcessFragment {
         });
     }
 
-    /**
-     * Used to scroll to the given view.
-     *
-     * @param scrollViewParent Parent ScrollView
-     * @param view             View to which we need to scroll.
-     */
-    private void scrollToView(final ScrollView scrollViewParent, final View view) {
-        // Get deepChild Offset
-        Point childOffset = new Point();
-        getDeepChildOffset(scrollViewParent, view.getParent(), view, childOffset);
-        // Scroll to child.
-        scrollViewParent.smoothScrollTo(0, childOffset.y);
-    }
-
-    /**
-     * Used to get deep child offset.
-     * <p/>
-     * 1. We need to scroll to child in scrollview, but the child may not the direct child to scrollview.
-     * 2. So to get correct child position to scroll, we need to iterate through all of its parent views till the main parent.
-     *
-     * @param mainParent        Main Top parent.
-     * @param parent            Parent.
-     * @param child             Child.
-     * @param accumulatedOffset Accumalated Offset.
-     */
-    private void getDeepChildOffset(final ViewGroup mainParent, final ViewParent parent, final View child, final Point accumulatedOffset) {
-        ViewGroup parentGroup = (ViewGroup) parent;
-        accumulatedOffset.x += child.getLeft();
-        accumulatedOffset.y += child.getTop();
-        if (parentGroup.equals(mainParent)) {
-            return;
-        }
-        getDeepChildOffset(mainParent, parentGroup.getParent(), parentGroup, accumulatedOffset);
-    }
 
 
     public void onDateOfBirthTextviewClick(final SublimePickerFragment.Callback callback,final SelectedDate selectedObj,boolean isDOB) {
@@ -1139,6 +1230,21 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
             }
         });
 
+        if(patientProfileObj!=null) {
+            String country = patientProfileObj.getAddress().getCountry();
+            if(!TextUtils.isEmpty(country))
+            {
+                for(int i=0;i<countryTypeList.size();i++)
+                {
+                    String temp=countryTypeList.get(i).getCountry();
+                    if(temp!=null && temp.equalsIgnoreCase(country))
+                    {
+                        country_spinner.setSelection(i);
+                    }
+                }
+            }
+        }
+
 
     }
 
@@ -1229,12 +1335,27 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
         });
 
 
+        if(patientProfileObj!=null) {
+            String city = patientProfileObj.getAddress().getCity();
+            if(!TextUtils.isEmpty(city))
+            {
+                for(int i=0;i<cityTypeList.size();i++)
+                {
+                    String temp=cityTypeList.get(i).getCityName();
+                    if(temp!=null && temp.equalsIgnoreCase(city))
+                    {
+                        city_type_spinner.setSelection(i);
+                    }
+                }
+            }
+        }
+
     }
 
     private void updateProfileDetails() {
        // Utils.showToastMsg("Now click on Save");
         setProfileData();
-        Utils.showToastMsg(profileDetails.toString());
+       // Utils.showToastMsg(profileDetails.toString());
 
         ProfileSaveMapper mapper= new ProfileSaveMapper(profileDetails);
         mapper.setOnProfileSaveListener(new ProfileSaveMapper.ProfileSaveListener() {
@@ -1340,7 +1461,127 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
         {
             return;
         }
-        //TODO set patient profile details to views
+        MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, patientProfileObj.getPatientlogo());
+
+
+
+        patient_name_et.setText(patientProfileObj.getPatientname());
+       height_et.setText(patientProfileObj.getHeight());
+       known_allergies_et.setText(patientProfileObj.getKnownallergies());
+
+
+        //Contact details
+        // profileDetails.mobile= contact_et.getText().toString();
+       primary_contact_no_et.setText(patientProfileObj.getContactNo().getPrimary());
+       secondary_contact_no_et.setText(patientProfileObj.getContactNo().getSecondarymobile());
+       residence_contact_no_et.setText(patientProfileObj.getContactNo().getResidencemobile());
+        // contact_email_et = getFragemtView().findViewById(R.id.email_et);
+        contact_address_et.setText(patientProfileObj.getAddress().getAddress());
+
+       contact_language_known_et.setText(patientProfileObj.getLanguagesknown());
+        id_number_et.setText(patientProfileObj.getIdnumber());
+
+        addressAutoCompleteTextView.setOnItemClickListener(null);
+        addressAutoCompleteTextView.setText(patientProfileObj.getAddress().getLocality());
+        addressAutoCompleteTextView.setOnItemClickListener(adapterViewListener);
+
+
+
+        //Emergency Contact
+        emergency_contact_name_et.setText(patientProfileObj.getEmergencycontactname());
+        emergency_contact_number_et.setText(patientProfileObj.getEmergencycontactnumber());
+        emergency_contact_emailid_et.setText(patientProfileObj.getEmergencycontactemail());
+        // relation_spinner  = getFragemtView().findViewById(R.id.relation_spinner);
+
+
+
+        //Insurance
+       insurance_tpa_et.setText(patientProfileObj.getTpa());
+        //insurance_provider_spinner  = getFragemtView().findViewById(R.id.insurance_provider_spinner);
+        insurance_insurance_number_et.setText(patientProfileObj.getInsuranceId());
+        insurance_insurance_policy_et.setText(patientProfileObj.getPolicy());
+        insurance_member_id_et.setText(patientProfileObj.getMemberid());
+        insurance_type_et.setText(patientProfileObj.getType());
+        //insurance_valid_from_tv.getText().toString();
+        // insurance_valid_to_tv.getText().toString();
+        insurance_co_pay_et.setText(patientProfileObj.getCopay());
+        insurance_scheme_et.setText(patientProfileObj.getScheme());
+        insurance_reason_et.setText(patientProfileObj.getReason());
+        insurance_organisation_et.setText(patientProfileObj.getOrganisation());
+        insurance_max_limit_et.setText(patientProfileObj.getMaxlimit());
+        // insurance_secoundary_spinner  = getFragemtView().findViewById(R.id.insurance_secoundary_spinner);
+       insurance_secoundary_number_et.setText(patientProfileObj.getSecondaryinsurancenumber());
+
+        //"dateofbirth": "01/01/1986",
+        date_of_birth_tv.setText(patientProfileObj.getDateofbirth());
+
+
+        SimpleDateFormat format = new SimpleDateFormat(Constants.DISPLAY_DATE_FORMAT);
+        SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.REQUEST_DATE_FORMAT);
+
+
+        //For Date of birth
+        if(patientProfileObj.getDateofbirth()!=null) {
+            try {
+
+                Date date = requestFormat.parse(patientProfileObj.getDateofbirth());
+                if (selectedDOBObj == null) {
+                    selectedDOBObj = new SelectedDate(Calendar.getInstance());
+                }
+                selectedDOBObj.setTimeInMillis(date.getTime());
+                date_of_birth_tv.setText(format.format(date));
+                profileDetails.dateofBirth=patientProfileObj.getDateofbirth();
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        //Validity from
+        if(patientProfileObj.getValidityfrom()!=null) {
+            try {
+
+                Date date = requestFormat.parse(patientProfileObj.getValidityfrom());
+                if (selectedValidFromObj == null) {
+                    selectedValidFromObj = new SelectedDate(Calendar.getInstance());
+                }
+                selectedValidFromObj.setTimeInMillis(date.getTime());
+                insurance_valid_from_tv.setText(format.format(date));
+                profileDetails.fromvalidity=patientProfileObj.getValidityfrom();
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
+        //For validity to
+        if(patientProfileObj.getValidityto()!=null) {
+            try {
+
+                Date date = requestFormat.parse(patientProfileObj.getValidityto());
+                if (selectedValidToObj == null) {
+                    selectedValidToObj = new SelectedDate(Calendar.getInstance());
+                }
+                selectedValidToObj.setTimeInMillis(date.getTime());
+                insurance_valid_to_tv.setText(format.format(date));
+                profileDetails.fromvalidity=patientProfileObj.getValidityto();
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+      /*  insurance_valid_to_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onDateOfBirthTextviewClick(mFragmentValidToCallback,selectedValidToObj,false);
+            }
+        });
+*/
+
     }
 
     public void setOnSuccessToUpdateProfileListener(SuccessToUpdateProfileListener successListener)

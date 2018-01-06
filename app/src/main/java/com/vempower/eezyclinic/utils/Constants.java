@@ -28,7 +28,7 @@ public interface Constants {
 
     String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd HH:mm:ss";//"2017-11-22 23:59:59";
    String DISPLAY_DATE_FORMAT="dd MMMM, yyyy";//15 December, 2017
-    String REQUEST_DATE_FORMAT="MM/dd/yyyy";//01/08/1986
+    String REQUEST_DATE_FORMAT="yyyy-MM-dd";//2018-08-24
     int MAX_TABS_SIZE = 5;
     @Nullable
     String IS_WATCH_APP_TOUR_KEY="is_watch_app_tour_key";

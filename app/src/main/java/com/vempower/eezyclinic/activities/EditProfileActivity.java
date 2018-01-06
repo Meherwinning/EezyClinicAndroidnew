@@ -56,7 +56,7 @@ public class EditProfileActivity extends AbstractMenuActivity {
             return;
 
         }
-        showToastMessage(data.toString());
+       // showToastMessage(data.toString());
         // computeHeaderHeight();
 
        // callClinicProfileMapper(data);

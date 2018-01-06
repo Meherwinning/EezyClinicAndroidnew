@@ -146,6 +146,7 @@ public class HomeActivity extends AbstractMenuActivity {
     }
 
     private boolean isHomeOptionMenu;
+    private boolean isSettingsOptionMenu;
     public AbstractFragment getHomeFragment() {
        // HomeFragment fragment=new HomeFragment();
         if(homeFragment==null)
@@ -241,14 +242,22 @@ public class HomeActivity extends AbstractMenuActivity {
         //return fragment;
     }
 
+    private void  callSettingsActionBar() {
+        isHomeOptionMenu=false;
+        isSettingsOptionMenu=true;
+
+        invalidateOptionsMenu();
+    }
 
     private void  callProfileActionBar() {
         isHomeOptionMenu=true;
+        isSettingsOptionMenu=false;
 
         invalidateOptionsMenu();
     }
     private void  callHomeActionBar() {
         isHomeOptionMenu=false;
+        isSettingsOptionMenu=false;
 
         invalidateOptionsMenu();
     }
@@ -284,6 +293,48 @@ public class HomeActivity extends AbstractMenuActivity {
 
         getSupportActionBar().setTitle("");
 
+    }
+
+    private void settingsActionBar() {
+        //isHomeOptionMenu=true;
+        //invalidateOptionsMenu();
+
+        if(title_logo_iv!=null)
+        {
+            title_logo_iv.setVisibility(View.GONE);
+        }
+
+
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
+        getSupportActionBar().setHomeButtonEnabled(false);
+        //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
+        // titleName.setText(Utils.getStringFromResources(R.string.title_activity_appointments));
+   /*     if(titleName!=null) {
+            titleName.setText("Profile");
+        }else
+        {*/
+        getSupportActionBar().setTitle("My Account");
+        // }
+        if(toolbar!=null) {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //do something you want
+                    finish();
+                }
+            });
+        }
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_USE_LOGO);
+        //mImageView = findViewById(R.id.image);
+        //View  mToolbarView = findViewById(R.id.toolbar);
+        //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
+
+        //// getSupportActionBar().setTitle("");
+
+        // mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.app_red)));
+
+        //super.setActionBar(false);
     }
 
     private void profileActionBar() {
@@ -331,7 +382,12 @@ public class HomeActivity extends AbstractMenuActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(isHomeOptionMenu) {
+        if(isSettingsOptionMenu)
+        {
+            getMenuInflater().inflate(R.menu.normal_menu, menu);
+            settingsActionBar();
+        }
+        else if(isHomeOptionMenu) {
             getMenuInflater().inflate(R.menu.profile_view_menu, menu);
             profileActionBar();
         }else
@@ -374,7 +430,7 @@ public class HomeActivity extends AbstractMenuActivity {
                 {
                    break;
                 }
-                Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),EditProfileActivity.class);
+                Intent intent=  new Intent(this,EditProfileActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                 intent.putExtra(ListenerKey.ObjectKey.PATIENT_PROFILE_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                     @Override
@@ -398,8 +454,7 @@ public class HomeActivity extends AbstractMenuActivity {
                     }
                 }));
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                MyApplication.getCurrentActivityContext().startActivity(intent);
+                startActivityForResult(intent,EditProfileActivity.IS_REFRESH_PROFILE);
 
 
                 //End
@@ -431,8 +486,13 @@ public class HomeActivity extends AbstractMenuActivity {
     private void refreshProfile()
     {
         Utils.showToastMsg("Refresh profile");
-        myProfileFragment=null;
         callMyProfile();
+        if(myProfileFragment!=null && (myProfileFragment instanceof MyProfileFragment))
+        {
+            MyProfileFragment fragment= (MyProfileFragment) myProfileFragment;
+            fragment.refreshFragment();
+        }
+
     }
 
     @Override
@@ -500,7 +560,7 @@ public class HomeActivity extends AbstractMenuActivity {
     }
     public void onSettingsClick(View view)
     {
-        callHomeActionBar();
+        callSettingsActionBar();
         if(settingsFragment==null)
         {
             settingsFragment= new SettingsFragment();
