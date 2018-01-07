@@ -395,7 +395,7 @@
                     android:layout_weight="1"
                     android:fontFamily="sans-serif"
                     android:gravity="left|center"
-                    android:text="My Uploaded Files"
+                    android:text="Patient Notes"
                     android:textColor="#212121"
                     android:textSize="@dimen/_14sp"
                     android:textStyle="normal" />

@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.views.PinView;
 
 /**
  * Created by satish on 6/12/17.
@@ -27,8 +26,6 @@ public class ChangeMobileNumberFragment extends AbstractFragment {
     }
 
     private void myInit() {
-        ((PinView) getFragemtView().findViewById(R.id.firstPinView)).setAnimationEnable(true);
-        ((PinView) getFragemtView().findViewById(R.id.secondPinView)).setAnimationEnable(true);
     }
 
     @Override

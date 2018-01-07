@@ -9,7 +9,7 @@
     >
 
     <ScrollView
-        android:layout_above="@+id/pin_relative"
+        android:layout_above="@+id/appointment_bt"
         android:layout_width="match_parent"
         android:fillViewport="true"
         android:layout_height="match_parent">
@@ -130,7 +130,48 @@
 
             </LinearLayout>
 
+            <!--app:pinBackground="@drawable/example_drawable"
+            app:hint="0"
+            -->
+            <LinearLayout
+                android:layout_marginTop="@dimen/_40dp"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/_20dp"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14sp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"
+                    android:textColor="#8a000000"
+                    android:text="Please enter the One Time Password (OTP) that you have just recieved on your new number"
+                    />
+
+
+
+                <com.goodiebag.pinview.Pinview
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:id="@+id/pinview"
+                    app:pinBackground="@drawable/pin_view_bg"
+
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:pinWidth="@dimen/_43dp"
+                    app:pinHeight="@dimen/_57dp"
+                    app:pinLength="4"
+                    app:cursorVisible="false"
+                    app:forceKeyboard="true"
+
+
+                    app:inputType="number"
+                    app:password="false"/>
+
+            </LinearLayout>
 
 
         </LinearLayout>
@@ -138,53 +179,6 @@
 
 
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/pin_relative"
-        android:layout_width="match_parent"
-        android:layout_above="@+id/appointment_bt"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
-
-        <TextView
-            android:id="@+id/firstLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/firstPinView"
-            android:layout_alignParentTop="true"
-            android:text="Pin" />
-
-        <com.vempower.eezyclinic.views.PinView
-            android:id="@+id/firstPinView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/firstLabel"
-            android:layout_centerHorizontal="true"
-            android:enabled="true"
-            android:clickable="true"
-            android:layout_margin="@dimen/_14dp"
-            android:inputType="number"
-            android:textColor="@color/text_colors" />
-
-        <TextView
-            android:id="@+id/secondLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/secondPinView"
-            android:layout_below="@+id/firstPinView"
-            android:text="password" />
-
-        <com.vempower.eezyclinic.views.PinView
-            android:id="@+id/secondPinView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/secondLabel"
-            android:enabled="true"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="@dimen/_14dp"
-            android:clickable="true"
-            android:inputType="numberPassword"
-            android:textColor="@color/line_colors" />
-    </RelativeLayout>
 
 
     <android.support.v7.widget.AppCompatButton
@@ -193,7 +187,7 @@
         android:id="@+id/appointment_bt"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_48dp"
-        android:layout_marginTop="@dimen/_5dp"
+        android:layout_marginTop="@dimen/_10dp"
         android:layout_marginBottom="@dimen/_8dp"
         android:clickable="true"
         android:layout_marginLeft="@dimen/_24dp"

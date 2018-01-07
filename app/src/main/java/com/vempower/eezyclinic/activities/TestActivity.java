@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 
-import com.chaos.view.PinView;
 import com.vempower.eezyclinic.R;
 import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
@@ -21,7 +20,7 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        ((PinView) findViewById(R.id.firstPinView)).setAnimationEnable(true);
-        ((PinView) findViewById(R.id.secondPinView)).setAnimationEnable(true);
+        //((PinView) findViewById(R.id.firstPinView)).setAnimationEnable(true);
+        //((PinView) findViewById(R.id.secondPinView)).setAnimationEnable(true);
     }
 }

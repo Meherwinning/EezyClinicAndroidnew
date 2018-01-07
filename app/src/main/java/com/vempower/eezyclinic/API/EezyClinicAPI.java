@@ -18,6 +18,7 @@ import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
 import com.vempower.eezyclinic.APIResponce.LanguageListAPI;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
 import com.vempower.eezyclinic.APIResponce.NationalityListAPI;
+import com.vempower.eezyclinic.APIResponce.ProfileSettingsAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultClinicListAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
@@ -182,6 +183,17 @@ public interface EezyClinicAPI {
     //http://202.63.103.194:8003/api/patient/editprofilesave
     @POST(data + "patient/editprofilesave")
     Call<AbstractResponse> patientProfileSave(@Body RequestBody postBody);
+
+    //http://202.63.103.194:8003/api/patient/privacysettings
+    @POST(data + "patient/privacysettings")
+    Call<ProfileSettingsAPI> getProfileSettings(@Body RequestBody postBody);
+
+
+    //http://202.63.103.194:8003/api/patient/privacysettingssave
+    @POST(data + "patient/privacysettingssave")
+    Call<AbstractResponse> saveProfileSettings(@Body RequestBody postBody);
+
+
 
 
 

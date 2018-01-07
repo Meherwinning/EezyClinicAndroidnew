@@ -26,6 +26,10 @@ public class ProfileSettingsData {
     private ProfileSettingReport patientNotes;
 
     public ProfileSettingReport getMyuploadfiles() {
+        if(myuploadfiles==null)
+        {
+            myuploadfiles= new ProfileSettingReport();
+        }
         return myuploadfiles;
     }
 
@@ -34,6 +38,10 @@ public class ProfileSettingsData {
     }
 
     public ProfileSettingReport getDoctorreport() {
+        if(doctorreport==null)
+        {
+            doctorreport= new ProfileSettingReport();
+        }
         return doctorreport;
     }
 
@@ -42,6 +50,10 @@ public class ProfileSettingsData {
     }
 
     public ProfileSettingReport getDiagnosticreport() {
+        if(diagnosticreport==null)
+        {
+            diagnosticreport= new ProfileSettingReport();
+        }
         return diagnosticreport;
     }
 
@@ -50,6 +62,10 @@ public class ProfileSettingsData {
     }
 
     public ProfileSettingReport getPatientProfile() {
+        if(patientProfile==null)
+        {
+            patientProfile= new ProfileSettingReport();
+        }
         return patientProfile;
     }
 
@@ -58,6 +74,10 @@ public class ProfileSettingsData {
     }
 
     public ProfileSettingReport getMedicalHistory() {
+        if(medicalHistory==null)
+        {
+            medicalHistory= new ProfileSettingReport();
+        }
         return medicalHistory;
     }
 
@@ -66,6 +86,10 @@ public class ProfileSettingsData {
     }
 
     public ProfileSettingReport getPatientNotes() {
+        if(patientNotes==null)
+        {
+            patientNotes= new ProfileSettingReport();
+        }
         return patientNotes;
     }
 

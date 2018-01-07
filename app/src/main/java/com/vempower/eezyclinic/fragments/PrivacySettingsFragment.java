@@ -12,8 +12,19 @@ import android.widget.ScrollView;
 
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
+import com.github.aakira.expandablelayout.Utils;
 import com.rey.material.widget.LinearLayout;
+import com.rey.material.widget.Switch;
+import com.vempower.eezyclinic.APICore.ProfileSettingReport;
+import com.vempower.eezyclinic.APICore.ProfileSettingsData;
+import com.vempower.eezyclinic.APIResponce.AbstractResponse;
+import com.vempower.eezyclinic.APIResponce.ProfileSettingsAPI;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.mappers.GetProfileAllSettingsMapper;
+import com.vempower.eezyclinic.mappers.SavePrivacySettingsMapper;
+import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
 /**
  * Created by satish on 6/12/17.
@@ -60,8 +71,66 @@ public class PrivacySettingsFragment extends AbstractFragment {
         expandableLayout_patient_notes_el = getFragemtView().findViewById(R.id.expandableLayout_patient_notes_el);
     }
 
+    public void setSwitchListeners(ExpandableLinearLayout expandable, String moduleName, ProfileSettingReport report) {
+        if(expandable==null)
+        {
+            return;
+        }
+      /*  "onlyappointmentdoctor":"0" ,
+                "doctorswithinsameclinic":"1" ,
+                "family":"1"*/
 
-    private void compute() {
+        setSwitchCheckedListener(expandable,R.id.doctors_i_seek_switch,moduleName, report.getOnlyappointmentdoctor());
+        setSwitchCheckedListener(expandable,R.id.doctors_within_switch,moduleName,report.getDoctorswithinsameclinic());
+        setSwitchCheckedListener(expandable,R.id.family_members_switch,moduleName,report.getFamily());
+        /*((Switch) expandable.findViewById(R.id.doctors_i_seek_switch)).setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(Switch view, boolean checked) {
+
+            }
+        });*/
+    }
+    private void setSwitchCheckedListener(final ExpandableLinearLayout expandable,int id,final String moduleName,String isCheckedStr)
+    {
+       final Switch mSwitch= ((Switch) expandable.findViewById(id));
+       mSwitch.setChecked(isCheckedStr.trim().equalsIgnoreCase("1")?true:false);
+       final Switch.OnCheckedChangeListener changeListener = new Switch.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(Switch view, boolean checked) {
+              //  com.vempower.eezyclinic.utils.Utils.showToastMessage("Module" + moduleName + "\nsubType" + subType + " :" + checked);
+                saveSigleModuleSettingsMapper(moduleName, expandable, mSwitch, this);
+            }
+        };
+        mSwitch.setOnCheckedChangeListener(changeListener);
+    }
+
+    private void saveSigleModuleSettingsMapper(String moduleName, ExpandableLinearLayout expandable, final Switch mSwitch, final Switch.OnCheckedChangeListener changeListener) {
+        SavePrivacySettingsMapper mapper = new SavePrivacySettingsMapper(moduleName,
+                ((Switch) expandable.findViewById(R.id.doctors_i_seek_switch)).isChecked(),
+                ((Switch) expandable.findViewById(R.id.doctors_within_switch)).isChecked(),
+                ((Switch) expandable.findViewById(R.id.family_members_switch)).isChecked()
+        );
+
+        mapper.setOnSavePrivacySettingsListener(new SavePrivacySettingsMapper.SavePrivacySettingsListener() {
+            @Override
+            public void savePrivacySettingsAPI(AbstractResponse response, String errorMessage) {
+                if (!isValidResponse(response, errorMessage)) {
+                    mSwitch.setOnCheckedChangeListener(null);
+                    mSwitch.setChecked(!mSwitch.isChecked());
+                    mSwitch.setOnCheckedChangeListener(changeListener);
+
+                    return;
+                }
+                com.vempower.eezyclinic.utils.Utils.showToastMessage(response.getStatusMessage());
+            }
+        });
+    }
+
+
+    private void compute(ProfileSettingsData settingsData) {
+
         {
             setExpandedViewListener(expandableLayout_patient_notes_el, patient_notes_linear, R.id.patient_notes_iv);
             patient_notes_linear.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +139,7 @@ public class PrivacySettingsFragment extends AbstractFragment {
                     expandableLayout_patient_notes_el.toggle();
                 }
             });
+            setSwitchListeners(expandableLayout_patient_notes_el,"patient_notes",settingsData.getPatientNotes());
         }
 
         {
@@ -80,6 +150,7 @@ public class PrivacySettingsFragment extends AbstractFragment {
                     expandableLayout_medical_history_el.toggle();
                 }
             });
+            setSwitchListeners(expandableLayout_medical_history_el,"medical_history",settingsData.getMedicalHistory());
         }
 
         {
@@ -90,7 +161,9 @@ public class PrivacySettingsFragment extends AbstractFragment {
                     expandableLayout_patient_profile_el.toggle();
                 }
             });
+            setSwitchListeners(expandableLayout_patient_profile_el,"patient_profile",settingsData.getPatientProfile());
         }
+
         {
             setExpandedViewListener(expandableLayout_diagnostic_report_el, diagnostic_report_linear, R.id.diagnostic_report_iv);
             diagnostic_report_linear.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +172,7 @@ public class PrivacySettingsFragment extends AbstractFragment {
                     expandableLayout_diagnostic_report_el.toggle();
                 }
             });
+            setSwitchListeners(expandableLayout_diagnostic_report_el,"diagnosticreport",settingsData.getDiagnosticreport());
         }
         {
             setExpandedViewListener(expandableLayout_upload_files_el, upload_files_linear, R.id.contact_iv);
@@ -108,8 +182,8 @@ public class PrivacySettingsFragment extends AbstractFragment {
                     expandableLayout_upload_files_el.toggle();
                 }
             });
+            setSwitchListeners(expandableLayout_upload_files_el,"myuploadfiles",settingsData.getMyuploadfiles());
         }
-
         {
             setExpandedViewListener(expandableLayout_doctor_genarated_el, doctor_genarated_linear, R.id.doctor_genarated_iv);
             doctor_genarated_linear.setOnClickListener(new View.OnClickListener() {
@@ -118,15 +192,54 @@ public class PrivacySettingsFragment extends AbstractFragment {
                     expandableLayout_doctor_genarated_el.toggle();
                 }
             });
+            setSwitchListeners(expandableLayout_doctor_genarated_el,"doctorreport",settingsData.getDoctorreport());
         }
 
+        expandableLayout_upload_files_el.expand();
 
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        compute();
+
+
+        callGetAllPrivacySettingsMapper();
+
+
+
+
+    }
+
+    private void callGetAllPrivacySettingsMapper() {
+        GetProfileAllSettingsMapper profileAllSettingsMapper= new GetProfileAllSettingsMapper();
+        profileAllSettingsMapper.setOnProfileSettingsListener(new GetProfileAllSettingsMapper.ProfileSettingsListener() {
+            @Override
+            public void getProfileSettings(ProfileSettingsAPI settingsAPI, String errorMessage) {
+                if((!isValidResponse(settingsAPI,errorMessage))|| (settingsAPI.getData()==null)) {
+                    showMyDialog("Alert", com.vempower.eezyclinic.utils.Utils.getStringFromResources(R.string.unable_to_get_privacySettings_lbl), new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+
+                            ((AbstractActivity) MyApplication.getCurrentActivityContext()).finish();
+
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callGetAllPrivacySettingsMapper();
+                        }
+                    });
+                    return;
+                }
+
+                compute(settingsAPI.getData());
+
+
+
+            }
+
+        });
     }
 
 
@@ -173,4 +286,6 @@ public class PrivacySettingsFragment extends AbstractFragment {
     View getFragemtView() {
         return fragmentView;
     }
+
+
 }

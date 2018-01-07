@@ -104,7 +104,10 @@ dependencies {
     implementation project(':crystalrangeseekbar')
     implementation project(':myCalenderLibrary')
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.3.+'
-    implementation project(':pinview')
+
+    //https://github.com/GoodieBag/Pinview
+    implementation 'com.github.GoodieBag:Pinview:v1.3'
+   // implementation project(':pinview')
 }
 repositories {
     mavenCentral()

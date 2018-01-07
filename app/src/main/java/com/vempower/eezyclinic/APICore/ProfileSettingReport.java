@@ -1,6 +1,8 @@
 
 package com.vempower.eezyclinic.APICore;
 
+import android.text.TextUtils;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -17,6 +19,10 @@ public class ProfileSettingReport {
     private String family;
 
     public String getOnlyappointmentdoctor() {
+        if(TextUtils.isEmpty(onlyappointmentdoctor))
+        {
+            onlyappointmentdoctor="0";
+        }
         return onlyappointmentdoctor;
     }
 
@@ -25,6 +31,10 @@ public class ProfileSettingReport {
     }
 
     public String getDoctorswithinsameclinic() {
+        if(TextUtils.isEmpty(doctorswithinsameclinic))
+        {
+            doctorswithinsameclinic="0";
+        }
         return doctorswithinsameclinic;
     }
 
@@ -33,6 +43,10 @@ public class ProfileSettingReport {
     }
 
     public String getFamily() {
+        if(TextUtils.isEmpty(family))
+        {
+            family="0";
+        }
         return family;
     }
 

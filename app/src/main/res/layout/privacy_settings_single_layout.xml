@@ -20,6 +20,7 @@
             android:orientation="horizontal">
 
             <com.vempower.eezyclinic.views.MyTextViewRR
+
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -50,6 +51,7 @@
              <attr name="android:gravity" />
              <attr name="android:checked" />-->
             <com.rey.material.widget.Switch
+                android:id="@+id/doctors_i_seek_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/_18dp"
@@ -111,6 +113,7 @@
              <attr name="android:gravity" />
              <attr name="android:checked" />-->
             <com.rey.material.widget.Switch
+                android:id="@+id/doctors_within_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/_18dp"
@@ -172,6 +175,7 @@
              <attr name="android:gravity" />
              <attr name="android:checked" />-->
             <com.rey.material.widget.Switch
+                android:id="@+id/family_members_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/_18dp"

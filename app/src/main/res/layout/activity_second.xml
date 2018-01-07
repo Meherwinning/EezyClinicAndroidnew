@@ -20,39 +20,4 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/firstLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/firstPinView"
-        android:layout_alignParentTop="true"
-        android:text="pin_label" />
-
-    <com.chaos.view.PinView
-        android:id="@+id/firstPinView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/firstLabel"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/_14dp"
-        android:inputType="number"
-        android:textColor="@color/text_colors" />
-
-    <TextView
-        android:id="@+id/secondLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/secondPinView"
-        android:layout_below="@+id/firstPinView"
-        android:text="password_label" />
-
-    <com.chaos.view.PinView
-        android:id="@+id/secondPinView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/secondLabel"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/_14dp"
-        android:inputType="numberPassword"
-        android:textColor="@color/line_colors" />
 </RelativeLayout>

@@ -148,6 +148,7 @@
     <string name="internet_permission_required_msg">Internet permission required</string>
     <string name="unable_to_get_patient_profile_lbl">Unable to get patient profile, Please try again.</string>
     <string name="unable_to_save_profile_details_lbl">Unable to save Profile details,Please try again.</string>
+    <string name="unable_to_get_privacySettings_lbl">Unable to get privacy settings,Please try again.</string>
 
 
 </resources>
