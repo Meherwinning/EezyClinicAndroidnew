@@ -4,15 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_gradient_bg"
     tools:context=".activities.HealthRecordsActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_centerInParent="true"
-        android:textColor="@color/white"
-        android:text="Health records"
-        android:textSize="@dimen/_20sp"
-        android:layout_height="wrap_content" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50dp"
+        app:tabMinWidth="@dimen/_28dp"
+        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+
+        android:background="@color/colorPrimary"
+        android:textSize="@dimen/_16dp"
+
+        app:tabIndicatorColor="@color/white"
+        app:tabTextColor="@color/white_with_alpha"
+        app:tabSelectedTextColor="@color/white"
+
+        app:tabPaddingBottom="@dimen/_1dp"
+        app:tabIndicatorHeight="@dimen/_3dp"
+        app:tabMaxWidth="0dp"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+
+        />
+
+        <android.support.v4.view.ViewPager
+            android:layout_below="@+id/tab"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+
+
+            />
+
+
 
 </RelativeLayout>

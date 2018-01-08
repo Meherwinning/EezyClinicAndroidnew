@@ -65,7 +65,11 @@ public class HomeActivity extends AbstractMenuActivity {
 
     private AbstractFragment homeFragment,myProfileFragment,medicalRecordsFragment,settingsFragment;
     private ImageView title_logo_iv;
+
+
     private Toolbar toolbar;
+
+    private int PRESENT_TAB;
 
     protected void setMyContectntView()
     {
@@ -295,7 +299,7 @@ public class HomeActivity extends AbstractMenuActivity {
 
     }
 
-    private void settingsActionBar() {
+    private void settingsActionBar(String title) {
         //isHomeOptionMenu=true;
         //invalidateOptionsMenu();
 
@@ -313,7 +317,7 @@ public class HomeActivity extends AbstractMenuActivity {
             titleName.setText("Profile");
         }else
         {*/
-        getSupportActionBar().setTitle("My Account");
+        getSupportActionBar().setTitle(title);
         // }
         if(toolbar!=null) {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -382,7 +386,30 @@ public class HomeActivity extends AbstractMenuActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(isSettingsOptionMenu)
+
+        switch (PRESENT_TAB)
+        {
+            case  Constants.Home.HOME_ACTIVITY:
+                setHomeActionBar();
+                break;
+            case  Constants.Home.MY_PROFILE:
+                getMenuInflater().inflate(R.menu.profile_view_menu, menu);
+                profileActionBar();
+
+                break;
+            case  Constants.Home.MEDICAL_RECORDS:
+                getMenuInflater().inflate(R.menu.normal_menu, menu);
+                settingsActionBar("Health Records");
+                break;
+            case  Constants.Home.SETTINGS:
+                getMenuInflater().inflate(R.menu.normal_menu, menu);
+                settingsActionBar("My Account");
+                break;
+                default:
+                    setHomeActionBar();
+
+        }
+      /*  if(isSettingsOptionMenu)
         {
             getMenuInflater().inflate(R.menu.normal_menu, menu);
             settingsActionBar();
@@ -393,7 +420,7 @@ public class HomeActivity extends AbstractMenuActivity {
         }else
         {
             setHomeActionBar();
-        }
+        }*/
 
        // MenuItem item = menu.findItem(R.id.action_filter);
        /* if(item!=null )
@@ -524,6 +551,7 @@ public class HomeActivity extends AbstractMenuActivity {
 
     public void onDashBoardClick(View view1)
     {
+        PRESENT_TAB=Constants.Home.HOME_ACTIVITY;
         callHomeActionBar();
         if(homeFragment==null)
         {
@@ -538,6 +566,7 @@ public class HomeActivity extends AbstractMenuActivity {
 
     public void onMyProfileClick(View view)
     {
+        PRESENT_TAB=Constants.Home.MY_PROFILE;
         callProfileActionBar();
         if(myProfileFragment==null)
         {
@@ -549,6 +578,7 @@ public class HomeActivity extends AbstractMenuActivity {
     }
     public void onMedicalRecordsClick(View view)
     {
+        PRESENT_TAB=Constants.Home.MEDICAL_RECORDS;
         callHomeActionBar();
         if(medicalRecordsFragment==null)
         {
@@ -560,6 +590,7 @@ public class HomeActivity extends AbstractMenuActivity {
     }
     public void onSettingsClick(View view)
     {
+        PRESENT_TAB=Constants.Home.SETTINGS;
         callSettingsActionBar();
         if(settingsFragment==null)
         {
