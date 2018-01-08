@@ -149,6 +149,8 @@
     <string name="unable_to_get_patient_profile_lbl">Unable to get patient profile, Please try again.</string>
     <string name="unable_to_save_profile_details_lbl">Unable to save Profile details,Please try again.</string>
     <string name="unable_to_get_privacySettings_lbl">Unable to get privacy settings,Please try again.</string>
+    <string name="unable_to_change_password_lbl">Unable to change password,Please try again</string>
+    <string name="unable_to_mobile_number_lbl">Unable to change mobile number,Please try again</string>
 
 
 </resources>

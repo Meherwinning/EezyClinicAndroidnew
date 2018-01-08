@@ -45,7 +45,7 @@ import com.vempower.eezyclinic.R;
 /**
  * Provides a widget for enter PIN/OTP/password etc.
  *
- 
+
  */
 public class PinView extends AppCompatEditText {
 

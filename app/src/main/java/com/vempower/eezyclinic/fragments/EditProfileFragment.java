@@ -50,6 +50,7 @@ import com.vempower.eezyclinic.mappers.IdCardTypeMapper;
 import com.vempower.eezyclinic.mappers.InsuranceListMapper;
 import com.vempower.eezyclinic.mappers.NationalityMapper;
 import com.vempower.eezyclinic.mappers.ProfileSaveMapper;
+import com.vempower.eezyclinic.mappers.UploadProfilePicMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.CustomSpinnerSelection;
@@ -114,7 +115,7 @@ public class EditProfileFragment extends ImageProcessFragment {
 
     private MyAutoCompleteBlackCursorTextView addressAutoCompleteTextView;
     private GooglePlacesAutocompleteAdapter googlePlacesAutocompleteAdapter;
-    private File imageFile;
+    //private File imageFile;
     private LinearLayout image_linear;
     private ImageView profile_iv;
     private PatientProfileData patientProfileObj;
@@ -1590,9 +1591,23 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
     }
 
     @Override
-    protected void setImage(File file) {
-        this.imageFile=file;
-        MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, file);
+    protected void setImage(final File file) {
+        if(file!=null)
+        {
+            UploadProfilePicMapper picMapper= new UploadProfilePicMapper(file);
+            picMapper.setOnUpdateProfilePicListener(new UploadProfilePicMapper.UpdateProfilePicListener() {
+                @Override
+                public void uploadProfilePic(AbstractResponse response, String errorMessage) {
+                    if(!isValidResponse(response,errorMessage))
+                    {
+                       return;
+                    }
+                    Utils.showToastMsg(response.getStatusMessage());
+                    MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, file);
+                }
+
+            });
+        }
 
     }
 

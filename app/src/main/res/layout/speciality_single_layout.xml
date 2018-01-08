@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_5dp"
+    android:layout_margin="@dimen/_5dp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/image_linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="left|top"
+        android:background="@drawable/canvas_65x65"
+
+        >
+
+        <ImageView
+            android:id="@+id/profile_iv"
+            android:src="@drawable/profile_icon"
+            style="@style/image_fit_toparent"
+            android:scaleType="fitXY"
+            />
+    </LinearLayout>
+    <com.vempower.eezyclinic.views.MyTextViewRR
+        android:id="@+id/item_name_tv"
+        android:layout_width="match_parent"
+        android:maxLines="4"
+        android:textSize="@dimen/_13dp"
+        android:textColor="@color/white"
+        android:gravity="top|center_horizontal"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>
+

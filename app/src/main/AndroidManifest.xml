@@ -55,6 +55,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/ThemeOverlay.MyNoTitleActivity"
             android:windowSoftInputMode="stateHidden|adjustResize|adjustPan">
+
+        </activity>
+
+        <activity
+            android:name=".activities.AppointmentListActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeOverlay.MyNoTitleActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -212,11 +220,7 @@
             android:label="@string/title_activity_health_records"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeOverlay.MyNoTitleActivity" />
-        <activity
-            android:name=".activities.AppointmentListActivity"
-            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:theme="@style/ThemeOverlay.MyNoTitleActivity" />
+
         <activity
             android:name=".activities.UpcomingFollowupsActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"

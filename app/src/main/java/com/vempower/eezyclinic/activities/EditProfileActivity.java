@@ -202,4 +202,9 @@ public class EditProfileActivity extends AbstractMenuActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        setResult(RESULT_OK);
+    }
 }

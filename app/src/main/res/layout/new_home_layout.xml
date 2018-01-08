@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_gradient_bg"
+
+    tools:context=".activities.HealthRecordsActivity">
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical"
+
+            android:paddingLeft="@dimen/_24dp"
+            android:paddingRight="@dimen/_24dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                tools:context=".activities.HealthRecordsActivity">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:focusable="true" />
+
+                <LinearLayout
+                    android:id="@+id/top_view_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/title_linear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.vempower.eezyclinic.views.MyTextViewRL
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:lineSpacingExtra="2sp"
+                            android:text="We spare the queue"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_24sp"
+
+                            />
+
+                        <com.vempower.eezyclinic.views.MyTextViewRL
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:lineSpacingExtra="2sp"
+                            android:text="at the doctor's for you"
+                            android:textColor="@color/white"
+
+                            android:textSize="@dimen/title_text_size" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/search_demo_linear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20dp"
+                        android:orientation="horizontal"
+                        android:weightSum="5.5">
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/search_img" />
+
+                            <com.vempower.eezyclinic.views.MyTextViewRM
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="@dimen/_11dp"
+
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:text="Search Doctor\nby speciality"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_size_small"
+
+                                />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/arrw_img" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/location_img" />
+
+                            <com.vempower.eezyclinic.views.MyTextViewRM
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="@dimen/_11dp"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:text="Search by\nLocality"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_size_small"
+
+                                />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5"
+                            android:gravity="bottom"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+
+                                android:src="@drawable/arrw_b_img" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/schedule_img" />
+
+                            <com.vempower.eezyclinic.views.MyTextViewRM
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="@dimen/_11dp"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:text="Schedule\nAppointment"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_size_small"
+
+                                />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <com.vempower.eezyclinic.views.MyButtonRectangleRM
+
+                        android:id="@+id/search_bt"
+                        android:layout_marginTop="@dimen/_20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_48dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@color/white"
+                        android:clickable="true"
+                        android:fontFamily="sans-serif"
+                        android:maxLines="1"
+                        android:padding="@dimen/_4dp"
+                        android:text="Book Appointment"
+                        android:textAllCaps="false"
+                        android:textColor="@color/button_text_color"
+                        android:textSize="@dimen/button_text_size"
+                        android:textStyle="bold" />
+
+
+
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:layout_marginBottom="@dimen/_10dp"
+                    android:layout_marginRight="@dimen/_10dp"
+                    android:layout_below="@+id/top_view_linear"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+                    <android.support.v4.widget.SwipeRefreshLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/swipeContainer"
+                        >
+                        <com.vempower.eezyclinic.views.AutoFitFixedRecyclerView
+                            android:id="@+id/recycler_view"
+                            android:layout_width="match_parent"
+                            android:columnWidth="@dimen/_85dp"
+                            android:layout_height="match_parent">
+
+                        </com.vempower.eezyclinic.views.AutoFitFixedRecyclerView>
+                    </android.support.v4.widget.SwipeRefreshLayout>
+
+                    <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/no_matching_result_tv"
+                        android:layout_width="wrap_content"
+                        android:visibility="gone"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_16sp"
+                        android:fontFamily="sans-serif"
+                        android:layout_centerInParent="true"
+                        android:textStyle="normal"
+                        android:textColor="#5d5d5d"
+                        android:text="@string/no_time_slots_available_lbl" />
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

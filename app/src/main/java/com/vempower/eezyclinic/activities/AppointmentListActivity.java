@@ -8,6 +8,7 @@ import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.AppointmentListFragment;
 import com.vempower.eezyclinic.fragments.HealthRecordsFragment;
+import com.vempower.eezyclinic.fragments.NewHomeFragment;
 import com.vempower.eezyclinic.utils.Utils;
 
 public class AppointmentListActivity extends AbstractMenuActivity {
@@ -41,7 +42,7 @@ public class AppointmentListActivity extends AbstractMenuActivity {
 
     @Override
     protected AbstractFragment getFragment() {
-        return new AppointmentListFragment();
+        return new NewHomeFragment();
     }
 
     @Override

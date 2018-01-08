@@ -4,6 +4,7 @@ import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.APIResponce.AppointmentHistoryListAPI;
 import com.vempower.eezyclinic.APIResponce.AppointmentTimeSlotsAPI;
+import com.vempower.eezyclinic.APIResponce.ChangeMobileNumberAPI;
 import com.vempower.eezyclinic.APIResponce.CityListAPI;
 import com.vempower.eezyclinic.APIResponce.ClinicProfileAPI;
 import com.vempower.eezyclinic.APIResponce.CountryListAPI;
@@ -29,8 +30,11 @@ import com.vempower.eezyclinic.APIResponce.VerifyOTPAPI;
 
 import retrofit.Call;
 import retrofit.http.Body;
+import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
+import retrofit.http.Multipart;
 import retrofit.http.POST;
+import retrofit.http.Part;
 import retrofit.http.Query;
 
 /**
@@ -195,9 +199,37 @@ public interface EezyClinicAPI {
 
 
 
+    //http://202.63.103.194:8003/api/patient/changepassword
+    @POST(data + "patient/changepassword")
+    Call<AbstractResponse> changePassword(@Body RequestBody postBody);
 
 
 
+    //
+//http://202.63.103.194:8003/api/patient/changemobile
+    @POST(data + "patient/changemobile")
+    Call<ChangeMobileNumberAPI> changeMobileNumber(@Body RequestBody postBody);
 
+
+    //http://202.63.103.194:8003/api/patient/changemobileotpverify
+    @POST(data + "patient/changemobileotpverify")
+    Call<AbstractResponse> changeMobileVerifyOTP(@Body RequestBody postBody);
+
+
+
+    //http://202.63.103.194:8003/api/patient/savepatientprofileimage
+    @Multipart
+    @POST(data + "patient/savepatientprofileimage")
+    Call<AbstractResponse> uploadProfileImage(@Part("image_file\"; filename=\"patient_pic.png\" ") RequestBody profile_pic,@Part("access_key") RequestBody body);
+
+
+  /*  @Multipart
+    @POST("uploadAttachment")
+    Call<AbstractResponse> uploadAttachment(@Part MultipartBody.Part filePart);
+*/    // You can add other parameters too
+   /* @Multipart
+    @POST(data + "patient/savepatientprofileimage")
+    Call<AbstractResponse> postImage(@Part("") MultipartBody.Part image, @Part("name") RequestBody name);
+}*/
 
 }
