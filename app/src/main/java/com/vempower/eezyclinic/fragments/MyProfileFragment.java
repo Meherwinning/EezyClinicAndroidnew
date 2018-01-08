@@ -37,6 +37,7 @@ import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by satish on 6/12/17.
@@ -231,8 +232,24 @@ public class MyProfileFragment extends AbstractFragment {
         patient_details_tv.setText(data.getGender()+", "+data.getAge()+", "+data.getMaritalStatus());
 
 
+        String DISPLAY_DATE_TIME="dd/MM/yyyy";//"d MMM yyyy, EEEE h:mm a";
+        String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd";
+        SimpleDateFormat DISPLAY_DATE_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_DATE_TIME);
+
+        String dateTimeStr=data.getDateofbirth();
+        try {
+            Date date = Utils.changeStringToDateFormat(data.getDateofbirth(), SERVER_DATE_FORMAT_NEW);
+            String dateStr= DISPLAY_DATE_TIME_FORMATTER.format(date);
+            // String timeStr= DISPLAY_TIME_FORMATTER.format(date);
+            //With Dr. First name Middle name Last Name at 07:00 PM on Tuesday, 26-12-2017
+            dateTimeStr=dateStr;
+        }catch (Exception e)
+        {
+
+        }
+
         //Below header
-        date_of_birth_tv.setText(data.getDateofbirth());
+        date_of_birth_tv.setText(dateTimeStr);
         blood_group_et.setText(data.getBloodgroup());
         height_et.setText(data.getHeight());
         known_allergies_et.setText(data.getKnownallergies());

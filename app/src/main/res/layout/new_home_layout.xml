@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_gradient_bg"
-
-    tools:context=".activities.HealthRecordsActivity">
+    >
 
     <ScrollView
         android:id="@+id/scroll"
@@ -29,17 +28,14 @@
 
                 tools:context=".activities.HealthRecordsActivity">
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:focusable="true" />
+
 
                 <LinearLayout
                     android:id="@+id/top_view_linear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="@dimen/_10dp"
+                    android:layout_marginTop="@dimen/_5dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -207,9 +203,9 @@
                     <com.vempower.eezyclinic.views.MyButtonRectangleRM
 
                         android:id="@+id/search_bt"
-                        android:layout_marginTop="@dimen/_20dp"
+                        android:layout_marginTop="@dimen/_30dp"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_48dp"
+                        android:layout_height="@dimen/_58dp"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         android:background="@color/white"
@@ -244,7 +240,7 @@
                         <com.vempower.eezyclinic.views.AutoFitFixedRecyclerView
                             android:id="@+id/recycler_view"
                             android:layout_width="match_parent"
-                            android:columnWidth="@dimen/_85dp"
+                            android:columnWidth="@dimen/_100dp"
                             android:layout_height="match_parent">
 
                         </com.vempower.eezyclinic.views.AutoFitFixedRecyclerView>

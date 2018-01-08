@@ -125,6 +125,7 @@ public class EditProfileActivity extends AbstractMenuActivity {
             @Override
             public void onClick(View view) {
                 //do something you want
+                setResult(RESULT_OK);
                 finish();
             }
         });
@@ -153,6 +154,7 @@ public class EditProfileActivity extends AbstractMenuActivity {
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
+        setResult(RESULT_OK);
         finish();
     }
 
