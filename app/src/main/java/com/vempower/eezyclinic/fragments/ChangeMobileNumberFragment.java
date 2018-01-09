@@ -131,7 +131,10 @@ public class ChangeMobileNumberFragment extends AbstractFragment {
                             @Override
                             public void run() {
                                 MyApplication.hideTransaprentDialog();
-                                ((AbstractActivity) MyApplication.getCurrentActivityContext()).finish();
+                                //((AbstractActivity) MyApplication.getCurrentActivityContext()).finish();
+
+                                showAlertDialog("Successful!","Mobile Number has been changed successfully",true);
+
                             }
                         },2500);
 

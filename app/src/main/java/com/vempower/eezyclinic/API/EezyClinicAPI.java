@@ -19,6 +19,7 @@ import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
 import com.vempower.eezyclinic.APIResponce.LanguageListAPI;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
 import com.vempower.eezyclinic.APIResponce.NationalityListAPI;
+import com.vempower.eezyclinic.APIResponce.PrescriptionsListAPI;
 import com.vempower.eezyclinic.APIResponce.ProfileSettingsAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultClinicListAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
@@ -222,14 +223,12 @@ public interface EezyClinicAPI {
     @POST(data + "patient/savepatientprofileimage")
     Call<AbstractResponse> uploadProfileImage(@Part("image_file\"; filename=\"patient_pic.png\" ") RequestBody profile_pic,@Part("access_key") RequestBody body);
 
+   // http://202.63.103.194:8003/api/patient/getprescriptions
+   @POST(data + "patient/getprescriptions")
+   Call<PrescriptionsListAPI> getPrescriptionsList(@Body RequestBody postBody);
 
-  /*  @Multipart
-    @POST("uploadAttachment")
-    Call<AbstractResponse> uploadAttachment(@Part MultipartBody.Part filePart);
-*/    // You can add other parameters too
-   /* @Multipart
-    @POST(data + "patient/savepatientprofileimage")
-    Call<AbstractResponse> postImage(@Part("") MultipartBody.Part image, @Part("name") RequestBody name);
-}*/
+
+
+
 
 }

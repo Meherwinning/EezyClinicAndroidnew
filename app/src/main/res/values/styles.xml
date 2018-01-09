@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-   <!-- <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+    <!-- <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
     <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -11,9 +11,9 @@
         <item name="actionMenuTextAppearance">@style/titlebarLabel</item>
         <item name="android:actionMenuTextAppearance">@style/titlebarLabel</item>
 
-       <!-- <item name="colorControlNormal">@color/colorPrimary</item>
-        <item name="colorControlActivated">@color/white</item>
-        <item name="colorControlHighlight">@color/colorPrimary</item>-->
+        <!-- <item name="colorControlNormal">@color/colorPrimary</item>
+         <item name="colorControlActivated">@color/white</item>
+         <item name="colorControlHighlight">@color/colorPrimary</item>-->
     </style>
 
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
@@ -65,7 +65,7 @@
     <style name="TextLabel" parent="TextAppearance.AppCompat">
         <!-- Hint color and label color in FALSE state -->
         <item name="android:textColorHint">@color/text_hint_color</item>
-       <!-- <item name="android:textSize">20sp</item>-->
+        <!-- <item name="android:textSize">20sp</item>-->
         <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
         <item name="colorAccent">@color/black</item>
         <item name="colorControlNormal">@color/black</item>
@@ -80,7 +80,6 @@
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textAllCaps">false</item>
     </style>
-
 
 
     <style name="FacebookLoginButton">
@@ -101,6 +100,27 @@
         <item name="android:windowMinWidthMajor">100%</item>
         <item name="android:windowMinWidthMinor">100%</item>
     </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+
+    </style>
+
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- No backgrounds, titles or window float -->
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
 
     <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light">
         <item name="android:windowNoTitle">true</item>
@@ -124,15 +144,15 @@
         <item name="android:maxWidth">?android:attr/listPreferredItemHeight</item>
     </style>
 
-   <!-- <style name="TextLabel" parent="TextAppearance.AppCompat">
-        &lt;!&ndash; Hint color and label color in FALSE state &ndash;&gt;
-        <item name="android:textColorHint">@color/Color Name</item>
-        <item name="android:textSize">20sp</item>
-        &lt;!&ndash; Label color in TRUE state and bar color FALSE and TRUE State &ndash;&gt;
-        <item name="colorAccent">@color/Color Name</item>
-        <item name="colorControlNormal">@color/Color Name</item>
-        <item name="colorControlActivated">@color/Color Name</item>
-    </style>-->
+    <!-- <style name="TextLabel" parent="TextAppearance.AppCompat">
+         &lt;!&ndash; Hint color and label color in FALSE state &ndash;&gt;
+         <item name="android:textColorHint">@color/Color Name</item>
+         <item name="android:textSize">20sp</item>
+         &lt;!&ndash; Label color in TRUE state and bar color FALSE and TRUE State &ndash;&gt;
+         <item name="colorAccent">@color/Color Name</item>
+         <item name="colorControlNormal">@color/Color Name</item>
+         <item name="colorControlActivated">@color/Color Name</item>
+     </style>-->
 
     <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
         <item name="android:textColor">#8a000000</item>
@@ -163,8 +183,6 @@
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">1</item>
     </style>
-
-
 
 
     <style name="mySwitchStyle">
@@ -205,30 +223,27 @@
         <item name="android:maxHeight">@dimen/_25dp</item>
     </style>
 
-    <style name="my_TextAppearance.MaterialCalendarWidget.Header"
-        parent="android:TextAppearance.DeviceDefault.Small">
+    <style name="my_TextAppearance.MaterialCalendarWidget.Header" parent="android:TextAppearance.DeviceDefault.Small">
         <item name="android:textSize">@dimen/_15sp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
-    <style name="my_TextAppearance.MaterialCalendarWidget.Date"
-        parent="android:TextAppearance.DeviceDefault.Small">
+    <style name="my_TextAppearance.MaterialCalendarWidget.Date" parent="android:TextAppearance.DeviceDefault.Small">
         <item name="android:textSize">@dimen/_15sp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@color/my_mcv_text_date_light</item>
 
-       <!-- android:textSize="15sp"
-        android:fontFamily="sans-serif-black"
-        android:textStyle="normal"
-        android:textColor="#ffffff"
--->
+        <!-- android:textSize="15sp"
+         android:fontFamily="sans-serif-black"
+         android:textStyle="normal"
+         android:textColor="#ffffff"
+ -->
     </style>
 
-    <style name="my_TextAppearance.MaterialCalendarWidget.WeekDay"
-        parent="android:TextAppearance.DeviceDefault.Small">
+    <style name="my_TextAppearance.MaterialCalendarWidget.WeekDay" parent="android:TextAppearance.DeviceDefault.Small">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/_15sp</item>
         <item name="android:textStyle">normal</item>
@@ -240,6 +255,14 @@
         <item name="android:background">@null</item>
         <item name="android:minHeight">0dp</item>
         <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="my_tab_style" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">@dimen/_18sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ffffff</item>
+
     </style>
 
 

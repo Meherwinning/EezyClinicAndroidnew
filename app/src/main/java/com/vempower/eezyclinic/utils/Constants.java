@@ -58,7 +58,7 @@ public interface Constants {
      }
 
      interface GenderValues {
-        String GENDER = "Gender";
+        String GENDER = "Select Gender";
         String MALE = "Male";
         String FEMALE="Female";
     }
@@ -76,7 +76,7 @@ public interface Constants {
         String B_POSI = "B+";
         String AB_NEGE= "AB-";
         String AB_POSI= "AB+";
-        String BLOOD_GROUP="Blood Group";
+        String BLOOD_GROUP="Select Blood Group";
     }
 
     public interface Home {

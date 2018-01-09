@@ -13,7 +13,7 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/insurance_details_linear"
+        android:id="@+id/secondary_insurance_details_linear"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_gravity="right"
@@ -39,17 +39,17 @@
             android:fontFamily="sans-serif-medium"
             android:textStyle="normal"
             android:textColor="#de000000"
-            android:text="Primary Insurance"
+            android:text="Secondary Insurance"
             />
         <ImageView
-            android:id="@+id/insurance_iv"
+            android:id="@+id/secondary_insurance_iv"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:layout_marginRight="@dimen/_15dp"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <com.github.aakira.expandablelayout.ExpandableLinearLayout
-        android:id="@+id/expandableLayout_insurance_el"
+        android:id="@+id/expandableLayout_secondary_insurance_el"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/top_linear"
@@ -58,7 +58,7 @@
         app:ael_duration="300"
         app:ael_expanded="false"
         >
-        <include layout="@layout/insurance_details_layout">
+        <include layout="@layout/secondary_insurance_details_layout">
 
         </include>
 

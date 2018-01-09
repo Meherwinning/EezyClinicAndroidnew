@@ -88,7 +88,7 @@
                         android:layout_marginBottom="@dimen/_2dp"
                         android:background="@null"
                         android:gravity="left|center_vertical"
-                        android:hint="Primary Contact"
+                        android:hint="Primary Phone"
                         android:imeOptions="actionUnspecified"
                         android:inputType="phone"
                         android:maxLength="50"
@@ -135,7 +135,7 @@
                         android:layout_marginBottom="@dimen/_2dp"
                         android:background="@null"
                         android:gravity="left|center_vertical"
-                        android:hint="Secondary Contact"
+                        android:hint="Secondary Phone"
                         android:imeOptions="actionUnspecified"
                         android:inputType="phone"
                         android:maxLength="50"
@@ -182,7 +182,7 @@
                         android:layout_marginBottom="@dimen/_2dp"
                         android:background="@null"
                         android:gravity="left|center_vertical"
-                        android:hint="Residence Contact"
+                        android:hint="Residence Phone"
                         android:imeOptions="actionUnspecified"
                         android:inputType="phone"
                         android:maxLength="50"
@@ -304,7 +304,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
+          <!--  <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_15dp"
@@ -498,7 +498,7 @@
                     android:alpha="0.3"
                     android:background="@color/black" />
 
-            </LinearLayout>
+            </LinearLayout>-->
 
 
         </LinearLayout>

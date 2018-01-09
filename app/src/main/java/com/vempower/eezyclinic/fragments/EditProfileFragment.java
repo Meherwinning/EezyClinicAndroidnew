@@ -73,15 +73,15 @@ import java.util.List;
  */
 
 public class EditProfileFragment extends ImageProcessFragment {
-    private LinearLayout contact_details_linear, insurance_details_linear, emergency_details_linear;
+    private LinearLayout contact_details_linear, insurance_details_linear, emergency_details_linear,secondary_insurance_details_linear;
 
     private View fragmentView;
-    private ExpandableLinearLayout expandableLayout_contact_el, expandableLayout_insurance_el, expandableLayout_emergency_el;
+    private ExpandableLinearLayout expandableLayout_contact_el, expandableLayout_insurance_el, secondary_expandableLayout_insurance_el,expandableLayout_emergency_el;
     private MyTextViewRR date_of_birth_tv,insurance_valid_from_tv,insurance_valid_to_tv;
     private SelectedDate selectedDOBObj,selectedValidFromObj,selectedValidToObj;
 
     private TextView profile_top_details_mask_tv, insurance_details_mask_tv,
-            emergency_details_mask_tv, contact_details_mask_tv;
+            emergency_details_mask_tv, contact_details_mask_tv,secondary_insurance_details_mask_tv;
     private boolean isEditMode;
     private ScrollView myScrollView;
     private EditProfileDetails profileDetails;
@@ -105,10 +105,10 @@ public class EditProfileFragment extends ImageProcessFragment {
             insurance_insurance_number_et,insurance_insurance_policy_et,
             insurance_member_id_et,insurance_type_et,
             insurance_co_pay_et,insurance_scheme_et,
-            insurance_reason_et, insurance_organisation_et,insurance_max_limit_et,insurance_secoundary_number_et;
+            insurance_reason_et, insurance_organisation_et,insurance_max_limit_et,insurance_secoundary_number_et1;
 
     private CustomSpinnerSelection  blood_group_spinner,country_spinner, city_type_spinner,id_type_spinner,
-            insurance_secoundary_spinner, nationality_spinner,insurance_provider_spinner, relation_spinner, gender_type_spinner,marital_status_spinner;
+            insurance_secoundary_spinner1, nationality_spinner,insurance_provider_spinner, relation_spinner, gender_type_spinner,marital_status_spinner;
     private SuccessToUpdateProfileListener successListener;
 
     private ExpandableLinearLayout expandableLayout_city_view;
@@ -136,16 +136,18 @@ public class EditProfileFragment extends ImageProcessFragment {
         insurance_details_mask_tv = getFragemtView().findViewById(R.id.insurance_details_mask_tv);
         emergency_details_mask_tv = getFragemtView().findViewById(R.id.emergency_details_mask_tv);
         contact_details_mask_tv = getFragemtView().findViewById(R.id.contact_details_mask_tv);
-
+        secondary_insurance_details_mask_tv   = getFragemtView().findViewById(R.id.secondary_insurance_details_mask_tv);
 
         contact_details_linear = getFragemtView().findViewById(R.id.contact_details_linear);
         insurance_details_linear = getFragemtView().findViewById(R.id.insurance_details_linear);
         emergency_details_linear = getFragemtView().findViewById(R.id.emergency_details_linear);
 
+        secondary_insurance_details_linear  = getFragemtView().findViewById(R.id.secondary_insurance_details_linear);
+
         expandableLayout_contact_el = getFragemtView().findViewById(R.id.expandableLayout_contact_el);
         expandableLayout_insurance_el = getFragemtView().findViewById(R.id.expandableLayout_insurance_el);
         expandableLayout_emergency_el = getFragemtView().findViewById(R.id.expandableLayout_emergency_el);
-
+        secondary_expandableLayout_insurance_el  = getFragemtView().findViewById(R.id.secondary_expandableLayout_insurance_el);
 
         myScrollView = ((ScrollView) getFragemtView().findViewById(R.id.scroll));
 
@@ -171,10 +173,6 @@ public class EditProfileFragment extends ImageProcessFragment {
             }
         });
 
-
-
-
-
         setToBloodGroupSpinnerAdapter();
         setToGenderSpinnerAdapter();
         setToMaritalStatusSpinnerAdapter();
@@ -183,6 +181,79 @@ public class EditProfileFragment extends ImageProcessFragment {
         setInitForGooglePlacesAutocompleteTextView();
 
         fillProfileDataToViews();
+
+    }
+
+    private void compute() {
+
+        {
+            image_linear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showImageSourceDialog();
+                }
+            });
+        }
+        callNatinalityMapper();
+
+        {
+            setExpandedViewListener(secondary_expandableLayout_insurance_el, secondary_insurance_details_linear, R.id.secondary_insurance_iv);
+            // secondary_insurance_details_linear.initLayout();
+            secondary_insurance_details_linear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    secondary_expandableLayout_insurance_el.toggle();
+                    hideKeyBord(secondary_expandableLayout_insurance_el);
+
+                }
+            });
+        }
+
+        {
+            setExpandedViewListener(expandableLayout_contact_el, contact_details_linear, R.id.contact_iv);
+            // expandableLayout_contact_el.initLayout();
+            contact_details_linear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    expandableLayout_contact_el.toggle();
+                    hideKeyBord(expandableLayout_contact_el);
+
+                }
+            });
+        }
+
+
+        {
+            setExpandedViewListener(expandableLayout_emergency_el, emergency_details_linear, R.id.emergency_iv);
+            //expandableLayout_emergency_el.initLayout();
+
+
+            emergency_details_linear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    expandableLayout_emergency_el.toggle();
+                    hideKeyBord(expandableLayout_emergency_el);
+                }
+            });
+        }
+        {
+            setExpandedViewListener(expandableLayout_insurance_el, insurance_details_linear, R.id.insurance_iv);
+            // expandableLayout_insurance_el.initLayout();
+
+            insurance_details_linear.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    expandableLayout_insurance_el.toggle();
+                    hideKeyBord(expandableLayout_insurance_el);
+                    callInsuranceAcceptedMapper();
+                }
+            });
+        }
+
+
+        // expandableLayout_emergency_el.collapse();
+        //expandableLayout_insurance_el.collapse();
+
 
     }
 
@@ -399,7 +470,7 @@ public class EditProfileFragment extends ImageProcessFragment {
         }
 
         InsuranceData hintData = new InsuranceData();
-        hintData.setCompanyName("Insurance");
+        hintData.setCompanyName("Select Insurance");
         insuranceTypeList.add(insuranceTypeList.size(), hintData);
 
 
@@ -455,7 +526,7 @@ public class EditProfileFragment extends ImageProcessFragment {
     }
 
     public void setToInsuranceAdapter(List<InsuranceData> list) {
-        final ArrayList<InsuranceData> insuranceTypeList = new ArrayList<>();
+       /* final ArrayList<InsuranceData> insuranceTypeList = new ArrayList<>();
         if (list != null && list.size() > 0) {
             insuranceTypeList.addAll(list);
 
@@ -510,7 +581,7 @@ public class EditProfileFragment extends ImageProcessFragment {
                     }
                 }
             }
-        }
+        }*/
 
 
     }
@@ -560,7 +631,7 @@ public class EditProfileFragment extends ImageProcessFragment {
         }
 
         IdCardTypeData hintData = new IdCardTypeData();
-        hintData.setIdCardName("ID Type");
+        hintData.setIdCardName("Select ID Type");
         idCardTypeList.add(idCardTypeList.size(), hintData);
 
 
@@ -659,7 +730,7 @@ public class EditProfileFragment extends ImageProcessFragment {
         }
 
         NationalityData hintData = new NationalityData();
-        hintData.setNationalityName("Nationality");
+        hintData.setNationalityName("Select Nationality");
         nationalityTypeList.add(nationalityTypeList.size(), hintData);
 
 
@@ -830,8 +901,8 @@ public class EditProfileFragment extends ImageProcessFragment {
         insurance_reason_et  = getFragemtView().findViewById(R.id.insurance_reason_et);
         insurance_organisation_et  = getFragemtView().findViewById(R.id.insurance_organisation_et);
         insurance_max_limit_et  = getFragemtView().findViewById(R.id.insurance_max_limit_et);
-        insurance_secoundary_spinner  = getFragemtView().findViewById(R.id.insurance_secoundary_spinner);
-        insurance_secoundary_number_et  = getFragemtView().findViewById(R.id.insurance_secoundary_number_et);
+        //insurance_secoundary_spinner  = getFragemtView().findViewById(R.id.insurance_secoundary_spinner);
+       // insurance_secoundary_number_et  = getFragemtView().findViewById(R.id.insurance_secoundary_number_et);
 
 
 
@@ -872,66 +943,10 @@ public class EditProfileFragment extends ImageProcessFragment {
         insurance_details_mask_tv.setVisibility(isEditMode ? View.GONE : View.VISIBLE);
         emergency_details_mask_tv.setVisibility(isEditMode ? View.GONE : View.VISIBLE);
         contact_details_mask_tv.setVisibility(isEditMode ? View.GONE : View.VISIBLE);
+        secondary_insurance_details_mask_tv.setVisibility(isEditMode ? View.GONE : View.VISIBLE);
     }
 
-    private void compute() {
 
-        {
-            image_linear.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showImageSourceDialog();
-                }
-            });
-        }
-
-        {
-            setExpandedViewListener(expandableLayout_contact_el, contact_details_linear, R.id.contact_iv);
-            expandableLayout_contact_el.initLayout();
-            contact_details_linear.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    expandableLayout_contact_el.toggle();
-                    hideKeyBord(expandableLayout_contact_el);
-                    callNatinalityMapper();
-                }
-            });
-        }
-
-
-        {
-            setExpandedViewListener(expandableLayout_emergency_el, emergency_details_linear, R.id.emergency_iv);
-            expandableLayout_emergency_el.initLayout();
-
-
-            emergency_details_linear.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    expandableLayout_emergency_el.toggle();
-                    hideKeyBord(expandableLayout_emergency_el);
-                }
-            });
-        }
-        {
-            setExpandedViewListener(expandableLayout_insurance_el, insurance_details_linear, R.id.insurance_iv);
-            expandableLayout_insurance_el.initLayout();
-
-            insurance_details_linear.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    expandableLayout_insurance_el.toggle();
-                    hideKeyBord(expandableLayout_insurance_el);
-                    callInsuranceAcceptedMapper();
-                }
-            });
-        }
-
-
-        // expandableLayout_emergency_el.collapse();
-        //expandableLayout_insurance_el.collapse();
-
-
-    }
 
 
     private void setExpandedViewListener(final ExpandableLinearLayout expandableLayout, final View view, int imageId) {
@@ -1187,7 +1202,7 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
         }
 
         CountryData hintData = new CountryData();
-        hintData.setCountry("Country");
+        hintData.setCountry("Select Country");
         countryTypeList.add(countryTypeList.size(), hintData);
         setToCityListAdapter(null);
 
@@ -1451,7 +1466,7 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
         profileDetails.organisation=insurance_organisation_et.getText().toString();
         profileDetails.maxlimit=insurance_max_limit_et.getText().toString();
        // insurance_secoundary_spinner  = getFragemtView().findViewById(R.id.insurance_secoundary_spinner);
-        profileDetails.secondaryinsuranceNumber= insurance_secoundary_number_et.getText().toString();
+        //profileDetails.secondaryinsuranceNumber= insurance_secoundary_number_et.getText().toString();
 
 
     }
@@ -1511,7 +1526,7 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
         insurance_organisation_et.setText(patientProfileObj.getOrganisation());
         insurance_max_limit_et.setText(patientProfileObj.getMaxlimit());
         // insurance_secoundary_spinner  = getFragemtView().findViewById(R.id.insurance_secoundary_spinner);
-       insurance_secoundary_number_et.setText(patientProfileObj.getSecondaryinsurancenumber());
+      // insurance_secoundary_number_et.setText(patientProfileObj.getSecondaryinsurancenumber());
 
         //"dateofbirth": "01/01/1986",
         date_of_birth_tv.setText(patientProfileObj.getDateofbirth());
