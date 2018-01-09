@@ -1,3 +1,3 @@
-# Referenced at /home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/linkedin-sdk/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml:13
+# Referenced at /home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/linkedin-sdk/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml:13
 -keep class com.android.test.runner.MultiDexTestRunner { <init>(...); }
 
