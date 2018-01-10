@@ -153,6 +153,9 @@
     <string name="unable_to_mobile_number_lbl">Unable to change mobile number,Please try again</string>
     <string name="unable_to_get_prescriptions_list_lbl">Unable to get Prescriptions List, Please try again.</string>
     <string name="no_prescriptions_lbl">No prescription(s)</string>
+    <string name="unable_to_get_reports_list_lbl">Unable to get  reports list, Please try again.</string>
+    <string name="unable_to_get_casesheets_list_lbl">Unable to get Casesheets, Please try again</string>
+    <string name="unautherized_user_details_lbl">Something went to wrong with patient data.Please try again.</string>
 
 
 </resources>

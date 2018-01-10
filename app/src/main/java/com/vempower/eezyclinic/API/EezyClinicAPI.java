@@ -4,6 +4,7 @@ import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.APIResponce.AppointmentHistoryListAPI;
 import com.vempower.eezyclinic.APIResponce.AppointmentTimeSlotsAPI;
+import com.vempower.eezyclinic.APIResponce.CaseSheetsListAPI;
 import com.vempower.eezyclinic.APIResponce.ChangeMobileNumberAPI;
 import com.vempower.eezyclinic.APIResponce.CityListAPI;
 import com.vempower.eezyclinic.APIResponce.ClinicProfileAPI;
@@ -14,6 +15,7 @@ import com.vempower.eezyclinic.APIResponce.DoctorProfileAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordOTPAPI;
 import com.vempower.eezyclinic.APIResponce.GetPatientProfileAPI;
+import com.vempower.eezyclinic.APIResponce.HelathReportsListAPI;
 import com.vempower.eezyclinic.APIResponce.IdCardTypeAPI;
 import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
 import com.vempower.eezyclinic.APIResponce.LanguageListAPI;
@@ -122,12 +124,9 @@ public interface EezyClinicAPI {
     Call<DoctorClinicNameListAPI> getDoctorClinicNameListAPI(@Body RequestBody postBody);
 
 
-
     // http://202.63.103.194:8008/api/search/doctorsclinicsearch
-     @POST(data + "search/doctorsclinicsearch")
-     Call<SearchResultDoctorListAPI> getSearchResultDoctorListAPI(@Body RequestBody postBody);
-
-
+    @POST(data + "search/doctorsclinicsearch")
+    Call<SearchResultDoctorListAPI> getSearchResultDoctorListAPI(@Body RequestBody postBody);
 
 
     // http://202.63.103.194:8008/api/search/doctorsclinicsearch
@@ -199,11 +198,9 @@ public interface EezyClinicAPI {
     Call<AbstractResponse> saveProfileSettings(@Body RequestBody postBody);
 
 
-
     //http://202.63.103.194:8003/api/patient/changepassword
     @POST(data + "patient/changepassword")
     Call<AbstractResponse> changePassword(@Body RequestBody postBody);
-
 
 
     //
@@ -217,18 +214,24 @@ public interface EezyClinicAPI {
     Call<AbstractResponse> changeMobileVerifyOTP(@Body RequestBody postBody);
 
 
-
     //http://202.63.103.194:8003/api/patient/savepatientprofileimage
     @Multipart
     @POST(data + "patient/savepatientprofileimage")
-    Call<AbstractResponse> uploadProfileImage(@Part("image_file\"; filename=\"patient_pic.png\" ") RequestBody profile_pic,@Part("access_key") RequestBody body);
+    Call<AbstractResponse> uploadProfileImage(@Part("image_file\"; filename=\"patient_pic.png\" ") RequestBody profile_pic, @Part("access_key") RequestBody body);
 
-   // http://202.63.103.194:8003/api/patient/getprescriptions
-   @POST(data + "patient/getprescriptions")
-   Call<PrescriptionsListAPI> getPrescriptionsList(@Body RequestBody postBody);
+    // http://202.63.103.194:8003/api/patient/getprescriptions
+    @POST(data + "patient/getprescriptions")
+    Call<PrescriptionsListAPI> getPrescriptionsList(@Body RequestBody postBody);
 
 
+    //http://202.63.103.194:8003/api/patient/gethealthreports
+    @POST(data + "patient/gethealthreports")
+    Call<HelathReportsListAPI> getHelathReportsListAPI(@Body RequestBody postBody);
 
+
+    //http://202.63.103.194:8003/api/patient/casesheets
+    @POST(data + "patient/casesheets")
+    Call<CaseSheetsListAPI> getCaseSheetsListAPI(@Body RequestBody postBody);
 
 
 }

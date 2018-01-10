@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.HealthRecordsViewPagerAdapter;
+import com.vempower.eezyclinic.utils.Utils;
 
 /**
  * Created by satish on 6/12/17.
@@ -34,26 +35,55 @@ public class MedicalRecordsFragment extends AbstractFragment {
 
     private void myInit() {
 
-        mViewPager = (ViewPager) getFragemtView().findViewById(R.id.pager);
-        mTabLayout = (TabLayout) getFragemtView().findViewById(R.id.tab);
-    }
+        mViewPager = (ViewPager) getFragemtView().findViewById(R.id.pager1);
+        mTabLayout = (TabLayout) getFragemtView().findViewById(R.id.tab1);
+        mViewPager.setOffscreenPageLimit(3);
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        setViewPager();
 
-    }
 
-    private void setViewPager() {
-        mViewPagerAdapter = new HealthRecordsViewPagerAdapter(getFragmentManager());
-        mViewPager.setAdapter(mViewPagerAdapter);
-        mTabLayout.setupWithViewPager(mViewPager);
-        // ((TabLayout) findViewById(R.id.tabHost)).setupWithViewPager(mViewPager);
     }
 
     @Override
     View getFragemtView() {
         return fragmentView;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        setMyViewPager();
+
+    }
+    public void setMyViewPager()
+    {
+        setViewPager();
+    }
+
+    private void setViewPager() {
+        mViewPagerAdapter = new HealthRecordsViewPagerAdapter(getFragmentManager());
+        mViewPager.setAdapter(mViewPagerAdapter);
+
+        mTabLayout.setupWithViewPager(mViewPager);
+      /*  mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                Utils.showToastMsg(" onPageScrolled position "+position);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Utils.showToastMsg(" onPageSelected position "+position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                Utils.showToastMsg(" onPageScrollStateChanged  "+state);
+            }
+        });*/
+
+
+        // ((TabLayout) findViewById(R.id.tabHost)).setupWithViewPager(mViewPager);
     }
 }

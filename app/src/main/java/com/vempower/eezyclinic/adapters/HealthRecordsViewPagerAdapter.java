@@ -11,6 +11,7 @@ import com.vempower.eezyclinic.fragments.ReportsFragment;
 public class HealthRecordsViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private static int TAB_COUNT = 3;
+   // private PrescriptionsFragment prescriptionsFragment;
 
     public HealthRecordsViewPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -21,6 +22,7 @@ public class HealthRecordsViewPagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
+
                 return PrescriptionsFragment.newInstance();
             case 1:
                 return ReportsFragment.newInstance();
@@ -49,4 +51,6 @@ public class HealthRecordsViewPagerAdapter extends FragmentStatePagerAdapter {
         }
         return super.getPageTitle(position);
     }
+
+
 }

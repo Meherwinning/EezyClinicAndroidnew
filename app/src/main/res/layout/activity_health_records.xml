@@ -8,39 +8,12 @@
     <!--app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
 -->
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tab"
-        android:layout_alignParentTop="true"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        app:tabMinWidth="@dimen/_28dp"
-        app:tabTextAppearance="@style/my_tab_style"
 
-        android:background="@color/colorPrimary"
-        android:textSize="@dimen/_18dp"
-
-        app:tabIndicatorColor="@color/white"
-        app:tabTextColor="@color/white_with_alpha"
-        app:tabSelectedTextColor="@color/white"
-
-        app:tabPaddingBottom="@dimen/_1dp"
-        app:tabIndicatorHeight="@dimen/_3dp"
-        app:tabMaxWidth="0dp"
-        app:tabGravity="fill"
-        app:tabMode="fixed"
-
-        />
-
-        <android.support.v4.view.ViewPager
-            android:layout_below="@+id/tab"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-
-
-            />
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Health records"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content" />
 
 
 

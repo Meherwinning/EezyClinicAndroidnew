@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.HealthRecordsActivity">
+    >
 
 
     <android.support.design.widget.TabLayout
-        android:id="@+id/tab"
+        android:id="@+id/tab1"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50dp"
@@ -30,9 +30,9 @@
         />
 
     <android.support.v4.view.ViewPager
-        android:layout_below="@+id/tab"
+        android:layout_below="@+id/tab1"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/pager"
+        android:id="@+id/pager1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
