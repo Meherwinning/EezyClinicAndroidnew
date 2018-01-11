@@ -537,7 +537,7 @@
             android:background="@color/black" />
 
     </LinearLayout>
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_15dp"
@@ -583,7 +583,7 @@
             android:layout_marginRight="@dimen/_12dp"
             android:background="@color/black" />
 
-    </LinearLayout>
+    </LinearLayout>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

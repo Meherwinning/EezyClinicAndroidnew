@@ -71,6 +71,14 @@
                 android:background="@color/white"
                 android:layout_marginBottom="@dimen/_15dp"
                 android:orientation="vertical">
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center_vertical"
+                    android:hint="Relationship"
+                    android:textColor="#de000000"
+                    android:textColorHint="#8a000000"
+                    android:textSize="@dimen/_11dp" />
 
                 <LinearLayout
 

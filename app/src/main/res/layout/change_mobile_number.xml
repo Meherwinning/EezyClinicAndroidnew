@@ -106,7 +106,7 @@
                         android:background="@null"
                         android:fontFamily="sans-serif"
                         android:gravity="left|center_vertical"
-                        android:hint="Change mobile number"
+                        android:hint="Change Mobile Number"
                         android:imeOptions="actionUnspecified"
                         android:inputType="number"
                         android:maxLength="50"

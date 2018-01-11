@@ -136,6 +136,16 @@ public class PatientProfileData {
     @Expose
     private String emergencycontactnumber;
 
+
+    @SerializedName("weight")
+    @Expose
+    private String weight;
+
+    @SerializedName("currentweight")
+    @Expose
+    private String currentweight;
+
+
     public String getPatientlogo() {
         return patientlogo;
     }
@@ -487,6 +497,16 @@ public class PatientProfileData {
     public void setEmergencycontactnumber(String emergencycontactnumber) {
         this.emergencycontactnumber = emergencycontactnumber;
     }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public String getCurrentweight() {
+        return currentweight;
+    }
+
+
 
     @Override
     public String toString() {

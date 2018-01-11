@@ -39,7 +39,7 @@
             android:fontFamily="sans-serif-medium"
             android:textStyle="normal"
             android:textColor="#de000000"
-            android:text="Insurance Details"
+            android:text="Primary Insurance"
             />
         <ImageView
             android:id="@+id/insurance_iv"

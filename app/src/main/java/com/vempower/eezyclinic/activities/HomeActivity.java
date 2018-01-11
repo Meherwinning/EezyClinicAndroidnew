@@ -397,6 +397,7 @@ public class HomeActivity extends AbstractMenuActivity {
                 profileActionBar();
 
                 break;
+
             case  Constants.Home.MEDICAL_RECORDS:
                 getMenuInflater().inflate(R.menu.normal_menu, menu);
                 settingsActionBar("Health Records");

@@ -273,6 +273,14 @@
             android:theme="@style/DialogTheme2"
             android:windowSoftInputMode="stateHidden|adjustResize|adjustPan" />
 
+        <activity android:name=".activities.ImageExpandViewActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyDialogTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize|adjustPan" />
+
+
+
 
         <activity
             android:name=".activities.DoctorProfileActivity"

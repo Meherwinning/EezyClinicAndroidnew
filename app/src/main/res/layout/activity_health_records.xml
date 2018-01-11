@@ -5,18 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.HealthRecordsActivity">
-
+    <!--app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+-->
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50dp"
+        android:layout_height="?actionBarSize"
         app:tabMinWidth="@dimen/_28dp"
-        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+        app:tabTextAppearance="@style/my_tab_style"
 
         android:background="@color/colorPrimary"
-        android:textSize="@dimen/_16dp"
+        android:textSize="@dimen/_18dp"
 
         app:tabIndicatorColor="@color/white"
         app:tabTextColor="@color/white_with_alpha"
