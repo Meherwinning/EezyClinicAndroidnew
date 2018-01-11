@@ -64,6 +64,7 @@ public class HomeActivity extends AbstractMenuActivity {
     private int[] imageSelectIds={R.drawable.group_6_blue,R.drawable.group_7_blue,R.drawable.group_8_blue,R.drawable.group_9_blue};
 
     private AbstractFragment homeFragment,myProfileFragment,medicalRecordsFragment,settingsFragment;
+   //private MedicalRecordsFragment ;
     private ImageView title_logo_iv;
 
 
@@ -241,9 +242,6 @@ public class HomeActivity extends AbstractMenuActivity {
 
             }
         });*/
-        // int id=R.drawable.cart;
-        //setTitleRightMenuImage(id);
-        //return fragment;
     }
 
     private void  callSettingsActionBar() {
@@ -581,10 +579,11 @@ public class HomeActivity extends AbstractMenuActivity {
     {
         PRESENT_TAB=Constants.Home.MEDICAL_RECORDS;
         callHomeActionBar();
-        if(medicalRecordsFragment==null)
-        {
+       /* if(medicalRecordsFragment==null)
+        {*/
             medicalRecordsFragment= new MedicalRecordsFragment();
-        }
+           // medicalRecordsFragment.setMyViewPager();
+        //}
         setFragment(medicalRecordsFragment);
         unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,Constants.Home.MEDICAL_RECORDS);
 

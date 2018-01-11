@@ -64,58 +64,7 @@
                             android:layout_marginLeft="-20dp"
                             android:layout_toRightOf="@+id/image_linear"
                             android:src="@drawable/cam_add" />
-                        <!-- <ImageView
-                             android:id="@+id/profile_iv"
-                             android:padding="@dimen/_5dp"
-                             android:layout_width="@dimen/_60dp"
-                             android:layout_centerVertical="true"
-                             android:src="@mipmap/ic_launcher"
-                             android:layout_height="@dimen/_60dp" />-->
 
-                        <com.vempower.eezyclinic.views.MyTextViewRB
-                            android:visibility="gone"
-                            android:id="@+id/doctor_name_tv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/image_linear"
-                            android:layout_marginTop="@dimen/_5dp"
-                            android:fontFamily="sans-serif"
-                            android:gravity="center"
-                            android:hint="Patient Name"
-                            android:maxLines="1"
-                            android:textColor="#de000000"
-                            android:textColorHint="#8a000000"
-                            android:textSize="@dimen/_16sp"
-                            android:textStyle="normal"
-
-
-                            />
-
-                        <LinearLayout
-                            android:visibility="gone"
-                            android:id="@+id/designation_linear"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/doctor_name_tv"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-
-                            <com.vempower.eezyclinic.views.MyTextViewRR
-                                android:id="@+id/doctor_designation_tv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_5dp"
-                                android:fontFamily="sans-serif"
-                                android:hint="Details"
-                                android:textColor="#999999"
-                                android:textSize="@dimen/_12sp"
-                                android:textStyle="normal"
-
-                                />
-
-                        </LinearLayout>
 
                     </RelativeLayout>
                 </LinearLayout>

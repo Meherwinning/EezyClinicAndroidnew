@@ -32,6 +32,10 @@ public class PrescriptionsFragment extends  SwipedRecyclerViewFragment {
 
     public static PrescriptionsFragment newInstance() {
 
+       /* if(fragment==null)
+        {
+            fragment= new PrescriptionsFragment();
+        }*/
         return new PrescriptionsFragment();
     }
 
@@ -46,6 +50,7 @@ public class PrescriptionsFragment extends  SwipedRecyclerViewFragment {
         return fragmentView;
 
     }
+
     private void init() {
 
         // match_found_tv=  fragmentView.findViewById(R.id.match_found_tv);
@@ -60,6 +65,7 @@ public class PrescriptionsFragment extends  SwipedRecyclerViewFragment {
         super.onViewCreated(view, savedInstanceState);
         callPrescriptionListMapper();
     }
+
 
     private void callPrescriptionListMapper()
     {
@@ -87,8 +93,9 @@ public class PrescriptionsFragment extends  SwipedRecyclerViewFragment {
                 {
                     prescriptionList.addAll(prescriptionsListAPI.getData());
                 }
-                // Utils.showToastMessage(searchResultDoctorListAPI.toString());
                 setPrescriptionListToAdapter(prescriptionList);
+                // Utils.showToastMessage(searchResultDoctorListAPI.toString());
+
             }
         });
     }
@@ -147,4 +154,7 @@ public class PrescriptionsFragment extends  SwipedRecyclerViewFragment {
 
 
     }
+
+
+
 }

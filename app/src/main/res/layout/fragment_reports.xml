@@ -4,15 +4,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reports"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/add_new_bt"
+            android:id="@+id/swipeContainer"
+            >
+            <com.vempower.eezyclinic.views.FixedRecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.vempower.eezyclinic.views.FixedRecyclerView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/no_matching_result_tv"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_16sp"
+            android:fontFamily="sans-serif"
+            android:layout_centerInParent="true"
+            android:textStyle="normal"
+            android:textColor="#5d5d5d"
+            android:text="@string/no_prescriptions_lbl" />
+
+        <android.support.v7.widget.AppCompatButton
+
+            android:layout_alignParentBottom="true"
+            android:id="@+id/add_new_bt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48dp"
+            android:layout_marginTop="@dimen/_5dp"
+            android:layout_marginBottom="@dimen/_8dp"
+            android:clickable="true"
+            android:layout_marginLeft="@dimen/_24dp"
+            android:layout_marginRight="@dimen/_24dp"
+            android:maxLines="1"
+            android:padding="@dimen/_4dp"
+            android:textAllCaps="false"
+            android:background="@drawable/button_bg"
+
+            android:textSize="@dimen/_16sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#ffffff"
+
+            android:text="Add New"
+
+            />
+
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

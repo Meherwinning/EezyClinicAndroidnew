@@ -86,7 +86,7 @@ import java.util.List;
             //19 August 2017, Saturday 01.08 PM
             // String DISPLAY_DATE="MMM d, yyyy";
             //  String DISPLAY_TIME="h:mm a 'on' EEEE";
-            String DISPLAY_DATE_TIME="MMM d, yyyy";
+            String DISPLAY_DATE_TIME="MMMM d, yyyy";
             String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd";//"2017-12-26 16:55:00"
             SimpleDateFormat DISPLAY_DATE_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_DATE_TIME);
             // SimpleDateFormat DISPLAY_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_TIME);
@@ -128,10 +128,10 @@ import java.util.List;
                     @Override
                     public void onClick(View v) {
 
-                        // Utils.showToastMsg(data.getId()+"");
+                         Utils.showToastMsg(data.getId()+"");
 
-                        Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),AppointmentHistoryActivity.class);
-                           /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+   /*                     Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),AppointmentHistoryActivity.class);
+                           *//*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*//*
                         intent.putExtra(ListenerKey.ObjectKey.APPOINTMENT_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                             @Override
                             protected IntentObjectListener getMyObject() {
@@ -148,7 +148,7 @@ import java.util.List;
 
                         MyApplication.getCurrentActivityContext().startActivity(intent);
 
-
+*/
 
 
                     }
