@@ -3,8 +3,15 @@ package com.vempower.eezyclinic.APIResponce;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.vempower.eezyclinic.activities.complex.BaseModel;
 
-public class SpecalitiyData {
+public class SpecalitiyData implements BaseModel {
+
+    public interface ViewType
+    {
+        int HEADER_TYPE=1;
+        int SPECALITI_YTYPE=2;
+    }
 
     @SerializedName("id")
     @Expose
@@ -12,6 +19,32 @@ public class SpecalitiyData {
     @SerializedName("name")
     @Expose
     private String name;
+
+    private int dataType;
+    boolean isMoreButton;
+
+    boolean isRemainigItem;
+
+    public SpecalitiyData() {
+        this.dataType = ViewType.SPECALITI_YTYPE;
+    }
+
+    public void setMoreButton(boolean moreButton) {
+        isMoreButton = moreButton;
+    }
+
+
+    public boolean isMoreButton() {
+        return isMoreButton;
+    }
+
+    public void setDataType(int dataType) {
+        this.dataType = dataType;
+    }
+
+    public int getDataType() {
+        return dataType;
+    }
 
     public String getId() {
         return id;

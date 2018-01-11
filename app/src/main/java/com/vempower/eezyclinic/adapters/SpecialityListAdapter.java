@@ -15,6 +15,7 @@ import com.vempower.eezyclinic.views.MyCheckedTextViewRR;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -23,7 +24,7 @@ import java.util.regex.Pattern;
  * Created by Satishk on 9/7/2017.
  */
 
-public class SpecialityListAdapter extends RecyclerView.Adapter<SpecialityListAdapter.OrdersListHolder> {
+public class SpecialityListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<SpecalitiyData> dataList;
 
@@ -35,24 +36,53 @@ public class SpecialityListAdapter extends RecyclerView.Adapter<SpecialityListAd
     public SpecialityListAdapter(List<SpecalitiyData> dataList) {
         inflater = (LayoutInflater) MyApplication.getCurrentActivityContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.dataList=dataList;
+        SpecalitiyData header =  new SpecalitiyData();
+        header.setDataType(SpecalitiyData.ViewType.HEADER_TYPE);
+        this.dataList = new ArrayList<>();
+        this. dataList.add(header);
+        if( dataList!=null)
+        {
+            this.dataList.addAll(dataList);
+        }
+
+
     }
 
 
 
     @Override
-    public OrdersListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        if(viewType== SpecalitiyData.ViewType.HEADER_TYPE)
+        {
+            final View convertView = inflater
+                    .inflate(R.layout.new_home_header, parent, false);
+            return new HeaderHolder(convertView);
+        }else
+        {
+            final View convertView = inflater
+                    .inflate(R.layout.speciality_single_layout, parent, false);
+            return new OrdersListHolder(convertView);
+        }
 
 
-        final View convertView = inflater
-                .inflate(R.layout.speciality_single_layout, parent, false);
-        return new OrdersListHolder(convertView);
     }
 
 
     @Override
-    public void onBindViewHolder(OrdersListHolder holder, int position) {
-        holder.bindData(dataList.get(position), position);
+    public int getItemViewType(int position) {
+        return dataList.get(position).getDataType();
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+        if(holder!=null && holder instanceof OrdersListHolder)
+        {
+            OrdersListHolder listHolder= (OrdersListHolder) holder;
+            listHolder.bindData(dataList.get(position), position);
+        }
+
     }
 
     @Override
@@ -93,6 +123,28 @@ public class SpecialityListAdapter extends RecyclerView.Adapter<SpecialityListAd
             }
 
             item_name_tv.setText(data.getName());
+
+
+
+        }
+    }
+
+    public class HeaderHolder extends RecyclerView.ViewHolder {
+
+        //private MyTextViewRR item_name_tv;
+
+        public HeaderHolder(View itemView) {
+            super(itemView);
+            //item_name_tv = itemView.findViewById(R.id.item_name_tv);
+
+        }
+
+        public void bindData(final SpecalitiyData data, final int position) {
+            if (data == null) {
+                return;
+            }
+
+           // item_name_tv.setText(data.getName());
 
 
 

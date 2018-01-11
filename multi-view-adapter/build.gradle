@@ -1,0 +1,146 @@
+/*
+ * Copyright 2017 Riyaz Ahamed
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import gradle.Config
+
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'jacoco'
+
+jacoco {
+  toolVersion = "0.7.4.201502262128"
+}
+
+task jacocoTestReport(type: JacocoReport,
+    dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+
+  reports {
+    xml.enabled = true
+    html.enabled = true
+  }
+
+  def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+  def debugTree = fileTree(dir: "$project.buildDir/intermediates/classes/debug",
+      excludes: fileFilter)
+  def mainSrc = "$project.projectDir/src/main/java"
+
+  sourceDirectories = files([mainSrc])
+  classDirectories = files([debugTree])
+  executionData = fileTree(dir: project.buildDir,
+      includes: ['jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'])
+}
+
+android {
+  compileSdkVersion Config.COMPILE_SDK
+
+  defaultConfig {
+    minSdkVersion Config.MIN_SDK
+    targetSdkVersion Config.TARGET_SDK
+    versionCode Config.VERSION_CODE
+    versionName Config.VERSION_NAME
+
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+  buildTypes {
+    debug {
+      testCoverageEnabled true
+    }
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  testOptions {
+    unitTests.all {
+      jacoco {
+        includeNoLocationClasses = true
+      }
+    }
+  }
+}
+
+dependencies {
+  implementation Config.RECYCLER_VIEW
+
+  testImplementation 'junit:junit:4.12'
+  testImplementation 'org.mockito:mockito-core:2.9.0'
+
+  androidTestImplementation 'org.mockito:mockito-android:2.8.47'
+  androidTestImplementation "com.android.support.test:runner:1.0.1"
+  androidTestImplementation "com.android.support.test:rules:1.0.1"
+}
+
+publish {
+  userOrg = Config.USER_ORG
+  groupId = Config.GROUP_ID
+  artifactId = Config.ARTIFACT_ID_CORE
+  publishVersion = Config.PUBLISH_VERSION
+  repoName = Config.REPO_NAME
+  desc = Config.DESC
+  website = Config.WEBSITE
+}
+
+afterEvaluate { project ->
+
+  if (project.getPlugins().hasPlugin('com.android.application') || project.getPlugins().
+      hasPlugin('com.android.library')) {
+
+    task androidJavadocs(type: Javadoc) {
+      source = android.sourceSets.main.java.source
+      classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    }
+
+    task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+      classifier = 'javadoc'
+      from androidJavadocs.destinationDir
+    }
+
+    task androidSourcesJar(type: Jar) {
+      classifier = 'sources'
+      from android.sourceSets.main.java.source
+    }
+  } else {
+    task sourcesJar(type: Jar, dependsOn: classes) {
+      classifier = 'sources'
+      from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+      classifier = 'javadoc'
+      from javadoc.destinationDir
+    }
+  }
+
+  if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+      tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+      }
+    }
+  }
+
+  artifacts {
+    if (project.getPlugins().hasPlugin('com.android.application') || project.getPlugins().
+        hasPlugin('com.android.library')) {
+      archives androidSourcesJar
+      archives androidJavadocsJar
+    } else {
+      archives sourcesJar
+      archives javadocJar
+    }
+  }
+}

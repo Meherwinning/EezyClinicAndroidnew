@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
+import com.vempower.eezyclinic.fragments.DemoFragment;
 import com.vempower.eezyclinic.fragments.NewHomeFragment;
 import com.vempower.eezyclinic.utils.Utils;
 
@@ -40,7 +41,7 @@ public class NewHomeActivity extends AbstractMenuActivity {
 
     @Override
     protected AbstractFragment getFragment() {
-        return new NewHomeFragment();
+        return new DemoFragment();
     }
 
     @Override

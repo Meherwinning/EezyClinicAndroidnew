@@ -107,7 +107,10 @@ dependencies {
 
     //https://github.com/GoodieBag/Pinview
     implementation 'com.github.GoodieBag:Pinview:v1.3'
-   // implementation project(':pinview')
+
+    // implementation project(':pinview')
+    implementation 'com.github.chuross:expandable-layout:717c5c05a9'
+    implementation project(':multi-view-adapter')
 }
 repositories {
     mavenCentral()
