@@ -44,9 +44,11 @@ public abstract class ImageProcessFragment extends AbstractFragment {
     private File file;
     private Uri imageUri;
     private File croppedfile;
+    int responseId=-1;
 
 
-    protected void callGallery() {
+    protected void callGallery(int responseId) {
+        this.responseId=responseId;
 
         if(checkPermissions())
         {
@@ -62,7 +64,8 @@ public abstract class ImageProcessFragment extends AbstractFragment {
     }
 
 
-    protected void callCamera() {
+    protected void callCamera(int responseId) {
+        this.responseId=responseId;
         if(checkPermissions())
         {
             callCamera1();
@@ -237,7 +240,7 @@ public abstract class ImageProcessFragment extends AbstractFragment {
                 if (resultCode == Activity.RESULT_OK) {
                     // setImage(FileProvider.getUriForFile(MyApplication.getCurrentActivityContext(), MyApplication.getCurrentActivityContext().getApplicationContext().getPackageName() + ".provider", croppedfile));
                     //setImage(Uri.fromFile((croppedfile)));
-                    setImage(croppedfile);
+                    setImage(croppedfile,responseId);
                 } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                     Exception error = result.getError();
                     Utils.showToastMsg(R.string.image_crop_error);
@@ -361,7 +364,7 @@ public abstract class ImageProcessFragment extends AbstractFragment {
     }
 
     //protected abstract void setImage(Uri imageUri);
-    protected abstract void setImage(File file);
+    protected abstract void setImage(File file,int responseId);
 
     private File createAppFolder() {
         File folder = new File(Environment.getExternalStorageDirectory() +

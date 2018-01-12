@@ -105,9 +105,9 @@
                         android:background="@null"
                         android:imeOptions="actionUnspecified"
                         android:textColorHint="#212121"
-                        android:inputType="number"
+                        android:inputType="textEmailAddress"
                         android:maxLines="1"
-                        android:maxLength="50"
+                        android:maxLength="100"
                         android:padding="@dimen/_2dp"
                         android:singleLine="true"
 

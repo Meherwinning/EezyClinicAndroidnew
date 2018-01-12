@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
+import android.os.Messenger;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.View;
@@ -20,10 +22,14 @@ import com.rey.material.app.DialogFragment;
 import com.rey.material.app.SimpleDialog;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.ImageExpandViewActivity;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.callbacks.ListenerKey;
+import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.AbstractListener;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.interfaces.HomeListener;
+import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.interfaces.MenuScreenListener;
 import com.vempower.eezyclinic.interfaces.MyDialogInterface;
 import com.vempower.eezyclinic.utils.Constants;
@@ -364,6 +370,34 @@ public abstract class AbstractFragment extends Fragment {
             return;
         }
         getDeepChildOffset(mainParent, parentGroup.getParent(), parentGroup, accumulatedOffset);
+    }
+
+    protected void displayImageInLarge(final Drawable drawable) {
+
+        if(drawable==null)
+        {
+            Utils.showToastMsg("Invalid Image");
+            return;
+        }
+        Intent intent= new Intent(MyApplication.getCurrentActivityContext(), ImageExpandViewActivity.class);
+
+        // Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),ClinicProfileActivity.class);
+               /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+        intent.putExtra(ListenerKey.ObjectKey.IMAGE_DRAWABLE_KEY,new Messenger(new AbstractIBinder(){
+            @Override
+            protected IntentObjectListener getMyObject() {
+                return new IntentObjectListener(){
+                    @Override
+                    public Object getObject() {
+                        // if(patient_profile_iv1.getDrawable()!=null)
+                        return drawable;
+                    }
+                };
+            }
+        }));
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+        startActivity(intent);
     }
 
 

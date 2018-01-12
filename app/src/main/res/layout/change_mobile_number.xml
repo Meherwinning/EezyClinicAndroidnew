@@ -165,7 +165,7 @@
                     app:inputType="number"
                     app:password="false"
 
-                    app:splitWidth="@dimen/_6dp"
+                    app:splitWidth="@dimen/_10dp"
                     app:pinBackground="@drawable/pin_view_bg"
                     app:pinHeight="@dimen/_57dp"
 

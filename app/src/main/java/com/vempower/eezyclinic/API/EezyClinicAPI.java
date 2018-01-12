@@ -31,6 +31,8 @@ import com.vempower.eezyclinic.APIResponce.TPAListAPI;
 import com.vempower.eezyclinic.APIResponce.UpcomingAppointmentListAPI;
 import com.vempower.eezyclinic.APIResponce.VerifyOTPAPI;
 
+import java.util.Map;
+
 import retrofit.Call;
 import retrofit.http.Body;
 import retrofit.http.FormUrlEncoded;
@@ -38,6 +40,7 @@ import retrofit.http.GET;
 import retrofit.http.Multipart;
 import retrofit.http.POST;
 import retrofit.http.Part;
+import retrofit.http.PartMap;
 import retrofit.http.Query;
 
 /**
@@ -232,6 +235,31 @@ public interface EezyClinicAPI {
     //http://202.63.103.194:8003/api/patient/casesheets
     @POST(data + "patient/casesheets")
     Call<CaseSheetsListAPI> getCaseSheetsListAPI(@Body RequestBody postBody);
+
+
+    //http://202.63.103.194:8003/api/patient/changeemail
+    @POST(data + "patient/changeemail")
+    Call<AbstractResponse> changeEmailOTP(@Body RequestBody postBody);
+
+   /* @Multipart
+    @POST("upload.php")
+    Call<AbstractResponse> uploadImage(@Part("") MultipartBody.Part file);
+*/
+
+    //http://202.63.103.194:8003/api/patient/savepatientprofileimage
+//    /
+    //   (@Part("image_file\"; filename=\"patient_pic.png\" ") RequestBody profile_pic, @Part("access_key") RequestBody body);
+
+    @Multipart
+    @POST(data + "patient/savepatientprofileimage")
+    Call<AbstractResponse> uploadProfileImage1
+    (@PartMap Map<String, RequestBody> params, @Part("access_key") RequestBody body);
+
+
+    //https://github.com/square/retrofit/issues/1063#issuecomment-145920568
+    @Multipart
+    @POST ("/api/Events/editevent")
+    Call<AbstractResponse> editEvent (@PartMap Map<String, RequestBody> params);
 
 
 }

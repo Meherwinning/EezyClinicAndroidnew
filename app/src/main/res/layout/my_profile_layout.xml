@@ -462,6 +462,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginBottom="@dimen/_2dp"
                                 android:background="@null"
+                                android:enabled="false"
                                 android:gravity="left|center_vertical"
                                 android:hint="Langueges Known"
                                 android:imeOptions="actionUnspecified"
@@ -511,6 +512,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginBottom="@dimen/_2dp"
                                 android:background="@null"
+                                android:enabled="false"
                                 android:gravity="left|center_vertical"
                                 android:hint="Nationality"
                                 android:imeOptions="actionUnspecified"
@@ -562,6 +564,7 @@
                                 android:background="@null"
                                 android:gravity="left|center_vertical"
                                 android:hint="ID Type"
+                                android:enabled="false"
                                 android:imeOptions="actionUnspecified"
                                 android:inputType="text"
                                 android:maxLength="50"
@@ -631,6 +634,7 @@
                                         >
 
                                         <ImageView
+                                            android:id="@+id/id_front_iv"
                                             style="@style/image_fit_toparent"
                                             android:scaleType="fitXY"
                                             android:src="@drawable/profile_id_default_image" />
@@ -696,6 +700,7 @@
                                         >
 
                                         <ImageView
+                                            android:id="@+id/id_back_iv"
                                             style="@style/image_fit_toparent"
                                             android:scaleType="fitXY"
                                             android:src="@drawable/profile_id_default_image" />
@@ -755,6 +760,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginBottom="@dimen/_2dp"
                                 android:background="@null"
+                                android:enabled="false"
                                 android:gravity="left|center_vertical"
                                 android:hint="ID Number"
                                 android:imeOptions="actionUnspecified"
@@ -804,6 +810,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginBottom="@dimen/_2dp"
                                 android:background="@null"
+                                android:enabled="false"
                                 android:gravity="left|center_vertical"
                                 android:hint="Organisation"
                                 android:imeOptions="actionUnspecified"
@@ -853,6 +860,7 @@
                                 android:background="@null"
                                 android:gravity="left|center_vertical"
                                 android:hint="Known Allergies"
+                                android:enabled="false"
                                 android:imeOptions="actionUnspecified"
                                 android:inputType="text"
                                 android:maxLength="100"

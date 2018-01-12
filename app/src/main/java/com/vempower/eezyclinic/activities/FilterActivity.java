@@ -292,8 +292,8 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
     private void computeGenderView() {
         final MyCheckBoxRR male_checkbox= findViewById(R.id.male_checkbox);
                 final MyCheckBoxRR female_checkbox = findViewById(R.id.female_checkbox);
-        male_checkbox.setChecked(requestParms.getGendersearch().contains(Constants.GenderValues.MALE.toLowerCase()));
-        female_checkbox.setChecked(requestParms.getGendersearch().contains(Constants.GenderValues.FEMALE.toLowerCase()));
+        male_checkbox.setChecked(requestParms.getGendersearch().contains(Constants.GenderValues.MALE));
+        female_checkbox.setChecked(requestParms.getGendersearch().contains(Constants.GenderValues.FEMALE));
 
         male_checkbox.setOnCheckedChangeListener(new GenderCheckedListener(true));
         female_checkbox.setOnCheckedChangeListener(new GenderCheckedListener(false));
@@ -324,7 +324,7 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
                 requestParms.addGendersearch(isMale?Constants.GenderValues.MALE:Constants.GenderValues.FEMALE);
             }else
             {
-                requestParms.removeGendersearch(isMale?Constants.GenderValues.MALE.toLowerCase():Constants.GenderValues.FEMALE.toLowerCase());
+                requestParms.removeGendersearch(isMale?Constants.GenderValues.MALE:Constants.GenderValues.FEMALE);
             }
 
         }

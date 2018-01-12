@@ -117,7 +117,7 @@ public class EditProfileFragment extends ImageProcessFragment {
     private GooglePlacesAutocompleteAdapter googlePlacesAutocompleteAdapter;
     //private File imageFile;
     private LinearLayout image_linear;
-    private ImageView profile_iv;
+    private ImageView profile_iv,id_back_iv,id_front_iv,insurance_back_iv,insurance_front_iv;
     private PatientProfileData patientProfileObj;
 
 
@@ -190,7 +190,41 @@ public class EditProfileFragment extends ImageProcessFragment {
             image_linear.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    showImageSourceDialog();
+                    showImageSourceDialog(Constants.ImagePic.FROM_PROFILE);
+                }
+            });
+        }
+        {
+            id_front_iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showImageSourceDialog(Constants.ImagePic.FROM_ID_FRONT);
+                }
+            });
+        }
+        {
+            id_back_iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showImageSourceDialog(Constants.ImagePic.FROM_ID_BACK);
+                }
+            });
+        }
+
+        {
+            insurance_front_iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showImageSourceDialog(Constants.ImagePic.FROM_INSURANCE_FRONT);
+                }
+            });
+        }
+
+        {
+            insurance_back_iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showImageSourceDialog(Constants.ImagePic.FROM_INSURANCE_BACK);
                 }
             });
         }
@@ -851,6 +885,12 @@ public class EditProfileFragment extends ImageProcessFragment {
 
         profile_iv  = getFragemtView().findViewById(R.id.profile_iv);
 
+        id_back_iv  = getFragemtView().findViewById(R.id.id_back_iv);
+
+        id_front_iv  = getFragemtView().findViewById(R.id.id_front_iv);
+        insurance_back_iv= getFragemtView().findViewById(R.id.insurance_back_iv);
+                        insurance_front_iv= getFragemtView().findViewById(R.id.insurance_front_iv);
+
         patient_name_et = getFragemtView().findViewById(R.id. patient_name_et);
         gender_type_spinner  = getFragemtView().findViewById(R.id.gender_spinner);
         marital_status_spinner = getFragemtView().findViewById(R.id. marital_status_spinner);
@@ -1479,6 +1519,15 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
         }
         MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, patientProfileObj.getPatientlogo());
 
+        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, id_front_iv, patientProfileObj.getIdcardImageFront());
+
+        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, id_back_iv, patientProfileObj.getIdcardImageBack());
+
+
+        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_front_iv, patientProfileObj.getInsuranceCardFront());
+
+        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_back_iv, patientProfileObj.getInsuranceCardBack());
+
 
 
         patient_name_et.setText(patientProfileObj.getPatientname());
@@ -1605,11 +1654,46 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
         this.successListener=successListener;
     }
 
+    /*
+     "image_file" : "imagefile", (Profile Image)
+    "idcard_image_back" : "imagefile",
+    "idcard" : "imagefile",
+    "insurance_card_1" : "imagefile",
+     "insurance_card_2" : "imagefile"
+     */
     @Override
-    protected void setImage(final File file) {
+    protected void setImage(final File file,final int responseId) {
         if(file!=null)
         {
-            UploadProfilePicMapper picMapper= new UploadProfilePicMapper(file);
+            String keyName=null;
+            switch (responseId)
+            {
+                case Constants.ImagePic.FROM_PROFILE:
+                    keyName="image_file";
+                    break;
+                case Constants.ImagePic.FROM_ID_FRONT:
+                    keyName="idcard";
+                    break;
+                case Constants.ImagePic.FROM_ID_BACK:
+                    keyName="idcard_image_back";
+                    break;
+
+                case Constants.ImagePic.FROM_INSURANCE_BACK:
+                    keyName="insurance_card_2";
+                    break;
+                case Constants.ImagePic.FROM_INSURANCE_FRONT:
+                    keyName="insurance_card_1";
+                    break;
+            }
+
+            if(TextUtils.isEmpty(keyName))
+            {
+                Utils.showToastMsg("Invalid image source");
+                return;
+            }
+
+
+            UploadProfilePicMapper picMapper= new UploadProfilePicMapper(file,keyName);
             picMapper.setOnUpdateProfilePicListener(new UploadProfilePicMapper.UpdateProfilePicListener() {
                 @Override
                 public void uploadProfilePic(AbstractResponse response, String errorMessage) {
@@ -1618,8 +1702,33 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
                        return;
                     }
                     Utils.showToastMsg(response.getStatusMessage());
-                    MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, file);
-                }
+                    switch (responseId)
+                    {
+                        case Constants.ImagePic.FROM_PROFILE:
+                            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, file);
+
+                            break;
+                        case Constants.ImagePic.FROM_ID_FRONT:
+                            MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, id_front_iv, file);
+
+                            break;
+                        case Constants.ImagePic.FROM_ID_BACK:
+                            MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, id_back_iv, file);
+
+                            break;
+
+
+                        case Constants.ImagePic.FROM_INSURANCE_FRONT:
+                            MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_front_iv, file);
+
+                            break;
+                        case Constants.ImagePic.FROM_INSURANCE_BACK:
+                            MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_back_iv, file);
+
+                            break;
+                    }
+
+                 }
 
             });
         }
@@ -1663,7 +1772,7 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
         }
     };
 
-    private void showImageSourceDialog() {
+    private void showImageSourceDialog(final int responseId) {
         final CharSequence[] items = {"Camera", "Gallery"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MyApplication.getCurrentActivityContext());
@@ -1674,10 +1783,10 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
                 // Do something with the selection
                 switch (item) {
                     case 0:
-                        callCamera();
+                        callCamera(responseId);
                         break;
                     case 1:
-                       callGallery();
+                       callGallery(responseId);
                         break;
 
                 }

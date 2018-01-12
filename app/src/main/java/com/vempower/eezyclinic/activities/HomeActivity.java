@@ -38,6 +38,7 @@ import com.vempower.eezyclinic.callbacks.FromActivityListener;
 import com.vempower.eezyclinic.callbacks.HomeBottomItemClickListener;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
+import com.vempower.eezyclinic.fragments.HealthRecordsFragment;
 import com.vempower.eezyclinic.fragments.HomeFragment;
 import com.vempower.eezyclinic.fragments.MedicalRecordsFragment;
 import com.vempower.eezyclinic.fragments.MyProfileFragment;

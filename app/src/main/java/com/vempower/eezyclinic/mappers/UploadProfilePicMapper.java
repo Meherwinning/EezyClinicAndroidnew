@@ -18,6 +18,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -32,9 +34,11 @@ public class UploadProfilePicMapper extends AbstractMapper implements Callback<A
 
     private UpdateProfilePicListener listener;
     private final File profilePicFile;
+    private final String keyName;
 
-    public UploadProfilePicMapper(File profilePicFile) {
+    public UploadProfilePicMapper(File profilePicFile,String keyName) {
         this.profilePicFile=profilePicFile;
+        this.keyName=keyName;
     }
 
 
@@ -85,11 +89,13 @@ public class UploadProfilePicMapper extends AbstractMapper implements Callback<A
             return;
         }
 
+        Map<String, RequestBody> map = new HashMap<>();
         RequestBody mybody = RequestBody.create(MediaType.parse("text/plain"), access_key);
 
         RequestBody imageBody = null;
         if (profilePicFile != null) {
             imageBody = RequestBody.create(MediaType.parse("image/jpeg"), profilePicFile);
+            map.put(keyName+"\"; filename=\"patient_pic.png\" ", imageBody);
         }
         if (imageBody == null) {
             MyApplication.hideTransaprentDialog();
@@ -102,7 +108,8 @@ public class UploadProfilePicMapper extends AbstractMapper implements Callback<A
 
         //  Call<UserAPI> apiResponseCall = PreferencesAPI.updateUserProfile(getJsonObject(user).toString());
 
-        Call<AbstractResponse> apiResponseCall = stashDealAPI.uploadProfileImage(imageBody, mybody);
+       // Call<AbstractResponse> apiResponseCall = stashDealAPI.uploadProfileImage(imageBody, mybody);
+        Call<AbstractResponse> apiResponseCall = stashDealAPI.uploadProfileImage1(map, mybody);
         apiResponseCall.enqueue(this);
     }
 

@@ -86,6 +86,14 @@ public interface Constants {
         int SETTINGS=4;
     }
 
+    public interface ImagePic {
+        int FROM_PROFILE = 125;
+        int FROM_ID_FRONT = 734;
+        int FROM_ID_BACK = 356;
+        int FROM_INSURANCE_FRONT = 324;
+        int FROM_INSURANCE_BACK = 426;
+    }
+
     //http://202.63.103.194:8008/api/patient/signin
     class URL_MANAGE
     {

@@ -92,7 +92,7 @@ public class ChangeMobileNumberFragment extends AbstractFragment {
                 if(isVerifyOTP)
                 {
                     verifyOTP=pinview.getValue();
-                    if(TextUtils.isEmpty(verifyOTP) || verifyOTP.length()<6)
+                    if(TextUtils.isEmpty(verifyOTP) || verifyOTP.length()<pinview.getPinLength())
                     {
                         Utils.showToastMsg("Please enter valid OTP");
                         return;
@@ -176,6 +176,9 @@ public class ChangeMobileNumberFragment extends AbstractFragment {
                         otp_verify_linear.setVisibility(View.VISIBLE);
                         patientId=response.getData().getPatientId();
                         otptv.setText("OTP:"+response.getOtp());
+                        if(response.getOtp()!=null && pinview!=null) {
+                            pinview.setPinLength(response.getOtp().length());
+                        }
 
                     }
 

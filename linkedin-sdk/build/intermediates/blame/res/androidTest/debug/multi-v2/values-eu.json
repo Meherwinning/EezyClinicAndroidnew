@@ -14,6 +14,21 @@
                     }
                 }
             ]
+        },
+        {
+            "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/linkedin-sdk/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-eu/values-eu.xml",
+            "map": [
+                {
+                    "source": "/home/satish/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.1.aar/5eb907904c37a3ccffccb52e322f3380/res/values-eu/values-eu.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
         }
     ]
 }

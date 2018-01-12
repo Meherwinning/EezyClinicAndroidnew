@@ -633,6 +633,7 @@
     </LinearLayout>
         </LinearLayout>
 
+
     <TextView
         android:id="@+id/insurance_details_mask_tv"
         android:layout_width="match_parent"
@@ -644,8 +645,156 @@
         android:background="@color/transparent"
         android:clickable="true"
         android:visibility="gone" />
-</RelativeLayout>
 
+</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_15dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="@dimen/_60dp"
+            >
+
+            <LinearLayout
+                android:layout_marginBottom="@dimen/_4dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/_5dp"
+                    android:layout_marginBottom="@dimen/_2dp"
+                    android:gravity="top|left"
+                    android:hint="Front"
+                    android:imeOptions="actionUnspecified"
+                    android:textColor="#de000000"
+                    android:textColorHint="#8a000000"
+                    android:textSize="@dimen/_11dp" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:id="@+id/insurance_image_linear1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:background="@drawable/canvas_90x45"
+                        android:gravity="center"
+
+                        >
+
+                        <ImageView
+                            android:id="@+id/insurance_front_iv"
+                            style="@style/image_fit_toparent"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/profile_id_default_image" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="-10dp"
+                        android:layout_toRightOf="@+id/image_linear1"
+                        android:src="@drawable/profile_image_zoom_icon" />
+                    <!-- <ImageView
+                         android:id="@+id/profile_iv"
+                         android:padding="@dimen/_5dp"
+                         android:layout_width="@dimen/_60dp"
+                         android:layout_centerVertical="true"
+                         android:src="@mipmap/ic_launcher"
+                         android:layout_height="@dimen/_60dp" />-->
+
+
+                </RelativeLayout>
+
+
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginBottom="@dimen/_4dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/_5dp"
+                    android:layout_marginBottom="@dimen/_2dp"
+                    android:gravity="top|left"
+                    android:hint="ID Back"
+                    android:imeOptions="actionUnspecified"
+                    android:textColor="#de000000"
+                    android:textColorHint="#8a000000"
+                    android:textSize="@dimen/_11dp" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:id="@+id/insurance_image_linear2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:background="@drawable/canvas_90x45"
+                        android:gravity="center"
+
+                        >
+
+                        <ImageView
+                            android:id="@+id/insurance_back_iv"
+                            style="@style/image_fit_toparent"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/profile_id_default_image" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="-10dp"
+                        android:layout_toRightOf="@+id/image_linear2"
+                        android:src="@drawable/profile_image_zoom_icon" />
+
+
+                </RelativeLayout>
+
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="@dimen/_12dp"
+            android:alpha="0.3"
+            android:background="@color/black" />
+
+    </LinearLayout>
 
 
 

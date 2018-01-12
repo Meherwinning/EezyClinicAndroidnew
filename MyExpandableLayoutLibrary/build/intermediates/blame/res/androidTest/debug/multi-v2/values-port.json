@@ -1,6 +1,21 @@
 {
     "logs": [
         {
+            "outputFile": "/home/satish/MyWorkspace/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "/home/satish/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/2ca61de11938eb81d6b979314b8f323c/res/values-port/values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "/home/challa/AndroidStudioProjects/Eezyclinic/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-port/values-port.xml",
             "map": [
                 {
