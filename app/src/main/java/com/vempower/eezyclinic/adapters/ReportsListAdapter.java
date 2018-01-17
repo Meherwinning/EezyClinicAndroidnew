@@ -1,6 +1,9 @@
 package com.vempower.eezyclinic.adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Messenger;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +12,11 @@ import android.view.ViewGroup;
 import com.vempower.eezyclinic.APICore.HelathReportsData;
 import com.vempower.eezyclinic.APICore.PrescriptionAPIData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.PDFViewActivity;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.callbacks.ListenerKey;
+import com.vempower.eezyclinic.interfaces.AbstractIBinder;
+import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRM;
 import com.vempower.eezyclinic.views.MyTextViewRR;
@@ -125,9 +132,9 @@ import java.util.List;
 
                          Utils.showToastMsg(data.getId()+"");
 
-   /*                     Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),AppointmentHistoryActivity.class);
-                           *//*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*//*
-                        intent.putExtra(ListenerKey.ObjectKey.APPOINTMENT_OBJECT_KEY,new Messenger(new AbstractIBinder(){
+                        Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),PDFViewActivity.class);
+                           ((Activity) MyApplication.getCurrentActivityContext()).getIntent();
+                        /*intent.putExtra(ListenerKey.ObjectKey.APPOINTMENT_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                             @Override
                             protected IntentObjectListener getMyObject() {
                                 return new IntentObjectListener(){
@@ -138,12 +145,11 @@ import java.util.List;
                                     }
                                 };
                             }
-                        }));
+                        }));*/
                         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                         MyApplication.getCurrentActivityContext().startActivity(intent);
 
-*/
 
 
                     }

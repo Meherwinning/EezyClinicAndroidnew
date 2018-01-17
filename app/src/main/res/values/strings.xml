@@ -157,6 +157,10 @@
     <string name="unable_to_get_casesheets_list_lbl">Unable to get Casesheets, Please try again</string>
     <string name="unautherized_user_details_lbl">Something went to wrong with patient data.Please try again.</string>
     <string name="unable_to_change_emailid_lbl">Unable to change emai id, Please try again</string>
+    <string name="edit_lbl">Edit</string>
+    <string name="print_lbl">Print</string>
+    <string name="download_lbl">Download</string>
+    <string name="delete_lbl">Delete</string>
 
 
 </resources>

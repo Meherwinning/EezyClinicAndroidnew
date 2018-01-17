@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+
+    android:background="@color/white"
+    android:paddingLeft="@dimen/_21dp"
+    android:paddingRight="@dimen/_26dp"
+    android:weightSum="4"
+    android:layout_height="@dimen/_58dp">
+
+    <LinearLayout
+        android:id="@+id/edit_bottom_linear"
+        android:clickable="true"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@drawable/view_selector"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/bottom_linear_image1"
+            android:layout_marginTop="@dimen/_7dp"
+            android:layout_width="wrap_content"
+            android:minHeight="@dimen/_24dp"
+            android:src="@drawable/edit"
+            android:layout_gravity="center|center_vertical"
+            android:layout_height="wrap_content" />
+
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/bottom_linear_textview1"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_1dp"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_small1"
+            android:text="@string/edit_lbl"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/print_bottom_linear"
+        android:clickable="true"
+        android:background="@drawable/view_selector"
+        android:layout_width="0dp"
+        android:onClick="onMyProfileClick"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/bottom_linear_image2"
+            android:layout_marginTop="@dimen/_7dp"
+            android:layout_width="wrap_content"
+            android:src="@drawable/print"
+            android:minHeight="@dimen/_24dp"
+            android:layout_gravity="center|center_vertical"
+            android:layout_height="wrap_content" />
+
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/bottom_linear_textview2"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_1dp"
+            android:layout_gravity="bottom|center|center_vertical"
+            android:textSize="@dimen/text_size_small1"
+            android:text="@string/print_lbl"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/download_bottom_linear"
+        android:clickable="true"
+        android:layout_width="0dp"
+        android:background="@drawable/view_selector"
+        android:onClick="onMedicalRecordsClick"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/bottom_linear_image3"
+            android:layout_marginTop="@dimen/_7dp"
+            android:layout_width="wrap_content"
+            android:src="@drawable/download"
+            android:minHeight="@dimen/_24dp"
+            android:layout_gravity="center|center_vertical"
+            android:layout_height="wrap_content" />
+
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/bottom_linear_textview3"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_1dp"
+            android:layout_gravity="bottom|center|center_vertical"
+            android:textSize="@dimen/text_size_small1"
+            android:text="@string/download_lbl"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/delete_bottom_linear"
+        android:clickable="true"
+        android:layout_width="0dp"
+        android:onClick="onSettingsClick"
+        android:layout_weight="1"
+        android:background="@drawable/view_selector"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/bottom_linear_image4"
+            android:layout_marginTop="@dimen/_7dp"
+            android:layout_width="wrap_content"
+            android:src="@drawable/delete"
+            android:layout_gravity="center|center_vertical"
+            android:minHeight="@dimen/_24dp"
+            android:layout_height="wrap_content" />
+
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/bottom_linear_textview4"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_1dp"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_small1"
+            android:text="@string/delete_lbl"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>

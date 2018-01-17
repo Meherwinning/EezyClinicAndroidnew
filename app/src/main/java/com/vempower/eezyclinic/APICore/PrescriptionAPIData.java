@@ -4,8 +4,8 @@ package com.vempower.eezyclinic.APICore;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PrescriptionAPIData {
-
+public class PrescriptionAPIData extends PDFDetails {
+//HARVESTCB
     @SerializedName("id")
     @Expose
     private String id;
@@ -33,21 +33,14 @@ public class PrescriptionAPIData {
     @SerializedName("documentName")
     @Expose
     private Object documentName;
-    @SerializedName("documentType")
-    @Expose
-    private String documentType;
+
     @SerializedName("status")
     @Expose
     private String status;
     @SerializedName("createdDate")
     @Expose
     private String createdDate;
-    @SerializedName("dowloadzip")
-    @Expose
-    private String dowloadzip;
-    @SerializedName("printpdf")
-    @Expose
-    private String printpdf;
+
 
     public String getId() {
         return id;
@@ -121,13 +114,6 @@ public class PrescriptionAPIData {
         this.documentName = documentName;
     }
 
-    public String getDocumentType() {
-        return documentType;
-    }
-
-    public void setDocumentType(String documentType) {
-        this.documentType = documentType;
-    }
 
     public String getStatus() {
         return status;
@@ -145,20 +131,5 @@ public class PrescriptionAPIData {
         this.createdDate = createdDate;
     }
 
-    public String getDowloadzip() {
-        return dowloadzip;
-    }
-
-    public void setDowloadzip(String dowloadzip) {
-        this.dowloadzip = dowloadzip;
-    }
-
-    public String getPrintpdf() {
-        return printpdf;
-    }
-
-    public void setPrintpdf(String printpdf) {
-        this.printpdf = printpdf;
-    }
 
 }

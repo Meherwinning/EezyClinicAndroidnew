@@ -24,6 +24,8 @@ public class AppointmentListFragment extends AbstractFragment {
         return fragmentView;
     }
 
+
+
     @Override
     View getFragemtView() {
         return fragmentView;

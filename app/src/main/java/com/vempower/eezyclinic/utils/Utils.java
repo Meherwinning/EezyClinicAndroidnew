@@ -36,6 +36,9 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
@@ -892,5 +895,21 @@ public class Utils {
         }
 
         return key;
+    }
+
+
+    public static Uri getURIfromURL(String myUrlStr)
+    {
+        URL url;
+        try {
+            url = new URL(myUrlStr);
+            return Uri.parse( url.toURI().toString() );
+        } catch (MalformedURLException e1) {
+            e1.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

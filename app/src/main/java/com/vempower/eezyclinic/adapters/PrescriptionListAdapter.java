@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Messenger;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import com.vempower.eezyclinic.APICore.PrescriptionAPIData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.AppointmentHistoryActivity;
+import com.vempower.eezyclinic.activities.PDFViewActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
@@ -130,9 +132,11 @@ import java.util.List;
 
                          Utils.showToastMsg(data.getId()+"");
 
-   /*                     Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),AppointmentHistoryActivity.class);
-                           *//*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*//*
-                        intent.putExtra(ListenerKey.ObjectKey.APPOINTMENT_OBJECT_KEY,new Messenger(new AbstractIBinder(){
+
+
+                        Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),PDFViewActivity.class);
+                           ((Activity) MyApplication.getCurrentActivityContext()).getIntent();
+                        intent.putExtra(ListenerKey.ObjectKey.PDF_DETAILS_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                             @Override
                             protected IntentObjectListener getMyObject() {
                                 return new IntentObjectListener(){
@@ -148,7 +152,6 @@ import java.util.List;
 
                         MyApplication.getCurrentActivityContext().startActivity(intent);
 
-*/
 
 
                     }

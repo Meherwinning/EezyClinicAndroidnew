@@ -20,8 +20,9 @@ public interface ListenerKey {
         String APPOINTMENT_OBJECT_KEY="appointment_object_key";
         String PATIENT_PROFILE_OBJECT_KEY="patient_profile_object_key";
 
-        String IMAGE_DRAWABLE_KEY="IMAGE_DRAWABLE_KEY";
+        String IMAGE_DRAWABLE_KEY="image_drawable_key";
 
+        String PDF_DETAILS_OBJECT_KEY = "pdf_details_object_key";
     }
 
 }

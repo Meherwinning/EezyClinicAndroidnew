@@ -8,7 +8,7 @@ android {
     buildToolsVersion '27.0.1'
     defaultConfig {
         applicationId "com.vempower.eezyclinic"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
         versionName "1.6"
@@ -111,6 +111,13 @@ dependencies {
     // implementation project(':pinview')
     implementation 'com.github.chuross:expandable-layout:717c5c05a9'
     implementation project(':multi-view-adapter')
+
+    //implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+
+    // implementation 'com.github.barteksc:pdfium-android:1.7.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
+    implementation 'com.github.barteksc:android-pdf-viewer:3.0.0-beta.5'
+    implementation project(':mobileprintsdk')
 }
 repositories {
     mavenCentral()
@@ -118,4 +125,5 @@ repositories {
 
 //apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.gms.google-services'
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
 

@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/crystalrangeseekbar/crystalrangeseekbar.iml" filepath="$PROJECT_DIR$/crystalrangeseekbar/crystalrangeseekbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/linkedin-sdk/linkedin-sdk.iml" filepath="$PROJECT_DIR$/linkedin-sdk/linkedin-sdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/material/material.iml" filepath="$PROJECT_DIR$/material/material.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mobileprintsdk/mobileprintsdk.iml" filepath="$PROJECT_DIR$/mobileprintsdk/mobileprintsdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/multi-view-adapter/multi-view-adapter.iml" filepath="$PROJECT_DIR$/multi-view-adapter/multi-view-adapter.iml" />
       <module fileurl="file://$PROJECT_DIR$/myCalenderLibrary/myCalenderLibrary.iml" filepath="$PROJECT_DIR$/myCalenderLibrary/myCalenderLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinview/pinview.iml" filepath="$PROJECT_DIR$/pinview/pinview.iml" />

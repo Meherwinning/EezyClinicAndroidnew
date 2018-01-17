@@ -1,1 +1,1 @@
-include ':app', ':MaterialDesign', ':material', ':linkedin-sdk', ':sublimepickerlibrary', ':MyExpandableLayoutLibrary', ':togglebuttongroup', ':crystalrangeseekbar', ':myCalenderLibrary', ':pinview', ':buildSrc', ':multi-view-adapter'
+include ':app', ':MaterialDesign', ':material', ':linkedin-sdk', ':sublimepickerlibrary', ':MyExpandableLayoutLibrary', ':togglebuttongroup', ':crystalrangeseekbar', ':myCalenderLibrary', ':pinview', ':buildSrc', ':multi-view-adapter', ':mobileprintsdk'
