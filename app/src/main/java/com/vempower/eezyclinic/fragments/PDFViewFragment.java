@@ -23,10 +23,6 @@ import android.widget.Toast;
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 import com.github.barteksc.pdfviewer.listener.OnPageErrorListener;
-import com.hp.mss.hpprint.model.PDFPrintItem;
-import com.hp.mss.hpprint.model.PrintItem;
-import com.hp.mss.hpprint.model.PrintJobData;
-import com.hp.mss.hpprint.model.asset.PDFAsset;
 import com.vempower.eezyclinic.APICore.PDFDetails;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
@@ -37,9 +33,7 @@ import com.vempower.eezyclinic.utils.MyDownloadfFile;
 import com.vempower.eezyclinic.utils.PrintPDF;
 import com.vempower.eezyclinic.utils.Utils;
 
-import java.io.File;
 
-import static com.hp.mss.hpprint.util.PrintUtil.mediaSize5x7;
 
 /**
  * Created by satish on 6/12/17.

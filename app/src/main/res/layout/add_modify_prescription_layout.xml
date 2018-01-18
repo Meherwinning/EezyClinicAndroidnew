@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/_20dp"
+        android:layout_marginLeft="@dimen/_20dp"
+        android:layout_marginRight="@dimen/_5dp"
+        android:layout_above="@+id/upload_document_bt"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+    <HorizontalScrollView
+        android:id="@+id/hsv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="horizontal"
+
+
+        android:fillViewport="true"
+
+       >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/horigental_linear"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                android:layout_margin="@dimen/_10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+
+                <LinearLayout
+                    android:id="@+id/image_linear1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/canvas_80x80"
+                    android:gravity="center"
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/profile_iv1"
+                        style="@style/image_fit_toparent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/my_photo" />
+                </LinearLayout>
+
+                <ImageView
+                    android:paddingRight="@dimen/_8dp"
+                    android:paddingBottom="@dimen/_8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-8dp"
+                    android:layout_toRightOf="@+id/image_linear1"
+                    android:src="@drawable/close_1" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/transparent"
+                    android:layout_alignRight="@+id/image_linear1"
+
+                    android:layout_height="match_parent">
+
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+            <RelativeLayout
+                android:layout_margin="@dimen/_10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <LinearLayout
+                    android:id="@+id/image_linear3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/canvas_80x80"
+                    android:gravity="center"
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/profile_iv2"
+                        style="@style/image_fit_toparent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/my_photo" />
+                </LinearLayout>
+
+                <ImageView
+                    android:paddingRight="@dimen/_8dp"
+                    android:paddingBottom="@dimen/_8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-8dp"
+                    android:layout_toRightOf="@+id/image_linear3"
+                    android:src="@drawable/close_1" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_margin="@dimen/_10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <LinearLayout
+                    android:id="@+id/image_linear4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/canvas_80x80"
+                    android:gravity="center"
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/profile_iv4"
+                        style="@style/image_fit_toparent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/my_photo" />
+                </LinearLayout>
+
+                <ImageView
+                    android:paddingRight="@dimen/_8dp"
+                    android:paddingBottom="@dimen/_8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-8dp"
+                    android:layout_toRightOf="@+id/image_linear4"
+                    android:src="@drawable/close_1" />
+
+
+            </RelativeLayout>
+
+
+
+
+        </LinearLayout>
+            <RelativeLayout
+                android:layout_margin="@dimen/_10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <LinearLayout
+                    android:id="@+id/image_linear2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/canvas_80x80"
+                    android:gravity="center"
+
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:background="@color/black"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_margin="0.25dp"
+                            android:layout_gravity="center"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:text="+"
+                                android:textSize="@dimen/_20sp"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                  </LinearLayout>
+
+
+
+            </RelativeLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/_15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_15dp"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="@dimen/_50dp"
+            android:background="@drawable/background_shape_idle"
+
+            android:textColorHint="#8a000000"
+            app:errorEnabled="true"
+            app:hintEnabled="true"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                android:id="@+id/doctor_name_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/_2dp"
+                android:background="@null"
+                android:gravity="left|center_vertical"
+                android:hint="Doctor Name"
+                android:imeOptions="actionUnspecified"
+                android:inputType="text"
+                android:maxLength="100"
+                android:maxLines="1"
+                android:padding="@dimen/_2dp"
+                android:singleLine="true"
+
+                android:textColorHint="#8a000000"
+                android:textSize="@dimen/_14dp"
+
+
+                android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:textColor="#212121"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="@dimen/_12dp"
+            android:alpha="0.3"
+            android:background="@color/black" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_15dp"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="@dimen/_50dp"
+            android:background="@drawable/background_shape_idle"
+
+            android:textColorHint="#8a000000"
+            app:errorEnabled="true"
+            app:hintEnabled="true"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                android:id="@+id/clinic_name_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/_2dp"
+                android:background="@null"
+                android:gravity="left|center_vertical"
+                android:hint="Clinic Name"
+                android:imeOptions="actionUnspecified"
+                android:inputType="text"
+                android:maxLength="100"
+                android:maxLines="1"
+                android:padding="@dimen/_2dp"
+                android:singleLine="true"
+
+                android:textColorHint="#8a000000"
+                android:textSize="@dimen/_14dp"
+
+                android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:textColor="#212121"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="@dimen/_12dp"
+            android:alpha="0.3"
+            android:background="@color/black" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_15dp"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="@dimen/_50dp"
+            android:background="@drawable/background_shape_idle"
+
+            android:textColorHint="#8a000000"
+            app:errorEnabled="true"
+            app:hintEnabled="true"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                android:id="@+id/emergency_contact_name_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/_2dp"
+                android:background="@null"
+                android:gravity="left|center_vertical"
+                android:hint="Other Details"
+                android:imeOptions="actionUnspecified"
+                android:inputType="text"
+                android:maxLength="100"
+                android:maxLines="1"
+                android:padding="@dimen/_2dp"
+                android:singleLine="true"
+
+                android:textColorHint="#8a000000"
+                android:textSize="@dimen/_14dp"
+
+                android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:textColor="#212121"
+
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="@dimen/_12dp"
+            android:alpha="0.3"
+            android:background="@color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_15dp"
+        android:orientation="vertical">
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical"
+            android:hint="Date of Document"
+            android:textColor="#de000000"
+            android:textColorHint="#8a000000"
+            android:textSize="@dimen/_11dp" />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="@dimen/_50dp"
+            android:background="@drawable/background_shape_idle"
+
+            android:textColorHint="#8a000000"
+            app:errorEnabled="true"
+            app:hintEnabled="true"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+            <com.vempower.eezyclinic.views.MyTextViewRR
+                android:id="@+id/date_of_document_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/_2dp"
+                android:background="@null"
+                android:clickable="true"
+                android:drawablePadding="@dimen/_5dp"
+                android:drawableRight="@drawable/cal"
+                android:gravity="left|center_vertical"
+                android:hint="Select Date of Document"
+                android:imeOptions="actionUnspecified"
+                android:inputType="text"
+                android:maxLength="50"
+                android:maxLines="1"
+
+                android:paddingRight="@dimen/_12dp"
+                android:singleLine="true"
+
+
+
+                android:textColorHint="#8a000000"
+                android:textSize="@dimen/_14dp"
+
+
+                android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:textColor="#212121"
+                />
+
+
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="@dimen/_12dp"
+            android:alpha="0.3"
+            android:background="@color/black" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/upload_document_bt"
+
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48dp"
+        android:layout_marginTop="@dimen/_8dp"
+        android:layout_marginBottom="@dimen/_10dp"
+        android:clickable="true"
+        android:layout_marginLeft="@dimen/_24dp"
+        android:layout_marginRight="@dimen/_24dp"
+        android:maxLines="1"
+        android:padding="@dimen/_4dp"
+        android:textAllCaps="false"
+        android:background="@drawable/button_bg"
+
+        android:textSize="@dimen/_16sp"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="normal"
+        android:textColor="#ffffff"
+
+        android:text="Upload document"
+
+        />
+    <com.rey.material.widget.Button
+
+        android:visibility="gone"
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48dp"
+
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/_10dp"
+        android:layout_marginLeft="@dimen/_24dp"
+
+        android:layout_marginRight="@dimen/_24dp"
+        android:layout_marginTop="@dimen/_5dp"
+        android:background="@drawable/button_bg"
+        android:clickable="true"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="1"
+        android:padding="@dimen/_4dp"
+
+
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/_16sp"
+        android:textStyle="normal"
+
+        />
+</RelativeLayout>

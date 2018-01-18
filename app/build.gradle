@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.1'
+    buildToolsVersion '27.0.2'
     defaultConfig {
         applicationId "com.vempower.eezyclinic"
         minSdkVersion 19
@@ -72,14 +72,20 @@ dependencies {
 
     // compile 'com.github.ronaldsmartin:Material-ViewPagerIndicator:1.0.4'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation project(':MaterialDesign')
-    implementation project(':material')
+    //implementation project(':MaterialDesign')
+    implementation(project(':MaterialDesign'))
+            { exclude group: 'com.google.android.gms' }
+   // implementation project(':material')
+    implementation(project(':material'))
+            { exclude group: 'com.google.android.gms' }
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'de.hdodenhof:circleimageview:1.3.0'
-    implementation project(':linkedin-sdk')
-    implementation 'com.google.firebase:firebase-messaging:11.4.2'
-    implementation 'com.google.firebase:firebase-crash:11.4.2'
-    implementation 'com.google.firebase:firebase-core:11.4.2'
+   // implementation project(':linkedin-sdk')
+    implementation(project(':linkedin-sdk'))
+            { exclude group: 'com.google.android.gms' }
+    //implementation 'com.google.firebase:firebase-messaging:11.4.2'
+    //implementation 'com.google.firebase:firebase-crash:11.4.2'
+    //implementation 'com.google.firebase:firebase-core:11.4.2'
     implementation 'com.google.android.gms:play-services-maps:11.4.2'
     implementation 'com.google.android.gms:play-services-auth:11.4.2'
     implementation 'com.google.android.gms:play-services:11.4.2'
@@ -88,21 +94,31 @@ dependencies {
     //compile 'com.facebook.android:facebook-android-sdk:[4,5)'
 
     //implementation project(':googleplus')
-    implementation project(':sublimepickerlibrary')
+    //implementation project(':sublimepickerlibrary')
+    implementation(project(':sublimepickerlibrary'))
+            { exclude group: 'com.google.android.gms' }
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
 
     //implementation 'swarajsaaj:otpreader:1.1'
-    implementation project(':MyExpandableLayoutLibrary')
+   // implementation project(':MyExpandableLayoutLibrary')
+    implementation(project(':MyExpandableLayoutLibrary'))
+            { exclude group: 'com.google.android.gms' }
 
     //implementation 'com.github.GwonHyeok:StickySwitch:0.0.15'
 
     //  implementation 'com.nightonke:jellytogglebutton:1.0.2'
-    implementation project(':togglebuttongroup')
+    //implementation project(':togglebuttongroup')
+    implementation(project(':togglebuttongroup'))
+            { exclude group: 'com.google.android.gms' }
     implementation 'me.zhanghai.android.materialratingbar:library:1.1.1'
 
     //implementation 'com.crystal:crystalrangeseekbar:1.1.3'
-    implementation project(':crystalrangeseekbar')
-    implementation project(':myCalenderLibrary')
+   // implementation project(':crystalrangeseekbar')
+    implementation(project(':crystalrangeseekbar'))
+            { exclude group: 'com.google.android.gms' }
+    //implementation project(':myCalenderLibrary')
+    implementation(project(':myCalenderLibrary'))
+            { exclude group: 'com.google.android.gms' }
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.3.+'
 
     //https://github.com/GoodieBag/Pinview
@@ -110,14 +126,19 @@ dependencies {
 
     // implementation project(':pinview')
     implementation 'com.github.chuross:expandable-layout:717c5c05a9'
-    implementation project(':multi-view-adapter')
+   // implementation project(':multi-view-adapter')
+    implementation(project(':multi-view-adapter'))
+            { exclude group: 'com.google.android.gms' }
 
     //implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 
     // implementation 'com.github.barteksc:pdfium-android:1.7.0'
     implementation 'com.squareup.okhttp3:okhttp:3.8.1'
     implementation 'com.github.barteksc:android-pdf-viewer:3.0.0-beta.5'
-    implementation project(':mobileprintsdk')
+    //implementation project(':mobileprintsdk')
+
+    /*implementation(project(':mobileprintsdk'))
+            { exclude group: 'com.google.android.gms' }*/
 }
 repositories {
     mavenCentral()
