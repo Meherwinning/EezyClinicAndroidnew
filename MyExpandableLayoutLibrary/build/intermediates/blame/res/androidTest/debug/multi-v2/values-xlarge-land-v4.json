@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/challa/AndroidStudioProjects/New/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-xlarge-land-v4/values-xlarge-land-v4.xml",
+            "outputFile": "/home/satish/MyWorkspace/New/EezyClinicAndroid/MyExpandableLayoutLibrary/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-xlarge-land-v4/values-xlarge-land-v4.xml",
             "map": [
                 {
-                    "source": "/home/challa/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/40862cb5689e2960bfb0e819c20eaf01/res/values-xlarge-land-v4/values-xlarge-land-v4.xml",
+                    "source": "/home/satish/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.2.1.aar/eefb2800640b9cf23667f0b2635fce0b/res/values-xlarge-land-v4/values-xlarge-land-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

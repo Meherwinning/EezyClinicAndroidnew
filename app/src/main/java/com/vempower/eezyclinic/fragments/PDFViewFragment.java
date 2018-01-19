@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.print.PrintAttributes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
@@ -236,8 +238,13 @@ public class PDFViewFragment extends AbstractFragment implements
 
     private void printPDF(Uri uri) {
 
-        PrintPDF printPDF = new PrintPDF(uri);
-        printPDF.printPreview();
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
+            PrintPDF printPDF = new PrintPDF(uri);
+            printPDF.printPreview();
+        }else
+        {
+            Utils.showToastMsg(Utils.getStringFromResources(R.string.printing_not_supported_device_lbl));
+        }
 
     }
 

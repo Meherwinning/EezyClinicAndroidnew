@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/challa/AndroidStudioProjects/New/EezyClinicAndroid/linkedin-sdk/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-v24/values-v24.xml",
+            "outputFile": "/home/satish/MyWorkspace/New/EezyClinicAndroid/linkedin-sdk/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "/home/challa/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.0.1.aar/90bbd203b36a412bd9b046e7cf80b85b/res/values-v24/values-v24.xml",
+                    "source": "/home/satish/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.0.1.aar/db21f30aba378a99b0ecc8988300a6ff/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
