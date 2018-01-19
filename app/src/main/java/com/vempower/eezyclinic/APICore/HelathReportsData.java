@@ -42,6 +42,7 @@ public class HelathReportsData extends PDFDetails {
     private String createdDate;
 
 
+
     public String getId() {
         return id;
     }

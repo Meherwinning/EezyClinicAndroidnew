@@ -1,5 +1,7 @@
 package com.vempower.eezyclinic.APICore;
 
+import android.text.TextUtils;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -30,6 +32,10 @@ public class PDFDetails {
     }
 
     public String getPrintpdf() {
+        if(TextUtils.isEmpty(printpdf))
+        {
+            return "http://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf";
+        }
         return printpdf;
     }
 

@@ -25,7 +25,9 @@ import android.widget.Toast;
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 import com.github.barteksc.pdfviewer.listener.OnPageErrorListener;
+import com.vempower.eezyclinic.APICore.HelathReportsData;
 import com.vempower.eezyclinic.APICore.PDFDetails;
+import com.vempower.eezyclinic.APICore.PrescriptionAPIData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
@@ -78,6 +80,17 @@ public class PDFViewFragment extends AbstractFragment implements
         download_bottom_linear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(PDFDetails!=null)
+                {
+                    if(PDFDetails instanceof PrescriptionAPIData)
+                    {
+                        Utils.showToastMsg("PrescriptionAPIData");
+                    }else if(PDFDetails instanceof HelathReportsData)
+                    {
+                        Utils.showToastMsg("HelathReportsData");
+                    }
+                    return;
+                }
                 if (PDFDetails != null) {
                     downloadTaskStart(PDFDetails.getDowloadzip());
                 }

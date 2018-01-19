@@ -91,6 +91,7 @@ public class PrintPluginManagerActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     PrintUtil.readyToPrint(thisActivity);
+
                 }
             });
         }

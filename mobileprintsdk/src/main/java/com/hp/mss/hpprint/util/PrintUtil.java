@@ -184,6 +184,7 @@ public class PrintUtil {
         intent.putExtra(HAS_METRICS_LISTENER, has_metrics_listener);
 
         activity.startActivityForResult(intent, START_PREVIEW_ACTIVITY_REQUEST);
+        activity.finish();
         EventMetricsCollector.postMetricsToHPServer(activity, EventMetricsCollector.PrintFlowEventTypes.OPENED_PREVIEW);
     }
 
