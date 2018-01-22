@@ -33,7 +33,7 @@ android {
     def sha = ""
 
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 27
         versionCode 1
         versionName "v2.02.471"
@@ -153,7 +153,7 @@ task copyAarFile(type: Copy) << {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.mcxiaoke.volley:library:1.0.6'
+    compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.android.support:design:23.0.1'
     compile 'com.android.support:support-v4:23.0.1'

@@ -161,6 +161,7 @@
     <string name="print_lbl">Print</string>
     <string name="download_lbl">Download</string>
     <string name="delete_lbl">Delete</string>
+    <string name="printing_not_supported_device_lbl">Printing not supported to this device</string>
 
 
 </resources>

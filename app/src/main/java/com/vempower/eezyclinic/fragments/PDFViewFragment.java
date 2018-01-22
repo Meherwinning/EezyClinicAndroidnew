@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.print.PrintAttributes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
@@ -23,7 +25,9 @@ import android.widget.Toast;
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 import com.github.barteksc.pdfviewer.listener.OnPageErrorListener;
+import com.vempower.eezyclinic.APICore.HelathReportsData;
 import com.vempower.eezyclinic.APICore.PDFDetails;
+import com.vempower.eezyclinic.APICore.PrescriptionAPIData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
@@ -76,6 +80,17 @@ public class PDFViewFragment extends AbstractFragment implements
         download_bottom_linear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(PDFDetails!=null)
+                {
+                    if(PDFDetails instanceof PrescriptionAPIData)
+                    {
+                        Utils.showToastMsg("PrescriptionAPIData");
+                    }else if(PDFDetails instanceof HelathReportsData)
+                    {
+                        Utils.showToastMsg("HelathReportsData");
+                    }
+                    return;
+                }
                 if (PDFDetails != null) {
                     downloadTaskStart(PDFDetails.getDowloadzip());
                 }
@@ -236,8 +251,13 @@ public class PDFViewFragment extends AbstractFragment implements
 
     private void printPDF(Uri uri) {
 
-        PrintPDF printPDF = new PrintPDF(uri);
-        printPDF.printPreview();
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
+            PrintPDF printPDF = new PrintPDF(uri);
+            printPDF.printPreview();
+        }else
+        {
+            Utils.showToastMsg(Utils.getStringFromResources(R.string.printing_not_supported_device_lbl));
+        }
 
     }
 
