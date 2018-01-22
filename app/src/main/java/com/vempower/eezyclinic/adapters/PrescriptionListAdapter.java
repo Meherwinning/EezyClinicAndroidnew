@@ -120,8 +120,7 @@ import java.util.List;
                     // String timeStr= DISPLAY_TIME_FORMATTER.format(date);
                     //With Dr. First name Middle name Last Name at 07:00 PM on Tuesday, 26-12-2017
                     date_and_time_tv.setText("Dated :"+dateStr);
-                }catch (Exception e)
-                {
+                }catch (Exception e) {
                     date_and_time_tv.setText("-");
 
                 }
