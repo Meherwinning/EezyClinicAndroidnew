@@ -76,10 +76,11 @@
                         android:textStyle="normal" />
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/casesheet_no_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="2324"
+                        android:text="-"
                         android:textColor="#de000000"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal" />
@@ -101,10 +102,11 @@
                         android:textStyle="normal" />
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/create_date_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="19:08:2017 Time:13 :09 :45"
+                        android:text="-"
                         android:textColor="#8a000000"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal"
@@ -127,22 +129,17 @@
                     android:orientation="horizontal">
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/doctor_name_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="Dr. Akmal Shoeb Khan"
+                        android:hint="Doctor Name"
+                        android:textColorHint="#debebaba"
                         android:textColor="#de000000"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal" />
 
-                    <com.vempower.eezyclinic.views.MyTextViewRR
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
-                        android:text="2324"
-                        android:textColor="#de000000"
-                        android:textSize="@dimen/_14sp"
-                        android:textStyle="normal" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -152,19 +149,39 @@
                     android:orientation="vertical">
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/doctor_designation_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="Ear Nose &amp; Throat (ENT), Audiologist,"
+                        android:hint="Designation"
+                        android:textColorHint="#debebaba"
+                        android:textColor="#8a000000"
+                        android:textSize="@dimen/_14sp"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:orientation="horizontal">
+
+                    <com.vempower.eezyclinic.views.MyTextViewRR
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:text="Clinic Name : "
                         android:textColor="#8a000000"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal" />
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/clinic_name_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="Clinic Name"
+                        android:text="-"
                         android:textColor="#8a000000"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal"
@@ -213,10 +230,12 @@
                     android:orientation="horizontal">
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/medical_history_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="Hypothyroidism"
+                        android:hint="History"
+                        android:textColorHint="#debebaba"
                         android:textColor="#95989a"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal" />
@@ -254,10 +273,12 @@
                     android:orientation="horizontal">
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/complaints_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="A37 - Whooping cough"
+                        android:hint="Complaint"
+                        android:textColorHint="#debebaba"
                         android:textColor="#95989a"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal" />
@@ -295,10 +316,12 @@
                     android:orientation="horizontal">
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/history_of_presentilness_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="A37 - Whooping cough"
+                        android:hint="History"
+                        android:textColorHint="#debebaba"
                         android:textColor="#95989a"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal" />
@@ -364,12 +387,13 @@
                         android:textStyle="normal" />
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/temparature_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
 
-
-                        android:text="102"
+                        android:hint="-"
+                        android:textColorHint="#debebaba"
                         android:textColor="#000000"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal"
@@ -404,12 +428,12 @@
                         android:textStyle="normal" />
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/pulse_bpm_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-
-
-                        android:text="102"
+                        android:hint="-"
+                        android:textColorHint="#debebaba"
                         android:textColor="#000000"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal"
@@ -444,12 +468,12 @@
                         android:textStyle="normal" />
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/rr_breath_unit_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-
-
-                        android:text="102"
+                        android:hint="-"
+                        android:textColorHint="#debebaba"
                         android:textColor="#000000"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal"
@@ -484,12 +508,12 @@
                         android:textStyle="normal" />
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/bp_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-
-
-                        android:text="102"
+                        android:hint="-"
+                        android:textColorHint="#debebaba"
                         android:textColor="#000000"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal"
@@ -524,12 +548,12 @@
                         android:textStyle="normal" />
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/weight_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-
-
-                        android:text="102"
+                        android:hint="-"
+                        android:textColorHint="#debebaba"
                         android:textColor="#000000"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal"
@@ -581,10 +605,12 @@
                     android:orientation="horizontal">
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/systamatic_examination_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="A37 - Whooping cough"
+                        android:hint="-"
+                        android:textColorHint="#debebaba"
                         android:textColor="#95989a"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal" />
@@ -622,10 +648,12 @@
                     android:orientation="horizontal">
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/advised_investigation_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="A37 - Whooping cough"
+                        android:hint="-"
+                        android:textColorHint="#debebaba"
                         android:textColor="#95989a"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal" />
@@ -663,10 +691,12 @@
                     android:orientation="horizontal">
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/diagnosis_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="A37 - Whooping cough"
+                        android:hint="-"
+                        android:textColorHint="#debebaba"
                         android:textColor="#95989a"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal" />
@@ -704,10 +734,12 @@
                     android:orientation="horizontal">
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/treatment_plan_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="A37 - Whooping cough"
+                        android:hint="-"
+                        android:textColorHint="#debebaba"
                         android:textColor="#95989a"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal" />
@@ -755,11 +787,18 @@
 
                 </LinearLayout>
 
-                <include layout="@layout/casesheet_prescription_single_layout"></include>
+                <LinearLayout
+                    android:id="@+id/prescription_linear"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
 
-                <include layout="@layout/casesheet_prescription_single_layout"></include>
 
-                <include layout="@layout/casesheet_prescription_single_layout"></include>
+                <include
+                    android:visibility="gone"
+
+                    layout="@layout/casesheet_prescription_single_layout"></include>
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -884,10 +923,11 @@
                         android:textStyle="normal" />
 
                     <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/followup_days_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="5"
+                        android:text=""
                         android:textColor="#8a000000"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal" />

@@ -1,17 +1,43 @@
 package com.vempower.eezyclinic.activities;
 
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.CasesheetDetailFragment;
 import com.vempower.eezyclinic.fragments.NewHomeFragment;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 
 public class CasesheetsDetailsActivity extends AbstractMenuActivity {
 
+
+    @Override
+    protected void setMyContectntView() {
+        super.setMyContectntView();
+
+        String appId = getIntent().getStringExtra( Constants.Pref.CASESHEET_APPOINTMENT_ID_KEY); //getObjectFromIntent(getIntent(), ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY);
+
+
+
+        if (TextUtils.isEmpty(appId)) {
+            showMyAlertDialog("Alert", "Invalid Casesheet details.Please try again", "Close", true);
+            return;
+
+        }
+
+        CasesheetDetailFragment  fragment= new CasesheetDetailFragment();
+        fragment.setAppointmentId(appId);
+
+        setFragment(fragment);
+
+
+    }
 
     public void setActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -41,7 +67,7 @@ public class CasesheetsDetailsActivity extends AbstractMenuActivity {
 
     @Override
     protected AbstractFragment getFragment() {
-        return new CasesheetDetailFragment();
+        return null;//new CasesheetDetailFragment();
     }
 
     @Override

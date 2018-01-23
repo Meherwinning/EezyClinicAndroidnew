@@ -162,6 +162,8 @@
     <string name="download_lbl">Download</string>
     <string name="delete_lbl">Delete</string>
     <string name="printing_not_supported_device_lbl">Printing not supported to this device</string>
+    <string name="unable_to_get_casesheet_details_lbl">Unable to case-sheets details, please try again</string>
+    <string name="invalid_casesheet_details_">Invalid casheet details</string>
 
 
 </resources>

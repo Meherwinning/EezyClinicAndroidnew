@@ -24,23 +24,28 @@
                 android:orientation="horizontal">
 
                 <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:id="@+id/medicine_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_16sp"
+                    android:layout_marginRight="@dimen/_10dp"
+                    android:hint="Medicine Name"
+                    android:textColorHint="#debebaba"
                     android:fontFamily="sans-serif-medium"
                     android:textStyle="normal"
                     android:textColor="#de000000"
-                    android:text="Paracetamol: "
                     />
 
                 <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:id="@+id/strength_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_16sp"
                     android:fontFamily="sans-serif-medium"
                     android:textStyle="normal"
                     android:textColor="#de000000"
-                    android:text="500 mg,"
+                    android:hint="Strength"
+                    android:textColorHint="#debebaba"
 
                     />
             </LinearLayout>
@@ -61,13 +66,15 @@
                     android:textStyle="normal" />
 
                 <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:id="@+id/dosage_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:text="Morning, Afternoon, Evening"
                     android:textColor="#8a000000"
                     android:textSize="@dimen/_14sp"
                     android:textStyle="normal"
+                    android:hint="-"
+                    android:textColorHint="#debebaba"
 
                     />
             </LinearLayout>
@@ -87,13 +94,16 @@
                     android:textStyle="normal" />
 
                 <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:id="@+id/before_food_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:text="-"
                     android:textColor="#8a000000"
                     android:textSize="@dimen/_14sp"
                     android:textStyle="normal"
+
+                    android:hint="-"
+                    android:textColorHint="#debebaba"
 
                     />
             </LinearLayout>
@@ -113,13 +123,16 @@
                     android:textStyle="normal" />
 
                 <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:id="@+id/course_duration_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:text="-"
                     android:textColor="#8a000000"
                     android:textSize="@dimen/_14sp"
                     android:textStyle="normal"
+
+                    android:hint="-"
+                    android:textColorHint="#debebaba"
 
                     />
             </LinearLayout>

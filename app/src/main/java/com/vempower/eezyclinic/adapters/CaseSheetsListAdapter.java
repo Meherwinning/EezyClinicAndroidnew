@@ -17,6 +17,7 @@ import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRM;
 import com.vempower.eezyclinic.views.MyTextViewRR;
@@ -134,7 +135,8 @@ import java.util.List;
 
                         Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),CasesheetsDetailsActivity.class);
                           // ((Activity) MyApplication.getCurrentActivityContext()).getIntent();
-                        intent.putExtra(ListenerKey.ObjectKey.APPOINTMENT_OBJECT_KEY,new Messenger(new AbstractIBinder(){
+                        intent.putExtra(Constants.Pref.CASESHEET_APPOINTMENT_ID_KEY,data.getAppointmentid());
+                       /* intent.putExtra(ListenerKey.ObjectKey.APPOINTMENT_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                             @Override
                             protected IntentObjectListener getMyObject() {
                                 return new IntentObjectListener(){
@@ -145,7 +147,7 @@ import java.util.List;
                                     }
                                 };
                             }
-                        }));
+                        }));*/
                         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                         MyApplication.getCurrentActivityContext().startActivity(intent);

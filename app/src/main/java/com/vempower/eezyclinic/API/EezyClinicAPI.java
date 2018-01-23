@@ -5,6 +5,7 @@ import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.APIResponce.AppointmentHistoryListAPI;
 import com.vempower.eezyclinic.APIResponce.AppointmentTimeSlotsAPI;
 import com.vempower.eezyclinic.APIResponce.CaseSheetsListAPI;
+import com.vempower.eezyclinic.APIResponce.CasesheetDetailsAPI;
 import com.vempower.eezyclinic.APIResponce.ChangeMobileNumberAPI;
 import com.vempower.eezyclinic.APIResponce.CityListAPI;
 import com.vempower.eezyclinic.APIResponce.ClinicProfileAPI;
@@ -261,5 +262,10 @@ public interface EezyClinicAPI {
     @POST ("/api/Events/editevent")
     Call<AbstractResponse> editEvent (@PartMap Map<String, RequestBody> params);
 
+
+    //
+    //http://202.63.103.194:8003/api/patient/casesheetdetails
+    @POST(data + "patient/casesheetdetails")
+    Call<CasesheetDetailsAPI> getCasesheetDetails(@Body RequestBody postBody);
 
 }
