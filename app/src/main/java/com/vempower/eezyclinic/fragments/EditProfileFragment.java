@@ -1772,29 +1772,6 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
         }
     };
 
-    private void showImageSourceDialog(final int responseId) {
-        final CharSequence[] items = {"Camera", "Gallery"};
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(MyApplication.getCurrentActivityContext());
-        builder.setTitle("Select");
-
-        builder.setItems(items, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int item) {
-                // Do something with the selection
-                switch (item) {
-                    case 0:
-                        callCamera(responseId);
-                        break;
-                    case 1:
-                       callGallery(responseId);
-                        break;
-
-                }
-                dialog.dismiss();
-            }
-        });
-        final AlertDialog alert = builder.create();
-        alert.show();
-    }
 
 }

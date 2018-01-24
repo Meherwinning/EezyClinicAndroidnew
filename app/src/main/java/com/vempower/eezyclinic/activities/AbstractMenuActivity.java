@@ -234,8 +234,8 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
                 break;
             case R.id.notification_linear:
-                //TODO something
-                showToastMessage("Coming soon");
+               // showToastMessage("Coming soon");
+                callSideMenuScreen(NotificationsListActivity.class);
 
                 break;
             case R.id.health_checks_linear:
@@ -243,22 +243,24 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 showToastMessage("Coming soon");
                 break;
             case R.id.medical_history_linear:
-                //TODO something
-                showToastMessage("Coming soon");
+               // showToastMessage("Coming soon");
+                callSideMenuScreen(MedicalHistoryListActivity.class);
                 break;
             case R.id.notes_linear:
-                //TODO something
-                showToastMessage("Coming soon");
+                //showToastMessage("Coming soon");
+                callSideMenuScreen(MyNotesListActivity.class);
                 break;
             case R.id.family_members_linear:
                 //TODO something
-                showToastMessage("Coming soon");
+               // showToastMessage("Coming soon");
+                callSideMenuScreen(FamilyMembersActivity.class);
                 break;
             case R.id.appointment_history_linear:
                 callSideMenuScreen(AppointmentHistoryListActivity.class);
                 break;
             case R.id.health_records_linear:
-                showToastMessage("Coming soon");
+                //showToastMessage("Coming soon");
+                callMedicalRecordds();
                 // intent= new Intent(this,HealthRecordsActivity.class);
                 //Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
 
@@ -337,8 +339,6 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.SETTINGS));
-
-
     }
 
 

@@ -3,7 +3,9 @@ package com.vempower.eezyclinic.fragments;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -55,7 +57,7 @@ public abstract class ImageProcessFragment extends AbstractFragment {
             callGallery1();
         }else
         {
-            ActivityCompat.requestPermissions((EditProfileActivity)MyApplication.getCurrentActivityContext(), new String[]{Manifest.permission.WRITE_SETTINGS,Manifest.permission.CAMERA}, CODE_WRITE_SETTINGS_PERMISSION);
+            ActivityCompat.requestPermissions((AbstractActivity)MyApplication.getCurrentActivityContext(), new String[]{Manifest.permission.WRITE_SETTINGS,Manifest.permission.CAMERA}, CODE_WRITE_SETTINGS_PERMISSION);
 
         }
 
@@ -429,6 +431,32 @@ public abstract class ImageProcessFragment extends AbstractFragment {
 
         }*/
         return true;
+    }
+
+
+    protected void showImageSourceDialog(final int responseId) {
+        final CharSequence[] items = {"Camera", "Gallery"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MyApplication.getCurrentActivityContext());
+        builder.setTitle("Select");
+
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                // Do something with the selection
+                switch (item) {
+                    case 0:
+                        callCamera(responseId);
+                        break;
+                    case 1:
+                        callGallery(responseId);
+                        break;
+
+                }
+                dialog.dismiss();
+            }
+        });
+        final AlertDialog alert = builder.create();
+        alert.show();
     }
 
 

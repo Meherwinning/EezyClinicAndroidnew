@@ -93,6 +93,9 @@ public interface Constants {
         int FROM_ID_BACK = 356;
         int FROM_INSURANCE_FRONT = 324;
         int FROM_INSURANCE_BACK = 426;
+
+
+        int FROM_ADD_NEW_IMAGE = 125;
     }
 
     //http://202.63.103.194:8008/api/patient/signin

@@ -164,6 +164,10 @@
     <string name="printing_not_supported_device_lbl">Printing not supported to this device</string>
     <string name="unable_to_get_casesheet_details_lbl">Unable to case-sheets details, please try again</string>
     <string name="invalid_casesheet_details_">Invalid casheet details</string>
+    <string name="title_activity_my_notes">My Notes</string>
+    <string name="title_activity_medical_history">Medical History</string>
+    <string name="title_activity_notifications">Notifications</string>
+    <string name="title_activity_family_menbers">Family Members</string>
 
 
 </resources>
