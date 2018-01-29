@@ -107,6 +107,7 @@ public class ReScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewF
         {
             reScheduleDetails.setNew_appointmenttime(confirmDateTime);
 
+
             //Utils.showToastMsg(reScheduleDetails.toString());
 
 
@@ -175,7 +176,7 @@ public class ReScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewF
     }
 
 
-    public void setReScheduleDetails(ReScheduleAppointmentRequestDetails reScheduleDetails) {
+    public void setReScheduleDetails(ReScheduleAppointmentRequestDetails reScheduleDetails,boolean isFromFollowups) {
         this.reScheduleDetails = reScheduleDetails;
 
         String DISPLAY_DATE_TIME="yyyy-MM-dd h:mm a";//15-12-2017 05:00 PM     2017-12-26
@@ -183,18 +184,19 @@ public class ReScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewF
         String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd HH:mm:ss";//"2017-12-26 16:55:00"
         SimpleDateFormat DISPLAY_DATE_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_DATE_TIME);
        // SimpleDateFormat DISPLAY_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_TIME);
+        disabledDateTime = null;
+        if(!isFromFollowups) {
+            try {
+                Date date = Utils.changeStringToDateFormat(reScheduleDetails.appointmentDateTime, SERVER_DATE_FORMAT_NEW);
+                disabledDateTime = DISPLAY_DATE_TIME_FORMATTER.format(date);
+                //String timeStr= DISPLAY_TIME_FORMATTER.format(date);
+                //With Dr. First name Middle name Last Name at 07:00 PM on Tuesday, 26-12-2017
+                // appointment_details_tv.setText("With "+ data.getDoctorName() +" at "+ timeStr+", "+ dateStr+"\nat "+data.getAddress());
+            } catch (Exception e) {
+                //appointment_details_tv.setText("-");
+                disabledDateTime = null;
 
-        try {
-            Date date = Utils.changeStringToDateFormat(reScheduleDetails.appointmentDateTime, SERVER_DATE_FORMAT_NEW);
-            disabledDateTime= DISPLAY_DATE_TIME_FORMATTER.format(date);
-            //String timeStr= DISPLAY_TIME_FORMATTER.format(date);
-            //With Dr. First name Middle name Last Name at 07:00 PM on Tuesday, 26-12-2017
-           // appointment_details_tv.setText("With "+ data.getDoctorName() +" at "+ timeStr+", "+ dateStr+"\nat "+data.getAddress());
-        }catch (Exception e)
-        {
-            //appointment_details_tv.setText("-");
-            disabledDateTime=null;
-
+            }
         }
 
     }

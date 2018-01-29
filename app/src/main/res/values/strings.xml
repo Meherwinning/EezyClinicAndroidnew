@@ -168,6 +168,7 @@
     <string name="title_activity_medical_history">Medical History</string>
     <string name="title_activity_notifications">Notifications</string>
     <string name="title_activity_family_menbers">Family Members</string>
+    <string name="book_an_appointment_lbl">Book An Appointment</string>
 
 
 </resources>

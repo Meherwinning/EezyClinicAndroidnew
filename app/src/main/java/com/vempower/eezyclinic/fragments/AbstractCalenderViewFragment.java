@@ -216,8 +216,6 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
     protected void setCurrentDate()
     {
         setCalderDay(Calendar.getInstance());
-
-
     }
 
     public  int compareToDay(Date date1, Date date2) {

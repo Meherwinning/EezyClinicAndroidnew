@@ -138,6 +138,7 @@ public interface Constants {
         String IS_FROM_RE_SCHUDULE_KEY="is_from_re_schudule_key";
         String APPOINTMENT_ID_KEY = "appointment_id_key";
         String CASESHEET_APPOINTMENT_ID_KEY = "casesheet_appointment_id_key";
+        String IS_FROM_FOLLOWUPS = "is_from_followups";
     }
 
     interface ActivityResult
