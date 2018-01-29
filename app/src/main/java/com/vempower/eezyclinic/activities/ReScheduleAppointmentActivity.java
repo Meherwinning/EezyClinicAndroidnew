@@ -12,6 +12,7 @@ import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.ReScheduleAppointmentTimeSlotFragment;
 import com.vempower.eezyclinic.fragments.ScheduleAppointmentTimeSlotFragment;
+import com.vempower.eezyclinic.utils.Constants;
 
 public class ReScheduleAppointmentActivity extends AbstractMenuActivity {
 
@@ -52,7 +53,7 @@ public class ReScheduleAppointmentActivity extends AbstractMenuActivity {
         //callDoctorProfileMapper(data);
 
         ReScheduleAppointmentTimeSlotFragment fragment= new ReScheduleAppointmentTimeSlotFragment();
-        fragment.setReScheduleDetails(data);
+        fragment.setReScheduleDetails(data, getIntent().getBooleanExtra(Constants.Pref.IS_FROM_FOLLOWUPS, false));
         setFragment(fragment);
 
 

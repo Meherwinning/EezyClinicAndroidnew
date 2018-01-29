@@ -30,6 +30,7 @@ import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiesAPI;
 import com.vempower.eezyclinic.APIResponce.TPAListAPI;
 import com.vempower.eezyclinic.APIResponce.UpcomingAppointmentListAPI;
+import com.vempower.eezyclinic.APIResponce.UpcomingFollowupsAPI;
 import com.vempower.eezyclinic.APIResponce.VerifyOTPAPI;
 
 import java.util.Map;
@@ -267,5 +268,10 @@ public interface EezyClinicAPI {
     //http://202.63.103.194:8003/api/patient/casesheetdetails
     @POST(data + "patient/casesheetdetails")
     Call<CasesheetDetailsAPI> getCasesheetDetails(@Body RequestBody postBody);
+
+    //http://202.63.103.194:8003/api/patient/followupslist
+    @POST(data + "patient/followupslist")
+    Call<UpcomingFollowupsAPI> followupslist(@Body RequestBody postBody);
+
 
 }
