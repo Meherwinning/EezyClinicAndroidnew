@@ -21,6 +21,7 @@
             <option value="$PROJECT_DIR$/pinview" />
             <option value="$PROJECT_DIR$/sublimepickerlibrary" />
             <option value="$PROJECT_DIR$/togglebuttongroup" />
+            <option value="$PROJECT_DIR$/volley-master-release" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
