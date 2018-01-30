@@ -14,6 +14,7 @@ import com.vempower.eezyclinic.APICore.ReScheduleAppointmentRequestDetails;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.AppointmentDetailsActivity;
 import com.vempower.eezyclinic.activities.CancelAppointmentActivity;
+import com.vempower.eezyclinic.activities.FollowupAppointmentActivity;
 import com.vempower.eezyclinic.activities.ReScheduleAppointmentActivity;
 import com.vempower.eezyclinic.activities.UpComingAppointmentListActivity;
 import com.vempower.eezyclinic.application.MyApplication;
@@ -186,8 +187,8 @@ public class UpcomingFollowupsListAdapter extends RecyclerView.Adapter<UpcomingF
 
         }
 
-        private void callSheduleCalender(Followup data) {
-            ReScheduleAppointmentRequestDetails requestDetails = null;
+        private void callSheduleCalender(final Followup data) {
+            /*ReScheduleAppointmentRequestDetails requestDetails = null;
             try {
                 requestDetails =
                         new ReScheduleAppointmentRequestDetails(Integer.parseInt(data.getDoctorId()), Integer.parseInt(data.getBranchId()), data.getPatientId(),
@@ -197,22 +198,22 @@ public class UpcomingFollowupsListAdapter extends RecyclerView.Adapter<UpcomingF
             }
             if (requestDetails == null) {
                 return;
-            }
-            final ReScheduleAppointmentRequestDetails details = requestDetails;
+            }*/
+            //final ReScheduleAppointmentRequestDetails details = requestDetails;
 
             //  Utils.showToastMsg(details.toString());
 
 
-            Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),ReScheduleAppointmentActivity.class);
+            Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),FollowupAppointmentActivity.class);
             // ((Activity) MyApplication.getCurrentActivityContext()).getIntent();
-            intent.putExtra(ListenerKey.ObjectKey.RESCHEDULE_APPOINTMENT_OBJECT_KEY,new Messenger(new AbstractIBinder(){
+            intent.putExtra(ListenerKey.ObjectKey.FOLLOWUP_APPOINTMENT_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                 @Override
                 protected IntentObjectListener getMyObject() {
                     return new IntentObjectListener(){
 
                         @Override
                         public Object getObject() {
-                            return details;
+                            return data;
                         }
                     };
                 }
