@@ -180,6 +180,10 @@ public class Followup {
 
 
     public String getBranchName() {
+        if(branchName==null)
+        {
+           return  getClinicName();
+        }
         return branchName;
     }
 

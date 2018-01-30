@@ -28,6 +28,7 @@ import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -36,7 +37,7 @@ import java.util.List;
  */
 
 public class ReScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewFragment {
-
+    String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd HH:mm:ss";
     private ReScheduleAppointmentRequestDetails reScheduleDetails;
 
   //  private boolean isRefresh;
@@ -54,7 +55,21 @@ public class ReScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewF
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setCurrentDate();
+        if(reScheduleDetails!=null)
+        {
+            Date date = Utils.changeStringToDateFormat(reScheduleDetails.appointmentDateTime, SERVER_DATE_FORMAT_NEW);
+
+            Calendar calendar= Calendar.getInstance();
+            if(date!=null)
+            {
+                calendar.setTime(date);
+            }
+            setCalderDay(calendar);
+
+        }else
+        {
+            setCurrentDate();
+        }
     }
 
     protected  void dateSelectFromCalender(final String dateStr)
