@@ -19,6 +19,7 @@ import com.vempower.eezyclinic.adapters.PrescriptionListAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.PrescriptionsListMapper;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 import com.vempower.stashdealcustomer.activities.AbstractActivity;
@@ -67,7 +68,10 @@ public class PrescriptionsFragment extends  SwipedRecyclerViewFragment {
         add_new_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MyApplication.getCurrentActivityContext(),AddModifyPrescriptionActivity.class));
+
+                Intent intent=new Intent(MyApplication.getCurrentActivityContext(),AddModifyPrescriptionActivity.class);
+                intent.putExtra(Constants.Pref.IS_FROM_ADD_PRESCRIPTION_KEY,true);
+                startActivity(intent);
             }
         });
 

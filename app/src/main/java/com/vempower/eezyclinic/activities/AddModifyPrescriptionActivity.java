@@ -8,18 +8,54 @@ import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.AddModifyPrescriptionFragment;
 import com.vempower.eezyclinic.fragments.NewHomeFragment;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 
 public class AddModifyPrescriptionActivity extends AbstractMenuActivity {
+
+    private TextView titleNameTv;
+    private  String title;
+    private boolean isFromPrescription;
+
+    @Override
+    protected void setMyContectntView() {
+        super.setMyContectntView();
+
+         title=Utils.getStringFromResources(R.string.title_activity_add_report_lbl );
+
+        if(getIntent()!=null && getIntent().getBooleanExtra(Constants.Pref.IS_FROM_ADD_PRESCRIPTION_KEY,false))
+        {
+            title=Utils.getStringFromResources(R.string.title_activity_add_prescription);
+            isFromPrescription=true;
+        }
+
+        AddModifyPrescriptionFragment fragment= new AddModifyPrescriptionFragment();
+        fragment.setUploadDocumentType(!isFromPrescription);
+
+        setFragment(fragment);
+
+
+        //Utils.getStringFromResources(R.string.title_activity_appointments)
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(titleNameTv!=null)
+        {
+            titleNameTv.setText(title);
+        }
+    }
 
 
     public void setActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        TextView titleName = toolbar.findViewById(R.id.title_logo_tv);
-        //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
-        titleName.setText(Utils.getStringFromResources(R.string.title_activity_appointments));
+        titleNameTv = toolbar.findViewById(R.id.title_logo_tv);
+        //((Toolbar) findViewById(R.
+        // id.toolbar)).setTitle(deal.getEntityName());
+        titleNameTv.setText("-");
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +77,7 @@ public class AddModifyPrescriptionActivity extends AbstractMenuActivity {
 
     @Override
     protected AbstractFragment getFragment() {
-        return new AddModifyPrescriptionFragment();
+        return null;
     }
 
     @Override

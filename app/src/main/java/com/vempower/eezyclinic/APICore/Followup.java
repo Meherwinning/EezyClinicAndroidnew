@@ -53,8 +53,8 @@ public class Followup {
     @Expose
     private String doctorLogo;
 
-    //@SerializedName("branchId")
-    //@Expose
+    @SerializedName("branch_name")
+    @Expose
     private String branchName;
 
     @SerializedName("clinicName")

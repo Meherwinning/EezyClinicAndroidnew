@@ -1,9 +1,12 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -19,13 +22,17 @@ import com.vempower.eezyclinic.APICore.CasesheetPrescriptionDetail;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.mappers.UploadHealthRecordsMapper;
 import com.vempower.eezyclinic.mappers.UploadProfilePicMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -38,7 +45,12 @@ public class AddModifyPrescriptionFragment extends ImageProcessFragment {
     private MyTextViewRR date_of_document_tv;
     private SelectedDate selectedDOBObj;
     private LinearLayout horigental_linear;
+    private ArrayList<File> imagesList;
     private LayoutInflater inflater;
+    private AppCompatButton upload_document_bt;
+    private MyEditTextBlackCursorRR doctor_name_et, clinic_name_et, other_details_et, document_name_et;
+    private LinearLayout document_name_linear;
+    private boolean isReport;
 
     @Nullable
     @Override
@@ -51,18 +63,26 @@ public class AddModifyPrescriptionFragment extends ImageProcessFragment {
     }
 
     private void myInit() {
+        imagesList = new ArrayList<>();
         inflater = (LayoutInflater) MyApplication.getCurrentActivityContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        date_of_document_tv =getFragemtView().findViewById(R.id.date_of_document_tv);
+        date_of_document_tv = getFragemtView().findViewById(R.id.date_of_document_tv);
 
         date_of_document_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onDateOfBirthTextviewClick(mFragmentDOBCallback,selectedDOBObj,true);
+                onDateOfBirthTextviewClick(mFragmentDOBCallback, selectedDOBObj, true);
             }
         });
+        document_name_linear = getFragemtView().findViewById(R.id.document_name_linear);
+        upload_document_bt = getFragemtView().findViewById(R.id.upload_document_bt);
+        doctor_name_et = getFragemtView().findViewById(R.id.doctor_name_et);
+        clinic_name_et = getFragemtView().findViewById(R.id.clinic_name_et);
+        other_details_et = getFragemtView().findViewById(R.id.other_details_et);
 
-        horigental_linear  =getFragemtView().findViewById(R.id.horigental_linear);
+        document_name_et = getFragemtView().findViewById(R.id.document_name_et);
+
+        horigental_linear = getFragemtView().findViewById(R.id.horigental_linear);
 
         getFragemtView().findViewById(R.id.add_new_image_linear).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,9 +90,92 @@ public class AddModifyPrescriptionFragment extends ImageProcessFragment {
                 showImageSourceDialog(Constants.ImagePic.FROM_ADD_NEW_IMAGE);
             }
         });
+
+
+        upload_document_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadButtonClick();
+            }
+        });
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
+        if (isReport && document_name_linear != null) {
+            document_name_linear.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void uploadButtonClick() {
+        String doctorName = doctor_name_et.getText().toString();
+        if (TextUtils.isEmpty(doctorName)) {
+            Utils.showToastMsg(Utils.getStringFromResources(R.string.please_enter_doctor_name_lbl));
+            return;
+        }
+
+        String documentDate = null;//date_of_document_tv.getText().toString();
+        if (selectedDOBObj != null) {
+            SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.REQUEST_DATE_FORMAT);
+            documentDate = requestFormat.format(selectedDOBObj.getFirstDate().getTime());
+        } else {
+            Utils.showToastMsg(Utils.getStringFromResources(R.string.please_select_document_date_lbl));
+            return;
+        }
+        if (TextUtils.isEmpty(documentDate)) {
+            Utils.showToastMsg(Utils.getStringFromResources(R.string.please_select_document_date_lbl));
+            return;
+        }
+
+
+        String clinicName = clinic_name_et.getText().toString();
+        String otherDetails = other_details_et.getText().toString();
+        String documentName = document_name_et.getText().toString();
+
+        // int size = imagesList.size();
+
+       /* ArrayList<File> fileList, String documentType,String documentDate,
+                String doctorName, String clinicName, String otherDetails,
+                String documentName*/
+        UploadHealthRecordsMapper mapper = new UploadHealthRecordsMapper(imagesList, isReport ? "report" : "prescription", documentDate,
+                doctorName, clinicName, otherDetails,
+                documentName);
+
+        mapper.setOnUploadHealthRecordListener(new UploadHealthRecordsMapper.UploadHealthRecordListener() {
+            @Override
+            public void uploadHealthRecord(AbstractResponse abstractResponse, String errorMessage) {
+                if (!isValidResponse(abstractResponse, errorMessage)) {
+                    String msg = errorMessage;
+                    if (TextUtils.isEmpty(msg)) {
+                        msg = Utils.getStringFromResources(R.string.unable_to_upload_document_lbl);
+                    }
+                    showMyDialog("Alert", msg, new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+                            ((Activity) MyApplication.getCurrentActivityContext()).finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            uploadButtonClick();
+                        }
+                    });
+                    return;
+                }
+                Utils.showToastMsg(abstractResponse.getStatusMessage());
+                ((Activity) MyApplication.getCurrentActivityContext()).finish();
+
+            }
+        });
+
+
+    }
+
+    public void setUploadDocumentType(boolean isReport) {
+        this.isReport = isReport;
+    }
 
 
     SublimePickerFragment.Callback mFragmentDOBCallback = new SublimePickerFragment.Callback() {
@@ -96,21 +199,21 @@ public class AddModifyPrescriptionFragment extends ImageProcessFragment {
 
             //  String date = selectedCal.get(Calendar.YEAR) + "-" + (selectedCal.get(Calendar.MONTH) + 1) + "-" + selectedCal.get(Calendar.DAY_OF_MONTH);
             SimpleDateFormat format = new SimpleDateFormat(Constants.DISPLAY_DATE_FORMAT);
-            SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.REQUEST_DATE_FORMAT);
-           // profileDetails.dateofBirth=requestFormat.format(selectedCal.getTime());
+
+
             date_of_document_tv.setText(format.format(selectedCal.getTime()));
 
         }
     };
 
 
-    public void onDateOfBirthTextviewClick(final SublimePickerFragment.Callback callback,final SelectedDate selectedObj,boolean isDOB) {
+    public void onDateOfBirthTextviewClick(final SublimePickerFragment.Callback callback, final SelectedDate selectedObj, boolean isDOB) {
 
         SublimePickerFragment pickerFrag = new SublimePickerFragment();
         pickerFrag.setCallback(callback);
 
         // Options
-        Pair<Boolean, SublimeOptions> optionsPair = getOptions(selectedObj,isDOB);
+        Pair<Boolean, SublimeOptions> optionsPair = getOptions(selectedObj, isDOB);
 
         if (!optionsPair.first) { // If options are not valid
             // showToastMessage("No pickers activated");
@@ -129,9 +232,9 @@ public class AddModifyPrescriptionFragment extends ImageProcessFragment {
     }
 
 
-    Pair<Boolean, SublimeOptions> getOptions(SelectedDate selectedDate,boolean isDOB) {
+    Pair<Boolean, SublimeOptions> getOptions(SelectedDate selectedDate, boolean isDOB) {
         SublimeOptions options = new SublimeOptions();
-        if(isDOB) {
+        if (isDOB) {
             Calendar endCalendar = Calendar.getInstance();
             Calendar startCalendar = Calendar.getInstance();
             startCalendar.set(Calendar.YEAR, startCalendar.get(Calendar.YEAR) - 120);
@@ -181,10 +284,9 @@ public class AddModifyPrescriptionFragment extends ImageProcessFragment {
         return fragmentView;
     }
 
-    private void setNewImageViewToList(File file) {
+    private void setNewImageViewToList(final File file) {
 
-        if(file==null)
-        {
+        if (file == null) {
             return;
         }
 
@@ -192,97 +294,56 @@ public class AddModifyPrescriptionFragment extends ImageProcessFragment {
         final View convertView = inflater
                 .inflate(R.layout.add_image_to_linear_layout, null, false);
 
-        ImageView profile_iv6= convertView.findViewById(R.id.profile_iv6);
-        ImageView close_iv = convertView.findViewById(R.id. close_iv);
+        ImageView profile_iv6 = convertView.findViewById(R.id.profile_iv6);
+        ImageView close_iv = convertView.findViewById(R.id.close_iv);
 
-        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image,profile_iv6,file);
+        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, profile_iv6, file);
 
         close_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 horigental_linear.removeView(convertView);
+                imagesList.remove(file);
             }
         });
-           horigental_linear.addView(convertView);
+        horigental_linear.addView(convertView);
+        imagesList.add(file);
     }
 
     @Override
     protected void setImage(File file, int responseId) {
 
-        if(true)
-        {
+        if (true) {
 
             setNewImageViewToList(file);
             return;
         }
-        if(file!=null)
-        {
-            String keyName=null;
-            switch (responseId)
-            {
+        if (file != null) {
+            String keyName = null;
+            switch (responseId) {
                 case Constants.ImagePic.FROM_PROFILE:
-                    keyName="image_file";
+                    keyName = "image_file";
                     break;
                 case Constants.ImagePic.FROM_ID_FRONT:
-                    keyName="idcard";
+                    keyName = "idcard";
                     break;
                 case Constants.ImagePic.FROM_ID_BACK:
-                    keyName="idcard_image_back";
+                    keyName = "idcard_image_back";
                     break;
 
                 case Constants.ImagePic.FROM_INSURANCE_BACK:
-                    keyName="insurance_card_2";
+                    keyName = "insurance_card_2";
                     break;
                 case Constants.ImagePic.FROM_INSURANCE_FRONT:
-                    keyName="insurance_card_1";
+                    keyName = "insurance_card_1";
                     break;
             }
 
-            if(TextUtils.isEmpty(keyName))
-            {
+            if (TextUtils.isEmpty(keyName)) {
                 Utils.showToastMsg("Invalid image source");
                 return;
             }
 
-/*
-            UploadProfilePicMapper picMapper= new UploadProfilePicMapper(file,keyName);
-            picMapper.setOnUpdateProfilePicListener(new UploadProfilePicMapper.UpdateProfilePicListener() {
-                @Override
-                public void uploadProfilePic(AbstractResponse response, String errorMessage) {
-                    if(!isValidResponse(response,errorMessage))
-                    {
-                        return;
-                    }
-                    Utils.showToastMsg(response.getStatusMessage());
-                    switch (responseId)
-                    {
-                        case Constants.ImagePic.FROM_PROFILE:
-                            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, file);
-
-                            break;
-                        case Constants.ImagePic.FROM_ID_FRONT:
-                            MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, id_front_iv, file);
-
-                            break;
-                        case Constants.ImagePic.FROM_ID_BACK:
-                            MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, id_back_iv, file);
-
-                            break;
-
-
-                        case Constants.ImagePic.FROM_INSURANCE_FRONT:
-                            MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_front_iv, file);
-
-                            break;
-                        case Constants.ImagePic.FROM_INSURANCE_BACK:
-                            MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_back_iv, file);
-
-                            break;
-                    }
-
-                }
-
-            });*/
         }
 
     }

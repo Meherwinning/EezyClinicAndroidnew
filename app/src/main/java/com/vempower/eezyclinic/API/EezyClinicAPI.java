@@ -252,18 +252,20 @@ public interface EezyClinicAPI {
 //    /
     //   (@Part("image_file\"; filename=\"patient_pic.png\" ") RequestBody profile_pic, @Part("access_key") RequestBody body);
 
+
     @Multipart
     @POST(data + "patient/savepatientprofileimage")
     Call<AbstractResponse> uploadProfileImage1
-    (@PartMap Map<String, RequestBody> params, @Part("access_key") RequestBody body);
+            (@PartMap Map<String, RequestBody> params);
 
 
-    //https://github.com/square/retrofit/issues/1063#issuecomment-145920568
+
+    /* //https://github.com/square/retrofit/issues/1063#issuecomment-145920568
     @Multipart
     @POST ("/api/Events/editevent")
     Call<AbstractResponse> editEvent (@PartMap Map<String, RequestBody> params);
 
-
+*/
     //
     //http://202.63.103.194:8003/api/patient/casesheetdetails
     @POST(data + "patient/casesheetdetails")
@@ -274,4 +276,19 @@ public interface EezyClinicAPI {
     Call<UpcomingFollowupsAPI> followupslist(@Body RequestBody postBody);
 
 
+    //http://202.63.103.194:8003/api/patient/uploadhealthrecords
+  /*  @POST(data + "patient/uploadhealthrecords")
+    Call<AbstractResponse> uploadHealthRecords(@Body RequestBody postBody);
+
+*/
+    @Multipart
+    @POST(data + "patient/uploadhealthrecords")
+    Call<AbstractResponse> uploadHealthRecords(@PartMap Map<String, RequestBody> params);
+
+  /*  @Multipart
+    @POST(data + "patient/savepatientprofileimage")
+    Call<AbstractResponse> uploadProfileImage2
+            (@PartMap Map<String, RequestBody> params, @Part("access_key") RequestBody body);
+
+*/
 }

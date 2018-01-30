@@ -230,7 +230,7 @@
                 android:layout_marginBottom="@dimen/_2dp"
                 android:background="@null"
                 android:gravity="left|center_vertical"
-                android:hint="Doctor Name"
+                android:hint="Doctor Name*"
                 android:imeOptions="actionUnspecified"
                 android:inputType="text"
                 android:maxLength="100"
@@ -309,6 +309,59 @@
             android:background="@color/black" />
 
     </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/document_name_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_15dp"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="@dimen/_50dp"
+                android:background="@drawable/background_shape_idle"
+
+                android:textColorHint="#8a000000"
+                app:errorEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    android:id="@+id/document_name_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/_2dp"
+                    android:background="@null"
+                    android:gravity="left|center_vertical"
+                    android:hint="Document Name"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="text"
+                    android:maxLength="100"
+                    android:maxLines="1"
+                    android:padding="@dimen/_2dp"
+                    android:singleLine="true"
+
+                    android:textColorHint="#8a000000"
+                    android:textSize="@dimen/_14dp"
+
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"
+                    android:textColor="#212121"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="@dimen/_12dp"
+                android:alpha="0.3"
+                android:background="@color/black" />
+
+        </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -327,7 +380,7 @@
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
             <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
-                android:id="@+id/emergency_contact_name_et"
+                android:id="@+id/other_details_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/_2dp"
@@ -371,7 +424,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="left|center_vertical"
-            android:hint="Date of Document"
+            android:hint="Date of Document*"
             android:textColor="#de000000"
             android:textColorHint="#8a000000"
             android:textSize="@dimen/_11dp" />
