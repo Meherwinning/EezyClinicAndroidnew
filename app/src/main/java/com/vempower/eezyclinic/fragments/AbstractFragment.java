@@ -316,6 +316,8 @@ public abstract class AbstractFragment extends Fragment {
         DialogFragment fragment = DialogFragment.newInstance(builder);
         fragment.setCancelable(false);
         fragment.show(getChildFragmentManager(), null);
+        fragment.dismissAllowingStateLoss();
+
     }
 
 

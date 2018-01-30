@@ -15,6 +15,7 @@ import com.vempower.eezyclinic.APIResponce.DoctorClinicNameListAPI;
 import com.vempower.eezyclinic.APIResponce.DoctorProfileAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordOTPAPI;
+import com.vempower.eezyclinic.APIResponce.GetMyNotesAPI;
 import com.vempower.eezyclinic.APIResponce.GetPatientProfileAPI;
 import com.vempower.eezyclinic.APIResponce.HelathReportsListAPI;
 import com.vempower.eezyclinic.APIResponce.IdCardTypeAPI;
@@ -291,4 +292,15 @@ public interface EezyClinicAPI {
             (@PartMap Map<String, RequestBody> params, @Part("access_key") RequestBody body);
 
 */
+
+
+  //
+  //http://202.63.103.194:8003/api/patient/mynotes
+  @POST(data + "patient/mynotes")
+  Call<GetMyNotesAPI> getMyNotes(@Body RequestBody postBody);
+
+  //http://202.63.103.194:8003/api/patient/mynotessave
+  @POST(data + "patient/mynotessave")
+  Call<AbstractResponse> saveMyNotes(@Body RequestBody postBody);
+
 }

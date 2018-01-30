@@ -174,6 +174,8 @@
     <string name="unable_to_upload_document_lbl">Unable to upload document</string>
     <string name="title_activity_add_prescription">Add Prescription</string>
     <string name="title_activity_add_report_lbl">Add Report</string>
+    <string name="unable_to_get_my_notes_lbl">Unable to get My notes</string>
+    <string name="unable_to_save_my_notes_lbl">Unable to save my notes,Please try again</string>
 
 
 </resources>
