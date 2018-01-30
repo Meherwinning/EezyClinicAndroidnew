@@ -23,6 +23,7 @@ public interface ListenerKey {
         String IMAGE_DRAWABLE_KEY="image_drawable_key";
 
         String PDF_DETAILS_OBJECT_KEY = "pdf_details_object_key";
+        String FOLLOWUP_APPOINTMENT_OBJECT_KEY="followup_appointment_object_key";
     }
 
 }

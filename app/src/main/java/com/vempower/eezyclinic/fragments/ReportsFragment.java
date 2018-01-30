@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,12 +14,14 @@ import com.vempower.eezyclinic.APICore.PrescriptionAPIData;
 import com.vempower.eezyclinic.APIResponce.HelathReportsListAPI;
 import com.vempower.eezyclinic.APIResponce.PrescriptionsListAPI;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.AddModifyPrescriptionActivity;
 import com.vempower.eezyclinic.adapters.PrescriptionListAdapter;
 import com.vempower.eezyclinic.adapters.ReportsListAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.PrescriptionsListMapper;
 import com.vempower.eezyclinic.mappers.ReportsListMapper;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
@@ -63,6 +66,18 @@ public class ReportsFragment extends  SwipedRecyclerViewFragment  {
         // match_found_tv.setText("0");
         adapter = null;
         reportsDataList= new ArrayList<>();
+
+        fragmentView.findViewById(R.id.add_new_bt).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MyApplication.getCurrentActivityContext(),AddModifyPrescriptionActivity.class);
+                intent.putExtra(Constants.Pref.IS_FROM_ADD_PRESCRIPTION_KEY,false);
+                startActivity(intent);
+
+            }
+        });
+
+
 
     }
 

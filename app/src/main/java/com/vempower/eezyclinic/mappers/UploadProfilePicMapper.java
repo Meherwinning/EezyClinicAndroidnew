@@ -90,12 +90,14 @@ public class UploadProfilePicMapper extends AbstractMapper implements Callback<A
         }
 
         Map<String, RequestBody> map = new HashMap<>();
-        RequestBody mybody = RequestBody.create(MediaType.parse("text/plain"), access_key);
+        RequestBody accessKeyBody = RequestBody.create(MediaType.parse("text/plain"), access_key);
 
+        map.put("access_key",accessKeyBody);
         RequestBody imageBody = null;
         if (profilePicFile != null) {
             imageBody = RequestBody.create(MediaType.parse("image/jpeg"), profilePicFile);
             map.put(keyName+"\"; filename=\"patient_pic.png\" ", imageBody);
+
         }
         if (imageBody == null) {
             MyApplication.hideTransaprentDialog();
@@ -109,7 +111,7 @@ public class UploadProfilePicMapper extends AbstractMapper implements Callback<A
         //  Call<UserAPI> apiResponseCall = PreferencesAPI.updateUserProfile(getJsonObject(user).toString());
 
        // Call<AbstractResponse> apiResponseCall = stashDealAPI.uploadProfileImage(imageBody, mybody);
-        Call<AbstractResponse> apiResponseCall = stashDealAPI.uploadProfileImage1(map, mybody);
+        Call<AbstractResponse> apiResponseCall = stashDealAPI.uploadProfileImage1(map);
         apiResponseCall.enqueue(this);
     }
 

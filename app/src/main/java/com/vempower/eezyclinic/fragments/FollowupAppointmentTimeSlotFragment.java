@@ -8,24 +8,17 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.vempower.eezyclinic.APICore.Appointment;
-import com.vempower.eezyclinic.APICore.ReScheduleAppointmentRequestDetails;
+import com.vempower.eezyclinic.APICore.Followup;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
-import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.APIResponce.AppointmentTimeSlotsAPI;
-import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.AppointmentBookReviewActivity;
-import com.vempower.eezyclinic.activities.HomeActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
-import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.mappers.DoctorAppointmentTimeSlotsListMapper;
-import com.vempower.eezyclinic.mappers.ReScheduleAppointmentMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRR;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -36,13 +29,10 @@ import java.util.List;
  * Created by challa on 23/12/17.
  */
 
-public class ReScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewFragment {
-    String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd HH:mm:ss";
-    private ReScheduleAppointmentRequestDetails reScheduleDetails;
+public class FollowupAppointmentTimeSlotFragment extends AbstractCalenderViewFragment {
 
-  //  private boolean isRefresh;
-
-    private String disabledDateTime;
+    //private SearchResultDoctorListData searchResultDoctorListData;
+    private Followup data;
 
     /*
         {
@@ -55,9 +45,9 @@ public class ReScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewF
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if(reScheduleDetails!=null)
+        if(data!=null)
         {
-            Date date = Utils.changeStringToDateFormat(reScheduleDetails.appointmentDateTime, SERVER_DATE_FORMAT_NEW);
+            Date date = Utils.changeStringToDateFormat(data.getUpcomingVist(), SERVER_DATE_FORMAT_NEW);
 
             Calendar calendar= Calendar.getInstance();
             if(date!=null)
@@ -70,22 +60,42 @@ public class ReScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewF
         {
             setCurrentDate();
         }
+
     }
 
     protected  void dateSelectFromCalender(final String dateStr)
     {
-        if(reScheduleDetails==null)
+        if(data==null)
         {
-            Utils.showToastMessage("Invalid doctor object");
+            Utils.showToastMessage("Invalid details");
+            return;
+        }
+        int docId=-1;
+        int branchId=-1;
+
+        try
+        {
+            docId= Integer.parseInt(data.getDoctorId());
+            branchId= Integer.parseInt(data.getBranchId());
+        }catch (Exception e)
+        {
+            Utils.showToastMessage("Invalid doctor id and branch id----1");
             return;
         }
 
+        if(docId<=0 || branchId<=0)
+        {
+            Utils.showToastMessage("Invalid doctor id and branch id-----2");
+            return;
 
-        callTimeSlotMapper(reScheduleDetails.doctor_id,reScheduleDetails.branch_id,dateStr);
+        }
+
+        callTimeSlotMapper(docId,branchId,dateStr);
     }
 
     @Override
     protected void clickOnConfirmButton(String confirmDateTime) {
+
         //2017-12-28 02:15 PM
         //15-12-2017 05:00 PM
 
@@ -112,45 +122,60 @@ public class ReScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewF
         {
             //appointment_details_tv.setText("-");
             Utils.showToastMessage("Invalid date format");
-            return;
+           return;
 
         }
+
+       final SearchResultDoctorListData  searchResultDoctorListData= new SearchResultDoctorListData();
+
+
+        searchResultDoctorListData.setBranchName(data.getBranchName());
+        searchResultDoctorListData.setDoctorLogo(data.getDoctorLogo());
+        searchResultDoctorListData.setClinicName(data.getClinicName());
+        searchResultDoctorListData.setAddress(data.getAddress());
+
+
+        searchResultDoctorListData.setDoctorName(data.getDoctorName());
+        searchResultDoctorListData.setSpecalities(data.getSpecalities());
+
+        searchResultDoctorListData.setDocId(data.getDoctorId());
+        searchResultDoctorListData.setBranchId(data.getBranchId());
 
 
        // Utils.showToastMessage(confirmDateTime);
         if(!TextUtils.isEmpty(confirmDateTime))
         {
-            reScheduleDetails.setNew_appointmenttime(confirmDateTime);
 
 
-            //Utils.showToastMsg(reScheduleDetails.toString());
+            Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),AppointmentBookReviewActivity.class);
+                           /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
 
-
-            ReScheduleAppointmentMapper mapper= new ReScheduleAppointmentMapper(reScheduleDetails);
-            mapper.setOnAppointmentBookingListener(new ReScheduleAppointmentMapper.AppointmentBookingListener() {
+            intent.putExtra(Constants.Pref.SELECTED_SCHDULE_DATE_TIME_KEY,confirmDateTime);
+            intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
                 @Override
-                public void getAppointmentBookingAPI(AbstractResponse response, String errorMessage) {
-                    if(!isValidResponse(response,errorMessage,true,false))
-                    {
-                        return;
-                    }
-                   showMyDialog("Success", response.getStatusMessage(), "Ok", new ApiErrorDialogInterface() {
-                       @Override
-                       public void onCloseClick() {
+                protected IntentObjectListener getMyObject() {
+                    return new IntentObjectListener(){
 
-                       }
-
-                       @Override
-                       public void retryClick() {
-                           Intent  intent= new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class);
-                           //intent.setClass(this,HomeActivity.class);
-                           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                           startActivity(intent);
-                       }
-                   });
+                        @Override
+                        public Object getObject() {
+                            return searchResultDoctorListData;
+                        }
+                    };
                 }
-            });
+            }));
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
+            MyApplication.getCurrentActivityContext().startActivity(intent);
+
+
+           /* {
+                AbstractMenuActivity menuActivity = ((AbstractMenuActivity) MyApplication.getCurrentActivityContext());
+
+                Intent intent = menuActivity.getIntent();
+
+                intent.setClass(MyApplication.getCurrentActivityContext(), AppointmentBookReviewActivity.class);
+                menuActivity.startActivity(intent);
+            }*/
 
         }
 
@@ -186,33 +211,7 @@ public class ReScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewF
         });
     }
 
-    public String getDiabledDateAndtime() {
-        return disabledDateTime;
-    }
-
-
-    public void setReScheduleDetails(ReScheduleAppointmentRequestDetails reScheduleDetails,boolean isFromFollowups) {
-        this.reScheduleDetails = reScheduleDetails;
-
-        String DISPLAY_DATE_TIME="yyyy-MM-dd h:mm a";//15-12-2017 05:00 PM     2017-12-26
-       // String DISPLAY_TIME="h:mm a 'on' EEEE";
-        String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd HH:mm:ss";//"2017-12-26 16:55:00"
-        SimpleDateFormat DISPLAY_DATE_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_DATE_TIME);
-       // SimpleDateFormat DISPLAY_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_TIME);
-        disabledDateTime = null;
-        if(!isFromFollowups) {
-            try {
-                Date date = Utils.changeStringToDateFormat(reScheduleDetails.appointmentDateTime, SERVER_DATE_FORMAT_NEW);
-                disabledDateTime = DISPLAY_DATE_TIME_FORMATTER.format(date);
-                //String timeStr= DISPLAY_TIME_FORMATTER.format(date);
-                //With Dr. First name Middle name Last Name at 07:00 PM on Tuesday, 26-12-2017
-                // appointment_details_tv.setText("With "+ data.getDoctorName() +" at "+ timeStr+", "+ dateStr+"\nat "+data.getAddress());
-            } catch (Exception e) {
-                //appointment_details_tv.setText("-");
-                disabledDateTime = null;
-
-            }
-        }
-
+    public void setSearchResultDoctorListData(Followup data) {
+        this.data = data;
     }
 }

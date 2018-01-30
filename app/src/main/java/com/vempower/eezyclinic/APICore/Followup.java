@@ -48,6 +48,24 @@ public class Followup {
     @Expose
     private String branchId;
 
+
+    @SerializedName("doctorLogo")
+    @Expose
+    private String doctorLogo;
+
+    @SerializedName("branch_name")
+    @Expose
+    private String branchName;
+
+    @SerializedName("clinicName")
+    @Expose
+    private String clinicName;
+
+    @SerializedName("address")
+    @Expose
+    private String address;
+
+
     public String getId() {
         return id;
     }
@@ -150,5 +168,30 @@ public class Followup {
 
     public void setBranchId(String branchId) {
         this.branchId = branchId;
+    }
+
+
+
+
+
+    public String getDoctorLogo() {
+        return doctorLogo;
+    }
+
+
+    public String getBranchName() {
+        if(branchName==null)
+        {
+           return  getClinicName();
+        }
+        return branchName;
+    }
+
+    public String getClinicName() {
+        return clinicName;
+    }
+
+    public String getAddress() {
+        return address;
     }
 }

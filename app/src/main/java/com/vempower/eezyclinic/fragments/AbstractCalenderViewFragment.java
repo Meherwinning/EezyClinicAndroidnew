@@ -228,6 +228,11 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
 
     protected void setCalderDay(Calendar calendar)
     {
+        if((compareToDay(calendar.getTime(), Calendar.getInstance().getTime()))<0)
+        {
+            calendar= Calendar.getInstance();
+        }
+
         today_ctv.setChecked(false);
         widget.setSelectedDate(calendar);
         widget.setCurrentDate(calendar);

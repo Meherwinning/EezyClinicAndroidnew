@@ -169,6 +169,11 @@
     <string name="title_activity_notifications">Notifications</string>
     <string name="title_activity_family_menbers">Family Members</string>
     <string name="book_an_appointment_lbl">Book An Appointment</string>
+    <string name="please_select_document_date_lbl">Please select document date</string>
+    <string name="please_enter_doctor_name_lbl">Please enter Doctor name</string>
+    <string name="unable_to_upload_document_lbl">Unable to upload document</string>
+    <string name="title_activity_add_prescription">Add Prescription</string>
+    <string name="title_activity_add_report_lbl">Add Report</string>
 
 
 </resources>
