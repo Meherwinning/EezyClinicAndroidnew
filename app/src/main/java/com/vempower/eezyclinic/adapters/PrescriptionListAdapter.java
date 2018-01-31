@@ -17,6 +17,7 @@ import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRM;
 import com.vempower.eezyclinic.views.MyTextViewRR;
@@ -134,7 +135,7 @@ import java.util.List;
 
 
                         Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),PDFViewActivity.class);
-                           ((Activity) MyApplication.getCurrentActivityContext()).getIntent();
+                           //((Activity) MyApplication.getCurrentActivityContext()).getIntent();
                         intent.putExtra(ListenerKey.ObjectKey.PDF_DETAILS_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                             @Override
                             protected IntentObjectListener getMyObject() {
@@ -147,6 +148,8 @@ import java.util.List;
                                 };
                             }
                         }));
+                        intent.putExtra(Constants.Pref.IS_FROM_UPDATE_PRESCRIPTION_KEY,true);
+
                         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                         MyApplication.getCurrentActivityContext().startActivity(intent);

@@ -144,6 +144,9 @@ public class HomeActivity extends AbstractMenuActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        MyApplication.showTransparentDialog();
+        bottomItemChange(PRESENT_TAB);
+        MyApplication.hideTransaprentDialog();
 
         /*if(homeFragment!=null)
         {

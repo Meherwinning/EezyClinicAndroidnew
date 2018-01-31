@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorSwitchBackground"
-    tools:context=".activities.HealthRecordsActivity">
+    >
 
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdfView"
         android:background="@color/white"
         android:layout_above="@+id/bottom_layout"
         android:layout_width="match_parent"
-        android:layout_margin="@dimen/_3dp"
+        android:layout_margin="@dimen/_8dp"
         android:layout_height="match_parent"/>
     <include
         android:id="@+id/bottom_layout"

@@ -39,7 +39,7 @@ import java.util.Calendar;
  * Created by satish on 6/12/17.
  */
 
-public class AddModifyPrescriptionFragment extends ImageProcessFragment {
+public class AddPrescriptionReportFragment extends ImageProcessFragment {
 
     private View fragmentView;
     private MyTextViewRR date_of_document_tv;

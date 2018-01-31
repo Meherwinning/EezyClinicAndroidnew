@@ -4,6 +4,8 @@ package com.vempower.eezyclinic.APICore;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class PrescriptionAPIData extends PDFDetails {
 //HARVESTCB
     @SerializedName("id")
@@ -23,7 +25,7 @@ public class PrescriptionAPIData extends PDFDetails {
     private PrescriptionDocumentFile documentFile;
     @SerializedName("other_images")
     @Expose
-    private Object otherImages;
+    private List<OtherImage> otherImages = null;;
     @SerializedName("documentDate")
     @Expose
     private String documentDate;
@@ -32,7 +34,7 @@ public class PrescriptionAPIData extends PDFDetails {
     private String otherDetails;
     @SerializedName("documentName")
     @Expose
-    private Object documentName;
+    private String documentName;
 
     @SerializedName("status")
     @Expose
@@ -82,11 +84,11 @@ public class PrescriptionAPIData extends PDFDetails {
         this.documentFile = documentFile;
     }
 
-    public Object getOtherImages() {
+    public List<OtherImage> getOtherImages() {
         return otherImages;
     }
 
-    public void setOtherImages(Object otherImages) {
+    public void setOtherImages(List<OtherImage> otherImages) {
         this.otherImages = otherImages;
     }
 
@@ -106,11 +108,11 @@ public class PrescriptionAPIData extends PDFDetails {
         this.otherDetails = otherDetails;
     }
 
-    public Object getDocumentName() {
+    public String getDocumentName() {
         return documentName;
     }
 
-    public void setDocumentName(Object documentName) {
+    public void setDocumentName(String documentName) {
         this.documentName = documentName;
     }
 

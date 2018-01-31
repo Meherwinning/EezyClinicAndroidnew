@@ -176,6 +176,12 @@
     <string name="title_activity_add_report_lbl">Add Report</string>
     <string name="unable_to_get_my_notes_lbl">Unable to get My notes</string>
     <string name="unable_to_save_my_notes_lbl">Unable to save my notes,Please try again</string>
+    <string name="title_activity_update_report_lbl">Update Report</string>
+    <string name="title_activity_update_prescription">Update Prescription</string>
+    <string name="invalid_document_details_lbl">Invalid document details, Please try again</string>
+    <string name="unable_to_update_document_lbl">Unable to update document,Please try again.</string>
+    <string name="invalid_pdf_details_lbl">Invalid PDF details</string>
+    <string name="are_you_sure_to_delete_record_lbl">Are you sure to delete this record?</string>
 
 
 </resources>

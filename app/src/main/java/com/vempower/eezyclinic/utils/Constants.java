@@ -37,7 +37,7 @@ public interface Constants {
     int RESULT_PAGE_ITEMS_LIMIT = 1000;
     int RESULT_PAGE_ITEMS_LIMIT1 = Integer.MAX_VALUE;
     String RECORD_FOLDER_NAME=Utils.getStringFromResources(R.string.directory_name);
-    Object APP_DIRECTORY_NAME = "Eezyclinic";
+    String APP_DIRECTORY_NAME = "Eezyclinic";
 
     //http://cfw.samplespace.com/wp-json/cfw/v1/customer
 
@@ -140,6 +140,7 @@ public interface Constants {
         String CASESHEET_APPOINTMENT_ID_KEY = "casesheet_appointment_id_key";
         String IS_FROM_FOLLOWUPS = "is_from_followups";
         String IS_FROM_ADD_PRESCRIPTION_KEY ="is_from_add_prescription_key" ;
+        String IS_FROM_UPDATE_PRESCRIPTION_KEY ="is_from_update_prescription_key" ;
     }
 
     interface ActivityResult

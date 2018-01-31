@@ -6,12 +6,11 @@ import android.widget.TextView;
 
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
-import com.vempower.eezyclinic.fragments.AddModifyPrescriptionFragment;
-import com.vempower.eezyclinic.fragments.NewHomeFragment;
+import com.vempower.eezyclinic.fragments.AddPrescriptionReportFragment;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 
-public class AddModifyPrescriptionActivity extends AbstractMenuActivity {
+public class AddPrescriptionReportActivity extends AbstractMenuActivity {
 
     private TextView titleNameTv;
     private  String title;
@@ -29,7 +28,7 @@ public class AddModifyPrescriptionActivity extends AbstractMenuActivity {
             isFromPrescription=true;
         }
 
-        AddModifyPrescriptionFragment fragment= new AddModifyPrescriptionFragment();
+        AddPrescriptionReportFragment fragment= new AddPrescriptionReportFragment();
         fragment.setUploadDocumentType(!isFromPrescription);
 
         setFragment(fragment);

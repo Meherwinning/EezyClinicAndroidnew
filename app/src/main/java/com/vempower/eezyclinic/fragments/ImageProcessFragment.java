@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -73,7 +74,17 @@ public abstract class ImageProcessFragment extends AbstractFragment {
             callCamera1();
         }else
         {
-            ActivityCompat.requestPermissions((EditProfileActivity)MyApplication.getCurrentActivityContext(), new String[]{Manifest.permission.WRITE_SETTINGS,Manifest.permission.CAMERA}, CODE_WRITE_SETTINGS_PERMISSION);
+            Context context=MyApplication.getCurrentActivityContext();
+            if(context instanceof EditProfileActivity)
+            {
+                EditProfileActivity editProfileActivity= (EditProfileActivity) context;
+                ActivityCompat.requestPermissions(editProfileActivity, new String[]{Manifest.permission.WRITE_SETTINGS,Manifest.permission.CAMERA}, CODE_WRITE_SETTINGS_PERMISSION);
+
+            }else
+            {
+                ActivityCompat.requestPermissions((AbstractActivity)MyApplication.getCurrentActivityContext(), new String[]{Manifest.permission.WRITE_SETTINGS,Manifest.permission.CAMERA}, CODE_WRITE_SETTINGS_PERMISSION);
+
+            }
 
         }
         //checkMyPermissions(true);

@@ -303,4 +303,14 @@ public interface EezyClinicAPI {
   @POST(data + "patient/mynotessave")
   Call<AbstractResponse> saveMyNotes(@Body RequestBody postBody);
 
+
+  //http://202.63.103.194:8003/api/example/updatehealthrecordfile
+  @Multipart
+  @POST(data + "patient/updatehealthrecordfile")
+  Call<AbstractResponse> updatehealthrecordfile(@PartMap Map<String, RequestBody> params);
+
+  //http://202.63.103.194:8003/api/patient/removehealthreportfile
+  @POST(data + "patient/removehealthreportfile")
+  Call<AbstractResponse> removeHealthReportFile(@Body RequestBody postBody);
+
 }

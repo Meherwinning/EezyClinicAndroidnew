@@ -156,6 +156,7 @@ dependencies {
     }
             //{/*exclude group: 'com.google.android.gms' */ }
    // implementation project(':mobileprintsdk_new')
+    compile project(path: ':pinview')
 }
 repositories {
     mavenCentral()

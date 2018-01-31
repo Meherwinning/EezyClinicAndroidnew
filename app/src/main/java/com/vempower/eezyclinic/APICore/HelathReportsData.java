@@ -4,6 +4,8 @@ package com.vempower.eezyclinic.APICore;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class HelathReportsData extends PDFDetails {
 
     @SerializedName("id")
@@ -23,7 +25,7 @@ public class HelathReportsData extends PDFDetails {
     private HelathReportDocumentFile documentFile;
     @SerializedName("other_images")
     @Expose
-    private Object otherImages;
+    private List<OtherImage> otherImages = null;
     @SerializedName("documentDate")
     @Expose
     private String documentDate;
@@ -83,11 +85,11 @@ public class HelathReportsData extends PDFDetails {
         this.documentFile = documentFile;
     }
 
-    public Object getOtherImages() {
+    public List<OtherImage> getOtherImages() {
         return otherImages;
     }
 
-    public void setOtherImages(Object otherImages) {
+    public void setOtherImages(List<OtherImage> otherImages) {
         this.otherImages = otherImages;
     }
 

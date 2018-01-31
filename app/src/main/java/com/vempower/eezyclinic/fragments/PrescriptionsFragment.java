@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,15 +12,13 @@ import android.view.ViewGroup;
 import com.vempower.eezyclinic.APICore.PrescriptionAPIData;
 import com.vempower.eezyclinic.APIResponce.PrescriptionsListAPI;
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.activities.AddModifyPrescriptionActivity;
-import com.vempower.eezyclinic.adapters.DoctorsListAdapter;
+import com.vempower.eezyclinic.activities.AddPrescriptionReportActivity;
 import com.vempower.eezyclinic.adapters.PrescriptionListAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.PrescriptionsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRR;
 import com.vempower.stashdealcustomer.activities.AbstractActivity;
 
 import java.util.ArrayList;
@@ -69,7 +66,7 @@ public class PrescriptionsFragment extends  SwipedRecyclerViewFragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(MyApplication.getCurrentActivityContext(),AddModifyPrescriptionActivity.class);
+                Intent intent=new Intent(MyApplication.getCurrentActivityContext(),AddPrescriptionReportActivity.class);
                 intent.putExtra(Constants.Pref.IS_FROM_ADD_PRESCRIPTION_KEY,true);
                 startActivity(intent);
             }

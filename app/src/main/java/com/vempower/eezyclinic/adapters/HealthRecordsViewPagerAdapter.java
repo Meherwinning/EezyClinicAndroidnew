@@ -22,7 +22,6 @@ public class HealthRecordsViewPagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-
                 return PrescriptionsFragment.newInstance();
             case 1:
                 return ReportsFragment.newInstance();

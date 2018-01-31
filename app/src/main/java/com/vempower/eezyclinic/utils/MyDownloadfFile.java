@@ -80,7 +80,7 @@ public class MyDownloadfFile {
             File SDCardRoot1 = Environment.getExternalStorageDirectory();
 
             //Create directory
-            File myDirectory= new File(SDCardRoot1+"/Eezyclini");
+            File myDirectory= new File(SDCardRoot1+"/Eezyclinic");
             if(!myDirectory.exists())
             {
                 if(!myDirectory.mkdir())

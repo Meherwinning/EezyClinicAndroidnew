@@ -1,30 +1,29 @@
 package com.vempower.eezyclinic.activities;
 
-import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.PDFDetails;
-import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
+import com.vempower.eezyclinic.APICore.PrescriptionAPIData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
-import com.vempower.eezyclinic.fragments.NewHomeFragment;
-import com.vempower.eezyclinic.fragments.PDFViewFragment;
+import com.vempower.eezyclinic.fragments.AddPrescriptionReportFragment;
 import com.vempower.eezyclinic.fragments.UpdatePrescriptionReportFragment;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 
-public class PDFViewActivity extends AbstractMenuActivity {
+public class UpdatePrescriptionReportActivity extends AbstractMenuActivity {
 
-    private String titleNameStr="";
-    private TextView titleName;
-    public static final int MEDICAL_RECORDS_REFRESH_REQUEST_CODE=3452;
+    private TextView titleNameTv;
+    private  String title;
+    private boolean isFromPrescription;
 
     @Override
     protected void setMyContectntView() {
         super.setMyContectntView();
-        titleNameStr="";
+
         PDFDetails data=null;
         Object obj = getObjectFromIntent(getIntent(), ListenerKey.ObjectKey.PDF_DETAILS_OBJECT_KEY);
 
@@ -33,47 +32,71 @@ public class PDFViewActivity extends AbstractMenuActivity {
 
             // showToastMessage("Data :" + data);
         } else {
-            showMyAlertDialog("Alert", "Invalid PDF details .Please try again", "Close", true);
+            showMyAlertDialog("Alert", "Invalid details .Please try again", "Close", true);
             return;
         }
 
         if (data == null) {
-            showMyAlertDialog("Alert", "Invalid PDF details.Please try again", "Close", true);
+            showMyAlertDialog("Alert", "Invalid details.Please try again", "Close", true);
             return;
 
         }
 
-        PDFViewFragment   fragment= new PDFViewFragment();
+
+
+        title=Utils.getStringFromResources(R.string.title_activity_update_report_lbl );
+
+        if(data instanceof PrescriptionAPIData)
+        {
+            title=Utils.getStringFromResources(R.string.title_activity_update_prescription);
+            isFromPrescription=true;
+        }
+
+        UpdatePrescriptionReportFragment fragment= new UpdatePrescriptionReportFragment();
+        fragment.setUploadDocumentType(!isFromPrescription);
         fragment.setPDFDetails(data);
-        fragment.setOnSuccuessUpdateListener(new PDFViewFragment.SuccussUpdateListener() {
+        fragment.setOnSuccuessUpdateListener(new UpdatePrescriptionReportFragment.SuccussUpdateListener() {
             @Override
             public void status(boolean isSuccess) {
 
                 if(isSuccess)
                 {
-                    callMedicalRecordds();
+                    setResult(RESULT_OK);
                 }
                 finish();
             }
         });
-        // titleNameStr= data.getDocumentType();
-
-        titleNameStr= Utils.getCapLeterString(data.getDocumentType());
-
-       invalidateOptionsMenu();
-
 
         setFragment(fragment);
 
+
+        //Utils.getStringFromResources(R.string.title_activity_appointments)
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        setResult(RESULT_OK);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(titleNameTv!=null)
+        {
+            titleNameTv.setText(title);
+        }
+    }
+
 
     public void setActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-         titleName = toolbar.findViewById(R.id.title_logo_tv);
-        //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
-        titleName.setText(titleNameStr);
+        titleNameTv = toolbar.findViewById(R.id.title_logo_tv);
+        //((Toolbar) findViewById(R.
+        // id.toolbar)).setTitle(deal.getEntityName());
+        titleNameTv.setText("-");
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,21 +114,6 @@ public class PDFViewActivity extends AbstractMenuActivity {
         // mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.app_red)));
 
         //super.setActionBar(false);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(resultCode==RESULT_OK)
-        {
-            if(requestCode==MEDICAL_RECORDS_REFRESH_REQUEST_CODE)
-            {
-                callMedicalRecordds();
-                finish();
-            }
-        }
-
     }
 
     @Override
