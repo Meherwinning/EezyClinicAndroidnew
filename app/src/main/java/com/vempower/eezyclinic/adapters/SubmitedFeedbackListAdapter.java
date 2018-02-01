@@ -10,10 +10,12 @@ import com.vempower.eezyclinic.APICore.PendingFeedbackData;
 import com.vempower.eezyclinic.APICore.SubmitedFeedbackListData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRM;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,7 +43,7 @@ import java.util.List;
 
 
             final View convertView = inflater
-                    .inflate(R.layout.prescription_single_item, parent, false);
+                    .inflate(R.layout.feedback_view_single_item, parent, false);
             return new PrescriptionHolder(convertView);
         }
 
@@ -79,18 +81,18 @@ import java.util.List;
             //19 August 2017, Saturday 01.08 PM
             // String DISPLAY_DATE="MMM d, yyyy";
             //  String DISPLAY_TIME="h:mm a 'on' EEEE";
-            String DISPLAY_DATE_TIME="MMMM d, yyyy";
-            String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd";//"2017-12-26 16:55:00"
+            String DISPLAY_DATE_TIME="d MMMM yyyy EEEE h:mm a";
+            String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd HH:mm:ss";//"2017-12-26 16:55:00"
             SimpleDateFormat DISPLAY_DATE_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_DATE_TIME);
             // SimpleDateFormat DISPLAY_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_TIME);
 
             private MyTextViewRM doctor_name_tv;
-            private MyTextViewRR clinic_address_tv, date_and_time_tv;
+            private MyTextViewRR specialities_and_clinic_name_tv, date_and_time_tv;
 
             public PrescriptionHolder(View itemView) {
                 super(itemView);
                 doctor_name_tv  = itemView.findViewById(R.id.doctor_name_tv);
-                clinic_address_tv  = itemView.findViewById(R.id.clinic_address_tv);
+                specialities_and_clinic_name_tv  = itemView.findViewById(R.id.specialities_and_clinic_name_tv);
                 date_and_time_tv  = itemView.findViewById(R.id.date_and_time_tv);
 
             }
@@ -100,19 +102,19 @@ import java.util.List;
                     return;
                 }
                doctor_name_tv.setText(data.getDoctorfullname());
-                /* clinic_address_tv.setText(data.getClinicName());
+                specialities_and_clinic_name_tv.setText(data.getSpecalities()+" "+ data.getClinicName());
 
 
                 // MyTextViewRR appointment_conform_tv = fragmentView.findViewById(R.id.appointment_conform_tv);
 //19 August 2017, Saturday 01.08 PM
                 try {
-                    Date date = Utils.changeStringToDateFormat(data.getCreatedDate(), SERVER_DATE_FORMAT_NEW);
+                    Date date = Utils.changeStringToDateFormat(data.getAppointmentDateTime(), SERVER_DATE_FORMAT_NEW);
                     String dateStr= DISPLAY_DATE_TIME_FORMATTER.format(date);
                     // String timeStr= DISPLAY_TIME_FORMATTER.format(date);
                     //With Dr. First name Middle name Last Name at 07:00 PM on Tuesday, 26-12-2017
-                    date_and_time_tv.setText("Dated :"+dateStr);
+                    date_and_time_tv.setText(dateStr);
                 }catch (Exception e) {
-                    date_and_time_tv.setText("-");
+                    date_and_time_tv.setText(null);
 
                 }
 
@@ -120,7 +122,7 @@ import java.util.List;
                     @Override
                     public void onClick(View v) {
 
-                         Utils.showToastMsg(data.getId()+"");
+                     /*    Utils.showToastMsg(data.getId()+"");
 
 
 
@@ -143,11 +145,11 @@ import java.util.List;
                         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                         MyApplication.getCurrentActivityContext().startActivity(intent);
-
+*/
 
 
                     }
-                });*/
+                });
 
             }
         }
