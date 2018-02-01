@@ -273,7 +273,8 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
                 break;
             case R.id.feedback_linear:
-                showToastMessage("Coming soon");
+                //showToastMessage("Coming soon");
+                callSideMenuScreen(FeedbackActivity.class);
                 break;
             case R.id.features_and_benefits_linear:
                 //showToastMessage("Coming soon");

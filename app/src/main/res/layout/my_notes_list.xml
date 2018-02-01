@@ -70,7 +70,7 @@
         android:maxLines="1"
         android:padding="@dimen/_4dp"
 
-        android:text="Add New"
+        android:text="@string/add_note_lbl"
         android:textAllCaps="false"
         android:textColor="#ffffff"
         android:textSize="@dimen/_16sp"

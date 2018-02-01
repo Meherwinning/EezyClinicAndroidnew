@@ -22,13 +22,16 @@ import com.vempower.eezyclinic.APIResponce.IdCardTypeAPI;
 import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
 import com.vempower.eezyclinic.APIResponce.LanguageListAPI;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
+import com.vempower.eezyclinic.APIResponce.MedicalHistoryListAPI;
 import com.vempower.eezyclinic.APIResponce.NationalityListAPI;
+import com.vempower.eezyclinic.APIResponce.PendingFeedbackListAPI;
 import com.vempower.eezyclinic.APIResponce.PrescriptionsListAPI;
 import com.vempower.eezyclinic.APIResponce.ProfileSettingsAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultClinicListAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiesAPI;
+import com.vempower.eezyclinic.APIResponce.SubmitedFeedbackListAPI;
 import com.vempower.eezyclinic.APIResponce.TPAListAPI;
 import com.vempower.eezyclinic.APIResponce.UpcomingAppointmentListAPI;
 import com.vempower.eezyclinic.APIResponce.UpcomingFollowupsAPI;
@@ -312,5 +315,26 @@ public interface EezyClinicAPI {
   //http://202.63.103.194:8003/api/patient/removehealthreportfile
   @POST(data + "patient/removehealthreportfile")
   Call<AbstractResponse> removeHealthReportFile(@Body RequestBody postBody);
+
+  //http://202.63.103.194:8003/api/patient/medicalhistory
+  @POST(data + "patient/medicalhistory")
+  Call<MedicalHistoryListAPI> getMedicalHistory(@Body RequestBody postBody);
+
+
+  //http://202.63.103.194:8003/api/patient/savemedicalrecordself
+  @POST(data + "patient/savemedicalrecordself")
+  Call<AbstractResponse> saveMedicalRecordSelf(@Body RequestBody postBody);
+
+
+  //http://202.63.103.194:8003/api/patient/pendingfeedback
+  @POST(data + "patient/pendingfeedback")
+  Call<PendingFeedbackListAPI> getPendingFeedback(@Body RequestBody postBody);
+
+
+
+  //http://202.63.103.194:8003/api/patient/submittedfeedback
+  @POST(data + "patient/submittedfeedback")
+  Call<SubmitedFeedbackListAPI> getSubmittedfeedback(@Body RequestBody postBody);
+
 
 }

@@ -264,6 +264,11 @@
         <item name="android:textColor">#ffffff</item>
 
     </style>
+<!--
+    <style name="DialogTheme2" parent="Theme.AppCompat.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>-->
 
 
     <!-- My Switch end -->

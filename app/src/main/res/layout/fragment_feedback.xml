@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    >
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent">
-
-
         <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+           android:layout_above="@+id/add_new_bt"
             android:id="@+id/swipeContainer"
             >
             <com.vempower.eezyclinic.views.FixedRecyclerView
@@ -36,9 +32,10 @@
             android:layout_centerInParent="true"
             android:textStyle="normal"
             android:textColor="#5d5d5d"
-            android:text="@string/no_medical_history_lbl" />
+            android:text="@string/no_feedback_list_lbl" />
+
 
 
     </RelativeLayout>
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

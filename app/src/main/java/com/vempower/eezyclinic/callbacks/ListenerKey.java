@@ -24,6 +24,8 @@ public interface ListenerKey {
 
         String PDF_DETAILS_OBJECT_KEY = "pdf_details_object_key";
         String FOLLOWUP_APPOINTMENT_OBJECT_KEY="followup_appointment_object_key";
+
+        String MEDICAL_HISTORY_OBJECT_KEY="medical_history_object_key";
     }
 
 }

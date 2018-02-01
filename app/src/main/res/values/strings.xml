@@ -182,6 +182,14 @@
     <string name="unable_to_update_document_lbl">Unable to update document,Please try again.</string>
     <string name="invalid_pdf_details_lbl">Invalid PDF details</string>
     <string name="are_you_sure_to_delete_record_lbl">Are you sure to delete this record?</string>
+    <string name="add_note_lbl">Add Note</string>
+    <string name="no_medical_history_lbl">No Medical History</string>
+    <string name="unable_to_get_medical_history_list_lbl">Unable to get medical history</string>
+    <string name="please_enter_valid_medical_history_lbl">Please enter valid medical history</string>
+    <string name="title_activity_feedback_lbl">My Feedback History</string>
+    <string name="no_feedback_list_lbl">Empty feedback list</string>
+    <string name="unable_to_get_pending_feedback_list_lbl">Unable to get pending feedback list</string>
+    <string name="unable_to_get_submited_feedback_list_lbl">Unable to get Submited feedback list</string>
 
 
 </resources>

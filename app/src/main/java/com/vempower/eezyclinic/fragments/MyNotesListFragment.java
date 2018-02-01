@@ -126,7 +126,10 @@ public class MyNotesListFragment extends AbstractFragment {
                     return;
                 }
                  myNotesData= myNotesAPI.getData();
-                my_notes_et.setText(myNotesData.getMynotes());
+                if(myNotesData!=null) {
+                    my_notes_et.setText(myNotesData.getMynotes());
+                    my_notes_et.setSelection(my_notes_et.getText().toString().length());
+                }
 
 
             }
