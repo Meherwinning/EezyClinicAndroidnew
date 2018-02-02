@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+
+
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_10dp"
+        android:layout_marginLeft="@dimen/_15dp"
+        android:layout_marginRight="@dimen/_15sp"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+
+        android:paddingTop="@dimen/_4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.vempower.eezyclinic.views.MyTextViewRM
+            android:id="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/_16sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#000000"
+            android:text="Dr. Akmal Shoeb Khan"
+            />
+
+
+
+    </RelativeLayout>
+    <com.vempower.eezyclinic.views.MyTextViewRR
+        android:layout_marginTop="@dimen/_6dp"
+        android:id="@+id/description_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+
+        android:layout_marginRight="@dimen/_5dp"
+        android:textSize="@dimen/_14sp"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:textColor="#95989a"
+        android:text="Ear Nose &amp; Throat (ENT), Audiologist,"
+        />
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_marginTop="@dimen/_6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginRight="@dimen/_5dp"
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#95989a"
+            android:text="Al Shifa Hospital"
+
+
+            />
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_marginTop="@dimen/_9dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginRight="@dimen/_5dp"
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#95989a"
+            android:text="19 August 2017, Saturday 01.08 PM"
+
+
+            />
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_20dp"
+            android:layout_width="match_parent"
+            android:background="@color/transparent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:layout_height="match_parent">
+
+            <com.vempower.eezyclinic.views.MyTextViewRR
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingTop="@dimen/_3dp"
+                android:paddingBottom="@dimen/_3dp"
+                android:textSize="@dimen/_16sp"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="normal"
+                android:text="Waiting time"
+                android:textColor="#000000"
+                />
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:id="@+id/waiting_time_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_8dp"
+                app:mrb_progressTint="#efce4a"
+
+                app:mrb_fillBackgroundStars="true"
+
+                app:mrb_progressBackgroundTint="@color/bottom_text_color"
+                app:mrb_secondaryProgressTint="@color/white"
+                style="@style/Widget.MaterialRatingBar.RatingBar"
+                />
+           <!-- style="@style/Widget.MaterialRatingBar.RatingBar"-->
+           <!-- <com.vempower.eezyclinic.views.MyTextViewRR
+                android:visibility="gone"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_marginLeft="@dimen/_4dp"
+                android:layout_marginRight="@dimen/_4dp"
+                android:textSize="13sp"
+                android:textColor="#cc212121"
+                android:textStyle="bold" />
+-->
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginBottom="@dimen/_10dp"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <com.vempower.eezyclinic.views.MyTextViewRR
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingTop="@dimen/_3dp"
+                android:paddingBottom="@dimen/_3dp"
+                android:textSize="@dimen/_16sp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="normal"
+                android:text="Diagnosis"
+                android:textColor="#000000"
+                />
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:id="@+id/diagnasis_ratingbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_8dp"
+                app:mrb_progressTint="#efce4a"
+                app:mrb_fillBackgroundStars="true"
+
+                app:mrb_progressBackgroundTint="@color/bottom_text_color"
+                app:mrb_secondaryProgressTint="@color/white"
+                />
+
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginBottom="@dimen/_10dp"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <com.vempower.eezyclinic.views.MyTextViewRR
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingTop="@dimen/_3dp"
+                android:paddingBottom="@dimen/_3dp"
+                android:textSize="@dimen/_16sp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="normal"
+                android:text="Customer Service"
+                android:textColor="#000000"
+                />
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:id="@+id/customer_service_rating_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_8dp"
+                app:mrb_progressTint="#efce4a"
+                app:mrb_fillBackgroundStars="true"
+
+                app:mrb_progressBackgroundTint="@color/bottom_text_color"
+                app:mrb_secondaryProgressTint="@color/white"
+                />
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@color/transparent"
+            android:clickable="true"
+            android:layout_height="match_parent">
+        </RelativeLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_15dp"
+        android:background="#ededed" />
+
+
+</LinearLayout>
