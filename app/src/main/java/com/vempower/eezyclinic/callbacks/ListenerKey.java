@@ -1,5 +1,7 @@
 package com.vempower.eezyclinic.callbacks;
 
+import com.vempower.eezyclinic.APICore.SubmitedFeedbackListData;
+
 /**
  * Created by satish on 7/12/17.
  */
@@ -27,6 +29,7 @@ public interface ListenerKey {
 
         String MEDICAL_HISTORY_OBJECT_KEY="medical_history_object_key";
         String PENDING_FEEDBACK_DATA_OBJECT_KEY="pending_feedback_data_object_key";
+        String SUBMITED_FEEDBACK_DATA_OBJECT_KEY="submited_feedback_data_object_key";
     }
 
 }

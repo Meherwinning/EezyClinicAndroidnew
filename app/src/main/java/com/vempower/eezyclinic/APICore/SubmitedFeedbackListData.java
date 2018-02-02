@@ -74,24 +74,37 @@ public class SubmitedFeedbackListData {
         this.description = description;
     }
 
-    public String getWaitingTime() {
-        return waitingTime;
+    public int getWaitingTime() {
+
+        try {
+            return Integer.parseInt(waitingTime);
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     public void setWaitingTime(String waitingTime) {
         this.waitingTime = waitingTime;
     }
 
-    public String getDiagnasis() {
-        return diagnasis;
+    public int getDiagnasis() {
+        try {
+            return Integer.parseInt(diagnasis);
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     public void setDiagnasis(String diagnasis) {
         this.diagnasis = diagnasis;
     }
 
-    public String getCustomerservice() {
-        return customerservice;
+    public int getCustomerservice() {
+        try {
+            return Integer.parseInt(customerservice);
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     public void setCustomerservice(String customerservice) {

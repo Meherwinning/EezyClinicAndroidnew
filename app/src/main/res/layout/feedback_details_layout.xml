@@ -34,8 +34,8 @@
             android:textSize="@dimen/_16sp"
             android:fontFamily="sans-serif-medium"
             android:textStyle="normal"
-            android:textColor="#000000"
             android:hint="Doctor Name"
+            android:textColor="#000000"
             />
 
 
@@ -69,6 +69,7 @@
             android:textColor="#95989a"
             android:hint="Clinic Name"
 
+
             />
         <com.vempower.eezyclinic.views.MyTextViewRR
             android:id="@+id/date_and_time_tv"
@@ -82,6 +83,23 @@
             android:textStyle="normal"
             android:textColor="#95989a"
             android:hint="Date and Time"
+
+
+            />
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/feedback_content_tv"
+            android:layout_marginTop="@dimen/_9dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginRight="@dimen/_5dp"
+            android:textSize="@dimen/_14sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#000000"
+            android:hint="Review Content"
+
             />
         <RelativeLayout
             android:layout_marginTop="@dimen/_20dp"
@@ -90,6 +108,7 @@
             android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/rating_linear"
 
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -225,145 +244,54 @@
 
 
         </LinearLayout>
-
-
-
-
     </LinearLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/rating_linear"
+                android:layout_alignTop="@+id/rating_linear"
+                android:background="@color/transparent"
+                android:clickable="true"></RelativeLayout>
 
         </RelativeLayout>
-        <com.vempower.eezyclinic.views.MyCheckBoxRR
-            android:id="@+id/recommended_doctor_checkbox"
-            android:layout_width="match_parent"
-            android:padding="@dimen/_10dp"
-            android:gravity="center|left"
-            android:layout_height="match_parent"
-            android:button="@drawable/checkbox_selector1"
-            android:textSize="@dimen/_16sp"
-            android:textColor="#95989a"
-            android:text="Recommend Doctor ?"
-            />
+
 
         <LinearLayout
+            android:layout_marginTop="@dimen/_20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/save_note_bt"
-            android:layout_alignParentTop="true"
-            android:layout_marginBottom="@dimen/_5dp"
-            android:layout_marginTop="@dimen/_15dp"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputLayout
+            <ImageView
+                android:id="@+id/recomended_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+            <com.vempower.eezyclinic.views.MyTextViewRR
                 android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:background="@drawable/background_shape_idle"
-
-                android:textColorHint="#8a000000"
-                app:errorEnabled="true"
-                app:hintEnabled="true"
-                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-                <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
-                    android:id="@+id/write_areview_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@null"
-                    android:minHeight="@dimen/_25dp"
-                    android:hint="Write a Review"
-                    android:textSize="@dimen/_16sp"
-                    android:fontFamily="sans-serif"
-                    android:textStyle="normal"
-                    android:textColor="#de000000"
-                    />
-
-            </android.support.design.widget.TextInputLayout>
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_marginRight="@dimen/_5dp"
+                android:textSize="@dimen/_16sp"
+                android:fontFamily="sans-serif"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:textStyle="normal"
+                android:textColor="#000000"
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginRight="@dimen/_12dp"
-                android:alpha="0.3"
-                android:background="@color/black" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/display_name_in_reviews_linear"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_5dp"
-                android:layout_marginTop="@dimen/_5dp"
-
-                android:orientation="horizontal">
-
-                <com.vempower.eezyclinic.views.MyTextViewRR
-
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:fontFamily="sans-serif"
-                    android:paddingBottom="@dimen/_10dp"
-                    android:paddingTop="@dimen/_10dp"
-                    android:textStyle="normal"
-                    android:textSize="@dimen/_16sp"
-                    android:textColor="#000000"
-                    android:text="Display my name in Reviews"
-
-                    />
-
-                   <com.rey.material.widget.Switch
-                    android:id="@+id/display_name_switch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/_18dp"
-                    app:sw_thumbElevation="3dp"
+                android:text="Recommended"
 
 
-                    app:sw_thumbRadius="@dimen/_12dp"
-
-                    app:sw_trackSize="@dimen/_14dp">
-                    >
-                </com.rey.material.widget.Switch>
-
-            </LinearLayout>
+                />
 
         </LinearLayout>
 
 
-        <android.support.v7.widget.AppCompatButton
 
-            android:layout_alignParentBottom="true"
-            android:id="@+id/submit_bt"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_48dp"
-            android:layout_marginTop="@dimen/_25dp"
-            android:layout_marginBottom="@dimen/_30dp"
-            android:clickable="true"
-            android:layout_marginLeft="@dimen/_24dp"
-            android:layout_marginRight="@dimen/_24dp"
-            android:maxLines="1"
-            android:padding="@dimen/_4dp"
-            android:textAllCaps="false"
-            android:background="@drawable/button_bg"
 
-            android:textSize="@dimen/_16sp"
-            android:fontFamily="sans-serif-medium"
-            android:textStyle="normal"
-            android:textColor="#ffffff"
 
-            android:text="Submit"
 
-            />
 
     </LinearLayout>
     </ScrollView>
