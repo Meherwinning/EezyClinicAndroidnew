@@ -165,8 +165,6 @@ public class SubmitedFeedbackFragment extends  SwipedRecyclerViewFragment  {
             fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.GONE);
         }
 
-
-
     }
 
 
