@@ -26,6 +26,7 @@ public interface ListenerKey {
         String FOLLOWUP_APPOINTMENT_OBJECT_KEY="followup_appointment_object_key";
 
         String MEDICAL_HISTORY_OBJECT_KEY="medical_history_object_key";
+        String PENDING_FEEDBACK_DATA_OBJECT_KEY="pending_feedback_data_object_key";
     }
 
 }

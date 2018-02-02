@@ -86,4 +86,9 @@ public class FeedbackFragment extends AbstractFragment {
 
         // ((TabLayout) findViewById(R.id.tabHost)).setupWithViewPager(mViewPager);
     }
+
+    public void refresh() {
+        myInit();
+        setViewPager();
+    }
 }

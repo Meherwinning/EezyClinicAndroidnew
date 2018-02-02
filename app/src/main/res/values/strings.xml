@@ -190,6 +190,8 @@
     <string name="no_feedback_list_lbl">Empty feedback list</string>
     <string name="unable_to_get_pending_feedback_list_lbl">Unable to get pending feedback list</string>
     <string name="unable_to_get_submited_feedback_list_lbl">Unable to get Submited feedback list</string>
+    <string name="title_activity_my_feedback_lbl">My Feedback</string>
+    <string name="invalid_feddback_details_lbl">Invalid Pending Feedback details .Please try again</string>
 
 
 </resources>

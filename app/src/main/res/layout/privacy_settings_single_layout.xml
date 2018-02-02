@@ -31,7 +31,7 @@
                 android:paddingTop="@dimen/_10dp"
                 android:text="Doctors I seek Appointment with"
                 android:textColor="#867e7e"
-                android:textSize="14sp"
+                android:textSize="@dimen/_14sp"
                 android:textStyle="normal"
 
                 />
@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/_18dp"
-                app:sw_thumbElevation="3dp"
+                app:sw_thumbElevation="@dimen/_3dp"
 
 
                 app:sw_thumbRadius="@dimen/_12dp"
@@ -93,7 +93,7 @@
                 android:paddingTop="@dimen/_10dp"
                 android:text="Doctors within same clinic"
                 android:textColor="#867e7e"
-                android:textSize="14sp"
+                android:textSize="@dimen/_14sp"
                 android:textStyle="normal"
 
                 />
@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/_18dp"
-                app:sw_thumbElevation="3dp"
+                app:sw_thumbElevation="@dimen/_3dp"
 
 
                 app:sw_thumbRadius="@dimen/_12dp"
@@ -155,7 +155,7 @@
                 android:paddingTop="@dimen/_10dp"
                 android:text="Family Members"
                 android:textColor="#867e7e"
-                android:textSize="14sp"
+                android:textSize="@dimen/_14sp"
                 android:textStyle="normal"
 
                 />
@@ -179,7 +179,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/_18dp"
-                app:sw_thumbElevation="3dp"
+                app:sw_thumbElevation="@dimen/_3dp"
 
 
                 app:sw_thumbRadius="@dimen/_12dp"

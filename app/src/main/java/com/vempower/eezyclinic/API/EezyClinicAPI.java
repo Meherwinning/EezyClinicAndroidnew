@@ -336,5 +336,10 @@ public interface EezyClinicAPI {
   @POST(data + "patient/submittedfeedback")
   Call<SubmitedFeedbackListAPI> getSubmittedfeedback(@Body RequestBody postBody);
 
+  //http://202.63.103.194:8003/api/patient/submitfeedback
+  @POST(data + "patient/submitfeedback")
+  Call<AbstractResponse> submitfeedback(@Body RequestBody postBody);
+
+
 
 }

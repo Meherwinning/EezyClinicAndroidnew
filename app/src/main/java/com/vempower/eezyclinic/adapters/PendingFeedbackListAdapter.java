@@ -11,7 +11,9 @@ import android.view.ViewGroup;
 import com.vempower.eezyclinic.APICore.PendingFeedbackData;
 import com.vempower.eezyclinic.APICore.PrescriptionAPIData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.FeedbackActivity;
 import com.vempower.eezyclinic.activities.PDFViewActivity;
+import com.vempower.eezyclinic.activities.SubmitFeedbackActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
@@ -129,13 +131,20 @@ import java.util.List;
                     @Override
                     public void onClick(View v) {
 
-                         Utils.showToastMsg(data.getId()+"");
+                         //Utils.showToastMsg(data.getId()+"");
 
 
 
-                    /*    Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),PDFViewActivity.class);
+                        Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),SubmitFeedbackActivity.class);
+
+                        if(MyApplication.getCurrentActivityContext() instanceof  FeedbackActivity)
+                        {
+                            FeedbackActivity feedbackActivity= (FeedbackActivity) MyApplication.getCurrentActivityContext();
+                            intent=  new Intent(feedbackActivity,SubmitFeedbackActivity.class);
+
+                        }
                            //((Activity) MyApplication.getCurrentActivityContext()).getIntent();
-                        intent.putExtra(ListenerKey.ObjectKey.PDF_DETAILS_OBJECT_KEY,new Messenger(new AbstractIBinder(){
+                        intent.putExtra(ListenerKey.ObjectKey.PENDING_FEEDBACK_DATA_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                             @Override
                             protected IntentObjectListener getMyObject() {
                                 return new IntentObjectListener(){
@@ -147,12 +156,19 @@ import java.util.List;
                                 };
                             }
                         }));
-                        intent.putExtra(Constants.Pref.IS_FROM_UPDATE_PRESCRIPTION_KEY,true);
+                       // intent.putExtra(Constants.Pref.IS_FROM_UPDATE_PRESCRIPTION_KEY,true);
 
                         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                        MyApplication.getCurrentActivityContext().startActivity(intent);*/
+                        if(MyApplication.getCurrentActivityContext() instanceof  FeedbackActivity)
+                        {
+                            FeedbackActivity feedbackActivity= (FeedbackActivity) MyApplication.getCurrentActivityContext();
 
+                            feedbackActivity.startActivityForResult(intent,FeedbackActivity.IS_ACTIVITY_REFRESH_REQUEST_CODE);
+                        }else {
+
+                            MyApplication.getCurrentActivityContext().startActivity(intent);
+                        }
 
 
                     }

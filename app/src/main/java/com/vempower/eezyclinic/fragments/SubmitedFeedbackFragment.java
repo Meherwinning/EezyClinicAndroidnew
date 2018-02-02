@@ -38,7 +38,7 @@ public class SubmitedFeedbackFragment extends  SwipedRecyclerViewFragment  {
     public static SubmitedFeedbackFragment newInstance() {
 
        /* if(fragment==null)
-        {
+        { rentwithtez
             fragment= new ReportsFragment();
         }*/
         return new SubmitedFeedbackFragment();
@@ -66,9 +66,6 @@ public class SubmitedFeedbackFragment extends  SwipedRecyclerViewFragment  {
         adapter = null;
         submitedFeedbackList= new ArrayList<>();
 
-
-
-
     }
 
     @Override
@@ -78,9 +75,7 @@ public class SubmitedFeedbackFragment extends  SwipedRecyclerViewFragment  {
     }
 
 
-    private void callReportListMapper()
-    {
-
+    private void callReportListMapper(){
 
         SubmitedFeedbackListMapper mapper= new SubmitedFeedbackListMapper();
 
