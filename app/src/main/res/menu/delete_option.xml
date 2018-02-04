@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!--Share_Audio("Share Audio"),
+    Audio_update("Audio Update"),
+    Add_to_playlist("Add to Playlist"),
+    Add_to_contact("Add to Contact"),
+    Delete("Delete Audio");-->
+    <item
+        android:id="@+id/delete_item"
+        android:title="Delete" />
+   <!-- <item
+        android:id="@+id/audio_update"
+        android:title="Update audio" />
+    <item
+        android:id="@+id/add_to_playlist"
+        android:title="Add to playlist" />
+
+    <item
+        android:id="@+id/add_to_contact"
+        android:title="Add to contact" />
+
+    <item
+        android:id="@+id/delete_audio"
+        android:title="Delete audio" />-->
+    <!--<item
+        android:id="@+id/gotoartis"
+        android:title="Go to artis" />
+    <item
+        android:id="@+id/gotoalbum"
+        android:title="Go to album" />
+    <item
+        android:id="@+id/delete"
+        android:title="Delete" />-->
+
+
+</menu>

@@ -192,6 +192,11 @@
     <string name="unable_to_get_submited_feedback_list_lbl">Unable to get Submited feedback list</string>
     <string name="title_activity_my_feedback_lbl">My Feedback</string>
     <string name="invalid_feddback_details_lbl">Invalid Pending Feedback details .Please try again</string>
+    <string name="unable_to_get_family_members_list_lbl">Unable to get family menbers list, Please try again</string>
+    <string name="no_familiy_members_lbl">No family members available</string>
+    <string name="title_activity_add_family_member">Add Family Member</string>
+    <string name="please_enter_valid_patient_id_lbl">Please enter valid Patient Id</string>
+    <string name="inbvalid_family_member_details_lbl">Invalid family member details</string>
 
 
 </resources>

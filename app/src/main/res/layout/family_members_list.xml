@@ -1,19 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/app_gradient_bg"
-    >
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_centerInParent="true"
-        android:textColor="@color/white"
-        android:gravity="center"
-        android:text="Family Members List\n(coming soon)"
-        android:textSize="@dimen/_20sp"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
 
-</RelativeLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_above="@+id/search_family_member_bt"
+            android:layout_height="match_parent"
+            android:id="@+id/swipeContainer"
+            >
+            <com.vempower.eezyclinic.views.FixedRecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.vempower.eezyclinic.views.FixedRecyclerView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/no_matching_result_tv"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_16sp"
+            android:fontFamily="sans-serif"
+            android:layout_centerInParent="true"
+            android:textStyle="normal"
+            android:textColor="#5d5d5d"
+            android:text="@string/no_familiy_members_lbl" />
+
+        <android.support.v7.widget.AppCompatButton
+
+            android:layout_alignParentBottom="true"
+            android:id="@+id/search_family_member_bt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48dp"
+            android:layout_marginTop="@dimen/_5dp"
+            android:layout_marginBottom="@dimen/_8dp"
+            android:clickable="true"
+            android:layout_marginLeft="@dimen/_24dp"
+            android:layout_marginRight="@dimen/_24dp"
+            android:maxLines="1"
+            android:padding="@dimen/_4dp"
+            android:textAllCaps="false"
+            android:background="@drawable/button_bg"
+
+            android:textSize="@dimen/_16sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#ffffff"
+
+            android:text="Add Family Member"
+
+            />
+
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

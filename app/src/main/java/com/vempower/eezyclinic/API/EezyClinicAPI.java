@@ -15,6 +15,7 @@ import com.vempower.eezyclinic.APIResponce.DoctorClinicNameListAPI;
 import com.vempower.eezyclinic.APIResponce.DoctorProfileAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordOTPAPI;
+import com.vempower.eezyclinic.APIResponce.GetFamilyMembersAPI;
 import com.vempower.eezyclinic.APIResponce.GetMyNotesAPI;
 import com.vempower.eezyclinic.APIResponce.GetPatientProfileAPI;
 import com.vempower.eezyclinic.APIResponce.HelathReportsListAPI;
@@ -27,6 +28,7 @@ import com.vempower.eezyclinic.APIResponce.NationalityListAPI;
 import com.vempower.eezyclinic.APIResponce.PendingFeedbackListAPI;
 import com.vempower.eezyclinic.APIResponce.PrescriptionsListAPI;
 import com.vempower.eezyclinic.APIResponce.ProfileSettingsAPI;
+import com.vempower.eezyclinic.APIResponce.SearchFamilyMemberAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultClinicListAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
@@ -340,6 +342,14 @@ public interface EezyClinicAPI {
   @POST(data + "patient/submitfeedback")
   Call<AbstractResponse> submitfeedback(@Body RequestBody postBody);
 
+
+  //http://202.63.103.194:8003/api/patient/getfamilymembers
+  @POST(data + "patient/getfamilymembers")
+  Call<GetFamilyMembersAPI> getFamilyMembers(@Body RequestBody postBody);
+
+  //http://202.63.103.194:8003/api/patient/addfamilymember
+  @POST(data + "patient/addfamilymember")
+  Call<SearchFamilyMemberAPI> searchFamilyMember(@Body RequestBody postBody);
 
 
 }
