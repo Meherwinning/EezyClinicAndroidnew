@@ -19,6 +19,7 @@ import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
+import com.vempower.eezyclinic.interfaces.MyDialogInterface;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRM;
 import com.vempower.eezyclinic.views.MyTextViewRR;
@@ -37,9 +38,10 @@ import java.util.List;
         private List<GetFamilyMemberData> familyMembersList;
 
         private LayoutInflater inflater;
+    private DeleteMemberListener deleteMemberListener;
 
 
-        public FamilyMembersListAdapter(List<GetFamilyMemberData> familyMembersList) {
+    public FamilyMembersListAdapter(List<GetFamilyMemberData> familyMembersList) {
             this.familyMembersList = familyMembersList;
             inflater = (LayoutInflater) MyApplication.getCurrentActivityContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -154,7 +156,23 @@ import java.util.List;
 
                     switch (menuItem.getItemId()) {
                         case R.id.delete_item:
-                           Utils.showToastMsg("Noe delete");
+                            if(deleteMemberListener!=null)
+                            {
+                                deleteMemberListener.delete(data.getId());
+                            }
+                           /* showMyCustomDialog("Alert", Utils.getStringFromResources(R.string.are_you_sure_to_delete_record_lbl), "Yes", "No", new MyDialogInterface() {
+                                @Override
+                                public void onPossitiveClick() {
+                                    callDeleteRecordMapper(myId);
+                                }
+
+                                @Override
+                                public void onNegetiveClick() {
+
+                                }
+                            });
+
+                           Utils.showToastMsg("Noe delete");*/
                             /*Intent intent= new Intent(MyApplication.getCurrentActivityContext(),MedicalHistoryEditDialogActivity.class);
                             intent.putExtra(ListenerKey.ObjectKey.MEDICAL_HISTORY_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                                 @Override
@@ -199,6 +217,16 @@ import java.util.List;
             e.printStackTrace();
         }
     }
+
+public interface DeleteMemberListener
+{
+    void delete(int id);
+}
+
+public void setOnDeleteMemberListener(DeleteMemberListener deleteMemberListener)
+{
+    this.deleteMemberListener=deleteMemberListener;
+}
 
 
 

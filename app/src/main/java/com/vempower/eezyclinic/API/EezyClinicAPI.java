@@ -351,5 +351,14 @@ public interface EezyClinicAPI {
   @POST(data + "patient/addfamilymember")
   Call<SearchFamilyMemberAPI> searchFamilyMember(@Body RequestBody postBody);
 
+  //http://202.63.103.194:8003/api/patient/sendrequestfamilymember
+  @POST(data + "patient/sendrequestfamilymember")
+  Call<AbstractResponse> sendRequestFamilyMember(@Body RequestBody postBody);
+
+  //http://202.63.103.194:8003/api/patient/familymemberdelete
+  @POST(data + "patient/familymemberdelete")
+  Call<AbstractResponse> familymemberdelete(@Body RequestBody postBody);
+
+
 
 }

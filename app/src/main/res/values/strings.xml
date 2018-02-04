@@ -197,6 +197,9 @@
     <string name="title_activity_add_family_member">Add Family Member</string>
     <string name="please_enter_valid_patient_id_lbl">Please enter valid Patient Id</string>
     <string name="inbvalid_family_member_details_lbl">Invalid family member details</string>
+    <string name="send_request_lbl">Send Request</string>
+    <string name="search_btn_lbl">Search</string>
+    <string name="are_you_sure_to_delete_family_member_lbl">Are you sure to delete family member?</string>
 
 
 </resources>

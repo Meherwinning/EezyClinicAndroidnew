@@ -1,59 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/_20dp"
-    android:paddingTop="@dimen/_20dp"
-    android:paddingRight="@dimen/_20dp"
+    android:background="@color/white"
+
     >
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/submit_bt"
+        android:orientation="vertical">
 
-        xmlns:app="http://schemas.android.com/apk/res-auto">
-
-        <LinearLayout
-            android:id="@+id/edit_history_linear"
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:background="@color/white"
+            android:paddingLeft="@dimen/_20dp"
+            android:paddingRight="@dimen/_20dp"
+
+            android:paddingTop="@dimen/_20dp">
+
+            <LinearLayout
+                android:id="@+id/edit_history_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="match_parent"
+
+                    android:textColorHint="#61000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                        android:id="@+id/patient_id_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+
+                        android:fontFamily="sans-serif"
+                        android:hint="Enter Patient ID"
+
+                        android:maxLength="50"
+
+                        android:maxLines="1"
+                        android:textColor="#de000000"
+                        android:textSize="@dimen/_16sp"
+                        android:textStyle="normal" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/patient_details_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_38dp"
             android:orientation="vertical">
 
-            <android.support.design.widget.TextInputLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/_48dp"
+                android:background="#f6f6f6"
+                android:paddingLeft="@dimen/_20dp">
 
-                android:layout_height="match_parent"
-
-                android:textColorHint="#61000000"
-                app:errorEnabled="true"
-                app:hintEnabled="true"
-                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-                <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
-                    android:id="@+id/patient_id_et"
+                <com.vempower.eezyclinic.views.MyTextViewRR
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Enter Patient ID"
+                    android:gravity="center_vertical"
 
-                    android:maxLength="50"
-                    android:maxLines="1"
+                    android:text="Search Results"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_16sp"></com.vempower.eezyclinic.views.MyTextViewRR>
 
-                    android:background="@null"
+            </RelativeLayout>
 
-                    android:textSize="@dimen/_16sp"
-                    android:fontFamily="sans-serif"
-                    android:textStyle="normal"
-                    android:textColor="#de000000"
-                    />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_20dp"
+                android:paddingRight="@dimen/_20dp"
+                android:paddingTop="@dimen/_20dp">
 
-            </android.support.design.widget.TextInputLayout>
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Patient Name"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_16sp">
+                </com.vempower.eezyclinic.views.MyTextViewRR>
 
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                   android:id="@+id/family_member_patient_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14sp"
+                    android:hint="Name"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:textColor="#505050"
+                    >
+                </com.vempower.eezyclinic.views.MyTextViewRR>
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_15dp"
                 android:layout_marginRight="@dimen/_12dp"
                 android:alpha="0.3"
                 android:background="@color/black" />
@@ -61,30 +135,30 @@
         </LinearLayout>
 
 
+    </LinearLayout>
 
-    </RelativeLayout>
     <android.support.v7.widget.AppCompatButton
 
-        android:layout_alignParentBottom="true"
         android:id="@+id/submit_bt"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_48dp"
-        android:layout_marginTop="@dimen/_5dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/_8dp"
-        android:clickable="true"
         android:layout_marginLeft="@dimen/_24dp"
         android:layout_marginRight="@dimen/_24dp"
+        android:layout_marginTop="@dimen/_5dp"
+        android:background="@drawable/button_bg"
+        android:clickable="true"
+        android:fontFamily="sans-serif-medium"
         android:maxLines="1"
         android:padding="@dimen/_4dp"
-        android:textAllCaps="false"
-        android:background="@drawable/button_bg"
-
-        android:textSize="@dimen/_16sp"
-        android:fontFamily="sans-serif-medium"
-        android:textStyle="normal"
-        android:textColor="#ffffff"
 
         android:text="Search"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/_16sp"
+
+        android:textStyle="normal"
 
         />
 

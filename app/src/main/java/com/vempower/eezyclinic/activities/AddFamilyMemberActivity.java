@@ -12,6 +12,16 @@ import com.vempower.eezyclinic.utils.Utils;
 
 public class AddFamilyMemberActivity extends AbstractMenuActivity {
 
+    private AddFamilyMemberFragment fragment;
+
+    @Override
+    protected void setMyContectntView() {
+        super.setMyContectntView();
+
+        fragment = new AddFamilyMemberFragment();
+
+        setFragment(fragment);
+    }
 
     public void setActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -41,7 +51,7 @@ public class AddFamilyMemberActivity extends AbstractMenuActivity {
 
     @Override
     protected AbstractFragment getFragment() {
-        return new AddFamilyMemberFragment();
+        return null;
     }
 
     @Override
@@ -53,6 +63,10 @@ public class AddFamilyMemberActivity extends AbstractMenuActivity {
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        finish();
+        if (fragment != null) {
+            fragment.onBackPressed();
+        } else {
+            finish();
+        }
     }
 }

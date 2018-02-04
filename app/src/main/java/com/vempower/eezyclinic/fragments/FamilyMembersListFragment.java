@@ -21,6 +21,8 @@ import com.vempower.eezyclinic.adapters.FamilyMembersListAdapter;
 import com.vempower.eezyclinic.adapters.MedicalHistoryListAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.interfaces.MyDialogInterface;
+import com.vempower.eezyclinic.mappers.DeleteFamilyMemberMapper;
 import com.vempower.eezyclinic.mappers.GetFamilyMembersMapper;
 import com.vempower.eezyclinic.mappers.MedicalHistoryMapper;
 import com.vempower.eezyclinic.mappers.SaveMedicalHistorySelfMapper;
@@ -188,7 +190,9 @@ public class FamilyMembersListFragment extends  SwipedRecyclerViewFragment {
     protected void fromBottomScroll() {
         if (swipeLayout != null) {
             swipeLayout.setRefreshing(false);
+
         }
+
 
     }
 
@@ -198,6 +202,24 @@ public class FamilyMembersListFragment extends  SwipedRecyclerViewFragment {
 
         if (adapter == null) {
             adapter = new FamilyMembersListAdapter(familyMembersList);
+
+            adapter.setOnDeleteMemberListener(new FamilyMembersListAdapter.DeleteMemberListener() {
+                @Override
+                public void delete(final int id) {
+                    showMyCustomDialog("Alert", Utils.getStringFromResources(R.string.are_you_sure_to_delete_family_member_lbl), "Yes", "No", new MyDialogInterface() {
+                        @Override
+                        public void onPossitiveClick() {
+                            callDeleteFamilyMember(id);
+                        }
+
+                        @Override
+                        public void onNegetiveClick() {
+
+                        }
+                    });
+                }
+            });
+
             recyclerView.setAdapter(adapter);
         } else {
             adapter.setUpdatedList(familyMembersList);
@@ -210,6 +232,22 @@ public class FamilyMembersListFragment extends  SwipedRecyclerViewFragment {
             fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.GONE);
         }
 
+    }
+
+    private void callDeleteFamilyMember(int id) {
+
+        DeleteFamilyMemberMapper mapper= new DeleteFamilyMemberMapper(id);
+        mapper.setOnDeleteFamilyMemberListener(new DeleteFamilyMemberMapper.DeleteFamilyMemberListener() {
+            @Override
+            public void deleteFamilyMemeber(AbstractResponse response, String errorMessage) {
+                if(!isValidResponse(response,errorMessage,true,false))
+                {
+                    return;
+                }
+                showAlertDialog("Success",response.getStatusMessage(),false);
+                fromTopScroll();
+            }
+        });
     }
 
 }

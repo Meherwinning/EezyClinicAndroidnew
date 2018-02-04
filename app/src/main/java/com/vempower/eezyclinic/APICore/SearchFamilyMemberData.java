@@ -16,8 +16,14 @@ public class SearchFamilyMemberData {
     @Expose
     private String patientUniqueId;
 
-    public String getId() {
-        return id;
+    public int getId() {
+
+        try {
+            return Integer.parseInt(id);
+        } catch (Exception e) {
+
+        }
+        return -1;
     }
 
     public void setId(String id) {
