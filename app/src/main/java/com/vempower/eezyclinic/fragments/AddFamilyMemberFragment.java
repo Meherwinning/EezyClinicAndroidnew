@@ -100,13 +100,13 @@ public class AddFamilyMemberFragment extends AbstractFragment {
         mapper.setOnSearchFamilyMemberListener(new SearchFamilyMemberMapper.SearchFamilyMemberListener() {
             @Override
             public void searchFamilyMember(SearchFamilyMemberAPI memberAPI, String errorMessage) {
-                if (memberAPI != null) {
+               /* if (memberAPI != null) {
 
                     if (!TextUtils.isEmpty(memberAPI.getStatusMessage()) && memberAPI.getStatusMessage().equalsIgnoreCase("Success")) {
                         memberAPI.setStatusCode("1");
                     }
 
-                }
+                }*/
                 if (!isValidResponse(memberAPI, errorMessage, true, false)) {
                     return;
                 }

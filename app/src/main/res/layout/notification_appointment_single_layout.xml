@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_5dp"
+    android:layout_marginLeft="@dimen/_5dp"
+    android:layout_marginRight="@dimen/_5dp"
+    android:layout_marginTop="@dimen/_7dp"
+    android:background="@drawable/view_selector"
+    android:clickable="true"
+    card_view:cardBackgroundColor="@color/white"
+    android:elevation="@dimen/_5dp"
+
+
+    card_view:cardElevation="@dimen/_6dp"
+    card_view:cardCornerRadius="@dimen/_5dp"
+    >
+
+    <!-- <FrameLayout
+         android:background="@drawable/card_edge"
+         android:layout_width="1dp"
+         android:layout_height="match_parent"/>-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/_12dp"
+        android:paddingBottom="@dimen/_12dp"
+
+        android:paddingLeft="@dimen/_10dp"
+        android:paddingRight="@dimen/_10dp"
+
+        >
+
+
+
+        <LinearLayout
+            android:id="@+id/content_linear1"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <LinearLayout
+
+
+                android:layout_width="0dp"
+                android:layout_weight="1"
+
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5dp"
+                android:layout_marginLeft="@dimen/_10dp"
+
+                android:orientation="vertical">
+
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_16sp"
+
+                    android:visibility="gone"
+                    android:textStyle="normal"
+                    android:textColor="#62bb50"
+                    android:hint="Title"
+                    android:fontFamily="sans-serif"
+                    android:text="Request to add as a Family Member"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:id="@+id/message_tv"
+                        android:layout_marginTop="@dimen/_5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_14sp"
+                        android:hint="Message"
+                        android:fontFamily="sans-serif"
+                        android:textStyle="normal"
+                        android:textColor="#212121"
+                        />
+
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <ImageView
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:paddingRight="@dimen/_18dp"
+
+                android:src="@drawable/right_arr2"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

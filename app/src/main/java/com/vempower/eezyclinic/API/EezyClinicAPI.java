@@ -25,6 +25,7 @@ import com.vempower.eezyclinic.APIResponce.LanguageListAPI;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
 import com.vempower.eezyclinic.APIResponce.MedicalHistoryListAPI;
 import com.vempower.eezyclinic.APIResponce.NationalityListAPI;
+import com.vempower.eezyclinic.APIResponce.NotificationsListAPI;
 import com.vempower.eezyclinic.APIResponce.PendingFeedbackListAPI;
 import com.vempower.eezyclinic.APIResponce.PrescriptionsListAPI;
 import com.vempower.eezyclinic.APIResponce.ProfileSettingsAPI;
@@ -358,6 +359,21 @@ public interface EezyClinicAPI {
   //http://202.63.103.194:8003/api/patient/familymemberdelete
   @POST(data + "patient/familymemberdelete")
   Call<AbstractResponse> familymemberdelete(@Body RequestBody postBody);
+
+
+  //http://202.63.103.194:8003/api/patient/getnotifications
+  @POST(data + "patient/getnotifications")
+  Call<NotificationsListAPI> getNotifications(@Body RequestBody postBody);
+
+
+  //http://202.63.103.194:8003/api/patient/notificationacceptrequest
+  @POST(data + "patient/notificationacceptrequest")
+  Call<AbstractResponse> notificationacceptrequest(@Body RequestBody postBody);
+
+
+    //http://202.63.103.194:8003/api/patient/notificationrejectrequest
+    @POST(data + "patient/notificationrejectrequest")
+    Call<AbstractResponse> notificationrejectrequest(@Body RequestBody postBody);
 
 
 
