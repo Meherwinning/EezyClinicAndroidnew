@@ -25,7 +25,7 @@ import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.SpecalitiesMapper;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.util.ArrayList;
 import java.util.List;

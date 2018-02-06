@@ -9,6 +9,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Environment;
 import android.os.Messenger;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -33,7 +37,12 @@ import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.interfaces.MenuScreenListener;
 import com.vempower.eezyclinic.interfaces.MyDialogInterface;
 import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.DownloadTask;
+import com.vempower.eezyclinic.utils.MyDownloadfFile;
+import com.vempower.eezyclinic.utils.PrintPDF;
 import com.vempower.eezyclinic.utils.Utils;
+
+import java.io.File;
 
 /**
  * Created by satish on 17/11/17.
@@ -402,6 +411,133 @@ public abstract class AbstractFragment extends Fragment {
         startActivity(intent);
     }
 
+    protected void printPDF(Uri uri) {
+
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
+            PrintPDF printPDF = new PrintPDF(uri);
+            printPDF.printPreview();
+        }else
+        {
+            Utils.showToastMsg(Utils.getStringFromResources(R.string.printing_not_supported_device_lbl));
+        }
+
+    }
+
+
+    protected void downloadTaskStart(final String downloadUrlStr) {
+
+        if (TextUtils.isEmpty(downloadUrlStr)) {
+            return;
+        }
+        DownloadTask downloadTask = new DownloadTask(downloadUrlStr, new DownloadTask.DownloadListener() {
+            @Override
+            public void download(String status) {
+                switch (status) {
+                    case DownloadTask.DownloadStatus.DOWNLOAD_STARTED:
+                        Utils.showToastMsg(Utils.getStringFromResources(R.string.download_file_start_lbl));
+
+                        break;
+
+                    case DownloadTask.DownloadStatus.DOWNLOAD_COMPLETED:
+                        openDownloadedFolder();
+                        break;
+
+                    case DownloadTask.DownloadStatus.DOWNLOAD_FAILED:
+                        Utils.showToastMsg(Utils.getStringFromResources(R.string.download_file_failed_lbl));
+                        showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_download_file_lbl), new ApiErrorDialogInterface() {
+                            @Override
+                            public void onCloseClick() {
+
+                            }
+
+                            @Override
+                            public void retryClick() {
+                                downloadTaskStart(downloadUrlStr);
+                            }
+                        });
+                        break;
+                }
+            }
+        });
+
+        downloadTask.start();
+    }
+
+
+    private void openDownloadedFolder() {
+
+        /*
+        API >= 19 you can use
+        Intent.ACTION_OPEN_DOCUMENT
+        (or API >= 21 - Intent.ACTION_OPEN_DOCUMENT_TREE)
+         */
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        /*Intent intent =null;
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP)
+        {
+            intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        }
+        else if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT)
+        {
+            intent = new Intent(Intent.ACTION_GET_CONTENT);
+        }*/
+        Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
+                + File.separator+ Constants.APP_DIRECTORY_NAME+ File.separator );
+        //intent.setDataAndType(uri, "resource/folder");
+        //intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setDataAndType(uri, "*/*");
+        startActivity(Intent.createChooser(intent, "Open Download Folder"));
+    }
+
+
+
+    public interface DownloadPDFAsURIListener
+    {
+        void onComplete(Uri uri);
+    }
+
+    protected class DownloadPDFAsURI extends AsyncTask<String, Void, Uri> {
+
+        private DownloadPDFAsURIListener listener;
+        public DownloadPDFAsURI()
+        {
+
+        }
+
+        public DownloadPDFAsURI(DownloadPDFAsURIListener listener)
+        {
+            this.listener=listener;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            MyApplication.showTransparentDialog();
+        }
+
+
+        @Override
+        protected Uri doInBackground(String... strings) {
+            MyDownloadfFile myDownloadfFile = new MyDownloadfFile();
+            return Uri.fromFile(myDownloadfFile.downloadFile(strings[0]));
+        }
+
+        @Override
+        protected void onPostExecute(Uri uri) {
+            MyApplication.hideTransaprentDialog();
+            super.onPostExecute(uri);
+            showPDFInScreen(uri);
+            if(listener!=null)
+            {
+                listener.onComplete(uri);
+            }
+        }
+    }
+
+    protected void showPDFInScreen(Uri uri)
+    {
+
+    }
 
 
 }

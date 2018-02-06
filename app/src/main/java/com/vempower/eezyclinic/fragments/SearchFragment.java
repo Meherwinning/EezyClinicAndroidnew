@@ -58,7 +58,7 @@ import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.CustomSpinnerSelection;
 import com.vempower.eezyclinic.views.MyAutoCompleteTextView;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import org.json.JSONObject;
 

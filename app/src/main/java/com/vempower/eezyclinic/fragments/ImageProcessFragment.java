@@ -28,7 +28,7 @@ import com.vempower.eezyclinic.activities.EditProfileActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.io.File;
 import java.io.IOException;

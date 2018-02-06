@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 
 import com.vempower.eezyclinic.R;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import org.jetbrains.annotations.Nullable;
 

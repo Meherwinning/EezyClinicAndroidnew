@@ -1,6 +1,7 @@
 package com.vempower.eezyclinic.fragments;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,7 +20,7 @@ import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.CasesheetDetailsMapper;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRR;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 /**
  * Created by satish on 6/12/17.
@@ -36,6 +37,11 @@ public class CasesheetDetailFragment extends AbstractFragment {
             bp_tv, weight_tv, systamatic_examination_tv, advised_investigation_tv, diagnosis_tv,
             treatment_plan_tv, followup_days_tv;
     private LinearLayout prescription_linear;
+
+    private LinearLayout  download_bottom_linear,
+            print_bottom_linear;
+
+    private CasesheetData casesheetData;
 
     @Nullable
     @Override
@@ -84,7 +90,50 @@ public class CasesheetDetailFragment extends AbstractFragment {
 
         prescription_linear = getFragemtView().findViewById(R.id.prescription_linear);
 
+
+
+        download_bottom_linear = getFragemtView().findViewById(R.id.download_bottom_linear);
+        print_bottom_linear = getFragemtView().findViewById(R.id.print_bottom_linear);
+
+        download_bottom_linear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(casesheetData==null || TextUtils.isEmpty(casesheetData.getPrintCopy()))
+                {
+                    Utils.showToastMsg(R.string.casesheet_print_copy_not_available_lbl);
+                    return;
+                }
+
+
+                //if (casesheetData != null) {
+                    downloadTaskStart(casesheetData.getPrintCopy());
+               // }
+            }
+        });
+        print_bottom_linear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(casesheetData==null || TextUtils.isEmpty(casesheetData.getPrintCopy()))
+                {
+                    Utils.showToastMsg(R.string.casesheet_print_copy_not_available_lbl);
+                    return;
+                }
+
+                new DownloadPDFAsURI(new DownloadPDFAsURIListener() {
+                    @Override
+                    public void onComplete(Uri uri) {
+                        if (uri != null) {
+                            printPDF(uri);
+                        }
+                    }
+                }).execute(casesheetData.getPrintCopy());
+
+            }
+        });
+
     }
+
 
     private View getPrescriptionView(CasesheetPrescriptionDetail  prescription) {
 
@@ -158,6 +207,7 @@ public class CasesheetDetailFragment extends AbstractFragment {
         if (details == null) {
             return;
         }
+        casesheetData=details;
 
         casesheet_no_tv.setText(details.getFactsheetUniqueId());
         create_date_tv.setText(details.getCreatedDate());

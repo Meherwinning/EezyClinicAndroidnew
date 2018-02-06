@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/MaterialDesign" />
             <option value="$PROJECT_DIR$/MyExpandableLayoutLibrary" />
+            <option value="$PROJECT_DIR$/PDFVigerLib" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/crystalrangeseekbar" />
@@ -21,7 +22,11 @@
             <option value="$PROJECT_DIR$/pinview" />
             <option value="$PROJECT_DIR$/sublimepickerlibrary" />
             <option value="$PROJECT_DIR$/togglebuttongroup" />
+            <option value="$PROJECT_DIR$/volley-master-new" />
+            <option value="$PROJECT_DIR$/volley-master-new_1" />
             <option value="$PROJECT_DIR$/volley-master-release" />
+            <option value="$PROJECT_DIR$/volley-new" />
+            <option value="$PROJECT_DIR$/volley-new2" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

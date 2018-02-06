@@ -22,7 +22,7 @@ import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.MapFragment;
 import com.vempower.eezyclinic.fragments.SearchDoctorsListFragment;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.util.ArrayList;
 import java.util.List;

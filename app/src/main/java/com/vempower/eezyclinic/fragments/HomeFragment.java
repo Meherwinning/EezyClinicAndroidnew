@@ -29,7 +29,7 @@ import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
 import com.vempower.eezyclinic.views.MyTextViewRM;
 import com.vempower.eezyclinic.views.MyTextViewRR;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

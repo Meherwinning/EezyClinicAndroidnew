@@ -21,7 +21,7 @@ import com.vempower.eezyclinic.fragments.AppointmentListFragment;
 import com.vempower.eezyclinic.fragments.EditProfileFragment;
 import com.vempower.eezyclinic.fragments.MyProfileFragment;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import static com.vempower.eezyclinic.fragments.ImageProcessFragment.CODE_WRITE_SETTINGS_PERMISSION;
 

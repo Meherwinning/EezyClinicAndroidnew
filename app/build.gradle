@@ -2,6 +2,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android-extensions'
+/*apply plugin: 'java'*/
+
+//ext.versionCodes = ['armeabi': 3, 'armeabi-v7a': 4, 'arm64-v8a': 5, mips: 6, 'x86': 7, 'x86_64': 8]
+import com.android.build.OutputFile
 
 android {
 
@@ -12,23 +16,130 @@ android {
         minSdkVersion 17
         targetSdkVersion 27
         versionCode 1
-        versionName "1.6"
+        versionName "1.7"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        resConfigs "en"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+           // signingConfig playStoreConfig //Add your own signing config
+            pseudoLocalesEnabled false
+            zipAlignEnabled true
+
         }
     }
     lintOptions {
         abortOnError false
     }
+
+
+    //Refer from https://mindorks.com/blog/how-to-create-multiple-apk-files-for-android-application
+    /* splits {
+         *//*density {
+             enable true
+             reset()
+             include "mdpi", "xhdpi","xxhdpi","xxxhdpi"
+            compatibleScreens 'small', 'normal', 'large', 'xlarge'
+
+         }*//*
+
+         abi {
+             enable true
+             reset()
+             include "armeabi","armeabi-v7a","arm64-v8a","mips","mips64","x86","x86_64"
+             universalApk true
+
+         }
+     }*/
+
+    /*project.ext.versionCodes = ['armeabi': 1, 'armeabi-v7a': 2, 'arm64-v8a': 3, 'mips': 5, 'mips64': 6, 'x86': 8, 'x86_64': 9]
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            output.versionCodeOverride =
+                    project.ext.versionCodes.get(output.getFilter(
+                            com.android.build.OutputFile.ABI), 0) * 10000000 + android.defaultConfig.versionCode
+        }
+    }*/
+/*
+    jar {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }*/
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+
 }
+/*
+
+subprojects {
+    apply plugin: 'java'
+
+    // Disable the test report for the individual test task
+    test {
+        reports.html.enabled = false
+    }
+}
+*/
+
+
+
+/*android.applicationVariants.all { variant ->
+
+    variant.outputs.each { output ->
+
+        def baseDensityVersionCode =
+
+                project.ext.densityCodes.get(output.getFilter(OutputFile.DENSITY))
+
+        if (baseDensityVersionCode != null) {
+            output.versionCodeOverride =
+                    baseDensityVersionCode * 1000 + variant.versionCode
+        }
+    }
+}*/
+
+
+
+    //Refer from https://mindorks.com/blog/how-to-create-multiple-apk-files-for-android-application
+   /* splits {
+        abi {
+            enable true
+            reset()
+            include "armeabi","armeabi-v7a","arm64-v8a","mips","x86","x86_64"
+            universalApk true
+
+        }
+    }*/
+//}
+
+//From https://medium.com/mindorks/publishing-multiple-apks-on-google-play-b06bb9078aae
+
+// map for the version code that gives each ABI a value. make sure to list all ABIs mentioned in splits block, an keep the order.
+/*
+*/
+
+// For each APK output variant, override versionCode with a combination of
+// ABI APK value * 1000 + defaultConfig.versionCode
+/*android.applicationVariants.all { variant ->
+    // assign different version code for each output
+    variant.outputs.each { output ->
+        output.versionCodeOverride =
+                project.ext.versionCodes.get(output.getFilter(OutputFile.ABI)) + android.defaultConfig.versionCode
+    }
+}*/
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.0.1'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
@@ -140,23 +251,30 @@ dependencies {
 
     // implementation 'com.github.barteksc:pdfium-android:1.7.0'
     implementation 'com.squareup.okhttp3:okhttp:3.8.1'
-    implementation 'com.github.barteksc:android-pdf-viewer:3.0.0-beta.5'
+   // implementation 'com.github.barteksc:android-pdf-viewer:3.0.0-beta.5'
 
     //implementation project(':mobileprintsdk')
 
     //implementation(project(':mobileprintsdk'))
-
     implementation(project(':mobileprintsdk')) {
-       // exclude module: 'support-v4'
-       // exclude group: 'com.google.android.gms'
+        // exclude module: 'support-v4'
+        // exclude group: 'com.google.android.gms'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.google.android.gms'
         exclude module: 'com.android.volley'
+        exclude module: 'recyclerview-v7'
+        transitive = true;
+
 
     }
-            //{/*exclude group: 'com.google.android.gms' */ }
-   // implementation project(':mobileprintsdk_new')
+
+    //{/*exclude group: 'com.google.android.gms' */ }
+
+    // implementation project(':mobileprintsdk_new')
     compile project(path: ':pinview')
+
+    //https://github.com/aerdy/Viger-PDF?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=5198
+    implementation project(':PDFVigerLib')
 }
 repositories {
     mavenCentral()
@@ -167,6 +285,11 @@ configurations {
     //'com.mcxiaoke.volley:library:1.0.6'
     all*.exclude group: 'com.android.support', module: 'support-v4'
     all*.exclude module: 'com.android.volley'
+
+    all*.exclude group: 'com.android.volley', module: 'volley:volley'
+    all*.exclude group: 'com.mcxiaoke.volley', module: 'volley:library-aar'
+    //all*.exclude module: 'gson'
+
    // all*.exclude group: 'com.android.support', module: 'support-v7'
    // all*.exclude group: 'com.android.support', module: 'support-annotations'
 }

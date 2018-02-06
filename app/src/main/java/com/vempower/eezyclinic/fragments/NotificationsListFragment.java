@@ -30,7 +30,7 @@ import com.vempower.eezyclinic.mappers.PrescriptionsListMapper;
 import com.vempower.eezyclinic.mappers.RejectNotificationMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -42,7 +42,6 @@ import java.util.List;
 
 public class NotificationsListFragment extends  SwipedRecyclerViewFragment {
 
-    public static final String TITLE = "Prescriptions";
     private View fragmentView;
     private NotificationsListAdapter adapter;
     private List<AbstractNotification> notificationsList;

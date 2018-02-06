@@ -35,7 +35,7 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyTextViewRM;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 
 /**
@@ -277,8 +277,8 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 callSideMenuScreen(FeedbackActivity.class);
                 break;
             case R.id.features_and_benefits_linear:
-                //showToastMessage("Coming soon");
-                callSideMenuScreen(NewHomeActivity.class);
+                showToastMessage("Coming soon");
+                //callSideMenuScreen(NewHomeActivity.class);
                 break;
 
             case R.id.logout_tv:

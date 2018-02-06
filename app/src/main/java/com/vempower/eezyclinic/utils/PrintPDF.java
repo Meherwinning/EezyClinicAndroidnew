@@ -14,7 +14,7 @@ import com.hp.mss.hpprint.model.PrintJobData;
 import com.hp.mss.hpprint.model.asset.PDFAsset;
 import com.hp.mss.hpprint.util.PrintUtil;
 import com.vempower.eezyclinic.application.MyApplication;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import static com.hp.mss.hpprint.util.PrintUtil.mediaSize5x7;
 
@@ -25,7 +25,7 @@ import com.hp.mss.hpprint.model.PrintJobData;
 import com.hp.mss.hpprint.model.asset.PDFAsset;
 import com.hp.mss.hpprint.util.PrintUtil;
 import com.vempower.eezyclinic.application.MyApplication;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import static com.hp.mss.hpprint.util.PrintUtil.mediaSize5x7;*/
 

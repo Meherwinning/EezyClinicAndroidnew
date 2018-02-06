@@ -205,6 +205,11 @@
     <string name="notification_send_request_note_lbl">Note: Added family members will be able to view your past medical Records and Appointment history if allowed from your Privacy settings. By Accepting the request, you agree to have read and accepted Eezy Clinic\'s Terms &amp; Conditions and Privacy Policy.</string>
     <string name="are_you_sure_to_accept_family_member_lbl">Are you sure to accept the family member?</string>
     <string name="are_you_sure_to_reject_family_member_lbl">Are you sure to reject the family member?</string>
+    <string name="download_file_failed_lbl">Download failed</string>
+    <string name="unable_to_download_file_lbl">Unable to download file,Please try again</string>
+    <string name="download_file_start_lbl">Download started</string>
+    <string name="casesheet_print_copy_not_available_lbl">Casesheet print copy not available.</string>
+    <string name="no_casesheet_saved_lbl">No case sheet was saved</string>
 
 
 </resources>

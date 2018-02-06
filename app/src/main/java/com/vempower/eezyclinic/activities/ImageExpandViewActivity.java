@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import org.jetbrains.annotations.Nullable;
 

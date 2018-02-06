@@ -16,13 +16,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
-import com.android.volley.AuthFailureError;
+/*import com.android.volley.AuthFailureError1;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.android.volley.toolbox.Volley;*/
 import com.hp.mss.hpprint.model.ApplicationMetricsData;
 
 import java.util.HashMap;
@@ -98,7 +98,7 @@ public class EventMetricsCollector {
 
         Context context = activity.getApplicationContext();
 
-        RequestQueue queue = Volley.newRequestQueue(context);
+       /* RequestQueue queue = Volley.newRequestQueue(context);
 
         final Map<String, String> eventMap = metricsCollector.getMetricsParams();
 
@@ -123,7 +123,7 @@ public class EventMetricsCollector {
             }
 
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() throws AuthFailureError1 {
                 String authorizationString = MetricsUtil.getAuthorizationString();
 
                 Map<String, String> params = new HashMap<String, String>();
@@ -132,7 +132,7 @@ public class EventMetricsCollector {
                 return params;
             }
         };
-        queue.add(sr);
+        queue.add(sr);*/
     }
 
     private Map<String, String> getMetricsParams() {

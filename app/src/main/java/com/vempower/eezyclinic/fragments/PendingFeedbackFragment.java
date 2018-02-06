@@ -23,7 +23,7 @@ import com.vempower.eezyclinic.mappers.PendingFeedbackListMapper;
 import com.vempower.eezyclinic.mappers.PrescriptionsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.util.ArrayList;
 import java.util.List;

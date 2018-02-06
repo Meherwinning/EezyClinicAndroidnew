@@ -57,7 +57,7 @@ public class CasesheetDetailsMapper extends  AbstractMapper  implements Callback
             return;
         }
 
-       // MyApplication.showTransparentDialog();
+        MyApplication.showTransparentDialog();
         EezyClinicAPI stashDealAPI = MyApplication.getInstance().getEezyClinicAPI();
 
         RequestBody requestBody = getMyRequestBody();
@@ -76,7 +76,7 @@ public class CasesheetDetailsMapper extends  AbstractMapper  implements Callback
 
     @Override
     public void onResponse(Response<CasesheetDetailsAPI> response, Retrofit retrofit) {
-        //MyApplication.hideTransaprentDialog();
+        MyApplication.hideTransaprentDialog();
 
         getMyResponse(response, new MyResponse<CasesheetDetailsAPI>() {
             @Override
@@ -85,14 +85,11 @@ public class CasesheetDetailsMapper extends  AbstractMapper  implements Callback
             }
         });
 
-
-
-
     }
 
     @Override
     public void onFailure(Throwable error) {
-        //MyApplication.hideTransaprentDialog();
+        MyApplication.hideTransaprentDialog();
 
         onMyFailure(error, new MyResponse<CasesheetDetailsAPI>() {
             @Override
