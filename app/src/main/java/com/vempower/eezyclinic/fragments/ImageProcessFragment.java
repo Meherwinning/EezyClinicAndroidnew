@@ -5,13 +5,18 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.ContentProvider;
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
@@ -27,11 +32,15 @@ import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.EditProfileActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.FileUtils;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Created by Satishk on 6/1/2017.
@@ -41,8 +50,10 @@ public abstract class ImageProcessFragment extends AbstractFragment {
 
     private final int REQUEST_IMAGE_CAPTURE = 1111;
     private final int REQUEST_IMAGE_GALLERY = 2222;
+    private final int REQUEST_IMAGE_DRIVE = 3333;
 
     public static final int CODE_WRITE_SETTINGS_PERMISSION = 8364;
+    //private static final int PICKFILE_RESULT_CODE = 162;
 
     private File file;
     private Uri imageUri;
@@ -272,6 +283,38 @@ public abstract class ImageProcessFragment extends AbstractFragment {
 
                 break;
 
+            case REQUEST_IMAGE_DRIVE:
+
+                if(resultCode==Activity.RESULT_OK){
+                    // String FilePath = data.getData().;
+                   // croppedfile= new File(data.getData().toString());
+
+                    try {
+                        String pathFromURI = FileUtils.getPath(MyApplication.getCurrentActivityContext(),data.getData());//getRealPathFromURI(data.getData());
+                        if(pathFromURI==null)
+                        {
+                            Utils.showToastMsg("Invalid file,Please try again");
+                            return;
+                        }
+                        croppedfile = new File(pathFromURI);
+                        setPDFFile(croppedfile,responseId);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    //croppedfile.getAbsolutePath();
+
+                    //textFile.setText(file.getAbsolutePath());
+                }
+
+              //  Uri selectedPDF = data.getData();
+                // doCrop(selectedImage);
+                //cropCapturedImage(selectedPDF);
+
+                //Log.v("", "selected Image: " + selectedImage);
+                // callCropActivity(getPath(selectedImage), true);
+
+                break;
+
             case REQUEST_IMAGE_CAPTURE:
 
                 if (file == null || !file.exists()) {
@@ -378,6 +421,10 @@ public abstract class ImageProcessFragment extends AbstractFragment {
 
     //protected abstract void setImage(Uri imageUri);
     protected abstract void setImage(File file,int responseId);
+    protected  void setPDFFile(File file,int responseId)
+    {
+
+    }
 
     private File createAppFolder() {
         File folder = new File(Environment.getExternalStorageDirectory() +
@@ -470,6 +517,111 @@ public abstract class ImageProcessFragment extends AbstractFragment {
         alert.show();
     }
 
+    protected void showImageSourceDialogWithDrive(final int responseId) {
+        final CharSequence[] items = {"Camera", "Gallery","Drive"};
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(MyApplication.getCurrentActivityContext());
+        builder.setTitle("Select");
+
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                // Do something with the selection
+                switch (item) {
+                    case 0:
+                        callCamera(responseId);
+                        break;
+                    case 1:
+                        callGallery(responseId);
+                    case 2:
+                        callDriveForPDF(responseId);
+                        break;
+
+                }
+                dialog.dismiss();
+            }
+        });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    public String getRealPathFromURI(Uri uri) {
+        String[] projection = {MediaStore.Files.FileColumns.DISPLAY_NAME};//{MediaStore.Files.FileColumns.DATA};
+
+        ContentResolver cr = MyApplication.getCurrentActivityContext().getContentResolver();
+        retrieve(uri);
+
+        try {
+            ParcelFileDescriptor fileDescriptor = cr.openFileDescriptor(uri, "r");
+
+        } catch (FileNotFoundException e) {
+
+
+        }
+        Cursor metaCursor = cr.query(uri, projection, null, null, null);
+        if (metaCursor != null) {
+            try {
+
+                if (metaCursor.moveToFirst()) {
+                    metaCursor
+                            .getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+                    return metaCursor.getString(0);
+                }
+            } finally {
+                metaCursor.close();
+            }
+        }
+        return null;
+    }
+
+    public  String retrieve( Uri uri)
+    {
+        ContentResolver resolver=MyApplication.getCurrentActivityContext().getContentResolver();
+        if (uri.getScheme().equals("file"))
+        {
+            return uri.getPath();
+        }
+        final Cursor cursor = resolver.query(uri, new String[]{"_data"}, null, null, null);
+        if (cursor.moveToFirst())
+        {
+            return cursor.getString(0);
+        }
+        throw new RuntimeException("Can't retrieve path from uri: " + uri.toString());
+    }
+
+    protected void callDriveForPDF(int responseId) {
+        this.responseId=responseId;
+
+        if(checkPermissions())
+        {
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            // intent.setType("file/*");
+            intent.setType("application/pdf");
+            startActivityForResult(intent,REQUEST_IMAGE_DRIVE);
+        }else
+        {
+            ActivityCompat.requestPermissions((AbstractActivity)MyApplication.getCurrentActivityContext(), new String[]{Manifest.permission.WRITE_SETTINGS,Manifest.permission.CAMERA}, CODE_WRITE_SETTINGS_PERMISSION);
+
+        }
+
+
+
+        // checkMyPermissions(false);
+
+    }
+
+   /* public String getPath(Uri uri) {
+        String[] projection = { *//*MediaStore.Images.Media.DATA ,*//*MediaStore.Files.FileColumns.DATA};
+        Cursor cursor = ((Activity)MyApplication.getCurrentActivityContext()).CursorLoader(uri, projection, null, null, null);
+        if(cursor!=null)
+        {
+            //HERE YOU WILL GET A NULLPOINTER IF CURSOR IS NULL
+            //THIS CAN BE, IF YOU USED OI FILE MANAGER FOR PICKING THE MEDIA
+            int column_index = cursor
+                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        }
+        else return null;
+    }*/
 
 }

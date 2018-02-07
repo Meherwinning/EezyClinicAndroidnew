@@ -24,7 +24,7 @@ import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.GetProfileAllSettingsMapper;
 import com.vempower.eezyclinic.mappers.SavePrivacySettingsMapper;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 /**
  * Created by satish on 6/12/17.

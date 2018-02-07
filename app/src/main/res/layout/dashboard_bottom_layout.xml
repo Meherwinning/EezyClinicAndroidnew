@@ -92,7 +92,7 @@
             android:layout_marginTop="@dimen/_1dp"
             android:layout_gravity="bottom|center|center_vertical"
             android:textSize="@dimen/text_size_small1"
-            android:text="@string/medical_records_lbl"
+            android:text="@string/health_records_lbl"
             android:gravity="center"
             android:layout_height="match_parent" />
 

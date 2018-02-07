@@ -1,4 +1,4 @@
-package com.vempower.stashdealcustomer.activities
+package com.vempower.eezyclinic.activities
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog

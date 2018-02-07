@@ -23,7 +23,7 @@
                 android:id="@+id/profile_iv6"
                 style="@style/image_fit_toparent"
                 android:scaleType="fitXY"
-                android:src="@drawable/my_photo" />
+                 />
         </LinearLayout>
 
         <ImageView

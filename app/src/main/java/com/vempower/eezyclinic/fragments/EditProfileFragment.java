@@ -58,7 +58,7 @@ import com.vempower.eezyclinic.views.MyAutoCompleteBlackCursorTextView;
 import com.vempower.eezyclinic.views.MyAutoCompleteTextView;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
 import com.vempower.eezyclinic.views.MyTextViewRR;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.io.File;
 import java.text.ParseException;

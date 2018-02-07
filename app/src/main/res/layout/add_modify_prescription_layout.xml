@@ -58,7 +58,7 @@
                         android:id="@+id/profile_iv1"
                         style="@style/image_fit_toparent"
                         android:scaleType="fitXY"
-                        android:src="@drawable/my_photo" />
+                         />
                 </LinearLayout>
 
                 <ImageView
@@ -105,7 +105,7 @@
                         android:id="@+id/profile_iv2"
                         style="@style/image_fit_toparent"
                         android:scaleType="fitXY"
-                        android:src="@drawable/my_photo" />
+                         />
                 </LinearLayout>
 
                 <ImageView
@@ -142,7 +142,7 @@
                         android:id="@+id/profile_iv4"
                         style="@style/image_fit_toparent"
                         android:scaleType="fitXY"
-                        android:src="@drawable/my_photo" />
+                         />
                 </LinearLayout>
 
                 <ImageView

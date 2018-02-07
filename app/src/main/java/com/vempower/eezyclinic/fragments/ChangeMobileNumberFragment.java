@@ -24,7 +24,7 @@ import com.vempower.eezyclinic.mappers.ChangeMobileNumberMapper;
 import com.vempower.eezyclinic.mappers.ChangeMobileVerifyOTPMapper;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 /**
  * Created by satish on 6/12/17.

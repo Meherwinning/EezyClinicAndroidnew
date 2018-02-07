@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Messenger;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -131,8 +132,13 @@ import java.util.List;
                     @Override
                     public void onClick(View v) {
 
-                         Utils.showToastMsg(data.getAppointmentid()+"");
+                         //Utils.showToastMsg(data.getAppointmentid()+"");
 
+                        if(TextUtils.isEmpty(data.getCasesheetstatus()) || !data.getCasesheetstatus().equalsIgnoreCase("1"))
+                        {
+                            Utils.showToastMsg(R.string.no_casesheet_saved_lbl);
+                            return;
+                        }
                         Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),CasesheetsDetailsActivity.class);
                           // ((Activity) MyApplication.getCurrentActivityContext()).getIntent();
                         intent.putExtra(Constants.Pref.CASESHEET_APPOINTMENT_ID_KEY,data.getAppointmentid());

@@ -72,6 +72,11 @@ android {
     lintOptions {
         abortOnError false
     }
+    configurations {
+       // all*.exclude group: 'com.android.support', module: 'support-v4'
+        all*.exclude  module: 'gson'
+    }
+
 }
 
 def siteUrl = 'https://github.com/IPGPTP/DroidPrint'
@@ -152,12 +157,14 @@ task copyAarFile(type: Copy) << {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    // compile fileTree(include: ['*.jar'], dir: 'libs')
     //compile 'com.mcxiaoke.volley:library:1.0.19'
     //compile 'com.android.volley:volley:+'
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.android.support:design:23.0.1'
     compile 'com.android.support:support-v4:23.0.1'
     //compile project(':volley-master')
-    implementation project(':volley-master-release')
+    //implementation project(':volley-master-release')
+    //implementation project(':volley-new2')
+    //compile 'com.android.volley:volley:1.+'
 }

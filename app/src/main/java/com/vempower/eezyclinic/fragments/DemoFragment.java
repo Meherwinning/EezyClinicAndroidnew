@@ -15,17 +15,14 @@ import com.vempower.eezyclinic.APIResponce.SpecalitiyRemainData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.complex.Article;
 import com.vempower.eezyclinic.activities.complex.Bike;
-import com.vempower.eezyclinic.activities.complex.Car;
 import com.vempower.eezyclinic.activities.complex.ComplexListAdapter;
 import com.vempower.eezyclinic.activities.complex.DummyDataProvider;
-import com.vempower.eezyclinic.activities.complex.GridItem;
 import com.vempower.eezyclinic.activities.complex.Vehicle;
-import com.vempower.eezyclinic.adapters.SpecialityListAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.SpecalitiesMapper;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.util.ArrayList;
 import java.util.List;

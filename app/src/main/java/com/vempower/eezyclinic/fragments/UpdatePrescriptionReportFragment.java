@@ -103,7 +103,7 @@ public class UpdatePrescriptionReportFragment extends ImageProcessFragment {
         getFragemtView().findViewById(R.id.add_new_image_linear).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showImageSourceDialog(Constants.ImagePic.FROM_ADD_NEW_IMAGE);
+                showImageSourceDialogWithDrive(Constants.ImagePic.FROM_ADD_NEW_IMAGE);
             }
         });
 
@@ -398,6 +398,41 @@ public class UpdatePrescriptionReportFragment extends ImageProcessFragment {
             setNewImageViewToList(file,false);
 
     }
+    private void setNewPDFViewToList(final File file,boolean isExisting) {
+
+        if (file == null) {
+            return;
+        }
+
+
+        final View convertView = inflater
+                .inflate(R.layout.add_image_to_linear_layout, null, false);
+
+        ImageView profile_iv6 = convertView.findViewById(R.id.profile_iv6);
+        ImageView close_iv = convertView.findViewById(R.id.close_iv);
+
+        MyApplication.getInstance().setBitmapToImageviewBG(profile_iv6,R.drawable.pdf_icon);
+
+        close_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                horigental_linear.removeView(convertView);
+                imagesList.remove(file);
+            }
+        });
+        horigental_linear.addView(convertView);
+
+        if(!isExisting) {
+            newImagesList.add(file);
+        }
+        //imagesList.add(file);
+    }
+
+    @Override
+    protected void setPDFFile(File file, int responseId)
+    {
+        setNewPDFViewToList(file,false);
+    }
 
     public void setPDFDetails(PDFDetails PDFDetails) {
         this.PDFDetails = PDFDetails;
@@ -541,7 +576,22 @@ public class UpdatePrescriptionReportFragment extends ImageProcessFragment {
         protected void onPostExecute(File  file) {
             MyApplication.hideTransaprentDialog();
             super.onPostExecute(file);
-            setNewImageViewToList(file,true);
+
+            if(file==null)
+            {
+                return;
+            }
+
+           if(file.getName().contains(".pdf"))
+           {
+               setNewPDFViewToList(file,true) ;
+           }else
+           {
+               setNewImageViewToList(file,true);
+           }
+
+
+
             //showPDFInScreen(uri);
         }
     }

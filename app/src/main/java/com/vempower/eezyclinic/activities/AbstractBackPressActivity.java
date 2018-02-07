@@ -3,7 +3,7 @@ package com.vempower.eezyclinic.activities;
 
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;

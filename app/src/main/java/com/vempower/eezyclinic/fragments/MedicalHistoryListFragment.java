@@ -24,7 +24,7 @@ import com.vempower.eezyclinic.mappers.SaveMedicalHistorySelfMapper;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
 import com.vempower.eezyclinic.views.MyTextViewRM;
-import com.vempower.stashdealcustomer.activities.AbstractActivity;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.util.ArrayList;
 import java.util.List;

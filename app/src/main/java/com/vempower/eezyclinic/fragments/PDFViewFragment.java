@@ -1,33 +1,32 @@
 package com.vempower.eezyclinic.fragments;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Messenger;
-import android.print.PrintAttributes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
+/*import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 import com.github.barteksc.pdfviewer.listener.OnPageErrorListener;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
-import com.github.barteksc.pdfviewer.util.FitPolicy;
+import com.github.barteksc.pdfviewer.util.FitPolicy;*/
+import com.necistudio.vigerpdf.VigerPDF;
+import com.necistudio.vigerpdf.adapter.VigerAdapter;
+import com.necistudio.vigerpdf.manage.OnResultListener;
 import com.vempower.eezyclinic.APICore.HelathReportsData;
 import com.vempower.eezyclinic.APICore.PDFDetails;
 import com.vempower.eezyclinic.APICore.PrescriptionAPIData;
@@ -38,17 +37,12 @@ import com.vempower.eezyclinic.activities.UpdatePrescriptionReportActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
-import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.interfaces.MyDialogInterface;
 import com.vempower.eezyclinic.mappers.DeleteHealthRecordMapper;
-import com.vempower.eezyclinic.utils.Constants;
-import com.vempower.eezyclinic.utils.DownloadTask;
-import com.vempower.eezyclinic.utils.MyDownloadfFile;
-import com.vempower.eezyclinic.utils.PrintPDF;
 import com.vempower.eezyclinic.utils.Utils;
 
-import java.io.File;
+import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 import static com.vempower.eezyclinic.activities.PDFViewActivity.MEDICAL_RECORDS_REFRESH_REQUEST_CODE;
@@ -58,10 +52,20 @@ import static com.vempower.eezyclinic.activities.PDFViewActivity.MEDICAL_RECORDS
  * Created by satish on 6/12/17.
  */
 
-public class PDFViewFragment extends AbstractFragment implements
+
+
+public class PDFViewFragment extends AbstractFragment /*implements
         OnPageChangeListener,
         OnLoadCompleteListener,
-        OnPageErrorListener {
+        OnPageErrorListener*/ {
+
+    private ViewPager viewPager;
+    private ArrayList<Bitmap> itemData;
+    private VigerAdapter adapter;
+    private Button btnFromFile, btnFromNetwork,btnCancle;
+    private VigerPDF vigerPDF;
+
+
 
     public static final String READ_EXTERNAL_STORAGE = "android.permission.READ_EXTERNAL_STORAGE";
     public static final int PERMISSION_CODE = 42842;
@@ -92,6 +96,11 @@ public class PDFViewFragment extends AbstractFragment implements
         print_bottom_linear = getFragemtView().findViewById(R.id.print_bottom_linear);
         edit_bottom_linear = getFragemtView().findViewById(R.id.edit_bottom_linear);
 //DeleteHealthRecordMapper
+        viewPager = (ViewPager) getFragemtView().findViewById(R.id.viewPager);
+        vigerPDF = new VigerPDF(MyApplication.getCurrentActivityContext());
+        itemData = new ArrayList<>();
+        adapter = new VigerAdapter(MyApplication.getCurrentActivityContext(), itemData);
+        viewPager.setAdapter(adapter);
 
         delete_bottom_linear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,8 +167,15 @@ public class PDFViewFragment extends AbstractFragment implements
         print_bottom_linear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (showUri != null) {
-                    printPDF(showUri);
+                if (PDFDetails != null) {
+
+                new DownloadPDFAsURI(new DownloadPDFAsURIListener() {
+                    @Override
+                    public void onComplete(Uri uri) {
+                        printPDF(uri);
+                    }
+                }).execute(PDFDetails.getPrintpdf());
+
 
                 }
             }
@@ -206,6 +222,33 @@ public class PDFViewFragment extends AbstractFragment implements
             }
         });
 
+    }
+
+    private void fromNetwork(String endpoint) {
+        itemData.clear();
+        adapter.notifyDataSetChanged();
+        vigerPDF.cancle();
+        MyApplication.showTransparentDialog();
+        vigerPDF.initFromNetwork(endpoint, new OnResultListener() {
+            @Override
+            public void resultData(Bitmap data) {
+                MyApplication.hideTransaprentDialog();
+                Log.e("data", "run");
+                itemData.add(data);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void progressData(int progress) {
+                Log.e("data", "" + progress);
+            }
+
+            @Override
+            public void failed(Throwable t) {
+                MyApplication.hideTransaprentDialog();
+            }
+
+        });
     }
 
     private void callDeleteRecordMapper(String id) {
@@ -272,9 +315,12 @@ public class PDFViewFragment extends AbstractFragment implements
             return;
         }
 
+        itemData.clear();
+        adapter.notifyDataSetChanged();
+        fromNetwork(PDFDetails.getPrintpdf());
 
         // String urlStr = "http://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf";
-        new DownloadPDF().execute(PDFDetails.getPrintpdf());
+        //new DownloadPDFAsURI().execute(PDFDetails.getPrintpdf());
         // Uri uri= Utils.getURIfromURL(urlStr);
 
 
@@ -295,27 +341,7 @@ public class PDFViewFragment extends AbstractFragment implements
 
 
 
-    private class DownloadPDF extends AsyncTask<String, Void, Uri> {
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            MyApplication.showTransparentDialog();
-        }
-
-        @Override
-        protected Uri doInBackground(String... strings) {
-            MyDownloadfFile myDownloadfFile = new MyDownloadfFile();
-            return Uri.fromFile(myDownloadfFile.downloadFile(strings[0]));
-        }
-
-        @Override
-        protected void onPostExecute(Uri uri) {
-            MyApplication.hideTransaprentDialog();
-            super.onPostExecute(uri);
-            showPDFInScreen(uri);
-        }
-    }
 
 
     @Override
@@ -332,10 +358,10 @@ public class PDFViewFragment extends AbstractFragment implements
         }
     }
 
-    private void showPDFInScreen(Uri uri) {
+    protected void showPDFInScreen(Uri uri) {
 
 
-        com.github.barteksc.pdfviewer.PDFView pdfView = getFragemtView().findViewById(R.id.pdfView);
+       /* com.github.barteksc.pdfviewer.PDFView pdfView = getFragemtView().findViewById(R.id.pdfView);
 
         if (uri != null) {
             this.showUri = uri;
@@ -375,7 +401,7 @@ public class PDFViewFragment extends AbstractFragment implements
                     .pageFitPolicy(FitPolicy.BOTH)
 
                     .load();
-        }
+        }*/
     }
 
 
@@ -385,7 +411,7 @@ public class PDFViewFragment extends AbstractFragment implements
         return fragmentView;
     }
 
-    @Override
+  /*  @Override
     public void onPageChanged(int page, int pageCount) {
         //Utils.showToastMsg("pageNumber " + pageCount);
         pageNumber = page;
@@ -400,86 +426,10 @@ public class PDFViewFragment extends AbstractFragment implements
     @Override
     public void onPageError(int page, Throwable t) {
         Log.e("PDFViewFragment", "Cannot load page " + page);
-    }
+    }*/
 
 
-    private void printPDF(Uri uri) {
 
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
-            PrintPDF printPDF = new PrintPDF(uri);
-            printPDF.printPreview();
-        }else
-        {
-            Utils.showToastMsg(Utils.getStringFromResources(R.string.printing_not_supported_device_lbl));
-        }
-
-    }
-
-
-    private void downloadTaskStart(final String downloadUrlStr) {
-
-        if (TextUtils.isEmpty(downloadUrlStr)) {
-            return;
-        }
-        DownloadTask downloadTask = new DownloadTask(downloadUrlStr, new DownloadTask.DownloadListener() {
-            @Override
-            public void download(String status) {
-                switch (status) {
-                    case DownloadTask.DownloadStatus.DOWNLOAD_STARTED:
-                        Utils.showToastMsg("Download started");
-
-                        break;
-
-                    case DownloadTask.DownloadStatus.DOWNLOAD_COMPLETED:
-                        openDownloadedFolder();
-                        break;
-
-                    case DownloadTask.DownloadStatus.DOWNLOAD_FAILED:
-                        Utils.showToastMsg("Download failed");
-                        showMyDialog("Alert", "Unable to download file,Please try again", new ApiErrorDialogInterface() {
-                            @Override
-                            public void onCloseClick() {
-
-                            }
-
-                            @Override
-                            public void retryClick() {
-                                downloadTaskStart(downloadUrlStr);
-                            }
-                        });
-                        break;
-                }
-            }
-        });
-
-        downloadTask.start();
-    }
-
-
-    private void openDownloadedFolder() {
-
-        /*
-        API >= 19 you can use
-        Intent.ACTION_OPEN_DOCUMENT
-        (or API >= 21 - Intent.ACTION_OPEN_DOCUMENT_TREE)
-         */
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        /*Intent intent =null;
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP)
-        {
-            intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-        }
-        else if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT)
-        {
-            intent = new Intent(Intent.ACTION_GET_CONTENT);
-        }*/
-        Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
-                + File.separator+ Constants.APP_DIRECTORY_NAME+ File.separator );
-        //intent.setDataAndType(uri, "resource/folder");
-        //intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setDataAndType(uri, "*/*");
-        startActivity(Intent.createChooser(intent, "Open Download Folder"));
-    }
 
 
 }
