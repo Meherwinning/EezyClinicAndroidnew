@@ -1,35 +1,19 @@
 package com.vempower.eezyclinic.fragments;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.linkedin.platform.APIHelper;
 import com.linkedin.platform.LISessionManager;
-import com.linkedin.platform.errors.LIApiError;
 import com.linkedin.platform.errors.LIAuthError;
-import com.linkedin.platform.listeners.ApiListener;
-import com.linkedin.platform.listeners.ApiResponse;
 import com.linkedin.platform.listeners.AuthListener;
 import com.linkedin.platform.utils.Scope;
-import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.activities.AbstractFragmentActivity;
 import com.vempower.eezyclinic.activities.AbstractSocialLoginActivity;
-import com.vempower.eezyclinic.activities.linkedin.UserProfile;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.SocialLoginListener;
 import com.vempower.eezyclinic.utils.Utils;
-
-import org.json.JSONObject;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

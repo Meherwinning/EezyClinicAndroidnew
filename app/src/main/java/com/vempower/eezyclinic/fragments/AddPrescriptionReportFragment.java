@@ -87,7 +87,7 @@ public class AddPrescriptionReportFragment extends ImageProcessFragment {
         getFragemtView().findViewById(R.id.add_new_image_linear).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showImageSourceDialog(Constants.ImagePic.FROM_ADD_NEW_IMAGE);
+                showImageSourceDialogWithDrive(Constants.ImagePic.FROM_ADD_NEW_IMAGE);
             }
         });
 
@@ -309,16 +309,42 @@ public class AddPrescriptionReportFragment extends ImageProcessFragment {
         horigental_linear.addView(convertView);
         imagesList.add(file);
     }
+    private void setNewPDFViewToList(final File file) {
 
-    @Override
-    protected void setImage(File file, int responseId) {
-
-        if (true) {
-
-            setNewImageViewToList(file);
+        if (file == null) {
             return;
         }
-        if (file != null) {
+
+
+        final View convertView = inflater
+                .inflate(R.layout.add_image_to_linear_layout, null, false);
+
+        ImageView profile_iv6 = convertView.findViewById(R.id.profile_iv6);
+        ImageView close_iv = convertView.findViewById(R.id.close_iv);
+
+        MyApplication.getInstance().setBitmapToImageviewBG(profile_iv6,R.drawable.pdf_icon);
+
+        close_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                horigental_linear.removeView(convertView);
+                imagesList.remove(file);
+            }
+        });
+        horigental_linear.addView(convertView);
+        imagesList.add(file);
+    }
+
+    @Override
+    protected void setPDFFile(File file, int responseId)
+    {
+        setNewPDFViewToList(file);
+    }
+    @Override
+    protected void setImage(File file, int responseId) {
+            setNewImageViewToList(file);
+
+    /*    if (file != null) {
             String keyName = null;
             switch (responseId) {
                 case Constants.ImagePic.FROM_PROFILE:
@@ -344,7 +370,7 @@ public class AddPrescriptionReportFragment extends ImageProcessFragment {
                 return;
             }
 
-        }
+        }*/
 
     }
 }

@@ -228,9 +228,11 @@ public class PDFViewFragment extends AbstractFragment /*implements
         itemData.clear();
         adapter.notifyDataSetChanged();
         vigerPDF.cancle();
+        MyApplication.showTransparentDialog();
         vigerPDF.initFromNetwork(endpoint, new OnResultListener() {
             @Override
             public void resultData(Bitmap data) {
+                MyApplication.hideTransaprentDialog();
                 Log.e("data", "run");
                 itemData.add(data);
                 adapter.notifyDataSetChanged();
@@ -243,7 +245,7 @@ public class PDFViewFragment extends AbstractFragment /*implements
 
             @Override
             public void failed(Throwable t) {
-
+                MyApplication.hideTransaprentDialog();
             }
 
         });
