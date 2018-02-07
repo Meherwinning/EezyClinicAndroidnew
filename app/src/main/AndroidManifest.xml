@@ -228,7 +228,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/ThemeOverlay.MyNoTitleActivity" />
         <activity
-            android:name=".activities.HealthRecordsActivity"
+            android:name=".activities.HealthChecksActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:label="@string/title_activity_health_records"
             android:screenOrientation="portrait"

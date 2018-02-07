@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_gradient_bg"
-    tools:context=".activities.HealthRecordsActivity">
+    android:background="@color/white"
+    >
     <!--app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
 -->
 
-
     <TextView
+
         android:layout_width="wrap_content"
-        android:text="Health Records\n(Coming soon)"
-        android:textColor="@color/white"
+        android:text="Health Checks2\n(Coming soon)"
+        android:textColor="@color/black"
         android:textSize="@dimen/_20dp"
         android:layout_centerInParent="true"
         android:layout_height="wrap_content" />
