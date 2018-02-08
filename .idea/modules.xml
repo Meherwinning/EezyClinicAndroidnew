@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/MaterialDesign/MaterialDesign.iml" filepath="$PROJECT_DIR$/MaterialDesign/MaterialDesign.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyExpandableLayoutLibrary/MyExpandableLayoutLibrary.iml" filepath="$PROJECT_DIR$/MyExpandableLayoutLibrary/MyExpandableLayoutLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/PDFVigerLib/PDFVigerLib.iml" filepath="$PROJECT_DIR$/PDFVigerLib/PDFVigerLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PDFVigerLib/PDFVigerLib.iml" filepath="$PROJECT_DIR$/PDFVigerLib/PDFVigerLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
       <module fileurl="file://$PROJECT_DIR$/crystalrangeseekbar/crystalrangeseekbar.iml" filepath="$PROJECT_DIR$/crystalrangeseekbar/crystalrangeseekbar.iml" />
@@ -19,9 +20,13 @@
       <module fileurl="file://$PROJECT_DIR$/sublimepickerlibrary/sublimepickerlibrary.iml" filepath="$PROJECT_DIR$/sublimepickerlibrary/sublimepickerlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/togglebuttongroup/togglebuttongroup.iml" filepath="$PROJECT_DIR$/togglebuttongroup/togglebuttongroup.iml" />
       <module fileurl="file://$PROJECT_DIR$/volley-master-new/volley-master-new.iml" filepath="$PROJECT_DIR$/volley-master-new/volley-master-new.iml" />
+      <module fileurl="file://$PROJECT_DIR$/volley-master-new/volley-master-new.iml" filepath="$PROJECT_DIR$/volley-master-new/volley-master-new.iml" />
+      <module fileurl="file://$PROJECT_DIR$/volley-master-new_1/volley-master-new_1.iml" filepath="$PROJECT_DIR$/volley-master-new_1/volley-master-new_1.iml" />
       <module fileurl="file://$PROJECT_DIR$/volley-master-new_1/volley-master-new_1.iml" filepath="$PROJECT_DIR$/volley-master-new_1/volley-master-new_1.iml" />
       <module fileurl="file://$PROJECT_DIR$/volley-master-release/volley-master-release.iml" filepath="$PROJECT_DIR$/volley-master-release/volley-master-release.iml" />
       <module fileurl="file://$PROJECT_DIR$/volley-new/volley-new.iml" filepath="$PROJECT_DIR$/volley-new/volley-new.iml" />
+      <module fileurl="file://$PROJECT_DIR$/volley-new/volley-new.iml" filepath="$PROJECT_DIR$/volley-new/volley-new.iml" />
+      <module fileurl="file://$PROJECT_DIR$/volley-new2/volley-new2.iml" filepath="$PROJECT_DIR$/volley-new2/volley-new2.iml" />
       <module fileurl="file://$PROJECT_DIR$/volley-new2/volley-new2.iml" filepath="$PROJECT_DIR$/volley-new2/volley-new2.iml" />
     </modules>
   </component>

@@ -18,6 +18,7 @@ import com.vempower.eezyclinic.APIResponce.ForgotPasswordOTPAPI;
 import com.vempower.eezyclinic.APIResponce.GetFamilyMembersAPI;
 import com.vempower.eezyclinic.APIResponce.GetMyNotesAPI;
 import com.vempower.eezyclinic.APIResponce.GetPatientProfileAPI;
+import com.vempower.eezyclinic.APIResponce.HealthChecksListAPI;
 import com.vempower.eezyclinic.APIResponce.HelathReportsListAPI;
 import com.vempower.eezyclinic.APIResponce.IdCardTypeAPI;
 import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
@@ -376,5 +377,9 @@ public interface EezyClinicAPI {
     Call<AbstractResponse> notificationrejectrequest(@Body RequestBody postBody);
 
 
+//
+//http://202.63.103.194:8003/api/patient/healthcheck
+@POST(data + "patient/healthcheck")
+Call<HealthChecksListAPI> getHealthCheckList(@Body RequestBody postBody);
 
 }
