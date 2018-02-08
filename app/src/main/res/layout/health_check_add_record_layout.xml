@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+   android:background="@drawable/background_normal_white"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="#ebe8e8e8"
+        android:layout_height="@dimen/_50dp">
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="@dimen/_70dp"
+            android:text="Fasting"
+            android:gravity="center"
+            android:textColor="#ee7b7979"
+            android:layout_height="match_parent" />
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="@dimen/_90dp"
+            android:text="Post Meal"
+            android:gravity="center"
+            android:textColor="#ee7b7979"
+            android:layout_height="match_parent" />
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="@dimen/_70dp"
+            android:text="HbA1c"
+            android:gravity="center"
+            android:padding="@dimen/_10dp"
+            android:textColor="#ee7b7979"
+            android:layout_height="match_parent" />
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="@dimen/_120dp"
+            android:text="Date &amp; time"
+            android:gravity="center"
+            android:padding="@dimen/_10dp"
+            android:textColor="#ee7b7979"
+            android:layout_height="match_parent" />
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:visibility="invisible"
+            android:layout_width="@dimen/_80dp"
+            android:text="Date &amp; time"
+            android:gravity="center_vertical|left"
+            android:padding="@dimen/_10dp"
+            android:textColor="#FF7b7979"
+            android:layout_height="match_parent" />
+
+
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_margin="@dimen/_1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_height="@dimen/_50dp">
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_70dp"
+                    android:text="Fasting"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_90dp"
+                    android:text="Post Meal"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_70dp"
+                    android:text="HbA1c"
+                    android:gravity="center"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_120dp"
+                    android:text="Date &amp; time"
+                    android:gravity="center"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:visibility="invisible"
+                    android:layout_width="@dimen/_80dp"
+                    android:text="Date &amp; time"
+                    android:gravity="center_vertical|left"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#FF7b7979"
+                    android:layout_height="match_parent" />
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_height="@dimen/_50dp">
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_70dp"
+                    android:text="Fasting"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_90dp"
+                    android:text="Post Meal"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_70dp"
+                    android:text="HbA1c"
+                    android:gravity="center"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_120dp"
+                    android:text="Date &amp; time"
+                    android:gravity="center"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:visibility="invisible"
+                    android:layout_width="@dimen/_80dp"
+                    android:text="Date &amp; time"
+                    android:gravity="center_vertical|left"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#FF7b7979"
+                    android:layout_height="match_parent" />
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_height="@dimen/_50dp">
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_70dp"
+                    android:text="Fasting"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_90dp"
+                    android:text="Post Meal"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_70dp"
+                    android:text="HbA1c"
+                    android:gravity="center"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_120dp"
+                    android:text="Date &amp; time"
+                    android:gravity="center"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:visibility="invisible"
+                    android:layout_width="@dimen/_80dp"
+                    android:text="Date &amp; time"
+                    android:gravity="center_vertical|left"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#FF7b7979"
+                    android:layout_height="match_parent" />
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_height="@dimen/_50dp">
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_70dp"
+                    android:text="Fasting"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_90dp"
+                    android:text="Post Meal"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_70dp"
+                    android:text="HbA1c"
+                    android:gravity="center"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_120dp"
+                    android:text="Date &amp; time"
+                    android:gravity="center"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:visibility="invisible"
+                    android:layout_width="@dimen/_80dp"
+                    android:text="Date &amp; time"
+                    android:gravity="center_vertical|left"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#FF7b7979"
+                    android:layout_height="match_parent" />
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_height="@dimen/_50dp">
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_70dp"
+                    android:text="Fasting"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_90dp"
+                    android:text="Post Meal"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_70dp"
+                    android:text="HbA1c"
+                    android:gravity="center"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_120dp"
+                    android:text="Date &amp; time"
+                    android:gravity="center"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:visibility="invisible"
+                    android:layout_width="@dimen/_80dp"
+                    android:text="Date &amp; time"
+                    android:gravity="center_vertical|left"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#FF7b7979"
+                    android:layout_height="match_parent" />
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_height="@dimen/_50dp">
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_70dp"
+                    android:text="Fasting"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_90dp"
+                    android:text="Post Meal"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_70dp"
+                    android:text="HbA1c"
+                    android:gravity="center"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_120dp"
+                    android:text="Date &amp; time"
+                    android:gravity="center"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:visibility="invisible"
+                    android:layout_width="@dimen/_80dp"
+                    android:text="Date &amp; time"
+                    android:gravity="center_vertical|left"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#FF7b7979"
+                    android:layout_height="match_parent" />
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_height="@dimen/_50dp">
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_70dp"
+                    android:text="Fasting"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_90dp"
+                    android:text="Post Meal"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_70dp"
+                    android:text="HbA1c"
+                    android:gravity="center"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_120dp"
+                    android:text="Date &amp; time"
+                    android:gravity="center"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:visibility="invisible"
+                    android:layout_width="@dimen/_80dp"
+                    android:text="Date &amp; time"
+                    android:gravity="center_vertical|left"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#FF7b7979"
+                    android:layout_height="match_parent" />
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_height="@dimen/_50dp">
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_70dp"
+                    android:text="Fasting"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_90dp"
+                    android:text="Post Meal"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_70dp"
+                    android:text="HbA1c"
+                    android:gravity="center"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="@dimen/_120dp"
+                    android:text="Date &amp; time"
+                    android:gravity="center"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:visibility="invisible"
+                    android:layout_width="@dimen/_80dp"
+                    android:text="Date &amp; time"
+                    android:gravity="center_vertical|left"
+                    android:padding="@dimen/_10dp"
+                    android:textColor="#FF7b7979"
+                    android:layout_height="match_parent" />
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

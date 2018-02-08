@@ -211,6 +211,7 @@
     <string name="casesheet_print_copy_not_available_lbl">Casesheet print copy not available.</string>
     <string name="no_casesheet_saved_lbl">No case sheet was saved</string>
     <string name="title_health_checks">My Health Checks</string>
+    <string name="unauthorized_user_lbl">unauthorized user,Please try again</string>
 
 
 </resources>
