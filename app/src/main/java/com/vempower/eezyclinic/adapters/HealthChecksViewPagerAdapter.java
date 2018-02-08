@@ -1,0 +1,63 @@
+package com.vempower.eezyclinic.adapters;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.vempower.eezyclinic.fragments.CasesheetsFragment;
+import com.vempower.eezyclinic.fragments.HealthCheckTab1;
+import com.vempower.eezyclinic.fragments.HealthCheckTab2;
+import com.vempower.eezyclinic.fragments.HealthCheckTab3;
+import com.vempower.eezyclinic.fragments.HealthCheckTab4;
+import com.vempower.eezyclinic.fragments.PrescriptionsFragment;
+import com.vempower.eezyclinic.fragments.ReportsFragment;
+
+public class HealthChecksViewPagerAdapter extends FragmentStatePagerAdapter {
+
+    private static int TAB_COUNT = 4;
+   // private PrescriptionsFragment prescriptionsFragment;
+
+    public HealthChecksViewPagerAdapter(FragmentManager fm) {
+        super(fm);
+    }
+
+    @Override
+    public Fragment getItem(int position) {
+
+        switch (position) {
+            case 0:
+                return new HealthCheckTab1();
+            case 1:
+                return new HealthCheckTab2();
+            case 2:
+                return new HealthCheckTab3();
+            case 3:
+                return new HealthCheckTab4();
+        }
+        return null;
+    }
+
+    @Override
+    public int getCount() {
+        return TAB_COUNT;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
+            case 0:
+                return HealthCheckTab1.TITLE;
+
+            case 1:
+                return HealthCheckTab2.TITLE;
+
+            case 2:
+                return HealthCheckTab3.TITLE;
+            case 3:
+                return HealthCheckTab4.TITLE;
+        }
+        return super.getPageTitle(position);
+    }
+
+
+}

@@ -243,6 +243,11 @@
  -->
     </style>
 
+    <style name="TabWidget">
+        <item name="textSize">@dimen/_12sp</item>
+        <item name="textStyle">normal</item>
+    </style>
+
     <style name="my_TextAppearance.MaterialCalendarWidget.WeekDay" parent="android:TextAppearance.DeviceDefault.Small">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/_15sp</item>

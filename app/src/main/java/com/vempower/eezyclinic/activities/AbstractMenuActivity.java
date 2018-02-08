@@ -240,7 +240,8 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 break;
             case R.id.health_checks_linear:
                 //TODO something
-                showToastMessage("Coming soon");
+               // showToastMessage("Coming soon");
+                callSideMenuScreen(HealthChecksActivity.class);
                 break;
             case R.id.medical_history_linear:
                // showToastMessage("Coming soon");
@@ -261,10 +262,10 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
             case R.id.health_records_linear:
                 //showToastMessage("Coming soon");
                 callMedicalRecordds();
-                // intent= new Intent(this,HealthRecordsActivity.class);
+                // intent= new Intent(this,.class);
                 //Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
 
-                /*intent.setClass(this,HealthRecordsActivity.class);
+                /*intent.setClass(this,.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);*/
                 break;

@@ -8,10 +8,12 @@ import android.widget.TextView;
 
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
+import com.vempower.eezyclinic.fragments.HealthChecksFragment;
 import com.vempower.eezyclinic.fragments.HealthRecordsFragment;
+import com.vempower.eezyclinic.fragments.MedicalRecordsFragment;
 import com.vempower.eezyclinic.utils.Utils;
 
-public class HealthRecordsActivity extends AbstractMenuActivity {
+public class HealthChecksActivity extends AbstractMenuActivity {
 
 
     public void setActionBar() {
@@ -20,7 +22,7 @@ public class HealthRecordsActivity extends AbstractMenuActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView titleName = toolbar.findViewById(R.id.title_logo_tv);
         //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
-        titleName.setText(Utils.getStringFromResources(R.string.title_health_records));
+        titleName.setText(Utils.getStringFromResources(R.string.title_health_checks));
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +44,7 @@ public class HealthRecordsActivity extends AbstractMenuActivity {
 
     @Override
     protected AbstractFragment getFragment() {
-        return new HealthRecordsFragment();
+        return new HealthChecksFragment();
     }
 
     @Override

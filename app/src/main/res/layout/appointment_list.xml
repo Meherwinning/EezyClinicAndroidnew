@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_gradient_bg"
-    tools:context=".activities.HealthRecordsActivity">
+   >
 
     <TextView
         android:layout_width="wrap_content"
