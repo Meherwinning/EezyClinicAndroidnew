@@ -6,15 +6,41 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.vempower.eezyclinic.APIResponce.HealthChecksListAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.HealthChecksFragment;
 import com.vempower.eezyclinic.fragments.HealthRecordsFragment;
 import com.vempower.eezyclinic.fragments.MedicalRecordsFragment;
+import com.vempower.eezyclinic.mappers.HealthCheckListMapper;
 import com.vempower.eezyclinic.utils.Utils;
 
 public class HealthChecksActivity extends AbstractMenuActivity {
 
+
+    @Override
+    protected void setMyContectntView() {
+        super.setMyContectntView();
+
+        HealthCheckListMapper mapper= new HealthCheckListMapper();
+        mapper.setOnHealthChecksListListener(new HealthCheckListMapper.HealthChecksListListener() {
+            @Override
+            public void getHealthChecksListAPI(HealthChecksListAPI checksListAPI, String errorMessage) {
+                if(!isValidResponse(checksListAPI,errorMessage,true,true))
+                {
+                    return;
+                }
+                if(checksListAPI.getData()==null)
+                {
+                    showAlertDialog("Alert",Utils.getStringFromResources(R.string.invalid_health_checks_list_data_lbl),true);
+                    return;
+                }
+                HealthChecksFragment  fragment= new HealthChecksFragment();
+                fragment.setHealthChecksData(checksListAPI.getData());
+                setFragment(fragment);
+            }
+        });
+    }
 
     public void setActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -44,7 +70,7 @@ public class HealthChecksActivity extends AbstractMenuActivity {
 
     @Override
     protected AbstractFragment getFragment() {
-        return new HealthChecksFragment();
+        return null;
     }
 
     @Override

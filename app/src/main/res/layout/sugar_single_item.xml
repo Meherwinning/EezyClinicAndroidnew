@@ -1,67 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-   android:background="@drawable/background_normal_white"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:background="#ebe8e8e8"
-        android:layout_height="@dimen/_45dp">
-        <com.vempower.eezyclinic.views.MyTextViewRR
-            android:layout_width="@dimen/_70dp"
-            android:text="Fasting"
-            android:layout_marginLeft="@dimen/_3dp"
-            android:layout_marginRight="@dimen/_3dp"
-
-            android:gravity="center"
-            android:textSize="@dimen/_14dp"
-            android:textColor="#ee7b7979"
-            android:layout_height="match_parent" />
-        <com.vempower.eezyclinic.views.MyTextViewRR
-            android:layout_width="@dimen/_90dp"
-            android:text="Post Meal"
-            android:layout_marginLeft="@dimen/_3dp"
-            android:layout_marginRight="@dimen/_3dp"
-            android:textSize="@dimen/_14dp"
-            android:gravity="center"
-            android:textColor="#ee7b7979"
-            android:layout_height="match_parent" />
-        <com.vempower.eezyclinic.views.MyTextViewRR
-            android:layout_width="@dimen/_70dp"
-            android:text="HbA1c"
-            android:layout_marginLeft="@dimen/_3dp"
-            android:layout_marginRight="@dimen/_3dp"
-            android:textSize="@dimen/_14dp"
-            android:gravity="center"
-            android:textColor="#ee7b7979"
-            android:layout_height="match_parent" />
-        <com.vempower.eezyclinic.views.MyTextViewRR
-            android:layout_width="@dimen/_120dp"
-            android:text="Date &amp; time"
-            android:layout_marginLeft="@dimen/_3dp"
-            android:layout_marginRight="@dimen/_3dp"
-            android:textSize="@dimen/_14dp"
-            android:gravity="center"
-            android:textColor="#ee7b7979"
-            android:layout_height="match_parent" />
-       <!-- <com.vempower.eezyclinic.views.MyTextViewRR
-            android:visibility="invisible"
-            android:layout_width="@dimen/_100dp"
-            android:layout_marginLeft="@dimen/_3dp"
-            android:layout_marginRight="@dimen/_3dp"
-            android:textSize="@dimen/_14dp"
-            android:gravity="center_vertical|left"
-            android:padding="@dimen/_10dp"
-            android:textColor="#FF7b7979"
-            android:layout_height="match_parent" />-->
-
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/new_sugar_record_view_linear"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_45dp"
         android:layout_marginTop="@dimen/_8dp"
@@ -72,12 +15,13 @@
         android:paddingTop="@dimen/_4dp">
 
         <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+            android:id="@+id/fasting_et"
             android:layout_width="@dimen/_70dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/_3dp"
             android:layout_marginRight="@dimen/_3dp"
             android:background="@drawable/health_checks_view_selector"
-            android:enabled="true"
+            android:enabled="false"
             android:gravity="center"
             android:inputType="numberSigned"
             android:maxLength="4"
@@ -86,12 +30,13 @@
             android:textSize="@dimen/_14dp" />
 
         <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+            android:id="@+id/post_meal_et"
             android:layout_width="@dimen/_90dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/_3dp"
             android:layout_marginRight="@dimen/_3dp"
             android:background="@drawable/health_checks_view_selector"
-            android:enabled="true"
+            android:enabled="false"
             android:gravity="center"
             android:inputType="numberSigned"
             android:maxLength="4"
@@ -100,12 +45,13 @@
             android:textSize="@dimen/_14dp" />
 
         <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+            android:id="@+id/hba1c_et"
             android:layout_width="@dimen/_70dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/_3dp"
             android:layout_marginRight="@dimen/_3dp"
             android:background="@drawable/health_checks_view_selector"
-            android:enabled="true"
+            android:enabled="false"
             android:gravity="center"
             android:inputType="numberSigned"
             android:maxLength="4"
@@ -114,13 +60,14 @@
             android:textSize="@dimen/_14dp" />
 
         <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/date_tv"
             android:layout_width="@dimen/_120dp"
             android:clickable="true"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/_3dp"
             android:layout_marginRight="@dimen/_3dp"
             android:background="@drawable/health_checks_view_selector"
-            android:enabled="true"
+            android:enabled="false"
             android:gravity="center"
             android:hint="dd-mm-yyyy"
             android:textColor="#ee7b7979"
@@ -141,7 +88,7 @@
                 android:padding="@dimen/_8dp"
                 android:src="@drawable/save_record" />
 
-  <!--          <ImageView
+            <ImageView
                 android:id="@+id/edit_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -150,7 +97,7 @@
                 android:layout_marginRight="@dimen/_5dp"
                 android:padding="@dimen/_8dp"
                 android:src="@drawable/edit_record" />
--->
+
             <ImageView
                 android:id="@+id/delete_iv"
                 android:layout_width="wrap_content"
@@ -163,38 +110,16 @@
 
         </LinearLayout>
 
-        <!--  <com.vempower.eezyclinic.views.MyTextViewRR
-              android:layout_width="@dimen/_80dp"
-              android:layout_height="match_parent"
-              android:layout_marginLeft="@dimen/_3dp"
-              android:layout_marginRight="@dimen/_3dp"
-              android:gravity="center_vertical|left"
-              android:textColor="#FF7b7979"
-              android:textSize="@dimen/_14dp"
-              android:visibility="invisible" />
-  -->
-
-    </LinearLayout>
-    <ScrollView
-        android:layout_margin="@dimen/_1dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:id="@+id/sugar_levels_linear"
-
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
-  <!--          <include layout="@layout/sugar_single_item"></include>
-            <include layout="@layout/sugar_single_item"></include>
-            <include layout="@layout/sugar_single_item"></include>
+      <!--  <com.vempower.eezyclinic.views.MyTextViewRR
+            android:layout_width="@dimen/_80dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/_3dp"
+            android:layout_marginRight="@dimen/_3dp"
+            android:gravity="center_vertical|left"
+            android:textColor="#FF7b7979"
+            android:textSize="@dimen/_14dp"
+            android:visibility="invisible" />
 -->
 
-
-        </LinearLayout>
-
-
-    </ScrollView>
-
-
+    </LinearLayout>
 </LinearLayout>

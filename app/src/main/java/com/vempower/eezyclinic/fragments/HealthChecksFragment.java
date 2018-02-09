@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.vempower.eezyclinic.APICore.HealthChecksData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.HealthChecksViewPagerAdapter;
 import com.vempower.eezyclinic.adapters.HealthRecordsViewPagerAdapter;
@@ -24,6 +25,8 @@ public class HealthChecksFragment extends AbstractFragment {
     private HealthChecksViewPagerAdapter mViewPagerAdapter;
     private TabLayout mTabLayout;
     private View fragmentView;
+    private HealthChecksData healthChecksData;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,7 +65,7 @@ public class HealthChecksFragment extends AbstractFragment {
     }
 
     private void setViewPager() {
-        mViewPagerAdapter = new HealthChecksViewPagerAdapter(getFragmentManager());
+        mViewPagerAdapter = new HealthChecksViewPagerAdapter(healthChecksData,getFragmentManager());
         mViewPager.setAdapter(mViewPagerAdapter);
 
         mTabLayout.setupWithViewPager(mViewPager);
@@ -86,5 +89,9 @@ public class HealthChecksFragment extends AbstractFragment {
 
 
         // ((TabLayout) findViewById(R.id.tabHost)).setupWithViewPager(mViewPager);
+    }
+
+    public void setHealthChecksData(HealthChecksData healthChecksData) {
+        this.healthChecksData = healthChecksData;
     }
 }

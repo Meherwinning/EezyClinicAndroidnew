@@ -212,6 +212,7 @@
     <string name="no_casesheet_saved_lbl">No case sheet was saved</string>
     <string name="title_health_checks">My Health Checks</string>
     <string name="unauthorized_user_lbl">unauthorized user,Please try again</string>
+    <string name="invalid_health_checks_list_data_lbl">Invalid health check list data. Please try again</string>
 
 
 </resources>

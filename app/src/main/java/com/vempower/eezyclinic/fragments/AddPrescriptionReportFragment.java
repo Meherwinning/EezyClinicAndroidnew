@@ -59,6 +59,7 @@ public class AddPrescriptionReportFragment extends ImageProcessFragment {
 
         myInit();
 
+
         return fragmentView;
     }
 

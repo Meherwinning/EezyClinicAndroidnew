@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.vempower.eezyclinic.APICore.HealthChecksData;
 import com.vempower.eezyclinic.fragments.CasesheetsFragment;
 import com.vempower.eezyclinic.fragments.HealthCheckTab1;
 import com.vempower.eezyclinic.fragments.HealthCheckTab2;
@@ -15,10 +16,12 @@ import com.vempower.eezyclinic.fragments.ReportsFragment;
 public class HealthChecksViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private static int TAB_COUNT = 4;
+    private final HealthChecksData healthChecksData;
    // private PrescriptionsFragment prescriptionsFragment;
 
-    public HealthChecksViewPagerAdapter(FragmentManager fm) {
+    public HealthChecksViewPagerAdapter(HealthChecksData healthChecksData,FragmentManager fm) {
         super(fm);
+        this.healthChecksData=healthChecksData;
     }
 
     @Override
@@ -26,7 +29,9 @@ public class HealthChecksViewPagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                return new HealthCheckTab1();
+                HealthCheckTab1  checkTab1= new HealthCheckTab1();
+                checkTab1.setSugarLevelsList(healthChecksData.getSugar());
+                return checkTab1;
             case 1:
                 return new HealthCheckTab2();
             case 2:

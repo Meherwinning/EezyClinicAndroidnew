@@ -54,7 +54,7 @@ public class HealthCheckListMapper extends  AbstractMapper  implements Callback<
             return;
         }
 
-       // MyApplication.showTransparentDialog();
+        MyApplication.showTransparentDialog();
         EezyClinicAPI stashDealAPI = MyApplication.getInstance().getEezyClinicAPI();
 
         RequestBody requestBody = getMyRequestBody();
@@ -73,7 +73,7 @@ public class HealthCheckListMapper extends  AbstractMapper  implements Callback<
 
     @Override
     public void onResponse(Response<HealthChecksListAPI> response, Retrofit retrofit) {
-        //MyApplication.hideTransaprentDialog();
+        MyApplication.hideTransaprentDialog();
 
         getMyResponse(response, new MyResponse<HealthChecksListAPI>() {
             @Override
@@ -89,7 +89,7 @@ public class HealthCheckListMapper extends  AbstractMapper  implements Callback<
 
     @Override
     public void onFailure(Throwable error) {
-        //MyApplication.hideTransaprentDialog();
+        MyApplication.hideTransaprentDialog();
 
         onMyFailure(error, new MyResponse<HealthChecksListAPI>() {
             @Override
