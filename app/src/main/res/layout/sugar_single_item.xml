@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_8dp"
+    android:paddingBottom="@dimen/_4dp"
+    android:paddingTop="@dimen/_4dp"
+    android:background="@drawable/health_checks_item_bg"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_45dp"
-        android:layout_marginTop="@dimen/_8dp"
-        android:background="@drawable/health_checks_item_bg"
+        android:layout_height="@dimen/_35dp"
+
         android:orientation="horizontal"
 
-        android:paddingBottom="@dimen/_4dp"
-        android:paddingTop="@dimen/_4dp">
+        android:layout_weight="3"
+        >
 
         <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
             android:id="@+id/fasting_et"
-            android:layout_width="@dimen/_70dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/_3dp"
             android:layout_marginRight="@dimen/_3dp"
@@ -31,7 +35,8 @@
 
         <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
             android:id="@+id/post_meal_et"
-            android:layout_width="@dimen/_90dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/_3dp"
             android:layout_marginRight="@dimen/_3dp"
@@ -46,7 +51,8 @@
 
         <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
             android:id="@+id/hba1c_et"
-            android:layout_width="@dimen/_70dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/_3dp"
             android:layout_marginRight="@dimen/_3dp"
@@ -59,21 +65,36 @@
             android:textColor="#ee7b7979"
             android:textSize="@dimen/_14dp" />
 
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+
+        android:layout_height="@dimen/_30dp">
+
         <com.vempower.eezyclinic.views.MyTextViewRR
             android:id="@+id/date_tv"
-            android:layout_width="@dimen/_120dp"
-            android:clickable="true"
+            android:layout_toLeftOf="@+id/imageview_linear"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/_3dp"
             android:layout_marginRight="@dimen/_3dp"
             android:background="@drawable/health_checks_view_selector"
+            android:clickable="true"
             android:enabled="false"
-            android:gravity="center"
+            android:gravity="left|center_vertical"
             android:hint="dd-mm-yyyy"
             android:textColor="#ee7b7979"
             android:textSize="@dimen/_14dp" />
 
+
         <LinearLayout
+            android:id="@+id/imageview_linear"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="right"
             android:layout_width="@dimen/_90dp"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -109,17 +130,6 @@
                 android:src="@drawable/cancel_delete_record" />
 
         </LinearLayout>
+    </RelativeLayout>
 
-      <!--  <com.vempower.eezyclinic.views.MyTextViewRR
-            android:layout_width="@dimen/_80dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/_3dp"
-            android:layout_marginRight="@dimen/_3dp"
-            android:gravity="center_vertical|left"
-            android:textColor="#FF7b7979"
-            android:textSize="@dimen/_14dp"
-            android:visibility="invisible" />
--->
-
-    </LinearLayout>
 </LinearLayout>

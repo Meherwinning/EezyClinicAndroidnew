@@ -17,8 +17,10 @@ import android.widget.LinearLayout;
 
 import com.vempower.eezyclinic.APICore.HealthChecksSugar;
 import com.vempower.eezyclinic.APICore.PatientData;
+import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.mappers.AddSugarHealthCheckMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
@@ -32,12 +34,12 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
 
     public static final String TITLE = "Sugar";
     private View fragmentView;
-    private LinearLayout sugar_levels_linear, add_new_reocrd_linear,new_sugar_record_view_linear;
+    private LinearLayout sugar_levels_linear, add_new_reocrd_linear, new_sugar_record_view_linear;
     private LayoutInflater inflater;
     private List<HealthChecksSugar> sugarLevelsList;
-    private MyEditTextBlackCursorRR new_fasting_et,new_hba1c_et,new_post_meal_et;
+    private MyEditTextBlackCursorRR new_fasting_et, new_hba1c_et, new_post_meal_et;
     private MyTextViewRR new_date_tv;
-    private ImageView new_delete_iv,new_ok_iv;
+    private ImageView new_delete_iv, new_ok_iv;
 
 
     @Nullable
@@ -56,7 +58,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
 
         sugar_levels_linear = getFragemtView().findViewById(R.id.sugar_levels_linear);
         add_new_reocrd_linear = getFragemtView().findViewById(R.id.add_new_reocrd_linear);
-        new_sugar_record_view_linear  = getFragemtView().findViewById(R.id.new_sugar_record_view_linear);
+        new_sugar_record_view_linear = getFragemtView().findViewById(R.id.new_sugar_record_view_linear);
         new_sugar_record_view_linear.setVisibility(View.GONE);
         add_new_reocrd_linear.setVisibility(View.VISIBLE);
         initForAddNewRecord();
@@ -76,15 +78,14 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
 
     }
 
-    private void initForAddNewRecord()
-    {
-         new_fasting_et  = getFragemtView().findViewById(R.id.fasting_et);
-         new_post_meal_et  = getFragemtView().findViewById(R.id.post_meal_et);
-         new_hba1c_et  = getFragemtView().findViewById(R.id.hba1c_et);
-         new_date_tv  = getFragemtView().findViewById(R.id.date_tv);
+    private void initForAddNewRecord() {
+        new_fasting_et = getFragemtView().findViewById(R.id.fasting_et);
+        new_post_meal_et = getFragemtView().findViewById(R.id.post_meal_et);
+        new_hba1c_et = getFragemtView().findViewById(R.id.hba1c_et);
+        new_date_tv = getFragemtView().findViewById(R.id.date_tv);
 
-         new_ok_iv = getFragemtView().findViewById(R.id.ok_iv);
-         new_delete_iv = getFragemtView().findViewById(R.id.delete_iv);
+        new_ok_iv = getFragemtView().findViewById(R.id.ok_iv);
+        new_delete_iv = getFragemtView().findViewById(R.id.delete_iv);
 
         new_ok_iv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +109,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
         });
         resetAddNewRecord();
     }
+
     public HealthChecksSugar getFromNewView() {
         new_fasting_et.getText().toString();
         new_post_meal_et = getFragemtView().findViewById(R.id.post_meal_et);
@@ -116,12 +118,41 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
 
         return null;
     }
-    private void resetAddNewRecord()
-    {
+
+    private void resetAddNewRecord() {
         new_fasting_et.setText(null);
         new_post_meal_et.setText(null);
         new_hba1c_et.setText(null);
         new_date_tv.setText(null);
+    }
+
+    private void callAddNewSugarHealthcheckRecord(final String fasting, final String lunch, final String hba1c, String checkuptime) {
+        AddSugarHealthCheckMapper mapper = new AddSugarHealthCheckMapper(fasting, lunch, hba1c, checkuptime);
+        mapper.setOnAddSugarHealthCheckListener(new AddSugarHealthCheckMapper.AddSugarHealthCheckListener() {
+            @Override
+            public void addSugar(AbstractResponse response, String errorMessage) {
+                if (!isValidResponse(response, errorMessage, true, false)) {
+                    return;
+                }
+
+                /* {
+                "id": "403",
+                "patientId": "265",
+                "checkupgroupid": null,
+                "checkupName": "Sugar Level",
+                "checkupValue": "40,140,230",
+                "checkupTime": "2018-01-07 00:00:00",
+                "status": "1",
+                "created_on": "2018-02-08 18:49:28"
+            }*/
+
+                HealthChecksSugar newSugar = new HealthChecksSugar();
+                newSugar.setCheckupName("Sugar Level");
+                newSugar.setCheckupTime("2018-01-07");
+                newSugar.setCheckupValue(fasting + "," + lunch + "," + hba1c);
+                calAddViewRecord(newSugar, true);
+            }
+        });
     }
 
 
@@ -140,22 +171,22 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
             if (sugar == null) {
                 continue;
             }
-            calAddViewRecord(sugar,false);
+            calAddViewRecord(sugar, false);
 
 
         }
 
     }
 
-    private void calAddViewRecord(HealthChecksSugar sugar,boolean isfromAddNew) {
+    private void calAddViewRecord(HealthChecksSugar sugar, boolean isfromAddNew) {
 
         final View convertView = inflater
                 .inflate(R.layout.sugar_single_item, null, false);
 
-        MyEditTextBlackCursorRR fasting_et  = convertView.findViewById(R.id.fasting_et);
-        MyEditTextBlackCursorRR post_meal_et  = convertView.findViewById(R.id.post_meal_et);
-        MyEditTextBlackCursorRR hba1c_et  = convertView.findViewById(R.id.hba1c_et);
-        MyTextViewRR date_tv  = convertView.findViewById(R.id.date_tv);
+        MyEditTextBlackCursorRR fasting_et = convertView.findViewById(R.id.fasting_et);
+        MyEditTextBlackCursorRR post_meal_et = convertView.findViewById(R.id.post_meal_et);
+        MyEditTextBlackCursorRR hba1c_et = convertView.findViewById(R.id.hba1c_et);
+        MyTextViewRR date_tv = convertView.findViewById(R.id.date_tv);
 
         ImageView ok_iv = convertView.findViewById(R.id.ok_iv);
         ImageView edit_iv = convertView.findViewById(R.id.edit_iv);
@@ -165,15 +196,14 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
         ok_iv.setVisibility(View.GONE);
         delete_iv.setVisibility(View.VISIBLE);
         String[] splits = sugar.getCheckupValue().split(",");
-        String fasting=splits.length>0?splits[0]:null;
-        String  postFasting=splits.length>1?splits[1]:null;
-        String  hba1c=splits.length>2?splits[2]:null;
+        String fasting = splits.length > 0 ? splits[0] : null;
+        String postFasting = splits.length > 1 ? splits[1] : null;
+        String hba1c = splits.length > 2 ? splits[2] : null;
 
         fasting_et.setText(fasting);
         post_meal_et.setText(postFasting);
         hba1c_et.setText(hba1c);
         date_tv.setText(sugar.getCheckupTime());
-
 
 
         ok_iv.setOnClickListener(new View.OnClickListener() {
@@ -189,11 +219,9 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
             }
         });
 
-        if(isfromAddNew)
-        {
-            sugar_levels_linear.addView(convertView,0);
-        }else
-        {
+        if (isfromAddNew) {
+            sugar_levels_linear.addView(convertView, 0);
+        } else {
             sugar_levels_linear.addView(convertView);
         }
 

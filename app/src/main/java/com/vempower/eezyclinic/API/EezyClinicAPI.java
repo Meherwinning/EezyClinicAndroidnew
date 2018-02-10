@@ -382,4 +382,8 @@ public interface EezyClinicAPI {
 @POST(data + "patient/healthcheck")
 Call<HealthChecksListAPI> getHealthCheckList(@Body RequestBody postBody);
 
+    //http://202.63.103.194:8003/api/patient/addhealthcheck
+    @POST(data + "patient/addhealthcheck")
+    Call<AbstractResponse> addSugarHealthCheck(@Body RequestBody postBody);
+
 }
