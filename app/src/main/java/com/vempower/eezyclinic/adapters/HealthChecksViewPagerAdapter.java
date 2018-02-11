@@ -33,7 +33,9 @@ public class HealthChecksViewPagerAdapter extends FragmentStatePagerAdapter {
                 checkTab1.setSugarLevelsList(healthChecksData.getSugar());
                 return checkTab1;
             case 1:
-                return new HealthCheckTab2();
+                HealthCheckTab2 tab2= new HealthCheckTab2();
+                tab2.setBPList( healthChecksData.getBp());
+                return tab2;
             case 2:
                 return new HealthCheckTab3();
             case 3:

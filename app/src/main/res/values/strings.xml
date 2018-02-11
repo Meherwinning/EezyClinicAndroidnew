@@ -219,6 +219,10 @@
     <string name="please_select_date_lbl">Please select date</string>
     <string name="invalid_sugar_record_details_lbl">Invalid sugar details</string>
     <string name="are_you_sure_to_delete_sugar_record_lbl">Are you sure to delete Sugar record?</string>
+    <string name="please_enter_diastolic_value_lbl">Please enter diastolic value</string>
+    <string name="please_enter_systolic_value_lbl">Please enter systolic value</string>
+    <string name="invalid_bp_record_details_lbl">Invalid BP record details</string>
+    <string name="are_you_sure_to_delete_bp_record_lbl">Are you sure to delete BP record?</string>
 
 
 </resources>

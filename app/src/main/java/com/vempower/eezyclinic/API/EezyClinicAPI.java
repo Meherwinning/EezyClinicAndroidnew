@@ -384,7 +384,7 @@ Call<HealthChecksListAPI> getHealthCheckList(@Body RequestBody postBody);
 
     //http://202.63.103.194:8003/api/patient/addhealthcheck
     @POST(data + "patient/addhealthcheck")
-    Call<AbstractResponse> addSugarHealthCheck(@Body RequestBody postBody);
+    Call<AbstractResponse> addHealthCheck(@Body RequestBody postBody);
 
 
     //http://202.63.103.194:8003/api/patient/updatehealthcheck
@@ -396,4 +396,11 @@ Call<HealthChecksListAPI> getHealthCheckList(@Body RequestBody postBody);
     @POST(data + "patient/deletehealthcheck")
     Call<AbstractResponse> deleteHealthCheck(@Body RequestBody postBody);
 
+
+
+
+  /*  //http://202.63.103.194:8003/api/patient/addhealthcheck
+    @POST(data + "patient/addhealthcheck")
+    Call<AbstractResponse> addBPHealthCheck(@Body RequestBody postBody);
+*/
 }

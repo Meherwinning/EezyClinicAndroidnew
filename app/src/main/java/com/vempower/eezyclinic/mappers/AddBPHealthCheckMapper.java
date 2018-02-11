@@ -6,7 +6,6 @@ import android.util.Log;
 import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
-import com.vempower.eezyclinic.APIResponce.DashboardAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Constants;
@@ -25,15 +24,15 @@ import retrofit.Retrofit;
  * Created by Satishk on 4/10/2017.
  */
 
-public class AddSugarHealthCheckMapper extends AbstractMapper implements Callback<AbstractResponse> {
+public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<AbstractResponse> {
 
 
-    private AddSugarHealthCheckListener listener;
+    private AddBPHealthCheckListener listener;
 
     /*
     {
   "access_key": "064644078000133a04da6ad11af9f78e",
-  "test_type": "Sugar Level",
+  "test_type": "BP",
   "fasting":40,
   "lunch":140,
   "hba1c":240,
@@ -42,18 +41,17 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
 
      */
 
-    private final String fasting, lunch, hba1c, checkuptime;
+    private final String diastolic, systolic,  checkuptime;
 
-    public AddSugarHealthCheckMapper(String fasting, String lunch, String hba1c, String checkuptime) {
-        this.fasting = fasting;
-        this.lunch = lunch;
-        this.hba1c = hba1c;
+    public AddBPHealthCheckMapper(String diastolic, String systolic,  String checkuptime) {
+        this.diastolic = diastolic;
+        this.systolic = systolic;
         this.checkuptime = checkuptime;
     }
 
-    public void setOnAddSugarHealthCheckListener(AddSugarHealthCheckListener listener) {
+    public void setOnAddBPHealthCheckListener(AddBPHealthCheckListener listener) {
         if (listener == null) {
-            Log.i(MyApplication.getCurrentActivityContext().getClass().getName(), "Invalid AddSugarHealthCheckListener instance.");
+            Log.i(MyApplication.getCurrentActivityContext().getClass().getName(), "Invalid AddBPHealthCheckListener instance.");
             return;
 
         }
@@ -68,7 +66,7 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
                 .getCurrentActivityContext())) {
             //Utils.showToastMsgForNetworkNotAvalable();
             if (listener != null) {
-                listener.addSugar(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
+                listener.addBP(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
             }
             return;
         }
@@ -80,7 +78,7 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
         if (requestBody == null) {
             MyApplication.hideTransaprentDialog();
             if (listener != null) {
-                listener.addSugar(null, null);
+                listener.addBP(null, null);
             }
             return;
         }
@@ -97,7 +95,7 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
         getMyResponse(response, new MyResponse<AbstractResponse>() {
             @Override
             public void getMyResponse(AbstractResponse responseBody, String errorMsg) {
-                listener.addSugar(responseBody, errorMsg);
+                listener.addBP(responseBody, errorMsg);
             }
         });
 
@@ -111,7 +109,7 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
         onMyFailure(error, new MyResponse<AbstractResponse>() {
             @Override
             public void getMyResponse(AbstractResponse responseBody, String errorMsg) {
-                listener.addSugar(responseBody, errorMsg);
+                listener.addBP(responseBody, errorMsg);
             }
         });
 
@@ -124,9 +122,7 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
         if (TextUtils.isEmpty(access_key)) {
             return null;
         }
-
-        if (TextUtils.isEmpty(fasting) || TextUtils.isEmpty(lunch)
-                || TextUtils.isEmpty(hba1c) || TextUtils.isEmpty(checkuptime)
+        if (TextUtils.isEmpty(diastolic) || TextUtils.isEmpty(systolic)
                 ) {
             return null;
         }
@@ -145,10 +141,9 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
         try {
             jsonObject.put("access_key", access_key);
 
-            jsonObject.put("test_type", "Sugar Level");
-            jsonObject.put("fasting", fasting);
-            jsonObject.put("lunch", lunch);
-            jsonObject.put("hba1c", hba1c);
+            jsonObject.put("test_type", "BP");
+            jsonObject.put("diastolic", diastolic);
+            jsonObject.put("systolic", systolic);
             jsonObject.put("checkuptime", checkuptime);
 
         } catch (JSONException e) {
@@ -158,7 +153,7 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
         return getRequestBody(jsonObject);
     }
 
-    public interface AddSugarHealthCheckListener {
-        public void addSugar(AbstractResponse response, String errorMessage);
+    public interface AddBPHealthCheckListener {
+        public void addBP(AbstractResponse response, String errorMessage);
     }
 }

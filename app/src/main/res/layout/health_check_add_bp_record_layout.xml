@@ -23,7 +23,7 @@
             android:paddingTop="@dimen/_4dp">
 
             <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
-                android:id="@+id/fasting_et"
+                android:id="@+id/diastolic_et"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -39,7 +39,7 @@
                 android:textSize="@dimen/_14dp" />
 
             <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
-                android:id="@+id/post_meal_et"
+                android:id="@+id/systolic_et"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -56,6 +56,7 @@
 
             <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
                 android:id="@+id/hba1c_et"
+                android:visibility="gone"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
