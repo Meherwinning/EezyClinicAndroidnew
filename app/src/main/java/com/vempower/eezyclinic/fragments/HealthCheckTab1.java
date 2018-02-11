@@ -20,7 +20,10 @@ import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.interfaces.MyDialogInterface;
 import com.vempower.eezyclinic.mappers.AddSugarHealthCheckMapper;
+import com.vempower.eezyclinic.mappers.DeleteSugarHealthCheckMapper;
+import com.vempower.eezyclinic.mappers.UpdateSugarHealthCheckMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
@@ -87,15 +90,37 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
         new_ok_iv = getFragemtView().findViewById(R.id.ok_iv);
         new_delete_iv = getFragemtView().findViewById(R.id.delete_iv);
 
+
         new_ok_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                HealthChecksSugar sugar = getFromNewView();
+                String fasting = new_fasting_et.getText().toString();
+                String lunch = new_post_meal_et.getText().toString();
+                String hba1c = new_hba1c_et.getText().toString();
+                String checkuptime = "2018-01-07";// new_date_tv.getText().toString();
+                if (TextUtils.isEmpty(lunch)) {
+                    Utils.showToastMessage(R.string.please_enter_lunch_value_lbl);
+                    return;
+                }
+                if (TextUtils.isEmpty(fasting)) {
+                    Utils.showToastMessage(R.string.please_enter_pasting_value_lbl);
+                    return;
+                }
+                if (TextUtils.isEmpty(hba1c)) {
+                    Utils.showToastMessage(R.string.please_enter_hba1c_value_lbl);
+                    return;
+                }
+                // new_date_tv.getText().toString();
+               /* String checkuptime="2018-01-07";
+                HealthChecksSugar  sugar= new HealthChecksSugar();
+                sugar.setCheckupValue(fasting+","+lunch+","+hba1c);
+                sugar.setCheckupTime(checkuptime);
+                sugar.setCheckupName("Sugar Level");
 
+                return sugar;*/
 
-                new_sugar_record_view_linear.setVisibility(View.GONE);
-                add_new_reocrd_linear.setVisibility(View.VISIBLE);
+                callAddNewSugarHealthcheckRecord(fasting, lunch, hba1c, checkuptime);
             }
         });
 
@@ -110,15 +135,6 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
         resetAddNewRecord();
     }
 
-    public HealthChecksSugar getFromNewView() {
-        new_fasting_et.getText().toString();
-        new_post_meal_et = getFragemtView().findViewById(R.id.post_meal_et);
-        new_hba1c_et = getFragemtView().findViewById(R.id.hba1c_et);
-        new_date_tv = getFragemtView().findViewById(R.id.date_tv);
-
-        return null;
-    }
-
     private void resetAddNewRecord() {
         new_fasting_et.setText(null);
         new_post_meal_et.setText(null);
@@ -126,7 +142,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
         new_date_tv.setText(null);
     }
 
-    private void callAddNewSugarHealthcheckRecord(final String fasting, final String lunch, final String hba1c, String checkuptime) {
+    private void callAddNewSugarHealthcheckRecord(final String fasting, final String lunch, final String hba1c, final String checkuptime) {
         AddSugarHealthCheckMapper mapper = new AddSugarHealthCheckMapper(fasting, lunch, hba1c, checkuptime);
         mapper.setOnAddSugarHealthCheckListener(new AddSugarHealthCheckMapper.AddSugarHealthCheckListener() {
             @Override
@@ -148,9 +164,13 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
 
                 HealthChecksSugar newSugar = new HealthChecksSugar();
                 newSugar.setCheckupName("Sugar Level");
-                newSugar.setCheckupTime("2018-01-07");
                 newSugar.setCheckupValue(fasting + "," + lunch + "," + hba1c);
+                newSugar.setCheckupTime(checkuptime);
                 calAddViewRecord(newSugar, true);
+
+                new_sugar_record_view_linear.setVisibility(View.GONE);
+                add_new_reocrd_linear.setVisibility(View.VISIBLE);
+
             }
         });
     }
@@ -178,44 +198,191 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
 
     }
 
-    private void calAddViewRecord(HealthChecksSugar sugar, boolean isfromAddNew) {
+    private class RecordHolder {
+        MyEditTextBlackCursorRR fasting_et, post_meal_et, hba1c_et;
+        MyTextViewRR date_tv;
+        ImageView ok_iv, edit_iv, delete_iv;
+        private final HealthChecksSugar sugar;
+
+        public RecordHolder(HealthChecksSugar sugar, View convertView) {
+            this.sugar = sugar;
+
+            fasting_et = convertView.findViewById(R.id.fasting_et);
+            post_meal_et = convertView.findViewById(R.id.post_meal_et);
+            hba1c_et = convertView.findViewById(R.id.hba1c_et);
+            date_tv = convertView.findViewById(R.id.date_tv);
+
+            ok_iv = convertView.findViewById(R.id.ok_iv);
+            edit_iv = convertView.findViewById(R.id.edit_iv);
+            delete_iv = convertView.findViewById(R.id.delete_iv);
+
+            init();
+            setHealthChecksSugar();
+        }
+
+        private void init() {
+            edit_iv.setVisibility(View.VISIBLE);
+            ok_iv.setVisibility(View.GONE);
+            delete_iv.setVisibility(View.VISIBLE);
+        }
+
+        public void setHealthChecksSugar() {
+            if (sugar == null) {
+                return;
+            }
+            String[] splits = sugar.getCheckupValue().split(",");
+            String fasting = splits.length > 0 ? splits[0] : null;
+            String postFasting = splits.length > 1 ? splits[1] : null;
+            String hba1c = splits.length > 2 ? splits[2] : null;
+
+            fasting_et.setText(fasting);
+            post_meal_et.setText(postFasting);
+            hba1c_et.setText(hba1c);
+            date_tv.setText(sugar.getCheckupTime());
+        }
+
+        public void setViewState(boolean isEnabled) {
+            fasting_et.setEnabled(isEnabled);
+            post_meal_et.setEnabled(isEnabled);
+            hba1c_et.setEnabled(isEnabled);
+            date_tv.setEnabled(isEnabled);
+
+            if (isEnabled) {
+                edit_iv.setVisibility(View.GONE);
+                ok_iv.setVisibility(View.VISIBLE);
+                delete_iv.setVisibility(View.VISIBLE);
+            } else {
+                edit_iv.setVisibility(View.VISIBLE);
+                ok_iv.setVisibility(View.GONE);
+                delete_iv.setVisibility(View.VISIBLE);
+            }
+        }
+
+        public void onUpdateButtonClick()
+        {
+           /* fasting_et = convertView.findViewById(R.id.fasting_et);
+            post_meal_et = convertView.findViewById(R.id.post_meal_et);
+            hba1c_et = convertView.findViewById(R.id.hba1c_et);
+            date_tv = convertView.findViewById(R.id.date_tv);
+*/
+           final String fasting = fasting_et.getText().toString();
+            final String lunch = post_meal_et.getText().toString();
+            final String hba1c = hba1c_et.getText().toString();
+            final String checkuptime = date_tv.getText().toString();
+            if (TextUtils.isEmpty(lunch)) {
+                Utils.showToastMessage(R.string.please_enter_lunch_value_lbl);
+                return;
+            }
+            if (TextUtils.isEmpty(fasting)) {
+                Utils.showToastMessage(R.string.please_enter_pasting_value_lbl);
+                return;
+            }
+            if (TextUtils.isEmpty(hba1c)) {
+                Utils.showToastMessage(R.string.please_enter_hba1c_value_lbl);
+                return;
+            }
+            if (TextUtils.isEmpty(checkuptime)) {
+                Utils.showToastMessage(R.string.please_select_date_lbl);
+                return;
+            }
+            UpdateSugarHealthCheckMapper mapper= new UpdateSugarHealthCheckMapper(sugar.getId(),  fasting,  lunch,  hba1c,  checkuptime);
+
+            mapper.setOnUpdateSugarHealthCheckListener(new UpdateSugarHealthCheckMapper.UpdateSugarHealthCheckListener() {
+                @Override
+                public void updateSugar(AbstractResponse response, String errorMessage) {
+                    if(!isValidResponse(response,errorMessage,true,false))
+                    {
+                        return;
+                    }
+                    sugar.setCheckupTime(checkuptime);
+                    sugar.setCheckupValue(fasting + "," + lunch + "," + hba1c);
+                    Utils.showToastMessage(response.getStatusMessage());
+                    setViewState(false);
+                }
+            });
+
+
+           // holder.setViewState(false);
+
+        }
+
+
+    }
+
+    private void calAddViewRecord(final HealthChecksSugar sugar, final boolean isfromAddNew) {
 
         final View convertView = inflater
                 .inflate(R.layout.sugar_single_item, null, false);
-
-        MyEditTextBlackCursorRR fasting_et = convertView.findViewById(R.id.fasting_et);
-        MyEditTextBlackCursorRR post_meal_et = convertView.findViewById(R.id.post_meal_et);
-        MyEditTextBlackCursorRR hba1c_et = convertView.findViewById(R.id.hba1c_et);
-        MyTextViewRR date_tv = convertView.findViewById(R.id.date_tv);
-
-        ImageView ok_iv = convertView.findViewById(R.id.ok_iv);
-        ImageView edit_iv = convertView.findViewById(R.id.edit_iv);
-        ImageView delete_iv = convertView.findViewById(R.id.delete_iv);
-
-        edit_iv.setVisibility(View.VISIBLE);
-        ok_iv.setVisibility(View.GONE);
-        delete_iv.setVisibility(View.VISIBLE);
-        String[] splits = sugar.getCheckupValue().split(",");
-        String fasting = splits.length > 0 ? splits[0] : null;
-        String postFasting = splits.length > 1 ? splits[1] : null;
-        String hba1c = splits.length > 2 ? splits[2] : null;
-
-        fasting_et.setText(fasting);
-        post_meal_et.setText(postFasting);
-        hba1c_et.setText(hba1c);
-        date_tv.setText(sugar.getCheckupTime());
+        final RecordHolder holder = new RecordHolder(sugar, convertView);
+        //holder.setHealthChecksSugar(sugar);
+        holder.setViewState(false);
 
 
-        ok_iv.setOnClickListener(new View.OnClickListener() {
+        holder.edit_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                add_new_reocrd_linear.setVisibility(View.VISIBLE);
+                holder.setViewState(true);
             }
         });
-        delete_iv.setOnClickListener(new View.OnClickListener() {
+
+
+        holder.ok_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                add_new_reocrd_linear.setVisibility(View.VISIBLE);
+
+                // add_new_reocrd_linear.setVisibility(View.VISIBLE);
+                holder.onUpdateButtonClick();
+
+            }
+        });
+        holder.delete_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (holder.edit_iv.getVisibility() == View.GONE) {
+                    holder.setViewState(false);
+                    holder.setHealthChecksSugar();
+                } else {
+                    showMyCustomDialog("Alert", Utils.getStringFromResources(R.string.are_you_sure_to_delete_sugar_record_lbl), "Yes", "No", new MyDialogInterface() {
+                        @Override
+                        public void onPossitiveClick()
+                        {
+                            int id=-1;
+                            try
+                            {
+                                if(TextUtils.isEmpty(sugar.getId()))
+                                {
+                                    Utils.showToastMessage(R.string.invalid_sugar_record_details_lbl);
+                                    return;
+                                }
+                                id= Integer.parseInt(sugar.getId());
+                            }catch (Exception e)
+                            {
+                                Utils.showToastMessage(R.string.invalid_sugar_record_details_lbl);
+                                return;
+                            }
+                            DeleteSugarHealthCheckMapper mapper= new DeleteSugarHealthCheckMapper(id);
+                            mapper.setOnDeleteSugarHealthCheckListener(new DeleteSugarHealthCheckMapper.DeleteSugarHealthCheckListener() {
+                                @Override
+                                public void deleteSugar(AbstractResponse response, String errorMessage) {
+                                    if(!isValidResponse(response,errorMessage,true,false))
+                                    {
+                                        return;
+                                    }
+                                    Utils.showToastMessage(response.getStatusMessage());
+                                    sugar_levels_linear.removeView(convertView);
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onNegetiveClick() {
+
+                        }
+                    });
+                }
+
+
             }
         });
 

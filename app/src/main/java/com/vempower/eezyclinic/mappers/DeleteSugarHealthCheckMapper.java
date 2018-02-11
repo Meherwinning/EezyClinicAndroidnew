@@ -6,7 +6,6 @@ import android.util.Log;
 import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
-import com.vempower.eezyclinic.APIResponce.DashboardAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Constants;
@@ -25,35 +24,21 @@ import retrofit.Retrofit;
  * Created by Satishk on 4/10/2017.
  */
 
-public class AddSugarHealthCheckMapper extends AbstractMapper implements Callback<AbstractResponse> {
+public class DeleteSugarHealthCheckMapper extends AbstractMapper implements Callback<AbstractResponse> {
 
 
-    private AddSugarHealthCheckListener listener;
+    private DeleteSugarHealthCheckListener listener;
 
-    /*
-    {
-  "access_key": "064644078000133a04da6ad11af9f78e",
-  "test_type": "Sugar Level",
-  "fasting":40,
-  "lunch":140,
-  "hba1c":240,
-  "checkuptime":"2017-12-29 17:51:55"
-}
+    private final int healthcheck_id;
 
-     */
+    public DeleteSugarHealthCheckMapper(int healthcheck_id) {
+        this.healthcheck_id = healthcheck_id;
 
-    private final String fasting, lunch, hba1c, checkuptime;
-
-    public AddSugarHealthCheckMapper(String fasting, String lunch, String hba1c, String checkuptime) {
-        this.fasting = fasting;
-        this.lunch = lunch;
-        this.hba1c = hba1c;
-        this.checkuptime = checkuptime;
     }
 
-    public void setOnAddSugarHealthCheckListener(AddSugarHealthCheckListener listener) {
+    public void setOnDeleteSugarHealthCheckListener(DeleteSugarHealthCheckListener listener) {
         if (listener == null) {
-            Log.i(MyApplication.getCurrentActivityContext().getClass().getName(), "Invalid AddSugarHealthCheckListener instance.");
+            Log.i(MyApplication.getCurrentActivityContext().getClass().getName(), "Invalid DeleteSugarHealthCheckListener instance.");
             return;
 
         }
@@ -68,7 +53,7 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
                 .getCurrentActivityContext())) {
             //Utils.showToastMsgForNetworkNotAvalable();
             if (listener != null) {
-                listener.addSugar(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
+                listener.deleteSugar(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
             }
             return;
         }
@@ -80,12 +65,12 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
         if (requestBody == null) {
             MyApplication.hideTransaprentDialog();
             if (listener != null) {
-                listener.addSugar(null, null);
+                listener.deleteSugar(null, null);
             }
             return;
         }
 
-        Call<AbstractResponse> apiResponseCall = stashDealAPI.addSugarHealthCheck(requestBody);
+        Call<AbstractResponse> apiResponseCall = stashDealAPI.deleteHealthCheck(requestBody);
 
         apiResponseCall.enqueue(this);
     }
@@ -97,7 +82,7 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
         getMyResponse(response, new MyResponse<AbstractResponse>() {
             @Override
             public void getMyResponse(AbstractResponse responseBody, String errorMsg) {
-                listener.addSugar(responseBody, errorMsg);
+                listener.deleteSugar(responseBody, errorMsg);
             }
         });
 
@@ -111,7 +96,7 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
         onMyFailure(error, new MyResponse<AbstractResponse>() {
             @Override
             public void getMyResponse(AbstractResponse responseBody, String errorMsg) {
-                listener.addSugar(responseBody, errorMsg);
+                listener.deleteSugar(responseBody, errorMsg);
             }
         });
 
@@ -125,31 +110,11 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
             return null;
         }
 
-        if (TextUtils.isEmpty(fasting) || TextUtils.isEmpty(lunch)
-                || TextUtils.isEmpty(hba1c) || TextUtils.isEmpty(checkuptime)
-                ) {
-            return null;
-        }
 
-        /*
-    {
-  "access_key": "064644078000133a04da6ad11af9f78e",
-  "test_type": "Sugar Level",
-  "fasting":40,
-  "lunch":140,
-  "hba1c":240,
-  "checkuptime":"2017-12-29 17:51:55"
-}
-     */
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("access_key", access_key);
-
-            jsonObject.put("test_type", "Sugar Level");
-            jsonObject.put("fasting", fasting);
-            jsonObject.put("lunch", lunch);
-            jsonObject.put("hba1c", hba1c);
-            jsonObject.put("checkuptime", checkuptime);
+            jsonObject.put("healthcheck_id", healthcheck_id);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -158,7 +123,7 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
         return getRequestBody(jsonObject);
     }
 
-    public interface AddSugarHealthCheckListener {
-        public void addSugar(AbstractResponse response, String errorMessage);
+    public interface DeleteSugarHealthCheckListener {
+        public void deleteSugar(AbstractResponse response, String errorMessage);
     }
 }

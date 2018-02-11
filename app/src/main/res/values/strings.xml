@@ -213,6 +213,12 @@
     <string name="title_health_checks">My Health Checks</string>
     <string name="unauthorized_user_lbl">unauthorized user,Please try again</string>
     <string name="invalid_health_checks_list_data_lbl">Invalid health check list data. Please try again</string>
+    <string name="please_enter_pasting_value_lbl">Please enter fasting value.</string>
+    <string name="please_enter_lunch_value_lbl">Please enter lunch value.</string>
+    <string name="please_enter_hba1c_value_lbl">Please enter HbA1c value</string>
+    <string name="please_select_date_lbl">Please select date</string>
+    <string name="invalid_sugar_record_details_lbl">Invalid sugar details</string>
+    <string name="are_you_sure_to_delete_sugar_record_lbl">Are you sure to delete Sugar record?</string>
 
 
 </resources>

@@ -386,4 +386,14 @@ Call<HealthChecksListAPI> getHealthCheckList(@Body RequestBody postBody);
     @POST(data + "patient/addhealthcheck")
     Call<AbstractResponse> addSugarHealthCheck(@Body RequestBody postBody);
 
+
+    //http://202.63.103.194:8003/api/patient/updatehealthcheck
+    @POST(data + "patient/updatehealthcheck")
+    Call<AbstractResponse> updateHealthCheck(@Body RequestBody postBody);
+
+
+    //http://202.63.103.194:8003/api/patient/deletehealthcheck
+    @POST(data + "patient/deletehealthcheck")
+    Call<AbstractResponse> deleteHealthCheck(@Body RequestBody postBody);
+
 }
