@@ -15,9 +15,12 @@ import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
+import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.vempower.eezyclinic.APICore.HealthChecksSugar;
 import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
+import com.vempower.eezyclinic.APIResponce.AddhealthCheckAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.MyDialogInterface;
@@ -30,6 +33,10 @@ import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
@@ -41,7 +48,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
     private LayoutInflater inflater;
     private List<HealthChecksSugar> sugarLevelsList;
     private MyEditTextBlackCursorRR new_fasting_et, new_hba1c_et, new_post_meal_et;
-    private MyTextViewRR new_date_tv;
+
     private ImageView new_delete_iv, new_ok_iv;
 
 
@@ -73,7 +80,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                 add_new_reocrd_linear.setVisibility(View.INVISIBLE);
 
                 new_sugar_record_view_linear.setVisibility(View.VISIBLE);
-                ImageView delete_iv = new_sugar_record_view_linear.findViewById(R.id.delete_iv);
+                //ImageView delete_iv = new_sugar_record_view_linear.findViewById(R.id.delete_iv);
 
 
             }
@@ -85,7 +92,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
         new_fasting_et = getFragemtView().findViewById(R.id.fasting_et);
         new_post_meal_et = getFragemtView().findViewById(R.id.post_meal_et);
         new_hba1c_et = getFragemtView().findViewById(R.id.hba1c_et);
-        new_date_tv = getFragemtView().findViewById(R.id.date_tv);
+
 
         new_ok_iv = getFragemtView().findViewById(R.id.ok_iv);
         new_delete_iv = getFragemtView().findViewById(R.id.delete_iv);
@@ -98,7 +105,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                 String fasting = new_fasting_et.getText().toString();
                 String lunch = new_post_meal_et.getText().toString();
                 String hba1c = new_hba1c_et.getText().toString();
-                String checkuptime = "2018-01-07";// new_date_tv.getText().toString();
+                String checkuptime = new_date_tv.getText().toString();
                 if (TextUtils.isEmpty(lunch)) {
                     Utils.showToastMessage(R.string.please_enter_lunch_value_lbl);
                     return;
@@ -146,8 +153,13 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
         AddSugarHealthCheckMapper mapper = new AddSugarHealthCheckMapper(fasting, lunch, hba1c, checkuptime);
         mapper.setOnAddSugarHealthCheckListener(new AddSugarHealthCheckMapper.AddSugarHealthCheckListener() {
             @Override
-            public void addSugar(AbstractResponse response, String errorMessage) {
+            public void addSugar(AddhealthCheckAPI response, String errorMessage) {
                 if (!isValidResponse(response, errorMessage, true, false)) {
+                    return;
+                }
+
+                if(response==null || response.getData()==null)
+                {
                     return;
                 }
 
@@ -166,6 +178,9 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                 newSugar.setCheckupName("Sugar Level");
                 newSugar.setCheckupValue(fasting + "," + lunch + "," + hba1c);
                 newSugar.setCheckupTime(checkuptime);
+
+                newSugar.setCheckupgroupid(response.getData().getCheckupgroupid());
+                newSugar.setId(response.getData().getHealthcheckId());
                 calAddViewRecord(newSugar, true);
 
                 new_sugar_record_view_linear.setVisibility(View.GONE);
@@ -203,6 +218,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
         MyTextViewRR date_tv;
         ImageView ok_iv, edit_iv, delete_iv;
         private final HealthChecksSugar sugar;
+        private SelectedDate selectedObj;
 
         public RecordHolder(HealthChecksSugar sugar, View convertView) {
             this.sugar = sugar;
@@ -220,11 +236,97 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
             setHealthChecksSugar();
         }
 
+        private String getDisplayDateStr(String dateStr)
+        {
+            SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
+            SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
+
+
+            //For Date of birth
+            if(!TextUtils.isEmpty(dateStr)) {
+                try {
+
+                    Date date = requestFormat.parse(dateStr);
+                    if (selectedObj == null) {
+                        selectedObj = new SelectedDate(Calendar.getInstance());
+                    }
+                    selectedObj.setTimeInMillis(date.getTime());
+                    return format.format(date);
+                    //profileDetails.dateofBirth=patientProfileObj.getDateofbirth();
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return null;
+        }
+
+        private String getServerDateStr(String dateStr)
+        {
+            SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
+            SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
+
+
+            //For Date of birth
+            if(!TextUtils.isEmpty(dateStr)) {
+                try {
+
+                    Date date = format.parse(dateStr);
+
+                    return requestFormat.format(date);
+                    //profileDetails.dateofBirth=patientProfileObj.getDateofbirth();
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return null;
+        }
+
         private void init() {
             edit_iv.setVisibility(View.VISIBLE);
             ok_iv.setVisibility(View.GONE);
             delete_iv.setVisibility(View.VISIBLE);
+
+            date_tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onDateOfBirthTextviewClick(mFragmentCallback,selectedObj,true);
+
+                }
+            });
         }
+
+        SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
+            @Override
+            public void onCancelled() {
+                // rlDateTimeRecurrenceInfo.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onDateTimeRecurrenceSet(SelectedDate selectedDate1,
+                                                int hourOfDay, int minute,
+                                                SublimeRecurrencePicker.RecurrenceOption recurrenceOption,
+                                                String recurrenceRule) {
+
+
+                if (selectedDate1 == null || selectedDate1.getFirstDate() == null) {
+                    return;
+                }
+                selectedObj = selectedDate1;
+                Calendar selectedCal = selectedDate1.getFirstDate();
+
+                //  String date = selectedCal.get(Calendar.YEAR) + "-" + (selectedCal.get(Calendar.MONTH) + 1) + "-" + selectedCal.get(Calendar.DAY_OF_MONTH);
+                SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
+                //SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.REQUEST_DATE_FORMAT);
+                //profileDetails.dateofBirth=requestFormat.format(selectedCal.getTime());
+                date_tv.setText(format.format(selectedCal.getTime()));
+
+            }
+        };
+
 
         public void setHealthChecksSugar() {
             if (sugar == null) {
@@ -238,7 +340,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
             fasting_et.setText(fasting);
             post_meal_et.setText(postFasting);
             hba1c_et.setText(hba1c);
-            date_tv.setText(sugar.getCheckupTime());
+            date_tv.setText(getDisplayDateStr(sugar.getCheckupTime()));
         }
 
         public void setViewState(boolean isEnabled) {
@@ -268,7 +370,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
            final String fasting = fasting_et.getText().toString();
             final String lunch = post_meal_et.getText().toString();
             final String hba1c = hba1c_et.getText().toString();
-            final String checkuptime = date_tv.getText().toString();
+             String checkuptime1 = date_tv.getText().toString();
             if (TextUtils.isEmpty(lunch)) {
                 Utils.showToastMessage(R.string.please_enter_lunch_value_lbl);
                 return;
@@ -281,10 +383,12 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                 Utils.showToastMessage(R.string.please_enter_hba1c_value_lbl);
                 return;
             }
-            if (TextUtils.isEmpty(checkuptime)) {
+            if (TextUtils.isEmpty(checkuptime1)) {
                 Utils.showToastMessage(R.string.please_select_date_lbl);
                 return;
             }
+           // "YYYY-M-d H:I:S"
+            final String checkuptime=getServerDateStr(checkuptime1);
             UpdateSugarHealthCheckMapper mapper= new UpdateSugarHealthCheckMapper(sugar.getId(),  fasting,  lunch,  hba1c,  checkuptime);
 
             mapper.setOnUpdateSugarHealthCheckListener(new UpdateSugarHealthCheckMapper.UpdateSugarHealthCheckListener() {

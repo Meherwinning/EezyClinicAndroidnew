@@ -5,6 +5,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.vempower.eezyclinic.APICore.HealthChecksData;
+import com.vempower.eezyclinic.APICore.HealthChecksHeight;
+import com.vempower.eezyclinic.APICore.HealthChecksHeightWeight;
+import com.vempower.eezyclinic.APICore.HealthChecksWeight;
 import com.vempower.eezyclinic.fragments.CasesheetsFragment;
 import com.vempower.eezyclinic.fragments.HealthCheckTab1;
 import com.vempower.eezyclinic.fragments.HealthCheckTab2;
@@ -13,15 +16,21 @@ import com.vempower.eezyclinic.fragments.HealthCheckTab4;
 import com.vempower.eezyclinic.fragments.PrescriptionsFragment;
 import com.vempower.eezyclinic.fragments.ReportsFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HealthChecksViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private static int TAB_COUNT = 4;
     private final HealthChecksData healthChecksData;
    // private PrescriptionsFragment prescriptionsFragment;
+   private ArrayList<HealthChecksHeightWeight> heightAndWeightList;
 
-    public HealthChecksViewPagerAdapter(HealthChecksData healthChecksData,FragmentManager fm) {
+    public HealthChecksViewPagerAdapter(HealthChecksData healthChecksData,ArrayList<HealthChecksHeightWeight> heightAndWeightList,FragmentManager fm) {
         super(fm);
         this.healthChecksData=healthChecksData;
+        this.heightAndWeightList=heightAndWeightList;
+
     }
 
     @Override
@@ -37,12 +46,18 @@ public class HealthChecksViewPagerAdapter extends FragmentStatePagerAdapter {
                 tab2.setBPList( healthChecksData.getBp());
                 return tab2;
             case 2:
-                return new HealthCheckTab3();
+                HealthCheckTab3  tab3= new HealthCheckTab3();
+                tab3.setHeightAndWeightList(heightAndWeightList);
+                return tab3;
             case 3:
-                return new HealthCheckTab4();
+                HealthCheckTab4 tab4= new HealthCheckTab4();
+                tab4.setChorlList(healthChecksData.getCholesterol());
+                return tab4;
         }
         return null;
     }
+
+
 
     @Override
     public int getCount() {

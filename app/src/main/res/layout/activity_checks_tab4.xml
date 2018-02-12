@@ -3,21 +3,224 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:paddingLeft="@dimen/_10dp"
+    android:paddingRight="@dimen/_10dp"
+    android:layout_marginTop="@dimen/_10dp"
+
     android:layout_height="match_parent"
-    android:background="@color/white"
-    >
-    <!--app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="7">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="@color/google_plus_light">
+
+            <WebView
+                android:id="@+id/terms_webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true" />
+            <ProgressBar
+                android:id="@+id/progress_bar_view"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            android:layout_height="0dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="@dimen/_48dp">
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:id="@+id/graph_type_title_tv"
+                    android:layout_width="wrap_content"
+                    android:hint="Title"
+                    android:layout_toLeftOf="@+id/add_new_reocrd_linear"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/_18dp"
+                    android:textColor="@color/black"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:id="@+id/add_new_reocrd_linear"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:layout_marginBottom="@dimen/_5dp"
+                    android:paddingTop="@dimen/_5dp"
+                    android:clickable="true"
+                    android:paddingBottom="@dimen/_5dp"
+                    android:paddingLeft="@dimen/_8dp"
+                    android:paddingRight="@dimen/_8dp"
+                    android:background="@drawable/background_normal"
+                    android:layout_alignParentEnd="true"
+
+                    android:layout_height="match_parent">
+                    <com.vempower.eezyclinic.views.MyTextViewRR
+                        android:layout_width="wrap_content"
+                        android:text="Add New Record"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/_14dp"
+                        android:textColor="#f1838181"
+                        android:layout_height="match_parent" />
+                    <ImageView
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="@dimen/_14dp"
+                        android:src="@drawable/add_new_record"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:background="#ebe8e8e8"
+                android:layout_height="@dimen/_45dp">
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="LDL"
+                    android:layout_marginLeft="@dimen/_3dp"
+                    android:layout_marginRight="@dimen/_3dp"
+
+                    android:gravity="center"
+                    android:textSize="@dimen/_14dp"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="HDL"
+                    android:layout_marginLeft="@dimen/_3dp"
+                    android:layout_marginRight="@dimen/_3dp"
+                    android:textSize="@dimen/_14dp"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:text="Triglycerides"
+                    android:layout_marginLeft="@dimen/_3dp"
+                    android:layout_marginRight="@dimen/_3dp"
+                    android:textSize="@dimen/_14dp"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <com.vempower.eezyclinic.views.MyTextViewRR
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:text="Total Cholesterol"
+                    android:layout_marginLeft="@dimen/_3dp"
+                    android:layout_marginRight="@dimen/_3dp"
+                    android:textSize="@dimen/_14dp"
+                    android:gravity="center"
+                    android:textColor="#ee7b7979"
+                    android:layout_height="match_parent" />
+                <!-- <com.vempower.eezyclinic.views.MyTextViewRR
+                     android:visibility="invisible"
+                     android:layout_width="@dimen/_100dp"
+                     android:layout_marginLeft="@dimen/_3dp"
+                     android:layout_marginRight="@dimen/_3dp"
+                     android:textSize="@dimen/_14dp"
+                     android:gravity="center_vertical|left"
+                     android:padding="@dimen/_10dp"
+                     android:textColor="#FF7b7979"
+                     android:layout_height="match_parent" />-->
+
+
+
+            </LinearLayout>
+            <ScrollView
+                android:id="@+id/hsv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+
+                android:fillViewport="true"
+
+                >
+                <LinearLayout
+                    android:id="@+id/horigental_linear"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="match_parent">
+                    <include layout="@layout/health_check_add_chol_record_layout"></include>
+
+                    <!-- <view
+                         android:layout_width="match_parent"
+                         android:layout_height="1dp">
+
+                     </view>
+  -->
+                    <!-- <Button
+                     android:layout_width="500dp"
+                     android:layout_height="500dp"
+                     android:layout_gravity="center"
+                     android:background="#444"
+                     android:layout_marginRight="@dimen/_14dp"
+                     android:text="Button 1"
+                     android:padding="@dimen/_5dp"
+                     android:textColor="#fff"
+                     android:textSize="20sp" />
+
 -->
 
-    <TextView
 
-        android:layout_width="wrap_content"
-        android:text="Health Checks3\n(Coming soon)"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_20dp"
-        android:layout_centerInParent="true"
-        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </ScrollView>
+            <!--<HorizontalScrollView
+                android:id="@+id/hsv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="horizontal"
 
+                android:fillViewport="true"
+
+                >
+                <LinearLayout
+                    android:id="@+id/horigental_linear"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="match_parent">
+                   <include layout="@layout/health_check_add_record_layout"></include>
+                    &lt;!&ndash; <Button
+                         android:layout_width="500dp"
+                         android:layout_height="500dp"
+                         android:layout_gravity="center"
+                         android:background="#444"
+                         android:layout_marginRight="@dimen/_14dp"
+                         android:text="Button 1"
+                         android:padding="@dimen/_5dp"
+                         android:textColor="#fff"
+                         android:textSize="20sp" />
+
+&ndash;&gt;
+
+
+                </LinearLayout>
+            </HorizontalScrollView>-->
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </RelativeLayout>

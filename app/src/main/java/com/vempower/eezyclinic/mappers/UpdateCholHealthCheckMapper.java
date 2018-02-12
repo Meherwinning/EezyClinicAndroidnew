@@ -6,7 +6,6 @@ import android.util.Log;
 import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
-import com.vempower.eezyclinic.APIResponce.AddhealthCheckAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Constants;
@@ -25,34 +24,29 @@ import retrofit.Retrofit;
  * Created by Satishk on 4/10/2017.
  */
 
-public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<AddhealthCheckAPI> {
+public class UpdateCholHealthCheckMapper extends AbstractMapper implements Callback<AbstractResponse> {
 
 
-    private AddBPHealthCheckListener listener;
+    private UpdateSugarHealthCheckListener listener;
 
-    /*
-    {
-  "access_key": "064644078000133a04da6ad11af9f78e",
-  "test_type": "BP",
-  "fasting":40,
-  "lunch":140,
-  "hba1c":240,
-  "checkuptime":"2017-12-29 17:51:55"
-}
 
-     */
 
-    private final String diastolic, systolic,  checkuptime;
+    private final String healthcheck_id, ldl, hdl, triglicerides,totalcholestral,checkuptime;
 
-    public AddBPHealthCheckMapper(String diastolic, String systolic,  String checkuptime) {
-        this.diastolic = diastolic;
-        this.systolic = systolic;
+    public UpdateCholHealthCheckMapper(String healthcheck_id, String ldl,
+                                       String hdl, String triglicerides, String totalcholestral,
+                                       String checkuptime) {
+        this.healthcheck_id=healthcheck_id;
+        this.ldl = ldl;
+        this.hdl = hdl;
+        this.triglicerides = triglicerides;
+        this.totalcholestral = totalcholestral;
         this.checkuptime = checkuptime;
     }
 
-    public void setOnAddBPHealthCheckListener(AddBPHealthCheckListener listener) {
+    public void setOnUpdateSugarHealthCheckListener(UpdateSugarHealthCheckListener listener) {
         if (listener == null) {
-            Log.i(MyApplication.getCurrentActivityContext().getClass().getName(), "Invalid AddBPHealthCheckListener instance.");
+            Log.i(MyApplication.getCurrentActivityContext().getClass().getName(), "Invalid UpdateSugarHealthCheckListener instance.");
             return;
 
         }
@@ -67,7 +61,7 @@ public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<A
                 .getCurrentActivityContext())) {
             //Utils.showToastMsgForNetworkNotAvalable();
             if (listener != null) {
-                listener.addBP(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
+                listener.updateSugar(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
             }
             return;
         }
@@ -79,24 +73,24 @@ public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<A
         if (requestBody == null) {
             MyApplication.hideTransaprentDialog();
             if (listener != null) {
-                listener.addBP(null, null);
+                listener.updateSugar(null, null);
             }
             return;
         }
 
-        Call<AddhealthCheckAPI> apiResponseCall = stashDealAPI.addHealthCheck(requestBody);
+        Call<AbstractResponse> apiResponseCall = stashDealAPI.updateHealthCheck(requestBody);
 
         apiResponseCall.enqueue(this);
     }
 
     @Override
-    public void onResponse(Response<AddhealthCheckAPI> response, Retrofit retrofit) {
+    public void onResponse(Response<AbstractResponse> response, Retrofit retrofit) {
         //MyApplication.hideTransaprentDialog();
 
-        getMyResponse(response, new MyResponse<AddhealthCheckAPI>() {
+        getMyResponse(response, new MyResponse<AbstractResponse>() {
             @Override
-            public void getMyResponse(AddhealthCheckAPI responseBody, String errorMsg) {
-                listener.addBP(responseBody, errorMsg);
+            public void getMyResponse(AbstractResponse responseBody, String errorMsg) {
+                listener.updateSugar(responseBody, errorMsg);
             }
         });
 
@@ -107,10 +101,10 @@ public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<A
     public void onFailure(Throwable error) {
         //MyApplication.hideTransaprentDialog();
 
-        onMyFailure(error, new MyResponse<AddhealthCheckAPI>() {
+        onMyFailure(error, new MyResponse<AbstractResponse>() {
             @Override
-            public void getMyResponse(AddhealthCheckAPI responseBody, String errorMsg) {
-                listener.addBP(responseBody, errorMsg);
+            public void getMyResponse(AbstractResponse responseBody, String errorMsg) {
+                listener.updateSugar(responseBody, errorMsg);
             }
         });
 
@@ -123,7 +117,9 @@ public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<A
         if (TextUtils.isEmpty(access_key)) {
             return null;
         }
-        if (TextUtils.isEmpty(diastolic) || TextUtils.isEmpty(systolic)
+
+        if (TextUtils.isEmpty(healthcheck_id) || TextUtils.isEmpty(ldl) || TextUtils.isEmpty(hdl)
+                || TextUtils.isEmpty(triglicerides) || TextUtils.isEmpty(totalcholestral) || TextUtils.isEmpty(checkuptime)
                 ) {
             return null;
         }
@@ -141,10 +137,12 @@ public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<A
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("access_key", access_key);
-
-            jsonObject.put("test_type", "BP");
-            jsonObject.put("diastolic", diastolic);
-            jsonObject.put("systolic", systolic);
+            jsonObject.put("healthcheck_id", healthcheck_id);
+            jsonObject.put("test_type", "Cholesterol");
+            jsonObject.put("ldl", ldl);
+            jsonObject.put("hdl", hdl);
+            jsonObject.put("triglicerides", triglicerides);
+            jsonObject.put("totalcholestral", totalcholestral);
             jsonObject.put("checkuptime", checkuptime);
 
         } catch (JSONException e) {
@@ -154,7 +152,7 @@ public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<A
         return getRequestBody(jsonObject);
     }
 
-    public interface AddBPHealthCheckListener {
-        public void addBP(AddhealthCheckAPI response, String errorMessage);
+    public interface UpdateSugarHealthCheckListener {
+        public void updateSugar(AbstractResponse response, String errorMessage);
     }
 }

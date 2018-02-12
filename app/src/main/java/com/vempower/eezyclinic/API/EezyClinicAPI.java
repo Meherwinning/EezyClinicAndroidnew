@@ -2,6 +2,8 @@ package com.vempower.eezyclinic.API;
 
 import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
+import com.vempower.eezyclinic.APIResponce.AddWHhealthCheckAPI;
+import com.vempower.eezyclinic.APIResponce.AddhealthCheckAPI;
 import com.vempower.eezyclinic.APIResponce.AppointmentHistoryListAPI;
 import com.vempower.eezyclinic.APIResponce.AppointmentTimeSlotsAPI;
 import com.vempower.eezyclinic.APIResponce.CaseSheetsListAPI;
@@ -384,7 +386,7 @@ Call<HealthChecksListAPI> getHealthCheckList(@Body RequestBody postBody);
 
     //http://202.63.103.194:8003/api/patient/addhealthcheck
     @POST(data + "patient/addhealthcheck")
-    Call<AbstractResponse> addHealthCheck(@Body RequestBody postBody);
+    Call<AddhealthCheckAPI> addHealthCheck(@Body RequestBody postBody);
 
 
     //http://202.63.103.194:8003/api/patient/updatehealthcheck
@@ -399,8 +401,13 @@ Call<HealthChecksListAPI> getHealthCheckList(@Body RequestBody postBody);
 
 
 
-  /*  //http://202.63.103.194:8003/api/patient/addhealthcheck
-    @POST(data + "patient/addhealthcheck")
-    Call<AbstractResponse> addBPHealthCheck(@Body RequestBody postBody);
-*/
+    //http://202.63.103.194:8003/api/patient/addhealthwhcheck
+    @POST(data + "patient/addhealthwhcheck")
+    Call<AddWHhealthCheckAPI> addHealthWHcheck(@Body RequestBody postBody);
+
+
+    //http://202.63.103.194:8003/api/patient/edithealthwpcheck
+    @POST(data + "patient/edithealthwpcheck")
+    Call<AbstractResponse> edithealthwpcheck(@Body RequestBody postBody);
+
 }

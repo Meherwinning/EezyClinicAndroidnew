@@ -6,6 +6,7 @@ import android.util.Log;
 import com.squareup.okhttp.RequestBody;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
+import com.vempower.eezyclinic.APIResponce.AddhealthCheckAPI;
 import com.vempower.eezyclinic.APIResponce.DashboardAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
@@ -25,7 +26,7 @@ import retrofit.Retrofit;
  * Created by Satishk on 4/10/2017.
  */
 
-public class AddSugarHealthCheckMapper extends AbstractMapper implements Callback<AbstractResponse> {
+public class AddSugarHealthCheckMapper extends AbstractMapper implements Callback<AddhealthCheckAPI> {
 
 
     private AddSugarHealthCheckListener listener;
@@ -85,18 +86,18 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
             return;
         }
 
-        Call<AbstractResponse> apiResponseCall = stashDealAPI.addHealthCheck(requestBody);
+        Call<AddhealthCheckAPI> apiResponseCall = stashDealAPI.addHealthCheck(requestBody);
 
         apiResponseCall.enqueue(this);
     }
 
     @Override
-    public void onResponse(Response<AbstractResponse> response, Retrofit retrofit) {
+    public void onResponse(Response<AddhealthCheckAPI> response, Retrofit retrofit) {
         //MyApplication.hideTransaprentDialog();
 
-        getMyResponse(response, new MyResponse<AbstractResponse>() {
+        getMyResponse(response, new MyResponse<AddhealthCheckAPI>() {
             @Override
-            public void getMyResponse(AbstractResponse responseBody, String errorMsg) {
+            public void getMyResponse(AddhealthCheckAPI responseBody, String errorMsg) {
                 listener.addSugar(responseBody, errorMsg);
             }
         });
@@ -108,9 +109,9 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
     public void onFailure(Throwable error) {
         //MyApplication.hideTransaprentDialog();
 
-        onMyFailure(error, new MyResponse<AbstractResponse>() {
+        onMyFailure(error, new MyResponse<AddhealthCheckAPI>() {
             @Override
-            public void getMyResponse(AbstractResponse responseBody, String errorMsg) {
+            public void getMyResponse(AddhealthCheckAPI responseBody, String errorMsg) {
                 listener.addSugar(responseBody, errorMsg);
             }
         });
@@ -159,6 +160,6 @@ public class AddSugarHealthCheckMapper extends AbstractMapper implements Callbac
     }
 
     public interface AddSugarHealthCheckListener {
-        public void addSugar(AbstractResponse response, String errorMessage);
+        public void addSugar(AddhealthCheckAPI response, String errorMessage);
     }
 }

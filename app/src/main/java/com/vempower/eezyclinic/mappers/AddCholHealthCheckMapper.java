@@ -25,15 +25,15 @@ import retrofit.Retrofit;
  * Created by Satishk on 4/10/2017.
  */
 
-public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<AddhealthCheckAPI> {
+public class AddCholHealthCheckMapper extends AbstractMapper implements Callback<AddhealthCheckAPI> {
 
 
-    private AddBPHealthCheckListener listener;
+    private AddCholHealthCheckListener listener;
 
     /*
     {
   "access_key": "064644078000133a04da6ad11af9f78e",
-  "test_type": "BP",
+  "test_type": "Sugar Level",
   "fasting":40,
   "lunch":140,
   "hba1c":240,
@@ -42,17 +42,19 @@ public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<A
 
      */
 
-    private final String diastolic, systolic,  checkuptime;
+    private final String ldl, hdl, triglicerides,totalcholestral, checkuptime;
 
-    public AddBPHealthCheckMapper(String diastolic, String systolic,  String checkuptime) {
-        this.diastolic = diastolic;
-        this.systolic = systolic;
+    public AddCholHealthCheckMapper(String ldl, String hdl, String triglicerides,String totalcholestral, String checkuptime) {
+        this.ldl = ldl;
+        this.hdl = hdl;
+        this.triglicerides = triglicerides;
+        this.totalcholestral=totalcholestral;
         this.checkuptime = checkuptime;
     }
 
-    public void setOnAddBPHealthCheckListener(AddBPHealthCheckListener listener) {
+    public void setOnAddCholHealthCheckListener(AddCholHealthCheckListener listener) {
         if (listener == null) {
-            Log.i(MyApplication.getCurrentActivityContext().getClass().getName(), "Invalid AddBPHealthCheckListener instance.");
+            Log.i(MyApplication.getCurrentActivityContext().getClass().getName(), "Invalid AddCholHealthCheckListener instance.");
             return;
 
         }
@@ -67,7 +69,7 @@ public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<A
                 .getCurrentActivityContext())) {
             //Utils.showToastMsgForNetworkNotAvalable();
             if (listener != null) {
-                listener.addBP(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
+                listener.addChol(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
             }
             return;
         }
@@ -79,7 +81,7 @@ public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<A
         if (requestBody == null) {
             MyApplication.hideTransaprentDialog();
             if (listener != null) {
-                listener.addBP(null, null);
+                listener.addChol(null, null);
             }
             return;
         }
@@ -96,7 +98,7 @@ public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<A
         getMyResponse(response, new MyResponse<AddhealthCheckAPI>() {
             @Override
             public void getMyResponse(AddhealthCheckAPI responseBody, String errorMsg) {
-                listener.addBP(responseBody, errorMsg);
+                listener.addChol(responseBody, errorMsg);
             }
         });
 
@@ -110,7 +112,7 @@ public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<A
         onMyFailure(error, new MyResponse<AddhealthCheckAPI>() {
             @Override
             public void getMyResponse(AddhealthCheckAPI responseBody, String errorMsg) {
-                listener.addBP(responseBody, errorMsg);
+                listener.addChol(responseBody, errorMsg);
             }
         });
 
@@ -123,7 +125,10 @@ public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<A
         if (TextUtils.isEmpty(access_key)) {
             return null;
         }
-        if (TextUtils.isEmpty(diastolic) || TextUtils.isEmpty(systolic)
+
+        //ldl, hdl, triglicerides,totalcholestral, checkuptime
+        if (TextUtils.isEmpty(ldl) || TextUtils.isEmpty(hdl)
+                || TextUtils.isEmpty(triglicerides) || TextUtils.isEmpty(totalcholestral) || TextUtils.isEmpty(checkuptime)
                 ) {
             return null;
         }
@@ -141,10 +146,11 @@ public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<A
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("access_key", access_key);
-
-            jsonObject.put("test_type", "BP");
-            jsonObject.put("diastolic", diastolic);
-            jsonObject.put("systolic", systolic);
+            jsonObject.put("test_type", "Cholesterol");
+            jsonObject.put("ldl", ldl);
+            jsonObject.put("hdl", hdl);
+            jsonObject.put("triglicerides", triglicerides);
+            jsonObject.put("totalcholestral", totalcholestral);
             jsonObject.put("checkuptime", checkuptime);
 
         } catch (JSONException e) {
@@ -154,7 +160,7 @@ public class AddBPHealthCheckMapper extends AbstractMapper implements Callback<A
         return getRequestBody(jsonObject);
     }
 
-    public interface AddBPHealthCheckListener {
-        public void addBP(AddhealthCheckAPI response, String errorMessage);
+    public interface AddCholHealthCheckListener {
+        public void addChol(AddhealthCheckAPI response, String errorMessage);
     }
 }

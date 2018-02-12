@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+   android:background="@drawable/background_normal_white"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/new_sugar_record_view_linear"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:background="@drawable/health_checks_item_bg"
+            android:orientation="horizontal"
+
+            android:paddingBottom="@dimen/_4dp"
+            android:paddingTop="@dimen/_4dp">
+
+            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                android:id="@+id/ldl_et"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_3dp"
+                android:layout_marginRight="@dimen/_3dp"
+                android:background="@drawable/health_checks_view_selector"
+                android:enabled="true"
+                android:gravity="center"
+                android:inputType="numberSigned"
+                android:maxLength="4"
+                android:hint="0"
+                android:textColor="#ee7b7979"
+                android:textSize="@dimen/_14dp" />
+
+            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                android:id="@+id/hdl_et"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_3dp"
+                android:layout_marginRight="@dimen/_3dp"
+                android:background="@drawable/health_checks_view_selector"
+                android:enabled="true"
+                android:gravity="center"
+                android:inputType="numberSigned"
+                android:maxLength="4"
+                android:hint="0"
+                android:textColor="#ee7b7979"
+                android:textSize="@dimen/_14dp" />
+
+            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                android:id="@+id/triglycerides_et"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_3dp"
+                android:layout_marginRight="@dimen/_3dp"
+                android:background="@drawable/health_checks_view_selector"
+                android:enabled="true"
+                android:gravity="center"
+                android:inputType="numberSigned"
+                android:maxLength="4"
+                android:hint="0"
+                android:textColor="#ee7b7979"
+                android:textSize="@dimen/_14dp" />
+
+            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                android:id="@+id/tot_cholesterol_et"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_3dp"
+                android:layout_marginRight="@dimen/_3dp"
+                android:background="@drawable/health_checks_view_selector"
+                android:enabled="true"
+                android:gravity="center"
+                android:inputType="numberSigned"
+                android:maxLength="4"
+                android:hint="0"
+                android:textColor="#ee7b7979"
+                android:textSize="@dimen/_14dp" />
+
+
+
+
+            <!--  <com.vempower.eezyclinic.views.MyTextViewRR
+                  android:layout_width="@dimen/_80dp"
+                  android:layout_height="match_parent"
+                  android:layout_marginLeft="@dimen/_3dp"
+                  android:layout_marginRight="@dimen/_3dp"
+                  android:gravity="center_vertical|left"
+                  android:textColor="#FF7b7979"
+                  android:textSize="@dimen/_14dp"
+                  android:visibility="invisible" />
+      -->
+
+        </LinearLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_45dp">
+        <com.vempower.eezyclinic.views.MyTextViewRR
+            android:id="@+id/date_tv"
+            android:layout_width="match_parent"
+            android:clickable="true"
+            android:layout_toLeftOf="@+id/imageview1_linear"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/_3dp"
+            android:layout_marginRight="@dimen/_3dp"
+            android:background="@drawable/health_checks_view_selector"
+            android:enabled="true"
+            android:gravity="center|left"
+            android:hint="dd-mm-yyyy"
+            android:textColor="#ee7b7979"
+            android:textSize="@dimen/_14dp" />
+
+        <LinearLayout
+            android:id="@+id/imageview1_linear"
+            android:layout_alignParentEnd="true"
+            android:layout_width="@dimen/_90dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ok_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_5dp"
+                android:padding="@dimen/_8dp"
+                android:src="@drawable/save_record" />
+
+            <!--          <ImageView
+                          android:id="@+id/edit_iv"
+                          android:layout_width="wrap_content"
+                          android:layout_height="match_parent"
+                          android:layout_gravity="center_vertical"
+                          android:layout_marginLeft="@dimen/_5dp"
+                          android:layout_marginRight="@dimen/_5dp"
+                          android:padding="@dimen/_8dp"
+                          android:src="@drawable/edit_record" />
+          -->
+            <ImageView
+                android:id="@+id/delete_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_5dp"
+                android:padding="@dimen/_8dp"
+                android:src="@drawable/cancel_delete_record" />
+
+        </LinearLayout>
+</RelativeLayout>
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sugar_levels_linear"
+
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+  <!--          <include layout="@layout/sugar_single_item"></include>
+            <include layout="@layout/sugar_single_item"></include>
+            <include layout="@layout/sugar_single_item"></include>
+-->
+
+
+        </LinearLayout>
+
+
+</LinearLayout>

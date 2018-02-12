@@ -11,9 +11,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
+import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.vempower.eezyclinic.APICore.HealthChecksBP;
 import com.vempower.eezyclinic.APICore.HealthChecksSugar;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
+import com.vempower.eezyclinic.APIResponce.AddhealthCheckAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.MyDialogInterface;
@@ -22,10 +25,15 @@ import com.vempower.eezyclinic.mappers.AddSugarHealthCheckMapper;
 import com.vempower.eezyclinic.mappers.DeleteSugarHealthCheckMapper;
 import com.vempower.eezyclinic.mappers.UpdateBPHealthCheckMapper;
 import com.vempower.eezyclinic.mappers.UpdateSugarHealthCheckMapper;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
 import com.vempower.eezyclinic.views.MyTextViewRR;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
@@ -144,8 +152,13 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
 
         mapper.setOnAddBPHealthCheckListener(new AddBPHealthCheckMapper.AddBPHealthCheckListener() {
             @Override
-            public void addBP(AbstractResponse response, String errorMessage) {
+            public void addBP(AddhealthCheckAPI response, String errorMessage) {
                 if (!isValidResponse(response, errorMessage, true, false)) {
+                    return;
+                }
+
+                if(response==null || response.getData()==null)
+                {
                     return;
                 }
 
@@ -153,6 +166,8 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
                 bp.setCheckupName("BP");
                 bp.setCheckupValue(diastolic + "," + systolic);
                 bp.setCheckupTime(checkuptime);
+                bp.setCheckupgroupid(response.getData().getCheckupgroupid());
+                bp.setId(response.getData().getHealthcheckId());
                 calAddViewRecord(bp, true);
 
                 new_sugar_record_view_linear.setVisibility(View.GONE);
@@ -193,6 +208,7 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
         MyTextViewRR date_tv;
         ImageView ok_iv, edit_iv, delete_iv;
         private final HealthChecksBP bp;
+        private SelectedDate selectedObj;
 
         public RecordHolder(HealthChecksBP bp, View convertView) {
             this.bp = bp;
@@ -210,11 +226,95 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
             setHealthChecksSugar();
         }
 
+        private String getDisplayDateStr(String dateStr)
+        {
+            SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
+            SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
+
+
+            //For Date of birth
+            if(!TextUtils.isEmpty(dateStr)) {
+                try {
+
+                    Date date = requestFormat.parse(dateStr);
+                    if (selectedObj == null) {
+                        selectedObj = new SelectedDate(Calendar.getInstance());
+                    }
+                    selectedObj.setTimeInMillis(date.getTime());
+                    return format.format(date);
+                    //profileDetails.dateofBirth=patientProfileObj.getDateofbirth();
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return null;
+        }
+
+        private String getServerDateStr(String dateStr)
+        {
+            SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
+            SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
+
+
+            //For Date of birth
+            if(!TextUtils.isEmpty(dateStr)) {
+                try {
+
+                    Date date = format.parse(dateStr);
+
+                    return requestFormat.format(date);
+                    //profileDetails.dateofBirth=patientProfileObj.getDateofbirth();
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return null;
+        }
+
         private void init() {
             edit_iv.setVisibility(View.VISIBLE);
             ok_iv.setVisibility(View.GONE);
             delete_iv.setVisibility(View.VISIBLE);
+            date_tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onDateOfBirthTextviewClick(mFragmentCallback,selectedObj,true);
+
+                }
+            });
         }
+        SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
+            @Override
+            public void onCancelled() {
+                // rlDateTimeRecurrenceInfo.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onDateTimeRecurrenceSet(SelectedDate selectedDate1,
+                                                int hourOfDay, int minute,
+                                                SublimeRecurrencePicker.RecurrenceOption recurrenceOption,
+                                                String recurrenceRule) {
+
+
+                if (selectedDate1 == null || selectedDate1.getFirstDate() == null) {
+                    return;
+                }
+                selectedObj = selectedDate1;
+                Calendar selectedCal = selectedDate1.getFirstDate();
+
+                //  String date = selectedCal.get(Calendar.YEAR) + "-" + (selectedCal.get(Calendar.MONTH) + 1) + "-" + selectedCal.get(Calendar.DAY_OF_MONTH);
+                SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
+                //SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.REQUEST_DATE_FORMAT);
+                //profileDetails.dateofBirth=requestFormat.format(selectedCal.getTime());
+                date_tv.setText(format.format(selectedCal.getTime()));
+
+            }
+        };
+
 
         public void setHealthChecksSugar() {
             if (bp == null) {
@@ -228,7 +328,8 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
             diastolic_et.setText(fasting);
             systolic_et.setText(postFasting);
            // hba1c_et.setText(hba1c);
-            date_tv.setText(bp.getCheckupTime());
+           // date_tv.setText(bp.getCheckupTime());
+            date_tv.setText(getDisplayDateStr(bp.getCheckupTime()));
         }
 
         public void setViewState(boolean isEnabled) {
@@ -257,7 +358,7 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
 */
             final String diastolic = diastolic_et.getText().toString();
             final String systolic = systolic_et.getText().toString();
-            final String checkuptime = date_tv.getText().toString();
+            final String checkuptime1 = date_tv.getText().toString();
             if (TextUtils.isEmpty(diastolic)) {
                 Utils.showToastMessage(R.string.please_enter_diastolic_value_lbl);
                 return;
@@ -267,11 +368,11 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
                 return;
             }
 
-            if (TextUtils.isEmpty(checkuptime)) {
+            if (TextUtils.isEmpty(checkuptime1)) {
                 Utils.showToastMessage(R.string.please_select_date_lbl);
                 return;
             }
-
+            final String checkuptime=getServerDateStr(checkuptime1);
             UpdateBPHealthCheckMapper  mapper= new UpdateBPHealthCheckMapper(bp.getId(),  diastolic,  systolic,   checkuptime);
 
             mapper.setOnUpdateBPHealthCheckListener(new UpdateBPHealthCheckMapper.UpdateBPHealthCheckListener() {

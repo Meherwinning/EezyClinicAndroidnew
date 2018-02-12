@@ -10,10 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vempower.eezyclinic.APICore.HealthChecksData;
+import com.vempower.eezyclinic.APICore.HealthChecksHeight;
+import com.vempower.eezyclinic.APICore.HealthChecksHeightWeight;
+import com.vempower.eezyclinic.APICore.HealthChecksWeight;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.HealthChecksViewPagerAdapter;
 import com.vempower.eezyclinic.adapters.HealthRecordsViewPagerAdapter;
+import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.views.NonSwipeableViewPager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by satish on 6/12/17.
@@ -41,11 +48,47 @@ public class HealthChecksFragment extends AbstractFragment {
         mViewPager = (NonSwipeableViewPager) getFragemtView().findViewById(R.id.pager1);
         mTabLayout = (TabLayout) getFragemtView().findViewById(R.id.tab1);
         mViewPager.setOffscreenPageLimit(4);
-       // mViewPager.setScol
-
+        // mViewPager.setScol
 
 
     }
+
+    public ArrayList<HealthChecksHeightWeight> getHeightAndWeightList(List<HealthChecksHeight> heightList, List<HealthChecksWeight> weightList) {
+
+        ArrayList heightWeightList = new ArrayList<>();
+
+        if (heightList == null || weightList == null) {
+            return heightWeightList;
+        }
+        if (heightList.size() == 0 || weightList.size() == 0) {
+            return heightWeightList;
+        }
+
+        for (HealthChecksHeight height : heightList) {
+
+            if (height == null) {
+                continue;
+            }
+            HealthChecksWeight newWeight = new HealthChecksWeight();
+            newWeight.setCheckupgroupid(height.getCheckupgroupid());
+
+            int index = weightList.indexOf(newWeight);
+
+            if (index != -1) {
+                HealthChecksWeight weight = weightList.get(index);
+                HealthChecksHeightWeight heightWeight = new HealthChecksHeightWeight(height);
+                heightWeight.setWeightCheckupValue(weight.getWeightCheckupValue());
+                heightWeightList.add(heightWeight);
+
+            }
+
+
+        }
+        return heightWeightList;
+
+
+    }
+
 
     @Override
     View getFragemtView() {
@@ -59,13 +102,19 @@ public class HealthChecksFragment extends AbstractFragment {
         setMyViewPager();
 
     }
-    public void setMyViewPager()
-    {
+
+    public void setMyViewPager() {
         setViewPager();
     }
 
     private void setViewPager() {
-        mViewPagerAdapter = new HealthChecksViewPagerAdapter(healthChecksData,getFragmentManager());
+        MyApplication.showTransparentDialog();
+        ArrayList<HealthChecksHeightWeight> heightAndWeightList = getHeightAndWeightList(healthChecksData.getHeight(), healthChecksData.getWeight());
+        MyApplication.hideTransaprentDialog();
+
+
+        mViewPagerAdapter = new HealthChecksViewPagerAdapter(healthChecksData,heightAndWeightList, getFragmentManager());
+
         mViewPager.setAdapter(mViewPagerAdapter);
 
         mTabLayout.setupWithViewPager(mViewPager);

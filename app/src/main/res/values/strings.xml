@@ -223,6 +223,14 @@
     <string name="please_enter_systolic_value_lbl">Please enter systolic value</string>
     <string name="invalid_bp_record_details_lbl">Invalid BP record details</string>
     <string name="are_you_sure_to_delete_bp_record_lbl">Are you sure to delete BP record?</string>
+    <string name="please_enter_ldl_value_lbl">Please enter LDL value</string>
+    <string name="please_enter_hdl_value_lbl">Please enter HDL value</string>
+    <string name="please_enter_triglycerides_value_lbl">Please enter Triglycerides value</string>
+    <string name="please_enter_tot_cholesterol_value_lbl">Please enter Total Cholesterol value</string>
+    <string name="are_you_sure_to_delete_chol_record_lbl">Are you sure to delete Cholesterol record?</string>
+    <string name="please_enter_weight_value_lbl">Please enter Weight value</string>
+    <string name="please_enter_height_value_lbl">Please enter Height value</string>
+    <string name="are_you_sure_to_delete_height_and_weight_record_lbl">Are you sure to delete Height and Weight record?</string>
 
 
 </resources>

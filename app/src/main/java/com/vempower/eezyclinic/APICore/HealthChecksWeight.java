@@ -4,95 +4,35 @@ package com.vempower.eezyclinic.APICore;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class HealthChecksWeight {
+public class HealthChecksWeight extends AbstractChecksHeightWeight {
 
-    @SerializedName("id")
-    @Expose
-    private String id;
-    @SerializedName("patientId")
-    @Expose
-    private String patientId;
-    @SerializedName("checkupgroupid")
-    @Expose
-    private String checkupgroupid;
-    @SerializedName("checkupName")
-    @Expose
-    private String checkupName;
+
     @SerializedName("checkupValue")
     @Expose
-    private String checkupValue;
-    @SerializedName("checkupTime")
-    @Expose
-    private String checkupTime;
-    @SerializedName("status")
-    @Expose
-    private String status;
-    @SerializedName("created_on")
-    @Expose
-    private String createdOn;
+    private String weightCheckupValue;
 
-    public String getId() {
-        return id;
+
+    public String getWeightCheckupValue() {
+        return weightCheckupValue;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setWeightCheckupValue(String weightCheckupValue) {
+        this.weightCheckupValue = weightCheckupValue;
     }
 
-    public String getPatientId() {
-        return patientId;
-    }
+    @Override
+    public boolean equals(Object obj) {
 
-    public void setPatientId(String patientId) {
-        this.patientId = patientId;
-    }
+        if (obj != null && obj instanceof HealthChecksWeight) {
+            HealthChecksWeight weight = (HealthChecksWeight) obj;
+            if (weight.getCheckupgroupid() != null && getCheckupgroupid() != null) {
+                if (weight.getCheckupgroupid().equalsIgnoreCase(getCheckupgroupid())) {
+                    return true;
+                }
+            }
 
-    public String getCheckupgroupid() {
-        return checkupgroupid;
-    }
+        }
 
-    public void setCheckupgroupid(String checkupgroupid) {
-        this.checkupgroupid = checkupgroupid;
+        return super.equals(obj);
     }
-
-    public String getCheckupName() {
-        return checkupName;
-    }
-
-    public void setCheckupName(String checkupName) {
-        this.checkupName = checkupName;
-    }
-
-    public String getCheckupValue() {
-        return checkupValue;
-    }
-
-    public void setCheckupValue(String checkupValue) {
-        this.checkupValue = checkupValue;
-    }
-
-    public String getCheckupTime() {
-        return checkupTime;
-    }
-
-    public void setCheckupTime(String checkupTime) {
-        this.checkupTime = checkupTime;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(String createdOn) {
-        this.createdOn = createdOn;
-    }
-
 }
