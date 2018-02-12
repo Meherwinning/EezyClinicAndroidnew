@@ -108,9 +108,9 @@ public class HealthChecksFragment extends AbstractFragment {
     }
 
     private void setViewPager() {
-        MyApplication.showTransparentDialog();
+        //MyApplication.showTransparentDialog();
         ArrayList<HealthChecksHeightWeight> heightAndWeightList = getHeightAndWeightList(healthChecksData.getHeight(), healthChecksData.getWeight());
-        MyApplication.hideTransaprentDialog();
+       // MyApplication.hideTransaprentDialog();
 
 
         mViewPagerAdapter = new HealthChecksViewPagerAdapter(healthChecksData,heightAndWeightList, getFragmentManager());
