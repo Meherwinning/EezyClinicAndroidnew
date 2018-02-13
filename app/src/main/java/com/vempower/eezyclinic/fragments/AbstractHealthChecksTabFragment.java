@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
@@ -15,6 +17,7 @@ import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.GraphExpandViewActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
@@ -35,12 +38,15 @@ abstract class AbstractHealthChecksTabFragment  extends  AbstractFragment{
     private ProgressBar progressBar;
     private MyTextViewRR graph_type_title_tv;
     protected MyTextViewRR new_date_tv;
+    private ImageView graph_expand_iv;
 
 
 
     protected void myInit() {
         url=null;
         new_date_tv = getFragemtView().findViewById(R.id.date_tv);
+        graph_expand_iv = getFragemtView().findViewById(R.id.graph_expand_iv);
+
         new_date_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +54,16 @@ abstract class AbstractHealthChecksTabFragment  extends  AbstractFragment{
 
             }
         });
+        if(graph_expand_iv!=null) {
+            graph_expand_iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Utils.showToastMessage("Now click on Graph expand image");
+                    Intent intent= new Intent(MyApplication.getCurrentActivityContext(), GraphExpandViewActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
         wv =  getFragemtView().findViewById(R.id.terms_webView);
         progressBar  =  getFragemtView().findViewById(R.id.progress_bar_view);
         graph_type_title_tv  =  getFragemtView().findViewById(R.id.graph_type_title_tv);

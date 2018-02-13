@@ -32,6 +32,16 @@
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/graph_expand_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:padding="@dimen/_10dp"
+                android:layout_toRightOf="@+id/image_linear"
+                android:src="@drawable/profile_image_zoom_icon" />
+
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
