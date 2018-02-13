@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 public class GraphExpandViewActivity extends AbstractFragmentActivity {
 
     private WebView wv;
-    private String url;
+   // private String url;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +33,19 @@ public class GraphExpandViewActivity extends AbstractFragmentActivity {
     }
 
     private void myInit() {
+        if(getIntent()==null || !getIntent().hasExtra(Constants.Pref.GRAPH_URL_STR))
+        {
+            showAlertDialog("Alert",Utils.getStringFromResources(R.string.invalid_graph_url_str),true);
+            return;
+        }
+        String url=getIntent().getStringExtra(Constants.Pref.GRAPH_URL_STR);
+        if(TextUtils.isEmpty(url))
+        {
+            showAlertDialog("Alert",Utils.getStringFromResources(R.string.invalid_graph_url_str),true);
+            return;
+
+        }
+       /*
         String access_key= SharedPreferenceUtils.getStringValueFromSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,null);
         if (TextUtils.isEmpty(access_key) ) {
             showAlertDialog("Alert", Utils.getStringFromResources(R.string.unauthorized_user_lbl),true);
@@ -40,7 +53,7 @@ public class GraphExpandViewActivity extends AbstractFragmentActivity {
         }
 
         url= Constants.BASIC_URL+"/patient/healthcheckreports?access_key="+access_key+"&type=1";
-
+*/
 
         findViewById(R.id.close_iv).setOnClickListener(new View.OnClickListener() {
             @Override

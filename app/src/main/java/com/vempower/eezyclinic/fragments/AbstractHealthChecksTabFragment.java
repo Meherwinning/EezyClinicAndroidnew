@@ -54,17 +54,9 @@ abstract class AbstractHealthChecksTabFragment  extends  AbstractFragment{
 
             }
         });
-        if(graph_expand_iv!=null) {
-            graph_expand_iv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Utils.showToastMessage("Now click on Graph expand image");
-                    Intent intent= new Intent(MyApplication.getCurrentActivityContext(), GraphExpandViewActivity.class);
-                    startActivity(intent);
-                }
-            });
-        }
+
         wv =  getFragemtView().findViewById(R.id.terms_webView);
+
         progressBar  =  getFragemtView().findViewById(R.id.progress_bar_view);
         graph_type_title_tv  =  getFragemtView().findViewById(R.id.graph_type_title_tv);
         graph_type_title_tv.setText(getHealthCheckTypeName());
@@ -87,7 +79,21 @@ abstract class AbstractHealthChecksTabFragment  extends  AbstractFragment{
         url= Constants.BASIC_URL+"/patient/healthcheckreports?access_key="+access_key+"&type="+getHealthCheckType();
         //String url="file:///android_asset/"+"chart.html";
 
-
+        if(graph_expand_iv!=null) {
+            graph_expand_iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callGraphExpandActivity();
+                }
+            });
+        }
+        wv.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                callGraphExpandActivity();
+                return true;
+            }
+        });
 
 
         wv.setWebChromeClient(new WebChromeClient());
@@ -112,6 +118,13 @@ abstract class AbstractHealthChecksTabFragment  extends  AbstractFragment{
         wv.setScrollbarFadingEnabled(false);*/
 
 
+    }
+
+    private void callGraphExpandActivity() {
+        //Utils.showToastMessage("Now click on Graph expand image");
+        Intent intent= new Intent(MyApplication.getCurrentActivityContext(), GraphExpandViewActivity.class);
+        intent.putExtra(Constants.Pref.GRAPH_URL_STR,url);
+        startActivity(intent);
     }
 
     abstract int getHealthCheckType();
