@@ -35,6 +35,13 @@ abstract class AbstractActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         MyApplication.setCurrentActivityContext(this)
 
+        //809001486451
+        //101297627
+
+        //15567
+        /*
+
+         */
         //FirebaseApp.initializeApp(this)
         //FirebaseCrash.report(Exception("My first Android non-fatal error"));
     }
