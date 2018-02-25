@@ -1,6 +1,7 @@
 package com.vempower.eezyclinic.fragments;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -116,9 +118,11 @@ public class EditProfileFragment extends ImageProcessFragment {
     private MyAutoCompleteBlackCursorTextView addressAutoCompleteTextView;
     private GooglePlacesAutocompleteAdapter googlePlacesAutocompleteAdapter;
     //private File imageFile;
-    private LinearLayout image_linear;
+    private LinearLayout image_linear,insurance_add_linear;
     private ImageView profile_iv,id_back_iv,id_front_iv,insurance_back_iv,insurance_front_iv;
     private PatientProfileData patientProfileObj;
+    private Button add_insurance_btn;
+    private LayoutInflater inflater;
 
 
     @Nullable
@@ -128,9 +132,13 @@ public class EditProfileFragment extends ImageProcessFragment {
         profileDetails= new EditProfileDetails();
         myInit();
         return fragmentView;
+
     }
 
     private void myInit() {
+        inflater = (LayoutInflater) MyApplication.getCurrentActivityContext()
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         initForViews();
         profile_top_details_mask_tv = getFragemtView().findViewById(R.id.profile_top_details_mask_tv);
         insurance_details_mask_tv = getFragemtView().findViewById(R.id.insurance_details_mask_tv);
@@ -151,6 +159,19 @@ public class EditProfileFragment extends ImageProcessFragment {
 
         myScrollView = ((ScrollView) getFragemtView().findViewById(R.id.scroll));
 
+
+        //Insurance add
+        insurance_add_linear = getFragemtView().findViewById(R.id.insurance_add_linear);
+        add_insurance_btn  = getFragemtView().findViewById(R.id.add_insurance_btn);
+
+        add_insurance_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final View convertView = inflater
+                        .inflate(R.layout.profile_insurance_edit_layout, null, false);
+                insurance_add_linear.addView(convertView);
+            }
+        });
 
 
         date_of_birth_tv.setOnClickListener(new View.OnClickListener() {
@@ -181,6 +202,8 @@ public class EditProfileFragment extends ImageProcessFragment {
         setInitForGooglePlacesAutocompleteTextView();
 
         fillProfileDataToViews();
+
+
 
     }
 
