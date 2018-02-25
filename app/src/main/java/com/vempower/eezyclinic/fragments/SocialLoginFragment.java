@@ -106,7 +106,7 @@ public class SocialLoginFragment extends LinkedinFragment implements SocialNetwo
         //Get Keys for initiate SocialNetworks
         String TWITTER_CONSUMER_KEY = getActivity().getString(R.string.twitter_consumer_key);
         String TWITTER_CONSUMER_SECRET = getActivity().getString(R.string.twitter_consumer_secret);
-        String TWITTER_CALLBACK_URL = "https://www.v-empower.com/";
+        String TWITTER_CALLBACK_URL = "https://www.eezyclinic.com";
 
 
         String LINKEDIN_CONSUMER_KEY = getActivity().getString(R.string.linkedin_consumer_key);

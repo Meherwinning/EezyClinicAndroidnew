@@ -633,8 +633,8 @@
         <!--android:value="AIzaSyASY1ag6QjorjncSq&#45;&#45;r43Hs7JmclP1_IM"-->
 
 
-        //https://inthecheesefactory.com/blog/how-to-share-access-to-file-with-fileprovider-on-android-nougat/en
-        <provider
+   <!--     //https://inthecheesefactory.com/blog/how-to-share-access-to-file-with-fileprovider-on-android-nougat/en
+-->        <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"

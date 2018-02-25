@@ -8,16 +8,21 @@
 
 
     <!--<string name="facebook_app_id">367880220327154</string>--><!--312054032307399-->
-    <string name="facebook_app_scrate_key">f9a79089f30f9fc9ce5f2f3c9e9b55a0</string>
+    <!--<string name="facebook_app_scrate_key">f9a79089f30f9fc9ce5f2f3c9e9b55a0</string>-->
+    <string name="facebook_app_scrate_key">1a5e517e607fde29849e0cbe50eb0895</string>
 
-    <string name="facebook_app_id">183899482166124</string>
-    <string name="fb_login_protocol_scheme">fb183899482166124</string>
+    <string name="facebook_app_id">1064409950364350</string><!--183899482166124-->
+    <!--<string name="fb_login_protocol_scheme">fb183899482166124</string>-->
 
-    <string name="twitter_consumer_key">YJL9cJ0ftif6iOdPoVRAg8tLa</string>
-    <string name="twitter_consumer_secret">KURqaLHo7iL3R7AfQegqutCR0AeYIw4klA2nKrOHXynWjfpx1Z</string>
+    <string name="twitter_consumer_key">VFZPsVGKznpPdObUYUGE4DH9w</string><!--YJL9cJ0ftif6iOdPoVRAg8tLa-->
+    <string name="twitter_consumer_secret">M2CDgvWlMoe3l7E5sP7Fe2BLDmfMHocnTjBj3wbgTrFie67VMB</string><!--KURqaLHo7iL3R7AfQegqutCR0AeYIw4klA2nKrOHXynWjfpx1Z-->
 
-    <string name="linkedin_consumer_key">81hi89snk3m9t0</string>
+ <!--   <string name="linkedin_consumer_key">81hi89snk3m9t0</string>
     <string name="linkedin_consumer_secret">1vavLeWuoDiwq5Bn</string>
+-->
+    <string name="linkedin_consumer_key">8139zqkvjdijtm</string>
+    <string name="linkedin_consumer_secret">MUWx6kIARfp1r1cK</string>
+
 
 
     <string name="Screen">Normal</string>
