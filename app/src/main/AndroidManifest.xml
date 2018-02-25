@@ -623,9 +623,14 @@
             android:value="AIzaSyASY1ag6QjorjncSq&#45;&#45;r43Hs7JmclP1_IM" />
         -->
 
+        <!-- Google login -->
+        <!--https://developers.google.com/identity/sign-in/android/start-integrating-->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyASY1ag6QjorjncSq--r43Hs7JmclP1_IM" />
+            android:value="AIzaSyBP3LUorozJXHwASU5owvDqCLZ4nXb1LV4" />
+        <!--AIzaSyBP3LUorozJXHwASU5owvDqCLZ4nXb1LV4-->
+
+        <!--android:value="AIzaSyASY1ag6QjorjncSq&#45;&#45;r43Hs7JmclP1_IM"-->
 
 
         //https://inthecheesefactory.com/blog/how-to-share-access-to-file-with-fileprovider-on-android-nougat/en

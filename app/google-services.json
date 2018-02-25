@@ -1,21 +1,25 @@
 {
   "project_info": {
-    "project_number": "712280858111",
-    "firebase_url": "https://eesyclinic.firebaseio.com",
-    "project_id": "eesyclinic",
-    "storage_bucket": "eesyclinic.appspot.com"
+    "project_number": "342119269239",
+    "firebase_url": "https://eezyclinic-194712.firebaseio.com",
+    "project_id": "eezyclinic-194712",
+    "storage_bucket": "eezyclinic-194712.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:712280858111:android:d781f22f5106091d",
+        "mobilesdk_app_id": "1:342119269239:android:d781f22f5106091d",
         "android_client_info": {
           "package_name": "com.vempower.eezyclinic"
         }
       },
       "oauth_client": [
         {
-          "client_id": "712280858111-9it3utmn486330ua55r4jdflg2r9denb.apps.googleusercontent.com",
+          "client_id": "342119269239-ic1o7v7gq65kcc3k5l8osmshkvnde8te.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "342119269239-r3b66egmbfmph99qej6n1mhqc1re8fk0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.vempower.eezyclinic",
@@ -23,25 +27,13 @@
           }
         },
         {
-          "client_id": "712280858111-f9sinm1oql7v42knig90vdpnoj6af4la.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "712280858111-c6pk6t0r5l636m5fio7n040el5kjhedh.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.vempower.eezyclinic",
-            "certificate_hash": "25bb316420af5474dd2618c8b3ff81db767fc4c5"
-          }
-        },
-        {
-          "client_id": "712280858111-e3ksqk2v9kfmaj6jrodq7cp3i9jjqaeu.apps.googleusercontent.com",
+          "client_id": "342119269239-rnd7ecp9stcp952msd07rro20260ksaf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBKPbQdKwcVPwpIuiPelqYyiwHIUPvliGI"
+          "current_key": "AIzaSyBARDE8dt31FxWTY6IeZ65cWSgeo5Kkq8g"
         }
       ],
       "services": {
@@ -52,7 +44,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "712280858111-f9sinm1oql7v42knig90vdpnoj6af4la.apps.googleusercontent.com",
+              "client_id": "342119269239-ic1o7v7gq65kcc3k5l8osmshkvnde8te.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
