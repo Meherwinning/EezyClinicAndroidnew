@@ -109,7 +109,17 @@ public class ResetPasswordActivity extends AbstractFragmentActivity {
         //id;
         //resetP
         //String otp, String id,String newpw,String confirmnewpw
-        ResetPasswordMapper mapper= new ResetPasswordMapper(otp,id,password,repassword);
+        int pid=-1;
+
+        try
+        {
+            pid= Integer.parseInt(id);
+        }catch (Exception e)
+        {
+            Utils.showToastMsg("Invalid patient details");
+            return;
+        }
+        ResetPasswordMapper mapper= new ResetPasswordMapper(otp,pid,password,repassword);
         mapper.setOnResetPasswordListener(new ResetPasswordMapper.ResetPasswordListener() {
             @Override
             public void getResetPasswordAPI(AbstractResponse responce, String errorMessage) {

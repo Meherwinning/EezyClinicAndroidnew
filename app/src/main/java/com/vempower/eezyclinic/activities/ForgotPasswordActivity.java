@@ -166,7 +166,16 @@ public class ForgotPasswordActivity extends AbstractFragmentActivity {
 
        // showToastMessage(account.toString());
         //MyApplication.showTransparentDialog();
-        ForgotPasswordOTPMapper otpMapper = new ForgotPasswordOTPMapper(account.getId(), isEmail ? "2" : "1");
+        int id=-1;
+        try
+        {
+            id= Integer.parseInt(account.getId());
+        }catch ( Exception e)
+        {
+            Utils.showToastMsg("Invalid patient details");
+           return;
+        }
+        ForgotPasswordOTPMapper otpMapper = new ForgotPasswordOTPMapper(id, isEmail ? "2" : "1");
 
         otpMapper.setOnForgotPasswordOTPListener(new ForgotPasswordOTPMapper.ForgotPasswordOTPListener() {
             @Override

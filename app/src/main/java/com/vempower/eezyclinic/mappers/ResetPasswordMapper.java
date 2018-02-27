@@ -28,9 +28,10 @@ public class ResetPasswordMapper extends  AbstractMapper  implements Callback<Ab
     private ResetPasswordListener listener;
     //private final String userId,password;
     //mobileotp(1),id(1),newpw(1),confirmnewpw(1)
-    private final String otp,id,newpw,confirmnewpw;
+    private final String otp,newpw,confirmnewpw;
+    private final int id;
 
-    public ResetPasswordMapper(String otp, String id,String newpw,String confirmnewpw) {
+    public ResetPasswordMapper(String otp, int id,String newpw,String confirmnewpw) {
         this.otp=otp;
         this.id=id;
         this.newpw=newpw;
@@ -108,7 +109,7 @@ public class ResetPasswordMapper extends  AbstractMapper  implements Callback<Ab
 
     public RequestBody getMyRequestBody() {
 
-        if (TextUtils.isEmpty(otp) || TextUtils.isEmpty(id)||
+        if (TextUtils.isEmpty(otp) || /*TextUtils.isEmpty(id)||*/
         TextUtils.isEmpty(newpw) || TextUtils.isEmpty(confirmnewpw)
                 ) {
             return null;
