@@ -28,9 +28,10 @@ public class ForgotPasswordOTPMapper extends  AbstractMapper  implements Callbac
 //"id":"301",
   //"type":"2"(1-mobile,2-email
     private ForgotPasswordOTPListener listener;
-    private final String id,type;
+    private final String type;
+    private final int id;
 
-    public ForgotPasswordOTPMapper(String id, String type) {
+    public ForgotPasswordOTPMapper(int id, String type) {
         this.id=id;
         this.type=type;
     }
@@ -102,7 +103,7 @@ public class ForgotPasswordOTPMapper extends  AbstractMapper  implements Callbac
 
     public RequestBody getMyRequestBody() {
 
-        if (TextUtils.isEmpty(id) && TextUtils.isEmpty(type)) {
+        if (/*TextUtils.isEmpty(id) &&*/ TextUtils.isEmpty(type)) {
             return null;
         }
         //fname
