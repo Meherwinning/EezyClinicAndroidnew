@@ -676,7 +676,10 @@
                     android:textColorHint="#8a000000"
                     android:textSize="@dimen/_11dp" />
                 <RelativeLayout
+                    android:id="@+id/insurance_image1_relative"
+                    android:visibility="invisible"
                     android:layout_width="wrap_content"
+
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center">
@@ -741,6 +744,9 @@
                     android:textColorHint="#8a000000"
                     android:textSize="@dimen/_11dp" />
                 <RelativeLayout
+                    android:id="@+id/insurance_image2_relative"
+                    android:visibility="invisible"
+
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"

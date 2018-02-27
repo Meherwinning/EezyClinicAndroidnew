@@ -97,7 +97,7 @@ public class MyNotesListFragment extends AbstractFragment {
                     });
                     return;
                 }
-                showAlertDialog("Success",response.getStatusMessage(),true);
+                showAlertDialog("Success",R.string.success_save_notes_lbl,false);
             }
         });
     }

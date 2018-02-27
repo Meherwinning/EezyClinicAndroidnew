@@ -396,7 +396,7 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
                 {
                     selectedGender= genderTypeList.get(position);
                 }
-                showToastMessage("selectedGender "+selectedGender);
+                //showToastMessage("selectedGender "+selectedGender);
             }
 
             @Override

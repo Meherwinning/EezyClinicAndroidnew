@@ -29,6 +29,7 @@
                 android:id="@+id/medical_history_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingTop="@dimen/_5dp"
                 android:hint="Enter your Medical History"
 
                 android:maxLength="255"

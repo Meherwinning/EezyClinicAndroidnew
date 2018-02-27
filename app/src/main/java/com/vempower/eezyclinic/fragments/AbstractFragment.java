@@ -134,7 +134,9 @@ public abstract class AbstractFragment extends Fragment {
         this.myListener=myListener;
     }
 
-
+    public void showAlertDialog(String title, int msgId,final boolean isFinish) {
+        showAlertDialog(title, Utils.getStringFromResources(msgId),isFinish, null);
+    }
     public void showAlertDialog(String title, String msg,final boolean isFinish) {
         showAlertDialog(title, msg,isFinish, null);
     }

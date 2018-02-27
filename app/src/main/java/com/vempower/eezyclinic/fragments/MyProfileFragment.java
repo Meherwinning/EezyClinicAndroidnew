@@ -9,6 +9,7 @@ import android.os.Messenger;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.text.TextUtils;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -83,6 +85,8 @@ public class MyProfileFragment extends AbstractFragment {
     private MyTextViewRB patient_name_tv;
     private PatientProfileData profileData;
 
+    private RelativeLayout id_back_relative,id_front_relative, insurance_image1_relative,insurance_image2_relative;
+
 
     @Nullable
     @Override
@@ -106,6 +110,12 @@ public class MyProfileFragment extends AbstractFragment {
         id_front_iv  = getFragemtView().findViewById(R.id.id_front_iv);
         insurance_back_iv= getFragemtView().findViewById(R.id.insurance_back_iv);
                 insurance_front_iv= getFragemtView().findViewById(R.id.insurance_front_iv);
+        id_back_relative  = getFragemtView().findViewById(R.id.id_back_relative);
+        id_front_relative  = getFragemtView().findViewById(R.id.id_front_relative);
+
+        insurance_image1_relative = getFragemtView().findViewById(R.id.insurance_image1_relative);
+
+                insurance_image2_relative = getFragemtView().findViewById(R.id.insurance_image2_relative);
 
        // displayImageInLarge(patient_profile_iv1.getDrawable());
 
@@ -301,20 +311,37 @@ public class MyProfileFragment extends AbstractFragment {
         //Header
         MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, patient_profile_iv1, data.getPatientlogo());
 
-        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, id_front_iv, data.getIdcardImageFront());
+        if(!TextUtils.isEmpty(data.getIdcardImageFront())) {
+            id_front_relative.setVisibility(View.VISIBLE);
+            MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, id_front_iv, data.getIdcardImageFront());
+        }
 
-        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, id_back_iv, data.getIdcardImageBack());
+
+        if(!TextUtils.isEmpty(data.getIdcardImageBack())) {
+            id_back_relative.setVisibility(View.VISIBLE);
+            MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, id_back_iv, data.getIdcardImageBack());
+        }
 
 
 
-        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_front_iv, data.getInsuranceCardFront());
 
-        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_back_iv, data.getInsuranceCardBack());
+        if(!TextUtils.isEmpty(data.getInsuranceCardFront())) {
+            insurance_image1_relative.setVisibility(View.VISIBLE);
+            MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_front_iv, data.getInsuranceCardFront());
+        }
 
+        if(!TextUtils.isEmpty(data.getInsuranceCardBack())) {
+            insurance_image2_relative.setVisibility(View.VISIBLE);
+            MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_back_iv, data.getInsuranceCardBack());
+        }
 
 
         patient_name_tv.setText(data.getPatientname());
-        patient_details_tv.setText(data.getGender() + ", " + data.getAge() + ", " + data.getMaritalStatus());
+        String gender=TextUtils.isEmpty(data.getGender())? "":data.getGender()+",";
+        String age=TextUtils.isEmpty(data.getAge())? "":data.getAge()+",";
+        String maritalStatus=TextUtils.isEmpty(data.getMaritalStatus())? "":data.getMaritalStatus();
+
+        patient_details_tv.setText(gender + age + maritalStatus);
 
 
         String DISPLAY_DATE_TIME = "dd/MM/yyyy";//"d MMM yyyy, EEEE h:mm a";
@@ -351,7 +378,12 @@ public class MyProfileFragment extends AbstractFragment {
         contact_email_et.setText(data.getEmail());
         if (data.getAddress() != null) {
             PatientProfileAddress address = data.getAddress();
-            contact_address_et.setText(address.getLocality() + "," + address.getAddress() + "," + address.getCity() + "," + address.getCountry());
+            String locality=TextUtils.isEmpty(address.getLocality())? "":address.getLocality()+",";
+            String addressStr=TextUtils.isEmpty(address.getAddress())? "":address.getAddress()+",";
+            String city=TextUtils.isEmpty(address.getCity())? "":address.getCity()+",";
+            String country=TextUtils.isEmpty(address.getCountry())? "":address.getCountry()+",";
+
+            contact_address_et.setText(locality + addressStr + city + country);
         } else {
             contact_address_et.setText(null);
         }
