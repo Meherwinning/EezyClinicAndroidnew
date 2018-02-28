@@ -77,6 +77,12 @@
 -keep class com.vempower.eezyclinic.**
 -keep class com.vempower.eezyclinic.***
 
+-keep class com.appeaser.sublimepickerlibrary.*
+-keep class com.appeaser.sublimepickerlibrary.**
+
+-keep class com.appeaser.sublimepickerlibrary.** { *; }
+-keep class com.appeaser.sublimepickerlibrary.* { *; }
+
 
 -keep class com.coremedia.iso.**
 -keep class com.googlecode.mp4parser.*
