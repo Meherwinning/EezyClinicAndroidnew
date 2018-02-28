@@ -410,4 +410,9 @@ Call<HealthChecksListAPI> getHealthCheckList(@Body RequestBody postBody);
     @POST(data + "patient/edithealthwpcheck")
     Call<AbstractResponse> edithealthwpcheck(@Body RequestBody postBody);
 
+    //http://202.63.103.194:8003/api/patient/deletehealthwhcheck
+    @POST(data + "patient/deletehealthwhcheck")
+    Call<AbstractResponse> deleteHealthCheckWH(@Body RequestBody postBody);
+
+
 }

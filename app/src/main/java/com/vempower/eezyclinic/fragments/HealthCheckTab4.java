@@ -63,6 +63,14 @@ public class HealthCheckTab4 extends  AbstractHealthChecksTabFragment {
         myInit();
         return fragmentView;
     }
+    @Override
+    int recordsCount() {
+        if(sugar_levels_linear!=null)
+        {
+            return sugar_levels_linear.getChildCount();
+        }
+        return 0;
+    }
 
     protected void myInit() {
         super.myInit();
@@ -110,7 +118,7 @@ public class HealthCheckTab4 extends  AbstractHealthChecksTabFragment {
                 String hdl = new_hdl_et.getText().toString();
                 String triglycerides = new_triglycerides_et.getText().toString();
                 String tot_cholesterol = new_tot_cholesterol_et.getText().toString();
-                String checkuptime = "2018-01-07";// new_date_tv.getText().toString();
+               // String checkuptime = "2018-01-07";// new_date_tv.getText().toString();
                 if (TextUtils.isEmpty(ldl)) {
                     Utils.showToastMessage(R.string.please_enter_ldl_value_lbl);
                     return;
@@ -129,7 +137,7 @@ public class HealthCheckTab4 extends  AbstractHealthChecksTabFragment {
                 }
 
 
-                callAddNewSugarHealthcheckRecord(ldl, hdl, triglycerides,tot_cholesterol, checkuptime);
+                callAddNewSugarHealthcheckRecord(ldl, hdl, triglycerides,tot_cholesterol);
             }
         });
 
@@ -150,11 +158,12 @@ public class HealthCheckTab4 extends  AbstractHealthChecksTabFragment {
         new_triglycerides_et.setText(null);
         new_tot_cholesterol_et.setText(null);
         new_date_tv.setText(null);
+        selectedDateStr="";
     }
 
-    private void callAddNewSugarHealthcheckRecord(final String ldl, final String hdl, final String triglicerides,final String totalcholestral, final String checkuptime) {
+    private void callAddNewSugarHealthcheckRecord(final String ldl, final String hdl, final String triglicerides,final String totalcholestral) {
 
-        AddCholHealthCheckMapper mapper= new AddCholHealthCheckMapper( ldl,  hdl,  triglicerides, totalcholestral,  checkuptime);
+        AddCholHealthCheckMapper mapper= new AddCholHealthCheckMapper( ldl,  hdl,  triglicerides, totalcholestral,  selectedDateStr);
 
         mapper.setOnAddCholHealthCheckListener(new AddCholHealthCheckMapper.AddCholHealthCheckListener() {
             @Override
@@ -171,11 +180,11 @@ public class HealthCheckTab4 extends  AbstractHealthChecksTabFragment {
                 HealthChecksCholesterol chol = new HealthChecksCholesterol();
                 chol.setCheckupName("Cholesterol");
                 chol.setCheckupValue(ldl + "," + hdl + "," + triglicerides+","+totalcholestral);
-                chol.setCheckupTime(checkuptime);
+                chol.setCheckupTime(selectedDateStr);
                 chol.setCheckupgroupid(response.getData().getCheckupgroupid());
                 chol.setId(response.getData().getHealthcheckId());
                 calAddViewRecord(chol, true);
-
+                refreshGraph();
                 new_sugar_record_view_linear.setVisibility(View.GONE);
                 add_new_reocrd_linear.setVisibility(View.VISIBLE);
             }
@@ -409,6 +418,7 @@ public class HealthCheckTab4 extends  AbstractHealthChecksTabFragment {
                     chol.setCheckupValue(ldl + "," + hdl + "," + triglycerides+","+tot_cholesterol);
                     Utils.showToastMessage(response.getStatusMessage());
                     setViewState(false);
+                    refreshGraph();
                 }
             });
 
@@ -480,6 +490,7 @@ public class HealthCheckTab4 extends  AbstractHealthChecksTabFragment {
                                     }
                                     Utils.showToastMessage(response.getStatusMessage());
                                     sugar_levels_linear.removeView(convertView);
+                                    refreshGraph();
                                 }
                             });
                         }

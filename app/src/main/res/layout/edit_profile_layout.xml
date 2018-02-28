@@ -977,6 +977,7 @@
 
             </LinearLayout>
             <Button
+                android:visibility="gone"
                 android:id="@+id/add_insurance_btn"
                 android:layout_width="wrap_content"
                 android:text="Add Insurance"

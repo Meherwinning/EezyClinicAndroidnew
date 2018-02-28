@@ -15,6 +15,7 @@ import com.vempower.eezyclinic.fragments.HealthCheckTab3;
 import com.vempower.eezyclinic.fragments.HealthCheckTab4;
 import com.vempower.eezyclinic.fragments.PrescriptionsFragment;
 import com.vempower.eezyclinic.fragments.ReportsFragment;
+import com.vempower.eezyclinic.interfaces.HealthChecksRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +26,13 @@ public class HealthChecksViewPagerAdapter extends FragmentStatePagerAdapter {
     private final HealthChecksData healthChecksData;
    // private PrescriptionsFragment prescriptionsFragment;
    private ArrayList<HealthChecksHeightWeight> heightAndWeightList;
+   //private HealthChecksRefreshListener refreshListener;
 
-    public HealthChecksViewPagerAdapter(HealthChecksData healthChecksData,ArrayList<HealthChecksHeightWeight> heightAndWeightList,FragmentManager fm) {
+    public HealthChecksViewPagerAdapter(HealthChecksData healthChecksData,ArrayList<HealthChecksHeightWeight> heightAndWeightList,FragmentManager fm/*,HealthChecksRefreshListener refreshListener*/) {
         super(fm);
         this.healthChecksData=healthChecksData;
         this.heightAndWeightList=heightAndWeightList;
+       // this.refreshListener=refreshListener;
 
     }
 

@@ -14,6 +14,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
@@ -48,6 +49,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
     private LayoutInflater inflater;
     private List<HealthChecksSugar> sugarLevelsList;
     private MyEditTextBlackCursorRR new_fasting_et, new_hba1c_et, new_post_meal_et;
+    private RelativeLayout no_records_relative;
 
     private ImageView new_delete_iv, new_ok_iv;
 
@@ -65,6 +67,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
         super.myInit();
         inflater = (LayoutInflater) MyApplication.getCurrentActivityContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        no_records_relative  = getFragemtView().findViewById(R.id.no_records_relative);
 
         sugar_levels_linear = getFragemtView().findViewById(R.id.sugar_levels_linear);
         add_new_reocrd_linear = getFragemtView().findViewById(R.id.add_new_reocrd_linear);
@@ -78,6 +81,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                 //calAddNewViewRecord();
                 resetAddNewRecord();
                 add_new_reocrd_linear.setVisibility(View.INVISIBLE);
+                no_records_relative.setVisibility(View.GONE);
 
                 new_sugar_record_view_linear.setVisibility(View.VISIBLE);
                 //ImageView delete_iv = new_sugar_record_view_linear.findViewById(R.id.delete_iv);
@@ -127,7 +131,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
 
                 return sugar;*/
 
-                callAddNewSugarHealthcheckRecord(fasting, lunch, hba1c, checkuptime);
+                callAddNewSugarHealthcheckRecord1(fasting, lunch, hba1c);
             }
         });
 
@@ -147,10 +151,11 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
         new_post_meal_et.setText(null);
         new_hba1c_et.setText(null);
         new_date_tv.setText(null);
+        selectedDateStr="";
     }
 
-    private void callAddNewSugarHealthcheckRecord(final String fasting, final String lunch, final String hba1c, final String checkuptime) {
-        AddSugarHealthCheckMapper mapper = new AddSugarHealthCheckMapper(fasting, lunch, hba1c, checkuptime);
+    private void callAddNewSugarHealthcheckRecord1(final String fasting, final String lunch, final String hba1c) {
+        AddSugarHealthCheckMapper mapper = new AddSugarHealthCheckMapper(fasting, lunch, hba1c, selectedDateStr);
         mapper.setOnAddSugarHealthCheckListener(new AddSugarHealthCheckMapper.AddSugarHealthCheckListener() {
             @Override
             public void addSugar(AddhealthCheckAPI response, String errorMessage) {
@@ -177,11 +182,12 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                 HealthChecksSugar newSugar = new HealthChecksSugar();
                 newSugar.setCheckupName("Sugar Level");
                 newSugar.setCheckupValue(fasting + "," + lunch + "," + hba1c);
-                newSugar.setCheckupTime(checkuptime);
+                newSugar.setCheckupTime(selectedDateStr);
 
                 newSugar.setCheckupgroupid(response.getData().getCheckupgroupid());
                 newSugar.setId(response.getData().getHealthcheckId());
                 calAddViewRecord(newSugar, true);
+                refreshGraph();
 
                 new_sugar_record_view_linear.setVisibility(View.GONE);
                 add_new_reocrd_linear.setVisibility(View.VISIBLE);
@@ -199,7 +205,11 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
 
     private void setSugarlevelViews() {
         if (sugarLevelsList == null || sugarLevelsList.size() == 0) {
+            no_records_relative.setVisibility(View.VISIBLE);
             return;
+        }else
+        {
+            no_records_relative.setVisibility(View.GONE);
         }
 
         for (HealthChecksSugar sugar : sugarLevelsList) {
@@ -322,6 +332,9 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                 SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
                 //SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.REQUEST_DATE_FORMAT);
                 //profileDetails.dateofBirth=requestFormat.format(selectedCal.getTime());
+                SimpleDateFormat serverDateFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
+                //profileDetails.dateofBirth=requestFormat.format(selectedCal.getTime());
+                selectedDateStr=serverDateFormat.format(selectedCal.getTime());
                 date_tv.setText(format.format(selectedCal.getTime()));
 
             }
@@ -341,6 +354,11 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
             post_meal_et.setText(postFasting);
             hba1c_et.setText(hba1c);
             date_tv.setText(getDisplayDateStr(sugar.getCheckupTime()));
+            //SimpleDateFormat serverDateFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
+            //profileDetails.dateofBirth=requestFormat.format(selectedCal.getTime());
+           // selectedDateStr=serverDateFormat.format(sugar.getCheckupTime());
+            //(String fromDateStr, String fromDateFormat, String destDateFormat) {
+
         }
 
         public void setViewState(boolean isEnabled) {
@@ -371,6 +389,8 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
             final String lunch = post_meal_et.getText().toString();
             final String hba1c = hba1c_et.getText().toString();
              String checkuptime1 = date_tv.getText().toString();
+          // String updateDateStr=Utils.changeToDateFormat(sugar.getCheckupTime(),DISPLAY_DATE_FORMAT,Constants.SERVER_DATE_FORMAT_NEW);
+
             if (TextUtils.isEmpty(lunch)) {
                 Utils.showToastMessage(R.string.please_enter_lunch_value_lbl);
                 return;
@@ -402,6 +422,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                     sugar.setCheckupValue(fasting + "," + lunch + "," + hba1c);
                     Utils.showToastMessage(response.getStatusMessage());
                     setViewState(false);
+                    refreshGraph();
                 }
             });
 
@@ -475,6 +496,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                                     }
                                     Utils.showToastMessage(response.getStatusMessage());
                                     sugar_levels_linear.removeView(convertView);
+                                    refreshGraph();
                                 }
                             });
                         }
@@ -507,6 +529,15 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
     @Override
     String getHealthCheckTypeName() {
         return "Sugar Levels";
+    }
+
+    @Override
+    int recordsCount() {
+        if(sugar_levels_linear!=null)
+        {
+            return sugar_levels_linear.getChildCount();
+        }
+        return 0;
     }
 
 

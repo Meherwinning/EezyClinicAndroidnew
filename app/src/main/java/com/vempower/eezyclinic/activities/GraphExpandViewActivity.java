@@ -13,6 +13,7 @@ import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.eezyclinic.views.MyTextView;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -45,6 +46,13 @@ public class GraphExpandViewActivity extends AbstractFragmentActivity {
             return;
 
         }
+
+      String titleStr=  getIntent().getStringExtra(Constants.Pref.GRAPH_TYPE);
+        MyTextView titleTv=   findViewById(R.id.graph_title_tv);
+       if( titleTv!=null)
+       {
+           titleTv.setText(titleStr);
+       }
        /*
         String access_key= SharedPreferenceUtils.getStringValueFromSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,null);
         if (TextUtils.isEmpty(access_key) ) {

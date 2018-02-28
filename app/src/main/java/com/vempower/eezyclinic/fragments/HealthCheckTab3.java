@@ -67,6 +67,14 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
         myInit();
         return fragmentView;
     }
+    @Override
+    int recordsCount() {
+        if(sugar_levels_linear!=null)
+        {
+            return sugar_levels_linear.getChildCount();
+        }
+        return 0;
+    }
 
     protected void myInit() {
         super.myInit();
@@ -110,7 +118,7 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
 
                 String weight = new_weight_et.getText().toString();
                 String height = new_height_et.getText().toString();
-                String checkuptime = "2018-01-07";// new_date_tv.getText().toString();
+               // String checkuptime = "2018-01-07";// new_date_tv.getText().toString();
                 if (TextUtils.isEmpty(weight)) {
                     Utils.showToastMessage(R.string.please_enter_weight_value_lbl);
                     return;
@@ -121,7 +129,7 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
                 }
 
 
-                callAddNewSugarHealthcheckRecord(weight,height, checkuptime);
+                callAddNewSugarHealthcheckRecord(weight,height);
             }
         });
 
@@ -140,11 +148,12 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
         new_weight_et.setText(null);
         new_height_et.setText(null);
         new_date_tv.setText(null);
+        selectedDateStr="";
     }
 
-    private void callAddNewSugarHealthcheckRecord(final String weight, final String height, final String checkuptime) {
+    private void callAddNewSugarHealthcheckRecord(final String weight, final String height) {
 
-        AddHeightAndWeightHealthCheckMapper mapper = new AddHeightAndWeightHealthCheckMapper(weight, height, checkuptime);
+        AddHeightAndWeightHealthCheckMapper mapper = new AddHeightAndWeightHealthCheckMapper(weight, height, selectedDateStr);
 
         mapper.setOnAddHeightAndWeightHealthCheckListener(new AddHeightAndWeightHealthCheckMapper.AddHeightAndWeightHealthCheckListener() {
             @Override
@@ -155,14 +164,14 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
                 HealthChecksHeightWeight  heightWeight= new HealthChecksHeightWeight();
 
                 heightWeight.setCheckupgroupid(response.getData().getCheckupgroupid());
-                heightWeight.setCheckupTime(checkuptime);
+                heightWeight.setCheckupTime(selectedDateStr);
                 //setCheckupgroupid(height.getCheckupgroupid());
                 //setCreatedOn(height.getCreatedOn());
                 heightWeight.setHeightCheckupValue(height);
                 heightWeight.setWeightCheckupValue(weight);
 
                 calAddViewRecord(heightWeight, true);
-
+                refreshGraph();
                 new_sugar_record_view_linear.setVisibility(View.GONE);
                 add_new_reocrd_linear.setVisibility(View.VISIBLE);
 
@@ -394,6 +403,7 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
                     heightWeight.setHeightCheckupValue(height);
                     Utils.showToastMessage(response.getStatusMessage());
                     setViewState(false);
+                    refreshGraph();
 
                 }
             });
@@ -442,13 +452,13 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
                         public void onPossitiveClick() {
                             int id = -1;
                             try {
-                                if (TextUtils.isEmpty(heightWeight.getId())) {
-                                    Utils.showToastMessage(R.string.invalid_sugar_record_details_lbl);
+                                if (TextUtils.isEmpty(heightWeight.getCheckupgroupid())) {
+                                    Utils.showToastMessage(R.string.invalid_patient_details_lbl);
                                     return;
                                 }
                                 id = Integer.parseInt(heightWeight.getCheckupgroupid());
                             } catch (Exception e) {
-                                Utils.showToastMessage(R.string.invalid_sugar_record_details_lbl);
+                                Utils.showToastMessage(R.string.invalid_patient_details_lbl);
                                 return;
                             }
 
@@ -462,6 +472,7 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
                                     }
                                     Utils.showToastMessage(response.getStatusMessage());
                                     sugar_levels_linear.removeView(convertView);
+                                    refreshGraph();
                                 }
                             });
                         }

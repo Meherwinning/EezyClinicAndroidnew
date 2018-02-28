@@ -70,7 +70,7 @@ public class DeleteWeightHeightCheckMapper extends AbstractMapper implements Cal
             return;
         }
 
-        Call<AbstractResponse> apiResponseCall = stashDealAPI.deleteHealthCheck(requestBody);
+        Call<AbstractResponse> apiResponseCall = stashDealAPI.deleteHealthCheckWH(requestBody);
 
         apiResponseCall.enqueue(this);
     }
@@ -111,6 +111,12 @@ public class DeleteWeightHeightCheckMapper extends AbstractMapper implements Cal
         }
 
 
+        /*
+        {
+  "access_key": "064644078000133a04da6ad11af9f78e",
+  "checkupgroupid":76
+}
+         */
 
         JSONObject jsonObject = new JSONObject();
         try {

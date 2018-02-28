@@ -59,7 +59,8 @@ public class SigninActivity extends AbstractSocialLoginActivity {
 
         if(Constants.IS_TESTING)
         {
-            user_id_et.setText("swathi.kits.1251@gmail.com");
+            //user_id_et.setText("swathi.kits.1251@gmail.com");
+            //user_id_et.setText("quddus.mohd@v-empower.com");
         }
 
         setLoginListener();

@@ -19,6 +19,7 @@ import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.GraphExpandViewActivity;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.interfaces.HealthChecksRefreshListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
@@ -27,10 +28,10 @@ import com.vempower.eezyclinic.views.MyTextViewRR;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-abstract class AbstractHealthChecksTabFragment  extends  AbstractFragment{
-    String DISPLAY_DATE_FORMAT="dd-MM-yyyy";
+abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
+    String DISPLAY_DATE_FORMAT = "dd-MM-yyyy";
 
-    protected final int SUGAR_TYPE=1, BLOOD_PRESSURE_TYPE =2,WEIGHT_AND_HEIGHT_TYPE=3,CHOLESTEROL_TYPE=4;
+    protected final int SUGAR_TYPE = 1, BLOOD_PRESSURE_TYPE = 2, WEIGHT_AND_HEIGHT_TYPE = 3, CHOLESTEROL_TYPE = 4;
 
     public static final String TITLE = "Sugar";
     private String url;
@@ -38,51 +39,56 @@ abstract class AbstractHealthChecksTabFragment  extends  AbstractFragment{
     private ProgressBar progressBar;
     private MyTextViewRR graph_type_title_tv;
     protected MyTextViewRR new_date_tv;
+    protected String selectedDateStr;
     private ImageView graph_expand_iv;
-
+    protected HealthChecksRefreshListener refreshListener;
 
 
     protected void myInit() {
-        url=null;
+        url = null;
         new_date_tv = getFragemtView().findViewById(R.id.date_tv);
+        selectedDateStr = "";
         graph_expand_iv = getFragemtView().findViewById(R.id.graph_expand_iv);
 
         new_date_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onDateOfBirthTextviewClick(mFragmentDOBCallback,selectedDOBObj,true);
+                onDateOfBirthTextviewClick(mFragmentDOBCallback, selectedDOBObj, true);
 
             }
         });
 
-        wv =  getFragemtView().findViewById(R.id.terms_webView);
+        wv = getFragemtView().findViewById(R.id.terms_webView);
 
-        progressBar  =  getFragemtView().findViewById(R.id.progress_bar_view);
-        graph_type_title_tv  =  getFragemtView().findViewById(R.id.graph_type_title_tv);
+        progressBar = getFragemtView().findViewById(R.id.progress_bar_view);
+        graph_type_title_tv = getFragemtView().findViewById(R.id.graph_type_title_tv);
         graph_type_title_tv.setText(getHealthCheckTypeName());
 
         progressBar.setVisibility(View.GONE);
-        String access_key= SharedPreferenceUtils.getStringValueFromSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,null);
-        if (TextUtils.isEmpty(access_key) ) {
-            showAlertDialog("Alert", Utils.getStringFromResources(R.string.unauthorized_user_lbl),true);
-            return ;
+        String access_key = SharedPreferenceUtils.getStringValueFromSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY, null);
+        if (TextUtils.isEmpty(access_key)) {
+            showAlertDialog("Alert", Utils.getStringFromResources(R.string.unauthorized_user_lbl), true);
+            return;
         }
         MyApplication.showTransparentDialog();
         PatientData patientData = MyApplication.getInstance().getLoggedUserDetailsFromSharedPref();
         MyApplication.hideTransaprentDialog();
-        if(patientData==null )
-        {
-            showAlertDialog("Alert", Utils.getStringFromResources(R.string.unauthorized_user_lbl),true);
-            return ;
+        if (patientData == null) {
+            showAlertDialog("Alert", Utils.getStringFromResources(R.string.unauthorized_user_lbl), true);
+            return;
         }
 
-        url= Constants.BASIC_URL+"/patient/healthcheckreports?access_key="+access_key+"&type="+getHealthCheckType();
+        url = Constants.BASIC_URL + "/patient/healthcheckreports?access_key=" + access_key + "&type=" + getHealthCheckType();
         //String url="file:///android_asset/"+"chart.html";
 
-        if(graph_expand_iv!=null) {
+        if (graph_expand_iv != null) {
             graph_expand_iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    if (recordsCount() == 0) {
+                        return;
+                    }
                     callGraphExpandActivity();
                 }
             });
@@ -110,7 +116,7 @@ abstract class AbstractHealthChecksTabFragment  extends  AbstractFragment{
         wv.getSettings().setDisplayZoomControls(false);
 
         wv.setScrollbarFadingEnabled(false);
-       // wv.setInitialScale(1);
+        // wv.setInitialScale(1);
 
         /*wv.setInitialScale(1);
 
@@ -120,15 +126,24 @@ abstract class AbstractHealthChecksTabFragment  extends  AbstractFragment{
 
     }
 
+    public void setRefreshListener(HealthChecksRefreshListener refreshListener) {
+        this.refreshListener = refreshListener;
+    }
+
     private void callGraphExpandActivity() {
         //Utils.showToastMessage("Now click on Graph expand image");
-        Intent intent= new Intent(MyApplication.getCurrentActivityContext(), GraphExpandViewActivity.class);
-        intent.putExtra(Constants.Pref.GRAPH_URL_STR,url);
+        Intent intent = new Intent(MyApplication.getCurrentActivityContext(), GraphExpandViewActivity.class);
+        intent.putExtra(Constants.Pref.GRAPH_URL_STR, url);
+        intent.putExtra(Constants.Pref.GRAPH_TYPE, getHealthCheckTypeName());
+
         startActivity(intent);
     }
 
     abstract int getHealthCheckType();
+
     abstract String getHealthCheckTypeName();
+
+    abstract int recordsCount();
 
     @Override
     public void onResume() {
@@ -138,7 +153,7 @@ abstract class AbstractHealthChecksTabFragment  extends  AbstractFragment{
     }
 
     protected void refreshGraph() {
-        if(wv!=null || TextUtils.isEmpty(url)) {
+        if (wv != null || TextUtils.isEmpty(url)) {
             progressBar.setVisibility(View.VISIBLE);
             wv.loadUrl(url);
             wv.setWebViewClient(new WebViewClient() {
@@ -147,10 +162,9 @@ abstract class AbstractHealthChecksTabFragment  extends  AbstractFragment{
                     progressBar.setVisibility(View.GONE);
                 }
             });
-        }else
-        {
-            showAlertDialog("Alert", Utils.getStringFromResources(R.string.unauthorized_user_lbl),true);
-            return ;
+        } else {
+            showAlertDialog("Alert", Utils.getStringFromResources(R.string.unauthorized_user_lbl), true);
+            return;
 
         }
     }
@@ -162,7 +176,7 @@ abstract class AbstractHealthChecksTabFragment  extends  AbstractFragment{
         pickerFrag.setCallback(callback);
 
         // Options
-        Pair<Boolean, SublimeOptions> optionsPair = getOptions(selectedObj,isDOB);
+        Pair<Boolean, SublimeOptions> optionsPair = getOptions(selectedObj, isDOB);
 
         if (!optionsPair.first) { // If options are not valid
             // showToastMessage("No pickers activated");
@@ -181,9 +195,9 @@ abstract class AbstractHealthChecksTabFragment  extends  AbstractFragment{
     }
 
 
-    Pair<Boolean, SublimeOptions> getOptions(SelectedDate selectedDate,boolean isDOB) {
+    Pair<Boolean, SublimeOptions> getOptions(SelectedDate selectedDate, boolean isDOB) {
         SublimeOptions options = new SublimeOptions();
-        if(isDOB) {
+        if (isDOB) {
             Calendar endCalendar = Calendar.getInstance();
             Calendar startCalendar = Calendar.getInstance();
             startCalendar.set(Calendar.YEAR, startCalendar.get(Calendar.YEAR) - 120);
@@ -250,8 +264,9 @@ abstract class AbstractHealthChecksTabFragment  extends  AbstractFragment{
 
             //  String date = selectedCal.get(Calendar.YEAR) + "-" + (selectedCal.get(Calendar.MONTH) + 1) + "-" + selectedCal.get(Calendar.DAY_OF_MONTH);
             SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
-            //SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.REQUEST_DATE_FORMAT);
+            SimpleDateFormat serverDateFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
             //profileDetails.dateofBirth=requestFormat.format(selectedCal.getTime());
+            selectedDateStr = serverDateFormat.format(selectedCal.getTime());
             new_date_tv.setText(format.format(selectedCal.getTime()));
 
         }

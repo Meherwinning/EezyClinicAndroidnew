@@ -142,6 +142,7 @@ public interface Constants {
         String IS_FROM_ADD_PRESCRIPTION_KEY ="is_from_add_prescription_key" ;
         String IS_FROM_UPDATE_PRESCRIPTION_KEY ="is_from_update_prescription_key" ;
         String GRAPH_URL_STR = "graph_url_str";
+        String GRAPH_TYPE = "graph_type";
     }
 
     interface ActivityResult

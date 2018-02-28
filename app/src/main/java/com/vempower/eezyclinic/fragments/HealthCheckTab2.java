@@ -85,6 +85,14 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
         });
 
     }
+    @Override
+    int recordsCount() {
+        if(sugar_levels_linear!=null)
+        {
+            return sugar_levels_linear.getChildCount();
+        }
+        return 0;
+    }
 
     private void initForAddNewRecord() {
         new_diastolic_et = getFragemtView().findViewById(R.id.diastolic_et);
@@ -103,7 +111,7 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
                 String diastolic = new_diastolic_et.getText().toString();
                 String systolic = new_systolic_et.getText().toString();
                // String hba1c = new_hba1c_et.getText().toString();
-                String checkuptime = "2018-01-07";// new_date_tv.getText().toString();
+                //String checkuptime = "2018-01-07";// new_date_tv.getText().toString();
                 if (TextUtils.isEmpty(diastolic)) {
                     Utils.showToastMessage(R.string.please_enter_diastolic_value_lbl);
                     return;
@@ -125,7 +133,7 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
 
                 return sugar;*/
 
-                callAddNewBPHealthcheckRecord(diastolic, systolic, checkuptime);
+                callAddNewBPHealthcheckRecord(diastolic, systolic);
             }
         });
 
@@ -145,10 +153,11 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
         new_systolic_et.setText(null);
        // new_hba1c_et.setText(null);
         new_date_tv.setText(null);
+        selectedDateStr="";
     }
 
-    private void callAddNewBPHealthcheckRecord(final String diastolic, final String systolic,  final String checkuptime) {
-        AddBPHealthCheckMapper mapper= new AddBPHealthCheckMapper(diastolic,systolic,checkuptime);
+    private void callAddNewBPHealthcheckRecord(final String diastolic, final String systolic) {
+        AddBPHealthCheckMapper mapper= new AddBPHealthCheckMapper(diastolic,systolic,selectedDateStr);
 
         mapper.setOnAddBPHealthCheckListener(new AddBPHealthCheckMapper.AddBPHealthCheckListener() {
             @Override
@@ -165,10 +174,11 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
                 HealthChecksBP bp = new HealthChecksBP();
                 bp.setCheckupName("BP");
                 bp.setCheckupValue(diastolic + "," + systolic);
-                bp.setCheckupTime(checkuptime);
+                bp.setCheckupTime(selectedDateStr);
                 bp.setCheckupgroupid(response.getData().getCheckupgroupid());
                 bp.setId(response.getData().getHealthcheckId());
                 calAddViewRecord(bp, true);
+                refreshGraph();
 
                 new_sugar_record_view_linear.setVisibility(View.GONE);
                 add_new_reocrd_linear.setVisibility(View.VISIBLE);
@@ -386,6 +396,7 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
                     bp.setCheckupValue(diastolic + "," + systolic );
                     Utils.showToastMessage(response.getStatusMessage());
                     setViewState(false);
+                    refreshGraph();
                 }
             });
         }
@@ -455,6 +466,7 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
                                     }
                                     Utils.showToastMessage(response.getStatusMessage());
                                     sugar_levels_linear.removeView(convertView);
+                           refreshGraph();
                                 }
                             });
                         }

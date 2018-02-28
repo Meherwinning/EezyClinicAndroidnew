@@ -8,6 +8,13 @@
     android:layout_gravity="center"
 
     android:layout_height="match_parent">
+    <com.vempower.eezyclinic.views.MyTextView
+        android:id="@+id/graph_title_tv"
+        android:layout_width="wrap_content"
+        android:hint="Title"
+        android:textSize="@dimen/_16sp"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:id="@+id/close_iv"
