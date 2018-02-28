@@ -84,7 +84,7 @@
                             android:fontFamily="sans-serif"
                             android:textStyle="normal"
                             android:textColor="#212121"
-                            android:text="Edited by: "
+                            android:text="Added by: "
                             />
 
                         <com.vempower.eezyclinic.views.MyTextViewRR
@@ -110,7 +110,7 @@
                             android:fontFamily="sans-serif"
                             android:textStyle="normal"
                             android:textColor="#212121"
-                            android:text="Edited on: "
+                            android:text="Added on: "
                             />
 
                     <com.vempower.eezyclinic.views.MyTextViewRR

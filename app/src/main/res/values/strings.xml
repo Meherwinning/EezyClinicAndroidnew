@@ -237,6 +237,7 @@
     <string name="please_enter_height_value_lbl">Please enter Height value</string>
     <string name="are_you_sure_to_delete_height_and_weight_record_lbl">Are you sure to delete Height and Weight record?</string>
     <string name="invalid_graph_url_str">Invalid Graph Url,please try again</string>
+    <string name="success_save_notes_lbl">Your Note is successfully added</string>
 
 
 </resources>
