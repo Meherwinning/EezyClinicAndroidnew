@@ -203,6 +203,17 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
         setSugarlevelViews();
     }
 
+    protected  void setNoRecordsViewManage()
+    {
+        if (recordsCount() == 0) {
+            no_records_relative.setVisibility(View.VISIBLE);
+            return;
+        }else
+        {
+            no_records_relative.setVisibility(View.GONE);
+        }
+    }
+
     private void setSugarlevelViews() {
         if (sugarLevelsList == null || sugarLevelsList.size() == 0) {
             no_records_relative.setVisibility(View.VISIBLE);

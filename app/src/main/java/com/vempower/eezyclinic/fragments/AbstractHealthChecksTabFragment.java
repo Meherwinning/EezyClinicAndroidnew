@@ -145,6 +145,8 @@ abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
 
     abstract int recordsCount();
 
+    abstract  void setNoRecordsViewManage();
+
     @Override
     public void onResume() {
         super.onResume();
@@ -167,6 +169,7 @@ abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
             return;
 
         }
+        setNoRecordsViewManage();
     }
 
 

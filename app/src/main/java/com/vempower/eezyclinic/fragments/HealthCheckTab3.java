@@ -12,6 +12,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
@@ -57,6 +58,7 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
     private ImageView new_delete_iv, new_ok_iv;
     //private List<HealthChecksCholesterol> chorlList;
     private ArrayList<HealthChecksHeightWeight> heightWeightList;
+    private RelativeLayout no_records_relative;
 
 
     @Nullable
@@ -76,10 +78,22 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
         return 0;
     }
 
+    protected  void setNoRecordsViewManage()
+    {
+        if (recordsCount() == 0) {
+            no_records_relative.setVisibility(View.VISIBLE);
+            return;
+        }else
+        {
+            no_records_relative.setVisibility(View.GONE);
+        }
+    }
+
     protected void myInit() {
         super.myInit();
         inflater = (LayoutInflater) MyApplication.getCurrentActivityContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        no_records_relative  = getFragemtView().findViewById(R.id.no_records_relative);
 
         sugar_levels_linear = getFragemtView().findViewById(R.id.sugar_levels_linear);
         add_new_reocrd_linear = getFragemtView().findViewById(R.id.add_new_reocrd_linear);
@@ -94,6 +108,7 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
                 resetAddNewRecord();
                 add_new_reocrd_linear.setVisibility(View.INVISIBLE);
                 new_sugar_record_view_linear.setVisibility(View.VISIBLE);
+                no_records_relative.setVisibility(View.GONE);
 
                 // ImageView delete_iv = new_sugar_record_view_linear.findViewById(R.id.delete_iv);
 
@@ -190,7 +205,11 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
 
     private void setSugarlevelViews() {
         if (heightWeightList == null || heightWeightList.size() == 0) {
+            no_records_relative.setVisibility(View.VISIBLE);
             return;
+        }else
+        {
+            no_records_relative.setVisibility(View.GONE);
         }
 
         for (HealthChecksHeightWeight heightWeight : heightWeightList) {
