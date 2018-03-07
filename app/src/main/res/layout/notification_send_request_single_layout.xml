@@ -54,7 +54,7 @@
 
                 android:orientation="vertical">
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView    android:fontFamily="@font/roboto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_16sp"
@@ -62,7 +62,6 @@
                     android:textStyle="normal"
                     android:textColor="#62bb50"
                     android:hint="Title"
-                    android:fontFamily="sans-serif"
                     android:text="Request to add as a Family Member"
                     />
 
@@ -72,26 +71,24 @@
                     android:orientation="vertical">
 
 
-                    <com.vempower.eezyclinic.views.MyTextViewRR
+                     <TextView    android:fontFamily="@font/roboto"
                         android:id="@+id/message_tv"
                         android:layout_marginTop="@dimen/_5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/_14sp"
                         android:hint="Message"
-                        android:fontFamily="sans-serif"
                         android:textStyle="normal"
                         android:textColor="#212121"
                         />
 
-                    <com.vempower.eezyclinic.views.MyTextViewRR
+                     <TextView    android:fontFamily="@font/roboto"
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4dp"
                         android:textSize="@dimen/_11sp"
                         android:text="@string/notification_send_request_note_lbl"
-                        android:fontFamily="sans-serif"
                         android:textStyle="normal"
                         android:textColor="#FFDF4D47"
                         />
@@ -106,25 +103,23 @@
                     android:orientation="horizontal"
                     android:gravity="right"
                     android:layout_height="wrap_content">
-                    <com.vempower.eezyclinic.views.MyTextViewRR
+                     <TextView    android:fontFamily="@font/roboto"
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4dp"
                         android:textSize="@dimen/_16sp"
                         android:text="Status: "
-                        android:fontFamily="sans-serif"
                         android:textStyle="normal"
                         android:textColor="#212121"
                         />
-                    <com.vempower.eezyclinic.views.MyTextViewRR
+                     <TextView    android:fontFamily="@font/roboto"
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4dp"
                         android:textSize="@dimen/_16sp"
                         android:text="Rejected"
-                        android:fontFamily="sans-serif"
                         android:textStyle="normal"
                         android:textColor="#FFDF4D47"
                         />

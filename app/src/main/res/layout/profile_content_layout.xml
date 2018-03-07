@@ -29,14 +29,13 @@
         android:layout_marginBottom="2dp"
         android:layout_height="@dimen/_38dp">
 
-        <com.vempower.eezyclinic.views.MyTextViewRM
+        <TextView                android:fontFamily="@font/roboto_medium"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:gravity="left"
 
             android:textSize="@dimen/_14sp"
-            android:fontFamily="sans-serif-medium"
             android:textStyle="normal"
             android:textColor="#de000000"
             android:text="Contact Details"

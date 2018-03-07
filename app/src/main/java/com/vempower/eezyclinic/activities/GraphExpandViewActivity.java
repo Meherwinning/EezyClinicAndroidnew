@@ -1,19 +1,15 @@
 package com.vempower.eezyclinic.activities;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.utils.Constants;
-import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextView;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -48,7 +44,7 @@ public class GraphExpandViewActivity extends AbstractFragmentActivity {
         }
 
       String titleStr=  getIntent().getStringExtra(Constants.Pref.GRAPH_TYPE);
-        MyTextView titleTv=   findViewById(R.id.graph_title_tv);
+        TextView titleTv=   findViewById(R.id.graph_title_tv);
        if( titleTv!=null)
        {
            titleTv.setText(titleStr);

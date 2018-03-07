@@ -45,7 +45,7 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyCheckBoxRR;
 import com.vempower.eezyclinic.views.MySwitch;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.util.List;
 

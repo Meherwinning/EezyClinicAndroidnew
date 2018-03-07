@@ -21,14 +21,14 @@
         app:iconDrawable="@drawable/list_view_icon"
         android:background="@color/white"
         />-->
-    <com.vempower.eezyclinic.views.MyTextViewRR
+     <TextView                    android:fontFamily="@font/roboto"
         android:id="@+id/no_matching_result_tv"
         android:layout_width="wrap_content"
         android:visibility="gone"
         android:background="@color/white"
         android:layout_height="wrap_content"
         android:textSize="@dimen/_16sp"
-        android:fontFamily="sans-serif"
+         
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:textStyle="normal"
@@ -46,7 +46,7 @@
         android:background="#f4f4f4"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
-        <com.vempower.eezyclinic.views.MyTextViewRR
+         <TextView                    android:fontFamily="@font/roboto"
             android:id="@+id/match_found_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,11 +55,11 @@
             android:layout_marginRight="@dimen/_5dp"
             android:textColor="#5d5d5d"
             android:text="0" />
-        <com.vempower.eezyclinic.views.MyTextViewRR
+         <TextView                    android:fontFamily="@font/roboto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/_14sp"
-            android:fontFamily="sans-serif"
+             
             android:textStyle="normal"
             android:textColor="#5d5d5d"
             android:text="matches found" />

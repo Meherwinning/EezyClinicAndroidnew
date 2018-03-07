@@ -63,20 +63,19 @@
 
         android:layout_height="wrap_content">
 
-        <com.vempower.eezyclinic.views.MyTextViewRM
+        <TextView                android:fontFamily="@font/roboto_medium"
            android:visibility="gone"
             android:id="@+id/cancel_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:textSize="@dimen/_14sp"
-            android:fontFamily="sans-serif-medium"
             android:textStyle="normal"
             android:textColor="#28b0e2"
             android:text="CANCEL"
             />
 
-        <com.vempower.eezyclinic.views.MyTextViewRM
+        <TextView                android:fontFamily="@font/roboto_medium"
            android:id="@+id/save_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -85,7 +84,6 @@
             android:paddingTop="@dimen/_10dp"
             android:paddingBottom="@dimen/_10dp"
             android:textSize="@dimen/_14sp"
-            android:fontFamily="sans-serif-medium"
             android:textStyle="normal"
             android:textColor="#28b0e2"
             android:text="Add"

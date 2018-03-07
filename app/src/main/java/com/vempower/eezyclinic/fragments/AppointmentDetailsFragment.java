@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.Appointment;
 import com.vempower.eezyclinic.APICore.ReScheduleAppointmentRequestDetails;
@@ -25,8 +26,7 @@ import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRB;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -153,11 +153,11 @@ public class AppointmentDetailsFragment extends AbstractFragment {
         MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon,imageView,appointment.getDoctorLogo());
 
 
-        ((MyTextViewRB)fragmentView.findViewById(R.id.doctor_name_tv)).setText(appointment.getDoctorName());
-        ((MyTextViewRR)fragmentView.findViewById(R.id.doctor_designation_tv)).setText(appointment.getSpecalities());
-        ((MyTextViewRR)fragmentView.findViewById(R.id.address_tv)).setText(appointment.getAddress());
-       /* ((MyTextViewRB)fragmentView.findViewById(R.id.clinic_name_tv)).setText(searchResultDoctorListData.getClinicName());
-        ((MyTextViewRR) fragmentView.findViewById(R.id.clinic_address_tv)).setText(searchResultDoctorListData.getAddress());
+        ((TextView)fragmentView.findViewById(R.id.doctor_name_tv)).setText(appointment.getDoctorName());
+        (( TextView)fragmentView.findViewById(R.id.doctor_designation_tv)).setText(appointment.getSpecalities());
+        (( TextView)fragmentView.findViewById(R.id.address_tv)).setText(appointment.getAddress());
+       /* ((TextView)fragmentView.findViewById(R.id.clinic_name_tv)).setText(searchResultDoctorListData.getClinicName());
+        (( TextView) fragmentView.findViewById(R.id.clinic_address_tv)).setText(searchResultDoctorListData.getAddress());
 */
 
 
@@ -171,7 +171,7 @@ public class AppointmentDetailsFragment extends AbstractFragment {
         SimpleDateFormat DISPLAY_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_TIME);
 
 
-        MyTextViewRR time_date_display_tv = fragmentView.findViewById(R.id.date_and_time_tv);
+         TextView time_date_display_tv = fragmentView.findViewById(R.id.date_and_time_tv);
 
         try {
             Date date = Utils.changeStringToDateFormat(appointment.getAppointmentDateTime(), SERVER_DATE_FORMAT_NEW);

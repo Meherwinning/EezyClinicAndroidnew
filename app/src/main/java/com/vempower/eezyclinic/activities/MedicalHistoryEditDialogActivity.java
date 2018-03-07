@@ -2,6 +2,7 @@ package com.vempower.eezyclinic.activities;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.MedicalHistoryData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
@@ -9,7 +10,7 @@ import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
-import com.vempower.eezyclinic.views.MyTextViewRM;
+
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import org.jetbrains.annotations.Nullable;
@@ -19,7 +20,7 @@ public class MedicalHistoryEditDialogActivity extends AbstractFragmentActivity {
 
     private MedicalHistoryData data;
     private MyEditTextBlackCursorRR medical_history_et;
-    private MyTextViewRM cancel_tv,save_tv;
+    private TextView cancel_tv,save_tv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

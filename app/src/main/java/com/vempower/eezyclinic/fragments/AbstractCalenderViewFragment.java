@@ -19,7 +19,7 @@ import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.TimeSlotsListAdapter;
 import com.vempower.eezyclinic.views.MyCheckedTextViewRR;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -45,8 +45,8 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
     private static final SimpleDateFormat REQUEST_DATE_FORMATTER = new SimpleDateFormat(SERVER_DATE_FORMAT_NEW);
 
 
-    private MyTextViewRR textView;
-    private MyTextViewRR title_tv;
+    private  TextView textView;
+    private  TextView title_tv;
 
     private MaterialCalendarView widget;
 
@@ -258,7 +258,7 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
 
     public void setOrderItemsToAdapter(String dateStr,List<String> slots) {
         hideProgressView();
-       // ((MyTextViewRR)fragmentView.findViewById(R.id.match_found_tv)).setText(orders.size()+"");
+       // (( TextView)fragmentView.findViewById(R.id.match_found_tv)).setText(orders.size()+"");
 
         if (adapter == null) {
 

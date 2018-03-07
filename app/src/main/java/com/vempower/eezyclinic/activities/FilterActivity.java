@@ -46,7 +46,7 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyCheckBoxRR;
 import com.vempower.eezyclinic.views.MySwitch;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 import com.vempower.eezyclinic.views.myseekbar.RangeSeekBar;
 
 import java.util.List;
@@ -209,8 +209,8 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
         final CrystalRangeSeekbar rangeSeekbar = findViewById(R.id.rangeSeekbar1);
 
 // get min and max text view
-        final MyTextViewRR tvMin =  findViewById(R.id.textMin1);
-        final MyTextViewRR tvMax = findViewById(R.id.textMax1);
+        final  TextView tvMin =  findViewById(R.id.textMin1);
+        final  TextView tvMax = findViewById(R.id.textMax1);
        rangeSeekbar.setOnRangeSeekbarChangeListener(null);
         rangeSeekbar.setMinValue(Constants.RangeBarValues.MIN_VALUE);
         rangeSeekbar.setMaxValue(Constants.RangeBarValues.MAX_VALUE);

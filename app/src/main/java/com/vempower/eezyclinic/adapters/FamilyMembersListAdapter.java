@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.GetFamilyMemberData;
 import com.vempower.eezyclinic.APICore.MedicalHistoryData;
@@ -21,8 +22,8 @@ import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.interfaces.MyDialogInterface;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRM;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+
+ ;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -90,8 +91,8 @@ import java.util.List;
             SimpleDateFormat DISPLAY_DATE_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_DATE_TIME);
             // SimpleDateFormat DISPLAY_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_TIME);
 
-            private MyTextViewRM member_name_tv;
-            private MyTextViewRR patient_id_tv, relation_tv;
+            private TextView member_name_tv;
+            private  TextView patient_id_tv, relation_tv;
             private ImageView menu_iv;
 
             public MedicalHistoryHolder(View itemView) {

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
@@ -28,7 +29,7 @@ import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
 import com.vempower.eezyclinic.views.MyCheckBoxRR;
 import com.vempower.eezyclinic.views.MyEditTextRR;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 //import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.io.Serializable;
@@ -42,7 +43,7 @@ import java.util.Calendar;
 
 public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
 
-    private MyTextViewRR dateofBirth_tv,social_login_header_tv;
+    private TextView dateofBirth_tv,social_login_header_tv;
     private Spinner gender_type_spinner;
     private String selectedGender;
 
@@ -433,7 +434,7 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 // return super.getView(position, convertView, parent);
                 View view =super.getView(position, convertView, parent);
-                MyTextViewRR textView=view.findViewById(android.R.id.text1);
+                 TextView textView=view.findViewById(android.R.id.text1);
                 //(int left, int top, int right, int bottom)
                int padding= (int) MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._6sdp);
                 textView.setPadding(padding,padding,padding,padding);
@@ -452,7 +453,7 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
             public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 //return super.getDropDownView(position, convertView, parent);
                 View view =super.getView(position, convertView, parent);
-                MyTextViewRR textView=view.findViewById(android.R.id.text1);
+                 TextView textView=view.findViewById(android.R.id.text1);
                 int pading= (int) MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._6sdp);
                 textView.setPadding(pading,pading,pading,pading);
 

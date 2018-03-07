@@ -46,7 +46,8 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <com.vempower.eezyclinic.views.MyTextViewRL
+            <TextView
+                android:fontFamily="@font/roboto_light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -59,8 +60,9 @@
 
                 />
 
-            <com.vempower.eezyclinic.views.MyTextViewRL
+            <TextView
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/roboto_light"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
@@ -95,7 +97,7 @@
                     android:layout_gravity="center"
                     android:src="@drawable/search_img" />
 
-                <com.vempower.eezyclinic.views.MyTextViewRM
+                <TextView                android:fontFamily="@font/roboto_medium"
                     android:layout_marginTop="@dimen/_11dp"
                     android:textSize="@dimen/text_size_small"
                     android:layout_width="wrap_content"
@@ -138,7 +140,7 @@
                     android:layout_gravity="center"
                     android:src="@drawable/location_img" />
 
-                <com.vempower.eezyclinic.views.MyTextViewRM
+                <TextView                android:fontFamily="@font/roboto_medium"
                     android:layout_marginTop="@dimen/_11dp"
                     android:textSize="@dimen/text_size_small"
                     android:layout_width="wrap_content"
@@ -183,7 +185,7 @@
                     android:layout_gravity="center"
                     android:src="@drawable/schedule_img" />
 
-                <com.vempower.eezyclinic.views.MyTextViewRM
+                <TextView                android:fontFamily="@font/roboto_medium"
                     android:layout_marginTop="@dimen/_11dp"
                     android:textSize="@dimen/text_size_small"
                     android:layout_width="wrap_content"
@@ -505,7 +507,7 @@
                 android:layout_gravity="center"
                 android:layout_marginRight="@dimen/_15dp"
                 android:layout_height="wrap_content" />
-        <com.vempower.eezyclinic.views.MyTextViewRR
+         <TextView    android:fontFamily="@font/roboto"
             android:id="@+id/advance_search_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

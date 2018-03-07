@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.Appointment;
 import com.vempower.eezyclinic.APICore.Followup;
@@ -23,7 +24,7 @@ import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -94,12 +95,12 @@ public class UpcomingFollowupsListAdapter extends RecyclerView.Adapter<UpcomingF
         SimpleDateFormat DISPLAY_DATE_FORMATTER = new SimpleDateFormat(DISPLAY_DATE);
         // SimpleDateFormat DISPLAY_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_TIME);
 
-        private MyTextViewRR appointment_details_tv, cancel_app_tv1, re_schedule_tv;
+        private TextView appointment_details_tv, cancel_app_tv1, re_schedule_tv;
 
         /*  private ImageView profile_iv;
 
-          private MyTextViewRM title_tv;
-          private MyTextViewRR designation_tv, time_tv, address_tv,
+          private TextView title_tv;
+          private  TextView designation_tv, time_tv, address_tv,
                   reviews_count_tv, recommendations_count_tv, book_appointment_tv;
   */
         public OrdersListHolder(View itemView) {
@@ -115,7 +116,7 @@ public class UpcomingFollowupsListAdapter extends RecyclerView.Adapter<UpcomingF
                 return;
             }
 
-            // MyTextViewRR appointment_conform_tv = fragmentView.findViewById(R.id.appointment_conform_tv);
+            //  TextView appointment_conform_tv = fragmentView.findViewById(R.id.appointment_conform_tv);
 
             try {
                 Date date = Utils.changeStringToDateFormat(data.getUpcomingVist(), SERVER_DATE_FORMAT_NEW);

@@ -7,14 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.DoctorReview;
 import com.vempower.eezyclinic.APICore.SearchResultClinicData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRM;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+
+ ;
 
 import java.util.List;
 
@@ -65,8 +66,8 @@ public class ReviewsListAdapter extends RecyclerView.Adapter<ReviewsListAdapter.
 
 
     public class ReviewListHolder extends RecyclerView.ViewHolder {
-        MyTextViewRM name_tv;
-        MyTextViewRR date_tv, description_tv;
+        TextView name_tv;
+         TextView date_tv, description_tv;
         MaterialRatingBar waiting_time_rating, diagnasis_ratingbar, customer_service_rating_bar;
         ImageView recamended_iv;
 

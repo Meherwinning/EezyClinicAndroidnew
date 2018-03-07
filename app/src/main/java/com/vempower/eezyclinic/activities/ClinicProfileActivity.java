@@ -44,8 +44,7 @@ import com.vempower.eezyclinic.tools.ScrollableListener;
 import com.vempower.eezyclinic.tools.ViewPagerHeaderHelper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRB;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 import com.vempower.eezyclinic.widget.TouchCallbackLayout;
 
 public class ClinicProfileActivity extends AbstractMenuActivity
@@ -242,8 +241,8 @@ public class ClinicProfileActivity extends AbstractMenuActivity
             MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, clinicProfileData.getClinicImage());
         }
 
-        ((MyTextViewRB)findViewById(R.id.clinic_name_tv)).setText(clinicProfileData.getClinicName());
-        ((MyTextViewRR)findViewById(R.id.branch_name_tv)).setText(clinicProfileData.getBranchName());
+        ((TextView)findViewById(R.id.clinic_name_tv)).setText(clinicProfileData.getClinicName());
+        ((TextView)findViewById(R.id.branch_name_tv)).setText(clinicProfileData.getBranchName());
 
 
 

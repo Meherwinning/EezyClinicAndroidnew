@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.MedicalHistoryData;
 import com.vempower.eezyclinic.APICore.PrescriptionAPIData;
@@ -23,7 +24,7 @@ import com.vempower.eezyclinic.mappers.PrescriptionsListMapper;
 import com.vempower.eezyclinic.mappers.SaveMedicalHistorySelfMapper;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
-import com.vempower.eezyclinic.views.MyTextViewRM;
+
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class MedicalHistoryListFragment extends  SwipedRecyclerViewFragment {
     private List<MedicalHistoryData> medicalHistoryList;
 
     private MyEditTextBlackCursorRR medical_history_et;
-    private MyTextViewRM save_tv;
+    private TextView save_tv;
 
 
     @Nullable

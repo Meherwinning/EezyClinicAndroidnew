@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.Appointment;
 import com.vempower.eezyclinic.APICore.DashboardData;
@@ -27,8 +28,8 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
-import com.vempower.eezyclinic.views.MyTextViewRM;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+
+ ;
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.text.SimpleDateFormat;
@@ -42,11 +43,11 @@ public class HomeFragment extends AbstractFragment {
 
     private View fragmentView;
     //private TextView welcome_tv;
-    private MyTextViewRM patient_name_tv,patient_id_tv;
-    private MyTextViewRR health_tips_tv,health_goal_tv,upcoming_appointment_tv,upcoming_followups_tv;
+    private TextView patient_name_tv,patient_id_tv;
+    private  TextView health_tips_tv,health_goal_tv,upcoming_appointment_tv,upcoming_followups_tv;
     private ImageView profile_iv;
     private MyButtonRectangleRM search_doctors_bt;
-    private MyTextViewRR upcoming_appointment_name_tv;
+    private  TextView upcoming_appointment_name_tv;
 
     private CardView upcoming_appointment_cardview,upcoming_followups_cardview;
     //private HomeListener homeListener;

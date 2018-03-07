@@ -664,7 +664,7 @@
                 android:layout_weight="1"
                 android:orientation="horizontal"
                 android:layout_height="match_parent">
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView    android:fontFamily="@font/roboto"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/_5dp"
@@ -732,7 +732,7 @@
                 android:layout_weight="1"
                 android:orientation="horizontal"
                 android:layout_height="match_parent">
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView    android:fontFamily="@font/roboto"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/_5dp"

@@ -70,7 +70,8 @@
                      android:src="@mipmap/ic_launcher"
                      android:layout_height="@dimen/_60dp" />-->
 
-                <com.vempower.eezyclinic.views.MyTextViewRB
+                <TextView
+                    android:fontFamily="@font/roboto_black"
                     android:id="@+id/clinic_name_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -99,7 +100,7 @@
 
 
 
-                    <com.vempower.eezyclinic.views.MyTextViewRR
+                     <TextView    android:fontFamily="@font/roboto"
                         android:id="@+id/branch_name_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -112,14 +113,6 @@
                         android:textColor="#ffffff"
                         />
 
-                    <!--    <com.vempower.eezyclinic.views.MyTextViewRM
-                            android:id="@+id/patient_email_tv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Patient email"
-                            android:maxLines="1"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size_normal" />-->
 
 
                 </LinearLayout>

@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
@@ -40,7 +41,7 @@ public class SigninActivity extends AbstractSocialLoginActivity {
     //private fname_et,emane_et
 
     private MyButtonRectangleRM login_bt;
-    private MyEditTextRR user_id_et, login_password_et;
+    private EditText user_id_et,login_password_et;
     //private OnRequestSocialPersonCompleteListener listener;
 
 
@@ -59,7 +60,7 @@ public class SigninActivity extends AbstractSocialLoginActivity {
 
         if(Constants.IS_TESTING)
         {
-            //user_id_et.setText("swathi.kits.1251@gmail.com");
+            user_id_et.setText("swathi.kits.1251@gmail.com");
             //user_id_et.setText("quddus.mohd@v-empower.com");
         }
 

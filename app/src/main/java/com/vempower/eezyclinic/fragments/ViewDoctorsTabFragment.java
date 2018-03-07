@@ -21,7 +21,7 @@ import com.vempower.eezyclinic.delegate.RecyclerViewDelegate;
 import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,7 +103,7 @@ public class ViewDoctorsTabFragment extends SwipedRecyclerViewFragment1 implemen
         hideProgressView();
         fragmentView.findViewById(R.id.top_linear).setVisibility(View.GONE);
 
-       // ((MyTextViewRR)fragmentView.findViewById(R.id.match_found_tv)).setText(orders.size()+"");
+       // (( TextView)fragmentView.findViewById(R.id.match_found_tv)).setText(orders.size()+"");
 
         if (adapter == null) {
 

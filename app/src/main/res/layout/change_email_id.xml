@@ -57,7 +57,7 @@
                         android:singleLine="true"
 
                         android:textSize="14sp"
-                        android:fontFamily="sans-serif"
+                         
                         android:textStyle="normal"
                         android:textColor="#212121"
                         android:hint="Registred Email ID"
@@ -112,7 +112,7 @@
                         android:singleLine="true"
 
                         android:textSize="14sp"
-                        android:fontFamily="sans-serif"
+                         
                         android:textStyle="normal"
                         android:textColor="#212121"
                         android:hint="Change Email ID"
@@ -145,11 +145,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                <TextView                    android:fontFamily="@font/roboto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_14sp"
-                    android:fontFamily="sans-serif"
+                     
                     android:textStyle="normal"
                     android:textColor="#8a000000"
                     android:text="Please enter the One Time Password (OTP) that you have just recieved on your email"

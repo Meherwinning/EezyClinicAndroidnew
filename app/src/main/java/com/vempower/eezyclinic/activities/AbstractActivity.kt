@@ -22,7 +22,7 @@ import com.vempower.eezyclinic.core.AdapterItem
 import com.vempower.eezyclinic.interfaces.AccountListDialogInterface
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface
 import com.vempower.eezyclinic.utils.Utils
-import com.vempower.eezyclinic.views.MyTextViewRR
+
 import java.util.*
 
 /**
@@ -384,7 +384,7 @@ abstract class AbstractActivity : AppCompatActivity() {
             false ->isFrom="mobile number";
         }
 
-        val header_text=view.findViewById<MyTextViewRR>(R.id.header_text)
+        val header_text=view.findViewById< TextView>(R.id.header_text)
 
         val headerText = resources.getString(R.string.account_list_dialog_header_msg, isFrom)
         header_text.setText(headerText)

@@ -35,7 +35,7 @@
                   android:src="@drawable/logo"
 
                    />-->
-            <com.vempower.eezyclinic.views.MyTextViewRM
+            <TextView                android:fontFamily="@font/roboto_medium"
 
                 android:id="@+id/title_logo_tv"
                 android:layout_width="wrap_content"
@@ -100,7 +100,8 @@
                 </LinearLayout>
 
 
-                <com.vempower.eezyclinic.views.MyTextViewRB
+                <TextView
+                    android:fontFamily="@font/roboto_black"
                     android:id="@+id/doctor_name_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -118,7 +119,7 @@
                     />
 
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView    android:fontFamily="@font/roboto"
                     android:layout_below="@+id/doctor_name_tv"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
@@ -134,7 +135,8 @@
                     android:textColor="#ffffff"
                     />
 
-                <com.vempower.eezyclinic.views.MyTextViewRB
+                <TextView
+                    android:fontFamily="@font/roboto_black"
                     android:id="@+id/clinic_name_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -151,7 +153,7 @@
                     android:textColor="#ffffff"
                     />
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView    android:fontFamily="@font/roboto"
                     android:layout_below="@+id/clinic_name_tv"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"

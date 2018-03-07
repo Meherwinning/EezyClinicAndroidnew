@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.R;
@@ -34,7 +35,7 @@ import com.vempower.eezyclinic.interfaces.MenuScreenListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRM;
+
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
 
@@ -50,7 +51,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     private LinearLayout linearLayout;
     private ActionBarDrawerToggle drawerToggle;
 
-    private MyTextViewRM nameTv, emailTv;
+    private TextView nameTv, emailTv;
 
     private AbstractFragment currentFragment, prevoiusFragment;
     // private  Intent  intent;

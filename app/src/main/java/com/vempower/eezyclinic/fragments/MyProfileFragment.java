@@ -41,8 +41,7 @@ import com.vempower.eezyclinic.mappers.GetPatientProfileMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
-import com.vempower.eezyclinic.views.MyTextViewRB;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.text.SimpleDateFormat;
@@ -65,7 +64,7 @@ public class MyProfileFragment extends AbstractFragment {
             emergency_details_mask_tv, contact_details_mask_tv,secondary_insurance_details_mask_tv;
     private boolean isEditMode;
     private ScrollView myScrollView;
-    private MyTextViewRR patient_details_tv, blood_group_tv2, height_tv2, weight_tv2;
+    private  TextView patient_details_tv, blood_group_tv2, height_tv2, weight_tv2;
     private MyEditTextBlackCursorRR blood_group_et, height_et, date_of_birth_tv, id_number_et,
             known_allergies_et, contact_et1, contact_email_et, primary_contact_no_et,
             secondary_contact_no_et, residence_contact_no_et,
@@ -82,7 +81,7 @@ public class MyProfileFragment extends AbstractFragment {
             insurance_reason_et, insurance_organisation_et, insurance_max_limit_et;
 
     private ImageView patient_profile_iv1,id_back_iv,id_front_iv,insurance_back_iv,insurance_front_iv;
-    private MyTextViewRB patient_name_tv;
+    private TextView patient_name_tv;
     private PatientProfileData profileData;
 
     private RelativeLayout id_back_relative,id_front_relative, insurance_image1_relative,insurance_image2_relative;

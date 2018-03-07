@@ -59,7 +59,7 @@ import com.vempower.eezyclinic.views.CustomSpinnerSelection;
 import com.vempower.eezyclinic.views.MyAutoCompleteBlackCursorTextView;
 import com.vempower.eezyclinic.views.MyAutoCompleteTextView;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.io.File;
@@ -79,7 +79,7 @@ public class EditProfileFragment extends ImageProcessFragment {
 
     private View fragmentView;
     private ExpandableLinearLayout expandableLayout_contact_el, expandableLayout_insurance_el, secondary_expandableLayout_insurance_el,expandableLayout_emergency_el;
-    private MyTextViewRR date_of_birth_tv,insurance_valid_from_tv,insurance_valid_to_tv;
+    private  TextView date_of_birth_tv,insurance_valid_from_tv,insurance_valid_to_tv;
     private SelectedDate selectedDOBObj,selectedValidFromObj,selectedValidToObj;
 
     private TextView profile_top_details_mask_tv, insurance_details_mask_tv,

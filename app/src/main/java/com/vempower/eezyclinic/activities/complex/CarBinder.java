@@ -30,7 +30,7 @@ import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyRemainData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.util.List;
 
@@ -102,7 +102,7 @@ public class CarBinder extends ItemBinder<SpecalitiyRemainData, CarBinder.Doctor
 
   public class OrdersListHolder  {
 
-    private MyTextViewRR item_name_tv;
+    private  TextView item_name_tv;
 
     public OrdersListHolder(View itemView) {
       item_name_tv = itemView.findViewById(R.id.item_name_tv);

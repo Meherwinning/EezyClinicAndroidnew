@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
 
                 android:layout_height="@dimen/_48dp">
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                <TextView                    android:fontFamily="@font/roboto"
                     android:id="@+id/graph_type_title_tv"
                     android:layout_width="wrap_content"
                     android:hint="Title"
@@ -83,7 +83,7 @@
                     android:layout_alignParentEnd="true"
 
                     android:layout_height="match_parent">
-                    <com.vempower.eezyclinic.views.MyTextViewRR
+                    <TextView                    android:fontFamily="@font/roboto"
                         android:layout_width="wrap_content"
                         android:text="Add New Record"
                         android:layout_alignParentLeft="true"
@@ -106,7 +106,7 @@
                 android:orientation="horizontal"
                 android:background="#ebe8e8e8"
                 android:layout_height="@dimen/_45dp">
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                <TextView                    android:fontFamily="@font/roboto"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:text="Diastolic"
@@ -117,7 +117,7 @@
                     android:textSize="@dimen/_14dp"
                     android:textColor="#ee7b7979"
                     android:layout_height="match_parent" />
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                <TextView                    android:fontFamily="@font/roboto"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:text="Systolic"
@@ -127,7 +127,7 @@
                     android:gravity="center"
                     android:textColor="#ee7b7979"
                     android:layout_height="match_parent" />
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                <TextView                    android:fontFamily="@font/roboto"
                     android:layout_width="0dp"
                     android:visibility="gone"
                     android:layout_weight="1"
@@ -138,7 +138,7 @@
                     android:gravity="center"
                     android:textColor="#ee7b7979"
                     android:layout_height="match_parent" />
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                <TextView                    android:fontFamily="@font/roboto"
                     android:layout_width="@dimen/_120dp"
                     android:visibility="gone"
                     android:text="Date &amp; time"
@@ -148,7 +148,7 @@
                     android:gravity="center"
                     android:textColor="#ee7b7979"
                     android:layout_height="match_parent" />
-                <!-- <com.vempower.eezyclinic.views.MyTextViewRR
+                <!-- <TextView                    android:fontFamily="@font/roboto"
                      android:visibility="invisible"
                      android:layout_width="@dimen/_100dp"
                      android:layout_marginLeft="@dimen/_3dp"
@@ -185,7 +185,7 @@
                         android:gravity="center"
                         android:layout_height="match_parent">
 
-                        <com.vempower.eezyclinic.views.MyTextViewRR
+                        <TextView                    android:fontFamily="@font/roboto"
                             android:layout_width="wrap_content"
                             android:textSize="@dimen/_16sp"
                             android:textColor="@color/black"

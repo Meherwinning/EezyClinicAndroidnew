@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
@@ -29,7 +30,7 @@ import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
 import com.vempower.eezyclinic.views.MyCheckBoxRR;
 import com.vempower.eezyclinic.views.MyEditTextRR;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 //import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.text.SimpleDateFormat;
@@ -44,7 +45,7 @@ import static com.vempower.eezyclinic.utils.Utils.showToastMessage;
 
 public class SignUpActivity extends AbstractSocialLoginActivity /*implements DatePickerDialog.OnDateSetListener*/ {
 
-    private MyTextViewRR dateofBirth_tv;
+    private TextView dateofBirth_tv;
     private String mySelectedDate;
     private Spinner gender_type_spinner;
     private String selectedGender;

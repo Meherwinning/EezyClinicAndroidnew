@@ -90,7 +90,7 @@
 
         android:layout_height="@dimen/_30dp">
 
-        <com.vempower.eezyclinic.views.MyTextViewRR
+         <TextView                    android:fontFamily="@font/roboto"
             android:id="@+id/date_tv"
             android:layout_toLeftOf="@+id/imageview_linear"
             android:layout_width="match_parent"

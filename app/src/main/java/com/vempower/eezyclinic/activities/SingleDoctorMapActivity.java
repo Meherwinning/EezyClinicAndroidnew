@@ -12,13 +12,13 @@ import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.AppointmentListFragment;
 import com.vempower.eezyclinic.fragments.DoctorsMapFragment;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRM;
+
 
 import java.util.ArrayList;
 
 public class SingleDoctorMapActivity extends AbstractMenuActivity {
     SearchResultDoctorListData data;
-    private MyTextViewRM titleName;
+    private TextView titleName;
 
     protected void init()
     {

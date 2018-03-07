@@ -19,10 +19,9 @@
         android:layout_marginTop="@dimen/_20dp"
         android:orientation="vertical">
 
-        <com.vempower.eezyclinic.views.MyTextViewRM
+        <TextView                android:fontFamily="@font/roboto_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
             android:text="Specify who can view the following"
             android:textColor="#212121"
             android:textSize="@dimen/_16sp"
@@ -59,11 +58,10 @@
                 android:paddingBottom="@dimen/_5dp"
                 android:paddingTop="@dimen/_10dp">
 
-                <com.vempower.eezyclinic.views.MyTextViewRM
+                <TextView                android:fontFamily="@font/roboto_medium"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif"
                     android:gravity="left|center"
                     android:text="My Uploaded Files"
                     android:textColor="#212121"
@@ -126,11 +124,10 @@
                 android:paddingBottom="@dimen/_5dp"
                 android:paddingTop="@dimen/_10dp">
 
-                <com.vempower.eezyclinic.views.MyTextViewRM
+                <TextView                android:fontFamily="@font/roboto_medium"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif"
                     android:gravity="left|center"
                     android:text="Doctor generated Casesheets/Reports"
                     android:textColor="#212121"
@@ -192,11 +189,10 @@
                 android:paddingBottom="@dimen/_5dp"
                 android:paddingTop="@dimen/_10dp">
 
-                <com.vempower.eezyclinic.views.MyTextViewRM
+                <TextView                android:fontFamily="@font/roboto_medium"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif"
                     android:gravity="left|center"
                     android:text="Diagnostic Report by Diagnostic Centers"
                     android:textColor="#212121"
@@ -258,11 +254,10 @@
                 android:paddingBottom="@dimen/_5dp"
                 android:paddingTop="@dimen/_10dp">
 
-                <com.vempower.eezyclinic.views.MyTextViewRM
+                <TextView                android:fontFamily="@font/roboto_medium"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif"
                     android:gravity="left|center"
                     android:text="Patient Profile"
                     android:textColor="#212121"
@@ -323,11 +318,10 @@
                 android:paddingBottom="@dimen/_5dp"
                 android:paddingTop="@dimen/_10dp">
 
-                <com.vempower.eezyclinic.views.MyTextViewRM
+                <TextView                android:fontFamily="@font/roboto_medium"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif"
                     android:gravity="left|center"
                     android:text="Medical History"
                     android:textColor="#212121"
@@ -389,11 +383,10 @@
                 android:paddingBottom="@dimen/_5dp"
                 android:paddingTop="@dimen/_10dp">
 
-                <com.vempower.eezyclinic.views.MyTextViewRM
+                <TextView                android:fontFamily="@font/roboto_medium"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif"
                     android:gravity="left|center"
                     android:text="Patient Notes"
                     android:textColor="#212121"

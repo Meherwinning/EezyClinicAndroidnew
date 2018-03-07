@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.CasesheetData;
 import com.vempower.eezyclinic.APICore.CasesheetPrescriptionDetail;
@@ -19,7 +20,7 @@ import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.CasesheetDetailsMapper;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
 /**
@@ -31,7 +32,7 @@ public class CasesheetDetailFragment extends AbstractFragment {
     private View fragmentView;
     private String appointmentId;
     private LayoutInflater inflater;
-    private MyTextViewRR casesheet_no_tv, create_date_tv, doctor_name_tv,
+    private  TextView casesheet_no_tv, create_date_tv, doctor_name_tv,
             doctor_designation_tv, clinic_name_tv, medical_history_tv, complaints_tv,
             history_of_presentilness_tv, temparature_tv, pulse_bpm_tv, rr_breath_unit_tv,
             bp_tv, weight_tv, systamatic_examination_tv, advised_investigation_tv, diagnosis_tv,
@@ -146,11 +147,11 @@ public class CasesheetDetailFragment extends AbstractFragment {
         final View convertView = inflater
                 .inflate(R.layout.casesheet_prescription_single_layout, null, false);
 
-        MyTextViewRR medicine_name_tv = convertView.findViewById(R.id.medicine_name_tv);
-        MyTextViewRR strength_tv = convertView.findViewById(R.id.strength_tv);
-        MyTextViewRR dosage_tv = convertView.findViewById(R.id.dosage_tv);
-        MyTextViewRR before_food_tv = convertView.findViewById(R.id.before_food_tv);
-        MyTextViewRR course_duration_tv = convertView.findViewById(R.id.course_duration_tv);
+         TextView medicine_name_tv = convertView.findViewById(R.id.medicine_name_tv);
+         TextView strength_tv = convertView.findViewById(R.id.strength_tv);
+         TextView dosage_tv = convertView.findViewById(R.id.dosage_tv);
+         TextView before_food_tv = convertView.findViewById(R.id.before_food_tv);
+         TextView course_duration_tv = convertView.findViewById(R.id.course_duration_tv);
 
         medicine_name_tv.setText(prescription.getMedicineName());
         strength_tv.setText(prescription.getStrength());

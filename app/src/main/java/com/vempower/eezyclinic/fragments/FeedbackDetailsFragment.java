@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.rey.material.widget.ImageView;
 import com.vempower.eezyclinic.APICore.PendingFeedbackData;
@@ -19,8 +20,8 @@ import com.vempower.eezyclinic.mappers.SubmitFeedbackMapper;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyCheckBoxRR;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
-import com.vempower.eezyclinic.views.MyTextViewRM;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+
+ ;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,8 +36,8 @@ public class FeedbackDetailsFragment extends AbstractFragment {
 
     private View fragmentView;
 
-    private MyTextViewRM docotr_name_tv;
-    private MyTextViewRR specialities_name_tv, clinic_name_tv, date_and_time_tv,feedback_content_tv;
+    private TextView docotr_name_tv;
+    private  TextView specialities_name_tv, clinic_name_tv, date_and_time_tv,feedback_content_tv;
     private MaterialRatingBar waiting_time_rating, diagnasis_ratingbar,
             customer_service_rating_bar;
     private MyCheckBoxRR recommended_doctor_checkbox;

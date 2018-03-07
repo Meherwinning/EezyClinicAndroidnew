@@ -19,14 +19,13 @@
 
             android:orientation="horizontal">
 
-            <com.vempower.eezyclinic.views.MyTextViewRR
+             <TextView    android:fontFamily="@font/roboto"
 
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:fontFamily="sans-serif"
                 android:paddingBottom="@dimen/_10dp"
                 android:paddingTop="@dimen/_10dp"
                 android:text="Doctors I seek Appointment with"
@@ -82,13 +81,12 @@
 
             android:orientation="horizontal">
 
-            <com.vempower.eezyclinic.views.MyTextViewRR
+             <TextView    android:fontFamily="@font/roboto"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:fontFamily="sans-serif"
                 android:paddingBottom="@dimen/_10dp"
                 android:paddingTop="@dimen/_10dp"
                 android:text="Doctors within same clinic"
@@ -144,13 +142,12 @@
 
             android:orientation="horizontal">
 
-            <com.vempower.eezyclinic.views.MyTextViewRR
+             <TextView    android:fontFamily="@font/roboto"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:fontFamily="sans-serif"
                 android:paddingBottom="@dimen/_10dp"
                 android:paddingTop="@dimen/_10dp"
                 android:text="Family Members"

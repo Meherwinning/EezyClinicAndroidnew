@@ -31,7 +31,7 @@
             android:layout_height="wrap_content" />
 
 
-        <com.vempower.eezyclinic.views.MyTextViewRR
+        <TextView                    android:fontFamily="@font/roboto"
             android:id="@+id/bottom_linear_textview2"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/_1dp"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content" />
 
 
-        <com.vempower.eezyclinic.views.MyTextViewRR
+        <TextView                    android:fontFamily="@font/roboto"
             android:id="@+id/bottom_linear_textview3"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/_1dp"

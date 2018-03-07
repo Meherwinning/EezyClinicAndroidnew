@@ -19,8 +19,8 @@ import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyCheckedTextViewRR;
-import com.vempower.eezyclinic.views.MyTextViewRM;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+
+ ;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

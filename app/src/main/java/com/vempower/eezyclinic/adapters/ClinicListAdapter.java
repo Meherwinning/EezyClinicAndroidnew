@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.SearchResultClinicData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
@@ -21,8 +22,8 @@ import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRM;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+
+ ;
 
 import java.util.List;
 
@@ -88,8 +89,8 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Or
 
         private ImageView profile_iv;
 
-        private MyTextViewRM title_tv;
-        private MyTextViewRR designation_tv, time_tv, address_tv,
+        private TextView title_tv;
+        private  TextView designation_tv, time_tv, address_tv,
                 reviews_count_tv, recommendations_count_tv, book_appointment_tv;
 
         public OrdersListHolder(View itemView) {

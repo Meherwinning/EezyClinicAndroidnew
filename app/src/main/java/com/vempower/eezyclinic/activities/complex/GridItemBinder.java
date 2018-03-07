@@ -22,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ahamed.multiviewadapter.BaseViewHolder;
@@ -31,7 +32,7 @@ import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.decorator.GridInsetDecoration;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 public class GridItemBinder extends ItemBinder<SpecalitiyData, GridItemBinder.OrdersListHolder> {
 private ExpandColapseButtonListener buttonListener;
@@ -66,7 +67,7 @@ private ExpandColapseButtonListener buttonListener;
 
   public class OrdersListHolder extends ItemViewHolder<SpecalitiyData> {
 
-    private MyTextViewRR item_name_tv;
+    private TextView item_name_tv;
 
     public OrdersListHolder(View itemView) {
       super(itemView);

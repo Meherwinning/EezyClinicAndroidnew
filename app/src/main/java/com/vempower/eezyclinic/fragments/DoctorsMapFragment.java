@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -32,7 +33,7 @@ import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.util.ArrayList;
@@ -208,7 +209,7 @@ public class DoctorsMapFragment extends AbstractMapFragment/*, GoogleMap.OnMarke
         if (!isFinish)
         {
             fragmentView.findViewById(R.id.top_linear).setVisibility(View.VISIBLE);
-        ((MyTextViewRR) fragmentView.findViewById(R.id.match_found_tv)).setText(addedCount + "");
+        ((TextView) fragmentView.findViewById(R.id.match_found_tv)).setText(addedCount + "");
     }
 
         return builder;

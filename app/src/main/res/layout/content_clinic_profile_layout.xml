@@ -53,7 +53,7 @@
                 android:src="@drawable/logo"
 
                  />-->
-            <com.vempower.eezyclinic.views.MyTextViewRM
+            <TextView                android:fontFamily="@font/roboto_medium"
 
                 android:id="@+id/title_logo_tv"
                 android:layout_width="wrap_content"

@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView                        android:fontFamily="@font/roboto"
                     android:id="@+id/medicine_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -31,17 +31,15 @@
                     android:layout_marginRight="@dimen/_10dp"
                     android:hint="Medicine Name"
                     android:textColorHint="#debebaba"
-                    android:fontFamily="sans-serif-medium"
                     android:textStyle="normal"
                     android:textColor="#de000000"
                     />
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView                        android:fontFamily="@font/roboto"
                     android:id="@+id/strength_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_16sp"
-                    android:fontFamily="sans-serif-medium"
                     android:textStyle="normal"
                     android:textColor="#de000000"
                     android:hint="Strength"
@@ -56,20 +54,18 @@
                 android:layout_marginTop="@dimen/_5dp"
                 android:orientation="horizontal">
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView                        android:fontFamily="@font/roboto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
                     android:text="Dosage: "
                     android:textColor="#8a000000"
                     android:textSize="@dimen/_14sp"
                     android:textStyle="normal" />
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView                        android:fontFamily="@font/roboto"
                     android:id="@+id/dosage_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
                     android:textColor="#8a000000"
                     android:textSize="@dimen/_14sp"
                     android:textStyle="normal"
@@ -84,20 +80,18 @@
                 android:layout_marginTop="@dimen/_5dp"
                 android:orientation="horizontal">
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView                        android:fontFamily="@font/roboto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
                     android:text="Before food : "
                     android:textColor="#8a000000"
                     android:textSize="@dimen/_14sp"
                     android:textStyle="normal" />
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView                        android:fontFamily="@font/roboto"
                     android:id="@+id/before_food_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
                     android:textColor="#8a000000"
                     android:textSize="@dimen/_14sp"
                     android:textStyle="normal"
@@ -113,20 +107,18 @@
                 android:layout_marginTop="@dimen/_5dp"
                 android:orientation="horizontal">
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView                        android:fontFamily="@font/roboto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
                     android:text="Course Duration: "
                     android:textColor="#8a000000"
                     android:textSize="@dimen/_14sp"
                     android:textStyle="normal" />
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView                        android:fontFamily="@font/roboto"
                     android:id="@+id/course_duration_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
                     android:textColor="#8a000000"
                     android:textSize="@dimen/_14sp"
                     android:textStyle="normal"

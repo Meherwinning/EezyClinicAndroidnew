@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.SearchFamilyMemberData;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
@@ -19,7 +20,7 @@ import com.vempower.eezyclinic.mappers.SearchFamilyMemberMapper;
 import com.vempower.eezyclinic.mappers.SendRequestFamilyMemberAddMapper;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 /**
  * Created by satish on 6/12/17.
@@ -30,7 +31,7 @@ public class AddFamilyMemberFragment extends AbstractFragment {
     private MyEditTextBlackCursorRR patient_id_et;
     private AppCompatButton submit_bt;
     private LinearLayout patient_details_linear;
-    private MyTextViewRR family_member_patient_name;
+    private TextView family_member_patient_name;
     private boolean isSendRequest;
 
     private View fragmentView;

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.Appointment;
 import com.vempower.eezyclinic.APIResponce.AppointmentHistoryListAPI;
@@ -13,7 +14,7 @@ import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.AppointmentHistoryListAdapter;
 import com.vempower.eezyclinic.mappers.AppointmentHistoryListMapper;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,15 +33,15 @@ public class AppointmentHistoryFragment extends AbstractFragment {
 
     //private boolean isOnlyViewList;
     private Appointment appointment;
-    //private MyTextViewRR match_found_tv;
+    //private  TextView match_found_tv;
     private int page;
-    private MyTextViewRR appointment_id_tv;
-    private MyTextViewRR date_time_tv;
-    private MyTextViewRR check_in_time_tv;
-    private MyTextViewRR check_out_time_tv;
-    private MyTextViewRR waiting_time_tv;
-    private MyTextViewRR consoltation_time_tv;
-    private MyTextViewRR reason_for_app_tv;
+    private TextView appointment_id_tv;
+    private  TextView date_time_tv;
+    private  TextView check_in_time_tv;
+    private  TextView check_out_time_tv;
+    private  TextView waiting_time_tv;
+    private  TextView consoltation_time_tv;
+    private  TextView reason_for_app_tv;
 
     @Nullable
     @Override

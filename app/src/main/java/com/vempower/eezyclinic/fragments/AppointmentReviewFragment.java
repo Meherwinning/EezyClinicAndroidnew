@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.rey.material.widget.Button;
 import com.vempower.eezyclinic.APICore.BookAppointmentRequestDetails;
@@ -26,8 +27,7 @@ import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.CustomSpinnerSelection;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
 import com.vempower.eezyclinic.views.MyRadioButtonRR;
-import com.vempower.eezyclinic.views.MyTextViewRB;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -53,7 +53,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
     private MyEditTextBlackCursorRR patient_name_et,reason_for_appointment_et,email_et,phone_et;
     private SearchResultDoctorListData searchResultDoctorListData;
     private String dateTimeStr;
-    private MyTextViewRR time_date_display_tv;
+    private  TextView time_date_display_tv;
     private PatientData patientData;
     private View success_view;
     private LinearLayout review_view;
@@ -247,7 +247,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
 
         SimpleDateFormat DISPLAY_DATE_FORMATTER = new SimpleDateFormat(DISPLAY_DATE);
         SimpleDateFormat DISPLAY_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_TIME);
-        MyTextViewRR appointment_conform_tv = fragmentView.findViewById(R.id.appointment_conform_tv);
+         TextView appointment_conform_tv = fragmentView.findViewById(R.id.appointment_conform_tv);
 
         try {
             Date date = Utils.changeStringToDateFormat(dateTimeStr, SERVER_DATE_FORMAT_NEW);
@@ -275,11 +275,11 @@ public class AppointmentReviewFragment extends AbstractFragment {
         MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon,imageView,searchResultDoctorListData.getDoctorLogo());
 
 
-        ((MyTextViewRB)fragmentView.findViewById(R.id.doctor_name_tv)).setText(searchResultDoctorListData.getDoctorName());
-        ((MyTextViewRR)fragmentView.findViewById(R.id.doctor_designation_tv)).setText(searchResultDoctorListData.getSpecalities());
+        ((TextView)fragmentView.findViewById(R.id.doctor_name_tv)).setText(searchResultDoctorListData.getDoctorName());
+        (( TextView)fragmentView.findViewById(R.id.doctor_designation_tv)).setText(searchResultDoctorListData.getSpecalities());
 
-        ((MyTextViewRB)fragmentView.findViewById(R.id.clinic_name_tv)).setText(searchResultDoctorListData.getClinicName());
-        ((MyTextViewRR) fragmentView.findViewById(R.id.clinic_address_tv)).setText(searchResultDoctorListData.getAddress());
+        ((TextView)fragmentView.findViewById(R.id.clinic_name_tv)).setText(searchResultDoctorListData.getClinicName());
+        (( TextView) fragmentView.findViewById(R.id.clinic_address_tv)).setText(searchResultDoctorListData.getAddress());
 
 
 
@@ -291,7 +291,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
 
         SimpleDateFormat DISPLAY_DATE_FORMATTER = new SimpleDateFormat(DISPLAY_DATE);
         SimpleDateFormat DISPLAY_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_TIME);
-        MyTextViewRR time_date_display_tv = fragmentView.findViewById(R.id.time_date_display_tv);
+         TextView time_date_display_tv = fragmentView.findViewById(R.id.time_date_display_tv);
 
         try {
             Date date = Utils.changeStringToDateFormat(dateTimeStr, SERVER_DATE_FORMAT_NEW);

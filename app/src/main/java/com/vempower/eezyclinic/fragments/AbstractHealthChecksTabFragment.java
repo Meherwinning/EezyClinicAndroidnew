@@ -11,6 +11,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
@@ -23,7 +24,7 @@ import com.vempower.eezyclinic.interfaces.HealthChecksRefreshListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -37,8 +38,8 @@ abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
     private String url;
     private WebView wv;
     private ProgressBar progressBar;
-    private MyTextViewRR graph_type_title_tv;
-    protected MyTextViewRR new_date_tv;
+    private  TextView graph_type_title_tv;
+    protected TextView new_date_tv;
     protected String selectedDateStr;
     private ImageView graph_expand_iv;
     protected HealthChecksRefreshListener refreshListener;

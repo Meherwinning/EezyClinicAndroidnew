@@ -142,7 +142,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_15dp"
                         android:orientation="vertical">
-                        <com.vempower.eezyclinic.views.MyTextViewRR
+                         <TextView                        android:fontFamily="@font/roboto"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="left|center_vertical"
@@ -189,7 +189,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_15dp"
                         android:orientation="vertical">
-                        <com.vempower.eezyclinic.views.MyTextViewRR
+                         <TextView                        android:fontFamily="@font/roboto"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="left|center_vertical"
@@ -284,7 +284,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_15dp"
                         android:orientation="vertical">
-                        <com.vempower.eezyclinic.views.MyTextViewRR
+                         <TextView                        android:fontFamily="@font/roboto"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="left|center_vertical"
@@ -305,7 +305,7 @@
                             app:hintEnabled="true"
                             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                            <com.vempower.eezyclinic.views.MyTextViewRR
+                             <TextView                        android:fontFamily="@font/roboto"
                                 android:id="@+id/date_of_birth_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -349,7 +349,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_15dp"
                         android:orientation="vertical">
-                        <com.vempower.eezyclinic.views.MyTextViewRR
+                         <TextView                        android:fontFamily="@font/roboto"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="left|center_vertical"
@@ -544,7 +544,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_15dp"
                         android:orientation="vertical">
-                        <com.vempower.eezyclinic.views.MyTextViewRR
+                         <TextView                        android:fontFamily="@font/roboto"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="left|center_vertical"
@@ -595,7 +595,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_15dp"
                         android:orientation="vertical">
-                        <com.vempower.eezyclinic.views.MyTextViewRR
+                         <TextView                        android:fontFamily="@font/roboto"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="left|center_vertical"
@@ -656,7 +656,7 @@
                                 android:layout_weight="1"
                                 android:orientation="horizontal"
                                 android:layout_height="match_parent">
-                                <com.vempower.eezyclinic.views.MyTextViewRR
+                                 <TextView                        android:fontFamily="@font/roboto"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:layout_marginRight="@dimen/_5dp"
@@ -722,7 +722,7 @@
                                 android:layout_weight="1"
                                 android:orientation="horizontal"
                                 android:layout_height="match_parent">
-                                <com.vempower.eezyclinic.views.MyTextViewRR
+                                 <TextView                        android:fontFamily="@font/roboto"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:layout_marginRight="@dimen/_5dp"

@@ -72,7 +72,7 @@
 
 
 
-            <!--  <com.vempower.eezyclinic.views.MyTextViewRR
+            <!--  <TextView                    android:fontFamily="@font/roboto"
                   android:layout_width="@dimen/_80dp"
                   android:layout_height="match_parent"
                   android:layout_marginLeft="@dimen/_3dp"
@@ -88,7 +88,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="@dimen/_45dp">
-        <com.vempower.eezyclinic.views.MyTextViewRR
+        <TextView                    android:fontFamily="@font/roboto"
             android:id="@+id/date_tv"
             android:layout_width="match_parent"
             android:clickable="true"

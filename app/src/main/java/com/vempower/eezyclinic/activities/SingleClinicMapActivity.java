@@ -2,6 +2,7 @@ package com.vempower.eezyclinic.activities;
 
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.SearchResultClinicData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
@@ -10,13 +11,13 @@ import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.ClinicsMapFragment;
 import com.vempower.eezyclinic.fragments.DoctorsMapFragment;
-import com.vempower.eezyclinic.views.MyTextViewRM;
+
 
 import java.util.ArrayList;
 
 public class SingleClinicMapActivity extends AbstractMenuActivity {
     SearchResultClinicData data;
-    private MyTextViewRM titleName;
+    private TextView titleName;
 
     protected void init()
     {

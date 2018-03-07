@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
@@ -34,7 +35,7 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.MyDownloadfFile;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -51,7 +52,7 @@ import java.util.Calendar;
 public class UpdatePrescriptionReportFragment extends ImageProcessFragment {
 
     private View fragmentView;
-    private MyTextViewRR date_of_document_tv;
+    private TextView date_of_document_tv;
     private SelectedDate selectedDOBObj;
     private LinearLayout horigental_linear;
     private ArrayList<File> imagesList;

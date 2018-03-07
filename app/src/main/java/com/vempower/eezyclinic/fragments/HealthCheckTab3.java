@@ -13,6 +13,7 @@ import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
@@ -36,7 +37,7 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -54,7 +55,7 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
     private LayoutInflater inflater;
     //  private List<HealthChecksSugar> sugarLevelsList;
     private MyEditTextBlackCursorRR new_weight_et, new_height_et;
-    private MyTextViewRR new_date_tv;
+    private TextView new_date_tv;
     private ImageView new_delete_iv, new_ok_iv;
     //private List<HealthChecksCholesterol> chorlList;
     private ArrayList<HealthChecksHeightWeight> heightWeightList;
@@ -227,7 +228,7 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
 
     private class RecordHolder {
         MyEditTextBlackCursorRR weight_et, height_et;
-        MyTextViewRR date_tv;
+         TextView date_tv;
         ImageView ok_iv, edit_iv, delete_iv;
         private final HealthChecksHeightWeight heightWeight;
         private SelectedDate selectedObj;

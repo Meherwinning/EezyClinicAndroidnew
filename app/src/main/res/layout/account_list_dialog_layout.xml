@@ -3,8 +3,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                >
-    <com.vempower.eezyclinic.views.MyTextViewRR
+
+
+     <TextView    android:fontFamily="@font/roboto"
         android:id="@+id/header_text"
+
         android:layout_width="match_parent"
         android:layout_alignParentTop="true"
         android:textColor="@color/black"
@@ -29,18 +32,8 @@
                android:layout_width="wrap_content"
 
                android:layout_height="wrap_content" />
-       <com.vempower.eezyclinic.views.MyButtonRectangleRM
-           android:id="@+id/button_bt"
-           android:text="Submit"
-           android:onClick="onGetSelectedItemClick"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content" />
-           <com.vempower.eezyclinic.views.MyButtonRectangleRM
-               android:id="@+id/ok_bt"
-               android:text="Ok"
-               android:onClick="onGetSelectedItemClick"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" />
+
+
        </LinearLayout>-->
 
 </RelativeLayout>

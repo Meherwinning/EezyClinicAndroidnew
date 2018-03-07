@@ -23,7 +23,7 @@ import com.vempower.eezyclinic.delegate.AbsListViewDelegate;
 import com.vempower.eezyclinic.delegate.ScrollViewDelegate;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
@@ -38,7 +38,7 @@ public class DoctorProfileTabFragment extends BaseViewPagerFragment {
     private ScrollView mScrollView;
     private ScrollViewDelegate mScrollViewDelegate = new ScrollViewDelegate();
     private DoctorProfileData doctorProfileData;
-    private MyTextViewRR dd;
+    private  TextView dd;
     private  View fragment;
 
     public DoctorProfileTabFragment()
@@ -84,19 +84,19 @@ public class DoctorProfileTabFragment extends BaseViewPagerFragment {
         {
             return;
         }
-        ((MyTextViewRR )view.findViewById(R.id.gender_tv)).setText(doctorProfileData.getDoctorsProfile().getGender());
-        ((MyTextViewRR )view.findViewById(R.id. nationality_tv)).setText(doctorProfileData.getDoctorsProfile().getNationality());
-        ((MyTextViewRR )view.findViewById(R.id. language_known_tv)).setText(doctorProfileData.getDoctorsProfile().getLanguagesKnown());
-        ((MyTextViewRR )view.findViewById(R.id. about_tv)).setText(doctorProfileData.getDoctorsProfile().getAboutDoctor());
-        ((MyTextViewRR )view.findViewById(R.id.  consultation_fee_tv)).setText(doctorProfileData.getDoctorsProfile().getConsultationFee());
-        ((MyTextViewRR )view.findViewById(R.id. specialization_tv)).setText(doctorProfileData.getSpecializations());
-        ((MyTextViewRR )view.findViewById(R.id.  service_tv)).setText(doctorProfileData.getServices());
-        ((MyTextViewRR )view.findViewById(R.id. education_details_tv)).setText(doctorProfileData.getEducationalQualifications());
-        ((MyTextViewRR )view.findViewById(R.id. experiance_tv)).setText(doctorProfileData.getExperience());
-        ((MyTextViewRR )view.findViewById(R.id.  awards_and_recognitions_tv)).setText(doctorProfileData.getAwardsRecognitions());
-        ((MyTextViewRR )view.findViewById(R.id. memberships_tv)).setText(doctorProfileData.getMemberships());
-        ((MyTextViewRR )view.findViewById(R.id.  registrations_tv)).setText(doctorProfileData.getRegistrations());
-        ((MyTextViewRR ) view.findViewById(R.id. clinic_details_tv)).setText(doctorProfileData.getClinicdetails());
+        (( TextView )view.findViewById(R.id.gender_tv)).setText(doctorProfileData.getDoctorsProfile().getGender());
+        (( TextView )view.findViewById(R.id. nationality_tv)).setText(doctorProfileData.getDoctorsProfile().getNationality());
+        (( TextView )view.findViewById(R.id. language_known_tv)).setText(doctorProfileData.getDoctorsProfile().getLanguagesKnown());
+        (( TextView )view.findViewById(R.id. about_tv)).setText(doctorProfileData.getDoctorsProfile().getAboutDoctor());
+        (( TextView )view.findViewById(R.id.  consultation_fee_tv)).setText(doctorProfileData.getDoctorsProfile().getConsultationFee());
+        (( TextView )view.findViewById(R.id. specialization_tv)).setText(doctorProfileData.getSpecializations());
+        (( TextView )view.findViewById(R.id.  service_tv)).setText(doctorProfileData.getServices());
+        (( TextView )view.findViewById(R.id. education_details_tv)).setText(doctorProfileData.getEducationalQualifications());
+        (( TextView )view.findViewById(R.id. experiance_tv)).setText(doctorProfileData.getExperience());
+        (( TextView )view.findViewById(R.id.  awards_and_recognitions_tv)).setText(doctorProfileData.getAwardsRecognitions());
+        (( TextView )view.findViewById(R.id. memberships_tv)).setText(doctorProfileData.getMemberships());
+        (( TextView )view.findViewById(R.id.  registrations_tv)).setText(doctorProfileData.getRegistrations());
+        (( TextView ) view.findViewById(R.id. clinic_details_tv)).setText(doctorProfileData.getClinicdetails());
 
 
 

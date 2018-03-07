@@ -80,7 +80,7 @@
             android:layout_toRightOf="@+id/img_linear1"
             android:orientation="vertical">
 
-            <com.vempower.eezyclinic.views.MyTextViewRM
+            <TextView                android:fontFamily="@font/roboto_medium"
                 android:id="@+id/title_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView    android:fontFamily="@font/roboto"
                     android:id="@+id/designation_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                     android:textColor="#777777"
                     android:textSize="@dimen/_13sp"
                      />
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView    android:fontFamily="@font/roboto"
                     android:id="@+id/time_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
                     android:textColor="#777777"
                     android:textSize="@dimen/_13sp"
                     />
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView    android:fontFamily="@font/roboto"
                     android:id="@+id/address_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -147,7 +147,7 @@
                 android:orientation="horizontal"
                 android:layout_height="match_parent">
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView    android:fontFamily="@font/roboto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="left"
@@ -156,7 +156,7 @@
                     android:textSize="@dimen/_13sp"
                     android:textColor="#cc212121"
                     android:textStyle="bold" />
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView    android:fontFamily="@font/roboto"
                     android:id="@+id/reviews_count_tv"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -192,7 +192,7 @@
                     android:src="@drawable/reccom_icon"
                     android:textColor="#cc212121"
                     android:textStyle="bold" />
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView    android:fontFamily="@font/roboto"
                     android:id="@+id/recommendations_count_tv"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -213,7 +213,7 @@
                 android:layout_weight="1.5"
 
                 android:layout_height="match_parent">
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView    android:fontFamily="@font/roboto"
                     android:id="@+id/book_appointment_tv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

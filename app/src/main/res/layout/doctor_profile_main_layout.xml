@@ -70,7 +70,8 @@
                      android:src="@mipmap/ic_launcher"
                      android:layout_height="@dimen/_60dp" />-->
 
-                <com.vempower.eezyclinic.views.MyTextViewRB
+                <TextView
+                    android:fontFamily="@font/roboto_black"
                     android:id="@+id/doctor_name_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -98,7 +99,7 @@
 
 
 
-                    <com.vempower.eezyclinic.views.MyTextViewRR
+                     <TextView    android:fontFamily="@font/roboto"
                         android:id="@+id/doctor_designation_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -110,15 +111,6 @@
                         android:textStyle="normal"
                         android:textColor="#ffffff"
                         />
-
-                    <!--    <com.vempower.eezyclinic.views.MyTextViewRM
-                            android:id="@+id/patient_email_tv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Patient email"
-                            android:maxLines="1"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size_normal" />-->
 
 
                 </LinearLayout>
@@ -143,7 +135,7 @@
                         android:orientation="horizontal"
                         android:layout_height="match_parent">
 
-                        <com.vempower.eezyclinic.views.MyTextViewRR
+                         <TextView    android:fontFamily="@font/roboto"
                             android:id="@+id/label_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -196,7 +188,7 @@
                             android:src="@drawable/recomm"
                             android:textColor="#cc212121"
                             android:textStyle="bold" />
-                        <com.vempower.eezyclinic.views.MyTextViewRR
+                         <TextView    android:fontFamily="@font/roboto"
                             android:id="@+id/recommendations_count_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -208,7 +200,7 @@
 
 
                             android:textSize="12sp"
-                            android:fontFamily="sans-serif-medium"
+                             
                             android:textStyle="normal"
                             android:textColor="#ffffff"
 
@@ -278,7 +270,7 @@
         android:background="@drawable/button_bg"
 
         android:textSize="@dimen/_16sp"
-        android:fontFamily="sans-serif-medium"
+         
         android:textStyle="normal"
         android:textColor="#ffffff"
         android:text="Book Appointment"

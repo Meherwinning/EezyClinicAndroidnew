@@ -43,8 +43,7 @@ import com.vempower.eezyclinic.tools.ScrollableFragmentListener;
 import com.vempower.eezyclinic.tools.ScrollableListener;
 import com.vempower.eezyclinic.tools.ViewPagerHeaderHelper;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRB;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 import com.vempower.eezyclinic.widget.TouchCallbackLayout;
 
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
@@ -313,15 +312,15 @@ public class DoctorProfileActivity extends AbstractMenuActivity
             MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, profileData.getDoctorLogo());
         }
 
-        ((MyTextViewRB)findViewById(R.id.doctor_name_tv)).setText(profileData.getDoctorfullname());
-        ((MyTextViewRR)findViewById(R.id.doctor_designation_tv)).setText(profileData.getDoctorsdegrees());
+        ((TextView)findViewById(R.id.doctor_name_tv)).setText(profileData.getDoctorfullname());
+        ((TextView)findViewById(R.id.doctor_designation_tv)).setText(profileData.getDoctorsdegrees());
 
         MaterialRatingBar ratingBar=findViewById(R.id.doctor_rating_bar);
         ratingBar.setRating(profileData.getDoctoroverallrating());
        // ratingBar.setEnabled(false);
         ratingBar.setClickable(false);
 
-        ((MyTextViewRR)findViewById(R.id.recommendations_count_tv)).setText(profileData.getTotalrecommend());
+        (( TextView)findViewById(R.id.recommendations_count_tv)).setText(profileData.getTotalrecommend());
 
 
 

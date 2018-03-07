@@ -6,11 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.util.List;
 
@@ -65,7 +66,7 @@ public class GridAdapter extends BaseAdapter {
 
     public class OrdersListHolder {
 
-        private MyTextViewRR item_name_tv;
+        private TextView item_name_tv;
 
         public OrdersListHolder(View itemView) {
             // super(itemView);

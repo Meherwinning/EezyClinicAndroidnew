@@ -84,15 +84,14 @@
                 android:background="#f6f6f6"
                 android:paddingLeft="@dimen/_20dp">
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView    android:fontFamily="@font/roboto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
 
                     android:text="Search Results"
                     android:textColor="#000000"
-                    android:textSize="@dimen/_16sp"></com.vempower.eezyclinic.views.MyTextViewRR>
-
+                    android:textSize="@dimen/_16sp"/>
             </RelativeLayout>
 
             <LinearLayout
@@ -103,15 +102,15 @@
                 android:paddingRight="@dimen/_20dp"
                 android:paddingTop="@dimen/_20dp">
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+                 <TextView    android:fontFamily="@font/roboto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Patient Name"
                     android:textColor="#000000"
-                    android:textSize="@dimen/_16sp">
-                </com.vempower.eezyclinic.views.MyTextViewRR>
+                    android:textSize="@dimen/_16sp"/>
 
-                <com.vempower.eezyclinic.views.MyTextViewRR
+
+                 <TextView    android:fontFamily="@font/roboto"
                    android:id="@+id/family_member_patient_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -119,8 +118,7 @@
                     android:hint="Name"
                     android:layout_marginTop="@dimen/_5dp"
                     android:textColor="#505050"
-                    >
-                </com.vempower.eezyclinic.views.MyTextViewRR>
+                    />
 
             </LinearLayout>
 

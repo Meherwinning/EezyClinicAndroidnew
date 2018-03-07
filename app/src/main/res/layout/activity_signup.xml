@@ -113,7 +113,7 @@
                         app:hintEnabled="true"
                         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                        <com.vempower.eezyclinic.views.MyTextViewRR
+                        <TextView                    android:fontFamily="@font/roboto"
                             android:id="@+id/dateofBirth_tv"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -355,7 +355,7 @@
                         android:textColor="@color/text_color_light_black"
                         android:textSize="@dimen/text_size_small" />
 
-                    <!--  <com.vempower.eezyclinic.views.MyTextViewRR
+                    <!--  <TextView                    android:fontFamily="@font/roboto"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:layout_marginTop="@dimen/_5dp"
@@ -366,7 +366,7 @@
 
                           android:textSize="@dimen/text_size_normal" />
   -->
-                    <com.vempower.eezyclinic.views.MyTextViewRR
+                    <TextView                    android:fontFamily="@font/roboto"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"

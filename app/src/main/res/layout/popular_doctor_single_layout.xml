@@ -35,7 +35,7 @@
             android:scaleType="centerCrop"
             />
     </LinearLayout>
-    <com.vempower.eezyclinic.views.MyTextViewRR
+     <TextView    android:fontFamily="@font/roboto"
         android:id="@+id/item_name_tv"
         android:layout_width="match_parent"
         android:maxLines="4"
@@ -44,7 +44,7 @@
         android:textColor="@color/white"
         android:gravity="top|center_horizontal"
         android:layout_height="wrap_content" />
-        <com.vempower.eezyclinic.views.MyTextViewRR
+         <TextView    android:fontFamily="@font/roboto"
             android:layout_width="match_parent"
             android:maxLines="4"
             android:text="sfsdfsdf fdg"
@@ -52,7 +52,7 @@
             android:textColor="@color/white"
             android:gravity="top|center_horizontal"
             android:layout_height="wrap_content" />
-        <com.vempower.eezyclinic.views.MyTextViewRR
+         <TextView    android:fontFamily="@font/roboto"
             android:layout_width="match_parent"
             android:maxLines="4"
             android:text="sfsdfsdf fdg"
@@ -60,7 +60,7 @@
             android:textColor="@color/white"
             android:gravity="top|center_horizontal"
             android:layout_height="wrap_content" />
-        <com.vempower.eezyclinic.views.MyTextViewRR
+         <TextView    android:fontFamily="@font/roboto"
             android:layout_width="match_parent"
             android:maxLines="4"
             android:text="sfsdfsdf fdg"
@@ -68,7 +68,7 @@
             android:textColor="@color/white"
             android:gravity="top|center_horizontal"
             android:layout_height="wrap_content" />
-        <com.vempower.eezyclinic.views.MyTextViewRR
+         <TextView    android:fontFamily="@font/roboto"
             android:layout_width="match_parent"
             android:maxLines="4"
             android:text="sfsdfsdf fdg"
@@ -76,7 +76,7 @@
             android:textColor="@color/white"
             android:gravity="top|center_horizontal"
             android:layout_height="wrap_content" />
-        <com.vempower.eezyclinic.views.MyTextViewRR
+         <TextView    android:fontFamily="@font/roboto"
             android:layout_width="match_parent"
             android:maxLines="4"
             android:text="sfsdfsdf fdg"

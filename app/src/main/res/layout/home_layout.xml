@@ -58,7 +58,7 @@
                      android:src="@mipmap/ic_launcher"
                      android:layout_height="@dimen/_60dp" />-->
 
-                <com.vempower.eezyclinic.views.MyTextViewRM
+                <TextView                android:fontFamily="@font/roboto_medium"
                     android:id="@+id/patient_name_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <com.vempower.eezyclinic.views.MyTextViewRM
+                    <TextView                android:fontFamily="@font/roboto_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Patient ID:"
@@ -88,7 +88,7 @@
 
                         android:textSize="@dimen/text_size_small" />
 
-                    <com.vempower.eezyclinic.views.MyTextViewRM
+                    <TextView                android:fontFamily="@font/roboto_medium"
                         android:id="@+id/patient_id_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -97,14 +97,6 @@
                         android:textColor="#bbe5e4"
                         android:textSize="@dimen/text_size_small" />
 
-                    <!--    <com.vempower.eezyclinic.views.MyTextViewRM
-                            android:id="@+id/patient_email_tv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Patient email"
-                            android:maxLines="1"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size_normal" />-->
 
 
                 </LinearLayout>
@@ -170,7 +162,7 @@
                         android:layout_toRightOf="@+id/img_linear1"
                         android:orientation="vertical">
 
-                        <com.vempower.eezyclinic.views.MyTextViewRM
+                        <TextView                android:fontFamily="@font/roboto_medium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_5dp"
@@ -183,7 +175,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <com.vempower.eezyclinic.views.MyTextViewRR
+                             <TextView    android:fontFamily="@font/roboto"
                                 android:id="@+id/health_tips_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -191,7 +183,10 @@
                                 android:text="-"
                                 android:textColor="@color/dash_board_text_color"
                                 android:textSize="@dimen/text_size_small"
-                                android:textStyle="bold" />
+
+                                 android:textStyle="normal"
+                                  android:lineSpacingExtra="1sp"
+                                 />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -271,7 +266,7 @@
                         android:layout_toRightOf="@+id/img_linear2"
                         android:orientation="vertical">
 
-                        <com.vempower.eezyclinic.views.MyTextViewRM
+                        <TextView                android:fontFamily="@font/roboto_medium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_5dp"
@@ -284,7 +279,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <com.vempower.eezyclinic.views.MyTextViewRR
+                             <TextView    android:fontFamily="@font/roboto"
                                 android:id="@+id/health_goal_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -292,7 +287,10 @@
                                 android:text="-"
                                 android:textColor="@color/dash_board_text_color"
                                 android:textSize="@dimen/text_size_small"
-                                android:textStyle="bold" />
+
+                                 android:textStyle="normal"
+                                  android:lineSpacingExtra="1sp"
+                                 />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -374,7 +372,7 @@
                         android:layout_toRightOf="@+id/img_linear"
                         android:orientation="vertical">
 
-                        <com.vempower.eezyclinic.views.MyTextViewRM
+                        <TextView                android:fontFamily="@font/roboto_medium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_5dp"
@@ -387,27 +385,33 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <com.vempower.eezyclinic.views.MyTextViewRR
+                             <TextView    android:fontFamily="@font/roboto"
                                 android:id="@+id/upcoming_appointment_name_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="left"
-                                android:lineSpacingExtra="2sp"
                                 android:text="-"
                                 android:textColor="#616161"
                                 android:textSize="@dimen/text_size_normal"
-                                android:textStyle="bold" />
+
+                                 android:textStyle="bold"
+                                  android:lineSpacingExtra="1sp"
+                                 />
 
 
-                            <com.vempower.eezyclinic.views.MyTextViewRR
+                             <TextView    android:fontFamily="@font/roboto"
                                 android:id="@+id/upcoming_appointment_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="left"
                                 android:text="-"
-                                android:textColor="@color/dash_board_text_color"
                                 android:textSize="@dimen/text_size_small"
-                                android:textStyle="bold" />
+                                 android:textColor="@color/dash_board_text_color"
+                                 android:textStyle="normal"
+                                 android:letterSpacing="0.04"
+
+                                  android:lineSpacingExtra="1sp"
+                                 />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -487,7 +491,7 @@
                         android:layout_toRightOf="@+id/img_linear4"
                         android:orientation="vertical">
 
-                        <com.vempower.eezyclinic.views.MyTextViewRM
+                        <TextView                android:fontFamily="@font/roboto_medium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_5dp"
@@ -501,7 +505,7 @@
                             android:orientation="vertical">
 
 
-                            <com.vempower.eezyclinic.views.MyTextViewRR
+                             <TextView    android:fontFamily="@font/roboto"
                                 android:id="@+id/upcoming_followups_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -509,7 +513,10 @@
                                 android:text="-"
                                 android:textColor="@color/dash_board_text_color"
                                 android:textSize="@dimen/text_size_small"
-                                android:textStyle="bold" />
+
+                                 android:textStyle="normal"
+                                  android:lineSpacingExtra="1sp"
+                                 />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -542,14 +549,19 @@
                 android:background="@color/white"
                 android:clickable="true"
 
-                android:fontFamily="sans-serif"
                 android:maxLines="1"
                 android:padding="@dimen/_4dp"
                 android:text="@string/search_doctors_lbl"
                 android:textAllCaps="false"
                 android:textColor="@color/button_text_color"
                 android:textSize="@dimen/button_text_size"
-                android:textStyle="bold" />
+
+
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="normal"
+                android:letterSpacing="0.04"
+                android:gravity="center_horizontal"
+                />
         </LinearLayout>
     </ScrollView>
 

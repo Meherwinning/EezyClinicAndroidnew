@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonFloat;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
@@ -18,7 +19,7 @@ import com.vempower.eezyclinic.core.SearchRequest;
 import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
     private SearchRequest requestParms;
 
     private boolean isOnlyViewList;
-    //private MyTextViewRR match_found_tv;
+    //private  TextView match_found_tv;
 
     @Nullable
     @Override
@@ -134,7 +135,7 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
 
     public void setOrderItemsToAdapter(List<SearchResultDoctorListData> orders) {
         hideProgressView();
-        ((MyTextViewRR)fragmentView.findViewById(R.id.match_found_tv)).setText(orders.size()+"");
+        ((TextView)fragmentView.findViewById(R.id.match_found_tv)).setText(orders.size()+"");
 
         if (adapter == null) {
 

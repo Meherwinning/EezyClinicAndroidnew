@@ -8,11 +8,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.ClinicProfileData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.delegate.ScrollViewDelegate;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 /**
  * Created by satish on 18/12/17.
@@ -74,13 +75,13 @@ public class ClinicProfileTabFragment extends BaseViewPagerFragment {
             return;
         }
 
-        ((MyTextViewRR)fragment.findViewById(R.id.clinic_name_tv)).setText(clinicProfile.getClinicName());
-        ((MyTextViewRR)fragment.findViewById(R.id.timings_tv)).setText(clinicProfile.getClinicTimings());
-        ((MyTextViewRR)fragment.findViewById(R.id.number_of_doctors_tv)).setText(clinicProfile.getNumberOfDoctors());
-        ((MyTextViewRR)fragment.findViewById(R.id.insurance_accepted_tv)).setText(clinicProfile.getClinicInsuranceAccepted());
-        ((MyTextViewRR)fragment.findViewById(R.id.addres_tv)).setText(clinicProfile.getClinicAddress1()+"\n"+clinicProfile.getClinicAddress2()+"\n"+clinicProfile.getClinicAddress3());
-        ((MyTextViewRR)fragment.findViewById(R.id.specialization_tv)).setText(clinicProfile.getSpecializations());
-        ((MyTextViewRR)fragment.findViewById(R.id.service_tv)).setText(clinicProfile.getServices());
+        ((TextView)fragment.findViewById(R.id.clinic_name_tv)).setText(clinicProfile.getClinicName());
+        (( TextView)fragment.findViewById(R.id.timings_tv)).setText(clinicProfile.getClinicTimings());
+        (( TextView)fragment.findViewById(R.id.number_of_doctors_tv)).setText(clinicProfile.getNumberOfDoctors());
+        (( TextView)fragment.findViewById(R.id.insurance_accepted_tv)).setText(clinicProfile.getClinicInsuranceAccepted());
+        (( TextView)fragment.findViewById(R.id.addres_tv)).setText(clinicProfile.getClinicAddress1()+"\n"+clinicProfile.getClinicAddress2()+"\n"+clinicProfile.getClinicAddress3());
+        (( TextView)fragment.findViewById(R.id.specialization_tv)).setText(clinicProfile.getSpecializations());
+        (( TextView)fragment.findViewById(R.id.service_tv)).setText(clinicProfile.getServices());
 
 
     }

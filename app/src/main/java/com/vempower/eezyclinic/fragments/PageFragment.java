@@ -25,10 +25,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 
 /**
@@ -42,7 +43,7 @@ public class PageFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_TEXT = "param1";
 
-    private MyTextViewRR myTextView;
+    //private TextView myTextView;
 
     @Nullable
     private int page;
@@ -84,22 +85,22 @@ public class PageFragment extends Fragment {
         switch (page)
         {
             case 0:
-                view = inflater.inflate(R.layout.fragment_apptour_page1, container, false);
-                myTextView= view.findViewById(R.id.from_text);
+                return inflater.inflate(R.layout.fragment_apptour_page1, container, false);
+                //myTextView= view.findViewById(R.id.from_text);
 
-                break;
+               // break;
             case 1:
-                view = inflater.inflate(R.layout.fragment_apptour_page2, container, false);
-                myTextView= view.findViewById(R.id.from_text);
-                break;
+                return inflater.inflate(R.layout.fragment_apptour_page2, container, false);
+               // myTextView= view.findViewById(R.id.from_text);
+                //break;
             case 2:
-                view = inflater.inflate(R.layout.fragment_apptour_page3, container, false);
-                myTextView= view.findViewById(R.id.from_text);
-                break;
+                return inflater.inflate(R.layout.fragment_apptour_page3, container, false);
+               // myTextView= view.findViewById(R.id.from_text);
+                //break;
 
                 default: {
-                    view = inflater.inflate(R.layout.fragment_apptour_page3, container, false);
-                    myTextView = view.findViewById(R.id.from_text);
+                    return inflater.inflate(R.layout.fragment_apptour_page3, container, false);
+                    //myTextView = view.findViewById(R.id.from_text);
                 }
 
 
@@ -111,6 +112,6 @@ public class PageFragment extends Fragment {
 
         //myTextView.setText("Screen :"+ Utils.getStringFromResources(R.string.screen)+" Dimen:"+getResources().getDimension(R.dimen.text_size_normal));
 
-        return view;
+       // return view;
     }
 }

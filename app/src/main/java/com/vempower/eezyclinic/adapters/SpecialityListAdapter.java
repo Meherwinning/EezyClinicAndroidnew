@@ -6,13 +6,14 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyCheckedTextViewRR;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -109,7 +110,7 @@ public class SpecialityListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     public class OrdersListHolder extends RecyclerView.ViewHolder {
 
-        private MyTextViewRR item_name_tv;
+        private TextView item_name_tv;
 
         public OrdersListHolder(View itemView) {
             super(itemView);
@@ -131,7 +132,7 @@ public class SpecialityListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     public class HeaderHolder extends RecyclerView.ViewHolder {
 
-        //private MyTextViewRR item_name_tv;
+        //private  TextView item_name_tv;
 
         public HeaderHolder(View itemView) {
             super(itemView);

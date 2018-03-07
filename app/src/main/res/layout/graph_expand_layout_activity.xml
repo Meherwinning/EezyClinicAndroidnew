@@ -8,7 +8,7 @@
     android:layout_gravity="center"
 
     android:layout_height="match_parent">
-    <com.vempower.eezyclinic.views.MyTextView
+    <TextView
         android:id="@+id/graph_title_tv"
         android:layout_width="wrap_content"
         android:hint="Title"

@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.Appointment;
 import com.vempower.eezyclinic.APICore.Followup;
@@ -15,7 +16,7 @@ import com.vempower.eezyclinic.adapters.UpcomingAppointmentListAdapter;
 import com.vempower.eezyclinic.adapters.UpcomingFollowupsListAdapter;
 import com.vempower.eezyclinic.mappers.UpcomingAppointmentListMapper;
 import com.vempower.eezyclinic.mappers.UpcomingFollowupMapper;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class FollowupsFragment extends SwipedRecyclerViewFragment {
 
     //private boolean isOnlyViewList;
     private List<Followup> followupList;
-    //private MyTextViewRR match_found_tv;
+    //private  TextView match_found_tv;
 
     @Nullable
     @Override
@@ -88,7 +89,7 @@ public class FollowupsFragment extends SwipedRecyclerViewFragment {
 
     public void setOrderItemsToAdapter(List<Followup> followupList) {
         hideProgressView();
-        ((MyTextViewRR)fragmentView.findViewById(R.id.match_found_tv)).setText(followupList==null?"0":followupList.size()+"");
+        ((TextView)fragmentView.findViewById(R.id.match_found_tv)).setText(followupList==null?"0":followupList.size()+"");
         fragmentView.findViewById(R.id.top_linear).setVisibility(View.GONE);
         if (adapter == null) {
 

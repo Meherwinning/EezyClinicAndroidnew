@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.AbstractNotification;
 import com.vempower.eezyclinic.APICore.NotificationsComingappointment;
@@ -24,8 +25,8 @@ import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRM;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+
+ ;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -118,7 +119,7 @@ import java.util.List;
         public class SendRequestHolder extends RecyclerView.ViewHolder {
                  private AppCompatButton accept_bt,reject_bt;
                  private LinearLayout rejected_linear;
-            private MyTextViewRR message_tv;
+            private TextView message_tv;
 
             public SendRequestHolder(View itemView) {
                 super(itemView);
@@ -196,7 +197,7 @@ import java.util.List;
         SimpleDateFormat DISPLAY_DATE_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_DATE_TIME);
         // SimpleDateFormat DISPLAY_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_TIME);
 
-        private MyTextViewRR message_tv;
+        private  TextView message_tv;
 
         public AppointmentHolder(View itemView) {
             super(itemView);
@@ -235,7 +236,7 @@ String dateStr="";
                 clinic_address_tv.setText(data.getClinicName());
 
 
-                // MyTextViewRR appointment_conform_tv = fragmentView.findViewById(R.id.appointment_conform_tv);
+                //  TextView appointment_conform_tv = fragmentView.findViewById(R.id.appointment_conform_tv);
 //19 August 2017, Saturday 01.08 PM
                 try {
                     Date date = Utils.changeStringToDateFormat(data.getCreatedDate(), SERVER_DATE_FORMAT_NEW);

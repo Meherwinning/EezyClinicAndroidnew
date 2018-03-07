@@ -25,7 +25,7 @@ import com.vempower.eezyclinic.mappers.DoctorAppointmentTimeSlotsListMapper;
 import com.vempower.eezyclinic.mappers.ReScheduleAppointmentMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyTextViewRR;
+ ;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

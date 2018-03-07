@@ -61,7 +61,7 @@
             android:paddingTop="@dimen/_10dp"
             android:paddingBottom="@dimen/_10dp"
             android:layout_height="wrap_content" />
-        <com.vempower.eezyclinic.views.MyTextViewRR
+         <TextView    android:fontFamily="@font/roboto"
             android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_weight="1"
