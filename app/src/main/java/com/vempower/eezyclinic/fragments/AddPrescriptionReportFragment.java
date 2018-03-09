@@ -28,7 +28,7 @@ import com.vempower.eezyclinic.mappers.UploadHealthRecordsMapper;
 import com.vempower.eezyclinic.mappers.UploadProfilePicMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
+import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
  ;
 
 import java.io.File;
@@ -49,7 +49,7 @@ public class AddPrescriptionReportFragment extends ImageProcessFragment {
     private ArrayList<File> imagesList;
     private LayoutInflater inflater;
     private AppCompatButton upload_document_bt;
-    private MyEditTextBlackCursorRR doctor_name_et, clinic_name_et, other_details_et, document_name_et;
+    private MyEditTextBlackCursor doctor_name_et, clinic_name_et, other_details_et, document_name_et;
     private LinearLayout document_name_linear;
     private boolean isReport;
 

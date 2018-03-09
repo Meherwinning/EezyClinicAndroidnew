@@ -18,7 +18,7 @@ import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.GetMyNotesMapper;
 import com.vempower.eezyclinic.mappers.SaveMyNotesMapper;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
+import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
 
 /**
  * Created by satish on 6/12/17.
@@ -27,7 +27,7 @@ import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
 public class MyNotesListFragment extends AbstractFragment {
 
     private View fragmentView;
-    private MyEditTextBlackCursorRR my_notes_et;
+    private MyEditTextBlackCursor my_notes_et;
     private AppCompatButton save_note_bt;
     private GetMyNotesData myNotesData;
 

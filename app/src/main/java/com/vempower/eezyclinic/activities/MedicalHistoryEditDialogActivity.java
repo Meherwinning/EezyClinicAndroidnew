@@ -9,7 +9,7 @@ import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
+import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
 
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
@@ -19,7 +19,7 @@ public class MedicalHistoryEditDialogActivity extends AbstractFragmentActivity {
 
 
     private MedicalHistoryData data;
-    private MyEditTextBlackCursorRR medical_history_et;
+    private MyEditTextBlackCursor medical_history_et;
     private TextView cancel_tv,save_tv;
 
     @Override

@@ -30,7 +30,7 @@
             app:hintEnabled="true"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                 android:id="@+id/my_notes_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
                 android:background="@drawable/background_shape_idle"
 
                 android:textSize="@dimen/_14sp"
-                android:fontFamily="sans-serif"
+
                 android:textStyle="normal"
                 android:textColor="#ab212121"
                 />

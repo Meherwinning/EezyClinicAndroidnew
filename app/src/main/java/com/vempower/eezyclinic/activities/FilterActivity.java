@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,7 +24,6 @@ import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.nex3z.togglebuttongroup.MultiSelectToggleGroup;
 import com.nex3z.togglebuttongroup.SingleSelectToggleGroup;
 import com.nex3z.togglebuttongroup.button.LabelToggle;
-import com.rey.material.widget.CheckBox;
 import com.rey.material.widget.Switch;
 import com.vempower.eezyclinic.APIResponce.InsuranceData;
 import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
@@ -44,7 +44,7 @@ import com.vempower.eezyclinic.mappers.LanguageListMapper;
 import com.vempower.eezyclinic.mappers.NationalityMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyCheckBoxRR;
+//import android.widget.CheckBox;
 import com.vempower.eezyclinic.views.MySwitch;
  ;
 import com.vempower.eezyclinic.views.myseekbar.RangeSeekBar;
@@ -290,8 +290,8 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
     }
 
     private void computeGenderView() {
-        final MyCheckBoxRR male_checkbox= findViewById(R.id.male_checkbox);
-                final MyCheckBoxRR female_checkbox = findViewById(R.id.female_checkbox);
+        final CheckBox male_checkbox= findViewById(R.id.male_checkbox);
+                final CheckBox female_checkbox = findViewById(R.id.female_checkbox);
         male_checkbox.setChecked(requestParms.getGendersearch().contains(Constants.GenderValues.MALE));
         female_checkbox.setChecked(requestParms.getGendersearch().contains(Constants.GenderValues.FEMALE));
 

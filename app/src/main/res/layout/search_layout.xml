@@ -385,7 +385,7 @@
                 app:hintEnabled="true"
                 app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                <!--<com.vempower.eezyclinic.views.MyEditTextRR
+                <!--<EditText                                          android:fontFamily="@font/roboto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/_2dp"

@@ -13,7 +13,7 @@ import com.hp.mss.hpprint.R;
 import com.hp.mss.hpprint.model.PrintPlugin;
 
 public class PrintPluginAdapter extends BaseAdapter {
-    private static final String TOOLBAR_TITLE_FONTFACE = "fonts/HPSimplified_Rg.ttf";
+   // private static final String TOOLBAR_TITLE_FONTFACE = "fonts/HPSimplified_Rg.ttf";
 
     Context context;
     PrintPlugin[] plugins;

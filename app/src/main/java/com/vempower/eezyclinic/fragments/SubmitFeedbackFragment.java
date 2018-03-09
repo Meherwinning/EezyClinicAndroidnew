@@ -16,8 +16,8 @@ import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.SubmitFeedbackMapper;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyCheckBoxRR;
-import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
+import android.widget.CheckBox;
+import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
 
  ;
 
@@ -38,12 +38,12 @@ public class SubmitFeedbackFragment extends AbstractFragment {
     private TextView specialities_name_tv, clinic_name_tv, date_and_time_tv;
     private MaterialRatingBar waiting_time_rating, diagnasis_ratingbar,
             customer_service_rating_bar;
-    private MyCheckBoxRR recommended_doctor_checkbox;
+    private CheckBox recommended_doctor_checkbox;
     //private LinearLayout display_name_in_reviews_linear;
     private com.rey.material.widget.Switch display_name_switch;
     private AppCompatButton submit_bt;
     private PendingFeedbackData pendingFeedbackData;
-    private MyEditTextBlackCursorRR write_areview_et;
+    private MyEditTextBlackCursor write_areview_et;
 
     String DISPLAY_DATE_TIME = "d MMMM yyyy EEEE h:mm a";
     String SERVER_DATE_FORMAT_NEW = "yyyy-MM-dd HH:mm:ss";//"2017-12-26 16:55:00"

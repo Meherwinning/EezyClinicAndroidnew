@@ -34,7 +34,7 @@ import com.vempower.eezyclinic.mappers.UpdateSugarHealthCheckMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
+import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
  ;
 
 import java.text.ParseException;
@@ -51,7 +51,7 @@ public class HealthCheckTab4 extends  AbstractHealthChecksTabFragment {
     private LinearLayout sugar_levels_linear, add_new_reocrd_linear, new_sugar_record_view_linear;
     private LayoutInflater inflater;
   //  private List<HealthChecksSugar> sugarLevelsList;
-    private MyEditTextBlackCursorRR new_tot_cholesterol_et,new_triglycerides_et,new_hdl_et,new_ldl_et;
+    private MyEditTextBlackCursor new_tot_cholesterol_et,new_triglycerides_et,new_hdl_et,new_ldl_et;
     private TextView new_date_tv;
     private ImageView new_delete_iv, new_ok_iv;
     private List<HealthChecksCholesterol> chorlList;
@@ -240,7 +240,7 @@ public class HealthCheckTab4 extends  AbstractHealthChecksTabFragment {
     }
 
     private class RecordHolder {
-        MyEditTextBlackCursorRR ldl_et, hdl_et, triglycerides_et,tot_cholesterol_et;
+        MyEditTextBlackCursor ldl_et, hdl_et, triglycerides_et,tot_cholesterol_et;
          TextView date_tv;
         ImageView ok_iv, edit_iv, delete_iv;
         private final HealthChecksCholesterol chol;

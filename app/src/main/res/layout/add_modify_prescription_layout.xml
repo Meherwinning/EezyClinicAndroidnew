@@ -223,7 +223,7 @@
             app:hintEnabled="true"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                 android:id="@+id/doctor_name_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -242,7 +242,7 @@
                 android:textSize="@dimen/_14dp"
 
 
-                android:fontFamily="sans-serif"
+
                 android:textStyle="normal"
                 android:textColor="#212121"
                 />
@@ -275,7 +275,7 @@
             app:hintEnabled="true"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                 android:id="@+id/clinic_name_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -293,7 +293,7 @@
                 android:textColorHint="#8a000000"
                 android:textSize="@dimen/_14dp"
 
-                android:fontFamily="sans-serif"
+
                 android:textStyle="normal"
                 android:textColor="#212121"
                 />
@@ -328,7 +328,7 @@
                 app:hintEnabled="true"
                 app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                     android:id="@+id/document_name_et"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -346,7 +346,7 @@
                     android:textColorHint="#8a000000"
                     android:textSize="@dimen/_14dp"
 
-                    android:fontFamily="sans-serif"
+
                     android:textStyle="normal"
                     android:textColor="#212121"
                     />
@@ -379,7 +379,7 @@
             app:hintEnabled="true"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                 android:id="@+id/other_details_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -397,7 +397,7 @@
                 android:textColorHint="#8a000000"
                 android:textSize="@dimen/_14dp"
 
-                android:fontFamily="sans-serif"
+
                 android:textStyle="normal"
                 android:textColor="#212121"
 

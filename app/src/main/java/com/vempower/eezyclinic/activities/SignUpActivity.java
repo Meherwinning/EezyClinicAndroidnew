@@ -10,6 +10,7 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,8 +29,8 @@ import com.vempower.eezyclinic.mappers.SignupMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
-import com.vempower.eezyclinic.views.MyCheckBoxRR;
-import com.vempower.eezyclinic.views.MyEditTextRR;
+import android.widget.CheckBox;
+
  ;
 //import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
@@ -51,7 +52,7 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
     private String selectedGender;
 
 
-    private MyEditTextRR name_et, email_et, mobile_num_et,password_et;
+    private EditText name_et, email_et, mobile_num_et,password_et;
     private MyButtonRectangleRM signup_bt;
     private SelectedDate selectedDateObj;
 
@@ -224,7 +225,7 @@ public class SignUpActivity extends AbstractSocialLoginActivity /*implements Dat
         }
 
         {
-           MyCheckBoxRR terms_and_cond_checkbox= findViewById(R.id.terms_and_cond_checkbox);
+           CheckBox terms_and_cond_checkbox= findViewById(R.id.terms_and_cond_checkbox);
            if(terms_and_cond_checkbox!=null && !terms_and_cond_checkbox.isChecked())
            {
                showToastMessage(R.string.please_agree_terms_and_conditions_lbl);

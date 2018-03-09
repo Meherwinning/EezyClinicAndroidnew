@@ -22,7 +22,7 @@
             android:paddingBottom="@dimen/_4dp"
             android:paddingTop="@dimen/_4dp">
 
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                 android:id="@+id/weight_et"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -38,7 +38,7 @@
                 android:textColor="#ee7b7979"
                 android:textSize="@dimen/_14dp" />
 
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                 android:id="@+id/height_et"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -54,7 +54,7 @@
                 android:textColor="#ee7b7979"
                 android:textSize="@dimen/_14dp" />
 
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                 android:id="@+id/hba1c_et"
                 android:visibility="gone"
                 android:layout_width="0dp"

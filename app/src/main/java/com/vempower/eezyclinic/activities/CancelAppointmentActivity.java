@@ -43,7 +43,7 @@ import com.vempower.eezyclinic.mappers.LanguageListMapper;
 import com.vempower.eezyclinic.mappers.NationalityMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyCheckBoxRR;
+import android.widget.CheckBox;
 import com.vempower.eezyclinic.views.MySwitch;
  ;
 

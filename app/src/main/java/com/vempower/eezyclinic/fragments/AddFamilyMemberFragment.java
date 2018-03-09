@@ -19,7 +19,7 @@ import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.mappers.SearchFamilyMemberMapper;
 import com.vempower.eezyclinic.mappers.SendRequestFamilyMemberAddMapper;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
+import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
  ;
 
 /**
@@ -28,7 +28,7 @@ import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
 
 public class AddFamilyMemberFragment extends AbstractFragment {
 
-    private MyEditTextBlackCursorRR patient_id_et;
+    private MyEditTextBlackCursor patient_id_et;
     private AppCompatButton submit_bt;
     private LinearLayout patient_details_linear;
     private TextView family_member_patient_name;

@@ -36,7 +36,7 @@ import com.vempower.eezyclinic.mappers.UpdateWeightHeightCheckMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
+import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
  ;
 
 import java.text.ParseException;
@@ -54,7 +54,7 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
     private LinearLayout sugar_levels_linear, add_new_reocrd_linear, new_sugar_record_view_linear;
     private LayoutInflater inflater;
     //  private List<HealthChecksSugar> sugarLevelsList;
-    private MyEditTextBlackCursorRR new_weight_et, new_height_et;
+    private MyEditTextBlackCursor new_weight_et, new_height_et;
     private TextView new_date_tv;
     private ImageView new_delete_iv, new_ok_iv;
     //private List<HealthChecksCholesterol> chorlList;
@@ -227,7 +227,7 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
 
 
     private class RecordHolder {
-        MyEditTextBlackCursorRR weight_et, height_et;
+        MyEditTextBlackCursor weight_et, height_et;
          TextView date_tv;
         ImageView ok_iv, edit_iv, delete_iv;
         private final HealthChecksHeightWeight heightWeight;

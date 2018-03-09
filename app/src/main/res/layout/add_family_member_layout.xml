@@ -39,13 +39,13 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                         android:id="@+id/patient_id_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
 
-                        android:fontFamily="sans-serif"
+
                         android:hint="Enter Patient ID"
 
                         android:maxLength="50"

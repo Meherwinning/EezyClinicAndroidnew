@@ -27,7 +27,7 @@ import com.vempower.eezyclinic.mappers.GetFamilyMembersMapper;
 import com.vempower.eezyclinic.mappers.MedicalHistoryMapper;
 import com.vempower.eezyclinic.mappers.SaveMedicalHistorySelfMapper;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
+import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
 
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
@@ -47,7 +47,7 @@ public class FamilyMembersListFragment extends  SwipedRecyclerViewFragment {
     private FamilyMembersListAdapter adapter;
     private List<GetFamilyMemberData> familyMembersList;
 
- /*   private MyEditTextBlackCursorRR medical_history_et;
+ /*   private MyEditTextBlackCursor medical_history_et;
     private TextView save_tv;
 */
   private AppCompatButton search_family_member_bt;

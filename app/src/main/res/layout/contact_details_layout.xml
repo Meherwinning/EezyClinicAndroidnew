@@ -33,7 +33,7 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                        android:id="@+id/contact_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -81,7 +81,7 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                         android:id="@+id/primary_contact_no_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -128,7 +128,7 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                         android:id="@+id/secondary_contact_no_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -175,7 +175,7 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                         android:id="@+id/residence_contact_no_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -223,7 +223,7 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                         android:id="@+id/email_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -272,7 +272,7 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                        android:id="@+id/address_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -321,7 +321,7 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                        android:id="@+id/language_known_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -370,7 +370,7 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                         android:id="@+id/nationality_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -419,7 +419,7 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                        android:id="@+id/id_type_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -468,7 +468,7 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                         android:id="@+id/id_number_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

@@ -78,7 +78,7 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.vempower.eezyclinic.views.MyEditTextRR
+                    <EditText                                          android:fontFamily="@font/roboto"
                         android:id="@+id/otp_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -128,7 +128,7 @@
 
                     android:background="@drawable/background_shape_idle">
 
-                    <com.vempower.eezyclinic.views.MyEditTextRR
+                    <EditText                                          android:fontFamily="@font/roboto"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="left|center_vertical"
@@ -176,7 +176,7 @@
 
                     android:background="@drawable/background_shape_idle">
 
-                    <com.vempower.eezyclinic.views.MyEditTextRR
+                    <EditText                                          android:fontFamily="@font/roboto"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="left|center_vertical"

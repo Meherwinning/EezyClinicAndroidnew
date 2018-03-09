@@ -32,7 +32,7 @@ import com.vempower.eezyclinic.mappers.UpdateSugarHealthCheckMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
+import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
  ;
 
 import java.text.ParseException;
@@ -49,7 +49,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
     private LinearLayout sugar_levels_linear, add_new_reocrd_linear, new_sugar_record_view_linear;
     private LayoutInflater inflater;
     private List<HealthChecksSugar> sugarLevelsList;
-    private MyEditTextBlackCursorRR new_fasting_et, new_hba1c_et, new_post_meal_et;
+    private MyEditTextBlackCursor new_fasting_et, new_hba1c_et, new_post_meal_et;
     private RelativeLayout no_records_relative;
 
     private ImageView new_delete_iv, new_ok_iv;
@@ -236,7 +236,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
     }
 
     private class RecordHolder {
-        MyEditTextBlackCursorRR fasting_et, post_meal_et, hba1c_et;
+        MyEditTextBlackCursor fasting_et, post_meal_et, hba1c_et;
          TextView date_tv;
         ImageView ok_iv, edit_iv, delete_iv;
         private final HealthChecksSugar sugar;

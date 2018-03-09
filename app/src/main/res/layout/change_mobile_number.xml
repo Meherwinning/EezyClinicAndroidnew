@@ -48,13 +48,12 @@
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                     app:passwordToggleTint="#99212121">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                         android:id="@+id/registed_mobile_num_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_2dp"
                         android:background="@null"
-                        android:fontFamily="sans-serif"
                         android:gravity="left|center_vertical"
                         android:hint="Registerd Mobile Number"
                         android:imeOptions="actionUnspecified"
@@ -98,13 +97,12 @@
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                     app:passwordToggleTint="#99212121">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                         android:id="@+id/change_mobile_number_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_2dp"
                         android:background="@null"
-                        android:fontFamily="sans-serif"
                         android:gravity="left|center_vertical"
                         android:hint="Change Mobile Number"
                         android:imeOptions="actionUnspecified"

@@ -23,7 +23,7 @@ import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.ChangeMobileNumberMapper;
 import com.vempower.eezyclinic.mappers.ChangeMobileVerifyOTPMapper;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
+import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
 /**
@@ -33,7 +33,7 @@ import com.vempower.eezyclinic.activities.AbstractActivity;
 public class ChangeMobileNumberFragment extends AbstractFragment {
 
     private View fragmentView;
-    private MyEditTextBlackCursorRR registed_mobile_num_et,change_mobile_number_et;
+    private MyEditTextBlackCursor registed_mobile_num_et,change_mobile_number_et;
     private AppCompatButton bottom_bt;
     private boolean isVerifyOTP;
     private LinearLayout otp_verify_linear;

@@ -15,7 +15,7 @@ import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.ChangePasswordMapper;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
+import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
 /**
@@ -25,7 +25,7 @@ import com.vempower.eezyclinic.activities.AbstractActivity;
 public class ChangePasswordFragment extends AbstractFragment {
 
     private View fragmentView;
-    private MyEditTextBlackCursorRR current_password_et,new_password_et,re_password_et;
+    private MyEditTextBlackCursor current_password_et,new_password_et,re_password_et;
     private AppCompatButton change_password_bt;
 
     @Nullable
@@ -131,7 +131,7 @@ public class ChangePasswordFragment extends AbstractFragment {
     }
 
     private void myInit() {
-        //MyEditTextBlackCursorRR
+        //MyEditTextBlackCursor
         current_password_et = getFragemtView().findViewById(R.id.current_password_et);
 
         new_password_et  = getFragemtView().findViewById(R.id.new_password_et);

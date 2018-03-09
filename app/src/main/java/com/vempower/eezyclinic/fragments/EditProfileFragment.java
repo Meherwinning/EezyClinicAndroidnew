@@ -58,7 +58,7 @@ import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.CustomSpinnerSelection;
 import com.vempower.eezyclinic.views.MyAutoCompleteBlackCursorTextView;
 import com.vempower.eezyclinic.views.MyAutoCompleteTextView;
-import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
+import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
  ;
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
@@ -94,16 +94,16 @@ public class EditProfileFragment extends ImageProcessFragment {
     private HintAdapter<IdCardTypeData> idTypeAdapter;
 
 
-    private MyEditTextBlackCursorRR patient_name_et, height_et,patient_age_et1,
+    private MyEditTextBlackCursor patient_name_et, height_et,patient_age_et1,
             known_allergies_et, primary_contact_no_et,secondary_contact_no_et,residence_contact_no_et,
             contact_email_et,id_number_et,
             contact_address_et, contact_language_known_et, contact_nationality_et1,
             contact_id_type_et1, contact_insurance_provider_et1, contact_insurance_details_et1;
 
-    private MyEditTextBlackCursorRR emergency_contact_name_et, emergency_contact_relationship_et1,
+    private MyEditTextBlackCursor emergency_contact_name_et, emergency_contact_relationship_et1,
             emergency_contact_number_et, emergency_contact_emailid_et;
 
-    private MyEditTextBlackCursorRR insurance_tpa_et,insurance_insurance_provider_et1,
+    private MyEditTextBlackCursor insurance_tpa_et,insurance_insurance_provider_et1,
             insurance_insurance_number_et,insurance_insurance_policy_et,
             insurance_member_id_et,insurance_type_et,
             insurance_co_pay_et,insurance_scheme_et,

@@ -257,7 +257,7 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                         android:id="@+id/patient_name_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -345,7 +345,7 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                         android:id="@+id/reason_for_appointment_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -394,7 +394,7 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                         android:id="@+id/email_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -442,7 +442,7 @@
                     app:hintEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <com.vempower.eezyclinic.views.MyEditTextBlackCursorRR
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                         android:id="@+id/phone_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

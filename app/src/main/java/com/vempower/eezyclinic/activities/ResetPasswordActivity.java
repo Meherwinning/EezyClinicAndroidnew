@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.facebook.LoginActivity;
@@ -15,7 +16,7 @@ import com.vempower.eezyclinic.mappers.ResetPasswordMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
-import com.vempower.eezyclinic.views.MyEditTextRR;
+
 
 /**
  * Created by satish on 23/11/17.
@@ -23,7 +24,7 @@ import com.vempower.eezyclinic.views.MyEditTextRR;
 
 public class ResetPasswordActivity extends AbstractFragmentActivity {
 
- private MyEditTextRR otp_et , new_password_et  , re_password_et ;
+ private EditText otp_et , new_password_et  , re_password_et ;
     private String id;
 
     @Override

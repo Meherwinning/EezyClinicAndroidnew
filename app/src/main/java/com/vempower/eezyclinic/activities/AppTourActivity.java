@@ -26,6 +26,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.View;
 
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
@@ -43,7 +44,7 @@ public class AppTourActivity extends AbstractFragmentActivity {
         flag=false;
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
-      final  PagerAdapter adapter= new PagerAdapter(getSupportFragmentManager());
+        final  PagerAdapter adapter= new PagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
        /* final ViewPager.LayoutParams layoutParams = new ViewPager.LayoutParams();
@@ -79,6 +80,40 @@ public class AppTourActivity extends AbstractFragmentActivity {
             public void onPageScrollStateChanged(int state) {
 
                 this.state=state;
+            }
+        });
+
+        viewPager.setPageTransformer(false, new ViewPager.PageTransformer()
+        {
+            @Override
+            public void transformPage(View page, float position)
+            {
+                int pageWidth = viewPager.getMeasuredWidth() -
+                        viewPager.getPaddingLeft() - viewPager.getPaddingRight();
+                int pageHeight = viewPager.getHeight();
+                int paddingLeft = viewPager.getPaddingLeft();
+                float transformPos = (float) (page.getLeft() -
+                        (viewPager.getScrollX() + paddingLeft)) / pageWidth;
+                int max = pageHeight / 10;
+                if (transformPos < -1)
+                {
+                    // [-Infinity,-1)
+                    // This page is way off-screen to the left.
+                    page.setAlpha(0.5f);// to make left transparent
+                    page.setScaleY(0.7f);
+                }
+                else if (transformPos <= 1)
+                {
+                    // [-1,1]
+                    page.setScaleY(1f);
+                }
+                else
+                {
+                    // (1,+Infinity]
+                    // This page is way off-screen to the right.
+                    page.setAlpha(0.5f);// to make right transparent
+                    page.setScaleY(0.7f);
+                }
             }
         });
 

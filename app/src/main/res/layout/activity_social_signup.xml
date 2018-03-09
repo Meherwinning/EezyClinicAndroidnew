@@ -79,7 +79,7 @@
                         app:hintEnabled="true"
                         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                        <com.vempower.eezyclinic.views.MyEditTextRR
+                        <EditText                                          android:fontFamily="@font/roboto"
                             android:id="@+id/name_et"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -218,7 +218,7 @@
                         app:hintEnabled="true"
                         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                        <com.vempower.eezyclinic.views.MyEditTextRR
+                        <EditText                                          android:fontFamily="@font/roboto"
                             android:id="@+id/email_et"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -263,7 +263,7 @@
                         app:hintEnabled="true"
                         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                        <com.vempower.eezyclinic.views.MyEditTextRR
+                        <EditText                                          android:fontFamily="@font/roboto"
                             android:id="@+id/mobile_num_et"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -312,7 +312,7 @@
                         app:passwordToggleEnabled="true"
                         app:passwordToggleTint="@color/white">
 
-                        <com.vempower.eezyclinic.views.MyEditTextRR
+                        <EditText                                          android:fontFamily="@font/roboto"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="@dimen/_2dp"
@@ -348,7 +348,7 @@
                     android:layout_gravity="center_horizontal"
                     android:orientation="horizontal">
 
-                    <com.vempower.eezyclinic.views.MyCheckBoxRR
+                    <CheckBox                        android:fontFamily="@font/roboto"
                         android:id="@+id/terms_and_cond_checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"

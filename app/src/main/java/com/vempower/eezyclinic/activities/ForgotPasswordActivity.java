@@ -22,7 +22,7 @@ import com.vempower.eezyclinic.mappers.ForgotPasswordOTPMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
-import com.vempower.eezyclinic.views.MyEditTextRR;
+
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ import java.util.List;
 
 public class ForgotPasswordActivity extends AbstractFragmentActivity {
 
-    private MyEditTextRR mobile_num_et, email_et;
+    private EditText mobile_num_et, email_et;
     private TextWatcher mobileNumTextWacher, emailTextWacher;
     private boolean isEmail = false;
 

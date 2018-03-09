@@ -23,7 +23,7 @@ import com.vempower.eezyclinic.mappers.MedicalHistoryMapper;
 import com.vempower.eezyclinic.mappers.PrescriptionsListMapper;
 import com.vempower.eezyclinic.mappers.SaveMedicalHistorySelfMapper;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
+import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
 
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
@@ -43,7 +43,7 @@ public class MedicalHistoryListFragment extends  SwipedRecyclerViewFragment {
     private MedicalHistoryListAdapter adapter;
     private List<MedicalHistoryData> medicalHistoryList;
 
-    private MyEditTextBlackCursorRR medical_history_et;
+    private MyEditTextBlackCursor medical_history_et;
     private TextView save_tv;
 
 

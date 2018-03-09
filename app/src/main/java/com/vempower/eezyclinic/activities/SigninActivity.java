@@ -24,7 +24,7 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
-import com.vempower.eezyclinic.views.MyEditTextRR;
+
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -60,7 +60,9 @@ public class SigninActivity extends AbstractSocialLoginActivity {
 
         if(Constants.IS_TESTING)
         {
-            user_id_et.setText("swathi.kits.1251@gmail.com");
+            //user_id_et.setText("swathi.kits.1251@gmail.com");
+            //user_id_et.setText("wahedjaved@gmail.com");
+            //wahedjaved@gmail.com
             //user_id_et.setText("quddus.mohd@v-empower.com");
         }
 

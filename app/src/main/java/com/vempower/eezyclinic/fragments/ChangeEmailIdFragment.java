@@ -19,7 +19,7 @@ import com.vempower.eezyclinic.mappers.ChangeEmailMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
+import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
 /**
@@ -28,7 +28,7 @@ import com.vempower.eezyclinic.activities.AbstractActivity;
 
 public class ChangeEmailIdFragment extends AbstractFragment {
 
-    private MyEditTextBlackCursorRR registed_email_id_et, change_email_id_et;
+    private MyEditTextBlackCursor registed_email_id_et, change_email_id_et;
     private View fragmentView;
     private AppCompatButton verify_email_bt;
 

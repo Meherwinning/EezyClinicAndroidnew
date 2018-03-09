@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.facebook.LoginActivity;
@@ -22,7 +23,7 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
-import com.vempower.eezyclinic.views.MyEditTextRR;
+
 
 
 /**
@@ -34,7 +35,7 @@ public class VerifyOTPActivity extends AbstractFragmentActivity  {
     private String patient_id;
     public static final String IS_FROM_RESEND_OTP_KEY="is_from_resend_otp_key";
 
-    private MyEditTextRR otp_et;
+    private EditText otp_et;
     private TextView otp_display_tv;
 
     @Override

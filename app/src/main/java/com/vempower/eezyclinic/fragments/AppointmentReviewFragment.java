@@ -25,7 +25,7 @@ import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.AppointmentBookingMapper;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.CustomSpinnerSelection;
-import com.vempower.eezyclinic.views.MyEditTextBlackCursorRR;
+import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
 import com.vempower.eezyclinic.views.MyRadioButtonRR;
  ;
 
@@ -44,13 +44,13 @@ public class AppointmentReviewFragment extends AbstractFragment {
     private RadioGroup appointment_radio_group;
 
     private BookAppointmentRequestDetails requestDetails;
-    // private MyCheckBoxRR self_checkbox,others_checkbox;
+    // private CheckBox self_checkbox,others_checkbox;
 
     //private boolean isSelfAppointment;
     private CustomSpinnerSelection relation_spinner;
     private Button appointment_bt;
     //private String selectedRelation;
-    private MyEditTextBlackCursorRR patient_name_et,reason_for_appointment_et,email_et,phone_et;
+    private MyEditTextBlackCursor patient_name_et,reason_for_appointment_et,email_et,phone_et;
     private SearchResultDoctorListData searchResultDoctorListData;
     private String dateTimeStr;
     private  TextView time_date_display_tv;
