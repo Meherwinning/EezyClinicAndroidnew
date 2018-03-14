@@ -19,6 +19,7 @@ package com.vempower.eezyclinic.activities.complex;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.v4.app.FragmentManager;
 import android.util.DisplayMetrics;
 
 
@@ -37,33 +38,46 @@ import java.util.List;
 public class ComplexListAdapter extends RecyclerAdapter {
 
   private DataListManager<Article> singleModelManager;
+    private DataListManager<SpecalitiyRemainData> popularDoctorslManager;
    // private DataListManager<SpecalitiyData> specialitiesModelManager;
   private DataListManager<SpecalitiyData> gridItemsManager;
    // private DataListManager<SpecalitiyRemainData> gridItemsManager1;
-  private DataListManager<SpecalitiyRemainData> carItemsManager;
+
+  /*private DataListManager<SpecalitiyRemainData> carItemsManager;*/
+
   private DataListManager<Vehicle> bikeItemsManager;
 
-  private final int SINGLE_VIEW_TOT_ITEMS=9;
+  private final int SINGLE_VIEW_TOT_ITEMS=6;
 
   //private List<SpecalitiyData> gridDataList
 
   private SimpleDividerDecoration simpleItemDecoration,simpleItemDecoration1;
+ // private FragmentManager fragmentManager;
+  private List<SpecalitiyRemainData> doctorsList;
 
-  public ComplexListAdapter(List<SpecalitiyRemainData> doctorsList) {
+  public ComplexListAdapter(List<SpecalitiyRemainData> doctorsList, FragmentManager fragmentManager) {
    // simpleItemDecoration = new SimpleDividerDecoration(MyApplication.getCurrentActivityContext(), SimpleDividerDecoration.VERTICAL);
+      //this.fragmentManager=fragmentManager;
+      this.doctorsList=doctorsList;
       simpleItemDecoration1 = new SimpleDividerDecoration(MyApplication.getCurrentActivityContext(), SimpleDividerDecoration.HORIZONTAL);
 
     singleModelManager = new DataListManager<>(this);
+      popularDoctorslManager  = new DataListManager<>(this);
     gridItemsManager = new DataListManager<>(this);
       //gridItemsManager1 = new DataListManager<>(this);
-    carItemsManager = new DataListManager<>(this);
+
+    /*carItemsManager = new DataListManager<>(this);*/
+
     bikeItemsManager = new DataListManager<>(this);
      // specialitiesModelManager= new DataListManager<>(this);
+
+      //
 
 
 
     //addDataManager(new DataItemManager<>(this, null/*new Header("Articles")*/));
     addDataManager(singleModelManager);
+
 
      // addDataManager(new DataItemManager<>(this, null/*new Header("Articles")*/));
      // addDataManager(specialitiesModelManager);
@@ -73,6 +87,7 @@ public class ComplexListAdapter extends RecyclerAdapter {
       //addDataManager(new DataItemManager<>(this, DummyDataProvider.getAdvertisementOne()));
    // addDataManager(new DataItemManager<>(this, null/*new Header("Grid", true))*/));
     addDataManager(gridItemsManager);
+
 
 
       //addDataManager(new DataItemManager<>(this, null/*new Header("Grid", true))*/));
@@ -86,7 +101,8 @@ public class ComplexListAdapter extends RecyclerAdapter {
       //addDataManager(new DataItemManager<>(this, DummyDataProvider.getAdvertisementTwo()));
 
     addDataManager(new DataItemManager<>(this, new Header("Popular Doctors")));
-    addDataManager(carItemsManager);
+    //addDataManager(carItemsManager);
+      addDataManager(popularDoctorslManager);
     addDataManager(new DataItemManager<>(this, new Header("Health Tips")));
     addDataManager(bikeItemsManager);
 
@@ -105,11 +121,12 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
      // registerBinder(new GridItemRemainBinder(convertDpToPixel(4, context)));
 
-      registerBinder(new CarBinder(simpleItemDecoration1,doctorsList));
-
+      //registerBinder(new CarBinder(simpleItemDecoration1,doctorsList));
+      registerBinder(new ArticleBinder1(new ArticleItemDecorator(),fragmentManager));
     registerBinder(new BikeBinder(simpleItemDecoration1));
-    registerBinder(new FeaturedArticleBinder(new ArticleItemDecorator()));
+   /* registerBinder(new FeaturedArticleBinder(new ArticleItemDecorator()));*/
     registerBinder(new ArticleBinder(new ArticleItemDecorator()));
+
    /* registerBinder(new AdvertisementBinder());
     registerBinder(new ShufflingHeaderBinder(new ShufflingHeaderBinder.ShuffleListener() {
       @Override public void onShuffleClicked() {
@@ -117,6 +134,8 @@ public class ComplexListAdapter extends RecyclerAdapter {
         gridItemsManager.set(gridDataList);
       }
     }));*/
+
+      //
   }
 
   public static int convertDpToPixel(float dp, Context context) {
@@ -129,7 +148,7 @@ public class ComplexListAdapter extends RecyclerAdapter {
     multiItemsManager.addAll(dataList);
   }*/
  public void addCarItem(List<SpecalitiyRemainData> dataList) {
-   carItemsManager.addAll(dataList);
+   //carItemsManager.addAll(dataList);
  }
   public void addBikeItem(List<Vehicle> dataList) {
     bikeItemsManager.addAll(dataList);
@@ -225,7 +244,17 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
   public void addSingleModelItem(List<Article> dataList) {
     singleModelManager.addAll(dataList);
+      popularDoctorslManager.addAll(doctorsList.subList(0,1));
+     /* ArrayList<Article1> list= new ArrayList<Article1>();
+      list.add(new Article1());*/
+      //popularDoctorslManager.addAll(dataList);
   }
+   /* public void addSingleModelItem(List<Article> dataList) {
+        singleModelManager.addAll(dataList);
+     *//* ArrayList<Article1> list= new ArrayList<Article1>();
+      list.add(new Article1());*//*
+        popularDoctorslManager.addAll(dataList);
+    }*/
 
 
   private int getScreenWidth()

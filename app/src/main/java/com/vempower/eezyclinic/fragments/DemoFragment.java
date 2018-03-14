@@ -69,7 +69,7 @@ public class DemoFragment extends  AbstractFragment {
         {
             dataList1.add(new SpecalitiyRemainData(data)) ;
         }
-         adapter = new ComplexListAdapter(dataList1);
+         adapter = new ComplexListAdapter(dataList1,getFragmentManager());
         adapter.setSpanCount(3);
 
         glm.setSpanSizeLookup(adapter.getSpanSizeLookup());
@@ -78,8 +78,11 @@ public class DemoFragment extends  AbstractFragment {
         recyclerView.setAdapter(adapter);
 
         // Single list
+
         List<Article> dataListThree = DummyDataProvider.getArticles();
         adapter.addSingleModelItem(dataListThree);
+
+
 
         // Grid items
        /* List<GridItem> gridDataList = new ArrayList<>();

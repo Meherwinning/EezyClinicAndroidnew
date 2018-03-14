@@ -66,7 +66,7 @@ public class ArticleItemDecorator implements ItemDecorator {
     final int bottom = mBounds.bottom + Math.round(ViewCompat.getTranslationY(child));
     final int top = bottom - 16;
 
-    canvas.drawRect(left, top, right, bottom, myPaint);
+    //canvas.drawRect(left, top, right, bottom, myPaint);
     canvas.restore();
   }
 }

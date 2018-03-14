@@ -113,7 +113,6 @@ public class NewHomeFragment extends SwipedAutoFitRecyclerViewFragment{
                     showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_speciality_list_lbl), new ApiErrorDialogInterface() {
                         @Override
                         public void onCloseClick() {
-
                             ((AbstractActivity) MyApplication.getCurrentActivityContext()). finish();
                         }
 
