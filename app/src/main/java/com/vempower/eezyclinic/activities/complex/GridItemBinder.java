@@ -31,6 +31,7 @@ import com.ahamed.multiviewadapter.ItemViewHolder;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.decorator.GridInsetDecoration;
+import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Utils;
  ;
 
@@ -68,10 +69,13 @@ private ExpandColapseButtonListener buttonListener;
   public class OrdersListHolder extends ItemViewHolder<SpecalitiyData> {
 
     private TextView item_name_tv;
+    private ImageView profile_iv;
 
     public OrdersListHolder(View itemView) {
       super(itemView);
       item_name_tv = itemView.findViewById(R.id.item_name_tv);
+
+      profile_iv   = itemView.findViewById(R.id.profile_iv);
 
     }
 
@@ -81,20 +85,54 @@ private ExpandColapseButtonListener buttonListener;
       }
 
       item_name_tv.setText(data.getName());
+      profile_iv.setBackground(null);
+      switch (data.getButtonType())
+      {
+        case SpecalitiyData.ButtonType.NORMAL:
+          MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_icon,profile_iv);
+          break;
+        case SpecalitiyData.ButtonType.MORE:
+          MyApplication.getInstance().setBitmapToImageview(R.drawable.more_button,profile_iv);
+          item_name_tv.setText("More");
+          itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-      itemView.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          if(data.isMoreButton())
-          {
-            Utils.showToastMsg("Now click More button");
-            if(buttonListener!=null)
-            {
-              buttonListener.onClick(true);
+                Utils.showToastMsg("Now click More button");
+                if(buttonListener!=null)
+                {
+                  buttonListener.onClick(true);
+                }
+               // profile_iv.setBackground(null);
+              }
+          });
+          break;
+        case SpecalitiyData.ButtonType.LESS:
+          MyApplication.getInstance().setBitmapToImageview(R.drawable.less_button,profile_iv);
+          item_name_tv.setText("Less");
+          itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+              Utils.showToastMsg("Now click Less button");
+              if(buttonListener!=null)
+              {
+                buttonListener.onClick(false);
+              }
+             // profile_iv.setBackground(null);
             }
-          }
-        }
-      });
+          });
+          break;
+      }
+     /* if(data.isMoreButton())
+      {
+
+      }else
+      {
+        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_icon,profile_iv);
+      }*/
+
+
 
 
 
@@ -111,35 +149,5 @@ private ExpandColapseButtonListener buttonListener;
   }
 
 
-  /*static class ItemViewHolder1 extends BaseViewHolder<GridItem> {
 
-    private ImageView ivIcon;
-    private ImageView ivSelectionIndicator;
-
-    ItemViewHolder(View itemView) {
-      super(itemView);
-      ivSelectionIndicator = (ImageView) itemView.findViewById(R.id.iv_selection_indicator);
-      ivIcon = (ImageView) itemView.findViewById(R.id.iv_icon);
-
-      setItemClickListener(new OnItemClickListener<GridItem>() {
-        @Override public void onItemClick(View view, GridItem item) {
-          toggleItemSelection();
-          Toast.makeText(view.getContext(), item.getData(), Toast.LENGTH_SHORT).show();
-        }
-      });
-      setItemLongClickListener(new OnItemLongClickListener<GridItem>() {
-        @Override public boolean onItemLongClick(View view, GridItem item) {
-          startDrag();
-          return true;
-        }
-      });
-    }
-
-    @Override public int getDragDirections() {
-      return ItemTouchHelper.LEFT
-          | ItemTouchHelper.UP
-          | ItemTouchHelper.RIGHT
-          | ItemTouchHelper.DOWN;
-    }
-  }*/
 }

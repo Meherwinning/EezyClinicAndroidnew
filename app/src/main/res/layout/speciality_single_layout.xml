@@ -4,7 +4,6 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/_3dp"
     android:background="@color/transparent"
-    android:layout_margin="@dimen/_8dp"
     android:orientation="vertical">
     <LinearLayout
         android:id="@+id/image_linear"
@@ -19,7 +18,6 @@
 
         <ImageView
             android:id="@+id/profile_iv"
-            android:src="@drawable/profile_icon"
             style="@style/image_fit_toparent"
             android:scaleType="centerCrop"
             />

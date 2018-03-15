@@ -13,6 +13,13 @@ public class SpecalitiyData implements BaseModel {
         int SPECALITI_YTYPE=2;
     }
 
+    public interface ButtonType
+    {
+        int NORMAL=0;
+        int MORE=1;
+        int LESS=2;
+    }
+
     @SerializedName("id")
     @Expose
     private String id;
@@ -21,7 +28,7 @@ public class SpecalitiyData implements BaseModel {
     private String name;
 
     private int dataType;
-    boolean isMoreButton;
+    private int buttonType;
 
     boolean isRemainigItem;
 
@@ -29,13 +36,13 @@ public class SpecalitiyData implements BaseModel {
         this.dataType = ViewType.SPECALITI_YTYPE;
     }
 
-    public void setMoreButton(boolean moreButton) {
-        isMoreButton = moreButton;
+    public void setButtonType(int type) {
+        buttonType = type;
     }
 
 
-    public boolean isMoreButton() {
-        return isMoreButton;
+    public int getButtonType() {
+        return buttonType;
     }
 
     public void setDataType(int dataType) {

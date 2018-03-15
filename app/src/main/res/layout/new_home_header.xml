@@ -3,6 +3,11 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/top_view_linear"
         android:layout_width="match_parent"
+        android:paddingLeft="@dimen/_20dp"
+    android:paddingTop="@dimen/_20dp"
+    android:paddingRight="@dimen/_20dp"
+    android:paddingBottom="@dimen/_10dp"
+
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
        android:background="@color/transparent"
@@ -177,17 +182,17 @@
             android:id="@+id/search_bt"
             android:layout_marginTop="@dimen/_30dp"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_58dp"
+            android:layout_height="@dimen/_48dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:background="@color/white"
+            android:background="@drawable/background_fenced_white1"
             android:clickable="true"
             android:fontFamily="@font/roboto_medium"
             android:maxLines="1"
             android:text="Book Appointment"
             android:textAllCaps="false"
             android:textColor="@color/button_text_color"
-            android:textSize="@dimen/button_text_size"
+            android:textSize="@dimen/_15sp"
             android:textStyle="bold" />
 
 

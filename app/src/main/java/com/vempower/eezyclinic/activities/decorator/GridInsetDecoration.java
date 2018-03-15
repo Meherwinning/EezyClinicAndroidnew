@@ -28,24 +28,29 @@ import com.ahamed.multiviewadapter.util.PositionTypeResolver;
 public class GridInsetDecoration implements ItemDecorator {
 
   private int insetInPixel;
+  int top , left ,right , bottom ;
 
   public GridInsetDecoration(int insetInDp) {
     this.insetInPixel = insetInDp;
+     top = insetInPixel;
+     left = insetInPixel;
+     right = insetInPixel;
+     bottom = insetInPixel;
   }
   public GridInsetDecoration(int insetInDpLeft,int insetInDpRight) {
-    int top = 0;
-    int left = insetInDpLeft;
-    int right = insetInDpRight;
-    int bottom = 0;
+     top = 0;
+     left = insetInDpLeft;
+     right = insetInDpRight;
+     bottom = insetInDpRight;
   }
 
   @Override public void getItemOffsets(Rect outRect, int position, @PositionType int positionType) {
 
-    int top = insetInPixel;
+   /* int top = insetInPixel;
     int left = insetInPixel;
     int right = insetInPixel;
-    int bottom = insetInPixel;
-
+    int bottom = insetInPixel;*/
+/*
     if (PositionTypeResolver.isItemOnTopEdge(positionType)) {
       top *= 2;
     }
@@ -60,7 +65,7 @@ public class GridInsetDecoration implements ItemDecorator {
 
     if (PositionTypeResolver.isItemOnBottomEdge(positionType)) {
       bottom *= 2;
-    }
+    }*/
 
     outRect.set(left, top, right, bottom);
   }

@@ -71,7 +71,8 @@ public class ArticleBinder1 extends ItemBinder<SpecalitiyRemainData, ArticleBind
       super(itemView);
       ViewPager vpPager = (ViewPager) itemView.findViewById(R.id.vpPager);
       vpPager.setClipToPadding(false);
-      vpPager.setPageMargin(12);
+     // vpPager.setOffscreenPageLimit(1);
+      //vpPager.setPageMargin(12);
 
       FragmentPagerAdapter  adapterViewPager = new MyPagerAdapter(fragmentManager);
       vpPager.setAdapter(adapterViewPager);
@@ -90,10 +91,11 @@ public class ArticleBinder1 extends ItemBinder<SpecalitiyRemainData, ArticleBind
       super(fragmentManager);
     }
 
-    @Override
+   /* @Override
     public float getPageWidth (int position) {
-      return 0.93f;
-    }
+      return 0.75f;
+      //return 0.93f;
+    }*/
 
     // Returns total number of pages
     @Override

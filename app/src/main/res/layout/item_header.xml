@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2017 Riyaz Ahamed
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,15 +14,20 @@
   ~ limitations under the License.
   -->
 
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tv_header"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:padding="16dp"
-    android:textColor="?colorPrimaryDark"
-    android:textSize="20sp"
-    android:textStyle="bold"
-    tools:text="Sample header"
-    />
+    android:background="#9038a296">
+
+    <TextView
+        android:id="@+id/tv_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/roboto_light"
+        android:padding="@dimen/_7dp"
+        android:text="Sample header"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18sp" />
+
+</RelativeLayout>

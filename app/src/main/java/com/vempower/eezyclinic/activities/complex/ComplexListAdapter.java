@@ -29,8 +29,11 @@ import com.ahamed.multiviewadapter.RecyclerAdapter;
 import com.ahamed.multiviewadapter.util.SimpleDividerDecoration;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyRemainData;
+import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.decorator.ArticleItemDecorator;
+import com.vempower.eezyclinic.activities.decorator.ArticleItemDecorator1;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +58,7 @@ public class ComplexListAdapter extends RecyclerAdapter {
  // private FragmentManager fragmentManager;
   private List<SpecalitiyRemainData> doctorsList;
 
-  public ComplexListAdapter(List<SpecalitiyRemainData> doctorsList, FragmentManager fragmentManager) {
+  public ComplexListAdapter(final List<SpecalitiyRemainData> doctorsList, FragmentManager fragmentManager) {
    // simpleItemDecoration = new SimpleDividerDecoration(MyApplication.getCurrentActivityContext(), SimpleDividerDecoration.VERTICAL);
       //this.fragmentManager=fragmentManager;
       this.doctorsList=doctorsList;
@@ -112,17 +115,30 @@ public class ComplexListAdapter extends RecyclerAdapter {
     //addDataManager(new DataItemManager<>(this, DummyDataProvider.getAdvertisementThree()));
 
     registerBinder(new HeaderBinder());
-    registerBinder(new GridItemBinder(convertDpToPixel(4, MyApplication.getCurrentActivityContext()), new GridItemBinder.ExpandColapseButtonListener(){
+    registerBinder(new GridItemBinder(convertDpToPixel(MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._5dp), MyApplication.getCurrentActivityContext()), new GridItemBinder.ExpandColapseButtonListener(){
         @Override
         public void onClick(boolean isExpand) {
-            loadMoreValues(remainingList);
+            if(isExpand) {
+                loadMoreValues(remainingList);
+            }else
+            {
+                remainingList= new ArrayList<>();
+                displayList= new ArrayList<>();
+                remainingList.addAll(originalList);
+                loadMoreValues(remainingList);
+                Utils.showToastMessage("Now click on Less button");
+            }
+            if(doctorsList!=null && doctorsList.size()>0) {
+                popularDoctorslManager.remove(0);
+                popularDoctorslManager.addAll(doctorsList.subList(0, 1));
+            }
         }
     }));
 
      // registerBinder(new GridItemRemainBinder(convertDpToPixel(4, context)));
 
       //registerBinder(new CarBinder(simpleItemDecoration1,doctorsList));
-      registerBinder(new ArticleBinder1(new ArticleItemDecorator(),fragmentManager));
+      registerBinder(new ArticleBinder1(new ArticleItemDecorator1(),fragmentManager));
     registerBinder(new BikeBinder(simpleItemDecoration1));
    /* registerBinder(new FeaturedArticleBinder(new ArticleItemDecorator()));*/
     registerBinder(new ArticleBinder(new ArticleItemDecorator()));
@@ -156,8 +172,10 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
     List<SpecalitiyData> displayList= new ArrayList<>();
     ArrayList<SpecalitiyData> remainingList= new ArrayList<>();
+    ArrayList<SpecalitiyData> originalList= new ArrayList<>();
   public void addGridItem(List<SpecalitiyData> dataList) {
    // this.gridDataList = dataList;
+      originalList.addAll(dataList);
       //registerBinder(new MyGridItemBinder(simpleItemDecoration,dataList));
 
       //ArrayList<SpecalitiyData> displayList= new ArrayList<>();
@@ -178,7 +196,8 @@ public class ComplexListAdapter extends RecyclerAdapter {
               if(displayList.size()==(SINGLE_VIEW_TOT_ITEMS-1))
               {
                   SpecalitiyData moreData= new SpecalitiyData();
-                  moreData.setMoreButton(true);
+                  //moreData.setMoreButton(true);
+                  moreData.setButtonType(SpecalitiyData.ButtonType.MORE);
                   displayList.add(moreData);
                  continue;
 
@@ -208,6 +227,7 @@ public class ComplexListAdapter extends RecyclerAdapter {
       }
       ArrayList<SpecalitiyData> tempList  =  new ArrayList<>();
 
+      boolean isMoreButtonAdded=false;
       for(int i=0;i<dataList.size();i++)
       {
           SpecalitiyData data=dataList.get(i);
@@ -223,18 +243,37 @@ public class ComplexListAdapter extends RecyclerAdapter {
               if(addedCount==(SINGLE_VIEW_TOT_ITEMS-1))
               {
                   SpecalitiyData moreData= new SpecalitiyData();
-                  moreData.setMoreButton(true);
+                  //moreData.setMoreButton(true);
+
+                  moreData.setButtonType(SpecalitiyData.ButtonType.MORE);
                   displayList.add(moreData);
                   addedCount++;
+                  isMoreButtonAdded=true;
                   continue;
                   //break;
 
+              }/*else
+              {
+                  SpecalitiyData moreData= new SpecalitiyData();
+                  //moreData.setMoreButton(true);
+                  moreData.setButtonType(SpecalitiyData.ButtonType.LESS);
+                  displayList.add(moreData);
+                  addedCount++;
+                  continue;
               }
-
+*/
               addedCount++;
               displayList.add(data);
           }
 
+      }
+
+      if(!isMoreButtonAdded)
+      {
+          SpecalitiyData moreData= new SpecalitiyData();
+          //moreData.setMoreButton(true);
+          moreData.setButtonType(SpecalitiyData.ButtonType.LESS);
+          displayList.add(moreData);
       }
       remainingList=tempList;
       //gridItemsManager.addAll(newList);

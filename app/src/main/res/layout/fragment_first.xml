@@ -1,17 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:background="@color/white"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/_250dp"
     android:layout_margin="@dimen/_20dp"
-    android:layout_height="@dimen/_300dp">
+    android:background="@color/white">
 
-    <TextView
-        android:id="@+id/tvLabel"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:text="test"
-        android:layout_centerInParent="true"
-        android:textSize="@dimen/_20dp"
-        android:textColor="@color/black"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center">
 
+        <LinearLayout
+            android:id="@+id/top_image_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/top_image_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:id="@+id/image_linear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/canvas_380x380"
+                    android:gravity="center"
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/patient_profile_iv1"
+                        style="@style/image_fit_toparent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/doctor_circle_default" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/patient_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5dp"
+            android:layout_below="@+id/top_image_linear"
+            android:fontFamily="@font/roboto_black"
+            android:gravity="center"
+            android:hint="Patient Name"
+            android:maxLines="1"
+            android:textColor="#de000000"
+            android:textColorHint="#8a000000"
+            android:textSize="@dimen/_16sp"
+            android:textStyle="normal"
+
+
+            />
+
+        <LinearLayout
+            android:id="@+id/designation_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/patient_name_tv"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:hint="Details"
+                android:textColor="#999999"
+                android:textSize="@dimen/_12sp"
+                android:textStyle="normal"
+
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:hint="Details"
+                android:textColor="#999999"
+                android:textSize="@dimen/_12sp"
+                android:textStyle="normal"
+
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:hint="Details"
+                android:textColor="#999999"
+                android:textSize="@dimen/_12sp"
+                android:textStyle="normal"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:hint="Details"
+                android:textColor="#999999"
+                android:textSize="@dimen/_12sp"
+                android:textStyle="normal"
+
+                />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!-- <TextView
+         android:id="@+id/tvLabel"
+         android:layout_width="wrap_content"
+         android:text="test"
+         android:layout_centerInParent="true"
+         android:textSize="@dimen/_20dp"
+         android:textColor="@color/black"
+         android:layout_height="wrap_content" />
+ -->
 </RelativeLayout>
