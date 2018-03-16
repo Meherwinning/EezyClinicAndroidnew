@@ -27,6 +27,9 @@ import com.ahamed.multiviewadapter.DataItemManager;
 import com.ahamed.multiviewadapter.DataListManager;
 import com.ahamed.multiviewadapter.RecyclerAdapter;
 import com.ahamed.multiviewadapter.util.SimpleDividerDecoration;
+import com.vempower.eezyclinic.APICore.NewHomeData;
+import com.vempower.eezyclinic.APICore.NewHomeDoctorsList;
+import com.vempower.eezyclinic.APICore.NewHomeSpeciality;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyRemainData;
 import com.vempower.eezyclinic.R;
@@ -41,9 +44,9 @@ import java.util.List;
 public class ComplexListAdapter extends RecyclerAdapter {
 
   private DataListManager<Article> singleModelManager;
-    private DataListManager<SpecalitiyRemainData> popularDoctorslManager;
+    private DataListManager<NewHomeDoctorsList> popularDoctorslManager;
    // private DataListManager<SpecalitiyData> specialitiesModelManager;
-  private DataListManager<SpecalitiyData> gridItemsManager;
+  private DataListManager<NewHomeSpeciality> gridItemsManager;
    // private DataListManager<SpecalitiyRemainData> gridItemsManager1;
 
   /*private DataListManager<SpecalitiyRemainData> carItemsManager;*/
@@ -56,12 +59,15 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
   private SimpleDividerDecoration simpleItemDecoration,simpleItemDecoration1;
  // private FragmentManager fragmentManager;
-  private List<SpecalitiyRemainData> doctorsList;
+  private List<NewHomeSpeciality> newHomeSpecialities;
+    private  NewHomeData homeData;
 
-  public ComplexListAdapter(final List<SpecalitiyRemainData> doctorsList, FragmentManager fragmentManager) {
+  public ComplexListAdapter(final NewHomeData homeData, FragmentManager fragmentManager) {
    // simpleItemDecoration = new SimpleDividerDecoration(MyApplication.getCurrentActivityContext(), SimpleDividerDecoration.VERTICAL);
       //this.fragmentManager=fragmentManager;
-      this.doctorsList=doctorsList;
+     // this.doctorsList=doctorsList;
+
+      newHomeSpecialities=homeData.getSpecialities();
       simpleItemDecoration1 = new SimpleDividerDecoration(MyApplication.getCurrentActivityContext(), SimpleDividerDecoration.HORIZONTAL);
 
     singleModelManager = new DataListManager<>(this);
@@ -128,9 +134,9 @@ public class ComplexListAdapter extends RecyclerAdapter {
                 loadMoreValues(remainingList);
                 Utils.showToastMessage("Now click on Less button");
             }
-            if(doctorsList!=null && doctorsList.size()>0) {
-                popularDoctorslManager.remove(0);
-                popularDoctorslManager.addAll(doctorsList.subList(0, 1));
+            if(homeData!=null && homeData.getDoctorsList()!=null&&homeData.getDoctorsList().size()>0) {
+                popularDoctorslManager.clear();
+                popularDoctorslManager.addAll(homeData.getDoctorsList().subList(0, 1));
             }
         }
     }));
@@ -138,7 +144,7 @@ public class ComplexListAdapter extends RecyclerAdapter {
      // registerBinder(new GridItemRemainBinder(convertDpToPixel(4, context)));
 
       //registerBinder(new CarBinder(simpleItemDecoration1,doctorsList));
-      registerBinder(new ArticleBinder1(new ArticleItemDecorator1(),fragmentManager));
+      registerBinder(new ArticleBinder1(homeData.getDoctorsList(),new ArticleItemDecorator1(),fragmentManager));
     registerBinder(new BikeBinder(simpleItemDecoration1));
    /* registerBinder(new FeaturedArticleBinder(new ArticleItemDecorator()));*/
     registerBinder(new ArticleBinder(new ArticleItemDecorator()));
@@ -163,27 +169,27 @@ public class ComplexListAdapter extends RecyclerAdapter {
  /* public void addMultiItem(List<Vehicle> dataList) {
     multiItemsManager.addAll(dataList);
   }*/
- public void addCarItem(List<SpecalitiyRemainData> dataList) {
+ public void addCarItem() {
    //carItemsManager.addAll(dataList);
  }
   public void addBikeItem(List<Vehicle> dataList) {
     bikeItemsManager.addAll(dataList);
   }
 
-    List<SpecalitiyData> displayList= new ArrayList<>();
-    ArrayList<SpecalitiyData> remainingList= new ArrayList<>();
-    ArrayList<SpecalitiyData> originalList= new ArrayList<>();
-  public void addGridItem(List<SpecalitiyData> dataList) {
+    List<NewHomeSpeciality> displayList= new ArrayList<>();
+    ArrayList<NewHomeSpeciality> remainingList= new ArrayList<>();
+    ArrayList<NewHomeSpeciality> originalList= new ArrayList<>();
+  public void addGridItem() {
    // this.gridDataList = dataList;
-      originalList.addAll(dataList);
+      originalList.addAll(newHomeSpecialities);
       //registerBinder(new MyGridItemBinder(simpleItemDecoration,dataList));
 
       //ArrayList<SpecalitiyData> displayList= new ArrayList<>();
       //ArrayList<SpecalitiyRemainData> remainingList= new ArrayList<>();
 
-      for(int i=0;i<dataList.size();i++)
+      for(int i=0;i<newHomeSpecialities.size();i++)
       {
-          SpecalitiyData data=dataList.get(i);
+          NewHomeSpeciality data=newHomeSpecialities.get(i);
           if(data==null)
           {
               continue;
@@ -195,7 +201,7 @@ public class ComplexListAdapter extends RecyclerAdapter {
           {
               if(displayList.size()==(SINGLE_VIEW_TOT_ITEMS-1))
               {
-                  SpecalitiyData moreData= new SpecalitiyData();
+                  NewHomeSpeciality moreData= new NewHomeSpeciality();
                   //moreData.setMoreButton(true);
                   moreData.setButtonType(SpecalitiyData.ButtonType.MORE);
                   displayList.add(moreData);
@@ -215,7 +221,7 @@ public class ComplexListAdapter extends RecyclerAdapter {
     //  specialitiesModelManager.setMyList(dataList);
   }
 
-  private void loadMoreValues(List<SpecalitiyData> dataList)
+  private void loadMoreValues(List<NewHomeSpeciality> dataList)
   {
       int addedCount=0;
       if(displayList.size()>(SINGLE_VIEW_TOT_ITEMS-1)) {
@@ -225,12 +231,12 @@ public class ComplexListAdapter extends RecyclerAdapter {
           }
 
       }
-      ArrayList<SpecalitiyData> tempList  =  new ArrayList<>();
+      ArrayList<NewHomeSpeciality> tempList  =  new ArrayList<>();
 
       boolean isMoreButtonAdded=false;
       for(int i=0;i<dataList.size();i++)
       {
-          SpecalitiyData data=dataList.get(i);
+          NewHomeSpeciality data=dataList.get(i);
           if(data==null)
           {
               continue;
@@ -242,7 +248,7 @@ public class ComplexListAdapter extends RecyclerAdapter {
           {
               if(addedCount==(SINGLE_VIEW_TOT_ITEMS-1))
               {
-                  SpecalitiyData moreData= new SpecalitiyData();
+                  NewHomeSpeciality moreData= new NewHomeSpeciality();
                   //moreData.setMoreButton(true);
 
                   moreData.setButtonType(SpecalitiyData.ButtonType.MORE);
@@ -270,7 +276,7 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
       if(!isMoreButtonAdded)
       {
-          SpecalitiyData moreData= new SpecalitiyData();
+          NewHomeSpeciality moreData= new NewHomeSpeciality();
           //moreData.setMoreButton(true);
           moreData.setButtonType(SpecalitiyData.ButtonType.LESS);
           displayList.add(moreData);
@@ -283,7 +289,9 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
   public void addSingleModelItem(List<Article> dataList) {
     singleModelManager.addAll(dataList);
-      popularDoctorslManager.addAll(doctorsList.subList(0,1));
+    if(homeData!=null && homeData.getDoctorsList()!=null && homeData.getDoctorsList().size()>0) {
+        popularDoctorslManager.addAll(homeData.getDoctorsList().subList(0, 1));
+    }
      /* ArrayList<Article1> list= new ArrayList<Article1>();
       list.add(new Article1());*/
       //popularDoctorslManager.addAll(dataList);

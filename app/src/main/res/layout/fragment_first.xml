@@ -38,7 +38,7 @@
                     >
 
                     <ImageView
-                        android:id="@+id/patient_profile_iv1"
+                        android:id="@+id/popular_doctor_iv"
                         style="@style/image_fit_toparent"
                         android:scaleType="fitXY"
                         android:src="@drawable/doctor_circle_default" />

@@ -28,6 +28,7 @@ import com.vempower.eezyclinic.APIResponce.LanguageListAPI;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
 import com.vempower.eezyclinic.APIResponce.MedicalHistoryListAPI;
 import com.vempower.eezyclinic.APIResponce.NationalityListAPI;
+import com.vempower.eezyclinic.APIResponce.NewHomeAPI;
 import com.vempower.eezyclinic.APIResponce.NotificationsListAPI;
 import com.vempower.eezyclinic.APIResponce.PendingFeedbackListAPI;
 import com.vempower.eezyclinic.APIResponce.PrescriptionsListAPI;
@@ -413,6 +414,12 @@ Call<HealthChecksListAPI> getHealthCheckList(@Body RequestBody postBody);
     //http://202.63.103.194:8003/api/patient/deletehealthwhcheck
     @POST(data + "patient/deletehealthwhcheck")
     Call<AbstractResponse> deleteHealthCheckWH(@Body RequestBody postBody);
+
+
+    //http://202.63.103.194:8003/api/patient/homepage
+    @POST(data + "patient/homepage")
+    Call<NewHomeAPI> getHomePageAPI();
+
 
 
 }

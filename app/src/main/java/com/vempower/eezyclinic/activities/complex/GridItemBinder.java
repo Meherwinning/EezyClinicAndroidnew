@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.ahamed.multiviewadapter.BaseViewHolder;
 import com.ahamed.multiviewadapter.ItemBinder;
 import com.ahamed.multiviewadapter.ItemViewHolder;
+import com.vempower.eezyclinic.APICore.NewHomeSpeciality;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.decorator.GridInsetDecoration;
@@ -35,7 +36,7 @@ import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Utils;
  ;
 
-public class GridItemBinder extends ItemBinder<SpecalitiyData, GridItemBinder.OrdersListHolder> {
+public class GridItemBinder extends ItemBinder<NewHomeSpeciality, GridItemBinder.OrdersListHolder> {
 private ExpandColapseButtonListener buttonListener;
   public GridItemBinder(int insetInPixels,ExpandColapseButtonListener buttonListener) {
     super(new GridInsetDecoration(insetInPixels,insetInPixels));
@@ -48,7 +49,7 @@ private ExpandColapseButtonListener buttonListener;
 
 
 
-  @Override public void bind(OrdersListHolder holder, SpecalitiyData item) {
+  @Override public void bind(OrdersListHolder holder, NewHomeSpeciality item) {
     holder.bindData(item);
     /*holder.itemView.setBackgroundColor(item.getColor());
     holder.ivIcon.setImageResource(item.getDrawable());
@@ -62,11 +63,11 @@ private ExpandColapseButtonListener buttonListener;
 
 
   @Override public boolean canBindData(Object item) {
-    return (item instanceof SpecalitiyData);
+    return (item instanceof NewHomeSpeciality);
   }
 
 
-  public class OrdersListHolder extends ItemViewHolder<SpecalitiyData> {
+  public class OrdersListHolder extends ItemViewHolder<NewHomeSpeciality> {
 
     private TextView item_name_tv;
     private ImageView profile_iv;
@@ -79,7 +80,7 @@ private ExpandColapseButtonListener buttonListener;
 
     }
 
-    public void bindData(final SpecalitiyData data) {
+    public void bindData(final NewHomeSpeciality data) {
       if (data == null) {
         return;
       }
@@ -89,7 +90,7 @@ private ExpandColapseButtonListener buttonListener;
       switch (data.getButtonType())
       {
         case SpecalitiyData.ButtonType.NORMAL:
-          MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_icon,profile_iv);
+          MyApplication.getInstance().setBitmapToImageview(R.drawable.empty_specification,profile_iv);
           break;
         case SpecalitiyData.ButtonType.MORE:
           MyApplication.getInstance().setBitmapToImageview(R.drawable.more_button,profile_iv);

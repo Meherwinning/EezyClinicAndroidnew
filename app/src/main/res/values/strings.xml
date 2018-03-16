@@ -239,6 +239,7 @@
     <string name="invalid_graph_url_str">Invalid Graph Url,please try again</string>
     <string name="success_save_notes_lbl">Your Note is successfully added</string>
     <string name="no_health_records_found_lbl">There are no record(s) found.</string>
+    <string name="unable_to_get_home_page_details">Unable to get home page details</string>
 
 
 </resources>

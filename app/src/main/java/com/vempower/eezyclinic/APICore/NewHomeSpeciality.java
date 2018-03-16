@@ -3,8 +3,24 @@ package com.vempower.eezyclinic.APICore;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
+import com.vempower.eezyclinic.activities.complex.BaseModel;
 
-public class NewHomeSpeciality {
+public class NewHomeSpeciality  implements BaseModel{
+
+    public interface ViewType
+    {
+        int HEADER_TYPE=1;
+        int SPECALITI_YTYPE=2;
+    }
+
+    public interface ButtonType
+    {
+        int NORMAL=0;
+        int MORE=1;
+        int LESS=2;
+    }
+
 
     @SerializedName("id")
     @Expose
@@ -15,6 +31,33 @@ public class NewHomeSpeciality {
     @SerializedName("icon")
     @Expose
     private String icon;
+
+    private int dataType;
+    private int buttonType;
+
+    boolean isRemainigItem;
+
+    public NewHomeSpeciality() {
+        this.dataType = SpecalitiyData.ViewType.SPECALITI_YTYPE;
+    }
+
+    public void setButtonType(int type) {
+        buttonType = type;
+    }
+
+
+    public int getButtonType() {
+        return buttonType;
+    }
+
+    public void setDataType(int dataType) {
+        this.dataType = dataType;
+    }
+
+    public int getDataType() {
+        return dataType;
+    }
+
 
     public String getId() {
         return id;

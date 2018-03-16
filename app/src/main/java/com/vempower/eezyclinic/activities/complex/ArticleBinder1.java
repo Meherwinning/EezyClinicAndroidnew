@@ -27,24 +27,29 @@ import android.view.ViewGroup;
 import com.ahamed.multiviewadapter.BaseViewHolder;
 import com.ahamed.multiviewadapter.ItemBinder;
 import com.ahamed.multiviewadapter.util.ItemDecorator;
+import com.vempower.eezyclinic.APICore.NewHomeDoctorsList;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyRemainData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.TestSliderActivity;
 import com.vempower.eezyclinic.fragments.FirstFragment;
 
-public class ArticleBinder1 extends ItemBinder<SpecalitiyRemainData, ArticleBinder1.ViewHolder> {
+import java.util.List;
+
+public class ArticleBinder1 extends ItemBinder<NewHomeDoctorsList, ArticleBinder1.ViewHolder> {
 
   private FragmentManager fragmentManager;
-  public ArticleBinder1(ItemDecorator itemDecorator,FragmentManager fragmentManager) {
+  private List<NewHomeDoctorsList> doctorsLists;
+  public ArticleBinder1(List<NewHomeDoctorsList> doctorsLists, ItemDecorator itemDecorator, FragmentManager fragmentManager) {
     super(itemDecorator);
     this.fragmentManager=fragmentManager;
+    this.doctorsLists=doctorsLists;
   }
 
   @Override public ViewHolder create(LayoutInflater layoutInflater, ViewGroup parent) {
     return new ViewHolder(layoutInflater.inflate(R.layout.test_slider, parent, false));
   }
 
-  @Override public void bind(ViewHolder holder, SpecalitiyRemainData item) {
+  @Override public void bind(ViewHolder holder, NewHomeDoctorsList item) {
    /* holder.tvTitle.setText(item.getTitle());
     holder.tvTime.setText(item.getLastUpdated());
     holder.tvCategory.setText(item.getCategory());
@@ -53,14 +58,14 @@ public class ArticleBinder1 extends ItemBinder<SpecalitiyRemainData, ArticleBind
   }
 
   @Override public boolean canBindData(Object item) {
-    return item instanceof SpecalitiyRemainData /*&& !((SpecalitiyRemainData) item).isFeatured()*/;
+    return item instanceof NewHomeDoctorsList /*&& !((SpecalitiyRemainData) item).isFeatured()*/;
   }
 
   @Override public int getSpanSize(int maxSpanCount) {
     return maxSpanCount;
   }
 
-   class ViewHolder extends BaseViewHolder<SpecalitiyRemainData> {
+   class ViewHolder extends BaseViewHolder<NewHomeDoctorsList> {
 
    /* private TextView tvTitle;
     private TextView tvTime;
@@ -84,8 +89,8 @@ public class ArticleBinder1 extends ItemBinder<SpecalitiyRemainData, ArticleBind
   }
 
 
-  public static class MyPagerAdapter extends FragmentPagerAdapter {
-    private static int NUM_ITEMS = 9;
+  private  class MyPagerAdapter extends FragmentPagerAdapter {
+    private  int NUM_ITEMS = doctorsLists.size();
 
     public MyPagerAdapter(FragmentManager fragmentManager) {
       super(fragmentManager);
@@ -106,7 +111,7 @@ public class ArticleBinder1 extends ItemBinder<SpecalitiyRemainData, ArticleBind
     // Returns the fragment to display for that page
     @Override
     public Fragment getItem(int position) {
-      return FirstFragment.newInstance(position, "Page # "+position);
+      return FirstFragment.newInstance(doctorsLists.get(position),position, "Page # "+position);
             /*switch (position) {
                 case 0: // Fragment # 0 - This will show FirstFragment
                     return FirstFragment.newInstance(position, "Page # 1");

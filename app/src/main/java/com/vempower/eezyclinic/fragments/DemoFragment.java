@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.vempower.eezyclinic.APICore.NewHomeData;
+import com.vempower.eezyclinic.APICore.NewHomeSpeciality;
+import com.vempower.eezyclinic.APIResponce.NewHomeAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiesAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyRemainData;
@@ -20,6 +23,7 @@ import com.vempower.eezyclinic.activities.complex.DummyDataProvider;
 import com.vempower.eezyclinic.activities.complex.Vehicle;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.mappers.NewHomeAPIMapper;
 import com.vempower.eezyclinic.mappers.SpecalitiesMapper;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.activities.AbstractActivity;
@@ -38,7 +42,8 @@ public class DemoFragment extends  AbstractFragment {
     private View fragmentView;
     private RecyclerView recyclerView;
     private ComplexListAdapter adapter;
-    private List<SpecalitiyData> dataList;
+   // private List<SpecalitiyData> dataList;
+   private NewHomeData newHomeData;
 
 
     @Nullable
@@ -55,7 +60,8 @@ public class DemoFragment extends  AbstractFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        callSpecialityMapper();
+        //callSpecialityMapper();
+        callHomePageMapper();
     }
 
     private void myInit() {
@@ -64,12 +70,12 @@ public class DemoFragment extends  AbstractFragment {
 
     protected void setUpAdapter() {
         GridLayoutManager glm = new GridLayoutManager(MyApplication.getCurrentActivityContext(), 3);
-        ArrayList<SpecalitiyRemainData> dataList1=new ArrayList<>();
-        for(SpecalitiyData data:dataList)
+        //ArrayList<SpecalitiyRemainData> dataList1=new ArrayList<>();
+        /*for(NewHomeSpeciality data:newHomeData.getSpecialities())
         {
             dataList1.add(new SpecalitiyRemainData(data)) ;
-        }
-         adapter = new ComplexListAdapter(dataList1,getFragmentManager());
+        }*/
+         adapter = new ComplexListAdapter(newHomeData,getFragmentManager());
         adapter.setSpanCount(3);
 
         glm.setSpanSizeLookup(adapter.getSpanSizeLookup());
@@ -90,29 +96,63 @@ public class DemoFragment extends  AbstractFragment {
             gridDataList.add(GridItem.generateGridItem(i));
         }*/
         //
-        adapter.addGridItem(dataList);
+        adapter.addGridItem();
 
 
         // Single list with two binders
-        //List<Vehicle> carItemList = new ArrayList<>();
+        List<Vehicle> carItemList = new ArrayList<>();
         List<Vehicle> bikeItemList = new ArrayList<>();
         Random random = new Random();
         for (int i = 0; i < 10; i++) {
             if (random.nextBoolean()) {
-               /* carItemList.add(new Car(i, "Car " + i, "Manufacturer " + i,
-                        String.valueOf(1900 + random.nextInt(100))));*/
-            } else {
+ /*               carItemList.add(new Car(i, "Car " + i, "Manufacturer " + i,
+                        String.valueOf(1900 + random.nextInt(100))));
+*/            } else {
                 bikeItemList.add(new Bike(i, "Bike " + i, "Description of bike" + i));
             }
         }
         // adapter.addMultiItem(multiItemList);
-        ArrayList<SpecalitiyRemainData> dataList2=new ArrayList<>();
-        dataList2.add(new SpecalitiyRemainData(dataList.get(0)));
-        adapter.addCarItem(dataList2);
+        /*ArrayList<SpecalitiyRemainData> dataList2=new ArrayList<>();
+        dataList2.add(new SpecalitiyRemainData(dataList.get(0)));*/
+        adapter.addCarItem();
         adapter.addBikeItem(bikeItemList);
     }
 
-    private void callSpecialityMapper() {
+
+    private void callHomePageMapper()
+    {
+        NewHomeAPIMapper mapper= new NewHomeAPIMapper();
+        mapper.setOnNewHomeAPIListener(new NewHomeAPIMapper.NewHomeAPIListener() {
+            @Override
+            public void getNewHomeAPI(NewHomeAPI homeAPI, String errorMessage) {
+
+                if ((!isValidResponse(homeAPI, errorMessage))|| homeAPI.getData()==null) {
+                    showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_home_page_details), new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+
+                            ((AbstractActivity) MyApplication.getCurrentActivityContext()). finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callHomePageMapper();
+                        }
+                    });
+                    return;
+                }
+                //dataList = specalitiesAPI.getData();
+                newHomeData=homeAPI.getData();
+                // setSpecialitiesToAdapter(dataList);
+
+                setUpAdapter();
+
+            }
+        });
+
+    }
+
+   /* private void callSpecialityMapper() {
         MyApplication.showTransparentDialog();
         SpecalitiesMapper mapper = new SpecalitiesMapper();
         mapper.setOnSpecalitiesdListener(new SpecalitiesMapper.SpecalitiesdListener() {
@@ -141,7 +181,7 @@ public class DemoFragment extends  AbstractFragment {
 
             }
         });
-    }
+    }*/
 
 
     @Override
