@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2017 Riyaz Ahamed
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/_15dp"
+    android:paddingRight="@dimen/_15dp"
+    android:paddingTop="@dimen/_10dp"
+    android:paddingBottom="@dimen/_10dp"
+    >
+
+  <ImageView
+      android:id="@+id/tips_iv"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentTop="true"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:gravity="top|left"
+      android:padding="@dimen/_5dp"
+      android:src="@drawable/healthtips_icon_white"
+      />
+
+  <!-- <TextView
+       android:id="@+id/tv_name"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:layout_marginLeft="8dp"
+       android:layout_marginRight="8dp"
+       android:padding="8dp"
+       android:textColor="@color/white"
+       android:textSize="16sp"
+       app:layout_constraintLeft_toRightOf="@+id/iv_bike"
+       app:layout_constraintRight_toRightOf="parent"
+       tools:text="Bike Name"
+       />-->
+
+  <TextView
+      android:layout_toRightOf="@+id/tips_iv"
+      android:id="@+id/health_tip_tv2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:fontFamily="@font/roboto"
+      android:textColor="@color/white"
+      android:gravity="top|left"
+
+
+      android:textSize="@dimen/_14sp"
+      android:text="Some description" />
+
+</RelativeLayout>

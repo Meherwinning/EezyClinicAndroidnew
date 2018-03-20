@@ -115,7 +115,7 @@ public class DemoFragment extends  AbstractFragment {
         /*ArrayList<SpecalitiyRemainData> dataList2=new ArrayList<>();
         dataList2.add(new SpecalitiyRemainData(dataList.get(0)));*/
         adapter.addCarItem();
-        adapter.addBikeItem(bikeItemList);
+        //adapter.addBikeItem(bikeItemList);
     }
 
 

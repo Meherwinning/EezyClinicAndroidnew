@@ -3,6 +3,7 @@ package com.vempower.eezyclinic.fragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ public class FirstFragment extends AbstractFragment {
     private String title;
     private int page;
     private final NewHomeDoctorsList doctor;
+    private TextView nameLabel,designation_tv2;
 
     private ImageView popular_doctor_iv;
 
@@ -53,14 +55,15 @@ public class FirstFragment extends AbstractFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_first, container, false);
-        TextView tvLabel = (TextView) view.findViewById(R.id.doctor_name_tv);
-        tvLabel.setText(page + " -- " + title);
+
         init(view);
         return view;
     }
 
     private void init(View view) {
         popular_doctor_iv= view.findViewById(R.id.popular_doctor_iv);
+        nameLabel = view.findViewById(R.id.doctor_name_tv);
+        designation_tv2 = view.findViewById(R.id. designation_tv2);
     }
 
     @Override
@@ -72,6 +75,26 @@ public class FirstFragment extends AbstractFragment {
     private void bindValues() {
         if(popular_doctor_iv!=null && doctor!=null)
         {
+            String name="";
+
+            if(!TextUtils.isEmpty(doctor.getFirstName()))
+            {
+                name=doctor.getFirstName();
+            }
+
+            if(!TextUtils.isEmpty(doctor.getMiddleName()))
+            {
+                name=name+" "+doctor.getMiddleName();
+            }
+            if(!TextUtils.isEmpty(doctor.getLastName()))
+            {
+                name=name+" "+doctor.getLastName();
+            }
+
+
+            nameLabel.setText(name);
+            designation_tv2 .setText(doctor.getSpecalities());
+
             MyApplication.getInstance().setBitmapToImageview(R.drawable.default_doctor_image,popular_doctor_iv,doctor.getDoctorLogo());
         }
     }

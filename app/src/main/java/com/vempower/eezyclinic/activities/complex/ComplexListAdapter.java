@@ -31,12 +31,12 @@ import com.vempower.eezyclinic.APICore.NewHomeData;
 import com.vempower.eezyclinic.APICore.NewHomeDoctorsList;
 import com.vempower.eezyclinic.APICore.NewHomeSpeciality;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
-import com.vempower.eezyclinic.APIResponce.SpecalitiyRemainData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.decorator.ArticleItemDecorator;
 import com.vempower.eezyclinic.activities.decorator.ArticleItemDecorator1;
 import com.vempower.eezyclinic.application.MyApplication;
-import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.eezyclinic.core.Feature;
+import com.vempower.eezyclinic.core.HealthTip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +51,8 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
   /*private DataListManager<SpecalitiyRemainData> carItemsManager;*/
 
-  private DataListManager<Vehicle> bikeItemsManager;
+  private DataListManager<HealthTip> healthTipsManager;
+    private DataListManager<Feature> featuresManager;
 
   private final int SINGLE_VIEW_TOT_ITEMS=6;
 
@@ -77,7 +78,8 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
     /*carItemsManager = new DataListManager<>(this);*/
 
-    bikeItemsManager = new DataListManager<>(this);
+    healthTipsManager = new DataListManager<>(this);
+      featuresManager= new DataListManager<>(this);
      // specialitiesModelManager= new DataListManager<>(this);
 
       //
@@ -114,7 +116,10 @@ public class ComplexListAdapter extends RecyclerAdapter {
     addDataManager(popularDoctorslManager);
 
     addDataManager(new DataItemManager<>(this, new Header("Health Tips")));
-    addDataManager(bikeItemsManager);
+    addDataManager(healthTipsManager);
+
+      addDataManager(new DataItemManager<>(this, new Header("Features / Benefits")));
+      addDataManager(featuresManager);
 
 
 
@@ -149,7 +154,9 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
       //registerBinder(new CarBinder(simpleItemDecoration1,doctorsList));
       registerBinder(new ArticleBinder1(homeData.getDoctorsList(),new ArticleItemDecorator1(),fragmentManager));
-    registerBinder(new BikeBinder(simpleItemDecoration1));
+    registerBinder(new HealthTipsBinder(simpleItemDecoration1));
+      registerBinder(new FeaturesListBinder(simpleItemDecoration1));
+
    /* registerBinder(new FeaturedArticleBinder(new ArticleItemDecorator()));*/
     registerBinder(new ArticleBinder(new ArticleItemDecorator()));
 
@@ -163,10 +170,24 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
       //
 
-      if(homeData!=null && homeData.getDoctorsList()!=null&&homeData.getDoctorsList().size()>0) {
+      if(homeData!=null )
+      {
+     if( homeData.getDoctorsList()!=null&&homeData.getDoctorsList().size()>0) {
                 popularDoctorslManager.clear();
                 popularDoctorslManager.addAll(homeData.getDoctorsList().subList(0, 1));
             }
+
+            if(homeData.getHealthTips()!=null && homeData.getHealthTips().size()>0)
+            {
+                healthTipsManager.addAll(homeData.getHealthTips());
+            }
+
+          if(homeData.getFeatures()!=null && homeData.getFeatures().size()>0)
+          {
+              featuresManager.addAll(homeData.getFeatures());
+          }
+
+      }
            // Utils.showToastMessage("Now called Complex adapter");
   }
 
@@ -182,9 +203,9 @@ public class ComplexListAdapter extends RecyclerAdapter {
  public void addCarItem() {
    //carItemsManager.addAll(dataList);
  }
-  public void addBikeItem(List<Vehicle> dataList) {
-    bikeItemsManager.addAll(dataList);
-  }
+  /*public void addBikeItem(List<Vehicle> dataList) {
+    healthTipsManager.addAll(dataList);
+  }*/
 
     List<NewHomeSpeciality> displayList= new ArrayList<>();
     ArrayList<NewHomeSpeciality> remainingList= new ArrayList<>();

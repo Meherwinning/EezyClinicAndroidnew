@@ -25,39 +25,41 @@ import com.ahamed.multiviewadapter.BaseViewHolder;
 import com.ahamed.multiviewadapter.ItemBinder;
 import com.ahamed.multiviewadapter.util.ItemDecorator;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.core.Feature;
+import com.vempower.eezyclinic.core.HealthTip;
 
-public class BikeBinder extends ItemBinder<Bike, BikeBinder.ViewHolder> {
+public class FeaturesListBinder extends ItemBinder<Feature, FeaturesListBinder.ViewHolder> {
 
-  public BikeBinder(ItemDecorator itemDecorator) {
+  public FeaturesListBinder(ItemDecorator itemDecorator) {
     super(itemDecorator);
   }
 
   @Override public ViewHolder create(LayoutInflater layoutInflater, ViewGroup parent) {
-    return new ViewHolder(layoutInflater.inflate(R.layout.item_bike, parent, false));
+    return new ViewHolder(layoutInflater.inflate(R.layout.item_feature, parent, false));
   }
 
-  @Override public void bind(ViewHolder holder, Bike item) {
-    holder.tvName.setText(item.getBikeName());
-    holder.tvDescription.setText(item.getDescription());
+  @Override public void bind(ViewHolder holder, Feature item) {
+    holder.health_tip_tv2.setText(item.feature);
+   // holder.tvDescription.setText(item.getDescription());
   }
 
   @Override public boolean canBindData(Object item) {
-    return item instanceof Bike;
+    return item instanceof Feature;
   }
 
   @Override public int getSpanSize(int maxSpanCount) {
     return maxSpanCount;
   }
 
-  static class ViewHolder extends BaseViewHolder<Bike> {
+  static class ViewHolder extends BaseViewHolder<Feature> {
 
-    private TextView tvName;
-    private TextView tvDescription;
+    private TextView health_tip_tv2;
+   // private TextView tvDescription;
 
     ViewHolder(View itemView) {
       super(itemView);
-      tvName = (TextView) itemView.findViewById(R.id.tv_name);
-      tvDescription = (TextView) itemView.findViewById(R.id.tv_description);
+      health_tip_tv2 = (TextView) itemView.findViewById(R.id.health_tip_tv2);
+      //tvDescription = (TextView) itemView.findViewById(R.id.tv_description);
     }
   }
 }
