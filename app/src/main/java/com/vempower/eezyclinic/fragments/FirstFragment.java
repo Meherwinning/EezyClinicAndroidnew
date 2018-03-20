@@ -17,20 +17,28 @@ public class FirstFragment extends AbstractFragment {
     // Store instance variables
     private String title;
     private int page;
-    private static NewHomeDoctorsList doctor;
+    private final NewHomeDoctorsList doctor;
 
     private ImageView popular_doctor_iv;
 
+    public FirstFragment() {
+        doctor=null;
+    }
+
+    public FirstFragment(NewHomeDoctorsList doctor) {
+       this.doctor=doctor;
+    }
+
     // newInstance constructor for creating fragment with arguments
     public static FirstFragment newInstance(NewHomeDoctorsList doctor1, int page, String title) {
-        FirstFragment fragmentFirst = new FirstFragment();
+        FirstFragment fragmentFirst = new FirstFragment(doctor1);
         Bundle args = new Bundle();
         args.putInt("someInt", page);
         args.putString("someTitle", title);
         fragmentFirst.setArguments(args);
-        doctor=doctor1;
         return fragmentFirst;
     }
+
 
     // Store instance variables based on arguments passed
     @Override
@@ -45,8 +53,8 @@ public class FirstFragment extends AbstractFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_first, container, false);
-        //TextView tvLabel = (TextView) view.findViewById(R.id.tvLabel);
-        //tvLabel.setText(page + " -- " + title);
+        TextView tvLabel = (TextView) view.findViewById(R.id.doctor_name_tv);
+        tvLabel.setText(page + " -- " + title);
         init(view);
         return view;
     }

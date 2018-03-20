@@ -90,7 +90,10 @@ private ExpandColapseButtonListener buttonListener;
       switch (data.getButtonType())
       {
         case SpecalitiyData.ButtonType.NORMAL:
-          MyApplication.getInstance().setBitmapToImageview(R.drawable.empty_specification,profile_iv);
+          //MyApplication.getInstance().setBitmapToImageview(R.drawable.empty_specification,profile_iv);
+
+          MyApplication.getInstance().setBitmapToImageview(R.drawable.empty_specification,profile_iv,data.getIcon());
+
           break;
         case SpecalitiyData.ButtonType.MORE:
           MyApplication.getInstance().setBitmapToImageview(R.drawable.more_button,profile_iv);
@@ -99,7 +102,7 @@ private ExpandColapseButtonListener buttonListener;
             @Override
             public void onClick(View v) {
 
-                Utils.showToastMsg("Now click More button");
+               // Utils.showToastMsg("Now click More button");
                 if(buttonListener!=null)
                 {
                   buttonListener.onClick(true);
@@ -115,7 +118,7 @@ private ExpandColapseButtonListener buttonListener;
             @Override
             public void onClick(View v) {
 
-              Utils.showToastMsg("Now click Less button");
+              //Utils.showToastMsg("Now click Less button");
               if(buttonListener!=null)
               {
                 buttonListener.onClick(false);

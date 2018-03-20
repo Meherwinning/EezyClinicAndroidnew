@@ -111,7 +111,8 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
     addDataManager(new DataItemManager<>(this, new Header("Popular Doctors")));
     //addDataManager(carItemsManager);
-      addDataManager(popularDoctorslManager);
+    addDataManager(popularDoctorslManager);
+
     addDataManager(new DataItemManager<>(this, new Header("Health Tips")));
     addDataManager(bikeItemsManager);
 
@@ -132,12 +133,15 @@ public class ComplexListAdapter extends RecyclerAdapter {
                 displayList= new ArrayList<>();
                 remainingList.addAll(originalList);
                 loadMoreValues(remainingList);
-                Utils.showToastMessage("Now click on Less button");
+               // Utils.showToastMessage("Now click on Less button");
             }
-            if(homeData!=null && homeData.getDoctorsList()!=null&&homeData.getDoctorsList().size()>0) {
-                popularDoctorslManager.clear();
+          /*  if(homeData!=null && homeData.getDoctorsList()!=null&&homeData.getDoctorsList().size()>0) {
+
+                if(popularDoctorslManager.getCount()>=1) {
+                    popularDoctorslManager.remove(0);
+                }
                 popularDoctorslManager.addAll(homeData.getDoctorsList().subList(0, 1));
-            }
+            }*/
         }
     }));
 
@@ -158,6 +162,12 @@ public class ComplexListAdapter extends RecyclerAdapter {
     }));*/
 
       //
+
+      if(homeData!=null && homeData.getDoctorsList()!=null&&homeData.getDoctorsList().size()>0) {
+                popularDoctorslManager.clear();
+                popularDoctorslManager.addAll(homeData.getDoctorsList().subList(0, 1));
+            }
+           // Utils.showToastMessage("Now called Complex adapter");
   }
 
   public static int convertDpToPixel(float dp, Context context) {
@@ -289,9 +299,9 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
   public void addSingleModelItem(List<Article> dataList) {
     singleModelManager.addAll(dataList);
-    if(homeData!=null && homeData.getDoctorsList()!=null && homeData.getDoctorsList().size()>0) {
+    /*if(homeData!=null && homeData.getDoctorsList()!=null && homeData.getDoctorsList().size()>0) {
         popularDoctorslManager.addAll(homeData.getDoctorsList().subList(0, 1));
-    }
+    }*/
      /* ArrayList<Article1> list= new ArrayList<Article1>();
       list.add(new Article1());*/
       //popularDoctorslManager.addAll(dataList);

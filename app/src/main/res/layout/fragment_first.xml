@@ -52,14 +52,14 @@
 
 
         <TextView
-            android:id="@+id/patient_name_tv"
+            android:id="@+id/doctor_name_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5dp"
             android:layout_below="@+id/top_image_linear"
             android:fontFamily="@font/roboto_black"
             android:gravity="center"
-            android:hint="Patient Name"
+            android:hint="Doctor Name"
             android:maxLines="1"
             android:textColor="#de000000"
             android:textColorHint="#8a000000"
@@ -73,7 +73,7 @@
             android:id="@+id/designation_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/patient_name_tv"
+            android:layout_below="@+id/doctor_name_tv"
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:orientation="vertical">

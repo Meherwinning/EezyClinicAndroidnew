@@ -32,13 +32,17 @@ import com.vempower.eezyclinic.APIResponce.SpecalitiyRemainData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.TestSliderActivity;
 import com.vempower.eezyclinic.fragments.FirstFragment;
+import com.vempower.eezyclinic.utils.Utils;
 
 import java.util.List;
+
+import okhttp3.internal.Util;
 
 public class ArticleBinder1 extends ItemBinder<NewHomeDoctorsList, ArticleBinder1.ViewHolder> {
 
   private FragmentManager fragmentManager;
   private List<NewHomeDoctorsList> doctorsLists;
+  private ViewHolder holder;
   public ArticleBinder1(List<NewHomeDoctorsList> doctorsLists, ItemDecorator itemDecorator, FragmentManager fragmentManager) {
     super(itemDecorator);
     this.fragmentManager=fragmentManager;
@@ -46,7 +50,11 @@ public class ArticleBinder1 extends ItemBinder<NewHomeDoctorsList, ArticleBinder
   }
 
   @Override public ViewHolder create(LayoutInflater layoutInflater, ViewGroup parent) {
-    return new ViewHolder(layoutInflater.inflate(R.layout.test_slider, parent, false));
+    if(holder==null)
+    {
+      holder=new ViewHolder(layoutInflater.inflate(R.layout.test_slider, parent, false));
+    }
+    return holder;
   }
 
   @Override public void bind(ViewHolder holder, NewHomeDoctorsList item) {
@@ -71,16 +79,26 @@ public class ArticleBinder1 extends ItemBinder<NewHomeDoctorsList, ArticleBinder
     private TextView tvTime;
     private TextView tvCategory;
     private ImageView ivCover;*/
-
+   ViewPager vpPager;
+     FragmentPagerAdapter adapterViewPager ;
     ViewHolder(View itemView) {
       super(itemView);
-      ViewPager vpPager = (ViewPager) itemView.findViewById(R.id.vpPager);
-      vpPager.setClipToPadding(false);
-     // vpPager.setOffscreenPageLimit(1);
-      //vpPager.setPageMargin(12);
+      Utils.showToastMessage("called ViewHolder");
+      if(vpPager==null) {
+        vpPager = (ViewPager) itemView.findViewById(R.id.vpPager);
+        vpPager.setClipToPadding(false);
+        //vpPager.setOffscreenPageLimit(20);
+        //vpPager.setPageMargin(12);
+        FragmentPagerAdapter adapterViewPager = new MyPagerAdapter(fragmentManager);
 
-      FragmentPagerAdapter  adapterViewPager = new MyPagerAdapter(fragmentManager);
-      vpPager.setAdapter(adapterViewPager);
+        vpPager.setAdapter(adapterViewPager);
+      }
+      {
+
+        vpPager.setCurrentItem(0);
+       // vpPager.getAdapter().notifyDataSetChanged();
+        vpPager.invalidate();
+      }
      /* tvTitle = (TextView) itemView.findViewById(R.id.tv_title);
       tvTime = (TextView) itemView.findViewById(R.id.tv_time);
       tvCategory = (TextView) itemView.findViewById(R.id.tv_category);
