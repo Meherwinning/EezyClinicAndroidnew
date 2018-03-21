@@ -1,70 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:autofit="http://schemas.android.com/apk/res-auto"
-    android:layout_height="@dimen/_168dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/app_gradient_bg"
-    android:paddingTop="@dimen/_22dp"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/_20dp"
 
-    android:orientation="vertical">
+    android:paddingTop="@dimen/_22dp">
+    <!--android:layout_height="@dimen/_168dp"-->
 
     <RelativeLayout
+        android:id="@+id/login_user_header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+        android:layout_height="@dimen/_168dp"
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
 
         >
+
         <LinearLayout
             android:id="@+id/image_linear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:gravity="left|top"
             android:background="@drawable/canvas_85x85"
+            android:gravity="left|top"
 
             >
 
             <ImageView
                 android:id="@+id/profile_iv"
                 style="@style/image_fit_toparent"
-                android:scaleType="fitXY"
-                />
+                android:scaleType="fitXY" />
         </LinearLayout>
-       <!-- <ImageView
-            android:id="@+id/profile_iv"
-            android:padding="@dimen/_5dp"
-            android:layout_width="@dimen/_60dp"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher"
-            android:layout_height="@dimen/_60dp" />-->
+        <!-- <ImageView
+             android:id="@+id/profile_iv"
+             android:padding="@dimen/_5dp"
+             android:layout_width="@dimen/_60dp"
+             android:layout_centerVertical="true"
+             android:src="@mipmap/ic_launcher"
+             android:layout_height="@dimen/_60dp" />-->
 
-        <TextView                android:fontFamily="@font/roboto_medium"
-            android:layout_below="@+id/image_linear"
+        <TextView
             android:id="@+id/patient_name_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_header"
             android:layout_marginTop="@dimen/_3dp"
+            android:layout_below="@+id/image_linear"
+            android:fontFamily="@font/roboto_medium"
             android:gravity="left"
-            android:textColor="@color/white"
             android:hint="Patient Name"
             android:maxLines="1"
-             />
-        <TextView                android:fontFamily="@font/roboto_medium"
-            android:layout_below="@+id/patient_name_tv"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_header" />
+
+        <TextView
             android:id="@+id/patient_email_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_normal"
+            android:layout_below="@+id/patient_name_tv"
+            android:fontFamily="@font/roboto_medium"
             android:gravity="left"
-            android:textColor="@color/white"
             android:hint="Patient email"
             android:maxLines="1"
-            />
-
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_normal" />
 
 
     </RelativeLayout>

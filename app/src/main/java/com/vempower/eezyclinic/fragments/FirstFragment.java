@@ -16,8 +16,6 @@ import com.vempower.eezyclinic.application.MyApplication;
 
 public class FirstFragment extends AbstractFragment {
     // Store instance variables
-    private String title;
-    private int page;
     private final NewHomeDoctorsList doctor;
     private TextView nameLabel,designation_tv2;
 
@@ -32,22 +30,20 @@ public class FirstFragment extends AbstractFragment {
     }
 
     // newInstance constructor for creating fragment with arguments
-    public static FirstFragment newInstance(NewHomeDoctorsList doctor1, int page, String title) {
+   /* public  FirstFragment newInstance(NewHomeDoctorsList doctor1, int page, String title) {
         FirstFragment fragmentFirst = new FirstFragment(doctor1);
         Bundle args = new Bundle();
         args.putInt("someInt", page);
         args.putString("someTitle", title);
         fragmentFirst.setArguments(args);
         return fragmentFirst;
-    }
+    }*/
 
 
     // Store instance variables based on arguments passed
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        page = getArguments().getInt("someInt", 0);
-        title = getArguments().getString("someTitle");
     }
 
     // Inflate the view for the fragment based on layout XML

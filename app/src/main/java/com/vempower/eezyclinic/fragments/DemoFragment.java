@@ -44,6 +44,7 @@ public class DemoFragment extends  AbstractFragment {
     private ComplexListAdapter adapter;
    // private List<SpecalitiyData> dataList;
    private NewHomeData newHomeData;
+    private NewHomeAPIMapper mapper;
 
 
     @Nullable
@@ -60,28 +61,46 @@ public class DemoFragment extends  AbstractFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //callSpecialityMapper();
+        callHomePageMapper();
+
+    }
+
+    public void refreshData()
+    {
+        //mapper=null;
         callHomePageMapper();
     }
+
 
     private void myInit() {
         recyclerView =getFragemtView().findViewById(R.id.rcv_list);
     }
 
     protected void setUpAdapter() {
+
+        /*if(adapter!=null)
+        {
+            adapter.setNewHomeData(newHomeData);
+            adapter.notifyDataSetChanged();
+
+                    return;
+        }*/
         GridLayoutManager glm = new GridLayoutManager(MyApplication.getCurrentActivityContext(), 3);
         //ArrayList<SpecalitiyRemainData> dataList1=new ArrayList<>();
         /*for(NewHomeSpeciality data:newHomeData.getSpecialities())
         {
             dataList1.add(new SpecalitiyRemainData(data)) ;
         }*/
-         adapter = new ComplexListAdapter(newHomeData,getFragmentManager());
-        adapter.setSpanCount(3);
+       // if(adapter==null) {
+            adapter = new ComplexListAdapter(newHomeData, getChildFragmentManager());
+            adapter.setSpanCount(3);
+       // }
 
         glm.setSpanSizeLookup(adapter.getSpanSizeLookup());
         recyclerView.addItemDecoration(adapter.getItemDecorationManager());
         recyclerView.setLayoutManager(glm);
         recyclerView.setAdapter(adapter);
+
 
         // Single list
 
@@ -90,38 +109,18 @@ public class DemoFragment extends  AbstractFragment {
 
 
 
-        // Grid items
-       /* List<GridItem> gridDataList = new ArrayList<>();
-        for (int i = 0; i < 9; i++) {
-            gridDataList.add(GridItem.generateGridItem(i));
-        }*/
-        //
-        adapter.addGridItem();
-
-
-        // Single list with two binders
-        List<Vehicle> carItemList = new ArrayList<>();
-        List<Vehicle> bikeItemList = new ArrayList<>();
-        Random random = new Random();
-        for (int i = 0; i < 10; i++) {
-            if (random.nextBoolean()) {
- /*               carItemList.add(new Car(i, "Car " + i, "Manufacturer " + i,
-                        String.valueOf(1900 + random.nextInt(100))));
-*/            } else {
-                bikeItemList.add(new Bike(i, "Bike " + i, "Description of bike" + i));
-            }
-        }
-        // adapter.addMultiItem(multiItemList);
-        /*ArrayList<SpecalitiyRemainData> dataList2=new ArrayList<>();
-        dataList2.add(new SpecalitiyRemainData(dataList.get(0)));*/
-        adapter.addCarItem();
-        //adapter.addBikeItem(bikeItemList);
     }
 
 
     private void callHomePageMapper()
     {
-        NewHomeAPIMapper mapper= new NewHomeAPIMapper();
+        if(mapper!=null)
+        {
+            setUpAdapter();
+            //recyclerView.invalidate();
+            return;
+        }
+         mapper= new NewHomeAPIMapper();
         mapper.setOnNewHomeAPIListener(new NewHomeAPIMapper.NewHomeAPIListener() {
             @Override
             public void getNewHomeAPI(NewHomeAPI homeAPI, String errorMessage) {

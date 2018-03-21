@@ -321,7 +321,7 @@ class CoreRecyclerAdapter extends RecyclerView.Adapter<ItemViewHolder> {
     }
   }
 
-  void resetExpandedItems() {
+ public void resetExpandedItems() {
     if (expandableMode != EXPANDABLE_MODE_NONE) {
       boolean notify = expandedItems.size() > 0;
       expandedItems.clear();
@@ -330,6 +330,13 @@ class CoreRecyclerAdapter extends RecyclerView.Adapter<ItemViewHolder> {
       for (BaseDataManager dataManager : dataManagers) {
         notifyBinderItemRangeChanged(dataManager, 0, dataManager.size(), null);
       }
+    }
+  }
+
+  public void refreshDataBinders()
+  {
+    for (BaseDataManager dataManager : dataManagers) {
+      notifyBinderItemRangeChanged(dataManager, 0, dataManager.size(), null);
     }
   }
 }

@@ -81,6 +81,7 @@ public interface Constants {
     }
 
     public interface Home {
+        int NEW_HOME_ACTIVITY = 0;
         int HOME_ACTIVITY = 1;
         int MY_PROFILE=2;
         int MEDICAL_RECORDS=3;

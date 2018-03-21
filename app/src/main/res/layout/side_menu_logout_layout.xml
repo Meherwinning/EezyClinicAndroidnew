@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:paddingLeft="@dimen/_20dp"
+    android:background="@color/side_menu_bg_color"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:background="@drawable/view_selector"
+        android:id="@+id/features_and_benefits_linear"
+        android:layout_marginTop="@dimen/_13dp"
+        android:minHeight="@dimen/_35dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/_8dp"
+        android:paddingBottom="@dimen/_8dp"
+        android:clickable="true"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginRight="@dimen/_28dp"
+            android:layout_width="wrap_content"
+            android:src="@drawable/fetures_icon"
+            android:gravity="left|center"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/_30dp" />
+        <TextView                android:fontFamily="@font/roboto_medium"
+
+            android:layout_width="match_parent"
+            android:textSize="@dimen/text_size_normal"
+            android:textColor="@color/side_menu_text_color"
+            android:text="@string/features_and_benefits_lbl"
+            android:gravity="left|center"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:background="@drawable/view_selector"
+        android:id="@+id/feedback_linear"
+        android:layout_marginTop="@dimen/_13dp"
+        android:minHeight="@dimen/_35dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/_8dp"
+        android:paddingBottom="@dimen/_8dp"
+        android:clickable="true"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginRight="@dimen/_28dp"
+            android:layout_width="wrap_content"
+            android:src="@drawable/feedback_icon"
+          android:gravity="left|center"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/_30dp" />
+        <TextView                android:fontFamily="@font/roboto_medium"
+
+            android:layout_width="match_parent"
+            android:textSize="@dimen/text_size_normal"
+            android:textColor="@color/side_menu_text_color"
+            android:text="@string/feedback_lbl"
+            android:gravity="left|center"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@drawable/view_selector"
+        android:id="@+id/logout_tv"
+        android:layout_marginTop="@dimen/_13dp"
+        android:minHeight="@dimen/_35dp"
+        android:layout_marginBottom="@dimen/_20dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/_8dp"
+
+        android:paddingBottom="@dimen/_8dp"
+        android:clickable="true"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginRight="@dimen/_28dp"
+            android:layout_width="wrap_content"
+            android:src="@drawable/logout_icon"
+          android:gravity="left|center"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/_30dp" />
+        <TextView                android:fontFamily="@font/roboto_medium"
+
+            android:layout_width="match_parent"
+            android:textSize="@dimen/text_size_normal"
+            android:textColor="@color/side_menu_text_color"
+            android:text="@string/login_signup_lbl"
+            android:gravity="left|center"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

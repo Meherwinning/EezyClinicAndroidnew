@@ -19,7 +19,7 @@ public class NewHomeData {
     @SerializedName("features")
     @Expose
     private List<String> features = null;
-    @SerializedName("health Tips")
+    @SerializedName("health_tips")
     @Expose
     private List<String> healthTips = null;
 

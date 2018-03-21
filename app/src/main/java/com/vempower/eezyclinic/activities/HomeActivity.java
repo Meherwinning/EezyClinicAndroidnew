@@ -23,10 +23,12 @@ import android.os.Build;
 import android.os.Messenger;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.Followup;
@@ -38,6 +40,7 @@ import com.vempower.eezyclinic.callbacks.FromActivityListener;
 import com.vempower.eezyclinic.callbacks.HomeBottomItemClickListener;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
+import com.vempower.eezyclinic.fragments.DemoFragment;
 import com.vempower.eezyclinic.fragments.HealthRecordsFragment;
 import com.vempower.eezyclinic.fragments.HomeFragment;
 import com.vempower.eezyclinic.fragments.MedicalRecordsFragment;
@@ -47,6 +50,7 @@ import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.HomeListener;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 
 import java.util.List;
@@ -61,10 +65,10 @@ public class HomeActivity extends AbstractMenuActivity {
     private static final String BOTTOM_IMAGE_ID_STR = "bottom_linear_image", BOTTOM_TEXTVIEW_ID_STR = "bottom_linear_textview";
 
 
-    private int[] imageUnselectIds={R.drawable.group_2,R.drawable.group_6,R.drawable.group_8,R.drawable.group_10};
-    private int[] imageSelectIds={R.drawable.group_6_blue,R.drawable.group_7_blue,R.drawable.group_8_blue,R.drawable.group_9_blue};
+    private int[] imageUnselectIds={R.drawable.footer_home,R.drawable.group_2,R.drawable.group_6,R.drawable.group_8,R.drawable.group_10};
+    private int[] imageSelectIds={R.drawable.footer_home_active,R.drawable.group_6_blue,R.drawable.group_7_blue,R.drawable.group_8_blue,R.drawable.group_9_blue};
 
-    private AbstractFragment homeFragment,myProfileFragment,medicalRecordsFragment,settingsFragment;
+    private AbstractFragment homeFragment,myProfileFragment,medicalRecordsFragment,settingsFragment,newHomeFragment;
    //private MedicalRecordsFragment ;
     private ImageView title_logo_iv;
 
@@ -81,6 +85,8 @@ public class HomeActivity extends AbstractMenuActivity {
         callDashboard();
 
     }
+
+
 
 
 
@@ -391,6 +397,9 @@ public class HomeActivity extends AbstractMenuActivity {
 
         switch (PRESENT_TAB)
         {
+            case  Constants.Home.NEW_HOME_ACTIVITY:
+                setHomeActionBar();
+                break;
             case  Constants.Home.HOME_ACTIVITY:
                 setHomeActionBar();
                 break;
@@ -408,6 +417,8 @@ public class HomeActivity extends AbstractMenuActivity {
                 getMenuInflater().inflate(R.menu.normal_menu, menu);
                 settingsActionBar("My Account");
                 break;
+
+
                 default:
                     setHomeActionBar();
 
@@ -552,6 +563,21 @@ public class HomeActivity extends AbstractMenuActivity {
         //super.setFragment();
     }
 
+
+    public void onNewHomeClick(View view)
+    {
+        PRESENT_TAB=Constants.Home.NEW_HOME_ACTIVITY;
+        callSettingsActionBar();
+        /*if(newHomeFragment==null)
+        {*/
+            newHomeFragment= new DemoFragment();
+           // fragment.refreshData();
+           // newHomeFragment=fragment;
+       // }
+        setFragment(newHomeFragment);
+        unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,Constants.Home.NEW_HOME_ACTIVITY);
+    }
+
     public void onDashBoardClick(View view1)
     {
         PRESENT_TAB=Constants.Home.HOME_ACTIVITY;
@@ -612,7 +638,7 @@ public class HomeActivity extends AbstractMenuActivity {
     }
 
     private void unSelectAllDistance(String textviewStr,String imageViewStr,int selectedViewNum) {
-        for (int i = 1; i <= 4; i++) {
+        for (int i = 0; i <= 4; i++) {
             //Textview
             {
                 String str = textviewStr + "" + i;
@@ -625,7 +651,7 @@ public class HomeActivity extends AbstractMenuActivity {
                 String str = imageViewStr + "" + i;
                 int resID = getResources().getIdentifier(str,
                         "id", MyApplication.getCurrentActivityContext().getPackageName());
-                unselectImageView((ImageView) findViewById(resID),selectedViewNum==i?imageSelectIds[i-1]:imageUnselectIds[i-1]);
+                unselectImageView((ImageView) findViewById(resID),selectedViewNum==i?imageSelectIds[i]:imageUnselectIds[i]);
             }
         }
         // selectedDistance = -1;

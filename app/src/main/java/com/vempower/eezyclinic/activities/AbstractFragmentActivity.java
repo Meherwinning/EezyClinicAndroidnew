@@ -83,6 +83,7 @@ public class AbstractFragmentActivity extends AbstractActivity  /*implements OTP
             return;
         }
         Intent intent= new Intent(MyApplication.getCurrentActivityContext(),VerifyOTPActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra(Constants.Pref.OTP_KEY,signupAPI.getOtp());
         intent.putExtra(Constants.Pref.PATIENT_ID_KEY,signupAPI.getData().patientId);

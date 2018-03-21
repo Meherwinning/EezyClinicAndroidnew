@@ -50,7 +50,8 @@ public class TestSliderActivity extends AbstractActivity {
         // Returns the fragment to display for that page
         @Override
         public Fragment getItem(int position) {
-            return FirstFragment.newInstance(null,position, "Page # "+position);
+            return null;
+            /*FirstFragment.newInstance(null,position, "Page # "+position)*/
             /*switch (position) {
                 case 0: // Fragment # 0 - This will show FirstFragment
                     return FirstFragment.newInstance(position, "Page # 1");

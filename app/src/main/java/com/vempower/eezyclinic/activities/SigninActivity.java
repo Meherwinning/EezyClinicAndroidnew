@@ -175,7 +175,8 @@ public class SigninActivity extends AbstractSocialLoginActivity {
         MyApplication.getInstance().setLoggedUserDetailsToSharedPref(loginAPI.getPatientData());
         SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,loginAPI.getAccessToken());
         Intent intent= new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         showToastMessage(R.string.normal_signup_or_signin_msg_lbl);
         finish();

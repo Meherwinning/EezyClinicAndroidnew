@@ -64,19 +64,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/bottom_linear"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:background="@color/transparent"
-        android:layout_marginTop="@dimen/_1dp"
-        android:layout_height="wrap_content">
-        <include layout="@layout/dashboard_bottom_layout">
 
-        </include>
-
-    </LinearLayout>
 
 
     <!--<include

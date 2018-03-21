@@ -101,6 +101,16 @@
 
 
         <activity
+            android:name=".activities.NonLoginHomeActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeOverlay.MyNoTitleActivity" >
+
+        </activity>
+
+
+
+        <activity
             android:name=".activities.GraphExpandViewActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:screenOrientation="landscape"

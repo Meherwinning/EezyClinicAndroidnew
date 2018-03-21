@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:autofit="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/app_gradient_bg"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/_20dp"
+
+    android:paddingTop="@dimen/_22dp">
+    <!--android:layout_height="@dimen/_168dp"-->
+
+
+
+    <RelativeLayout
+        android:id="@+id/non_login_user_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_168dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+
+        >
+
+        <LinearLayout
+            android:id="@+id/image_linear1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/canvas_85x85"
+            android:gravity="left|top"
+
+            >
+
+            <ImageView
+                style="@style/image_fit_toparent"
+                android:src="@drawable/profile_icon"
+                android:scaleType="fitXY" />
+        </LinearLayout>
+        <!-- <ImageView
+             android:id="@+id/profile_iv"
+             android:padding="@dimen/_5dp"
+             android:layout_width="@dimen/_60dp"
+             android:layout_centerVertical="true"
+             android:src="@mipmap/ic_launcher"
+             android:layout_height="@dimen/_60dp" />-->
+
+        <TextView
+            android:id="@+id/patient_name_tv1"
+            android:layout_width="wrap_content"
+            android:paddingRight="@dimen/_20sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3dp"
+            android:layout_below="@+id/image_linear1"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="left"
+            android:text="Login"
+            android:clickable="true"
+            android:onClick="onLoginClick"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_18sp" />
+
+        <LinearLayout
+            android:layout_below="@+id/patient_name_tv1"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_5dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/patient_name_tv1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="left"
+                android:text="Signup "
+                android:clickable="true"
+                android:onClick="onSignupClick"
+                android:maxLines="1"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/patient_name_tv1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="left"
+                android:text="as a new user"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_normal" />
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

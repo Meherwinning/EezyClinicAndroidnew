@@ -111,6 +111,7 @@ public class AbstractSocialLoginActivity extends AbstractFragmentActivity {
                             return;
                         }
                         Intent intent= new Intent(MyApplication.getCurrentActivityContext(),VerifyOTPActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         intent.putExtra(Constants.Pref.OTP_KEY,signupAPI.getOtp());
                         intent.putExtra(VerifyOTPActivity.IS_FROM_RESEND_OTP_KEY,true);
@@ -268,5 +269,12 @@ public class AbstractSocialLoginActivity extends AbstractFragmentActivity {
         }
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent= new Intent(MyApplication.getCurrentActivityContext(),NonLoginHomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
 }

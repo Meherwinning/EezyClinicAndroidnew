@@ -61,8 +61,12 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         super.onCreate(savedInstanceState);
         checkNetwork();
 
+
+
         //intent= getIntent();
     }
+
+
 
     protected void checkNetwork() {
         if (!Utils.isNetworkAvailable(this)) {
@@ -162,7 +166,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     protected abstract void setActionBar();
 
 
-    private void setSidemenuItemsListener() {
+    public void setSidemenuItemsListener() {
 
 
         findViewById(R.id.dashdoard_linear).setOnClickListener(this);
@@ -207,6 +211,8 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         hideKeyBord();
         Intent intent = getIntent();
         switch (item.getId()) {
+
+
             case R.id.dashdoard_linear:
                 callDashboard();
 
@@ -415,7 +421,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     }
 
 
-    private void setSideMenuCutomerTitle() {
+    protected void setSideMenuCutomerTitle() {
 
         nameTv.setText(Utils.getStringFromResources(R.string.welcome_guest_lbl));
         refreshSideMenuItems(false);
@@ -697,7 +703,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         prevoiusFragment = null;
         refreshSideMenuItems(false);
         //setFragment(getHomeFragment());
-        Intent intent = new Intent(this, SigninActivity.class);
+        Intent intent = new Intent(this, NonLoginHomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -851,6 +857,9 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     {
         hideKeyBord(drawerLayout);
      }
+
+
+
 
 
 

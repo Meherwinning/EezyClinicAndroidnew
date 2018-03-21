@@ -26,6 +26,7 @@ import android.util.DisplayMetrics;
 import com.ahamed.multiviewadapter.DataItemManager;
 import com.ahamed.multiviewadapter.DataListManager;
 import com.ahamed.multiviewadapter.RecyclerAdapter;
+import com.ahamed.multiviewadapter.annotation.ExpandableMode;
 import com.ahamed.multiviewadapter.util.SimpleDividerDecoration;
 import com.vempower.eezyclinic.APICore.NewHomeData;
 import com.vempower.eezyclinic.APICore.NewHomeDoctorsList;
@@ -63,11 +64,11 @@ public class ComplexListAdapter extends RecyclerAdapter {
   private List<NewHomeSpeciality> newHomeSpecialities;
     private  NewHomeData homeData;
 
-  public ComplexListAdapter(final NewHomeData homeData, FragmentManager fragmentManager) {
+  public ComplexListAdapter(final NewHomeData homeData1, FragmentManager fragmentManager) {
    // simpleItemDecoration = new SimpleDividerDecoration(MyApplication.getCurrentActivityContext(), SimpleDividerDecoration.VERTICAL);
       //this.fragmentManager=fragmentManager;
      // this.doctorsList=doctorsList;
-
+      this.homeData=homeData1;
       newHomeSpecialities=homeData.getSpecialities();
       simpleItemDecoration1 = new SimpleDividerDecoration(MyApplication.getCurrentActivityContext(), SimpleDividerDecoration.HORIZONTAL);
 
@@ -153,8 +154,12 @@ public class ComplexListAdapter extends RecyclerAdapter {
      // registerBinder(new GridItemRemainBinder(convertDpToPixel(4, context)));
 
       //registerBinder(new CarBinder(simpleItemDecoration1,doctorsList));
+
+      //////registerBinder(new ArticleBinder1(homeData.getDoctorsList(),new ArticleItemDecorator1(),fragmentManager));
+
       registerBinder(new ArticleBinder1(homeData.getDoctorsList(),new ArticleItemDecorator1(),fragmentManager));
-    registerBinder(new HealthTipsBinder(simpleItemDecoration1));
+
+      registerBinder(new HealthTipsBinder(simpleItemDecoration1));
       registerBinder(new FeaturesListBinder(simpleItemDecoration1));
 
    /* registerBinder(new FeaturedArticleBinder(new ArticleItemDecorator()));*/
@@ -170,28 +175,40 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
       //
 
+
+           // Utils.showToastMessage("Now called Complex adapter");
+      refreshData();
+  }
+
+  private void refreshData()
+  {
+
       if(homeData!=null )
       {
-     if( homeData.getDoctorsList()!=null&&homeData.getDoctorsList().size()>0) {
-                popularDoctorslManager.clear();
-                popularDoctorslManager.addAll(homeData.getDoctorsList().subList(0, 1));
-            }
+          if( homeData.getDoctorsList()!=null&&homeData.getDoctorsList().size()>0) {
+              // if (ArticleBinder1.isRefresh()) {
+              popularDoctorslManager.clear();
+              popularDoctorslManager.addAll(homeData.getDoctorsList().subList(0, 1));
+              // }
+          }
 
-            if(homeData.getHealthTips()!=null && homeData.getHealthTips().size()>0)
-            {
-                healthTipsManager.addAll(homeData.getHealthTips());
-            }
+          if(homeData.getHealthTips()!=null && homeData.getHealthTips().size()>0)
+          {
+              healthTipsManager.addAll(homeData.getHealthTips());
+          }
 
           if(homeData.getFeatures()!=null && homeData.getFeatures().size()>0)
           {
               featuresManager.addAll(homeData.getFeatures());
           }
+          addGridItem();
+
+
 
       }
-           // Utils.showToastMessage("Now called Complex adapter");
   }
 
-  public static int convertDpToPixel(float dp, Context context) {
+  private  int convertDpToPixel(float dp, Context context) {
     Resources resources = context.getResources();
     DisplayMetrics metrics = resources.getDisplayMetrics();
     return (int) (dp * (metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT));
@@ -200,9 +217,9 @@ public class ComplexListAdapter extends RecyclerAdapter {
  /* public void addMultiItem(List<Vehicle> dataList) {
     multiItemsManager.addAll(dataList);
   }*/
- public void addCarItem() {
+ /*public void addCarItem() {
    //carItemsManager.addAll(dataList);
- }
+ }*/
   /*public void addBikeItem(List<Vehicle> dataList) {
     healthTipsManager.addAll(dataList);
   }*/
@@ -210,7 +227,7 @@ public class ComplexListAdapter extends RecyclerAdapter {
     List<NewHomeSpeciality> displayList= new ArrayList<>();
     ArrayList<NewHomeSpeciality> remainingList= new ArrayList<>();
     ArrayList<NewHomeSpeciality> originalList= new ArrayList<>();
-  public void addGridItem() {
+  private void addGridItem() {
    // this.gridDataList = dataList;
       originalList.addAll(newHomeSpecialities);
       //registerBinder(new MyGridItemBinder(simpleItemDecoration,dataList));
@@ -343,4 +360,13 @@ public class ComplexListAdapter extends RecyclerAdapter {
       int width = displayMetrics.widthPixels;
       return width;
   }
+
+    public void setNewHomeData(NewHomeData newHomeData) {
+        this.homeData = newHomeData;
+        refreshData();
+        //setExpandableMode(EXPANDABLE_MODE_MULTIPLE);
+        refreshDataBinders();
+        notifyDataSetChanged();
+
+    }
 }

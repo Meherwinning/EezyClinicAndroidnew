@@ -4,7 +4,7 @@
         android:id="@+id/top_view_linear"
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/_20dp"
-    android:paddingTop="@dimen/_20dp"
+    android:paddingTop="@dimen/_2dp"
     android:paddingRight="@dimen/_20dp"
     android:paddingBottom="@dimen/_10dp"
 

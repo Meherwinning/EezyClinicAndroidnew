@@ -3,11 +3,39 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
 
     android:background="@color/white"
-    android:paddingLeft="@dimen/_21dp"
-    android:paddingRight="@dimen/_26dp"
-    android:weightSum="4"
+    android:paddingLeft="@dimen/_2dp"
+    android:paddingRight="@dimen/_2dp"
+    android:weightSum="5"
     android:layout_height="@dimen/_56dp">
+    <LinearLayout
+        android:id="@+id/bottom_linear0"
+        android:clickable="true"
+        android:layout_width="0dp"
+        android:onClick="onNewHomeClick"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@drawable/view_selector"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/bottom_linear_image0"
+            android:layout_marginTop="@dimen/_7dp"
+            android:layout_width="wrap_content"
+            android:minHeight="@dimen/_24dp"
+            android:src="@drawable/footer_home"
+            android:layout_gravity="center|center_vertical"
+            android:layout_height="wrap_content" />
 
+
+        <TextView    android:fontFamily="@font/roboto"
+            android:id="@+id/bottom_linear_textview0"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_1dp"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_small1"
+            android:text="@string/home_lbl"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/bottom_linear1"
         android:clickable="true"

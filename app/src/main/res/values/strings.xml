@@ -55,6 +55,7 @@
 
 
     <string name="book_appointment_lbl">Book Appointment</string>
+    <string name="home_lbl">Home</string>
     <string name="dashboard_lbl">Dashboard</string>
     <string name="my_profile_lbl">My Profile</string>
     <string name="notification_lbl">Notification</string>
@@ -240,6 +241,7 @@
     <string name="success_save_notes_lbl">Your Note is successfully added</string>
     <string name="no_health_records_found_lbl">There are no record(s) found.</string>
     <string name="unable_to_get_home_page_details">Unable to get home page details</string>
+    <string name="login_signup_lbl">Login/Signup</string>
 
 
 </resources>
