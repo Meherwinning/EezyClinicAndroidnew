@@ -238,6 +238,7 @@
                     android:hint="Speciality"
                     android:maxLength="120"
                     android:inputType="text"
+                    android:imeOptions="actionNext"
                     android:paddingRight="@dimen/_5dp"
                     android:paddingTop="@dimen/_3dp"
                     android:singleLine="true"
@@ -246,7 +247,9 @@
                     android:textColor="@color/text_color"
                     android:textColorHint="@color/text_hint_color"
 
-                    />
+                    >
+                    <requestFocus />
+                </com.vempower.eezyclinic.views.MyAutoCompleteTextView>
 
     <!--            <com.vempower.eezyclinic.views.CustomSpinnerSelection
                     android:id="@+id/speciality_type_spinner"
@@ -274,7 +277,7 @@
                 android:background="@color/white" />
 
         </LinearLayout>
-        <LinearLayout
+   <!--     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_15dp"
@@ -303,7 +306,7 @@
 
             </LinearLayout>
 
-            <!-- </android.support.design.widget.TextInputLayout>-->
+            &lt;!&ndash; </android.support.design.widget.TextInputLayout>&ndash;&gt;
 
 
             <TextView
@@ -351,7 +354,7 @@
 
                 </LinearLayout>
 
-                <!-- </android.support.design.widget.TextInputLayout>-->
+                &lt;!&ndash; </android.support.design.widget.TextInputLayout>&ndash;&gt;
 
 
                 <TextView
@@ -364,7 +367,7 @@
 
 
         </com.github.aakira.expandablelayout.ExpandableLinearLayout>
-
+-->
 
 
         <LinearLayout
@@ -412,6 +415,7 @@
                     android:hint="Locality"
                     android:maxLength="120"
                     android:inputType="text"
+                    android:imeOptions="actionNext"
                     android:paddingRight="@dimen/_5dp"
                     android:paddingTop="@dimen/_3dp"
                     android:singleLine="true"
@@ -455,6 +459,7 @@
                     android:maxLines="1"
                     android:hint="Doctor/Clinic Name"
                     android:maxLength="120"
+                    android:imeOptions="actionDone"
                     android:inputType="text"
                     android:paddingRight="@dimen/_5dp"
                     android:paddingTop="@dimen/_3dp"

@@ -782,7 +782,7 @@ public class SearchFragment extends AbstractFragment {
 
     public void setToCityListAdapter(List<CityData> list) {
         if (list == null) {
-            expandableLayout_city_view.collapse();
+            //expandableLayout_city_view.collapse();
             return;
         } else {
             expandableLayout_city_view.expand();
@@ -871,8 +871,9 @@ public class SearchFragment extends AbstractFragment {
 
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         country_spinner.setAdapter(aa);
-        country_spinner.setSelection(aa.getCount());
-
+       // country_spinner.setSelection(aa.getCount());
+        country_spinner.setSelection(aa.getCount()-1);
+        selectCountry(aa.getCount()-1, countryTypeList);
         country_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -880,17 +881,7 @@ public class SearchFragment extends AbstractFragment {
                 //{
                 // expandableLayout_city_view.collapse();
                 if (position != (aa.getCount())) {
-                    CountryData selectedCountry = countryTypeList.get(position);
-                    if (selectedCountry != null) {
-                        // Utils.showToastMessage("selected country " + selectedCountry);
-                        if (!expandableLayout_city_view.isExpanded()) {
-                            expandableLayout_city_view.toggle();
-                        }
-                        callCityListMapper(selectedCountry.getId());
-                        searchRequestParams.setCountry(selectedCountry.getId());
-                        namesSearch.setCountryId(selectedCountry.getId());
-                        callDoctorsClinicNamesMapper();
-                    }
+                    selectCountry(position, countryTypeList);
                 }
 
 
@@ -905,6 +896,23 @@ public class SearchFragment extends AbstractFragment {
         });
 
 
+
+
+    }
+
+    private void selectCountry(int position, ArrayList<CountryData> countryTypeList) {
+        CountryData selectedCountry = countryTypeList.get(position);
+        if (selectedCountry != null) {
+            // Utils.showToastMessage("selected country " + selectedCountry);
+            /*if (!expandableLayout_city_view.isExpanded()) {
+                expandableLayout_city_view.toggle();
+            }*/
+
+            callCityListMapper(selectedCountry.getId());
+            searchRequestParams.setCountry(selectedCountry.getId());
+            namesSearch.setCountryId(selectedCountry.getId());
+            callDoctorsClinicNamesMapper();
+        }
     }
 
     private TextWatcher doctorClinicNameTextWatcher = new TextWatcher() {
