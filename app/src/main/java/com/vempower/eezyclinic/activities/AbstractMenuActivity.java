@@ -692,6 +692,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY, "");
 
         MyApplication.getInstance().setLoggedUserDetailsToSharedPref(null);
+        MyApplication.getInstance().setSearchResultDoctorListData(null);
 
         //Toast.makeText(getBaseContext(), "Logged out successfully!", Toast.LENGTH_LONG).show();
         showToastMessage(R.string.success_logout_msg);

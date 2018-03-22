@@ -4,178 +4,122 @@ package com.vempower.eezyclinic.APICore;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class NewHomeDoctorsList {
+public class NewHomeDoctorsList  extends SearchResultDoctorListData {
 
-    @SerializedName("branch_name")
+    @SerializedName("branch_id")
     @Expose
-    private String branchName;
-    @SerializedName("clinic_name")
-    @Expose
-    private String clinicName;
-    @SerializedName("cityName")
-    @Expose
-    private String cityName;
+    private String branchId;
+
     @SerializedName("id")
     @Expose
-    private String id;
-    @SerializedName("clinicId")
-    @Expose
-    private String clinicId;
+    public String id;
+
     @SerializedName("firstName")
     @Expose
-    private String firstName;
+    public String firstName;
     @SerializedName("middleName")
     @Expose
-    private String middleName;
+    public String middleName;
     @SerializedName("lastName")
     @Expose
-    private String lastName;
-    @SerializedName("doctorLogo")
-    @Expose
-    private String doctorLogo;
-    @SerializedName("gender")
-    @Expose
-    private String gender;
+    public String lastName;
+
     @SerializedName("dateOfBirth")
     @Expose
-    private String dateOfBirth;
-    @SerializedName("nationality")
-    @Expose
-    private String nationality;
-    @SerializedName("languagesKnown")
-    @Expose
-    private String languagesKnown;
+    public String dateOfBirth;
+
+
     @SerializedName("email")
     @Expose
-    private String email;
+    public String email;
     @SerializedName("password")
     @Expose
-    private String password;
+    public String password;
     @SerializedName("activation_code")
     @Expose
-    private Object activationCode;
-    @SerializedName("primaryMobileNo")
-    @Expose
-    private String primaryMobileNo;
+    public Object activationCode;
+
     @SerializedName("secondaryMobileNo")
     @Expose
-    private String secondaryMobileNo;
+    public String secondaryMobileNo;
     @SerializedName("residencePhoneNo")
     @Expose
-    private String residencePhoneNo;
-    @SerializedName("country")
-    @Expose
-    private String country;
-    @SerializedName("city")
-    @Expose
-    private String city;
-    @SerializedName("locality")
-    @Expose
-    private String locality;
-    @SerializedName("address")
-    @Expose
-    private String address;
+    public String residencePhoneNo;
+
     @SerializedName("pincode")
     @Expose
-    private String pincode;
+    public String pincode;
     @SerializedName("houseNumber")
     @Expose
-    private String houseNumber;
+    public String houseNumber;
     @SerializedName("awardsAndAchivements")
     @Expose
-    private String awardsAndAchivements;
+    public String awardsAndAchivements;
     @SerializedName("experience")
     @Expose
-    private String experience;
+    public String experience;
     @SerializedName("experienceDetails")
     @Expose
-    private String experienceDetails;
-    @SerializedName("specalities")
+    public String experienceDetails;
+     @SerializedName("servicesOffered")
     @Expose
-    private String specalities;
-    @SerializedName("servicesOffered")
+    public String servicesOffered;
+     @SerializedName("completeProfile")
     @Expose
-    private String servicesOffered;
-    @SerializedName("briefProfile")
+    public String completeProfile;
+     @SerializedName("allocated_branches")
     @Expose
-    private String briefProfile;
-    @SerializedName("completeProfile")
-    @Expose
-    private String completeProfile;
-    @SerializedName("consultancyFeeCurrency")
-    @Expose
-    private String consultancyFeeCurrency;
-    @SerializedName("counsultancyPrice")
-    @Expose
-    private String counsultancyPrice;
-    @SerializedName("allocated_branches")
-    @Expose
-    private String allocatedBranches;
+    public String allocatedBranches;
     @SerializedName("doctor_identification_color")
     @Expose
-    private String doctorIdentificationColor;
-    @SerializedName("instantBooking")
-    @Expose
-    private String instantBooking;
+    public String doctorIdentificationColor;
+
     @SerializedName("asFeatured")
     @Expose
-    private String asFeatured;
+    public String asFeatured;
     @SerializedName("first_login")
     @Expose
-    private Object firstLogin;
+    public Object firstLogin;
     @SerializedName("status")
     @Expose
-    private String status;
+    public String status;
     @SerializedName("meta_title")
     @Expose
-    private Object metaTitle;
+    public Object metaTitle;
     @SerializedName("meta_description")
     @Expose
-    private Object metaDescription;
+    public Object metaDescription;
     @SerializedName("meta_keywords")
     @Expose
-    private Object metaKeywords;
+    public Object metaKeywords;
     @SerializedName("meta_image1")
     @Expose
-    private Object metaImage1;
+    public Object metaImage1;
     @SerializedName("meta_image2")
     @Expose
-    private Object metaImage2;
+    public Object metaImage2;
     @SerializedName("meta_image3")
     @Expose
-    private Object metaImage3;
+    public Object metaImage3;
     @SerializedName("last_login")
     @Expose
-    private String lastLogin;
+    public String lastLogin;
     @SerializedName("dateAdeed")
     @Expose
-    private String dateAdeed;
+    public String dateAdeed;
     @SerializedName("degreelist")
     @Expose
-    private String degreelist;
+    public String degreelist;
 
-    public String getBranchName() {
-        return branchName;
+
+    @Override
+    public String getBranchId() {
+        return branchId;
     }
 
-    public void setBranchName(String branchName) {
-        this.branchName = branchName;
-    }
-
-    public String getClinicName() {
-        return clinicName;
-    }
-
-    public void setClinicName(String clinicName) {
-        this.clinicName = clinicName;
-    }
-
-    public String getCityName() {
-        return cityName;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
+    @Override
+    public void setBranchId(String branchId) {
+        this.branchId = branchId;
     }
 
     public String getId() {
@@ -186,13 +130,6 @@ public class NewHomeDoctorsList {
         this.id = id;
     }
 
-    public String getClinicId() {
-        return clinicId;
-    }
-
-    public void setClinicId(String clinicId) {
-        this.clinicId = clinicId;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -218,21 +155,7 @@ public class NewHomeDoctorsList {
         this.lastName = lastName;
     }
 
-    public String getDoctorLogo() {
-        return doctorLogo;
-    }
 
-    public void setDoctorLogo(String doctorLogo) {
-        this.doctorLogo = doctorLogo;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
 
     public String getDateOfBirth() {
         return dateOfBirth;
@@ -242,21 +165,7 @@ public class NewHomeDoctorsList {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getNationality() {
-        return nationality;
-    }
 
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
-
-    public String getLanguagesKnown() {
-        return languagesKnown;
-    }
-
-    public void setLanguagesKnown(String languagesKnown) {
-        this.languagesKnown = languagesKnown;
-    }
 
     public String getEmail() {
         return email;
@@ -282,13 +191,7 @@ public class NewHomeDoctorsList {
         this.activationCode = activationCode;
     }
 
-    public String getPrimaryMobileNo() {
-        return primaryMobileNo;
-    }
 
-    public void setPrimaryMobileNo(String primaryMobileNo) {
-        this.primaryMobileNo = primaryMobileNo;
-    }
 
     public String getSecondaryMobileNo() {
         return secondaryMobileNo;
@@ -306,37 +209,9 @@ public class NewHomeDoctorsList {
         this.residencePhoneNo = residencePhoneNo;
     }
 
-    public String getCountry() {
-        return country;
-    }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
 
-    public String getCity() {
-        return city;
-    }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getLocality() {
-        return locality;
-    }
-
-    public void setLocality(String locality) {
-        this.locality = locality;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public String getPincode() {
         return pincode;
@@ -378,13 +253,6 @@ public class NewHomeDoctorsList {
         this.experienceDetails = experienceDetails;
     }
 
-    public String getSpecalities() {
-        return specalities;
-    }
-
-    public void setSpecalities(String specalities) {
-        this.specalities = specalities;
-    }
 
     public String getServicesOffered() {
         return servicesOffered;
@@ -394,13 +262,6 @@ public class NewHomeDoctorsList {
         this.servicesOffered = servicesOffered;
     }
 
-    public String getBriefProfile() {
-        return briefProfile;
-    }
-
-    public void setBriefProfile(String briefProfile) {
-        this.briefProfile = briefProfile;
-    }
 
     public String getCompleteProfile() {
         return completeProfile;
@@ -410,21 +271,6 @@ public class NewHomeDoctorsList {
         this.completeProfile = completeProfile;
     }
 
-    public String getConsultancyFeeCurrency() {
-        return consultancyFeeCurrency;
-    }
-
-    public void setConsultancyFeeCurrency(String consultancyFeeCurrency) {
-        this.consultancyFeeCurrency = consultancyFeeCurrency;
-    }
-
-    public String getCounsultancyPrice() {
-        return counsultancyPrice;
-    }
-
-    public void setCounsultancyPrice(String counsultancyPrice) {
-        this.counsultancyPrice = counsultancyPrice;
-    }
 
     public String getAllocatedBranches() {
         return allocatedBranches;
@@ -442,13 +288,6 @@ public class NewHomeDoctorsList {
         this.doctorIdentificationColor = doctorIdentificationColor;
     }
 
-    public String getInstantBooking() {
-        return instantBooking;
-    }
-
-    public void setInstantBooking(String instantBooking) {
-        this.instantBooking = instantBooking;
-    }
 
     public String getAsFeatured() {
         return asFeatured;
@@ -545,5 +384,6 @@ public class NewHomeDoctorsList {
     public void setDegreelist(String degreelist) {
         this.degreelist = degreelist;
     }
+
 
 }

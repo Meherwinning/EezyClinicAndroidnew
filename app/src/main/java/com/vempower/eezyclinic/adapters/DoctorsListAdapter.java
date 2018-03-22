@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Messenger;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -12,13 +13,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.rey.material.app.DialogFragment;
+import com.rey.material.app.SimpleDialog;
+import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.DoctorProfileActivity;
 import com.vempower.eezyclinic.activities.ScheduleAppointmentActivity;
+import com.vempower.eezyclinic.activities.SigninActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
@@ -36,10 +42,12 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
     private List<SearchResultDoctorListData> doctorsList;
 
     private LayoutInflater inflater;
+    private FragmentManager fragmentManager;
 
 
-    public DoctorsListAdapter(List<SearchResultDoctorListData> doctorsList) {
+    public DoctorsListAdapter(FragmentManager fragmentManager,List<SearchResultDoctorListData> doctorsList) {
         this.doctorsList = doctorsList;
+        this.fragmentManager=fragmentManager;
         inflater = (LayoutInflater) MyApplication.getCurrentActivityContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -176,6 +184,41 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
                  public void onClick(View view) {
                      // Utils.showToastMsg("Coming soon");
 
+                     MyApplication.showTransparentDialog();
+                     PatientData patientData = MyApplication.getInstance().getLoggedUserDetailsFromSharedPref();
+                     MyApplication.hideTransaprentDialog();
+
+                     if(patientData==null)
+                     {
+
+                         showMyDialog("Alert", Utils.getStringFromResources(R.string.non_logged_user_book_appointment_alert_msz), "Ok", "Cancel", new ApiErrorDialogInterface() {
+                             @Override
+                             public void onCloseClick() {
+
+
+
+                             }
+
+                             @Override
+                             public void retryClick() {
+
+                                 MyApplication.getInstance().setSearchResultDoctorListData(data);
+
+                                 Intent intent = new Intent(MyApplication.getCurrentActivityContext(), SigninActivity.class);
+                                 /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+                                                                  intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                                 MyApplication.getCurrentActivityContext().startActivity(intent);
+                                 ((Activity) MyApplication.getCurrentActivityContext()).finish();
+
+                             }
+                         });
+
+                         return;
+                     }
+
+
+
                      Intent intent = new Intent(MyApplication.getCurrentActivityContext(), ScheduleAppointmentActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                      intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
@@ -258,7 +301,7 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
         }
     }
 
-   /* protected void showMyDialog(String title,String message,final ApiErrorDialogInterface dialogInterface)
+    protected void showMyDialog(String title,String message,String positiveButtonName,String negetiveButtonName,final ApiErrorDialogInterface dialogInterface)
     {
         SimpleDialog.Builder builder = new SimpleDialog.Builder(R.style.SimpleDialogLight){
             @Override
@@ -282,11 +325,11 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
 
         ((SimpleDialog.Builder)builder).message(message)
                 .title(title)
-                .positiveAction("Retry")
-                .negativeAction("Close");
+                .positiveAction(positiveButtonName)
+                .negativeAction(negetiveButtonName);
         DialogFragment fragment = DialogFragment.newInstance(builder);
         fragment.setCancelable(false);
-        fragment.show(, null);
-    }*/
+        fragment.show(fragmentManager, null);
+    }
 
 }

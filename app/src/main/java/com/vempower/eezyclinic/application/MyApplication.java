@@ -16,6 +16,7 @@ import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 import com.squareup.picasso.Picasso;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.APICore.PatientData;
+import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.core.SearchRequest;
 import com.vempower.eezyclinic.utils.Constants;
@@ -39,6 +40,7 @@ public class MyApplication extends MultiDexApplication {
     private static Context mContext;
     private EezyClinicAPI eezyClinicAPI;
     private SearchRequest searchRequestParms;
+    private static SearchResultDoctorListData searchResultDoctorListData;
 
     // private RefWatcher refWatcher;
 
@@ -405,6 +407,13 @@ public class MyApplication extends MultiDexApplication {
         return searchRequestParms;
     }
 
+    public void setSearchResultDoctorListData(SearchResultDoctorListData searchResultDoctorListData) {
+        this.searchResultDoctorListData = searchResultDoctorListData;
+    }
+
+    public SearchResultDoctorListData getSearchResultDoctorListData() {
+        return searchResultDoctorListData;
+    }
     /*
 //for DMPlayer
 public  void initImageLoader(Context context) {

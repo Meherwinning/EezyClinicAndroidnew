@@ -9,22 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 
 import com.vempower.eezyclinic.APICore.DoctorProfileData;
 import com.vempower.eezyclinic.APICore.DoctorReview;
-import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.adapters.DoctorsListAdapter;
 import com.vempower.eezyclinic.adapters.ReviewsListAdapter;
-import com.vempower.eezyclinic.delegate.AbsListViewDelegate;
 import com.vempower.eezyclinic.delegate.RecyclerViewDelegate;
-import com.vempower.eezyclinic.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by satish on 18/12/17.

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Messenger;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -13,11 +14,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.callbacks.ListenerKey;
+import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.mappers.ResendOTPMapper;
 import com.vempower.eezyclinic.mappers.SignInMapper;
 import com.vempower.eezyclinic.utils.Constants;
@@ -174,12 +179,50 @@ public class SigninActivity extends AbstractSocialLoginActivity {
         }
         MyApplication.getInstance().setLoggedUserDetailsToSharedPref(loginAPI.getPatientData());
         SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,loginAPI.getAccessToken());
-        Intent intent= new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+       /* Intent intent= new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class);
+
         startActivity(intent);
         showToastMessage(R.string.normal_signup_or_signin_msg_lbl);
-        finish();
+*/
+        Intent intent = new Intent(MyApplication.getCurrentActivityContext(), HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        if(MyApplication.getInstance().getSearchResultDoctorListData()==null) {
+            // Intent intent = new Intent(MyApplication.getCurrentActivityContext(), HomeActivity.class);
+            // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }else
+        {
+            final SearchResultDoctorListData data= MyApplication.getInstance().getSearchResultDoctorListData();
+
+
+            Intent intent2 = new Intent(MyApplication.getCurrentActivityContext(), ScheduleAppointmentActivity.class);
+            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+            intent2.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
+                @Override
+                protected IntentObjectListener getMyObject() {
+                    return new IntentObjectListener() {
+
+                        @Override
+                        public Object getObject() {
+                            return data;
+                        }
+                    };
+                }
+            }));
+            intent2.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            startActivities(new Intent[]{intent,intent2});
+            // MyApplication.getCurrentActivityContext().startActivity(intent);
+
+        }
+        showToastMessage(R.string.normal_signup_or_signin_msg_lbl);
+
+        //finish();
+        finishAffinity();
     }
 
     private void callResendOTPScreen(SignupAPI signupAPI) {

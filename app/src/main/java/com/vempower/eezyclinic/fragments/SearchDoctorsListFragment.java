@@ -139,7 +139,7 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
 
         if (adapter == null) {
 
-            adapter = new DoctorsListAdapter(orders);
+            adapter = new DoctorsListAdapter(getChildFragmentManager(),orders);
 
             recyclerView.setAdapter(adapter);
         } else {

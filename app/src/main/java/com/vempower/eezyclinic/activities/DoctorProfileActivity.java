@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonFloat;
 import com.vempower.eezyclinic.APICore.DoctorProfileData;
+import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.APIResponce.DoctorProfileAPI;
 import com.vempower.eezyclinic.R;
@@ -212,6 +214,14 @@ public class DoctorProfileActivity extends AbstractMenuActivity
 
                             @Override
                             public Object getObject() {
+                                if(TextUtils.isEmpty(data.getGoogleMapLatitude()))
+                                {
+                                    data.setGoogleMapLatitude(profileData.getLatitude());
+                                }
+                                if(TextUtils.isEmpty(data.getGoogleMapLongitude()))
+                                {
+                                    data.setGoogleMapLongitude(profileData.getLongitude());
+                                }
                                 return data;
                             }
                         };
@@ -257,6 +267,43 @@ public class DoctorProfileActivity extends AbstractMenuActivity
                 @Override
                 public void onClick(View view) {
                     // Utils.showToastMsg("Coming soon");
+
+
+                    MyApplication.showTransparentDialog();
+                    PatientData patientData = MyApplication.getInstance().getLoggedUserDetailsFromSharedPref();
+                    MyApplication.hideTransaprentDialog();
+
+                    if(patientData==null)
+                    {
+
+                        showMyDialog("Alert", Utils.getStringFromResources(R.string.non_logged_user_book_appointment_alert_msz), "Ok", "Cancel", new ApiErrorDialogInterface() {
+                            @Override
+                            public void onCloseClick() {
+
+
+
+                            }
+
+                            @Override
+                            public void retryClick() {
+
+                                MyApplication.getInstance().setSearchResultDoctorListData(data);
+
+                                Intent intent = new Intent(MyApplication.getCurrentActivityContext(), SigninActivity.class);
+                                /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+                                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                                MyApplication.getCurrentActivityContext().startActivity(intent);
+                                ((Activity) MyApplication.getCurrentActivityContext()).finish();
+
+                            }
+                        });
+
+                        return;
+                    }
+
+
+
 
                     Intent intent = new Intent(MyApplication.getCurrentActivityContext(), ScheduleAppointmentActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/

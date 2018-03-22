@@ -8,22 +8,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.SearchResultClinicData;
-import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.APIResponce.SearchResultClinicListAPI;
-import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.ClinicListAdapter;
-import com.vempower.eezyclinic.adapters.DoctorsListAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.SearchRequest;
 import com.vempower.eezyclinic.mappers.SearchResultClinicListMapper;
-import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
- ;
 
 import java.util.ArrayList;
 import java.util.List;
+
+;
 
 /**
  * Created by satish on 6/12/17.

@@ -108,7 +108,7 @@ public class ArticleBinder1 extends ItemBinder<NewHomeDoctorsList, ArticleBinder
      MyPagerAdapter adapterViewPager ;
     ViewHolder(View itemView) {
       super(itemView);
-      Utils.showToastMessage("called ViewHolder");
+     // Utils.showToastMessage("called ViewHolder");
      // if(vpPager==null) {
         vpPager = (ViewPager) itemView.findViewById(R.id.vpPager);
         vpPager.setClipToPadding(false);

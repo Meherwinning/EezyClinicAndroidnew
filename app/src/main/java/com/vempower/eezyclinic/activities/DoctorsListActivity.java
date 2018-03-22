@@ -74,6 +74,8 @@ public class DoctorsListActivity extends AbstractMenuActivity {
     private ButtonFloat fab;
     private TextView titleName;
     private boolean isCurrentShowMap;
+    boolean isFromNewHomeSpeshality;
+    private String newTileName="";
 
     private interface ViewState
     {
@@ -90,6 +92,12 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         fab = findViewById(R.id.fab_all);
         titleNameStr="Search Result";
 
+        isFromNewHomeSpeshality=getIntent().getBooleanExtra(Constants.Pref.IS_FROM_NEW_HOME_SPESHALITY,false);
+
+        if(isFromNewHomeSpeshality)
+        {
+            newTileName=getIntent().getStringExtra(Constants.Pref.DIPLAY_SPESHALITY_NAME);
+        }
         //showView(ViewState.DOCTORS_LIST_VIEW,false,false);
         //onDoctorsListClick();
         //onClinicListClick();
@@ -305,7 +313,12 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         myInit();
         titleNameStr =(Utils.getStringFromResources(R.string.search_result_doctors_lbl));
         if(titleName!=null) {
-            titleName.setText(titleNameStr);
+            if(isFromNewHomeSpeshality)
+            {
+                titleName.setText(newTileName);
+            }else {
+                titleName.setText(titleNameStr);
+            }
 
         }
         //if(titleName!=null) {
@@ -333,7 +346,12 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         myInit();
         titleNameStr =Utils.getStringFromResources(R.string.search_result_clinic_lbl);
         if(titleName!=null) {
-            titleName.setText(titleNameStr);
+            if(isFromNewHomeSpeshality)
+            {
+                titleName.setText(newTileName);
+            }else {
+                titleName.setText(titleNameStr);
+            }
         }
 
         //if(titleName!=null) {
@@ -367,7 +385,12 @@ public class DoctorsListActivity extends AbstractMenuActivity {
            // titleName.setText("Doctors-Map");
             titleNameStr =Utils.getStringFromResources(R.string.search_result_doctors_lbl);
         if(titleName!=null) {
-            titleName.setText(titleNameStr);
+            if(isFromNewHomeSpeshality)
+            {
+                titleName.setText(newTileName);
+            }else {
+                titleName.setText(titleNameStr);
+            }
         }
 
         /*if(doctorsMapFragment ==null)
@@ -413,7 +436,12 @@ public class DoctorsListActivity extends AbstractMenuActivity {
            // titleName.setText("Clinics-Map");
             titleNameStr =(Utils.getStringFromResources(R.string.search_result_clinic_lbl));
         if(titleName!=null) {
-            titleName.setText(titleNameStr);
+            if(isFromNewHomeSpeshality)
+            {
+                titleName.setText(newTileName);
+            }else {
+                titleName.setText(titleNameStr);
+            }
         }
 
 
@@ -526,7 +554,12 @@ public class DoctorsListActivity extends AbstractMenuActivity {
         }
         //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
         if(titleName!=null) {
-            titleName.setText(titleNameStr);
+            if(isFromNewHomeSpeshality)
+            {
+                titleName.setText(newTileName);
+            }else {
+                titleName.setText(titleNameStr);
+            }
         }
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

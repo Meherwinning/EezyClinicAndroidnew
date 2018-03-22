@@ -16,6 +16,8 @@
 
 package com.vempower.eezyclinic.activities.complex;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
@@ -31,8 +33,11 @@ import com.ahamed.multiviewadapter.ItemViewHolder;
 import com.vempower.eezyclinic.APICore.NewHomeSpeciality;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.DoctorsListActivity;
 import com.vempower.eezyclinic.activities.decorator.GridInsetDecoration;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.core.SearchRequest;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
  ;
 
@@ -94,6 +99,25 @@ private ExpandColapseButtonListener buttonListener;
 
           MyApplication.getInstance().setBitmapToImageview(R.drawable.empty_specification,new_home_speciality_iv,data.getIcon());
 
+          itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              SearchRequest  searchRequestParams = new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
+
+
+              searchRequestParams.setSpecality(data.getName());
+
+              MyApplication.getInstance().setSearchRequestParms(searchRequestParams);
+              Intent intent= new Intent(MyApplication.getCurrentActivityContext(), DoctorsListActivity.class);
+
+              intent.putExtra(Constants.Pref.IS_FROM_NEW_HOME_SPESHALITY,true);
+              intent.putExtra(Constants.Pref.DIPLAY_SPESHALITY_NAME,data.getName());
+
+
+              MyApplication.getCurrentActivityContext().startActivity(intent);
+              //( (Activity) MyApplication.getCurrentActivityContext()).finish();
+            }
+          });
           break;
         case SpecalitiyData.ButtonType.MORE:
           MyApplication.getInstance().setBitmapToImageview(R.drawable.more_button,new_home_speciality_iv);

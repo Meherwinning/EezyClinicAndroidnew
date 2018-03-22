@@ -1,6 +1,7 @@
 package com.vempower.eezyclinic.activities;
 
 import android.content.Intent;
+import android.os.Messenger;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 
@@ -9,13 +10,17 @@ import com.linkedin.platform.LISessionManager;
 import com.linkedin.platform.errors.LIApiError;
 import com.linkedin.platform.listeners.ApiListener;
 import com.linkedin.platform.listeners.ApiResponse;
+import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.core.SocialLoginDetails;
 import com.vempower.eezyclinic.fragments.SocialLoginFragment;
+import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.interfaces.SocialLoginListener;
 import com.vempower.eezyclinic.mappers.ResendOTPMapper;
 import com.vempower.eezyclinic.mappers.SocialSignInMapper;
@@ -188,10 +193,42 @@ public class AbstractSocialLoginActivity extends AbstractFragmentActivity {
         }
         MyApplication.getInstance().setLoggedUserDetailsToSharedPref(loginAPI.getPatientData());
         SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY,loginAPI.getAccessToken());
-        Intent intent= new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class);
+        Intent intent = new Intent(MyApplication.getCurrentActivityContext(), HomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        finish();
+
+        if(MyApplication.getInstance().getSearchResultDoctorListData()==null) {
+          // Intent intent = new Intent(MyApplication.getCurrentActivityContext(), HomeActivity.class);
+          // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+           startActivity(intent);
+       }else
+       {
+          final SearchResultDoctorListData data= MyApplication.getInstance().getSearchResultDoctorListData();
+
+
+           Intent intent2 = new Intent(MyApplication.getCurrentActivityContext(), ScheduleAppointmentActivity.class);
+           /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+           intent2.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
+               @Override
+               protected IntentObjectListener getMyObject() {
+                   return new IntentObjectListener() {
+
+                       @Override
+                       public Object getObject() {
+                           return data;
+                       }
+                   };
+               }
+           }));
+           intent2.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+           startActivities(new Intent[]{intent,intent2});
+          // MyApplication.getCurrentActivityContext().startActivity(intent);
+
+       }
+       // finish();
+        finishAffinity();
+
         showToastMessage(Utils.getStringFromResources(R.string.social_signup_msg_lbl)+" "+details.MEDIA_TYPE);
     }
 

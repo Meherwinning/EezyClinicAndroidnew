@@ -16,9 +16,12 @@
 
 package com.vempower.eezyclinic.activities.complex;
 
+import android.content.Intent;
+import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +29,12 @@ import com.ahamed.multiviewadapter.BaseViewHolder;
 import com.ahamed.multiviewadapter.ItemBinder;
 import com.ahamed.multiviewadapter.util.ItemDecorator;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.HomeActivity;
+import com.vempower.eezyclinic.activities.SearchActivity;
+import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.callbacks.FromActivityListener;
+import com.vempower.eezyclinic.callbacks.ListenerKey;
+import com.vempower.eezyclinic.utils.Constants;
 
 public class ArticleBinder extends ItemBinder<Article, ArticleBinder.ViewHolder> {
 
@@ -55,10 +64,8 @@ public class ArticleBinder extends ItemBinder<Article, ArticleBinder.ViewHolder>
 
   static class ViewHolder extends BaseViewHolder<Article> {
 
-   /* private TextView tvTitle;
-    private TextView tvTime;
-    private TextView tvCategory;
-    private ImageView ivCover;*/
+
+    private AppCompatButton search_bt;
 
     ViewHolder(View itemView) {
       super(itemView);
@@ -66,6 +73,24 @@ public class ArticleBinder extends ItemBinder<Article, ArticleBinder.ViewHolder>
       tvTime = (TextView) itemView.findViewById(R.id.tv_time);
       tvCategory = (TextView) itemView.findViewById(R.id.tv_category);
       ivCover = (ImageView) itemView.findViewById(R.id.iv_cover);*/
+
+      search_bt = itemView.findViewById(R.id.search_bt);
+
+      search_bt.setOnClickListener(new View.OnClickListener() {
+       @Override
+       public void onClick(View v) {
+         Intent intent = new Intent(MyApplication.getCurrentActivityContext(),SearchActivity.class);
+        // intent.putExtra(Constants.Pref.IS_FROM_DASH_BOARD,true);
+         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+         MyApplication.getCurrentActivityContext().startActivity(intent);
+         /*sendHandlerMessage(intent, ListenerKey.FROM_ACTIVITY_LISTENER_KEY, new FromActivityListener() {
+           @Override
+           public boolean isFromSearchActivity() {
+             return true;
+           }
+         });*/
+       }
+     });
     }
   }
 }

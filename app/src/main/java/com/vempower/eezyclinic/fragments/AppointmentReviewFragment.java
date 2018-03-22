@@ -70,16 +70,10 @@ public class AppointmentReviewFragment extends AbstractFragment {
     }
 
     private void myInit() {
+
         MyApplication.showTransparentDialog();
-         patientData = MyApplication.getInstance().getLoggedUserDetailsFromSharedPref();
-         MyApplication.hideTransaprentDialog();
-
-        if(patientData==null)
-        {
-            showAlertDialog("Alert","Something wrong with user details.\nPlease try again",true);
-
-            return;
-        }
+        patientData = MyApplication.getInstance().getLoggedUserDetailsFromSharedPref();
+        MyApplication.hideTransaprentDialog();
 
 
         setHeaderDetails();
@@ -121,7 +115,9 @@ public class AppointmentReviewFragment extends AbstractFragment {
                     case R.id.self_radio_button:
                         if(requestDetails!=null)
                         {
-                            patient_name_et.setText(patientData.getPatientName());
+                            if(patientData!=null) {
+                                patient_name_et.setText(patientData.getPatientName());
+                            }
                             requestDetails.setSelfAppointment(true);
                         }
                         updateUIelements(true);
@@ -152,12 +148,27 @@ public class AppointmentReviewFragment extends AbstractFragment {
             public void onClick(View view) {
                 hideKeyBord(fragmentView);
 
+                MyApplication.showTransparentDialog();
+                patientData = MyApplication.getInstance().getLoggedUserDetailsFromSharedPref();
+                MyApplication.hideTransaprentDialog();
+
+                if(patientData==null)
+                {
+                    showAlertDialog("Alert","Something wrong with patient details.\nPlease try again",false);
+
+
+                    return;
+                }
+
+
+
                 if(success_view.getVisibility()==View.VISIBLE)
                 {
                    // Utils.showToastMsg("Now click Done" );
                     if(doneButtonClickListener!=null)
                     {
                         doneButtonClickListener.onClick();
+                        MyApplication.getInstance().setSearchResultDoctorListData(null);
                     }
                     return;
                 }
@@ -225,6 +236,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
                     return;
                 }
                 showSuccessAppoiintmentView(response);
+                MyApplication.getInstance().setSearchResultDoctorListData(null);
             }
         });
 

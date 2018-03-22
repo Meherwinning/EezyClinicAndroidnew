@@ -144,6 +144,8 @@ public interface Constants {
         String IS_FROM_UPDATE_PRESCRIPTION_KEY ="is_from_update_prescription_key" ;
         String GRAPH_URL_STR = "graph_url_str";
         String GRAPH_TYPE = "graph_type";
+        String IS_FROM_NEW_HOME_SPESHALITY = "is_from_new_home_speshality";
+        String DIPLAY_SPESHALITY_NAME = "diplay_speshality_name";
     }
 
     interface ActivityResult

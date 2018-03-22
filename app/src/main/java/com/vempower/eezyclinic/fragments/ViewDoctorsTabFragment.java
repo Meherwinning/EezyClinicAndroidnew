@@ -107,7 +107,7 @@ public class ViewDoctorsTabFragment extends SwipedRecyclerViewFragment1 implemen
 
         if (adapter == null) {
 
-            adapter = new DoctorsListAdapter(orders);
+            adapter = new DoctorsListAdapter(getFragmentManager(),orders);
 
             recyclerView.setAdapter(adapter);
         } else {
