@@ -213,6 +213,7 @@ abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
             options.setDateParams(selectedDate);
         }
         int displayOptions = SublimeOptions.ACTIVATE_DATE_PICKER;
+        displayOptions |= SublimeOptions.ACTIVATE_TIME_PICKER;
 
 
         // if (rbDatePicker.getVisibility() == View.VISIBLE && rbDatePicker.isChecked()) {
@@ -246,6 +247,11 @@ abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
     }
 
 
+
+
+
+
+
     private SelectedDate selectedDOBObj;
     SublimePickerFragment.Callback mFragmentDOBCallback = new SublimePickerFragment.Callback() {
         @Override
@@ -273,35 +279,11 @@ abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
             selectedDateStr = serverDateFormat.format(selectedCal.getTime());
             new_date_tv.setText(format.format(selectedCal.getTime()));
 
-        }
-    };
-
-   /* SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
-        @Override
-        public void onCancelled() {
-            // rlDateTimeRecurrenceInfo.setVisibility(View.GONE);
-        }
-
-        @Override
-        public void onDateTimeRecurrenceSet(SelectedDate selectedDate1,
-                                            int hourOfDay, int minute,
-                                            SublimeRecurrencePicker.RecurrenceOption recurrenceOption,
-                                            String recurrenceRule) {
-
-
-            if (selectedDate1 == null || selectedDate1.getFirstDate() == null) {
-                return;
-            }
-            selectedDOBObj = selectedDate1;
-            Calendar selectedCal = selectedDate1.getFirstDate();
-
-            //  String date = selectedCal.get(Calendar.YEAR) + "-" + (selectedCal.get(Calendar.MONTH) + 1) + "-" + selectedCal.get(Calendar.DAY_OF_MONTH);
-            SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
-            //SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.REQUEST_DATE_FORMAT);
-            //profileDetails.dateofBirth=requestFormat.format(selectedCal.getTime());
-            date_tv.setText(format.format(selectedCal.getTime()));
+          //  onTimePickClick(mFragmentTimeCallback, selectedDOBObj, false);
 
         }
     };
-*/
+
+
+
 }
