@@ -294,6 +294,27 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
                 break;
 
+
+            case R.id.non_login_features_and_benefits_linear:
+                showToastMessage("Coming soon");
+
+                break;
+
+            case R.id.non_login_feedback_linear:
+                showToastMessage("Coming soon");
+
+                break;
+
+            case R.id.non_login_signup_tv:
+                onSignupClick(null);
+
+                break;
+
+
+
+
+
+
             default:
                 showToastMessage("Coming soon");
                 break;
@@ -307,6 +328,10 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 hideKeyBord();
             }
         },200);
+    }
+
+    public void onSignupClick(View view) {
+
     }
 
     protected void callMyProfile() {

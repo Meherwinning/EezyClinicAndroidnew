@@ -296,6 +296,36 @@ public abstract class AbstractFragment extends Fragment {
         fragment.setCancelable(false);
         fragment.show(getChildFragmentManager(), null);
     }
+    protected void showMyDialog(String title,String message,String positiveButtonName,String negetiveButtonName,final ApiErrorDialogInterface dialogInterface)
+    {
+        SimpleDialog.Builder builder = new SimpleDialog.Builder(R.style.SimpleDialogLight){
+            @Override
+            public void onPositiveActionClicked(DialogFragment fragment) {
+                //Toast.makeText(mActivity, "Agreed", Toast.LENGTH_SHORT).show();
+                super.onPositiveActionClicked(fragment);
+                if(dialogInterface!=null) {
+                    dialogInterface.retryClick();
+                }
+            }
+
+            @Override
+            public void onNegativeActionClicked(DialogFragment fragment) {
+                //Toast.makeText(mActivity, "Disagreed", Toast.LENGTH_SHORT).show();
+                super.onNegativeActionClicked(fragment);
+                if(dialogInterface!=null) {
+                    dialogInterface.onCloseClick();
+                }
+            }
+        };
+
+        ((SimpleDialog.Builder)builder).message(message)
+                .title(title)
+                .positiveAction(positiveButtonName)
+         .negativeAction(negetiveButtonName);
+        DialogFragment fragment = DialogFragment.newInstance(builder);
+        fragment.setCancelable(false);
+        fragment.show(getChildFragmentManager(), null);
+    }
 
 
     protected void showMyDialog(String title,String message,final ApiErrorDialogInterface dialogInterface)

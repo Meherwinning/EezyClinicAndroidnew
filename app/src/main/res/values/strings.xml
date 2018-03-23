@@ -241,7 +241,7 @@
     <string name="success_save_notes_lbl">Your Note is successfully added</string>
     <string name="no_health_records_found_lbl">There are no record(s) found.</string>
     <string name="unable_to_get_home_page_details">Unable to get home page details</string>
-    <string name="login_signup_lbl">Login/Signup</string>
+    <string name="login_signup_lbl">Signup</string>
     <string name="non_logged_user_book_appointment_alert_msz">Please login to book your appointment.\nIf you do not have an account, please sign up.</string>
 
 

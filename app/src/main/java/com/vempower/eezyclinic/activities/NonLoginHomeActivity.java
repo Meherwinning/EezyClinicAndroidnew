@@ -79,6 +79,9 @@ public class NonLoginHomeActivity extends AbstractMenuActivity {
     }
     public void  setSidemenuItemsListener()
     {
+        findViewById(R.id.non_login_features_and_benefits_linear).setOnClickListener(this);
+        findViewById(R.id.non_login_feedback_linear).setOnClickListener(this);
+        findViewById(R.id.non_login_signup_tv).setOnClickListener(this);
 
     }
 

@@ -80,8 +80,9 @@ public class ArticleBinder extends ItemBinder<Article, ArticleBinder.ViewHolder>
        @Override
        public void onClick(View v) {
          Intent intent = new Intent(MyApplication.getCurrentActivityContext(),SearchActivity.class);
-        // intent.putExtra(Constants.Pref.IS_FROM_DASH_BOARD,true);
+         intent.putExtra(Constants.Pref.IS_FROM_DASH_BOARD,true);
          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
          MyApplication.getCurrentActivityContext().startActivity(intent);
          /*sendHandlerMessage(intent, ListenerKey.FROM_ACTIVITY_LISTENER_KEY, new FromActivityListener() {
            @Override

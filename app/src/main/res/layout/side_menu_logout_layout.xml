@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:background="@drawable/view_selector"
-        android:id="@+id/features_and_benefits_linear"
+        android:id="@+id/non_login_features_and_benefits_linear"
         android:layout_marginTop="@dimen/_13dp"
         android:minHeight="@dimen/_35dp"
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
     </LinearLayout>
     <LinearLayout
         android:background="@drawable/view_selector"
-        android:id="@+id/feedback_linear"
+        android:id="@+id/non_login_feedback_linear"
         android:layout_marginTop="@dimen/_13dp"
         android:minHeight="@dimen/_35dp"
         android:layout_width="match_parent"
@@ -66,7 +66,7 @@
 
     <LinearLayout
         android:background="@drawable/view_selector"
-        android:id="@+id/logout_tv"
+        android:id="@+id/non_login_signup_tv"
         android:layout_marginTop="@dimen/_13dp"
         android:minHeight="@dimen/_35dp"
         android:layout_marginBottom="@dimen/_20dp"

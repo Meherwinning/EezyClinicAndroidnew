@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -121,7 +122,7 @@ public class EditProfileFragment extends ImageProcessFragment {
     private LinearLayout image_linear,insurance_add_linear;
     private ImageView profile_iv,id_back_iv,id_front_iv,insurance_back_iv,insurance_front_iv;
     private PatientProfileData patientProfileObj;
-    private Button add_insurance_btn;
+    private AppCompatButton add_insurance_btn;
     private LayoutInflater inflater;
 
 
@@ -168,8 +169,92 @@ public class EditProfileFragment extends ImageProcessFragment {
             @Override
             public void onClick(View v) {
                 final View convertView = inflater
-                        .inflate(R.layout.profile_insurance_edit_layout, null, false);
+                        .inflate(R.layout.profile_secoundary_insurance_edit_layout1, null, false);
+
+
+             TextView titleTv= convertView.findViewById(R.id.insurance_title_tv);
+                if(titleTv!=null)
+                {
+                    titleTv.setText("Secondary Insurance - "+(insurance_add_linear.getChildCount()+1));
+                }
+
+                TextView  delete_tv = convertView.findViewById(R.id. delete_tv);
+                delete_tv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //Utils.showToastMessage("Coming soon");
+                        showMyDialog("Alert", "Are you sure to delete ?","Yes","No", new ApiErrorDialogInterface() {
+                            @Override
+                            public void onCloseClick() {
+
+                            }
+
+                            @Override
+                            public void retryClick() {
+
+                                insurance_add_linear.removeView(convertView);
+
+                                if(insurance_add_linear.getChildCount()>0)
+                                {
+                                    int count=1;
+                                    for(int i=0;i<insurance_add_linear.getChildCount();i++)
+                                    {
+                                       View view= insurance_add_linear.getChildAt(i);
+                                       if(view==null)
+                                       {
+                                           continue;
+                                       }
+                                        TextView titleTv= view.findViewById(R.id.insurance_title_tv);
+                                        if(titleTv!=null)
+                                        {
+                                            titleTv.setText("Secondary Insurance - "+count);
+                                            count++;
+                                        }
+                                    }
+                                }
+
+
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        scrollToView(myScrollView, insurance_add_linear);
+                                    }
+                                },400);
+                            }
+                        });
+                    }
+                });
+
+             final LinearLayout  new_secondary_insurance_details_linear= convertView.findViewById(R.id.secondary_insurance_details_linear);
+             final com.github.aakira.expandablelayout.ExpandableLinearLayout  new_secondary_expandableLayout_insurance_el = convertView.findViewById(R.id.secondary_expandableLayout_insurance_el);
+
+                {
+                    setExpandedViewListener(new_secondary_expandableLayout_insurance_el, new_secondary_insurance_details_linear, R.id.secondary_insurance_iv);
+                    // secondary_insurance_details_linear.initLayout();
+                    new_secondary_insurance_details_linear.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            new_secondary_expandableLayout_insurance_el.toggle();
+                            hideKeyBord(new_secondary_expandableLayout_insurance_el);
+
+                        }
+                    });
+                }
+
+
                 insurance_add_linear.addView(convertView);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        scrollToView(myScrollView, add_insurance_btn);
+                    }
+                },400);
+
+
             }
         });
 
