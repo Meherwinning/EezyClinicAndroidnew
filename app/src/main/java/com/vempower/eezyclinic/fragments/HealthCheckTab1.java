@@ -240,7 +240,8 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
          TextView date_tv;
         ImageView ok_iv, edit_iv, delete_iv;
         private final HealthChecksSugar sugar;
-        private SelectedDate selectedObj;
+        private SelectedDate selectedObj1;
+        //private Calendar selectedCal;
 
         public RecordHolder(HealthChecksSugar sugar, View convertView) {
             this.sugar = sugar;
@@ -260,6 +261,8 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
 
         private String getDisplayDateStr(String dateStr)
         {
+            //on Thursday
+            //08-03-2018, 08.41 AM
             SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
             SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
 
@@ -269,10 +272,10 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                 try {
 
                     Date date = requestFormat.parse(dateStr);
-                    if (selectedObj == null) {
-                        selectedObj = new SelectedDate(Calendar.getInstance());
+                    if (selectedObj1 == null) {
+                        selectedObj1 = new SelectedDate(Calendar.getInstance());
                     }
-                    selectedObj.setTimeInMillis(date.getTime());
+                    selectedObj1.setTimeInMillis(date.getTime());
                     return format.format(date);
                     //profileDetails.dateofBirth=patientProfileObj.getDateofbirth();
 
@@ -315,7 +318,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
             date_tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onDateOfBirthTextviewClick(mFragmentCallback,selectedObj,true);
+                    onDateOfBirthTextviewClick(mFragmentCallback,selectedObj1,true);
 
                 }
             });
@@ -337,8 +340,26 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                 if (selectedDate1 == null || selectedDate1.getFirstDate() == null) {
                     return;
                 }
-                selectedObj = selectedDate1;
-                Calendar selectedCal = selectedDate1.getFirstDate();
+                selectedDate1.set(Calendar.HOUR_OF_DAY,hourOfDay);
+                selectedDate1.set(Calendar.MINUTE,minute);
+
+                selectedObj1 = selectedDate1;
+                //selectedObj1.getFirstDate().set(Calendar.HOUR_OF_DAY,hourOfDay);
+               // selectedObj1.getFirstDate().set(Calendar.MINUTE,minute);
+
+
+
+              Calendar  selectedCal = selectedObj1.getFirstDate();
+               // selectedCal.set(Calendar.HOUR,hourOfDay);
+                //selectedCal.set(Calendar.MINUTE,minute);
+                //int year, int month, int date, int hourOfDay, int minute, int second
+               /* selectedCal.set(selectedDate1.getFirstDate().get(Calendar.YEAR),
+                        selectedDate1.getFirstDate().get(Calendar.MONTH),
+                        selectedDate1.getFirstDate().get(Calendar.DATE),
+                        hourOfDay,
+                        minute
+
+                        );*/
 
                 //  String date = selectedCal.get(Calendar.YEAR) + "-" + (selectedCal.get(Calendar.MONTH) + 1) + "-" + selectedCal.get(Calendar.DAY_OF_MONTH);
                 SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);

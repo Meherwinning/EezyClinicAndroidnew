@@ -2,15 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/_8dp"
     android:paddingBottom="@dimen/_4dp"
     android:paddingTop="@dimen/_4dp"
-    android:background="@drawable/health_checks_item_bg"
+    android:paddingRight="@dimen/_5dp"
+    android:paddingLeft="@dimen/_5dp"
+    android:background="@color/transparent"
+    android:layout_margin="@dimen/_5dp"
     android:orientation="vertical">
+    <LinearLayout
 
+        android:background="@drawable/health_checks_item_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_35dp"
+        android:layout_height="@dimen/_38dp"
 
         android:orientation="horizontal"
 
@@ -23,11 +30,11 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/_3dp"
-            android:layout_marginRight="@dimen/_3dp"
+            android:layout_margin="@dimen/_2dp"
             android:background="@drawable/health_checks_view_selector"
             android:enabled="false"
             android:gravity="center"
+            android:imeOptions="actionNext"
             android:inputType="numberSigned"
             android:maxLength="4"
             android:hint="0"
@@ -39,10 +46,10 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/_3dp"
-            android:layout_marginRight="@dimen/_3dp"
+            android:layout_margin="@dimen/_2dp"
             android:background="@drawable/health_checks_view_selector"
             android:enabled="false"
+            android:imeOptions="actionDone"
             android:gravity="center"
             android:inputType="numberSigned"
             android:maxLength="4"
@@ -56,8 +63,7 @@
             android:visibility="gone"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/_3dp"
-            android:layout_marginRight="@dimen/_3dp"
+            android:layout_margin="@dimen/_2dp"
             android:background="@drawable/health_checks_view_selector"
             android:enabled="false"
             android:gravity="center"
@@ -72,25 +78,29 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:layout_margin="@dimen/_3dp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
 
-        android:layout_height="@dimen/_30dp">
+        android:layout_height="@dimen/_32dp">
 
          <TextView    android:fontFamily="@font/roboto"
             android:id="@+id/date_tv"
             android:layout_toLeftOf="@+id/imageview_linear"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/_3dp"
-            android:layout_marginRight="@dimen/_3dp"
+             android:layout_margin="@dimen/_2dp"
             android:background="@drawable/health_checks_view_selector"
             android:clickable="true"
             android:enabled="false"
             android:gravity="left|center_vertical"
-            android:hint="dd-mm-yyyy"
+            android:hint="Date &amp; Time"
             android:textColor="#ee7b7979"
-            android:textSize="@dimen/_14dp" />
+             android:singleLine="true"
+             android:maxLines="1"
+             android:textSize="@dimen/_13dp"
+
+             />
 
 
         <LinearLayout
@@ -129,9 +139,10 @@
                 android:layout_marginLeft="@dimen/_5dp"
                 android:layout_marginRight="@dimen/_5dp"
                 android:padding="@dimen/_8dp"
-                android:src="@drawable/cancel_delete_record" />
+                android:src="@drawable/health_checks_delete" />
 
         </LinearLayout>
     </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

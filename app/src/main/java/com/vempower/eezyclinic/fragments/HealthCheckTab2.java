@@ -333,6 +333,8 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
                 if (selectedDate1 == null || selectedDate1.getFirstDate() == null) {
                     return;
                 }
+                selectedDate1.set(Calendar.HOUR_OF_DAY,hourOfDay);
+                selectedDate1.set(Calendar.MINUTE,minute);
                 selectedObj = selectedDate1;
                 Calendar selectedCal = selectedDate1.getFirstDate();
 

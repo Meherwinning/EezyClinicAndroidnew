@@ -16,8 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45dp"
             android:layout_marginTop="@dimen/_8dp"
-            android:background="@drawable/health_checks_item_bg"
             android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/_3dp"
+            android:layout_marginRight="@dimen/_3dp"
 
             android:paddingBottom="@dimen/_4dp"
             android:paddingTop="@dimen/_4dp">
@@ -31,6 +32,7 @@
                 android:layout_marginRight="@dimen/_3dp"
                 android:background="@drawable/health_checks_view_selector"
                 android:enabled="true"
+                android:imeOptions="actionNext"
                 android:gravity="center"
                 android:inputType="numberSigned"
                 android:maxLength="4"
@@ -50,6 +52,7 @@
                 android:gravity="center"
                 android:inputType="numberSigned"
                 android:maxLength="4"
+                android:imeOptions="actionDone"
                 android:hint="0"
                 android:textColor="#ee7b7979"
                 android:textSize="@dimen/_14dp" />
@@ -88,6 +91,7 @@
 
 <RelativeLayout
     android:layout_width="match_parent"
+    android:layout_margin="@dimen/_3dp"
     android:layout_height="@dimen/_45dp">
          <TextView    android:fontFamily="@font/roboto"
             android:id="@+id/date_tv"
@@ -100,9 +104,11 @@
             android:background="@drawable/health_checks_view_selector"
             android:enabled="true"
             android:gravity="center|left"
-            android:hint="dd-mm-yyyy"
+            android:hint="Select Date &amp; Time"
             android:textColor="#ee7b7979"
-            android:textSize="@dimen/_14dp" />
+             android:textSize="@dimen/_13dp"
+             android:singleLine="true"
+             android:maxLines="1" />
 
         <LinearLayout
             android:id="@+id/imageview1_linear"
@@ -139,7 +145,7 @@
                 android:layout_marginLeft="@dimen/_5dp"
                 android:layout_marginRight="@dimen/_5dp"
                 android:padding="@dimen/_8dp"
-                android:src="@drawable/cancel_delete_record" />
+                android:src="@drawable/health_checks_delete" />
 
         </LinearLayout>
 </RelativeLayout>

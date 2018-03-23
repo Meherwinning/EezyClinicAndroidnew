@@ -30,7 +30,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
-    String DISPLAY_DATE_FORMAT = "dd-MM-yyyy";
+    //on Thursday
+    //08-03-2018, 08.41 AM
+    String DISPLAY_DATE_FORMAT = "'on' EEEE dd-MM-yyyy, h:mm a";
 
     protected final int SUGAR_TYPE = 1, BLOOD_PRESSURE_TYPE = 2, WEIGHT_AND_HEIGHT_TYPE = 3, CHOLESTEROL_TYPE = 4;
 
@@ -211,6 +213,9 @@ abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
 
         if (selectedDate != null) {
             options.setDateParams(selectedDate);
+            //int hourOfDay, int minute, boolean is24HourView
+           // selectedDate.getFirstDate().
+            options.setTimeParams(selectedDate.getFirstDate().get(Calendar.HOUR_OF_DAY),selectedDate.getFirstDate().get(Calendar.MINUTE),false);
         }
         int displayOptions = SublimeOptions.ACTIVATE_DATE_PICKER;
         displayOptions |= SublimeOptions.ACTIVATE_TIME_PICKER;
@@ -269,6 +274,8 @@ abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
             if (selectedDate1 == null || selectedDate1.getFirstDate() == null) {
                 return;
             }
+            selectedDate1.set(Calendar.HOUR_OF_DAY,hourOfDay);
+            selectedDate1.set(Calendar.MINUTE,minute);
             selectedDOBObj = selectedDate1;
             Calendar selectedCal = selectedDate1.getFirstDate();
 
