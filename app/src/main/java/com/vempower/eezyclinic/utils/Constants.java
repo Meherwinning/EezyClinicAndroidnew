@@ -97,6 +97,10 @@ public interface Constants {
 
 
         int FROM_ADD_NEW_IMAGE = 125;
+
+
+        int SECONDARY_FROM_INSURANCE_FRONT = 824;
+        int SECONDARY_FROM_INSURANCE_BACK = 826;
     }
 
     //http://202.63.103.194:8008/api/patient/signin

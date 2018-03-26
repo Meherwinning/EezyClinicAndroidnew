@@ -13,814 +13,11 @@
             android:id="@+id/top_linear1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp"
             android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
-                android:id="@+id/secondary_insurance_tpa_et"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="TPA"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLength="100"
-                android:maxLines="1"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
-
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-            <TextView
-                android:id="@+id/delete_tv"
-                android:layout_marginTop="@dimen/_5dp"
-                android:paddingLeft="@dimen/_15dp"
-                android:paddingRight="@dimen/_15dp"
-                android:paddingTop="@dimen/_8dp"
-                android:paddingBottom="@dimen/_8dp"
-                android:layout_width="wrap_content"
-                android:text="X"
-                android:textSize="@dimen/_15dp"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:background="#f50202"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_15dp"
-                android:orientation="vertical">
-                 <TextView                        android:fontFamily="@font/roboto"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="left|center_vertical"
-                    android:hint="Insurance Provider"
-                    android:textColor="#de000000"
-                    android:textColorHint="#8a000000"
-                    android:textSize="@dimen/_11dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50dp"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/_2dp">
-
-                    <com.vempower.eezyclinic.views.CustomSpinnerSelection
-                        android:id="@+id/secondary_insurance_provider_spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:backgroundTint="@color/black"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:foregroundTint="@color/black"
-                        android:layout_marginRight="@dimen/_5dp"
-                        android:spinnerMode="dropdown"
-                        android:textSize="@dimen/button_text_size"
-                        android:textColor="#de000000"
-                        android:textColorHint="#8a000000"
-                        />
-
-                </LinearLayout>
-
-                <!-- </android.support.design.widget.TextInputLayout>-->
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:alpha="0.3"
-                    android:layout_marginRight="@dimen/_12dp"
-                    android:background="@color/black" />
-
-            </LinearLayout>
-    <LinearLayout
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
-               android:id="@+id/insurance_insurance_provider_et"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="Insurance Provider"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLength="150"
-                android:maxLines="2"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
-
-
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
-                android:id="@+id/secondary_insurance_insurance_number_et"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="Insurance Number"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLength="100"
-                android:maxLines="1"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
-
-
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
-                android:id="@+id/secondary_insurance_insurance_policy_et"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="Policy"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLength="100"
-                android:maxLines="1"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
-                android:id="@+id/secondary_insurance_member_id_et"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="Member ID"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLength="100"
-                android:maxLines="2"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
-
-
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
-                android:id="@+id/secondary_insurance_type_et"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="Type"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLength="100"
-                android:maxLines="2"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_15dp"
-                android:orientation="vertical">
-                 <TextView                        android:fontFamily="@font/roboto"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="left|center_vertical"
-                    android:hint="Valid From"
-                    android:textColor="#de000000"
-                    android:textColorHint="#8a000000"
-                    android:textSize="@dimen/_11dp" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50dp"
-                    android:background="@drawable/background_shape_idle"
-                    android:textColorHint="@color/text_hint_color"
-                    app:errorEnabled="true"
-                    app:hintEnabled="true"
-                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-                     <TextView                        android:fontFamily="@font/roboto"
-                        android:id="@+id/secondary_insurance_valid_from_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="@dimen/_2dp"
-                        android:background="@null"
-                        android:clickable="true"
-                        android:drawablePadding="@dimen/_5dp"
-                        android:drawableRight="@drawable/cal"
-                        android:gravity="left|center_vertical"
-                        android:hint="Validity From"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="text"
-                        android:maxLength="50"
-                        android:maxLines="1"
-
-                        android:paddingRight="@dimen/_12dp"
-                        android:singleLine="true"
-
-
-
-                        android:textColor="#de000000"
-                        android:textColorHint="#8a000000"
-                        android:textSize="@dimen/_14dp"
-                        />
-
-                </android.support.design.widget.TextInputLayout>
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:alpha="0.3"
-                    android:layout_marginRight="@dimen/_12dp"
-                    android:background="@color/black" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_15dp"
-                android:orientation="vertical">
-                 <TextView                        android:fontFamily="@font/roboto"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="left|center_vertical"
-                    android:hint="Valid To"
-                    android:textColor="#de000000"
-                    android:textColorHint="#8a000000"
-                    android:textSize="@dimen/_11dp" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50dp"
-                    android:background="@drawable/background_shape_idle"
-                    android:textColorHint="@color/text_hint_color"
-                    app:errorEnabled="true"
-                    app:hintEnabled="true"
-                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-                     <TextView                        android:fontFamily="@font/roboto"
-                        android:id="@+id/secondary_insurance_valid_to_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="@dimen/_2dp"
-                        android:background="@null"
-                        android:clickable="true"
-                        android:drawablePadding="@dimen/_5dp"
-                        android:drawableRight="@drawable/cal"
-                        android:gravity="left|center_vertical"
-                        android:hint="Validity To"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="text"
-                        android:maxLength="50"
-                        android:maxLines="1"
-
-                        android:paddingRight="@dimen/_12dp"
-                        android:singleLine="true"
-                        android:textColor="#de000000"
-                        android:textColorHint="#8a000000"
-                        android:textSize="@dimen/_14dp"
-                        />
-
-                </android.support.design.widget.TextInputLayout>
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:alpha="0.3"
-                    android:layout_marginRight="@dimen/_12dp"
-                    android:background="@color/black" />
-            </LinearLayout>
-    <LinearLayout
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="Validity From"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLength="50"
-                android:maxLines="1"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
-
-
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
-
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="Validity To"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLength="50"
-                android:maxLines="1"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
-                android:id="@+id/secondary_insurance_co_pay_et"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="Co-Pay %"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLength="50"
-                android:maxLines="1"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
-                android:id="@+id/secondary_insurance_scheme_et"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="Scheme"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLength="100"
-                android:maxLines="1"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
-                android:id="@+id/secondary_insurance_reason_et"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="Reason"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLength="100"
-                android:maxLines="1"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>
-   <!-- <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
-                android:id="@+id/insurance_organisation_et"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="Organisation"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLength="100"
-                android:maxLines="1"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="@dimen/_50dp"
-            android:background="@drawable/background_shape_idle"
-
-            android:textColorHint="#8a000000"
-            app:errorEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
-
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
-                android:id="@+id/insurance_max_limit_et"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/_2dp"
-                android:background="@null"
-                android:gravity="left|center_vertical"
-                android:hint="Max Limit"
-                android:imeOptions="actionUnspecified"
-                android:inputType="number"
-                android:maxLength="30"
-                android:maxLines="1"
-                android:padding="@dimen/_2dp"
-                android:singleLine="true"
-                android:textColor="#de000000"
-                android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.3"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/black" />
-
-    </LinearLayout>
-            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_15dp"
@@ -828,40 +25,69 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50dp"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/_2dp">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                    <com.vempower.eezyclinic.views.CustomSpinnerSelection
-                        android:id="@+id/insurance_secoundary_spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:backgroundTint="@color/black"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:foregroundTint="@color/black"
-                        android:layout_marginRight="@dimen/_5dp"
-                        android:spinnerMode="dropdown"
-                        android:textSize="@dimen/button_text_size"
-                        android:textColor="#de000000"
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_50dp"
+
+                        android:layout_weight="1"
+                        android:background="@drawable/background_shape_idle"
+
                         android:textColorHint="#8a000000"
-                        />
+                        app:errorEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
+                        <com.vempower.eezyclinic.views.MyEditTextBlackCursor
+                            android:id="@+id/insurance_tpa_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/_2dp"
+                            android:background="@null"
+                            android:fontFamily="@font/roboto"
+                            android:gravity="left|center_vertical"
+                            android:hint="TPA"
+                            android:imeOptions="actionUnspecified"
+                            android:inputType="text"
+                            android:maxLength="100"
+                            android:maxLines="1"
+                            android:padding="@dimen/_2dp"
+                            android:singleLine="true"
+
+                            android:textColor="#de000000"
+                            android:textColorHint="#8a000000"
+                            android:textSize="@dimen/_14dp" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/delete_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5dp"
+                        android:background="#f50202"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/_15dp"
+                        android:paddingTop="@dimen/_8dp"
+                        android:paddingRight="@dimen/_15dp"
+                        android:paddingBottom="@dimen/_8dp"
+                        android:text="X"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_15dp" />
                 </LinearLayout>
-
-                &lt;!&ndash; </android.support.design.widget.TextInputLayout>&ndash;&gt;
 
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:alpha="0.3"
                     android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
                     android:background="@color/black" />
 
             </LinearLayout>
-
-            <LinearLayout
+            <!-- <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_15dp"
@@ -879,14 +105,164 @@
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                     <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
-                        android:id="@+id/insurance_secoundary_number_et"
-
+                        android:id="@+id/insurance_tpa_et"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_2dp"
                         android:background="@null"
                         android:gravity="left|center_vertical"
-                        android:hint="Secondary Insurance Number"
+                        android:hint="TPA"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="100"
+                        android:maxLines="1"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.3"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:background="@color/black" />
+
+            </LinearLayout>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="left|center_vertical"
+                    android:hint="Insurance Provider"
+                    android:textColor="#de000000"
+                    android:textColorHint="#8a000000"
+                    android:textSize="@dimen/_11dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50dp"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_2dp">
+
+                    <com.vempower.eezyclinic.views.CustomSpinnerSelection
+                        android:id="@+id/insurance_provider_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/_5dp"
+                        android:backgroundTint="@color/black"
+                        android:foregroundTint="@color/black"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:spinnerMode="dropdown"
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/button_text_size" />
+
+                </LinearLayout>
+
+                <!-- </android.support.design.widget.TextInputLayout>-->
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#8a000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor
+                        android:id="@+id/insurance_insurance_provider_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="left|center_vertical"
+                        android:hint="Insurance Provider"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="150"
+                        android:maxLines="2"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+
+
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#8a000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor
+                        android:id="@+id/insurance_insurance_number_et"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="left|center_vertical"
+                        android:hint="Insurance Number"
                         android:imeOptions="actionUnspecified"
                         android:inputType="text"
                         android:maxLength="100"
@@ -905,28 +281,752 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:alpha="0.3"
                     android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
                     android:background="@color/black" />
 
-            </LinearLayout>-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#8a000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor
+                        android:id="@+id/insurance_insurance_policy_et"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="left|center_vertical"
+                        android:hint="Policy"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="100"
+                        android:maxLines="1"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#8a000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor
+                        android:id="@+id/insurance_member_id_et"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="left|center_vertical"
+                        android:hint="Member ID"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="100"
+                        android:maxLines="2"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+
+
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#8a000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor
+                        android:id="@+id/insurance_type_et"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="left|center_vertical"
+                        android:hint="Type"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="100"
+                        android:maxLines="2"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="left|center_vertical"
+                    android:hint="Valid From"
+                    android:textColor="#de000000"
+                    android:textColorHint="#8a000000"
+                    android:textSize="@dimen/_11dp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+                    android:textColorHint="@color/text_hint_color"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <TextView
+                        android:id="@+id/insurance_valid_from_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:drawableRight="@drawable/cal"
+                        android:drawablePadding="@dimen/_5dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="left|center_vertical"
+                        android:hint="Validity From"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="50"
+                        android:maxLines="1"
+
+                        android:paddingRight="@dimen/_12dp"
+                        android:singleLine="true"
+
+
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="left|center_vertical"
+                    android:hint="Valid to"
+                    android:textColor="#de000000"
+                    android:textColorHint="#8a000000"
+                    android:textSize="@dimen/_11dp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+                    android:textColorHint="@color/text_hint_color"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <TextView
+                        android:id="@+id/insurance_valid_to_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:drawableRight="@drawable/cal"
+                        android:drawablePadding="@dimen/_5dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="left|center_vertical"
+                        android:hint="Validity To"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="50"
+                        android:maxLines="1"
+
+                        android:paddingRight="@dimen/_12dp"
+                        android:singleLine="true"
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#8a000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor
+                        android:layout_width="match_parent"
+
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="left|center_vertical"
+                        android:hint="Validity From"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="50"
+                        android:maxLines="1"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+
+
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#8a000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor
+                        android:layout_width="match_parent"
+
+
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="left|center_vertical"
+                        android:hint="Validity To"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="50"
+                        android:maxLines="1"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#8a000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor
+                        android:id="@+id/insurance_co_pay_et"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="left|center_vertical"
+                        android:hint="Co-Pay %"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="50"
+                        android:maxLines="1"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#8a000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor
+                        android:id="@+id/insurance_scheme_et"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="left|center_vertical"
+                        android:hint="Scheme"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="100"
+                        android:maxLines="1"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#8a000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor
+                        android:id="@+id/insurance_reason_et"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="left|center_vertical"
+                        android:hint="Reason"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLength="100"
+                        android:maxLines="1"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="@dimen/_50dp"
+                    android:background="@drawable/background_shape_idle"
+
+                    android:textColorHint="#8a000000"
+                    app:errorEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+
+                    <com.vempower.eezyclinic.views.MyEditTextBlackCursor
+                        android:id="@+id/insurance_max_limit_et"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_2dp"
+                        android:background="@null"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="left|center_vertical"
+                        android:hint="Max Limit"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="number"
+                        android:maxLength="30"
+                        android:maxLines="1"
+                        android:padding="@dimen/_2dp"
+                        android:singleLine="true"
+                        android:textColor="#de000000"
+                        android:textColorHint="#8a000000"
+                        android:textSize="@dimen/_14dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_4dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/_5dp"
+                            android:layout_marginBottom="@dimen/_2dp"
+                            android:fontFamily="@font/roboto"
+                            android:gravity="top|left"
+                            android:hint="Front"
+                            android:imeOptions="actionUnspecified"
+                            android:textColor="#de000000"
+                            android:textColorHint="#8a000000"
+                            android:textSize="@dimen/_11dp" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:id="@+id/image_linear1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="center"
+                                android:background="@drawable/canvas_90x45"
+                                android:gravity="center"
+
+                                >
+
+                                <ImageView
+                                    android:id="@+id/insurance_front_iv"
+                                    style="@style/image_fit_toparent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/profile_id_default_image" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginLeft="-10dp"
+                                android:layout_toRightOf="@+id/image_linear1"
+                                android:padding="@dimen/_10dp"
+                                android:src="@drawable/cam_add" />
+                            <!-- <ImageView
+                                 android:id="@+id/profile_iv"
+                                 android:padding="@dimen/_5dp"
+                                 android:layout_width="@dimen/_60dp"
+                                 android:layout_centerVertical="true"
+                                 android:src="@mipmap/ic_launcher"
+                                 android:layout_height="@dimen/_60dp" />-->
+
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_4dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/_5dp"
+                            android:layout_marginBottom="@dimen/_2dp"
+                            android:fontFamily="@font/roboto"
+                            android:gravity="top|left"
+                            android:hint="Back"
+                            android:imeOptions="actionUnspecified"
+                            android:textColor="#de000000"
+                            android:textColorHint="#8a000000"
+                            android:textSize="@dimen/_11dp" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:id="@+id/image_linear2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="center"
+                                android:background="@drawable/canvas_90x45"
+                                android:gravity="center"
+
+                                >
+
+                                <ImageView
+                                    android:id="@+id/insurance_back_iv"
+                                    style="@style/image_fit_toparent"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/profile_id_default_image" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginLeft="-10dp"
+                                android:layout_toRightOf="@+id/image_linear2"
+                                android:padding="@dimen/_10dp"
+                                android:src="@drawable/cam_add" />
+
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:alpha="0.3"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+
         </LinearLayout>
 
-    <TextView
-        android:id="@+id/secondary_insurance_details_mask_tv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignBottom="@+id/top_linear1"
-        android:layout_alignEnd="@+id/top_linear1"
-        android:layout_alignLeft="@+id/top_linear1"
-        android:layout_alignTop="@+id/top_linear1"
-        android:background="@color/transparent"
-        android:clickable="true"
-        android:visibility="gone" />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/insurance_details_mask_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/top_linear1"
+            android:layout_alignEnd="@+id/top_linear1"
+            android:layout_alignLeft="@+id/top_linear1"
+            android:layout_alignTop="@+id/top_linear1"
+            android:background="@color/transparent"
+            android:clickable="true"
+            android:visibility="gone" />
+    </RelativeLayout>
 
 
 
 
 
 </LinearLayout>
+
+
+
+
+

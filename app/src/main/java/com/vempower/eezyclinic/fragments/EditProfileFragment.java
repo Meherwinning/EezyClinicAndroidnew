@@ -28,12 +28,19 @@ import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
+import com.vempower.eezyclinic.APICore.EditProfileViewAPIData;
+import com.vempower.eezyclinic.APICore.EditProfileViewCountry;
+import com.vempower.eezyclinic.APICore.EditProfileViewIdcardlist;
+import com.vempower.eezyclinic.APICore.EditProfileViewInsurance;
+import com.vempower.eezyclinic.APICore.EditProfileViewNationality;
 import com.vempower.eezyclinic.APICore.PatientProfileData;
+import com.vempower.eezyclinic.APICore.Patientinsurancedetail;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.APIResponce.CityData;
 import com.vempower.eezyclinic.APIResponce.CityListAPI;
 import com.vempower.eezyclinic.APIResponce.CountryData;
 import com.vempower.eezyclinic.APIResponce.CountryListAPI;
+import com.vempower.eezyclinic.APIResponce.EditProfileViewAPI;
 import com.vempower.eezyclinic.APIResponce.IdCardTypeAPI;
 import com.vempower.eezyclinic.APIResponce.IdCardTypeData;
 import com.vempower.eezyclinic.APIResponce.InsuranceData;
@@ -47,8 +54,10 @@ import com.vempower.eezyclinic.core.EditProfileDetails;
 import com.vempower.eezyclinic.googleaddressselection.GeoData;
 import com.vempower.eezyclinic.googleaddressselection.GooglePlacesAutocompleteAdapter;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.interfaces.ImageProcessListener;
 import com.vempower.eezyclinic.mappers.CityListMapper;
 import com.vempower.eezyclinic.mappers.CountryListMapper;
+import com.vempower.eezyclinic.mappers.EditProfileViewMapper;
 import com.vempower.eezyclinic.mappers.IdCardTypeMapper;
 import com.vempower.eezyclinic.mappers.InsuranceListMapper;
 import com.vempower.eezyclinic.mappers.NationalityMapper;
@@ -70,6 +79,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by satish on 6/12/17.
@@ -89,10 +99,17 @@ public class EditProfileFragment extends ImageProcessFragment {
     private ScrollView myScrollView;
     private EditProfileDetails profileDetails;
 
-     private HintAdapter<NationalityData> nationalityAdapter;
+
+    SimpleDateFormat format = new SimpleDateFormat(Constants.DISPLAY_DATE_FORMAT);
+    SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.REQUEST_DATE_FORMAT);
+
+
+    private HintAdapter<EditProfileViewNationality> nationalityAdapter;
     private HintAdapter<InsuranceData> insuranceAdapter;
-    private HintAdapter<InsuranceData> insuranceAdapter1;
-    private HintAdapter<IdCardTypeData> idTypeAdapter;
+    private HintAdapter<EditProfileViewInsurance> insuranceAdapter1;
+    private HintAdapter<EditProfileViewIdcardlist> idTypeAdapter;
+
+   // private List<InsuranceData> insuranceNameList;
 
 
     private MyEditTextBlackCursor patient_name_et, height_et,patient_age_et1,
@@ -121,9 +138,12 @@ public class EditProfileFragment extends ImageProcessFragment {
     //private File imageFile;
     private LinearLayout image_linear,insurance_add_linear;
     private ImageView profile_iv,id_back_iv,id_front_iv,insurance_back_iv,insurance_front_iv;
-    private PatientProfileData patientProfileObj;
+    //private PatientProfileData patientProfileObj;
     private AppCompatButton add_insurance_btn;
     private LayoutInflater inflater;
+
+
+    private EditProfileViewAPIData profileAPIData;
 
 
     @Nullable
@@ -168,92 +188,23 @@ public class EditProfileFragment extends ImageProcessFragment {
         add_insurance_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final View convertView = inflater
+
+
+             View   convertView = inflater
                         .inflate(R.layout.profile_secoundary_insurance_edit_layout1, null, false);
+              final  InsuranceHolder holder= new InsuranceHolder(convertView);
 
-
-             TextView titleTv= convertView.findViewById(R.id.insurance_title_tv);
-                if(titleTv!=null)
-                {
-                    titleTv.setText("Secondary Insurance - "+(insurance_add_linear.getChildCount()+1));
-                }
-
-                TextView  delete_tv = convertView.findViewById(R.id. delete_tv);
-                delete_tv.setOnClickListener(new View.OnClickListener() {
+                holder.setOnImageProcessListener(new ImageProcessListener() {
                     @Override
-                    public void onClick(View v) {
-                        //Utils.showToastMessage("Coming soon");
-                        showMyDialog("Alert", "Are you sure to delete ?","Yes","No", new ApiErrorDialogInterface() {
-                            @Override
-                            public void onCloseClick() {
+                    public void callShowImageSourceDialog(int id) {
+                        showImageSourceDialog(id,this);
+                    }
 
-                            }
-
-                            @Override
-                            public void retryClick() {
-
-                                insurance_add_linear.removeView(convertView);
-
-                                if(insurance_add_linear.getChildCount()>0)
-                                {
-                                    int count=1;
-                                    for(int i=0;i<insurance_add_linear.getChildCount();i++)
-                                    {
-                                       View view= insurance_add_linear.getChildAt(i);
-                                       if(view==null)
-                                       {
-                                           continue;
-                                       }
-                                        TextView titleTv= view.findViewById(R.id.insurance_title_tv);
-                                        if(titleTv!=null)
-                                        {
-                                            titleTv.setText("Secondary Insurance - "+count);
-                                            count++;
-                                        }
-                                    }
-                                }
-
-
-
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-
-                                        scrollToView(myScrollView, insurance_add_linear);
-                                    }
-                                },400);
-                            }
-                        });
+                    @Override
+                    public void setImage(File file, int responseId) {
+                        holder.setImage( file,  responseId);
                     }
                 });
-
-             final LinearLayout  new_secondary_insurance_details_linear= convertView.findViewById(R.id.secondary_insurance_details_linear);
-             final com.github.aakira.expandablelayout.ExpandableLinearLayout  new_secondary_expandableLayout_insurance_el = convertView.findViewById(R.id.secondary_expandableLayout_insurance_el);
-
-                {
-                    setExpandedViewListener(new_secondary_expandableLayout_insurance_el, new_secondary_insurance_details_linear, R.id.secondary_insurance_iv);
-                    // secondary_insurance_details_linear.initLayout();
-                    new_secondary_insurance_details_linear.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            new_secondary_expandableLayout_insurance_el.toggle();
-                            hideKeyBord(new_secondary_expandableLayout_insurance_el);
-
-                        }
-                    });
-                }
-
-
-                insurance_add_linear.addView(convertView);
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        scrollToView(myScrollView, add_insurance_btn);
-                    }
-                },400);
-
 
             }
         });
@@ -279,17 +230,538 @@ public class EditProfileFragment extends ImageProcessFragment {
             }
         });
 
-        setToBloodGroupSpinnerAdapter();
-        setToGenderSpinnerAdapter();
-        setToMaritalStatusSpinnerAdapter();
-        setRelationSpinner();
-        //callCountryListMapper();
-        setInitForGooglePlacesAutocompleteTextView();
-
-        fillProfileDataToViews();
+        callEditProfileViewMapper();
 
 
+    }
 
+    private void callEditProfileViewMapper() {
+        EditProfileViewMapper mapper = new EditProfileViewMapper();
+
+        mapper.setOnEditProfileViewAPIListener(new EditProfileViewMapper.EditProfileViewAPIListener() {
+            @Override
+            public void getEditProfileViewAPI(EditProfileViewAPI profileAPI, String errorMessage) {
+                if (!isValidResponse(profileAPI, errorMessage)) {
+                    showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_patient_profile_details_lbl), new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+
+                            ((AbstractActivity) MyApplication.getCurrentActivityContext()). finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callEditProfileViewMapper();
+                        }
+                    });
+                    return;
+                }
+
+                profileAPIData = profileAPI.getData();
+                setToBloodGroupSpinnerAdapter();
+                setToGenderSpinnerAdapter();
+                setToMaritalStatusSpinnerAdapter();
+                setRelationSpinner();
+                callCountryListMapper();
+                callNatinalityMapper();
+                callIdTypeMapper();
+                setInitForGooglePlacesAutocompleteTextView();
+
+                fillProfileDataToViews();
+
+            }
+        });
+    }
+
+    private   class InsuranceHolder
+    {
+
+        final View convertView;
+        private TextView titleTv;
+        private  TextView  delete_tv;
+        private Patientinsurancedetail insurance;
+        private HintAdapter<EditProfileViewInsurance> myInsuranceAdapter;
+        private ImageProcessListener imageProcessListener;
+
+        public final int FRONT_IMAGE_ID;
+        public final int BACK_IMAGE_ID;
+
+
+        private MyEditTextBlackCursor insurance_tpa_et,
+                insurance_insurance_number_et,insurance_insurance_policy_et,
+                insurance_member_id_et,insurance_type_et,
+                insurance_co_pay_et,insurance_scheme_et,
+                insurance_reason_et, insurance_max_limit_et;
+        private ImageView insurance_back_iv,insurance_front_iv;
+
+        private  TextView insurance_valid_from_tv,insurance_valid_to_tv;
+
+
+        private CustomSpinnerSelection insurance_provider_spinner;
+        SelectedDate selectedValidFromObj,selectedValidToObj;
+
+        public InsuranceHolder(View convertView) {
+            this.convertView=convertView;
+            FRONT_IMAGE_ID= new Random().nextInt();
+            BACK_IMAGE_ID= new Random().nextInt();
+              init();
+            createNewInsurance();
+        }
+
+        public void setOnImageProcessListener(ImageProcessListener imageProcessListener)
+        {
+            this.imageProcessListener=imageProcessListener;
+        }
+
+        private void createNewInsurance() {
+            setTitleName("Secondary Insurance - "+(insurance_add_linear.getChildCount()+1));
+
+            setExpandListener();
+            setDeleteListener();
+
+            convertView.setTag(this);
+            insurance_add_linear.addView(convertView);
+
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    scrollToView(myScrollView, add_insurance_btn);
+                }
+            },400);
+        }
+
+        private void setDeleteListener() {
+            delete_tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Utils.showToastMessage("Coming soon");
+                    showMyDialog("Alert", "Are you sure to delete ?","Yes","No", new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+
+                        }
+
+                        @Override
+                        public void retryClick() {
+
+                            insurance_add_linear.removeView(convertView);
+
+                            if(insurance_add_linear.getChildCount()>0)
+                            {
+                                int count=1;
+                                for(int i=0;i<insurance_add_linear.getChildCount();i++)
+                                {
+                                    View view= insurance_add_linear.getChildAt(i);
+                                    if(view==null)
+                                    {
+                                        continue;
+                                    }
+                                    TextView titleTv= view.findViewById(R.id.insurance_title_tv);
+                                    if(titleTv!=null)
+                                    {
+                                        titleTv.setText("Secondary Insurance - "+count);
+                                        count++;
+                                    }
+                                }
+                            }
+
+
+
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    scrollToView(myScrollView, insurance_add_linear);
+                                }
+                            },400);
+                        }
+                    });
+                }
+            });
+        }
+
+        private void setExpandListener() {
+            final LinearLayout new_secondary_insurance_details_linear= convertView.findViewById(R.id.secondary_insurance_details_linear);
+            final ExpandableLinearLayout new_secondary_expandableLayout_insurance_el = convertView.findViewById(R.id.secondary_expandableLayout_insurance_el);
+
+            {
+                setExpandedViewListener(new_secondary_expandableLayout_insurance_el, new_secondary_insurance_details_linear, R.id.secondary_insurance_iv);
+                // secondary_insurance_details_linear.initLayout();
+                new_secondary_insurance_details_linear.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new_secondary_expandableLayout_insurance_el.toggle();
+                        hideKeyBord(new_secondary_expandableLayout_insurance_el);
+
+                    }
+                });
+            }
+        }
+
+
+        private void setTitleName(String title) {
+            if(titleTv!=null)
+            {
+                titleTv.setText(title);
+            }
+        }
+
+        private void init() {
+            titleTv= convertView.findViewById(R.id.insurance_title_tv);
+              delete_tv = convertView.findViewById(R.id. delete_tv);
+            insurance= new Patientinsurancedetail();
+
+            insurance_tpa_et  = convertView.findViewById(R.id.insurance_tpa_et);
+            insurance_provider_spinner  = convertView.findViewById(R.id.insurance_provider_spinner);
+            insurance_insurance_number_et = convertView.findViewById(R.id.insurance_insurance_number_et);
+            insurance_insurance_policy_et  = convertView.findViewById(R.id.insurance_insurance_policy_et);
+            insurance_member_id_et  = convertView.findViewById(R.id.insurance_member_id_et);
+            insurance_type_et  = convertView.findViewById(R.id.insurance_type_et);
+            insurance_valid_from_tv  = convertView.findViewById(R.id.insurance_valid_from_tv);
+            insurance_valid_to_tv  = convertView.findViewById(R.id.insurance_valid_to_tv);
+            insurance_co_pay_et  = convertView.findViewById(R.id.insurance_co_pay_et);
+            insurance_scheme_et  = convertView.findViewById(R.id.insurance_scheme_et);
+            insurance_reason_et  = convertView.findViewById(R.id.insurance_reason_et);
+            insurance_max_limit_et  = convertView.findViewById(R.id.insurance_max_limit_et);
+
+            insurance_back_iv= convertView.findViewById(R.id.insurance_back_iv);
+            insurance_front_iv= convertView.findViewById(R.id.insurance_front_iv);
+
+
+            setInsurance(insurance);
+
+        }
+
+        private void setInsuranceSpinnerData() {
+            if(profileAPIData!=null && profileAPIData.getInsurance()!=null) {
+                setToInsuranceAdapter1(profileAPIData.getInsurance());
+            }
+
+        }
+
+        public void setInsurance(Patientinsurancedetail insurance) {
+            if(insurance==null) {
+                return;
+            }
+
+            this.insurance = insurance;
+            setInsuranceSpinnerData();
+            setInsuranceDetailsToview();
+        }
+        public void setImage(final File file,final int responseId) {
+            if(file!=null)
+            {
+                String keyName=null;
+                /*switch (responseId)
+                {
+
+                    case FRONT_IMAGE_ID:
+                        keyName="insurance_card_2";
+                        break;
+                    case BACK_IMAGE_ID:
+                        keyName="insurance_card_1";
+                        break;
+                }
+
+                if(TextUtils.isEmpty(keyName))
+                {
+                    Utils.showToastMsg("Invalid image source");
+                    return;
+                }*/
+
+                if(responseId==FRONT_IMAGE_ID)
+                {
+                    MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_front_iv, file);
+
+
+                }else if(responseId==BACK_IMAGE_ID)
+                {
+                    MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_back_iv, file);
+
+                }
+
+
+/*
+                UploadProfilePicMapper picMapper= new UploadProfilePicMapper(file,keyName);
+                picMapper.setOnUpdateProfilePicListener(new UploadProfilePicMapper.UpdateProfilePicListener() {
+                    @Override
+                    public void uploadProfilePic(AbstractResponse response, String errorMessage) {
+                        if(!isValidResponse(response,errorMessage))
+                        {
+                            return;
+                        }
+                        Utils.showToastMsg(response.getStatusMessage());
+                        switch (responseId)
+                        {
+                            case Constants.ImagePic.FROM_PROFILE:
+                                MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, file);
+
+                                break;
+                            case Constants.ImagePic.FROM_ID_FRONT:
+                                MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, id_front_iv, file);
+
+                                break;
+                            case Constants.ImagePic.FROM_ID_BACK:
+                                MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, id_back_iv, file);
+
+                                break;
+
+
+                            case Constants.ImagePic.FROM_INSURANCE_FRONT:
+                                MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_front_iv, file);
+
+                                break;
+                            case Constants.ImagePic.FROM_INSURANCE_BACK:
+                                MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_back_iv, file);
+
+                                break;
+                        }
+
+                    }
+
+                });*/
+            }
+
+        }
+
+        private void setInsuranceDetailsToview() {
+
+            insurance_tpa_et.setText(insurance.getTpa());
+            //insurance_provider_spinner  = getFragemtView().findViewById(R.id.insurance_provider_spinner);
+            insurance_insurance_number_et.setText(insurance.getId());
+            insurance_insurance_policy_et.setText(insurance.getPolicy());
+            insurance_member_id_et.setText(insurance.getMemberid());
+            insurance_type_et.setText(insurance.getType());
+            //insurance_valid_from_tv.getText().toString();
+            // insurance_valid_to_tv.getText().toString();
+            insurance_co_pay_et.setText(insurance.getCopay());
+            insurance_scheme_et.setText(insurance.getScheme());
+            insurance_reason_et.setText(insurance.getReason());
+            insurance_max_limit_et.setText(insurance.getMaxlimit());
+
+            MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_front_iv, insurance.getInsuranceCardFront());
+
+            MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_back_iv, insurance.getInsuranceCardRear());
+
+
+
+            //Validity from
+            if (insurance.getFromvalidity() != null) {
+                try {
+
+                    Date date = requestFormat.parse(insurance.getFromvalidity());
+                    if (selectedValidFromObj == null) {
+                        selectedValidFromObj = new SelectedDate(Calendar.getInstance());
+                    }
+                    selectedValidFromObj.setTimeInMillis(date.getTime());
+                    insurance_valid_from_tv.setText(format.format(date));
+                    //profileDetails.fromvalidity = profileAPIData.getPatientdata().getFromvalidity();
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+            //For validity to
+            if (insurance.getTovalidity() != null) {
+                try {
+
+                    Date date = requestFormat.parse(insurance.getTovalidity());
+                    if (selectedValidToObj == null) {
+                        selectedValidToObj = new SelectedDate(Calendar.getInstance());
+                    }
+                    selectedValidToObj.setTimeInMillis(date.getTime());
+                    insurance_valid_to_tv.setText(format.format(date));
+                   // profileDetails.fromvalidity = profileAPIData.getPatientdata().getTovalidity();
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+
+            insurance_valid_from_tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onDateOfBirthTextviewClick(mFragmentValidFromCallback,selectedValidFromObj,false);
+                }
+            });
+
+            insurance_valid_to_tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onDateOfBirthTextviewClick(mFragmentValidToCallback,selectedValidToObj,false);
+                }
+            });
+
+
+
+            {
+                insurance_front_iv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        imageProcessListener.callShowImageSourceDialog(FRONT_IMAGE_ID);
+                        //showImageSourceDialog(Constants.ImagePic.FROM_INSURANCE_FRONT);
+                    }
+                });
+            }
+
+            {
+                insurance_back_iv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //showImageSourceDialog(Constants.ImagePic.FROM_INSURANCE_BACK);
+                        imageProcessListener.callShowImageSourceDialog(BACK_IMAGE_ID);
+
+                    }
+                });
+            }
+
+        }
+        SublimePickerFragment.Callback mFragmentValidFromCallback = new SublimePickerFragment.Callback() {
+            @Override
+            public void onCancelled() {
+                // rlDateTimeRecurrenceInfo.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onDateTimeRecurrenceSet(SelectedDate selectedDate1,
+                                                int hourOfDay, int minute,
+                                                SublimeRecurrencePicker.RecurrenceOption recurrenceOption,
+                                                String recurrenceRule) {
+
+
+                if (selectedDate1 == null || selectedDate1.getFirstDate() == null) {
+                    return;
+                }
+                selectedValidFromObj = selectedDate1;
+                Calendar selectedCal = selectedDate1.getFirstDate();
+
+                //  String date = selectedCal.get(Calendar.YEAR) + "-" + (selectedCal.get(Calendar.MONTH) + 1) + "-" + selectedCal.get(Calendar.DAY_OF_MONTH);
+                SimpleDateFormat format = new SimpleDateFormat(Constants.DISPLAY_DATE_FORMAT);
+                SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.REQUEST_DATE_FORMAT);
+               // profileDetails.fromvalidity=requestFormat.format(selectedCal.getTime());
+                insurance_valid_from_tv.setText(format.format(selectedCal.getTime()));
+
+            }
+        };
+
+        SublimePickerFragment.Callback mFragmentValidToCallback = new SublimePickerFragment.Callback() {
+            @Override
+            public void onCancelled() {
+                // rlDateTimeRecurrenceInfo.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onDateTimeRecurrenceSet(SelectedDate selectedDate1,
+                                                int hourOfDay, int minute,
+                                                SublimeRecurrencePicker.RecurrenceOption recurrenceOption,
+                                                String recurrenceRule) {
+
+
+                if (selectedDate1 == null || selectedDate1.getFirstDate() == null) {
+                    return;
+                }
+                selectedValidToObj = selectedDate1;
+                Calendar selectedCal = selectedDate1.getFirstDate();
+
+                //  String date = selectedCal.get(Calendar.YEAR) + "-" + (selectedCal.get(Calendar.MONTH) + 1) + "-" + selectedCal.get(Calendar.DAY_OF_MONTH);
+                SimpleDateFormat format = new SimpleDateFormat(Constants.DISPLAY_DATE_FORMAT);
+                SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.REQUEST_DATE_FORMAT);
+               // profileDetails.tovalidity=requestFormat.format(selectedCal.getTime());
+                insurance_valid_to_tv.setText(format.format(selectedCal.getTime()));
+
+            }
+        };
+
+
+        public Patientinsurancedetail getInsurance()
+        {
+
+            insurance.setTpa(insurance_tpa_et.getText().toString());
+            //insurance_provider_spinner  = getFragemtView().findViewById(R.id.insurance_provider_spinner);
+            insurance.setInsuranceNumber(insurance_insurance_number_et.getText().toString());
+            insurance.setPolicy(insurance_insurance_policy_et.getText().toString());
+            insurance.setMemberid(insurance_member_id_et.getText().toString());
+            insurance.setType(insurance_type_et.getText().toString());
+            //insurance_valid_from_tv.getText().toString();
+            // insurance_valid_to_tv.getText().toString();
+            insurance.setCopay(insurance_co_pay_et.getText().toString());
+            insurance.setScheme(insurance_scheme_et.getText().toString());
+            insurance.setReason(insurance_reason_et.getText().toString());
+            insurance.setMaxlimit(insurance_max_limit_et.getText().toString());
+
+            return insurance;
+        }
+
+        public void setToInsuranceAdapter1(List<EditProfileViewInsurance> list) {
+
+            final ArrayList<EditProfileViewInsurance> insuranceTypeList = new ArrayList<>();
+            if (list != null && list.size() > 0) {
+                insuranceTypeList.addAll(list);
+
+            }
+
+            EditProfileViewInsurance hintData = new EditProfileViewInsurance();
+            hintData.setCompanyName("Select Insurance");
+            insuranceTypeList.add(insuranceTypeList.size(), hintData);
+
+
+            myInsuranceAdapter = new HintAdapter<EditProfileViewInsurance>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, insuranceTypeList);
+
+            myInsuranceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            insurance_provider_spinner.setAdapter(myInsuranceAdapter);
+            insurance_provider_spinner.setSelection(myInsuranceAdapter.getCount());
+
+            insurance_provider_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    //if(position!=0)
+                    //{
+                    profileDetails.insurancePackage=null;
+                    if (position != (myInsuranceAdapter.getCount())) {
+                        EditProfileViewInsurance selectedInsurance = insuranceTypeList.get(position);
+                        // Utils.showToastMessage("selected insurance " + selectedInsurance);
+
+                        if (selectedInsurance != null) {
+                            profileDetails.insurancePackage=selectedInsurance.getCompanyName();
+                            // searchRequestParams.setInsurenceList(null);
+                            //searchRequestParams.addInsurence(selectedInsurance.getCompanyName());
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+            if(profileAPIData!=null && profileAPIData.getPatientdata()!=null)
+            {
+                String insurance = profileAPIData.getPatientdata().getInsurancePackage();
+                if(!TextUtils.isEmpty(insurance))
+                {
+                    for(int i=0;i<insuranceTypeList.size();i++)
+                    {
+                        String temp=insuranceTypeList.get(i).getCompanyName();
+                        if(temp!=null && temp.equalsIgnoreCase(insurance))
+                        {
+                            insurance_provider_spinner.setSelection(i);
+                            break;
+                        }
+                    }
+                }
+            }
+
+
+
+        }
     }
 
     private void compute() {
@@ -436,9 +908,9 @@ public class EditProfileFragment extends ImageProcessFragment {
 
             }
         });
-        if(patientProfileObj!=null)
+        if(profileAPIData!=null && profileAPIData.getPatientdata()!=null)
         {
-            String relation = patientProfileObj.getEmergencycontactrelationship();
+            String relation = profileAPIData.getPatientdata().getEmergencyContactRelationship();
             if(!TextUtils.isEmpty(relation))
             {
                for(int i=0;i<relations.length;i++)
@@ -490,9 +962,9 @@ public class EditProfileFragment extends ImageProcessFragment {
             }
         });
 
-        if(patientProfileObj!=null)
+        if(profileAPIData!=null && profileAPIData.getPatientdata()!=null)
         {
-            String gender = patientProfileObj.getGender();
+            String gender =  profileAPIData.getPatientdata().getGender();
             if(!TextUtils.isEmpty(gender))
             {
                 for(int i=0;i<genderTypeList.size();i++)
@@ -543,9 +1015,9 @@ public class EditProfileFragment extends ImageProcessFragment {
 
             }
         });
-        if(patientProfileObj!=null)
+        if(profileAPIData!=null && profileAPIData.getPatientdata()!=null)
         {
-            String marital = patientProfileObj.getMaritalStatus();
+            String marital = profileAPIData.getPatientdata().getMaritialStatus();
             if(!TextUtils.isEmpty(marital))
             {
                 for(int i=0;i<maritalStatusList.size();i++)
@@ -564,12 +1036,20 @@ public class EditProfileFragment extends ImageProcessFragment {
 
 
     private void callInsuranceAcceptedMapper() {
-        if ((insuranceAdapter != null)&& (insuranceAdapter1 != null)) {
+        if(profileAPIData!=null && profileAPIData.getInsurance()!=null) {
+            setToInsuranceAdapter1(profileAPIData.getInsurance());
+        }
+        if(true)
+        {
+            return;
+        }
+
+       /* if ((insuranceAdapter != null)&& (insuranceAdapter1 != null)) {
             MyApplication.hideTransaprentDialog();
             //insurance_accepted_spinner.setSelection(insuranceAdapter.getCount());
             return;
-        }
-        MyApplication.showTransparentDialog();
+        }*/
+        //MyApplication.showTransparentDialog();
         InsuranceListMapper mapper = new InsuranceListMapper();
         mapper.setOnInsuranceListListener(new InsuranceListMapper.InsuranceListListener() {
             @Override
@@ -590,7 +1070,8 @@ public class EditProfileFragment extends ImageProcessFragment {
                     });
                     return;
                 }
-                if(insuranceAdapter1==null)
+               // insuranceNameList=insuranceListAPI.getData();
+               /* if(insuranceAdapter1==null)
                 {
                     setToInsuranceAdapter1(insuranceListAPI.getData());
                 }
@@ -598,25 +1079,26 @@ public class EditProfileFragment extends ImageProcessFragment {
                 if(insuranceAdapter==null) {
                     setToInsuranceAdapter(insuranceListAPI.getData());
 
-                }
+                }*/
 
             }
         });
     }
 
-    public void setToInsuranceAdapter1(List<InsuranceData> list) {
-        final ArrayList<InsuranceData> insuranceTypeList = new ArrayList<>();
+    public void setToInsuranceAdapter1(List<EditProfileViewInsurance> list) {
+
+        final ArrayList<EditProfileViewInsurance> insuranceTypeList = new ArrayList<>();
         if (list != null && list.size() > 0) {
             insuranceTypeList.addAll(list);
 
         }
 
-        InsuranceData hintData = new InsuranceData();
+        EditProfileViewInsurance hintData = new EditProfileViewInsurance();
         hintData.setCompanyName("Select Insurance");
         insuranceTypeList.add(insuranceTypeList.size(), hintData);
 
 
-        insuranceAdapter1 = new HintAdapter<InsuranceData>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, insuranceTypeList);
+        insuranceAdapter1 = new HintAdapter<EditProfileViewInsurance>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, insuranceTypeList);
 
         insuranceAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         insurance_provider_spinner.setAdapter(insuranceAdapter1);
@@ -629,7 +1111,7 @@ public class EditProfileFragment extends ImageProcessFragment {
                 //{
                 profileDetails.insurancePackage=null;
                 if (position != (insuranceAdapter1.getCount())) {
-                    InsuranceData selectedInsurance = insuranceTypeList.get(position);
+                    EditProfileViewInsurance selectedInsurance = insuranceTypeList.get(position);
                     // Utils.showToastMessage("selected insurance " + selectedInsurance);
 
                     if (selectedInsurance != null) {
@@ -647,9 +1129,9 @@ public class EditProfileFragment extends ImageProcessFragment {
             }
         });
 
-        if(patientProfileObj!=null)
+        if(profileAPIData!=null && profileAPIData.getPatientdata()!=null)
         {
-            String insurance = patientProfileObj.getInsuranceProvider();
+            String insurance = profileAPIData.getPatientdata().getInsurancePackage();
             if(!TextUtils.isEmpty(insurance))
             {
                 for(int i=0;i<insuranceTypeList.size();i++)
@@ -658,6 +1140,7 @@ public class EditProfileFragment extends ImageProcessFragment {
                     if(temp!=null && temp.equalsIgnoreCase(insurance))
                     {
                         insurance_provider_spinner.setSelection(i);
+                        break;
                     }
                 }
             }
@@ -731,17 +1214,28 @@ public class EditProfileFragment extends ImageProcessFragment {
 
 
     private void callIdTypeMapper() {
+        if(profileAPIData!=null && profileAPIData.getIdcardlist()!=null)
+        {
+            setToIdTypeAdapter(profileAPIData.getIdcardlist());
+        }
+        callCountryListMapper();
+
+        if(true)
+        {
+            return;
+        }
+
         if (idTypeAdapter != null) {
             MyApplication.hideTransaprentDialog();
             //insurance_accepted_spinner.setSelection(insuranceAdapter.getCount());
             return;
         }
-        MyApplication.showTransparentDialog();
+        //MyApplication.showTransparentDialog();
         IdCardTypeMapper mapper = new IdCardTypeMapper();
         mapper.setOnIdTypeListListener(new IdCardTypeMapper.IdTypeListListener() {
             @Override
             public void getIdTypeListAPI(IdCardTypeAPI idCardTypeAPI, String errorMessage) {
-                MyApplication.hideTransaprentDialog();
+                //MyApplication.hideTransaprentDialog();
                 if (!isValidResponse(idCardTypeAPI, errorMessage)) {
                     showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_id_type_list_lbl), new ApiErrorDialogInterface() {
                         @Override
@@ -757,7 +1251,7 @@ public class EditProfileFragment extends ImageProcessFragment {
                     });
                     return;
                 }
-                setToIdTypeAdapter(idCardTypeAPI.getData());
+                //setToIdTypeAdapter(idCardTypeAPI.getData());
                 callCountryListMapper();
             }
         });
@@ -765,19 +1259,19 @@ public class EditProfileFragment extends ImageProcessFragment {
 
     }
 
-    public void setToIdTypeAdapter(List<IdCardTypeData> list) {
-        final ArrayList<IdCardTypeData> idCardTypeList = new ArrayList<>();
+    public void setToIdTypeAdapter(List<EditProfileViewIdcardlist> list) {
+        final ArrayList<EditProfileViewIdcardlist> idCardTypeList = new ArrayList<>();
         if (list != null && list.size() > 0) {
             idCardTypeList.addAll(list);
 
         }
 
-        IdCardTypeData hintData = new IdCardTypeData();
+        EditProfileViewIdcardlist hintData = new EditProfileViewIdcardlist();
         hintData.setIdCardName("Select ID Type");
         idCardTypeList.add(idCardTypeList.size(), hintData);
 
 
-        idTypeAdapter = new HintAdapter<IdCardTypeData>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, idCardTypeList);
+        idTypeAdapter = new HintAdapter<EditProfileViewIdcardlist>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, idCardTypeList);
 
         idTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         id_type_spinner.setAdapter(idTypeAdapter);
@@ -790,7 +1284,7 @@ public class EditProfileFragment extends ImageProcessFragment {
                 //{
                 profileDetails.idType=null;
                 if (position != (idTypeAdapter.getCount())) {
-                    IdCardTypeData idCardTypeData = idCardTypeList.get(position);
+                    EditProfileViewIdcardlist idCardTypeData = idCardTypeList.get(position);
                     // Utils.showToastMessage("selected insurance " + selectedInsurance);
 
                     if (idCardTypeData != null) {
@@ -809,8 +1303,8 @@ public class EditProfileFragment extends ImageProcessFragment {
             }
         });
 
-        if(patientProfileObj!=null) {
-            String idtype = patientProfileObj.getIdtype();
+        if(profileAPIData!=null && profileAPIData.getPatientdata()!=null) {
+            String idtype = profileAPIData.getPatientdata().getIdType();
             if(!TextUtils.isEmpty(idtype))
             {
                 for(int i=0;i<idCardTypeList.size();i++)
@@ -829,17 +1323,24 @@ public class EditProfileFragment extends ImageProcessFragment {
 
     private void callNatinalityMapper() {
 
-        if (nationalityAdapter != null) {
+        if(profileAPIData!=null && profileAPIData.getNationalities()!=null)
+        {
+            setToNationalityListAdapter(profileAPIData.getNationalities());
+
+        }
+        callIdTypeMapper();
+        callInsuranceAcceptedMapper();
+        if (true) {
             // nationality_spinner.setSelection(nationalityAdapter.getCount());
             return;
         }
-        MyApplication.showTransparentDialog();
+        //MyApplication.showTransparentDialog();
         NationalityMapper mapper = new NationalityMapper();
 
         mapper.setOnNationalityListListener(new NationalityMapper.NationalityListListener() {
             @Override
             public void getNationalityListAPI(NationalityListAPI nationalityListAPI, String errorMessage) {
-                MyApplication.hideTransaprentDialog();
+                //MyApplication.hideTransaprentDialog();
                 if (!isValidResponse(nationalityListAPI, errorMessage)) {
                     showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_nationality_list_lbl), new ApiErrorDialogInterface() {
                         @Override
@@ -856,27 +1357,26 @@ public class EditProfileFragment extends ImageProcessFragment {
                     });
                     return;
                 }
-                setToNationalityListAdapter(nationalityListAPI.getData());
-                callIdTypeMapper();
+
                 //callInsuranceAcceptedMapper();
             }
         });
 
     }
 
-    public void setToNationalityListAdapter(List<NationalityData> list) {
-        final ArrayList<NationalityData> nationalityTypeList = new ArrayList<>();
+    public void setToNationalityListAdapter(List<EditProfileViewNationality> list) {
+        final ArrayList<EditProfileViewNationality> nationalityTypeList = new ArrayList<>();
         if (list != null && list.size() > 0) {
             nationalityTypeList.addAll(list);
 
         }
 
-        NationalityData hintData = new NationalityData();
+        EditProfileViewNationality hintData = new EditProfileViewNationality();
         hintData.setNationalityName("Select Nationality");
         nationalityTypeList.add(nationalityTypeList.size(), hintData);
 
 
-        nationalityAdapter = new HintAdapter<NationalityData>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, nationalityTypeList);
+        nationalityAdapter = new HintAdapter<EditProfileViewNationality>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, nationalityTypeList);
 
         nationalityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         nationality_spinner.setAdapter(nationalityAdapter);
@@ -889,7 +1389,7 @@ public class EditProfileFragment extends ImageProcessFragment {
                 profileDetails.nationality=null;
 
                 if (position != (nationalityAdapter.getCount())) {
-                    NationalityData selectedNationality = nationalityTypeList.get(position);
+                    EditProfileViewNationality selectedNationality = nationalityTypeList.get(position);
                     //Utils.showToastMessage("selected Nationality " + selectedNationality);
 
                     if (selectedNationality != null) {
@@ -910,8 +1410,8 @@ public class EditProfileFragment extends ImageProcessFragment {
             }
         });
 
-        if(patientProfileObj!=null) {
-            String nationality = patientProfileObj.getNationality();
+        if(profileAPIData!=null && profileAPIData.getPatientdata()!=null) {
+            String nationality = profileAPIData.getPatientdata().getNationality();
             if(!TextUtils.isEmpty(nationality))
             {
                 for(int i=0;i<nationalityTypeList.size();i++)
@@ -970,8 +1470,8 @@ public class EditProfileFragment extends ImageProcessFragment {
             }
         });
 
-        if(patientProfileObj!=null) {
-            String bloodgroup = patientProfileObj.getBloodgroup();
+        if(profileAPIData!=null && profileAPIData.getPatientdata()!=null) {
+            String bloodgroup = profileAPIData.getPatientdata().getBloodGroup();
             if(!TextUtils.isEmpty(bloodgroup))
             {
                 for(int i=0;i<bloodGroupList.size();i++)
@@ -1032,7 +1532,6 @@ public class EditProfileFragment extends ImageProcessFragment {
         emergency_contact_number_et = getFragemtView().findViewById(R.id.emergency_contact_number_et);
         emergency_contact_emailid_et = getFragemtView().findViewById(R.id.emergency_contact_emailid_et);
         relation_spinner  = getFragemtView().findViewById(R.id.relation_spinner);
-
 
 
         //Insurance
@@ -1314,6 +1813,17 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
 
     private void callCountryListMapper() {
         //TODO call country list mapper
+        if(profileAPIData!=null && profileAPIData.getCountries()!=null)
+        {
+            setToCountryAdapter(profileAPIData.getCountries());
+        }
+
+        if(true)
+        {
+            return;
+        }
+
+
         CountryListMapper mapper = new CountryListMapper();
         mapper.setOnCountryListListener(new CountryListMapper.CountryListListener() {
             @Override
@@ -1335,27 +1845,27 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
                     return;
                 }
 
-                setToCountryAdapter(countryListAPI.getData());
+                //setToCountryAdapter(countryListAPI.getData());
 
             }
         });
 
     }
 
-    public void setToCountryAdapter(List<CountryData> list) {
-        final ArrayList<CountryData> countryTypeList = new ArrayList<>();
+    public void setToCountryAdapter(List<EditProfileViewCountry> list) {
+        final ArrayList<EditProfileViewCountry> countryTypeList = new ArrayList<>();
         if (list != null && list.size() > 0) {
             countryTypeList.addAll(list);
 
         }
 
-        CountryData hintData = new CountryData();
-        hintData.setCountry("Select Country");
+        EditProfileViewCountry hintData = new EditProfileViewCountry();
+        hintData.setCountryName("Select Country");
         countryTypeList.add(countryTypeList.size(), hintData);
         setToCityListAdapter(null);
 
 
-        final HintAdapter aa = new HintAdapter<CountryData>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, countryTypeList);
+        final HintAdapter aa = new HintAdapter<EditProfileViewCountry>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, countryTypeList);
 
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         country_spinner.setAdapter(aa);
@@ -1369,14 +1879,14 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
                 // expandableLayout_city_view.collapse();
                 profileDetails.country=null;
                 if (position != (aa.getCount())) {
-                    CountryData selectedCountry = countryTypeList.get(position);
+                    EditProfileViewCountry selectedCountry = countryTypeList.get(position);
                     if (selectedCountry != null) {
                         // Utils.showToastMessage("selected country " + selectedCountry);
                         if (!expandableLayout_city_view.isExpanded()) {
                             expandableLayout_city_view.toggle();
                         }
                         callCityListMapper(selectedCountry.getId());
-                        profileDetails.country=selectedCountry.getCountry();
+                        profileDetails.country=selectedCountry.getCurrencyName();
                        // searchRequestParams.setCountry(selectedCountry.getId());
 
                        // namesSearch.setCountryId(selectedCountry.getId());
@@ -1394,13 +1904,13 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
             }
         });
 
-        if(patientProfileObj!=null) {
-            String country = patientProfileObj.getAddress().getCountry();
+        if(profileAPIData!=null && profileAPIData.getPatientdata()!=null) {
+            String country = profileAPIData.getPatientdata().getCountry();
             if(!TextUtils.isEmpty(country))
             {
                 for(int i=0;i<countryTypeList.size();i++)
                 {
-                    String temp=countryTypeList.get(i).getCountry();
+                    String temp=countryTypeList.get(i).getCountryName();
                     if(temp!=null && temp.equalsIgnoreCase(country))
                     {
                         country_spinner.setSelection(i);
@@ -1413,6 +1923,8 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
     }
 
     private void callCityListMapper(String country) {
+
+
         CityListMapper cityListMapper = new CityListMapper(country);
         cityListMapper.setOnCityListListener(new CityListMapper.CityListListener() {
             @Override
@@ -1499,8 +2011,8 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
         });
 
 
-        if(patientProfileObj!=null) {
-            String city = patientProfileObj.getAddress().getCity();
+        if(profileAPIData!=null && profileAPIData.getPatientdata()!=null) {
+            String city = profileAPIData.getPatientdata().getCity();
             if(!TextUtils.isEmpty(city))
             {
                 for(int i=0;i<cityTypeList.size();i++)
@@ -1619,91 +2131,115 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
 
     }
 
-    private void fillProfileDataToViews()
-    {
-        if(patientProfileObj==null)
-        {
+    private void fillProfileDataToViews() {
+        if(profileAPIData==null || profileAPIData.getPatientdata()==null){
             return;
         }
-        MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, patientProfileObj.getPatientlogo());
+        //Patientinsurancedetail
 
-        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, id_front_iv, patientProfileObj.getIdcardImageFront());
+        if ( profileAPIData.getPatientinsurancedetails() != null) {
+            for (Patientinsurancedetail insurance : profileAPIData.getPatientinsurancedetails()) {
 
-        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, id_back_iv, patientProfileObj.getIdcardImageBack());
+                if (insurance == null) {
+                    continue;
+                }
+
+                View convertView = inflater
+                        .inflate(R.layout.profile_secoundary_insurance_edit_layout1, null, false);
+               final InsuranceHolder holder = new InsuranceHolder(convertView);
+
+                holder.setOnImageProcessListener(new ImageProcessListener() {
+                    @Override
+                    public void callShowImageSourceDialog(int id) {
+                        showImageSourceDialog(id,this);
+                    }
+
+                    @Override
+                    public void setImage(File file, int responseId) {
+                        holder.setImage( file,  responseId);
+                    }
+                });
+
+                holder.setInsurance(insurance);
+            }
 
 
-        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_front_iv, patientProfileObj.getInsuranceCardFront());
-
-        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_back_iv, patientProfileObj.getInsuranceCardBack());
+        }
 
 
+        MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, profileAPIData.getPatientdata().getPatientLogo());
 
-        patient_name_et.setText(patientProfileObj.getPatientname());
-       height_et.setText(patientProfileObj.getHeight());
-       known_allergies_et.setText(patientProfileObj.getKnownallergies());
+        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, id_front_iv, profileAPIData.getPatientdata().getIdcardImageFront());
+
+        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, id_back_iv, profileAPIData.getPatientdata().getIdcardImageBack());
+
+
+        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_front_iv, profileAPIData.getPatientdata().getInsuranceCardFront());
+
+        MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_id_default_image, insurance_back_iv, profileAPIData.getPatientdata().getInsuranceCardBack());
+
+
+        patient_name_et.setText(profileAPIData.getPatientdata().getPatientName());
+        height_et.setText(profileAPIData.getPatientdata().getHeight());
+        known_allergies_et.setText(profileAPIData.getPatientdata().getKnownAllergies());
 
 
         //Contact details
         // profileDetails.mobile= contact_et.getText().toString();
-       primary_contact_no_et.setText(patientProfileObj.getContactNo().getPrimary());
-       secondary_contact_no_et.setText(patientProfileObj.getContactNo().getSecondarymobile());
-       residence_contact_no_et.setText(patientProfileObj.getContactNo().getResidencemobile());
-        // contact_email_et = getFragemtView().findViewById(R.id.email_et);
-        contact_address_et.setText(patientProfileObj.getAddress().getAddress());
+        primary_contact_no_et.setText(profileAPIData.getPatientdata().getMobile());
+        secondary_contact_no_et.setText(profileAPIData.getPatientdata().getSecondarymobile());
+        residence_contact_no_et.setText(profileAPIData.getPatientdata().getResidencemobile());
+         contact_email_et.setText(profileAPIData.getPatientdata().getPatentEmail());
+        contact_address_et.setText(profileAPIData.getPatientdata().getAddress());
 
-       contact_language_known_et.setText(patientProfileObj.getLanguagesknown());
-        id_number_et.setText(patientProfileObj.getIdnumber());
+        contact_language_known_et.setText(profileAPIData.getPatientdata().getLanguagesKnown());
+        id_number_et.setText(profileAPIData.getPatientdata().getIdNumber());
 
         addressAutoCompleteTextView.setOnItemClickListener(null);
-        addressAutoCompleteTextView.setText(patientProfileObj.getAddress().getLocality());
+        addressAutoCompleteTextView.setText(profileAPIData.getPatientdata().getLocality());
         addressAutoCompleteTextView.setOnItemClickListener(adapterViewListener);
 
 
-
         //Emergency Contact
-        emergency_contact_name_et.setText(patientProfileObj.getEmergencycontactname());
-        emergency_contact_number_et.setText(patientProfileObj.getEmergencycontactnumber());
-        emergency_contact_emailid_et.setText(patientProfileObj.getEmergencycontactemail());
+        emergency_contact_name_et.setText(profileAPIData.getPatientdata().getEmergencyContactName());
+        emergency_contact_number_et.setText(profileAPIData.getPatientdata().getEmergencyContactNumber());
+        emergency_contact_emailid_et.setText(profileAPIData.getPatientdata().getEmergencyContactEmail());
         // relation_spinner  = getFragemtView().findViewById(R.id.relation_spinner);
 
 
-
         //Insurance
-       insurance_tpa_et.setText(patientProfileObj.getTpa());
+        insurance_tpa_et.setText(profileAPIData.getPatientdata().getTpa());
         //insurance_provider_spinner  = getFragemtView().findViewById(R.id.insurance_provider_spinner);
-        insurance_insurance_number_et.setText(patientProfileObj.getInsuranceId());
-        insurance_insurance_policy_et.setText(patientProfileObj.getPolicy());
-        insurance_member_id_et.setText(patientProfileObj.getMemberid());
-        insurance_type_et.setText(patientProfileObj.getType());
+        insurance_insurance_number_et.setText(profileAPIData.getPatientdata().getInsuranceNumber());
+        insurance_insurance_policy_et.setText(profileAPIData.getPatientdata().getPolicy());
+        insurance_member_id_et.setText(profileAPIData.getPatientdata().getMemberid());
+        insurance_type_et.setText(profileAPIData.getPatientdata().getType());
         //insurance_valid_from_tv.getText().toString();
         // insurance_valid_to_tv.getText().toString();
-        insurance_co_pay_et.setText(patientProfileObj.getCopay());
-        insurance_scheme_et.setText(patientProfileObj.getScheme());
-        insurance_reason_et.setText(patientProfileObj.getReason());
-        insurance_organisation_et.setText(patientProfileObj.getOrganisation());
-        insurance_max_limit_et.setText(patientProfileObj.getMaxlimit());
+        insurance_co_pay_et.setText(profileAPIData.getPatientdata().getCopay());
+        insurance_scheme_et.setText(profileAPIData.getPatientdata().getScheme());
+        insurance_reason_et.setText(profileAPIData.getPatientdata().getReason());
+        insurance_organisation_et.setText(profileAPIData.getPatientdata().getOrganisation());
+        insurance_max_limit_et.setText(profileAPIData.getPatientdata().getMaxlimit());
         // insurance_secoundary_spinner  = getFragemtView().findViewById(R.id.insurance_secoundary_spinner);
-      // insurance_secoundary_number_et.setText(patientProfileObj.getSecondaryinsurancenumber());
+        // insurance_secoundary_number_et.setText(patientProfileObj.getSecondaryinsurancenumber());
 
         //"dateofbirth": "01/01/1986",
-        date_of_birth_tv.setText(patientProfileObj.getDateofbirth());
+        date_of_birth_tv.setText(profileAPIData.getPatientdata().getDateofBirth());
 
-
-        SimpleDateFormat format = new SimpleDateFormat(Constants.DISPLAY_DATE_FORMAT);
-        SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.REQUEST_DATE_FORMAT);
 
 
         //For Date of birth
-        if(patientProfileObj.getDateofbirth()!=null) {
+        if (profileAPIData.getPatientdata().getDateofBirth() != null) {
             try {
 
-                Date date = requestFormat.parse(patientProfileObj.getDateofbirth());
+                Date date = requestFormat.parse(profileAPIData.getPatientdata().getDateofBirth());
                 if (selectedDOBObj == null) {
                     selectedDOBObj = new SelectedDate(Calendar.getInstance());
                 }
                 selectedDOBObj.setTimeInMillis(date.getTime());
                 date_of_birth_tv.setText(format.format(date));
-                profileDetails.dateofBirth=patientProfileObj.getDateofbirth();
+                profileDetails.dateofBirth = profileAPIData.getPatientdata().getDateofBirth();
 
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -1712,16 +2248,16 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
 
 
         //Validity from
-        if(patientProfileObj.getValidityfrom()!=null) {
+        if (profileAPIData.getPatientdata().getFromvalidity() != null) {
             try {
 
-                Date date = requestFormat.parse(patientProfileObj.getValidityfrom());
+                Date date = requestFormat.parse(profileAPIData.getPatientdata().getFromvalidity());
                 if (selectedValidFromObj == null) {
                     selectedValidFromObj = new SelectedDate(Calendar.getInstance());
                 }
                 selectedValidFromObj.setTimeInMillis(date.getTime());
                 insurance_valid_from_tv.setText(format.format(date));
-                profileDetails.fromvalidity=patientProfileObj.getValidityfrom();
+                profileDetails.fromvalidity = profileAPIData.getPatientdata().getFromvalidity();
 
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -1729,18 +2265,17 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
         }
 
 
-
         //For validity to
-        if(patientProfileObj.getValidityto()!=null) {
+        if (profileAPIData.getPatientdata().getTovalidity() != null) {
             try {
 
-                Date date = requestFormat.parse(patientProfileObj.getValidityto());
+                Date date = requestFormat.parse(profileAPIData.getPatientdata().getTovalidity());
                 if (selectedValidToObj == null) {
                     selectedValidToObj = new SelectedDate(Calendar.getInstance());
                 }
                 selectedValidToObj.setTimeInMillis(date.getTime());
                 insurance_valid_to_tv.setText(format.format(date));
-                profileDetails.fromvalidity=patientProfileObj.getValidityto();
+                profileDetails.fromvalidity = profileAPIData.getPatientdata().getTovalidity();
 
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -1771,6 +2306,8 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
      */
     @Override
     protected void setImage(final File file,final int responseId) {
+
+        super.setImage(file,responseId);
         if(file!=null)
         {
             String keyName=null;
@@ -1796,7 +2333,7 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
 
             if(TextUtils.isEmpty(keyName))
             {
-                Utils.showToastMsg("Invalid image source");
+                //Utils.showToastMsg("Invalid image source");
                 return;
             }
 
@@ -1843,9 +2380,9 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
 
     }
 
-    public void setPatientProfileObj(PatientProfileData patientProfileObj) {
+    /*public void setPatientProfileObj(PatientProfileData patientProfileObj) {
         this.patientProfileObj = patientProfileObj;
-    }
+    }*/
 
     public interface SuccessToUpdateProfileListener
     {
@@ -1881,5 +2418,10 @@ public SaveButtonClickListener saveButtonClickListener= new SaveButtonClickListe
     };
 
 
+
+   /* private interface ImageProcessListener
+    {
+        void callShowImageSourceDialog(int id);
+    }*/
 
 }

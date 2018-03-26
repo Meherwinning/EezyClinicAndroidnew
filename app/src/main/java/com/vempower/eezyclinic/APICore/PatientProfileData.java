@@ -4,6 +4,8 @@ package com.vempower.eezyclinic.APICore;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class PatientProfileData {
 
     @SerializedName("patientlogo")
@@ -135,6 +137,15 @@ public class PatientProfileData {
     @SerializedName("emergencycontactnumber")
     @Expose
     private String emergencycontactnumber;
+
+
+    @SerializedName("patientinsurancedetails")
+    @Expose
+    private List<Patientinsurancedetail> patientinsurancedetails = null;
+
+
+
+
 
 
     @SerializedName("weight")
@@ -507,6 +518,13 @@ public class PatientProfileData {
     }
 
 
+    public List<Patientinsurancedetail> getPatientinsurancedetails() {
+        return patientinsurancedetails;
+    }
+
+    public void setPatientinsurancedetails(List<Patientinsurancedetail> patientinsurancedetails) {
+        this.patientinsurancedetails = patientinsurancedetails;
+    }
 
     @Override
     public String toString() {

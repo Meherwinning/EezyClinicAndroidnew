@@ -1,14 +1,11 @@
 package com.vempower.eezyclinic.fragments;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
-import android.content.ContentProvider;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -24,30 +21,26 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
 
-
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 import com.vempower.eezyclinic.BuildConfig;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.AbstractActivity;
 import com.vempower.eezyclinic.activities.EditProfileActivity;
 import com.vempower.eezyclinic.application.MyApplication;
-import com.vempower.eezyclinic.interfaces.ImageProcessListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.FileUtils;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 /**
  * Created by Satishk on 6/1/2017.
  */
 
-public abstract class ImageProcessFragment extends AbstractFragment {
+public abstract class ImageProcess extends AbstractFragment {
 
     private final int REQUEST_IMAGE_CAPTURE = 1111;
     private final int REQUEST_IMAGE_GALLERY = 2222;
@@ -60,7 +53,6 @@ public abstract class ImageProcessFragment extends AbstractFragment {
     private Uri imageUri;
     private File croppedfile;
     int responseId=-1;
-    private ImageProcessListener imageProcessListener;
 
 
     protected void callGallery(int responseId) {
@@ -422,13 +414,7 @@ public abstract class ImageProcessFragment extends AbstractFragment {
     }
 
     //protected abstract void setImage(Uri imageUri);
-    protected void setImage(File file,int responseId)
-    {
-        if(imageProcessListener!=null)
-        {
-            imageProcessListener.setImage( file, responseId);
-        }
-    }
+    protected abstract void setImage(File file,int responseId);
     protected  void setPDFFile(File file,int responseId)
     {
 
@@ -497,11 +483,6 @@ public abstract class ImageProcessFragment extends AbstractFragment {
 
         }*/
         return true;
-    }
-    protected void showImageSourceDialog(final int responseId, ImageProcessListener imageProcessListener)
-    {
-       this.imageProcessListener=imageProcessListener;
-        showImageSourceDialog(responseId);
     }
 
 

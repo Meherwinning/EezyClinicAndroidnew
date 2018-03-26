@@ -243,6 +243,7 @@
     <string name="unable_to_get_home_page_details">Unable to get home page details</string>
     <string name="login_signup_lbl">Signup</string>
     <string name="non_logged_user_book_appointment_alert_msz">Please login to book your appointment.\nIf you do not have an account, please sign up.</string>
+    <string name="unable_to_patient_profile_details_lbl">Unable to get patient profile details.\nPlease try again</string>
 
 
 </resources>

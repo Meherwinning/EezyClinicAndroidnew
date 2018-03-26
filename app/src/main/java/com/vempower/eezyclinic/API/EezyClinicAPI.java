@@ -15,6 +15,7 @@ import com.vempower.eezyclinic.APIResponce.CountryListAPI;
 import com.vempower.eezyclinic.APIResponce.DashboardAPI;
 import com.vempower.eezyclinic.APIResponce.DoctorClinicNameListAPI;
 import com.vempower.eezyclinic.APIResponce.DoctorProfileAPI;
+import com.vempower.eezyclinic.APIResponce.EditProfileViewAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordAPI;
 import com.vempower.eezyclinic.APIResponce.ForgotPasswordOTPAPI;
 import com.vempower.eezyclinic.APIResponce.GetFamilyMembersAPI;
@@ -419,6 +420,12 @@ Call<HealthChecksListAPI> getHealthCheckList(@Body RequestBody postBody);
     //http://202.63.103.194:8003/api/patient/homepage
     @POST(data + "patient/homepage")
     Call<NewHomeAPI> getHomePageAPI();
+
+
+    //http://202.63.103.194:8003/api/patient/editprofile
+    @POST(data + "patient/editprofile")
+    Call<EditProfileViewAPI> getEditProfileViewAPI(@Body RequestBody postBody);
+
 
 
 

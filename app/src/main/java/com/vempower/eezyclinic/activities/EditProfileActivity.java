@@ -64,7 +64,7 @@ public class EditProfileActivity extends AbstractMenuActivity {
         fragment= new EditProfileFragment();
 
         fragment.isFromEditMode(true);
-        fragment.setPatientProfileObj(data);
+        //fragment.setPatientProfileObj(data);
 
         fragment.setOnSuccessToUpdateProfileListener(new EditProfileFragment.SuccessToUpdateProfileListener() {
             @Override
