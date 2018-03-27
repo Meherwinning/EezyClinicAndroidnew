@@ -929,6 +929,7 @@
 
 
             <LinearLayout
+                android:visibility="gone"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -936,6 +937,13 @@
                 <include layout="@layout/profile_secondary_insurance_layout"></include>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/insurance_add_linear"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></LinearLayout>
+
 
 
         </LinearLayout>

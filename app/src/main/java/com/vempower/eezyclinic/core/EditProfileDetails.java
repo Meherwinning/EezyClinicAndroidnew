@@ -51,7 +51,7 @@ public class EditProfileDetails {
     public String insurancePackage;
     public String insuranceNumber;
     public String policy;
-    public String policyNumber;
+    //public String policyNumber;
     public String memberid;
     public String type;
     public String scheme;
@@ -100,7 +100,7 @@ public class EditProfileDetails {
                 ", insurancePackage='" + insurancePackage + '\'' +
                 ", insuranceNumber='" + insuranceNumber + '\'' +
                 ", policy='" + policy + '\'' +
-                ", policyNumber='" + policyNumber + '\'' +
+
                 ", memberid='" + memberid + '\'' +
                 ", type='" + type + '\'' +
                 ", scheme='" + scheme + '\'' +

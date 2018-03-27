@@ -32,6 +32,20 @@ public class EditProfileViewAPIData {
     @Expose
     private List<EditProfileViewInsurancedetailslist> insurancedetailslist = null;
 
+
+    @SerializedName("tpalist")
+    @Expose
+    private List<Tpalist> tpalist = null;
+
+    public List<Tpalist> getTpalist() {
+        return tpalist;
+    }
+
+    public void setTpalist(List<Tpalist> tpalist) {
+        this.tpalist = tpalist;
+    }
+
+
     public EditProfileViewPatientdata getPatientdata() {
         return patientdata;
     }

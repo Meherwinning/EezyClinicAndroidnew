@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/view_selector">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/secondary_insurance_details_linear"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_38dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginBottom="2dp"
+            android:background="#f2f2f2"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="right"
+
+
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/_20dp"
+            android:paddingTop="@dimen/_10dp"
+            android:paddingBottom="@dimen/_10dp">
+
+            <TextView
+                android:id="@+id/insurance_title_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="left"
+
+                android:text="Secondary Insurance"
+                android:textColor="#de000000"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:id="@+id/secondary_insurance_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/_15dp" />
+        </LinearLayout>
+
+        <com.github.aakira.expandablelayout.ExpandableLinearLayout
+            android:id="@+id/secondary_expandableLayout_insurance_el"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/top_linear"
+            android:orientation="vertical"
+
+            app:ael_duration="300"
+            app:ael_expanded="false">
+
+            <include layout="@layout/secoundary_insurance_details_edit_layout12">
+
+            </include>
+
+
+        </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

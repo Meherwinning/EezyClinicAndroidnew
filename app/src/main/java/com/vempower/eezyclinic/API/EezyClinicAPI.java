@@ -426,7 +426,28 @@ Call<HealthChecksListAPI> getHealthCheckList(@Body RequestBody postBody);
     @POST(data + "patient/editprofile")
     Call<EditProfileViewAPI> getEditProfileViewAPI(@Body RequestBody postBody);
 
+    //http://202.63.103.194:8003/api/patient/addsecondaryinsurance
+  /*  @POST(data + "patient/addsecondaryinsurance")
+    Call<AbstractResponse> addSecondaryInsurance(@Body RequestBody postBody);
+*/
 
+    //http://202.63.103.194:8003/api/patient/addsecondaryinsurance
+    @Multipart
+    @POST(data + "patient/addsecondaryinsurance")
+    Call<AbstractResponse> addSecondaryInsurance
+            (@PartMap Map<String, RequestBody> params);
+
+
+    //http://202.63.103.194:8003/api/patient/editsecondaryinsurance
+    @Multipart
+    @POST(data + "patient/editsecondaryinsurance")
+    Call<AbstractResponse> editSecondaryInsurance
+    (@PartMap Map<String, RequestBody> params);
+
+
+    //http://202.63.103.194:8003/api/patient/deletesecondaryinsurance
+    @POST(data + "patient/deletesecondaryinsurance")
+    Call<AbstractResponse> deletesecondaryinsurance(@Body RequestBody postBody);
 
 
 }

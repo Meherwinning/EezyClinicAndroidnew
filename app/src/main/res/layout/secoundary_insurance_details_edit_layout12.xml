@@ -2,10 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:clickable="false"
+
     android:layout_marginLeft="@dimen/_20dp"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
+        android:clickable="false"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,41 +21,9 @@
             android:layout_marginBottom="0dp"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/top_linear1"
-                android:layout_marginBottom="@dimen/_10dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_gravity="right"
-                    android:gravity="right"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-
-                    <TextView
-                        android:id="@+id/delete_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5dp"
-                        android:background="#f50202"
-                        android:gravity="center"
-                        android:paddingLeft="@dimen/_15dp"
-                        android:paddingTop="@dimen/_8dp"
-                        android:paddingRight="@dimen/_15dp"
-                        android:paddingBottom="@dimen/_8dp"
-                        android:text="X"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_15dp" />
-                </LinearLayout>
-
-
-            </LinearLayout>
 
             <LinearLayout
+                android:layout_marginTop="@dimen/_5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_15dp"
@@ -62,7 +34,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/roboto"
                     android:gravity="left|center_vertical"
-                    android:hint="TPA List"
+                    android:hint="TPA Name"
                     android:textColor="#de000000"
                     android:textColorHint="#8a000000"
                     android:textSize="@dimen/_11dp" />
@@ -73,14 +45,15 @@
                     android:orientation="horizontal"
                     android:padding="@dimen/_2dp">
 
-                    <com.vempower.eezyclinic.views.CustomSpinnerSelection
-                        android:id="@+id/tpa_list_spinner"
+                    <TextView
+                        android:id="@+id/tpa_list_tv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="@dimen/_5dp"
                         android:backgroundTint="@color/black"
                         android:foregroundTint="@color/black"
                         android:maxLines="1"
+                        android:fontFamily="@font/roboto"
                         android:singleLine="true"
                         android:spinnerMode="dropdown"
                         android:textColor="#de000000"
@@ -128,6 +101,7 @@
                         android:fontFamily="@font/roboto"
                         android:gravity="left|center_vertical"
                         android:hint="TPA ID"
+                        android:enabled="false"
                         android:imeOptions="actionUnspecified"
                         android:inputType="text"
                         android:maxLength="100"
@@ -172,8 +146,8 @@
                     android:orientation="horizontal"
                     android:padding="@dimen/_2dp">
 
-                    <com.vempower.eezyclinic.views.CustomSpinnerSelection
-                        android:id="@+id/insurance_provider_spinner"
+                    <TextView
+                        android:id="@+id/insurance_provider_tv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="@dimen/_5dp"
@@ -229,6 +203,7 @@
                         android:hint="Insurance Provider"
                         android:imeOptions="actionUnspecified"
                         android:inputType="text"
+                        android:enabled="false"
                         android:maxLength="150"
                         android:maxLines="2"
                         android:padding="@dimen/_2dp"
@@ -280,6 +255,7 @@
                         android:hint="Insurance Number"
                         android:imeOptions="actionUnspecified"
                         android:inputType="text"
+                        android:enabled="false"
                         android:maxLength="100"
                         android:maxLines="1"
                         android:padding="@dimen/_2dp"
@@ -329,6 +305,7 @@
                         android:fontFamily="@font/roboto"
                         android:gravity="left|center_vertical"
                         android:hint="Policy"
+                        android:enabled="false"
                         android:imeOptions="actionUnspecified"
                         android:inputType="text"
                         android:maxLength="100"
@@ -377,6 +354,7 @@
                         android:fontFamily="@font/roboto"
                         android:gravity="left|center_vertical"
                         android:hint="Policy Number"
+                        android:enabled="false"
                         android:imeOptions="actionUnspecified"
                         android:inputType="text"
                         android:maxLength="100"
@@ -428,6 +406,7 @@
                         android:hint="Member ID"
                         android:imeOptions="actionUnspecified"
                         android:inputType="text"
+                        android:enabled="false"
                         android:maxLength="100"
                         android:maxLines="2"
                         android:padding="@dimen/_2dp"
@@ -480,6 +459,7 @@
                         android:imeOptions="actionUnspecified"
                         android:inputType="text"
                         android:maxLength="100"
+                        android:enabled="false"
                         android:maxLines="2"
                         android:padding="@dimen/_2dp"
                         android:singleLine="true"
@@ -639,7 +619,7 @@
 
                     <com.vempower.eezyclinic.views.MyEditTextBlackCursor
                         android:layout_width="match_parent"
-
+                        android:enabled="false"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_2dp"
                         android:background="@null"
@@ -690,7 +670,7 @@
 
                     <com.vempower.eezyclinic.views.MyEditTextBlackCursor
                         android:layout_width="match_parent"
-
+                        android:enabled="false"
 
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_2dp"
@@ -740,7 +720,7 @@
                     <com.vempower.eezyclinic.views.MyEditTextBlackCursor
                         android:id="@+id/insurance_co_pay_et"
                         android:layout_width="match_parent"
-
+                        android:enabled="false"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_2dp"
                         android:background="@null"
@@ -789,7 +769,7 @@
                     <com.vempower.eezyclinic.views.MyEditTextBlackCursor
                         android:id="@+id/insurance_scheme_et"
                         android:layout_width="match_parent"
-
+                        android:enabled="false"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_2dp"
                         android:background="@null"
@@ -838,7 +818,7 @@
                     <com.vempower.eezyclinic.views.MyEditTextBlackCursor
                         android:id="@+id/insurance_reason_et"
                         android:layout_width="match_parent"
-
+                        android:enabled="false"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_2dp"
                         android:background="@null"
@@ -887,7 +867,7 @@
                     <com.vempower.eezyclinic.views.MyEditTextBlackCursor
                         android:id="@+id/insurance_max_limit_et"
                         android:layout_width="match_parent"
-
+                        android:enabled="false"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="@dimen/_2dp"
                         android:background="@null"
@@ -979,7 +959,7 @@
                                 android:layout_marginLeft="-10dp"
                                 android:layout_toRightOf="@+id/image_linear1"
                                 android:padding="@dimen/_10dp"
-                                android:src="@drawable/cam_add" />
+                                android:src="@drawable/profile_image_zoom_icon" />
                             <!-- <ImageView
                                  android:id="@+id/profile_iv"
                                  android:padding="@dimen/_5dp"
@@ -1047,7 +1027,7 @@
                                 android:layout_marginLeft="-10dp"
                                 android:layout_toRightOf="@+id/image_linear2"
                                 android:padding="@dimen/_10dp"
-                                android:src="@drawable/cam_add" />
+                                android:src="@drawable/profile_image_zoom_icon" />
 
 
                         </RelativeLayout>
