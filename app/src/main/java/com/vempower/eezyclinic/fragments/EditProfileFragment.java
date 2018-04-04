@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -153,6 +154,7 @@ public class EditProfileFragment extends ImageProcessFragment {
 
     private EditProfileViewAPIData profileAPIData;
     private ProgressDialog progress;
+    private ProgressBar loding_progress;
 
 
     @Nullable
@@ -188,6 +190,7 @@ public class EditProfileFragment extends ImageProcessFragment {
         secondary_expandableLayout_insurance_el = getFragemtView().findViewById(R.id.secondary_expandableLayout_insurance_el);
 
         myScrollView = ((ScrollView) getFragemtView().findViewById(R.id.scroll));
+        loding_progress  = getFragemtView().findViewById(R.id.loding_progress);
 
 
         //Insurance add
@@ -247,6 +250,7 @@ public class EditProfileFragment extends ImageProcessFragment {
     }
 
     private void callEditProfileViewMapper() {
+        loding_progress.setVisibility(View.VISIBLE);
         EditProfileViewMapper mapper = new EditProfileViewMapper();
 
         mapper.setOnEditProfileViewAPIListener(new EditProfileViewMapper.EditProfileViewAPIListener() {
@@ -270,7 +274,7 @@ public class EditProfileFragment extends ImageProcessFragment {
 
                 profileAPIData = profileAPI.getData();
                 //MyApplication.showTransparentDialog();
-                showProgressView();
+
                 setToBloodGroupSpinnerAdapter();
                 setToGenderSpinnerAdapter();
                 setToMaritalStatusSpinnerAdapter();
@@ -283,7 +287,7 @@ public class EditProfileFragment extends ImageProcessFragment {
 
 
                 fillProfileDataToViews();
-               hideProgressView();
+                loding_progress.setVisibility(View.GONE);
 
             }
         });
