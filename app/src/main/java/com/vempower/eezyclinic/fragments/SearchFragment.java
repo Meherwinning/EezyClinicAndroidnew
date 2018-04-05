@@ -2,6 +2,7 @@ package com.vempower.eezyclinic.fragments;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.DoctorsListActivity;
 import com.vempower.eezyclinic.activities.SearchDoctorsListActivity;
+import com.vempower.eezyclinic.adapters.CustomerAdapter;
 import com.vempower.eezyclinic.adapters.HintAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.DoctorClinicNamesSearch;
@@ -946,10 +948,13 @@ public class SearchFragment extends AbstractFragment {
         }
 
 
-        HintAdapter aa = new HintAdapter<DoctorClinicNameData>(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, doctorClinicNameList);
+        //HintAdapter aa = new HintAdapter<DoctorClinicNameData>(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, doctorClinicNameList);
+final CustomerAdapter aa= new CustomerAdapter<DoctorClinicNameData>(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, doctorClinicNameList);
 
         doctor_clinic_names_actv.setAdapter(aa);
         // speciality_actv.setSelection(aa.getCount());
+
+
 
 
         doctor_clinic_names_actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -996,9 +1001,27 @@ public class SearchFragment extends AbstractFragment {
 
         }*/
 
-        HintAdapter aa = new HintAdapter<SpecalitiyData>(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, dataList);
-
+       // HintAdapter aa = new HintAdapter<SpecalitiyData>(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, dataList);
+        //Context context, int viewResourceId, ArrayList<T> items
+      final  CustomerAdapter aa= new CustomerAdapter(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, dataList);
         speciality_actv.setAdapter(aa);
+
+       /* speciality_actv.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                aa.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });*/
         // speciality_actv.setSelection(aa.getCount());
 
         speciality_actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
