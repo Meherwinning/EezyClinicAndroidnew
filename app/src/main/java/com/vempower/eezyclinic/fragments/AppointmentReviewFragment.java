@@ -253,7 +253,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
 
         String  SERVER_DATE_FORMAT_NEW="dd-MM-yyyy h:mm a";//"yyyy-MM-dd h:mm a";//"2017-11-22 10:23 AM"
 
-        String DISPLAY_DATE="MMM d,yyyy";
+        String DISPLAY_DATE="MMM d, yyyy";
         String DISPLAY_TIME="h:mm a 'on' EEEE";
 
 
@@ -265,7 +265,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
             Date date = Utils.changeStringToDateFormat(dateTimeStr, SERVER_DATE_FORMAT_NEW);
             String dateStr= DISPLAY_DATE_FORMATTER.format(date);
             String timeStr= DISPLAY_TIME_FORMATTER.format(date);
-            appointment_conform_tv.setText("with "+ searchResultDoctorListData.getDoctorName() +" has been fixed\n at "+ timeStr+","+ dateStr);
+            appointment_conform_tv.setText("with "+ searchResultDoctorListData.getDoctorName() +" \n at "+ timeStr+", "+ dateStr);
         }catch (Exception e)
         {
 
@@ -297,7 +297,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
 
         String  SERVER_DATE_FORMAT_NEW="dd-MM-yyyy h:mm a";//"yyyy-MM-dd h:mm a";//"2017-11-22 10:23 AM" //29-12-2017 2:00 AM
 
-        String DISPLAY_DATE="MMM d,yyyy";
+        String DISPLAY_DATE="MMM d, yyyy";
         String DISPLAY_TIME="h:mm a 'on' EEEE";
 
 
@@ -310,7 +310,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
            String dateStr= DISPLAY_DATE_FORMATTER.format(date);
             String timeStr= DISPLAY_TIME_FORMATTER.format(date);
 
-            time_date_display_tv.setText("at "+timeStr+", "+dateStr);
+            time_date_display_tv.setText("at "+timeStr+",  "+dateStr);
         }catch (Exception e)
         {
 

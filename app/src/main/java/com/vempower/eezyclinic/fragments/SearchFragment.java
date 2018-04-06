@@ -971,26 +971,7 @@ final CustomerAdapter aa= new CustomerAdapter<DoctorClinicNameData>(MyApplicatio
                                                         });
 
 
- /*       doctor_clinic_names_actv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //if(position!=0)
-                //{
-                DoctorClinicNameData selectedDoctorClinicName = doctorClinicNameList.get(position);
-                if (selectedDoctorClinicName != null) {
-                    searchRequestParams.setSearchName(selectedDoctorClinicName.getLabel());
-                }
 
-                //}
-                //Utils.showToastMessage("selected DoctorClinicName " + selectedDoctorClinicName);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-*/
 
     }
 

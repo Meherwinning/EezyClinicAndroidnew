@@ -98,7 +98,7 @@
                 android:paddingTop="@dimen/_3dp"
                 android:paddingBottom="@dimen/_3dp"
                 android:textSize="@dimen/_12sp"
-                 
+                 android:layout_gravity="center"
                 android:textStyle="normal"
                 android:textColor="#555555"
                 android:text="Waiting time"
@@ -110,7 +110,7 @@
                 android:layout_marginRight="@dimen/_3dp"
                 app:mrb_progressTint="#ffc400"
                 app:mrb_fillBackgroundStars="true"
-
+                android:layout_gravity="center"
                 app:mrb_progressBackgroundTint="@color/bottom_text_color"
                 app:mrb_secondaryProgressTint="@color/white"
                 style="@style/Widget.MaterialRatingBar.RatingBar" />
@@ -144,7 +144,8 @@
              <TextView                    android:fontFamily="@font/roboto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="left"
+                android:gravity="center"
+                 android:layout_gravity="center"
                 android:paddingTop="@dimen/_3dp"
                 android:paddingBottom="@dimen/_3dp"
                 android:textSize="@dimen/_12sp"
@@ -162,7 +163,7 @@
                 android:layout_marginRight="@dimen/_3dp"
                 app:mrb_progressTint="#ffc400"
                 app:mrb_fillBackgroundStars="true"
-
+                android:layout_gravity="center"
                 app:mrb_progressBackgroundTint="@color/bottom_text_color"
                 app:mrb_secondaryProgressTint="@color/white"
                 style="@style/Widget.MaterialRatingBar.RatingBar" />
@@ -196,7 +197,8 @@
              <TextView                    android:fontFamily="@font/roboto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="left"
+                android:gravity="center"
+                 android:layout_gravity="center"
                 android:paddingTop="@dimen/_3dp"
                 android:paddingBottom="@dimen/_3dp"
                 android:textSize="@dimen/_12sp"
@@ -214,7 +216,7 @@
                 android:layout_marginRight="@dimen/_3dp"
                 app:mrb_progressTint="#ffc400"
                 app:mrb_fillBackgroundStars="true"
-
+                android:layout_gravity="center"
                 app:mrb_progressBackgroundTint="@color/bottom_text_color"
                 app:mrb_secondaryProgressTint="@color/white"
                 style="@style/Widget.MaterialRatingBar.RatingBar" />

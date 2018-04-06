@@ -294,6 +294,14 @@
                 android:background="@color/white"
                 android:layout_marginBottom="@dimen/_15dp"
                 android:orientation="vertical">
+                <TextView                        android:fontFamily="@font/roboto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center_vertical"
+                    android:text="Relation"
+                    android:textColor="#de000000"
+                    android:textColorHint="#8a000000"
+                    android:textSize="@dimen/_13dp" />
 
                 <LinearLayout
 
