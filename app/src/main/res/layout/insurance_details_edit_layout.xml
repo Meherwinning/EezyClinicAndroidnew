@@ -50,7 +50,7 @@
                         android:spinnerMode="dropdown"
                         android:textColor="#de000000"
                         android:textColorHint="#8a000000"
-                        android:textSize="@dimen/button_text_size" />
+                        android:textSize="@dimen/_16dp" />
 
                 </LinearLayout>
 
@@ -99,7 +99,7 @@
 
                 android:textColor="#de000000"
                 android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
+                android:textSize="@dimen/_16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -143,7 +143,7 @@
                         android:foregroundTint="@color/black"
                         android:layout_marginRight="@dimen/_5dp"
                         android:spinnerMode="dropdown"
-                        android:textSize="@dimen/button_text_size"
+                        android:textSize="@dimen/_16dp"
                         android:textColor="#de000000"
                         android:textColorHint="#8a000000"
                         />
@@ -246,7 +246,7 @@
 
                 android:textColor="#de000000"
                 android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
+                android:textSize="@dimen/_16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -293,7 +293,7 @@
                 android:singleLine="true"
                 android:textColor="#de000000"
                 android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
+                android:textSize="@dimen/_16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -341,7 +341,7 @@
                         android:singleLine="true"
                         android:textColor="#de000000"
                         android:textColorHint="#8a000000"
-                        android:textSize="@dimen/_14dp" />
+                        android:textSize="@dimen/_16dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -390,7 +390,7 @@
 
                 android:textColor="#de000000"
                 android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
+                android:textSize="@dimen/_16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -437,7 +437,7 @@
                 android:singleLine="true"
                 android:textColor="#de000000"
                 android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
+                android:textSize="@dimen/_16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -497,7 +497,7 @@
 
                         android:textColor="#de000000"
                         android:textColorHint="#8a000000"
-                        android:textSize="@dimen/_14dp"
+                        android:textSize="@dimen/_16dp"
                         />
 
                 </android.support.design.widget.TextInputLayout>
@@ -553,7 +553,7 @@
                         android:singleLine="true"
                         android:textColor="#de000000"
                         android:textColorHint="#8a000000"
-                        android:textSize="@dimen/_14dp"
+                        android:textSize="@dimen/_16dp"
                         />
 
                 </android.support.design.widget.TextInputLayout>
@@ -602,7 +602,7 @@
 
                 android:textColor="#de000000"
                 android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
+                android:textSize="@dimen/_16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -650,7 +650,7 @@
                 android:singleLine="true"
                 android:textColor="#de000000"
                 android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
+                android:textSize="@dimen/_16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -697,7 +697,7 @@
                 android:singleLine="true"
                 android:textColor="#de000000"
                 android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
+                android:textSize="@dimen/_16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -744,7 +744,7 @@
                 android:singleLine="true"
                 android:textColor="#de000000"
                 android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
+                android:textSize="@dimen/_16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -791,7 +791,7 @@
                 android:singleLine="true"
                 android:textColor="#de000000"
                 android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
+                android:textSize="@dimen/_16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -840,7 +840,7 @@
                 android:singleLine="true"
                 android:textColor="#de000000"
                 android:textColorHint="#8a000000"
-                android:textSize="@dimen/_14dp" />
+                android:textSize="@dimen/_16dp" />
 
         </android.support.design.widget.TextInputLayout>
 

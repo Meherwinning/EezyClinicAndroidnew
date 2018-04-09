@@ -37,7 +37,7 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
 
     private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
     //private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
-    static final String   DATE_DISPLAY_FORMAT_NEW="dd-MM-yyyy'\n'EEE";
+    static final String   DATE_DISPLAY_FORMAT_NEW="EEE, dd MMM yyyy";//"dd-MM-yyyy'\n'EEE"; //Tue, 3rd Apr 2018
     private static final SimpleDateFormat DATE_DISPLAY_FORMATTER = new SimpleDateFormat(DATE_DISPLAY_FORMAT_NEW);
 
     private static final TitleFormatter DEFAULT_TITLE_FORMATTER = new DateFormatTitleFormatter();
@@ -71,6 +71,26 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
     protected abstract  void dateSelectFromCalender(String dateStr);
     protected abstract  void clickOnConfirmButton(String confirmDateTime);
    // abstract void  dateSelectFromCalender();
+
+    private  String getFormattedDate(Date date){
+        Calendar cal=Calendar.getInstance();
+        cal.setTime(date);
+        //2nd of march 2015
+        int day=cal.get(Calendar.DATE);
+
+        if(!((day>10) && (day<19)))
+            switch (day % 10) {
+                case 1:
+                    return new SimpleDateFormat( "EEE, d'st' MMM yyyy").format(date);
+                case 2:
+                    return new SimpleDateFormat("EEE, d'nd' MMM yyyy").format(date);
+                case 3:
+                    return new SimpleDateFormat("EEE, d'rd' MMM yyyy").format(date);
+                default:
+                    return new SimpleDateFormat("EEE, d'th' MMM yyyy").format(date);
+            }
+        return new SimpleDateFormat("EEE, d'th' MMM yyyy").format(date);
+    }
 
     public boolean isVarColumnGrid() {
         return true;
@@ -325,7 +345,11 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
         if (date == null) {
             return "-";
         }
-        return DATE_DISPLAY_FORMATTER.format(date.getDate());
+
+            return getFormattedDate(date.getDate());
+
+
+        //return DATE_DISPLAY_FORMATTER.format(date.getDate());
     }
     private String getSelectedServerRequestDateString() {
         CalendarDay date = widget.getSelectedDate();

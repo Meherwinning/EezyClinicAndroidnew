@@ -397,8 +397,8 @@ public class MyProfileFragment extends AbstractFragment {
 
 
         patient_name_tv.setText(data.getPatientname());
-        String gender=TextUtils.isEmpty(data.getGender())? "":data.getGender()+",";
-        String age=TextUtils.isEmpty(data.getAge())? "":data.getAge()+",";
+        String gender=TextUtils.isEmpty(data.getGender())? "":data.getGender()+", ";
+        String age=TextUtils.isEmpty(data.getAge())? "":data.getAge()+", ";
         String maritalStatus=TextUtils.isEmpty(data.getMaritalStatus())? "":data.getMaritalStatus();
 
         patient_details_tv.setText(gender + age + maritalStatus);
@@ -438,12 +438,48 @@ public class MyProfileFragment extends AbstractFragment {
         contact_email_et.setText(data.getEmail());
         if (data.getAddress() != null) {
             PatientProfileAddress address = data.getAddress();
-            String locality=TextUtils.isEmpty(address.getLocality())? "":address.getLocality()+", ";
-            String addressStr=TextUtils.isEmpty(address.getAddress())? "":address.getAddress()+",";
-            String city=TextUtils.isEmpty(address.getCity())? "":address.getCity()+", ";
-            String country=TextUtils.isEmpty(address.getCountry())? "":address.getCountry()+", ";
+            String addStr="";
+            String locality=TextUtils.isEmpty(address.getLocality())? "":address.getLocality();
+            String addressStr=TextUtils.isEmpty(address.getAddress())? "":address.getAddress();
+            String city=TextUtils.isEmpty(address.getCity())? "":address.getCity();
+            String country=TextUtils.isEmpty(address.getCountry())? "":address.getCountry();
 
-            contact_address_et.setText( addressStr + city + locality +country);
+            if(!TextUtils.isEmpty(locality))
+            {
+                addStr=locality;
+            }
+            if(!TextUtils.isEmpty(addressStr))
+            {
+                if(!TextUtils.isEmpty(addStr)) {
+                    addStr = addStr + ", " + addressStr;
+                }else{
+                    addStr=addressStr;
+                }
+            }
+            if(!TextUtils.isEmpty(city))
+            {
+                if(!TextUtils.isEmpty(addStr)) {
+                    addStr = addStr + ", " + city;
+                }else{
+                    addStr=city;
+                }
+            }
+            if(!TextUtils.isEmpty(country))
+            {
+                if(!TextUtils.isEmpty(addStr)) {
+                    addStr = addStr + ", " + country;
+                }else{
+                    addStr=country;
+                }
+            }
+
+
+            contact_address_et.setText( addStr);
+            /*String addressStr=TextUtils.isEmpty(address.getAddress())? "":address.getAddress()+", ";
+            String city=TextUtils.isEmpty(address.getCity())? "":address.getCity()+",";
+            String country=TextUtils.isEmpty(address.getCountry())? "":address.getCountry();
+
+            contact_address_et.setText(addressStr + city +locality +  country);*/
         } else {
             contact_address_et.setText(null);
         }

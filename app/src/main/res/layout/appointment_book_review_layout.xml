@@ -524,7 +524,29 @@
 
 
 
+        <com.rey.material.widget.Button
 
+            android:layout_alignParentBottom="true"
+            android:id="@+id/appointment_bt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48dp"
+            android:layout_marginTop="@dimen/_5dp"
+            android:layout_marginBottom="@dimen/_5dp"
+            android:clickable="true"
+            android:layout_marginLeft="@dimen/_24dp"
+            android:layout_marginRight="@dimen/_24dp"
+            android:maxLines="1"
+            android:padding="@dimen/_4dp"
+            android:textAllCaps="false"
+            android:background="@drawable/button_bg"
+
+            android:textSize="@dimen/_16sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#ffffff"
+            android:text="Book Appointment"
+
+            />
 
 
      <!--   <com.vempower.eezyclinic.widget.SlidingTabLayout
@@ -541,29 +563,7 @@
 
 
 
-    <com.rey.material.widget.Button
 
-        android:layout_alignParentBottom="true"
-        android:id="@+id/appointment_bt"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_48dp"
-        android:layout_marginTop="@dimen/_5dp"
-        android:layout_marginBottom="@dimen/_5dp"
-        android:clickable="true"
-        android:layout_marginLeft="@dimen/_24dp"
-        android:layout_marginRight="@dimen/_24dp"
-        android:maxLines="1"
-        android:padding="@dimen/_4dp"
-        android:textAllCaps="false"
-        android:background="@drawable/button_bg"
-
-        android:textSize="@dimen/_16sp"
-        android:fontFamily="sans-serif-medium"
-        android:textStyle="normal"
-        android:textColor="#ffffff"
-        android:text="Book Appointment"
-
-        />
 
 
 

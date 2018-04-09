@@ -130,7 +130,7 @@ public class EditProfileFragment extends ImageProcessFragment {
     private MyEditTextBlackCursor emergency_contact_name_et, emergency_contact_relationship_et1,
             emergency_contact_number_et, emergency_contact_emailid_et;
 
-    private MyEditTextBlackCursor primary_policy_number_et,insurance_tpa_id_et, insurance_insurance_provider_et1,
+    private MyEditTextBlackCursor primary_policy_number_et, insurance_tpa_id_et, insurance_insurance_provider_et1,
             insurance_insurance_number_et, insurance_insurance_policy_et,
             insurance_member_id_et, insurance_type_et,
             insurance_co_pay_et, insurance_scheme_et,
@@ -190,13 +190,12 @@ public class EditProfileFragment extends ImageProcessFragment {
         secondary_expandableLayout_insurance_el = getFragemtView().findViewById(R.id.secondary_expandableLayout_insurance_el);
 
         myScrollView = ((ScrollView) getFragemtView().findViewById(R.id.scroll));
-        loding_progress  = getFragemtView().findViewById(R.id.loding_progress);
+        loding_progress = getFragemtView().findViewById(R.id.loding_progress);
 
 
         //Insurance add
         insurance_add_linear = getFragemtView().findViewById(R.id.insurance_add_linear);
         add_insurance_btn = getFragemtView().findViewById(R.id.add_insurance_btn);
-
 
 
         add_insurance_btn.setOnClickListener(new View.OnClickListener() {
@@ -1617,9 +1616,9 @@ public class EditProfileFragment extends ImageProcessFragment {
 
 
         //Insurance
-        primary_tpa_list_spinner  = getFragemtView().findViewById(R.id.primary_tpa_list_spinner);
-        insurance_tpa_id_et  = getFragemtView().findViewById(R.id.insurance_tpa_id_et);
-        primary_policy_number_et  = getFragemtView().findViewById(R.id.primary_policy_number_et);
+        primary_tpa_list_spinner = getFragemtView().findViewById(R.id.primary_tpa_list_spinner);
+        insurance_tpa_id_et = getFragemtView().findViewById(R.id.insurance_tpa_id_et);
+        primary_policy_number_et = getFragemtView().findViewById(R.id.primary_policy_number_et);
 
         insurance_provider_spinner = getFragemtView().findViewById(R.id.insurance_provider_spinner);
         insurance_insurance_number_et = getFragemtView().findViewById(R.id.insurance_insurance_number_et);
@@ -2102,7 +2101,9 @@ public class EditProfileFragment extends ImageProcessFragment {
 
     private void updateProfileDetails() {
         // Utils.showToastMsg("Now click on Save");
-        setProfileData();
+        if (!setProfileData()) {
+            return;
+        }
         // Utils.showToastMsg(profileDetails.toString());
 
         ProfileSaveMapper mapper = new ProfileSaveMapper(profileDetails);
@@ -2147,42 +2148,36 @@ public class EditProfileFragment extends ImageProcessFragment {
                 continue;
             }
 
-           Object obj= view.getTag();
-            if(obj!=null && obj instanceof  InsuranceHolder)
-            {
-                InsuranceHolder holder= (InsuranceHolder) obj;
-                SecondaryInsurance insurance= holder.getInsurance();
-                if(insurance!=null)
-                {
-                    if(TextUtils.isEmpty(insurance.id))
-                    {
-                        AddSecoundaryInsuranceMapper mapper= new AddSecoundaryInsuranceMapper(insurance);
+            Object obj = view.getTag();
+            if (obj != null && obj instanceof InsuranceHolder) {
+                InsuranceHolder holder = (InsuranceHolder) obj;
+                SecondaryInsurance insurance = holder.getInsurance();
+                if (insurance != null) {
+                    if (TextUtils.isEmpty(insurance.id)) {
+                        AddSecoundaryInsuranceMapper mapper = new AddSecoundaryInsuranceMapper(insurance);
 
                         mapper.setOnAddSecoundaryInsuranceListener(new AddSecoundaryInsuranceMapper.AddSecoundaryInsuranceListener() {
                             @Override
                             public void addSecoundaryInsurance(AbstractResponse response, String errorMessage) {
-                                if(!isValidResponse(response,errorMessage))
-                                {
+                                if (!isValidResponse(response, errorMessage)) {
                                     return;
                                 }
 
-                               // Utils.showToastMessage(response.getStatusMessage());
+                                // Utils.showToastMessage(response.getStatusMessage());
                             }
                         });
-                    }else
-                    {
+                    } else {
 
-                        EditSecoundaryInsuranceMapper mapper= new EditSecoundaryInsuranceMapper(insurance);
+                        EditSecoundaryInsuranceMapper mapper = new EditSecoundaryInsuranceMapper(insurance);
 
                         mapper.setOnEditSecoundaryInsuranceListener(new EditSecoundaryInsuranceMapper.EditSecoundaryInsuranceListener() {
                             @Override
                             public void editSecoundaryInsurance(AbstractResponse preferencesAPI, String errorMessage) {
-                                if(!isValidResponse(preferencesAPI,errorMessage))
-                                {
+                                if (!isValidResponse(preferencesAPI, errorMessage)) {
                                     return;
                                 }
 
-                               // Utils.showToastMessage(preferencesAPI.getStatusMessage());
+                                // Utils.showToastMessage(preferencesAPI.getStatusMessage());
                             }
                         });
                     }
@@ -2214,7 +2209,7 @@ public class EditProfileFragment extends ImageProcessFragment {
     }
     */
 
-    private void setProfileData() {
+    private boolean setProfileData() {
         profileDetails.patientName = patient_name_et.getText().toString();
         // profileDetails.age=  patient_age_et.getText().toString();//TODO add age kay in API
         profileDetails.height = height_et.getText().toString();
@@ -2234,14 +2229,27 @@ public class EditProfileFragment extends ImageProcessFragment {
 
         //Emergency Contact
         profileDetails.emergencyContactName = emergency_contact_name_et.getText().toString();
+
+        String contactNum=emergency_contact_number_et.getText().toString();
+        if (!TextUtils.isEmpty(contactNum) && contactNum.length()<10) {
+            Utils.showToastMessage(R.string.please_enter_valid_emerengency_contact_num_lbl);
+            return false;
+        }
+
         profileDetails.emergencyContactNumber = emergency_contact_number_et.getText().toString();
+
+        String email = emergency_contact_emailid_et.getText().toString();
+        if (!TextUtils.isEmpty(email) && !Utils.isValidEmail(email)) {
+            Utils.showToastMessage(R.string.please_enter_valid_emerengency_email_id_lbl);
+            return false;
+        }
         profileDetails.emergencyContactEmail = emergency_contact_emailid_et.getText().toString();
         // relation_spinner  = getFragemtView().findViewById(R.id.relation_spinner);
 
 
         //Insurance
         profileDetails.tpaid = insurance_tpa_id_et.getText().toString();
-        profileDetails.policy_number=primary_policy_number_et.getText().toString();
+        profileDetails.policy_number = primary_policy_number_et.getText().toString();
         //insurance_provider_spinner  = getFragemtView().findViewById(R.id.insurance_provider_spinner);
         profileDetails.insuranceNumber = insurance_insurance_number_et.getText().toString();
         profileDetails.policy = insurance_insurance_policy_et.getText().toString();
@@ -2257,6 +2265,8 @@ public class EditProfileFragment extends ImageProcessFragment {
         // insurance_secoundary_spinner  = getFragemtView().findViewById(R.id.insurance_secoundary_spinner);
         //profileDetails.secondaryinsuranceNumber= insurance_secoundary_number_et.getText().toString();
 
+
+        return true;
 
     }
 
@@ -2340,7 +2350,7 @@ public class EditProfileFragment extends ImageProcessFragment {
         insurance_tpa_id_et.setText(profileAPIData.getPatientdata().getTpaid());
         primary_policy_number_et.setText(profileAPIData.getPatientdata().getPolicyNumber());
         //profileDetails.tpaid = insurance_tpa_id_et.getText().toString();
-       // profileDetails.policyNumber=primary_policy_number_et.getText().toString();
+        // profileDetails.policyNumber=primary_policy_number_et.getText().toString();
         //insurance_provider_spinner  = getFragemtView().findViewById(R.id.insurance_provider_spinner);
         insurance_insurance_number_et.setText(profileAPIData.getPatientdata().getInsuranceNumber());
         insurance_insurance_policy_et.setText(profileAPIData.getPatientdata().getPolicy());
@@ -2541,71 +2551,70 @@ public class EditProfileFragment extends ImageProcessFragment {
     };
 
 
+    /* private interface ImageProcessListener
+     {
+         void callShowImageSourceDialog(int id);
+     }*/
+    private void setToTpaListAdapter11(List<Tpalist> list) {
 
-   /* private interface ImageProcessListener
-    {
-        void callShowImageSourceDialog(int id);
-    }*/
-   private void setToTpaListAdapter11(List<Tpalist> list) {
+        final ArrayList<Tpalist> insuranceTypeList = new ArrayList<>();
+        if (list != null && list.size() > 0) {
+            insuranceTypeList.addAll(list);
 
-       final ArrayList<Tpalist> insuranceTypeList = new ArrayList<>();
-       if (list != null && list.size() > 0) {
-           insuranceTypeList.addAll(list);
+        }
 
-       }
-
-       Tpalist hintData = new Tpalist();
-       hintData.setTpa("Select TPA");
-       insuranceTypeList.add(insuranceTypeList.size(), hintData);
-
-
-       tPAListAdapter = new HintAdapter<Tpalist>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, insuranceTypeList);
-
-       tPAListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-       primary_tpa_list_spinner.setAdapter(tPAListAdapter);
-       primary_tpa_list_spinner.setSelection(tPAListAdapter.getCount());
-
-       primary_tpa_list_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-           @Override
-           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               //if(position!=0)
-               //{
-               //profileAPIData.getPatientdata().setTpa(null);
-               profileDetails.tpa=null;
-               if (position != (tPAListAdapter.getCount())) {
-                   Tpalist tpa = insuranceTypeList.get(position);
-                   // Utils.showToastMessage("selected insurance " + selectedInsurance);
-
-                   if (tpa != null) {
-                       //profileDetails.insurancePackage=selectedInsurance.getCompanyName();
-                       //insurance.setInsurancePackage(selectedInsurance.getCompanyName());
-                       //profileAPIData.getPatientdata().setTpa(tpa.getId());
-                       profileDetails.tpa=tpa.getId();
-                       // searchRequestParams.setInsurenceList(null);
-                       //searchRequestParams.addInsurence(selectedInsurance.getCompanyName());
-                   }
-               }
-
-           }
-
-           @Override
-           public void onNothingSelected(AdapterView<?> parent) {
-
-           }
-       });
-
-       if (profileAPIData.getPatientdata() != null && !TextUtils.isEmpty(profileAPIData.getPatientdata().getTpa())) {
-           String tpa = profileAPIData.getPatientdata().getTpa();
-
-           for (int i = 0; i < insuranceTypeList.size(); i++) {
-               String temp = insuranceTypeList.get(i).getId();
-               if (temp != null && temp.equalsIgnoreCase(tpa)) {
-                   primary_tpa_list_spinner.setSelection(i);
-                   break;
-               }
-           }
-       }
+        Tpalist hintData = new Tpalist();
+        hintData.setTpa("Select TPA");
+        insuranceTypeList.add(insuranceTypeList.size(), hintData);
 
 
-   }
+        tPAListAdapter = new HintAdapter<Tpalist>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, insuranceTypeList);
+
+        tPAListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        primary_tpa_list_spinner.setAdapter(tPAListAdapter);
+        primary_tpa_list_spinner.setSelection(tPAListAdapter.getCount());
+
+        primary_tpa_list_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //if(position!=0)
+                //{
+                //profileAPIData.getPatientdata().setTpa(null);
+                profileDetails.tpa = null;
+                if (position != (tPAListAdapter.getCount())) {
+                    Tpalist tpa = insuranceTypeList.get(position);
+                    // Utils.showToastMessage("selected insurance " + selectedInsurance);
+
+                    if (tpa != null) {
+                        //profileDetails.insurancePackage=selectedInsurance.getCompanyName();
+                        //insurance.setInsurancePackage(selectedInsurance.getCompanyName());
+                        //profileAPIData.getPatientdata().setTpa(tpa.getId());
+                        profileDetails.tpa = tpa.getId();
+                        // searchRequestParams.setInsurenceList(null);
+                        //searchRequestParams.addInsurence(selectedInsurance.getCompanyName());
+                    }
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        if (profileAPIData.getPatientdata() != null && !TextUtils.isEmpty(profileAPIData.getPatientdata().getTpa())) {
+            String tpa = profileAPIData.getPatientdata().getTpa();
+
+            for (int i = 0; i < insuranceTypeList.size(); i++) {
+                String temp = insuranceTypeList.get(i).getId();
+                if (temp != null && temp.equalsIgnoreCase(tpa)) {
+                    primary_tpa_list_spinner.setSelection(i);
+                    break;
+                }
+            }
+        }
+
+
+    }
 }
