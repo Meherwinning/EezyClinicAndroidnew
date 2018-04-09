@@ -438,12 +438,12 @@ public class MyProfileFragment extends AbstractFragment {
         contact_email_et.setText(data.getEmail());
         if (data.getAddress() != null) {
             PatientProfileAddress address = data.getAddress();
-            String locality=TextUtils.isEmpty(address.getLocality())? "":address.getLocality()+",";
+            String locality=TextUtils.isEmpty(address.getLocality())? "":address.getLocality()+", ";
             String addressStr=TextUtils.isEmpty(address.getAddress())? "":address.getAddress()+",";
-            String city=TextUtils.isEmpty(address.getCity())? "":address.getCity()+",";
-            String country=TextUtils.isEmpty(address.getCountry())? "":address.getCountry()+",";
+            String city=TextUtils.isEmpty(address.getCity())? "":address.getCity()+", ";
+            String country=TextUtils.isEmpty(address.getCountry())? "":address.getCountry()+", ";
 
-            contact_address_et.setText(locality + addressStr + city + country);
+            contact_address_et.setText( addressStr + city + locality +country);
         } else {
             contact_address_et.setText(null);
         }
