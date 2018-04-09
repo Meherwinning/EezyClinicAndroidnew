@@ -47,6 +47,7 @@ public class DoctorsProfile {
     }
 
     public String getAboutDoctor() {
+        aboutDoctor=aboutDoctor.replaceAll("<br />","\n");
         return aboutDoctor;
     }
 
