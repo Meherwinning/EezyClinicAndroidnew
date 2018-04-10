@@ -2,6 +2,7 @@ package com.vempower.eezyclinic.googleaddressselection;
 
 import android.content.Context;
 import android.location.Location;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,11 +43,15 @@ public class GooglePlacesAutocompleteAdapter extends ArrayAdapter<GeoData>
     private static final String TYPE_DETAILS = "/details";
     private static final String OUT_JSON = "/json";
     public static final String API_KEY = "AIzaSyAnMkiBfZ4JYivYtNYe0qCKcXUfAzbs-ZU";
-    private Location myLocation;
+    private String lan;
+    private String lat;
+    private String region;
+    //private Location myLocation;
 
     public GooglePlacesAutocompleteAdapter(
                                            int textViewResourceId) {
         super(MyApplication.getCurrentActivityContext(), textViewResourceId);
+        region="IN";
     }
 
     @Override
@@ -122,9 +127,9 @@ public class GooglePlacesAutocompleteAdapter extends ArrayAdapter<GeoData>
 
 
         LatLang latLang=null;//getLatLang();
-        if(myLocation!=null)
+        if(lat!=null && lan!=null)
         {
-            latLang = new LatLang(myLocation.getLatitude()+"",myLocation.getLongitude()+"",null);
+            latLang = new LatLang(lat+"",lan+"",null);
         }
         if(latLang == null || latLang.lat == null || latLang.lng == null ){
             latLang = new LatLang("0","0",null);
@@ -137,7 +142,8 @@ public class GooglePlacesAutocompleteAdapter extends ArrayAdapter<GeoData>
             //Lombardia
             //https://maps.googleapis.com/maps/api/place/textsearch/json?query=Lombardia&lang‌​uage=Your_language&key=YOUR_API_KEY
             sb.append("?key=" + API_KEY);
-           // sb.append("&query=" + "Hyderabad");
+           sb.append("&region=" + region);
+            sb.append("&types=(cities)");
             sb.append("&location=" + latLang.lat + "," + latLang.lng);
             sb.append("&input=" + URLEncoder.encode(input, "utf8"));
 
@@ -208,8 +214,9 @@ public class GooglePlacesAutocompleteAdapter extends ArrayAdapter<GeoData>
         return resultList;
     }
 
-    public void setMyLocation(Location myLocation) {
-        this.myLocation = myLocation;
+    public void setMyLocation(String lat, String lan) {
+        this.lat = lat;
+        this.lan = lan;
     }
 
 
@@ -250,6 +257,14 @@ public class GooglePlacesAutocompleteAdapter extends ArrayAdapter<GeoData>
             this.lat = lat;
             this.lng = lng;
             this.addr=addr;
+        }
+    }
+
+    public void setRegion(String region)
+    {
+        if(!TextUtils.isEmpty(region))
+        {
+           this.region=region;
         }
     }
 

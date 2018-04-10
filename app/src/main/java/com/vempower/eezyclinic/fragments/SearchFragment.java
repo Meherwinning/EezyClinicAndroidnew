@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -664,6 +665,7 @@ public class SearchFragment extends AbstractFragment {
             searchRequestParams.setLongitude(latLan.lan);
             addressAutoCompleteTextView.setOnItemClickListener(null);
            // addressAutoCompleteTextView.setText(myGeodata.getAddress());
+            googlePlacesAutocompleteAdapter.setMyLocation(latLan.lat,latLan.lan);
             searchRequestParams.setLocality(myGeodata.getAddress());
             addressAutoCompleteTextView.setOnItemClickListener(adapterViewListener);
             namesSearch.setLocality(myGeodata.getAddress());
@@ -909,6 +911,14 @@ public class SearchFragment extends AbstractFragment {
             /*if (!expandableLayout_city_view.isExpanded()) {
                 expandableLayout_city_view.toggle();
             }*/
+
+            if(googlePlacesAutocompleteAdapter!=null) {
+                if (selectedCountry.getId().equalsIgnoreCase("1")) {
+                    googlePlacesAutocompleteAdapter.setRegion("IN");
+                } else {
+                    googlePlacesAutocompleteAdapter.setRegion("AE");
+                }
+            }
 
             callCityListMapper(selectedCountry.getId());
             searchRequestParams.setCountry(selectedCountry.getId());

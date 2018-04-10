@@ -201,7 +201,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
 
                     if(!requestDetails.isSelfAppointment() && TextUtils.isEmpty(requestDetails.getEmail()))
                     {
-                        showMyDialog("Alert", "Patient account will be created and Email will be send to you","Ok", new ApiErrorDialogInterface() {
+                        showMyDialog("Alert", Utils.getStringFromResources(R.string.other_appointment_create_alert_lbl),"Yes","No", new ApiErrorDialogInterface() {
 
 
                             @Override
