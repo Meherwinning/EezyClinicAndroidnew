@@ -509,7 +509,7 @@
         android:textStyle="normal"
         android:textColor="#ffffff"
 
-        android:text="Upload document"
+        android:text="Save"
 
         />
     <com.rey.material.widget.Button

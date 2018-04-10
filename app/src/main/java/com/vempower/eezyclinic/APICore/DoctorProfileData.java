@@ -198,11 +198,28 @@ public class DoctorProfileData {
         {
             return spec;
         }
-        for(String str:specializations)
+      /*  for(String str:specializations)
         {
             if(str!=null)
             {
                 spec=spec+str+",";
+            }
+        }*/
+
+
+        for(int i=0;i<specializations.size();i++)
+        {
+            String str=specializations.get(i);
+            if(str==null)
+            {
+                continue;
+            }
+            if(i!=specializations.size()-1)
+            {
+                spec=spec+str+", ";
+            }else
+            {
+                spec=spec+str;
             }
         }
 
@@ -220,11 +237,19 @@ public class DoctorProfileData {
         {
             return ser;
         }
-        for(String str:services)
+        for(int i=0;i<services.size();i++)
         {
-            if(str!=null)
+            String str=services.get(i);
+            if(str==null)
             {
-                ser=ser+str+",";
+                continue;
+            }
+            if(i!=services.size()-1)
+            {
+                ser=ser+str+", ";
+            }else
+            {
+                ser=ser+str;
             }
         }
 
@@ -250,11 +275,27 @@ public class DoctorProfileData {
         {
             return exp;
         }
-        for(String str:experience)
+       /* for(String str:experience)
         {
             if(str!=null)
             {
                 exp=exp+str+",";
+            }
+        }*/
+
+        for(int i=0;i<experience.size();i++)
+        {
+            String str=experience.get(i);
+            if(str==null)
+            {
+                continue;
+            }
+            if(i!=experience.size()-1)
+            {
+                exp=exp+str+", ";
+            }else
+            {
+                exp=exp+str;
             }
         }
 
@@ -324,11 +365,11 @@ public class DoctorProfileData {
         {
             return details;
         }
-        details=clinicname+"\n";
-        details=details+""+clinicdetails.getClinic1()+"\n";
-        details=details+"Clinic Time:"+clinicdetails.getClinictimings()+"\n";
-        details=details+"Doctor Time:"+clinicdetails.getDoctortimings()+"\n";
-        details=details+"Contact:"+clinicdetails.getContact()+"";
+        details="\nClinic Name: "+clinicname+"\n\n";
+        details=details+"Clinic Address: "+clinicdetails.getClinic_address()+"\n\n";
+        details=details+"Clinic Time: "+clinicdetails.getClinictimings()+"\n\n";
+        details=details+"Doctor Time: "+clinicdetails.getDoctortimings()+"\n";
+        details=details+"Contact: "+clinicdetails.getContact()+"";
 
 
         return details;

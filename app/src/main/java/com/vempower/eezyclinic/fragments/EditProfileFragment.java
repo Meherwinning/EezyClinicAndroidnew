@@ -2229,6 +2229,13 @@ public class EditProfileFragment extends ImageProcessFragment {
 
         //Emergency Contact
         profileDetails.emergencyContactName = emergency_contact_name_et.getText().toString();
+
+        String contactNum=emergency_contact_number_et.getText().toString();
+        if (!TextUtils.isEmpty(contactNum) && contactNum.length()<10) {
+            Utils.showToastMessage(R.string.please_enter_valid_emerengency_contact_num_lbl);
+            return false;
+        }
+
         profileDetails.emergencyContactNumber = emergency_contact_number_et.getText().toString();
 
         String email = emergency_contact_emailid_et.getText().toString();

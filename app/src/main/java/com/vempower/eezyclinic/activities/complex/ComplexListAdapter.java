@@ -282,6 +282,7 @@ public class ComplexListAdapter extends RecyclerAdapter {
       ArrayList<NewHomeSpeciality> tempList  =  new ArrayList<>();
 
       boolean isMoreButtonAdded=false;
+      NewHomeSpeciality moreData= new NewHomeSpeciality();
       for(int i=0;i<dataList.size();i++)
       {
           NewHomeSpeciality data=dataList.get(i);
@@ -296,7 +297,7 @@ public class ComplexListAdapter extends RecyclerAdapter {
           {
               if(addedCount==(SINGLE_VIEW_TOT_ITEMS-1))
               {
-                  NewHomeSpeciality moreData= new NewHomeSpeciality();
+
                   //moreData.setMoreButton(true);
 
                   moreData.setButtonType(SpecalitiyData.ButtonType.MORE);
@@ -322,10 +323,12 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
       }
 
-      if(!isMoreButtonAdded)
+      if(!isMoreButtonAdded || tempList.size()==0)
       {
-          NewHomeSpeciality moreData= new NewHomeSpeciality();
+          //NewHomeSpeciality moreData= new NewHomeSpeciality();
           //moreData.setMoreButton(true);
+          displayList.remove(moreData);
+           moreData= new NewHomeSpeciality();
           moreData.setButtonType(SpecalitiyData.ButtonType.LESS);
           displayList.add(moreData);
       }

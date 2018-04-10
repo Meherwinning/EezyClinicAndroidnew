@@ -206,7 +206,7 @@
     <string name="send_request_lbl">Send Request</string>
     <string name="search_btn_lbl">Search</string>
     <string name="are_you_sure_to_delete_family_member_lbl">Are you sure to delete family member?</string>
-    <string name="no_notifications_list_lbl">No notifications(s) found</string>
+    <string name="no_notifications_list_lbl">No notifications found</string>
     <string name="unable_to_get_notifications_list_lbl">Unable to get notifications list, please try again.</string>
     <string name="notification_send_request_note_lbl">Note: Added family members will be able to view your past medical Records and Appointment history if allowed from your Privacy settings. By Accepting the request, you agree to have read and accepted Eezy Clinic\'s Terms &amp; Conditions and Privacy Policy.</string>
     <string name="are_you_sure_to_accept_family_member_lbl">Are you sure about accepting the request?</string>
@@ -245,6 +245,7 @@
     <string name="non_logged_user_book_appointment_alert_msz">Please login to book your appointment.\nIf you do not have an account, please sign up.</string>
     <string name="unable_to_patient_profile_details_lbl">Unable to get patient profile details.\nPlease try again</string>
     <string name="please_enter_valid_emerengency_email_id_lbl">Please enter valid Emergency Email id</string>
+    <string name="please_enter_valid_emerengency_contact_num_lbl">Please enter valid Emergency Contact number</string>
 
 
 </resources>
