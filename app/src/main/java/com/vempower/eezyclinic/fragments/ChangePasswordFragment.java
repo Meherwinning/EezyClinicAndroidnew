@@ -121,7 +121,7 @@ public class ChangePasswordFragment extends AbstractFragment {
 
         if(!newPassword.equalsIgnoreCase(rePassword))
         {
-            Utils.showToastMsg("Please enter valid re-entered password");
+            Utils.showToastMsg("Mismatch of re-entered password");
             return false;
         }
 

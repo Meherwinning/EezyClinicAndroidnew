@@ -1,6 +1,8 @@
 
 package com.vempower.eezyclinic.APICore;
 
+import android.text.TextUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -225,9 +227,22 @@ public class ClinicProfileData {
         {
             return spe;
         }
-        for(String str:specializations)
+        for(int i=0;i<specializations.size();i++)
         {
-            spe=spe+str+",";
+            String str=specializations.get(i);
+            if(TextUtils.isEmpty(str))
+            {
+                continue;
+            }
+
+            if(i==(specializations.size()-1))
+            {
+                spe=spe+str+".";
+            }else
+            {
+                spe=spe+str+", ";
+            }
+
         }
         return spe;
     }
@@ -242,9 +257,22 @@ public class ClinicProfileData {
         {
             return ser;
         }
-        for(String str:services)
+        for(int i=0;i<services.size();i++)
         {
-            ser=ser+str+",";
+            String str=services.get(i);
+            if(TextUtils.isEmpty(str))
+            {
+                continue;
+            }
+
+            if(i==(services.size()-1))
+            {
+                ser=ser+str+".";
+            }else
+            {
+                ser=ser+str+", ";
+            }
+
         }
         return ser;
     }

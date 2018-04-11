@@ -45,7 +45,7 @@
             android:background="@color/white" />
 
     </LinearLayout>
-    <com.github.aakira.expandablelayout.ExpandableLinearLayout
+    <!--<com.github.aakira.expandablelayout.ExpandableLinearLayout
         android:id="@+id/expandableLayout_city_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
 
             </LinearLayout>
 
-            <!-- </android.support.design.widget.TextInputLayout>-->
+            &lt;!&ndash; </android.support.design.widget.TextInputLayout>&ndash;&gt;
 
 
             <TextView
@@ -95,7 +95,7 @@
         </LinearLayout>
 
 
-    </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+    </com.github.aakira.expandablelayout.ExpandableLinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
