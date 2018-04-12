@@ -126,7 +126,7 @@
     <string name="search_result_clinic_lbl">Search Result – Clinics</string>
     <string name="view_doctors_lbl">View Doctors</string>
     <string name="no_matching_resuly_lbl">There are no matching results</string>
-    <string name="no_reviews_yet_lbl">No reviews given yet</string>
+    <string name="no_reviews_yet_lbl">Reviews from verified patients not received,\nBe the first one to review and give your feedback</string>
     <string name="claer_filter_message_lbl">Are you sure you want to clear the filters?</string>
     <string name="press_again_to_exit_from_search">Press again to exit from the search.</string>
     <string name="unable_to_get_insurance_list_lbl">Something went wrong in fetching Insurance List from server, please try again</string>

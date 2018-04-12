@@ -28,11 +28,13 @@ import com.vempower.eezyclinic.utils.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
     //on Thursday
     //08-03-2018, 08.41 AM
-    String DISPLAY_DATE_FORMAT = "'on' EEEE dd-MM-yyyy, h:mm a";
+    //String DISPLAY_DATE_FORMAT = "'on' EEEE dd-MM-yyyy, h:mm a";//4th Dec 2017
+    String DISPLAY_DATE_FORMAT = "'on' EEEE dd-MM-yyyy, h:mm a";//4th Dec 2017
 
     protected final int SUGAR_TYPE = 1, BLOOD_PRESSURE_TYPE = 2, WEIGHT_AND_HEIGHT_TYPE = 3, CHOLESTEROL_TYPE = 4;
 
@@ -290,6 +292,28 @@ abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
 
         }
     };
+
+    protected  String getFormattedDate(Date date){
+        Calendar cal=Calendar.getInstance();
+        cal.setTime(date);
+        //2nd of march 2015
+        int day=cal.get(Calendar.DATE);
+
+        if(!((day>10) && (day<19)))
+            switch (day % 10) {
+                case 1:
+                    //"'on' EEEE d'st' -MM-yyyy, h:mm a";//4th Dec 2017
+                    return new SimpleDateFormat( "'on' EEE d'st' MMM yyyy, h:mm a").format(date);
+                case 2:
+                    return new SimpleDateFormat("'on' EEE d'nd' MMM yyyy, h:mm a").format(date);
+                case 3:
+                    return new SimpleDateFormat("'on' EEE d'rd' MMM yyyy, h:mm a").format(date);
+                default:
+                    return new SimpleDateFormat("'on' EEE d'th' MMM yyyy, h:mm a").format(date);
+            }
+        return new SimpleDateFormat("'on' EEE d'th' MMM yyyy, h:mm a").format(date);
+    }
+
 
 
 

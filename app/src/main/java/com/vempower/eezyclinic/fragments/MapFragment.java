@@ -17,6 +17,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -69,18 +70,38 @@ public class MapFragment extends AbstractFragment implements OnMapReadyCallback/
         if (mMap != null && doctorsLsit != null) {
             //mMap.setOnMarkerClickListener(this);
             LatLngBounds.Builder builder = addAllMarkersToMap();
-            final LatLngBounds bounds = builder.build();
+            final LatLngBounds bounds = adjustBoundsForMaxZoomLevel(builder.build());
+
+
+            final float[] results = new float[1];
+            android.location.Location.distanceBetween(bounds.northeast.latitude, bounds.northeast.longitude,
+                    bounds.southwest.latitude, bounds.southwest.longitude, results);
 
 
             mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
                 @Override
                 public void onMapLoaded() {
-                    //mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 30));
-                    int padding = 50; // offset from edges of the map in pixels
+
+                    CameraUpdate cu = null;
+                    if (results[0] == 1) { // distance is less than 1 km -> set to zoom level 15
+                        cu = CameraUpdateFactory.newLatLngZoom(bounds.getCenter(), 15);
+                    } /*else if (results[0] < 1000) { // distance is less than 1 km -> set to zoom level 15
+                        cu = CameraUpdateFactory.newLatLngZoom(bounds.getCenter(), 15);
+                    } */else {
+                        int padding = 50; // offset from edges of the map in pixels
+                        cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+                    }
+                    if (cu != null) {
+                        mMap.animateCamera(cu);
+                    }
+                    //mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0));
+                   // mMap.setMinZoomPreference();
+  /*                  int padding = 50; // offset from edges of the map in pixels
                     CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
                     mMap.animateCamera(cu);
-                }
+*/                }
             });
+
 
             mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                 public void onInfoWindowClick(Marker marker) {
@@ -104,6 +125,27 @@ public class MapFragment extends AbstractFragment implements OnMapReadyCallback/
 
         }
     }
+    private LatLngBounds adjustBoundsForMaxZoomLevel(LatLngBounds bounds) {
+        LatLng sw = bounds.southwest;
+        LatLng ne = bounds.northeast;
+        double deltaLat = Math.abs(sw.latitude - ne.latitude);
+        double deltaLon = Math.abs(sw.longitude - ne.longitude);
+
+        final double zoomN = 0.005; // minimum zoom coefficient
+        if (deltaLat < zoomN) {
+            sw = new LatLng(sw.latitude - (zoomN - deltaLat / 2), sw.longitude);
+            ne = new LatLng(ne.latitude + (zoomN - deltaLat / 2), ne.longitude);
+            bounds = new LatLngBounds(sw, ne);
+        }
+        else if (deltaLon < zoomN) {
+            sw = new LatLng(sw.latitude, sw.longitude - (zoomN - deltaLon / 2));
+            ne = new LatLng(ne.latitude, ne.longitude + (zoomN - deltaLon / 2));
+            bounds = new LatLngBounds(sw, ne);
+        }
+
+        return bounds;
+    }
+
 
     /*protected void callDealViewPage(Deal deal) {
         //showToastMessage("Call deal view page");
@@ -148,6 +190,8 @@ public class MapFragment extends AbstractFragment implements OnMapReadyCallback/
             this.name = name;
         }
     }
+
+
 
     private LatLngBounds.Builder addAllMarkersToMap() {
         LatLngBounds.Builder builder = new LatLngBounds.Builder();

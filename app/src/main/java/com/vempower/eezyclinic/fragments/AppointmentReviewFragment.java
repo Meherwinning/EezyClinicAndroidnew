@@ -291,7 +291,12 @@ public class AppointmentReviewFragment extends AbstractFragment {
         (( TextView)fragmentView.findViewById(R.id.doctor_designation_tv)).setText(searchResultDoctorListData.getSpecalities());
 
         ((TextView)fragmentView.findViewById(R.id.clinic_name_tv)).setText(searchResultDoctorListData.getClinicName());
-        (( TextView) fragmentView.findViewById(R.id.clinic_address_tv)).setText(searchResultDoctorListData.getAddress());
+        /*
+        locality
+cityName
+         */
+        (( TextView) fragmentView.findViewById(R.id.clinic_address_tv)).setText(searchResultDoctorListData.getAddress()
+                +", "+searchResultDoctorListData.getLocality()+", "+searchResultDoctorListData.getCityName());
 
 
 

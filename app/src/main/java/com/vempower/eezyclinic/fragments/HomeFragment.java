@@ -207,7 +207,7 @@ public class HomeFragment extends AbstractFragment {
 
                 }
                 upcoming_appointment_tv.setText(appointment.getSpecalities()+
-                        "\nat "+dateTimeStr+"\n"+appointment.getLocality()+","+appointment.getCity());
+                        "\nat "+dateTimeStr+"\n"+appointment.getLocality()+", "+appointment.getCity());
                 upcoming_appointment_cardview.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

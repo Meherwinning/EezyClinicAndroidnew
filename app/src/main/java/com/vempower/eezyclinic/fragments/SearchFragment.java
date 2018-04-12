@@ -163,7 +163,7 @@ public class SearchFragment extends AbstractFragment {
                     }
                 });*/
                 startActivity(new Intent(MyApplication.getCurrentActivityContext(), DoctorsListActivity.class));
-                ( (Activity) MyApplication.getCurrentActivityContext()).finish();
+                //( (Activity) MyApplication.getCurrentActivityContext()).finish();
 
             }
         });

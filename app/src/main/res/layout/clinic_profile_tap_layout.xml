@@ -41,6 +41,7 @@
             android:layout_marginTop="@dimen/_3dp"
 
             android:text="-"
+
             android:textColor="#777777"
             android:textSize="@dimen/_14sp"
             android:textStyle="normal" />

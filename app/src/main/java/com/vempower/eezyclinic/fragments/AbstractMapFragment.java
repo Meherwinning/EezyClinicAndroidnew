@@ -21,7 +21,9 @@ import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.PopupAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.core.MarkerDetails;
 import com.vempower.eezyclinic.interfaces.GoogleMarkerClickListener;
+import com.vempower.eezyclinic.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,23 +79,58 @@ public abstract class AbstractMapFragment extends AbstractFragment implements On
         //final List<MyLatLang> allPos = getLatLangList(); //MyApplication.getInstance().getAllDeals();
         if (mMap != null) {
             //mMap.setOnMarkerClickListener(this);
+            //final MarkerDetails details=addAllMarkersToMap(mMap);
             LatLngBounds.Builder builder = addAllMarkersToMap(mMap);
+            final LatLngBounds bounds = adjustBoundsForMaxZoomLevel(builder.build());
+
+           final float[] results = new float[1];
+            android.location.Location.distanceBetween(bounds.northeast.latitude, bounds.northeast.longitude,
+                    bounds.southwest.latitude, bounds.southwest.longitude, results);
+
+           // Utils.showToastMessage("Size :"+details.size);
+
+           // LatLngBounds.Builder builder = addAllMarkersToMap(mMap);
             if(builder==null )
             {
                 return;
             }
-            final LatLngBounds bounds = builder.build();
+           // final LatLngBounds bounds = builder.build();
 
 
             mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
                 @Override
                 public void onMapLoaded() {
+
+                    CameraUpdate cu = null;
+                    if (results[0] == 1) { // distance is less than 1 km -> set to zoom level 15
+                        cu = CameraUpdateFactory.newLatLngZoom(bounds.getCenter(), 15);
+                    } /*else if (results[0] < 1000) { // distance is less than 1 km -> set to zoom level 15
+                        cu = CameraUpdateFactory.newLatLngZoom(bounds.getCenter(), 15);
+                    } */else {
+                        int padding = 50; // offset from edges of the map in pixels
+                        cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+                    }
+                    if (cu != null) {
+                        mMap.animateCamera(cu);
+                    }
                     //mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 30));
-                    int padding = 50; // offset from edges of the map in pixels
+             /*       int padding = 50; // offset from edges of the map in pixels
                     CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
 
                     mMap.animateCamera(cu);
                     mMap.setInfoWindowAdapter(new PopupAdapter(getLayoutInflater()));
+*/
+
+                    //Utils.showToastMessage("Size :"+details.size);
+                    /*if(results[>1)
+                    {
+                        int padding = 50; // offset from edges of the map in pixels
+                        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+                        mMap.animateCamera(cu);
+                    }else
+                    {
+                        mMap.moveCamera(CameraUpdateFactory.zoomTo(3.0f));
+                    }*/
                 }
             });
 
@@ -123,6 +160,27 @@ public abstract class AbstractMapFragment extends AbstractFragment implements On
             // Add a marker in Sydney and move the camera
 
         }
+    }
+
+    private LatLngBounds adjustBoundsForMaxZoomLevel(LatLngBounds bounds) {
+        LatLng sw = bounds.southwest;
+        LatLng ne = bounds.northeast;
+        double deltaLat = Math.abs(sw.latitude - ne.latitude);
+        double deltaLon = Math.abs(sw.longitude - ne.longitude);
+
+        final double zoomN = 0.005; // minimum zoom coefficient
+        if (deltaLat < zoomN) {
+            sw = new LatLng(sw.latitude - (zoomN - deltaLat / 2), sw.longitude);
+            ne = new LatLng(ne.latitude + (zoomN - deltaLat / 2), ne.longitude);
+            bounds = new LatLngBounds(sw, ne);
+        }
+        else if (deltaLon < zoomN) {
+            sw = new LatLng(sw.latitude, sw.longitude - (zoomN - deltaLon / 2));
+            ne = new LatLng(ne.latitude, ne.longitude + (zoomN - deltaLon / 2));
+            bounds = new LatLngBounds(sw, ne);
+        }
+
+        return bounds;
     }
 
     /*protected void callDealViewPage(Deal deal) {

@@ -277,6 +277,57 @@
                 android:background="@color/white" />
 
         </LinearLayout>
+        <com.github.aakira.expandablelayout.ExpandableLinearLayout
+            android:id="@+id/expandableLayout_city_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/top_linear"
+            android:orientation="vertical"
+
+            app:ael_duration="200"
+            app:ael_expanded="true"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50dp"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_2dp">
+
+                    <com.vempower.eezyclinic.views.CustomSpinnerSelection
+                        android:id="@+id/city_type_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/white"
+                        android:maxLines="1"
+                        android:layout_marginRight="@dimen/_5dp"
+                        android:singleLine="true"
+                        android:foregroundTint="@color/black"
+                        android:imeOptions="actionNext"
+                        android:spinnerMode="dropdown"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/button_text_size" />
+
+                </LinearLayout>
+
+                <!-- </android.support.design.widget.TextInputLayout>-->
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/_12dp"
+                    android:background="@color/white" />
+
+            </LinearLayout>
+
+
+        </com.github.aakira.expandablelayout.ExpandableLinearLayout>
    <!--     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

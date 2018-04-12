@@ -1,6 +1,8 @@
 
 package com.vempower.eezyclinic.APICore;
 
+import android.text.TextUtils;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -248,6 +250,11 @@ public class PatientProfileData {
     }
 
     public String getLanguagesknown() {
+        if(TextUtils.isEmpty(languagesknown))
+        {
+            return "";
+        }
+        languagesknown=languagesknown.replaceAll(",",", ");
         return languagesknown;
     }
 

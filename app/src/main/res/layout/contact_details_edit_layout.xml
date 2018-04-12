@@ -43,6 +43,8 @@
                         android:hint="Primary Phone"
                         android:imeOptions="actionUnspecified"
                         android:inputType="phone"
+                        android:enabled="false"
+                        android:clickable="false"
                         android:maxLength="50"
                         android:maxLines="1"
                         android:padding="@dimen/_2dp"
