@@ -34,10 +34,12 @@
 
                     <TextView
                         android:id="@+id/delete_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+
+                        android:layout_marginRight="@dimen/_5dp"
+                        android:layout_width="@dimen/_22dp"
+                        android:layout_height="@dimen/_26dp"
                         android:layout_marginTop="@dimen/_5dp"
-                        android:background="#f50202"
+                        android:background="@drawable/health_checks_delete"
                         android:gravity="center"
                         android:paddingLeft="@dimen/_15dp"
                         android:paddingTop="@dimen/_8dp"

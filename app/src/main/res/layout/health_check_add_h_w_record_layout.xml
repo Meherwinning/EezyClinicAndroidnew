@@ -35,7 +35,7 @@
                 android:imeOptions="actionNext"
                 android:gravity="center"
                 android:inputType="numberSigned"
-                android:maxLength="4"
+                android:maxLength="3"
                 android:hint="0"
                 android:textColor="#ee7b7979"
                 android:textSize="@dimen/_14dp" />
@@ -52,7 +52,7 @@
                 android:gravity="center"
                 android:imeOptions="actionDone"
                 android:inputType="numberSigned"
-                android:maxLength="4"
+                android:maxLength="3"
                 android:hint="0"
                 android:textColor="#ee7b7979"
                 android:textSize="@dimen/_14dp" />
@@ -95,6 +95,7 @@
             android:layout_height="@dimen/_45dp">
             <TextView                    android:fontFamily="@font/roboto"
                 android:id="@+id/date_tv"
+                android:paddingLeft="@dimen/_10dp"
                 android:layout_width="match_parent"
                 android:clickable="true"
                 android:layout_toLeftOf="@+id/imageview1_linear"
