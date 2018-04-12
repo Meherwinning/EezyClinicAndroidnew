@@ -135,19 +135,19 @@ public class HealthCheckTab4 extends  AbstractHealthChecksTabFragment {
                 String triglycerides = new_triglycerides_et.getText().toString();
                 String tot_cholesterol = new_tot_cholesterol_et.getText().toString();
                // String checkuptime = "2018-01-07";// new_date_tv.getText().toString();
-                if (TextUtils.isEmpty(ldl)) {
+                if (TextUtils.isEmpty(ldl)|| ldl.equalsIgnoreCase("0")) {
                     Utils.showToastMessage(R.string.please_enter_ldl_value_lbl);
                     return;
                 }
-                if (TextUtils.isEmpty(hdl)) {
+                if (TextUtils.isEmpty(hdl)|| hdl.equalsIgnoreCase("0")) {
                     Utils.showToastMessage(R.string.please_enter_hdl_value_lbl);
                     return;
                 }
-                if (TextUtils.isEmpty(triglycerides)) {
+                if (TextUtils.isEmpty(triglycerides)|| triglycerides.equalsIgnoreCase("0")) {
                     Utils.showToastMessage(R.string.please_enter_triglycerides_value_lbl);
                     return;
                 }
-                if (TextUtils.isEmpty(tot_cholesterol)) {
+                if (TextUtils.isEmpty(tot_cholesterol)|| tot_cholesterol.equalsIgnoreCase("0")) {
                     Utils.showToastMessage(R.string.please_enter_tot_cholesterol_value_lbl);
                     return;
                 }

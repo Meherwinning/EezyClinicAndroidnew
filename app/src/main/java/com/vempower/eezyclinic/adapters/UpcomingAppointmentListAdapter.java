@@ -99,7 +99,7 @@ public class UpcomingAppointmentListAdapter extends RecyclerView.Adapter<Upcomin
         SimpleDateFormat DISPLAY_DATE_FORMATTER = new SimpleDateFormat(DISPLAY_DATE);
         SimpleDateFormat DISPLAY_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_TIME);
 
-        private TextView appointment_details_tv, cancel_app_tv,re_schedule_tv;
+        private TextView title_tv,date_tv,address_tv,clinic_name_tv, cancel_app_tv,re_schedule_tv;
       /*  private ImageView profile_iv;
 
         private TextView title_tv;
@@ -108,7 +108,10 @@ public class UpcomingAppointmentListAdapter extends RecyclerView.Adapter<Upcomin
 */
         public OrdersListHolder(View itemView) {
             super(itemView);
-            appointment_details_tv  = itemView.findViewById(R.id.appointment_details_tv);
+            title_tv  = itemView.findViewById(R.id.title_tv);
+            clinic_name_tv  = itemView.findViewById(R.id.clinic_name_tv);
+            date_tv  = itemView.findViewById(R.id.date_tv);
+            address_tv  = itemView.findViewById(R.id.address_tv);
             cancel_app_tv  = itemView.findViewById(R.id.cancel_app_tv);
             re_schedule_tv  = itemView.findViewById(R.id.re_schedule_tv);
 
@@ -126,10 +129,15 @@ public class UpcomingAppointmentListAdapter extends RecyclerView.Adapter<Upcomin
                 String dateStr= DISPLAY_DATE_FORMATTER.format(date);
                 String timeStr= DISPLAY_TIME_FORMATTER.format(date);
                 //With Dr. First name Middle name Last Name at 07:00 PM on Tuesday, 26-12-2017
-                appointment_details_tv.setText("With "+ data.getDoctorName() +" at "+ timeStr+", "+ dateStr+"\nat "+data.getAddress());
+                //appointment_details_tv.setText("With "+ data.getDoctorName() +" at "+ timeStr+", "+ dateStr+"\nat "+data.getAddress());
+                title_tv.setText( data.getDoctorName());
+                clinic_name_tv.setText( data.getClinicName());
+                date_tv.setText( timeStr+", "+ dateStr);
+                address_tv.setText( data.getAddress());
+
             }catch (Exception e)
             {
-                appointment_details_tv.setText("-");
+                //appointment_details_tv.setText("-");
 
             }
 

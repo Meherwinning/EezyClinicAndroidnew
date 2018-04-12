@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,18 +9,17 @@
     android:layout_marginTop="@dimen/_7dp"
     android:background="@drawable/view_selector"
     android:clickable="true"
-    card_view:cardBackgroundColor="@color/white"
     android:elevation="@dimen/_5dp"
+    card_view:cardBackgroundColor="@color/white"
 
 
-    card_view:cardElevation="@dimen/_6dp"
     card_view:cardCornerRadius="@dimen/_5dp"
-    >
+    card_view:cardElevation="@dimen/_6dp">
 
-   <!-- <FrameLayout
-        android:background="@drawable/card_edge"
-        android:layout_width="1dp"
-        android:layout_height="match_parent"/>-->
+    <!-- <FrameLayout
+         android:background="@drawable/card_edge"
+         android:layout_width="1dp"
+         android:layout_height="match_parent"/>-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -30,11 +28,9 @@
 
         android:paddingLeft="@dimen/_10dp"
         android:paddingRight="@dimen/_10dp"
-        android:paddingTop="@dimen/_12dp"
-        >
+        android:paddingTop="@dimen/_12dp">
 
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/img_linear1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,6 +40,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/_10dp"
             android:gravity="center"
+            android:visibility="gone"
 
             >
 
@@ -81,136 +78,158 @@
             android:layout_toRightOf="@+id/img_linear1"
             android:orientation="vertical">
 
-            <TextView
-                android:fontFamily="@font/roboto_medium"
-
-                android:id="@+id/title_tv"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_5dp"
-                android:textColor="#212121"
-                android:text="Title"
-                android:textSize="@dimen/_16dp" />
 
             <LinearLayout
-                android:layout_marginBottom="@dimen/_5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5dp"
                 android:orientation="vertical">
+                <TextView
+                    android:fontFamily="@font/roboto_medium"
 
-                <TextView                    android:fontFamily="@font/roboto"
-                    android:id="@+id/appointment_details_tv"
+                    android:id="@+id/title_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5dp"
+                    android:textColor="#212121"
+                    android:text="Title"
+                    android:textSize="@dimen/_16dp" />
+                <TextView
+                    android:id="@+id/date_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:gravity="left"
-                    android:text="-"
+                    android:text="Date"
                     android:textColor="#777777"
-                    android:textSize="@dimen/_13sp"
-                     />
+                    android:textSize="@dimen/_13sp" />
+                <TextView
+                    android:id="@+id/clinic_name_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="left"
+                    android:hint="Clinic Name"
+                    android:textColor="#777777"
+                    android:textSize="@dimen/_13sp" />
+                <TextView
+                    android:id="@+id/address_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="left"
+                    android:hint="Address"
+                    android:textColor="#777777"
+                    android:textSize="@dimen/_13sp" />
+
 
             </LinearLayout>
 
         </LinearLayout>
 
         <TextView
-            android:visibility="invisible"
-            android:layout_below="@+id/content_linear1"
             android:id="@+id/devider_view"
             android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/content_linear1"
             android:alpha="0.4"
             android:background="@color/dash_board_text_color"
 
-            android:layout_height="1dp" />
+            android:visibility="invisible" />
 
         <LinearLayout
-            android:layout_below="@+id/devider_view"
             android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sp"
+            android:layout_below="@+id/devider_view"
             android:layout_marginBottom="@dimen/_5dp"
             android:layout_marginRight="@dimen/_5dp"
-            android:orientation="horizontal"
-            android:layout_height="@dimen/_35sp">
+            android:orientation="horizontal">
+
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="0.5"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_weight="0.5"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_height="match_parent">
+                android:orientation="horizontal">
 
-                <TextView                    android:fontFamily="@font/roboto"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:gravity="left"
                     android:padding="@dimen/_3dp"
-                    android:textSize="13sp"
                     android:textColor="#cc212121"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
-                <TextView                    android:fontFamily="@font/roboto"
+
+                <TextView
                     android:id="@+id/reviews_count_tv"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:singleLine="true"
-                    android:maxLines="1"
                     android:layout_marginLeft="@dimen/_4dp"
                     android:layout_marginRight="@dimen/_4dp"
-                    android:textSize="13sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="left"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:textColor="#cc212121"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
-
-
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:gravity="center"
+                android:layout_height="match_parent"
 
-                android:orientation="horizontal"
                 android:layout_marginRight="@dimen/_20dp"
-                android:layout_height="match_parent">
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <TextView                    android:fontFamily="@font/roboto"
+                <TextView
                     android:id="@+id/cancel_app_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_4dp"
+                    android:layout_marginRight="@dimen/_4dp"
+                    android:fontFamily="@font/roboto"
                     android:gravity="center"
-                    android:text="Cancel"
+                    android:maxLines="1"
                     android:paddingLeft="@dimen/_10dp"
                     android:paddingRight="@dimen/_10dp"
                     android:singleLine="true"
-                    android:maxLines="1"
-                    android:layout_marginLeft="@dimen/_4dp"
-                    android:layout_marginRight="@dimen/_4dp"
-                    android:textSize="@dimen/_15sp"
+                    android:text="Cancel"
                     android:textColor="#FF0000"
+                    android:textSize="@dimen/_15sp"
                     android:textStyle="bold" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
-android:layout_marginLeft="@dimen/_10dp"
-                android:layout_height="match_parent">
-                <TextView                    android:fontFamily="@font/roboto"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_10dp">
+
+                <TextView
                     android:id="@+id/re_schedule_tv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center|center_vertical"
-                    android:text="Re-schedule"
-                    android:paddingLeft="@dimen/_10dp"
-                    android:textSize="@dimen/_15sp"
                     android:layout_margin="@dimen/_3dp"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center|center_vertical"
+                    android:paddingLeft="@dimen/_10dp"
+                    android:text="Re-schedule"
                     android:textColor="#28b0e2"
+                    android:textSize="@dimen/_15sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
         </LinearLayout>
-
-
 
 
     </RelativeLayout>

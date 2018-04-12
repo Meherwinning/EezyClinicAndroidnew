@@ -65,6 +65,7 @@ public class AddPrescriptionReportFragment extends ImageProcessFragment {
     }
 
     private void myInit() {
+        setNotAcceptRation(true);
         imagesList = new ArrayList<>();
         inflater = (LayoutInflater) MyApplication.getCurrentActivityContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);

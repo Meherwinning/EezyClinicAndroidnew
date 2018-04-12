@@ -128,11 +128,11 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
                 String systolic = new_systolic_et.getText().toString();
                // String hba1c = new_hba1c_et.getText().toString();
                 //String checkuptime = "2018-01-07";// new_date_tv.getText().toString();
-                if (TextUtils.isEmpty(diastolic)) {
+                if (TextUtils.isEmpty(diastolic)|| diastolic.equalsIgnoreCase("0")) {
                     Utils.showToastMessage(R.string.please_enter_diastolic_value_lbl);
                     return;
                 }
-                if (TextUtils.isEmpty(systolic)) {
+                if (TextUtils.isEmpty(systolic)|| systolic.equalsIgnoreCase("0")) {
                     Utils.showToastMessage(R.string.please_enter_systolic_value_lbl);
                     return;
                 }

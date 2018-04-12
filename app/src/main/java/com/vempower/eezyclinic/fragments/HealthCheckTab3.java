@@ -135,11 +135,11 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
                 String weight = new_weight_et.getText().toString();
                 String height = new_height_et.getText().toString();
                // String checkuptime = "2018-01-07";// new_date_tv.getText().toString();
-                if (TextUtils.isEmpty(weight)) {
+                if (TextUtils.isEmpty(weight)|| weight.equalsIgnoreCase("0")) {
                     Utils.showToastMessage(R.string.please_enter_weight_value_lbl);
                     return;
                 }
-                if (TextUtils.isEmpty(height)) {
+                if (TextUtils.isEmpty(height)|| height.equalsIgnoreCase("0")) {
                     Utils.showToastMessage(R.string.please_enter_height_value_lbl);
                     return;
                 }
