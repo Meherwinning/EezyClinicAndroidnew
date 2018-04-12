@@ -39,7 +39,7 @@
             android:enabled="false"
             android:gravity="center"
             android:inputType="numberSigned"
-            android:maxLength="4"
+            android:maxLength="3"
             android:hint="0"
             android:textColor="#ee7b7979"
             android:textSize="@dimen/_14dp" />
@@ -55,7 +55,7 @@
             android:enabled="false"
             android:gravity="center"
             android:inputType="numberSigned"
-            android:maxLength="4"
+            android:maxLength="3"
             android:hint="0"
             android:textColor="#ee7b7979"
             android:textSize="@dimen/_14dp" />
@@ -70,8 +70,8 @@
             android:background="@drawable/health_checks_view_selector"
             android:enabled="false"
             android:gravity="center"
-            android:inputType="numberSigned"
-            android:maxLength="4"
+            android:inputType="none"
+            android:maxLength="5"
             android:hint="0"
             android:textColor="#ee7b7979"
             android:textSize="@dimen/_14dp" />

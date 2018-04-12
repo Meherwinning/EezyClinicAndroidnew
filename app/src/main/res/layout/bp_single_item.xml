@@ -74,6 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/_2dp"
+             android:paddingLeft="@dimen/_10dp"
             android:background="@drawable/health_checks_view_selector"
             android:clickable="true"
             android:enabled="false"

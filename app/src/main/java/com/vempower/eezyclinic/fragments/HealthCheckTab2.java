@@ -258,7 +258,7 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
 
         private String getDisplayDateStr(String dateStr)
         {
-            SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
+           // SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
             SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
 
 
@@ -271,7 +271,7 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
                         selectedObj = new SelectedDate(Calendar.getInstance());
                     }
                     selectedObj.setTimeInMillis(date.getTime());
-                    return format.format(date);
+                    return getFormattedDate(date);
                     //profileDetails.dateofBirth=patientProfileObj.getDateofbirth();
 
                 } catch (ParseException e) {

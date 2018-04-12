@@ -158,7 +158,8 @@ public class HomeFragment extends AbstractFragment {
 
     }
 
-    String DISPLAY_DATE_TIME="d MMM yyyy, EEEE h:mm a";
+   // String DISPLAY_DATE_TIME="d MMM yyyy, EEEE h:mm a";
+    String DISPLAY_DATE_TIME="h:mm a 'on' EEEE, d MMM yyyy";//6:00 pm on Tuesday, 3 Apr 2018
     String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd HH:mm:ss";
     SimpleDateFormat DISPLAY_DATE_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_DATE_TIME);
 
