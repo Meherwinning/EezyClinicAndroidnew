@@ -997,23 +997,7 @@ final CustomerAdapter aa= new CustomerAdapter<DoctorClinicNameData>(MyApplicatio
       final  CustomerAdapter aa= new CustomerAdapter(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, dataList);
         speciality_actv.setAdapter(aa);
 
-       /* speciality_actv.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                aa.getFilter().filter(s);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });*/
-        // speciality_actv.setSelection(aa.getCount());
 
         speciality_actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -1029,26 +1013,7 @@ final CustomerAdapter aa= new CustomerAdapter<DoctorClinicNameData>(MyApplicatio
                 }
             }
         });
-       /* speciality_actv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //if(position!=0)
-                //{
-                SpecalitiyData selectedSpeciality = dataList.get(position);
-                if(selectedSpeciality!=null) {
-                    namesSearch.setSpeciality(selectedSpeciality.getName());
-                    callDoctorsClinicNamesMapper();
-                    searchRequestParams.setSpecality(selectedSpeciality.getName());
-                    //}
-                    //Utils.showToastMessage("selected Speciality " + selectedSpeciality);
-                }
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
         aa.notifyDataSetChanged();
 
 

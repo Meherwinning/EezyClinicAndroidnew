@@ -76,25 +76,31 @@ public class CustomerAdapter<T> extends ArrayAdapter<T> {
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults filterResults = new FilterResults();
             if (constraint != null) {
                 suggestions.clear();
+                T temp=null;
                 for (T customer : itemsAll) {
                     if (customer == null) {
                         continue;
                     }
                    String str1= customer.toString().toLowerCase().trim().replaceAll(" ","");
                     String str2= constraint.toString().toLowerCase().trim().replaceAll(" ","");
-                    if (str1.contains(str2)||str1.startsWith(str2) ||  str2.contains(str1)||str2.startsWith(str1)) {
+                    if ( str1.contains(str2)  ||  str1.startsWith(str2)  ||  str2.contains(str1) || str2.startsWith(str1)) {
                         suggestions.add(customer);
+                        temp=customer;
                     }
                 }
-                FilterResults filterResults = new FilterResults();
+                if(temp!=null && suggestions.size()>0)
+                {
+                    suggestions.add(suggestions.size(),temp);
+                }
+                //suggestions.add(new T());
                 filterResults.values = suggestions;
                 filterResults.count = suggestions.size();
-                return filterResults;
-            } else {
-                return new FilterResults();
+
             }
+            return filterResults;
         }
 
         @Override
@@ -102,9 +108,10 @@ public class CustomerAdapter<T> extends ArrayAdapter<T> {
             ArrayList<T> filteredList = (ArrayList<T>) results.values;
             if (results != null && results.count > 0) {
                 clear();
-                for (T c : filteredList) {
+                addAll(filteredList);
+                /*for (T c : filteredList) {
                     add(c);
-                }
+                }*/
                 notifyDataSetChanged();
             }
         }
