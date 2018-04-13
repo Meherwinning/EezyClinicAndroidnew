@@ -133,7 +133,7 @@ public class UpcomingAppointmentListAdapter extends RecyclerView.Adapter<Upcomin
                 title_tv.setText( data.getDoctorName());
                 clinic_name_tv.setText( data.getClinicName());
                 date_tv.setText( timeStr+", "+ dateStr);
-                address_tv.setText( data.getAddress());
+                address_tv.setText( data.getAddress()+", "+data.getCity());
 
             }catch (Exception e)
             {

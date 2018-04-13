@@ -19,8 +19,15 @@ package com.vempower.eezyclinic.activities.complex;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Point;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.LinearSmoothScroller;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.widget.ScrollView;
 
 
 import com.ahamed.multiviewadapter.DataItemManager;
@@ -38,13 +45,16 @@ import com.vempower.eezyclinic.activities.decorator.ArticleItemDecorator1;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.Feature;
 import com.vempower.eezyclinic.core.HealthTip;
+import com.vempower.eezyclinic.interfaces.MyRecylerViewScrollListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ComplexListAdapter extends RecyclerAdapter {
 
-  private DataListManager<Article> singleModelManager;
+
+    private final MyRecylerViewScrollListener myRecylerViewScrollListener;
+    private DataListManager<Article> singleModelManager;
     private DataListManager<NewHomeDoctorsList> popularDoctorslManager;
    // private DataListManager<SpecalitiyData> specialitiesModelManager;
   private DataListManager<NewHomeSpeciality> gridItemsManager;
@@ -64,10 +74,11 @@ public class ComplexListAdapter extends RecyclerAdapter {
   private List<NewHomeSpeciality> newHomeSpecialities;
     private  NewHomeData homeData;
 
-  public ComplexListAdapter(final NewHomeData homeData1, FragmentManager fragmentManager) {
+  public ComplexListAdapter(final NewHomeData homeData1, FragmentManager fragmentManager, MyRecylerViewScrollListener myRecylerViewScrollListener) {
    // simpleItemDecoration = new SimpleDividerDecoration(MyApplication.getCurrentActivityContext(), SimpleDividerDecoration.VERTICAL);
       //this.fragmentManager=fragmentManager;
      // this.doctorsList=doctorsList;
+      this.myRecylerViewScrollListener=myRecylerViewScrollListener;
       this.homeData=homeData1;
       newHomeSpecialities=homeData.getSpecialities();
       simpleItemDecoration1 = new SimpleDividerDecoration(MyApplication.getCurrentActivityContext(), SimpleDividerDecoration.HORIZONTAL);
@@ -178,7 +189,31 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
            // Utils.showToastMessage("Now called Complex adapter");
       refreshData();
+
+
+
+
+
+
   }
+    protected void scrollToView(final ScrollView scrollViewParent, final View view) {
+        // Get deepChild Offset
+        Point childOffset = new Point();
+        getDeepChildOffset(scrollViewParent, view.getParent(), view, childOffset);
+        // Scroll to child.
+        scrollViewParent.smoothScrollTo(0, childOffset.y);
+    }
+
+    private void getDeepChildOffset(final ViewGroup mainParent, final ViewParent parent, final View child, final Point accumulatedOffset) {
+        ViewGroup parentGroup = (ViewGroup) parent;
+        accumulatedOffset.x += child.getLeft();
+        accumulatedOffset.y += child.getTop();
+        if (parentGroup.equals(mainParent)) {
+            return;
+        }
+        getDeepChildOffset(mainParent, parentGroup.getParent(), parentGroup, accumulatedOffset);
+    }
+
 
   private void refreshData()
   {
@@ -335,6 +370,10 @@ public class ComplexListAdapter extends RecyclerAdapter {
       remainingList=tempList;
       //gridItemsManager.addAll(newList);
       gridItemsManager.set(displayList);
+      if(myRecylerViewScrollListener!=null) {
+          myRecylerViewScrollListener.scrollMyRecylerView(displayList.size());
+      }
+     // scrollToView(final ScrollView scrollViewParent, gridItemsManager);
 
   }
 

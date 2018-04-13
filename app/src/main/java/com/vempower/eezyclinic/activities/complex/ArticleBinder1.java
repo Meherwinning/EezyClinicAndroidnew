@@ -118,12 +118,17 @@ public class ArticleBinder1 extends ItemBinder<NewHomeDoctorsList, ArticleBinder
      // if(adapterViewPager==null) {
             adapterViewPager = new MyPagerAdapter(fragmentManager,doctorsLists);
             vpPager.setAdapter(adapterViewPager);
-      //}/*else
-     /* {
+      /*}else
+     {
         adapterViewPager.setUpdatedList(doctorsLists);
       }*/
         vpPager.setCurrentItem(0);
+
         vpPager.invalidate();
+        adapterViewPager.notifyDataSetChanged();
+        vpPager.refreshDrawableState();
+        vpPager.computeScroll();
+
 
      // }
      // {
@@ -164,11 +169,11 @@ public class ArticleBinder1 extends ItemBinder<NewHomeDoctorsList, ArticleBinder
     }
 
 
-   /* @Override
+    @Override
     public float getPageWidth (int position) {
-      return 0.75f;
+      return 0.55f;
       //return 0.93f;
-    }*/
+    }
 
     // Returns total number of pages
     @Override

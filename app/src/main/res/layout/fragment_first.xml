@@ -1,17 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="@dimen/_220dp"
-    android:layout_margin="@dimen/_20dp"
+    android:layout_height="@dimen/_250dp"
+    android:layout_margin="@dimen/_15dp"
+    android:orientation="vertical"
     android:background="@color/popular_doctors_bg_color">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+    <LinearLayout
+        android:id="@+id/top_image_linear"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:gravity="center"
         android:layout_gravity="center"
-        android:gravity="center">
+        android:orientation="vertical">
 
-        <LinearLayout
+
+        <RelativeLayout
+            android:id="@+id/top_image_relative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/image_linear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:background="@drawable/canvas_380x380"
+                android:gravity="center"
+
+                >
+
+                <ImageView
+                    android:id="@+id/popular_doctor_iv"
+                    style="@style/image_fit_toparent"
+                    android:src="@drawable/default_doctor_image"
+                    android:scaleType="fitXY"
+                    />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:src="@drawable/photoframe"
+                />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+
+        >
+
+       <!-- <LinearLayout
             android:id="@+id/top_image_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,15 +111,15 @@
             </RelativeLayout>
 
 
-        </LinearLayout>
+        </LinearLayout>-->
 
 
         <TextView
+            android:layout_alignParentTop="true"
             android:id="@+id/doctor_name_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5dp"
-            android:layout_below="@+id/top_image_linear"
             android:fontFamily="@font/roboto_black"
             android:gravity="center"
             android:hint="Doctor Name"
@@ -80,12 +133,13 @@
             />
 
         <LinearLayout
+            android:layout_below="@+id/doctor_name_tv"
             android:id="@+id/designation_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/doctor_name_tv"
             android:layout_centerHorizontal="true"
             android:gravity="center"
+            android:layout_marginBottom="@dimen/_5dp"
             android:orientation="vertical">
 
 
@@ -119,4 +173,4 @@
          android:textColor="@color/black"
          android:layout_height="wrap_content" />
  -->
-</RelativeLayout>
+</LinearLayout>
