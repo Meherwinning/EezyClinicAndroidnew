@@ -78,6 +78,7 @@ public class UpdatePrescriptionReportFragment extends ImageProcessFragment {
     }
 
     private void myInit() {
+        setNotAcceptRation(true);
         imagesList = new ArrayList<>();
         imagesRemoveList= new ArrayList<>();
         newImagesList= new ArrayList<>();

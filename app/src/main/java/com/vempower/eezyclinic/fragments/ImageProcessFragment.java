@@ -61,6 +61,7 @@ public abstract class ImageProcessFragment extends AbstractFragment {
     private File croppedfile;
     int responseId=-1;
     private ImageProcessListener imageProcessListener;
+    private boolean isNotAcceptRatio;
 
 
     protected void callGallery(int responseId) {
@@ -361,11 +362,40 @@ public abstract class ImageProcessFragment extends AbstractFragment {
                 e.printStackTrace();
             }
 
-        CropImage.activity(imageUri)
+            if(!isNotAcceptRatio)
+            {
+                CropImage.activity(imageUri)
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .setAspectRatio(1, 1)
+                        .setMinCropResultSize(150,150)
+                        .setMinCropWindowSize(150,150)
+
+
+                        //.setFixAspectRatio(isAcceptRatio)
+                        .setOutputUri(Uri.fromFile(croppedfile))
+                        .start(getContext(), this);
+            }else
+            {
+                CropImage.activity(imageUri)
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        //.setAspectRatio(1, 1)
+                        //.setCropShape(CropImageView.CropShape.OVAL)
+                        //.setAllowCounterRotation(true)
+                        .setMinCropResultSize(150,150)
+
+                        .setMinCropWindowSize(150,150)
+                        .setFixAspectRatio(false)
+                        .setOutputUri(Uri.fromFile(croppedfile))
+                        .start(getContext(), this);
+            }
+
+       /* CropImage.activity(imageUri)
                 .setGuidelines(CropImageView.Guidelines.ON)
-                .setAspectRatio(1, 1)
+                //.setAspectRatio(1, 1)
+
+                .setFixAspectRatio(isAcceptRatio)
                 .setOutputUri(Uri.fromFile(croppedfile))
-                .start(getContext(), this);
+                .start(getContext(), this);*/
                 //    .setOutputUri(FileProvider.getUriForFile(MyApplication.getCurrentActivityContext(), MyApplication.getCurrentActivityContext().getApplicationContext().getPackageName() + ".provider", croppedfile))
                 //.start((EditProfileActivity)MyApplication.getCurrentActivityContext());
 
@@ -545,6 +575,7 @@ public abstract class ImageProcessFragment extends AbstractFragment {
                         break;
                     case 1:
                         callGallery(responseId);
+                        break;
                     case 2:
                         callDriveForPDF(responseId);
                         break;
@@ -555,6 +586,11 @@ public abstract class ImageProcessFragment extends AbstractFragment {
         });
         final AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    protected void setNotAcceptRation(boolean isNotAcceptRatio)
+    {
+        this.isNotAcceptRatio=isNotAcceptRatio;
     }
 
     public String getRealPathFromURI(Uri uri) {

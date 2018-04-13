@@ -2,415 +2,460 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollview"
-    android:background="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_25dp"
-        android:layout_marginTop="@dimen/_20dp"
-        android:orientation="vertical">
 
-        <TextView                android:fontFamily="@font/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:text="Doctor Profile"
-            android:textColor="#0ebf7c"
-            android:textSize="@dimen/_18sp"
-            android:textStyle="normal" />
-
-        <TextView                android:fontFamily="@font/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_12dp"
-
-            android:text="Gender"
-            android:textColor="#212121"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal" />
-
-         <TextView    android:fontFamily="@font/roboto"
-            android:id="@+id/gender_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-
-            android:layout_marginTop="@dimen/_3dp"
-
-            android:text="-"
-            android:textColor="#777777"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal" />
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/_7dp"
-            android:background="#ededed" />
-
-        <TextView                android:fontFamily="@font/roboto_medium"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-
-            android:layout_marginTop="@dimen/_10dp"
-
-            android:text="Nationality"
-            android:textColor="#212121"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal" />
-
-
-         <TextView    android:fontFamily="@font/roboto"
-            android:id="@+id/nationality_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-
-            android:layout_marginTop="@dimen/_3dp"
-
-
-            android:text="-"
-            android:textColor="#777777"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/_10dp"
-            android:background="#ededed" />
-
-        <TextView                android:fontFamily="@font/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-
-            android:layout_marginTop="@dimen/_7dp"
-
-            android:text="Languages Known"
-            android:textColor="#212121"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal" />
-
-         <TextView    android:fontFamily="@font/roboto"
-            android:id="@+id/language_known_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-
-            android:layout_marginTop="@dimen/_3dp"
-
-
-            android:text="-"
-            android:textColor="#777777"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/_12dp"
-            android:background="#ededed" />
-
-
-        <TextView                android:fontFamily="@font/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-
-            android:layout_marginTop="@dimen/_9dp"
-
-
-            android:text="About"
-            android:textColor="#212121"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal" />
-
-         <TextView    android:fontFamily="@font/roboto"
-            android:id="@+id/about_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-
-            android:layout_marginTop="@dimen/_3dp"
-
-            android:text="-"
-            android:textColor="#777777"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/_10dp"
-            android:background="#ededed" />
-
-        <TextView                android:fontFamily="@font/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-
-            android:layout_marginTop="@dimen/_7dp"
-
-
-            android:text="Consultation Fee"
-            android:textColor="#212121"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal" />
-
-         <TextView    android:fontFamily="@font/roboto"
-            android:id="@+id/consultation_fee_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-
-            android:layout_marginTop="@dimen/_3dp"
-
-
-            android:text="-"
-            android:textColor="#777777"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/_25dp"
             android:layout_marginTop="@dimen/_20dp"
-            android:background="#ededed" />
+            android:orientation="vertical">
 
-        <TextView                android:fontFamily="@font/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_13dp"
-            android:text="Specializations"
-            android:textColor="#212121"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal" />
-         <TextView    android:fontFamily="@font/roboto"
-            android:id="@+id/specialization_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_3dp"
-            android:text="-"
-            android:textColor="#777777"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/_11dp"
-            android:background="#ededed" />
-        <TextView                android:fontFamily="@font/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_13dp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Doctor Profile"
+                android:textColor="#0ebf7c"
+                android:textSize="@dimen/_18sp"
+                android:textStyle="normal" />
 
-            android:text="Services"
-            android:textColor="#212121"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_12dp"
+                android:fontFamily="@font/roboto_medium"
+                android:id="@+id/gender_tv1"
+                android:text="Gender"
+                android:textColor="#212121"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
 
-         <TextView    android:fontFamily="@font/roboto"
-            android:id="@+id/service_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_3dp"
-            android:textColor="#777777"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal"
-            android:text="-" />
+            <TextView
+                android:id="@+id/gender_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_3dp"
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/_11dp"
-            android:background="#ededed" />
+                android:fontFamily="@font/roboto"
 
-        <TextView                android:fontFamily="@font/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_20dp"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal"
-            android:textColor="#212121"
-            android:text="Education Details"
+                android:text="-"
+                android:textColor="#777777"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
 
-            />
-         <TextView    android:fontFamily="@font/roboto"
-            android:id="@+id/education_details_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_3dp"
-            android:textColor="#777777"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal"
-            android:text="-" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/_11dp"
-            android:background="#ededed" />
+            <TextView
+                android:id="@+id/gender_tv2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_7dp"
+                android:background="#ededed" />
 
-        <TextView                android:fontFamily="@font/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_12dp"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal"
-            android:textColor="#212121"
-            android:text="Experience"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_10dp"
 
-            />
-
-         <TextView    android:fontFamily="@font/roboto"
-            android:id="@+id/experiance_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_3dp"
+                android:fontFamily="@font/roboto_medium"
+                android:id="@+id/nationality_tv1"
+                android:text="Nationality"
+                android:textColor="#212121"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
 
 
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal"
-            android:textColor="#777777"
-            android:text="-"
-            />
+            <TextView
+                android:id="@+id/nationality_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_3dp"
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/_12dp"
-            android:background="#ededed" />
+                android:fontFamily="@font/roboto"
 
-        <TextView                android:fontFamily="@font/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_12dp"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal"
-            android:textColor="#212121"
-            android:text="Awards and Recognitions"
 
-            />
+                android:text="-"
+                android:textColor="#777777"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
 
-         <TextView    android:fontFamily="@font/roboto"
-            android:id="@+id/awards_and_recognitions_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_3dp"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal"
-            android:textColor="#777777"
-            android:text="-"
-            />
+            <TextView
+                android:id="@+id/nationality_tv2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_10dp"
+                android:background="#ededed" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/_12dp"
-            android:background="#ededed" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_7dp"
 
-        <TextView                android:fontFamily="@font/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_12dp"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal"
-            android:textColor="#212121"
-            android:text="Memberships"
+                android:fontFamily="@font/roboto_medium"
+                android:id="@+id/language_known_tv1"
+                android:text="Languages Known"
+                android:textColor="#212121"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
 
-            />
+            <TextView
+                android:id="@+id/language_known_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_3dp"
 
-         <TextView    android:fontFamily="@font/roboto"
-            android:id="@+id/memberships_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_3dp"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal"
-            android:textColor="#777777"
-            android:text="-"
-        />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/_12dp"
-            android:background="#ededed" />
+                android:fontFamily="@font/roboto"
 
-        <TextView                android:fontFamily="@font/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_12dp"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal"
-            android:textColor="#212121"
-            android:text="Registrations"
 
-            />
-         <TextView    android:fontFamily="@font/roboto"
-            android:id="@+id/registrations_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_3dp"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal"
-            android:textColor="#777777"
-            android:text="-"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/_20dp"
-            android:background="#ededed" />
+                android:text="-"
+                android:textColor="#777777"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
 
-        <TextView                android:fontFamily="@font/roboto_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_12dp"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal"
-            android:textColor="#212121"
-            android:text="Clinic Details"
+            <TextView
+                android:id="@+id/language_known_tv2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_12dp"
+                android:background="#ededed" />
 
-            />
 
-         <TextView    android:fontFamily="@font/roboto"
-            android:id="@+id/clinic_details_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_3dp"
-            android:textSize="@dimen/_14sp"
-            android:textStyle="normal"
-            android:textColor="#777777"
-            android:text="-"
-            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_9dp"
 
-    </LinearLayout>
+                android:fontFamily="@font/roboto_medium"
 
+                android:id="@+id/about_tv1"
+                android:text="About"
+                android:textColor="#212121"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/about_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_3dp"
+
+                android:fontFamily="@font/roboto"
+
+                android:text="-"
+                android:textColor="#777777"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/about_tv2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_10dp"
+                android:background="#ededed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_7dp"
+
+                android:fontFamily="@font/roboto_medium"
+
+                android:id="@+id/consultation_fee_tv1"
+                android:text="Consultation Fee"
+                android:textColor="#212121"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/consultation_fee_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_3dp"
+
+                android:fontFamily="@font/roboto"
+
+
+                android:text="-"
+                android:textColor="#777777"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/consultation_fee_tv2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_20dp"
+                android:background="#ededed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_13dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Specializations"
+                android:textColor="#212121"
+                android:textSize="@dimen/_14sp"
+                android:id="@+id/specialization_tv1"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/specialization_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_3dp"
+                android:fontFamily="@font/roboto"
+                android:text="-"
+                android:textColor="#777777"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/specialization_tv2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_11dp"
+                android:background="#ededed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_13dp"
+                android:fontFamily="@font/roboto_medium"
+                android:id="@+id/service_tv1"
+                android:text="Services"
+                android:textColor="#212121"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/service_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_3dp"
+                android:fontFamily="@font/roboto"
+                android:text="-"
+                android:textColor="#777777"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/service_tv2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_11dp"
+                android:background="#ededed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_20dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Education Details"
+                android:textColor="#212121"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal"
+                android:id="@+id/education_details_tv1"
+
+                />
+
+            <TextView
+                android:id="@+id/education_details_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_3dp"
+                android:fontFamily="@font/roboto"
+                android:text="-"
+                android:textColor="#777777"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/education_details_tv2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_11dp"
+                android:background="#ededed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_12dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Experience"
+                android:textColor="#212121"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal"
+                android:id="@+id/experiance_tv1"
+
+                />
+
+            <TextView
+                android:id="@+id/experiance_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_3dp"
+                android:fontFamily="@font/roboto"
+
+
+                android:text="-"
+                android:textColor="#777777"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/experiance_tv2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_12dp"
+                android:background="#ededed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_12dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Awards and Recognitions"
+                android:textColor="#212121"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal"
+                android:id="@+id/awards_and_recognitions_tv1"
+                />
+
+            <TextView
+                android:id="@+id/awards_and_recognitions_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_3dp"
+                android:fontFamily="@font/roboto"
+                android:text="-"
+                android:textColor="#777777"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/awards_and_recognitions_tv2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_12dp"
+                android:background="#ededed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_12dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Memberships"
+                android:textColor="#212121"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal"
+                android:id="@+id/memberships_tv1"
+                />
+
+            <TextView
+                android:id="@+id/memberships_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_3dp"
+                android:fontFamily="@font/roboto"
+                android:text="-"
+                android:textColor="#777777"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/memberships_tv2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_12dp"
+                android:background="#ededed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_12dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Registrations"
+                android:textColor="#212121"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal"
+                android:id="@+id/registrations_tv1"
+                />
+
+            <TextView
+                android:id="@+id/registrations_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_3dp"
+                android:fontFamily="@font/roboto"
+                android:text="-"
+                android:textColor="#777777"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/registrations_tv2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_20dp"
+                android:background="#ededed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_12dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Clinic Details"
+                android:textColor="#212121"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal"
+                android:id="@+id/clinic_details_tv1"
+                />
+
+            <TextView
+                android:id="@+id/clinic_details_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/_3dp"
+                android:fontFamily="@font/roboto"
+                android:text="-"
+                android:textColor="#777777"
+                android:textSize="@dimen/_14sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
 
 
     </LinearLayout>

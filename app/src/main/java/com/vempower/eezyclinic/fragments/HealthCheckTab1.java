@@ -111,15 +111,15 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                 String lunch = new_post_meal_et.getText().toString();
                 String hba1c = new_hba1c_et.getText().toString();
                 String checkuptime = new_date_tv.getText().toString();
-                if (TextUtils.isEmpty(lunch)) {
+                if (TextUtils.isEmpty(lunch) || lunch.equalsIgnoreCase("0")) {
                     Utils.showToastMessage(R.string.please_enter_lunch_value_lbl);
                     return;
                 }
-                if (TextUtils.isEmpty(fasting)) {
+                if (TextUtils.isEmpty(fasting)|| fasting.equalsIgnoreCase("0")) {
                     Utils.showToastMessage(R.string.please_enter_pasting_value_lbl);
                     return;
                 }
-                if (TextUtils.isEmpty(hba1c)) {
+                if (TextUtils.isEmpty(hba1c)|| hba1c.equalsIgnoreCase("0")) {
                     Utils.showToastMessage(R.string.please_enter_hba1c_value_lbl);
                     return;
                 }

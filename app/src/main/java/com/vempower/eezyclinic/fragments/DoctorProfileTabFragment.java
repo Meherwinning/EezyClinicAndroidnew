@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -99,6 +100,47 @@ public class DoctorProfileTabFragment extends BaseViewPagerFragment {
         (( TextView ) view.findViewById(R.id. clinic_details_tv)).setText(doctorProfileData.getClinicdetails());
 
 
+        (view.findViewById(R.id.gender_tv1)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getGender())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. nationality_tv1)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getNationality())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. language_known_tv1)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getLanguagesKnown())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. about_tv1)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getAboutDoctor())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id.  consultation_fee_tv1)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getConsultationFee())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. specialization_tv1)).setVisibility(TextUtils.isEmpty(doctorProfileData.getSpecializations())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id.  service_tv1)).setVisibility(TextUtils.isEmpty(doctorProfileData.getServices())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. education_details_tv1)).setVisibility(TextUtils.isEmpty(doctorProfileData.getEducationalQualifications())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. experiance_tv1)).setVisibility(TextUtils.isEmpty(doctorProfileData.getExperience())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id.  awards_and_recognitions_tv1)).setVisibility(TextUtils.isEmpty(doctorProfileData.getAwardsRecognitions())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. memberships_tv1)).setVisibility(TextUtils.isEmpty(doctorProfileData.getMemberships())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id.  registrations_tv1)).setVisibility(TextUtils.isEmpty(doctorProfileData.getRegistrations())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. clinic_details_tv1)).setVisibility(TextUtils.isEmpty(doctorProfileData.getClinicdetails())?View.GONE:View.VISIBLE);
+
+        (view.findViewById(R.id.gender_tv)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getGender())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. nationality_tv)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getNationality())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. language_known_tv)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getLanguagesKnown())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. about_tv)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getAboutDoctor())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id.  consultation_fee_tv)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getConsultationFee())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. specialization_tv)).setVisibility(TextUtils.isEmpty(doctorProfileData.getSpecializations())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id.  service_tv)).setVisibility(TextUtils.isEmpty(doctorProfileData.getServices())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. education_details_tv)).setVisibility(TextUtils.isEmpty(doctorProfileData.getEducationalQualifications())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. experiance_tv)).setVisibility(TextUtils.isEmpty(doctorProfileData.getExperience())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id.  awards_and_recognitions_tv)).setVisibility(TextUtils.isEmpty(doctorProfileData.getAwardsRecognitions())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. memberships_tv)).setVisibility(TextUtils.isEmpty(doctorProfileData.getMemberships())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id.  registrations_tv)).setVisibility(TextUtils.isEmpty(doctorProfileData.getRegistrations())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. clinic_details_tv)).setVisibility(TextUtils.isEmpty(doctorProfileData.getClinicdetails())?View.GONE:View.VISIBLE);
+
+
+        (view.findViewById(R.id.gender_tv2)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getGender())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. nationality_tv2)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getNationality())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. language_known_tv2)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getLanguagesKnown())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. about_tv2)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getAboutDoctor())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id.  consultation_fee_tv2)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getConsultationFee())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. specialization_tv2)).setVisibility(TextUtils.isEmpty(doctorProfileData.getSpecializations())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id.  service_tv2)).setVisibility(TextUtils.isEmpty(doctorProfileData.getServices())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. education_details_tv2)).setVisibility(TextUtils.isEmpty(doctorProfileData.getEducationalQualifications())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. experiance_tv2)).setVisibility(TextUtils.isEmpty(doctorProfileData.getExperience())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id.  awards_and_recognitions_tv2)).setVisibility(TextUtils.isEmpty(doctorProfileData.getAwardsRecognitions())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id. memberships_tv2)).setVisibility(TextUtils.isEmpty(doctorProfileData.getMemberships())?View.GONE:View.VISIBLE);
+        (view.findViewById(R.id.  registrations_tv2)).setVisibility(TextUtils.isEmpty(doctorProfileData.getRegistrations())?View.GONE:View.VISIBLE);
 
 
     }
