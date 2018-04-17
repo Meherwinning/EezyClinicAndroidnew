@@ -107,6 +107,11 @@ public class ChangeMobileNumberFragment extends AbstractFragment {
                         Utils.showToastMsg("Please enter valid mobile number");
                         return;
                     }
+
+                    if (mobileNum.length()!=10) {
+                        Utils.showToastMsg("Please enter valid mobile number");
+                        return;
+                    }
                     callChangeMobileNumberMapper(mobileNum);
                 }
 

@@ -107,7 +107,7 @@
                         android:hint="Change Mobile Number"
                         android:imeOptions="actionUnspecified"
                         android:inputType="number"
-                        android:maxLength="50"
+                        android:maxLength="10"
                         android:maxLines="1"
                         android:padding="@dimen/_2dp"
 
