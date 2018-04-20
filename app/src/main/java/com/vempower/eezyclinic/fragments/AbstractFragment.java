@@ -415,18 +415,19 @@ public abstract class AbstractFragment extends Fragment {
         getDeepChildOffset(mainParent, parentGroup.getParent(), parentGroup, accumulatedOffset);
     }
 
-    protected void displayImageInLarge(final Drawable drawable) {
+    protected void displayImageInLarge(final String imageUrl) {
 
-        if(drawable==null)
+        if(TextUtils.isEmpty(imageUrl))
         {
             Utils.showToastMsg("Invalid Image");
             return;
         }
         Intent intent= new Intent(MyApplication.getCurrentActivityContext(), ImageExpandViewActivity.class);
 
+        intent.putExtra(Constants.Pref.IMAGE_VIEW_URL_KEY,imageUrl);
         // Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),ClinicProfileActivity.class);
                /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
-        intent.putExtra(ListenerKey.ObjectKey.IMAGE_DRAWABLE_KEY,new Messenger(new AbstractIBinder(){
+        /*intent.putExtra(ListenerKey.ObjectKey.IMAGE_DRAWABLE_KEY,new Messenger(new AbstractIBinder(){
             @Override
             protected IntentObjectListener getMyObject() {
                 return new IntentObjectListener(){
@@ -437,7 +438,7 @@ public abstract class AbstractFragment extends Fragment {
                     }
                 };
             }
-        }));
+        }));*/
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
         startActivity(intent);

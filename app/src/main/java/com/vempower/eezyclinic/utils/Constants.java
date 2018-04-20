@@ -150,6 +150,8 @@ public interface Constants {
         String GRAPH_TYPE = "graph_type";
         String IS_FROM_NEW_HOME_SPESHALITY = "is_from_new_home_speshality";
         String DIPLAY_SPESHALITY_NAME = "diplay_speshality_name";
+        String IMAGE_VIEW_URL_KEY = "image_view_url_key";
+        String COUNTRY_CODE_KEY = "country_code_key";
     }
 
     interface ActivityResult

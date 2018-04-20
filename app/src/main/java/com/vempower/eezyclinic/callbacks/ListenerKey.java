@@ -22,7 +22,7 @@ public interface ListenerKey {
         String APPOINTMENT_OBJECT_KEY="appointment_object_key";
         String PATIENT_PROFILE_OBJECT_KEY="patient_profile_object_key";
 
-        String IMAGE_DRAWABLE_KEY="image_drawable_key";
+       // String IMAGE_DRAWABLE_KEY="image_drawable_key";
 
         String PDF_DETAILS_OBJECT_KEY = "pdf_details_object_key";
         String FOLLOWUP_APPOINTMENT_OBJECT_KEY="followup_appointment_object_key";

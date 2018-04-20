@@ -164,9 +164,12 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
 
 
             String address = data.getAddress();
+
             if(address!=null) {
                 address = address.replaceAll("\\r\\n", " ");
-                address_tv.setText(address);
+                String locality=TextUtils.isEmpty(data.getLocality())?"":data.getLocality();
+                String city=TextUtils.isEmpty(data.getCityName())?"":", "+data.getCityName();;
+                address_tv.setText(address+" "+locality+""+city);
             }else
             {
                 address_tv.setText("-");

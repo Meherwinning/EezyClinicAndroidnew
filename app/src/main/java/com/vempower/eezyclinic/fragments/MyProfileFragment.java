@@ -163,50 +163,7 @@ public class MyProfileFragment extends AbstractFragment {
             }
         });
 
-        getFragemtView().findViewById(R.id.image_linear).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                displayImageInLarge(patient_profile_iv1.getDrawable());
-
-            }
-        });
-
-
-
-        getFragemtView().findViewById(R.id.image_linear2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                displayImageInLarge(id_back_iv.getDrawable());
-
-            }
-        });
-        getFragemtView().findViewById(R.id.image_linear1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                displayImageInLarge(id_front_iv.getDrawable());
-
-            }
-        });
-
-        getFragemtView().findViewById(R.id.insurance_image_linear1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                displayImageInLarge(insurance_front_iv.getDrawable());
-
-            }
-        });
-        getFragemtView().findViewById(R.id.insurance_image_linear2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                displayImageInLarge(insurance_back_iv.getDrawable());
-
-            }
-        });
 
 
         // displayImageInLarge(patient_profile_iv1.getDrawable());
@@ -328,7 +285,7 @@ public class MyProfileFragment extends AbstractFragment {
 
     }
 
-    public void setProfileDataToViews(PatientProfileData data) {
+    public void setProfileDataToViews(final PatientProfileData data) {
 
         if (data == null) {
             return;
@@ -512,6 +469,54 @@ public class MyProfileFragment extends AbstractFragment {
         insurance_reason_et.setText(data.getReason());
         insurance_organisation_et.setText(data.getOrganisation());
         insurance_max_limit_et.setText(data.getMaxlimit());
+
+
+
+
+        getFragemtView().findViewById(R.id.image_linear).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                displayImageInLarge(data.getPatientlogo());
+
+            }
+        });
+
+
+
+        getFragemtView().findViewById(R.id.image_linear2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                displayImageInLarge(data.getIdcardImageBack());
+
+            }
+        });
+        getFragemtView().findViewById(R.id.image_linear1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                displayImageInLarge(data.getIdcardImageFront());
+
+            }
+        });
+
+        getFragemtView().findViewById(R.id.insurance_image_linear1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                displayImageInLarge(data.getInsuranceCardFront());
+
+            }
+        });
+        getFragemtView().findViewById(R.id.insurance_image_linear2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                displayImageInLarge(data.getInsuranceCardBack());
+
+            }
+        });
 
 
     }
@@ -967,7 +972,7 @@ public class MyProfileFragment extends AbstractFragment {
                 insurance_front_iv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        displayImageInLarge(insurance_front_iv.getDrawable());
+                        displayImageInLarge(insurance.getInsuranceCardFront());
                         //imageProcessListener.callShowImageSourceDialog(FRONT_IMAGE_ID);
                         //showImageSourceDialog(Constants.ImagePic.FROM_INSURANCE_FRONT);
                     }
@@ -978,7 +983,7 @@ public class MyProfileFragment extends AbstractFragment {
                 insurance_back_iv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        displayImageInLarge(insurance_back_iv.getDrawable());
+                        displayImageInLarge(insurance.getInsuranceCardRear());
                         //showImageSourceDialog(Constants.ImagePic.FROM_INSURANCE_BACK);
                        // imageProcessListener.callShowImageSourceDialog(BACK_IMAGE_ID);
 

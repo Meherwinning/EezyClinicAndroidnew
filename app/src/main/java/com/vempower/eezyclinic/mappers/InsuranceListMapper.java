@@ -10,6 +10,7 @@ import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Utils;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import retrofit.Call;
@@ -21,12 +22,17 @@ import retrofit.Retrofit;
  * Created by Satishk on 4/10/2017.
  */
 
-public class InsuranceListMapper extends  AbstractMapper  implements Callback<InsuranceListAPI> {
+public class InsuranceListMapper extends AbstractMapper implements Callback<InsuranceListAPI> {
 
 
     private InsuranceListListener listener;
+    private final String country;
+    //http://202.63.103.194:8003/api/search/insurance?country=1
 
 
+    public InsuranceListMapper(String country) {
+        this.country = country;
+    }
 
     public void setOnInsuranceListListener(InsuranceListListener listener) {
         if (listener == null) {
@@ -43,7 +49,7 @@ public class InsuranceListMapper extends  AbstractMapper  implements Callback<In
 
         if (!Utils.isNetworkAvailable(MyApplication
                 .getCurrentActivityContext())) {
-           // Utils.showToastMsgForNetworkNotAvalable();
+            // Utils.showToastMsgForNetworkNotAvalable();
             if (listener != null) {
                 listener.getInsuranceListAPI(null, Utils.getStringFromResources(R.string.network_not_available_lbl));
             }
@@ -57,28 +63,26 @@ public class InsuranceListMapper extends  AbstractMapper  implements Callback<In
         if (requestBody == null) {
             MyApplication.hideTransaprentDialog();
             if (listener != null) {
-                listener.getSpecalitiesAPII(null,null);
+                listener.getInsuranceListAPI(null,null);
             }
             return;
         }*/
 
-        Call<InsuranceListAPI> apiResponseCall = stashDealAPI.getInsuranceListAPI();
+        Call<InsuranceListAPI> apiResponseCall = stashDealAPI.getInsuranceListAPI(country);
 
         apiResponseCall.enqueue(this);
     }
 
     @Override
     public void onResponse(Response<InsuranceListAPI> response, Retrofit retrofit) {
-       // MyApplication.hideTransaprentDialog();
+        // MyApplication.hideTransaprentDialog();
 
         getMyResponse(response, new MyResponse<InsuranceListAPI>() {
             @Override
             public void getMyResponse(InsuranceListAPI responseBody, String errorMsg) {
-                listener.getInsuranceListAPI(responseBody,errorMsg);
+                listener.getInsuranceListAPI(responseBody, errorMsg);
             }
         });
-
-
 
 
     }
@@ -90,7 +94,7 @@ public class InsuranceListMapper extends  AbstractMapper  implements Callback<In
         onMyFailure(error, new MyResponse<InsuranceListAPI>() {
             @Override
             public void getMyResponse(InsuranceListAPI responseBody, String errorMsg) {
-                listener.getInsuranceListAPI(responseBody,errorMsg);
+                listener.getInsuranceListAPI(responseBody, errorMsg);
             }
         });
 
@@ -104,15 +108,15 @@ public class InsuranceListMapper extends  AbstractMapper  implements Callback<In
             return null;
         }*/
         //fname
-               // email
+        // email
 
         //userid(1), password(1)
-       JSONObject jsonObject = new JSONObject();
-        /* try {
-            jsonObject.put("access_key", access_key);
+        JSONObject jsonObject = new JSONObject();
+         try {
+            jsonObject.put("country", country);
         } catch (JSONException e) {
             e.printStackTrace();
-        }*/
+        }
 
         return getRequestBody(jsonObject);
     }

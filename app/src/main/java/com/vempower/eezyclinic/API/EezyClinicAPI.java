@@ -119,7 +119,7 @@ public interface EezyClinicAPI {
 
     //http://202.63.103.194:8008/api/search/insurance
     @GET(data + "search/insurance")
-    Call<InsuranceListAPI> getInsuranceListAPI();
+    Call<InsuranceListAPI> getInsuranceListAPI(@Query("country") String country);
 
 
     //http://202.63.103.194:8008/api/search/languages

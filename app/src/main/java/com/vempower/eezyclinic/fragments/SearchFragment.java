@@ -57,6 +57,7 @@ import com.vempower.eezyclinic.mappers.NationalityMapper;
 import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.mappers.SpecalitiesMapper;
 import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.CustomSpinnerSelection;
 import com.vempower.eezyclinic.views.MyAutoCompleteTextView;
@@ -186,7 +187,7 @@ public class SearchFragment extends AbstractFragment {
                 }
 
                 //MyApplication.showTransparentDialog();
-                callInsuranceAcceptedMapper();
+                callInsuranceAcceptedMapper("2");
 
 
              setToGenderSpinnerAdapter();
@@ -409,14 +410,10 @@ public class SearchFragment extends AbstractFragment {
 
     }
 
-    private void callInsuranceAcceptedMapper() {
-        if (insuranceAdapter != null) {
-            MyApplication.hideTransaprentDialog();
-            //insurance_accepted_spinner.setSelection(insuranceAdapter.getCount());
-            return;
-        }
+    private void callInsuranceAcceptedMapper(final String countryCode) {
+
         MyApplication.showTransparentDialog();
-        InsuranceListMapper mapper = new InsuranceListMapper();
+        InsuranceListMapper mapper = new InsuranceListMapper(countryCode);
         mapper.setOnInsuranceListListener(new InsuranceListMapper.InsuranceListListener() {
             @Override
             public void getInsuranceListAPI(InsuranceListAPI insuranceListAPI, String errorMessage) {
@@ -431,7 +428,7 @@ public class SearchFragment extends AbstractFragment {
 
                         @Override
                         public void retryClick() {
-                            callInsuranceAcceptedMapper();
+                            callInsuranceAcceptedMapper(countryCode);
                         }
                     });
                     return;
@@ -923,7 +920,10 @@ public class SearchFragment extends AbstractFragment {
             callCityListMapper(selectedCountry.getId());
             searchRequestParams.setCountry(selectedCountry.getId());
             namesSearch.setCountryId(selectedCountry.getId());
+            SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.COUNTRY_CODE_KEY,selectedCountry.getId());
+            callInsuranceAcceptedMapper(selectedCountry.getId());
             callDoctorsClinicNamesMapper();
+
         }
     }
 

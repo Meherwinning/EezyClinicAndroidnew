@@ -72,6 +72,7 @@ import com.vempower.eezyclinic.mappers.NationalityMapper;
 import com.vempower.eezyclinic.mappers.ProfileSaveMapper;
 import com.vempower.eezyclinic.mappers.UploadProfilePicMapper;
 import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.CustomSpinnerSelection;
 import com.vempower.eezyclinic.views.MyAutoCompleteBlackCursorTextView;
@@ -1152,39 +1153,7 @@ public class EditProfileFragment extends ImageProcessFragment {
             return;
         }*/
         //MyApplication.showTransparentDialog();
-        InsuranceListMapper mapper = new InsuranceListMapper();
-        mapper.setOnInsuranceListListener(new InsuranceListMapper.InsuranceListListener() {
-            @Override
-            public void getInsuranceListAPI(InsuranceListAPI insuranceListAPI, String errorMessage) {
-                MyApplication.hideTransaprentDialog();
-                if (!isValidResponse(insuranceListAPI, errorMessage)) {
-                    showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_insurance_list_lbl), new ApiErrorDialogInterface() {
-                        @Override
-                        public void onCloseClick() {
 
-                            ((AbstractActivity) MyApplication.getCurrentActivityContext()).finish();
-                        }
-
-                        @Override
-                        public void retryClick() {
-                            callInsuranceAcceptedMapper();
-                        }
-                    });
-                    return;
-                }
-                // insuranceNameList=insuranceListAPI.getData();
-               /* if(insuranceAdapter1==null)
-                {
-                    setToInsuranceAdapter1(insuranceListAPI.getData());
-                }
-
-                if(insuranceAdapter==null) {
-                    setToInsuranceAdapter(insuranceListAPI.getData());
-
-                }*/
-
-            }
-        });
     }
 
     public void setToInsuranceAdapter1(List<EditProfileViewInsurance> list) {

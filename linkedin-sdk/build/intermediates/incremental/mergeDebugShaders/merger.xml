@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/home/satish/Workspace/EezyClinicAndroid/linkedin-sdk/src/main/shaders"/></dataSet><dataSet config="debug"><source path="/home/satish/Workspace/EezyClinicAndroid/linkedin-sdk/src/debug/shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/home/satish/MyWorkspace/Eezyclinic_19_4_18/EezyClinicAndroid/linkedin-sdk/src/main/shaders"/></dataSet><dataSet config="debug"><source path="/home/satish/MyWorkspace/Eezyclinic_19_4_18/EezyClinicAndroid/linkedin-sdk/src/debug/shaders"/></dataSet></merger>
