@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -97,8 +98,8 @@ public class DoctorProfileTabFragment extends BaseViewPagerFragment {
         (( TextView )view.findViewById(R.id.  awards_and_recognitions_tv)).setText(doctorProfileData.getAwardsRecognitions());
         (( TextView )view.findViewById(R.id. memberships_tv)).setText(doctorProfileData.getMemberships());
         (( TextView )view.findViewById(R.id.  registrations_tv)).setText(doctorProfileData.getRegistrations());
-        (( TextView ) view.findViewById(R.id. clinic_details_tv)).setText(doctorProfileData.getClinicdetails());
-
+       // (( TextView ) view.findViewById(R.id. clinic_details_tv)).setText(doctorProfileData.getClinicdetails());
+        (( TextView ) view.findViewById(R.id. clinic_details_tv)).setText(Html.fromHtml(doctorProfileData.getClinicdetails()));
 
         (view.findViewById(R.id.gender_tv1)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getGender())?View.GONE:View.VISIBLE);
         (view.findViewById(R.id. nationality_tv1)).setVisibility(TextUtils.isEmpty(doctorProfileData.getDoctorsProfile().getNationality())?View.GONE:View.VISIBLE);

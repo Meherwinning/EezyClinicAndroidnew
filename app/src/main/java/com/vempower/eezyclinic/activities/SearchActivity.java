@@ -63,15 +63,23 @@ public class SearchActivity extends AbstractMenuActivity {
             searchFragment.refreshUI();
         }
 
-
-
         setFragment( searchFragment);
-
-
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
 
+      //  Utils.showToastMessage("Restore");
+
+        if(searchFragment!=null)
+        {
+            searchFragment.init();
+            searchFragment.refreshUI();
+
+        }
+    }
 
     public void setActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

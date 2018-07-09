@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import com.google.firebase.FirebaseApp
 import com.rey.material.app.DialogFragment
 import com.rey.material.app.SimpleDialog
 import com.vempower.eezyclinic.R
@@ -42,7 +43,7 @@ abstract class AbstractActivity : AppCompatActivity() {
         /*
 
          */
-        //FirebaseApp.initializeApp(this)
+       FirebaseApp.initializeApp(this)
         //FirebaseCrash.report(Exception("My first Android non-fatal error"));
     }
 

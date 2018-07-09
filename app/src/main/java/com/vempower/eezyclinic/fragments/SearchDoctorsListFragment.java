@@ -118,7 +118,7 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
                 }
                 if(!(requestParms.getPage().equalsIgnoreCase("1")) && (searchResultDoctorListAPI.getData()==null ||searchResultDoctorListAPI.getData().size()==0) )
                 {
-                    Utils.showToastMsg(R.string.no_more_doctors_found_lbl);
+                   // Utils.showToastMsg(R.string.no_more_doctors_found_lbl);
                     return;
 
                 }

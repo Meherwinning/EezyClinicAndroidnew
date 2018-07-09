@@ -114,7 +114,7 @@ public class DoctorProfileActivity extends AbstractMenuActivity
             @Override
             public void getDoctorProfileAPI(DoctorProfileAPI doctorProfileAPI, String errorMessage) {
                 if (!isValidResponse(doctorProfileAPI, errorMessage) || doctorProfileAPI.getData() == null) {
-                    showMyDialog("Alert", "Unable to get Doctor profile,Please try again", new ApiErrorDialogInterface() {
+                    showMyDialog("Alert", "Unable to get Doctor profile, Please try again", new ApiErrorDialogInterface() {
                         @Override
                         public void onCloseClick() {
                             finish();
@@ -354,7 +354,7 @@ public class DoctorProfileActivity extends AbstractMenuActivity
 
         //End
 
-        ImageView imageView = findViewById(R.id.profile_iv);
+        ImageView imageView = findViewById(R.id.profile_iv1);
         if (imageView != null) {
             MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, profileData.getDoctorLogo());
         }

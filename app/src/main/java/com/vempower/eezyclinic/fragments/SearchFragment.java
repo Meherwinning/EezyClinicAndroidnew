@@ -124,19 +124,40 @@ public class SearchFragment extends AbstractFragment {
         refreshUI();
     }
 
-    private void init() {
+    public void init() {
+        insuranceAdapter=null;
+        nationalityAdapter=null;
+        languageAdapter=null;
+        googlePlacesAutocompleteAdapter=null;
+        namesSearch = new DoctorClinicNamesSearch();
+
+
         addressAutoCompleteTextView = getFragemtView().findViewById(R.id.google_places_actv);
+        addressAutoCompleteTextView.setText("");
+
         speciality_actv = getFragemtView().findViewById(R.id.speciality_actv);
+        speciality_actv.setText(null);
+
         doctor_clinic_names_actv = getFragemtView().findViewById(R.id.doctor_clinic_names_actv);
+        doctor_clinic_names_actv.setText("");
+
         doctor_clinic_names_actv.addTextChangedListener(doctorClinicNameTextWatcher);
+        doctor_clinic_names_actv.setText("");
+
         country_spinner = getFragemtView().findViewById(R.id.country_spinner);
+
+
+
+
         insurance_accepted_spinner = getFragemtView().findViewById(R.id.insurance_accepted_spinner);
         nationality_spinner = getFragemtView().findViewById(R.id.nationality_spinner);
         gender_type_spinner = getFragemtView().findViewById(R.id.gender_spinner);
         language_spinner = getFragemtView().findViewById(R.id.language_spinner);
         advance_search_linear = getFragemtView().findViewById(R.id.advance_search_linear);
         city_type_spinner = getFragemtView().findViewById(R.id.city_type_spinner);
-        namesSearch = new DoctorClinicNamesSearch();
+
+
+
         searchRequestParams = new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
 
         search_bt = getFragemtView().findViewById(R.id.search_bt);
@@ -201,6 +222,8 @@ public class SearchFragment extends AbstractFragment {
         setInitForGooglePlacesAutocompleteTextView();
         MyApplication.showTransparentDialog();
         callSpecialityMapper();
+
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

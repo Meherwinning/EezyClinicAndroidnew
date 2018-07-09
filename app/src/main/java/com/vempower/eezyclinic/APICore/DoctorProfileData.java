@@ -365,10 +365,10 @@ public class DoctorProfileData {
         {
             return details;
         }
-        details="\nClinic Name: "+clinicname+"\n\n";
-        details=details+"Clinic Address: "+clinicdetails.getClinic_address()+"\n\n";
-        details=details+"Clinic Time: "+clinicdetails.getClinictimings()+"\n\n";
-        details=details+"Doctor Time: "+clinicdetails.getDoctortimings()+"\n";
+        details="<br>Clinic Name: <b>"+clinicname+"</b><br><br>";
+        details=details+"Clinic Address: "+clinicdetails.getClinic_address()+"<br><br>";
+        details=details+"Clinic Time: "+clinicdetails.getClinictimings()+"<br><br>";
+        details=details+"Doctor Time: "+clinicdetails.getDoctortimings()+"<br><br>";
         details=details+"Contact: "+clinicdetails.getContact()+"";
 
 

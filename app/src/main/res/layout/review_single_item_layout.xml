@@ -86,15 +86,15 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_marginRight="@dimen/_8dp"
+            android:layout_marginRight="@dimen/_9dp"
             android:layout_gravity="center"
             android:orientation="vertical"
             android:layout_height="match_parent">
 
              <TextView                    android:fontFamily="@font/roboto"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
+                android:gravity="center"
                 android:paddingTop="@dimen/_3dp"
                 android:paddingBottom="@dimen/_3dp"
                 android:textSize="@dimen/_12sp"
@@ -105,9 +105,8 @@
                 />
             <me.zhanghai.android.materialratingbar.MaterialRatingBar
                 android:id="@+id/waiting_time_rating"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_3dp"
                 app:mrb_progressTint="#ffc400"
                 app:mrb_fillBackgroundStars="true"
                 android:layout_gravity="center"
@@ -136,13 +135,13 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_marginRight="@dimen/_8dp"
+            android:layout_marginRight="@dimen/_9dp"
             android:layout_gravity="center"
             android:orientation="vertical"
             android:layout_height="match_parent">
 
              <TextView                    android:fontFamily="@font/roboto"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                  android:layout_gravity="center"
@@ -158,9 +157,8 @@
                 />
             <me.zhanghai.android.materialratingbar.MaterialRatingBar
                 android:id="@+id/diagnasis_ratingbar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_3dp"
                 app:mrb_progressTint="#ffc400"
                 app:mrb_fillBackgroundStars="true"
                 android:layout_gravity="center"
@@ -189,13 +187,13 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_marginRight="@dimen/_8dp"
+            android:layout_marginRight="@dimen/_9dp"
             android:layout_gravity="center"
             android:orientation="vertical"
             android:layout_height="match_parent">
 
              <TextView                    android:fontFamily="@font/roboto"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                  android:layout_gravity="center"
@@ -211,9 +209,8 @@
                 />
             <me.zhanghai.android.materialratingbar.MaterialRatingBar
                 android:id="@+id/customer_service_rating_bar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_3dp"
                 app:mrb_progressTint="#ffc400"
                 app:mrb_fillBackgroundStars="true"
                 android:layout_gravity="center"

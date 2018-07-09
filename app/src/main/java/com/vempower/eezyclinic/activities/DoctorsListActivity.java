@@ -232,18 +232,20 @@ public class DoctorsListActivity extends AbstractMenuActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+        //finish();
        /* if(!isShowFilterIcon && !isClinicListShow)
         {
             buttonClick();
             return false;
         }*/
-       finishScreen();
+      // finishScreen();
         return true;
     }
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
+        //finish();
+       // super.onBackPressed();
         /*if(!isShowFilterIcon && !isClinicListShow)
         {
             buttonClick();
@@ -274,7 +276,7 @@ public class DoctorsListActivity extends AbstractMenuActivity {
                 break;
             case ViewState.DOCTORS_MAP_VIEW:
                 if(isOppisitViewShow)
-                {
+                          {
                     onDoctorsListClick();
 
                 }else
@@ -536,12 +538,12 @@ public class DoctorsListActivity extends AbstractMenuActivity {
     }
 
     protected void finishScreen() {
-        if (!isBackArrowPressed) {
+       /* if (!isBackArrowPressed) {
             showToastMessage(getResources().getString(R.string.press_again_to_exit_from_search));
             isBackArrowPressed = true;
             autoStopBackPressCallback();
             return;
-        }
+        }*/
         finish();
     }
     public void setActionBar() {
