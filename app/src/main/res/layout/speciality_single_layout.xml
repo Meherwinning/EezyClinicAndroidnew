@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/_80dp"
+    android:layout_width="match_parent"
+    android:minWidth="@dimen/_80dp"
     android:layout_height="wrap_content"
-    android:padding="@dimen/_3dp"
+    android:padding="@dimen/_2dp"
     android:background="@color/transparent"
     android:orientation="vertical">
     <LinearLayout
@@ -12,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:gravity="left|top"
-        android:background="@drawable/canvas_65x65"
+        android:background="@drawable/canvas_70x70"
 
         >
 
@@ -20,13 +21,13 @@
             android:id="@+id/new_home_speciality_iv"
             style="@style/image_fit_toparent"
             android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
             />
     </LinearLayout>
     <TextView                    android:fontFamily="@font/roboto"
         android:id="@+id/item_name_tv"
         android:layout_width="match_parent"
         android:maxLines="4"
-        android:text="sfsdfsdf"
         android:textSize="@dimen/_13dp"
         android:textColor="@color/white"
         android:gravity="top|center_horizontal"

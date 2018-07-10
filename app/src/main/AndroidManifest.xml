@@ -308,12 +308,11 @@
         <activity android:name=".activities.FilterActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
+
             android:theme="@style/DialogTheme2"
             android:windowSoftInputMode="stateHidden|adjustResize|adjustPan" />
 
         <activity android:name=".activities.ImageExpandViewActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/MyDialogTheme"
              />
 
@@ -521,7 +520,6 @@
         <activity
             android:name=".activities.MedicalHistoryEditDialogActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
-            android:screenOrientation="portrait"
             android:theme="@style/DialogTheme2" />
 
 

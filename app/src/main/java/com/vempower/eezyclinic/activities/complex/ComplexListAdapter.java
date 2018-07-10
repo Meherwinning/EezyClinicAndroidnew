@@ -139,7 +139,7 @@ public class ComplexListAdapter extends RecyclerAdapter {
     //addDataManager(new DataItemManager<>(this, DummyDataProvider.getAdvertisementThree()));
 
     registerBinder(new HeaderBinder());
-    registerBinder(new GridItemBinder(convertDpToPixel(MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._5dp), MyApplication.getCurrentActivityContext()), new GridItemBinder.ExpandColapseButtonListener(){
+    registerBinder(new GridItemBinder(/*convertDpToPixel(MyApplication.getCurrentActivityContext().getResources().getDimension(R.dimen._3dp), MyApplication.getCurrentActivityContext())*/0, new GridItemBinder.ExpandColapseButtonListener(){
         @Override
         public void onClick(boolean isExpand) {
             if(isExpand) {

@@ -101,7 +101,7 @@ public class AppointmentMapFragment extends AbstractMapFragment/*, GoogleMap.OnM
             options.position(latLng);
             options.icon(bitmapDescriptor);
             options.title(appointment.getDoctorName());
-            String snippet = appointment.getSpecalities() + "\n" + appointment.getAddress();
+            String snippet = appointment.getSpecalities() + ", " + appointment.getAddress();
             options.snippet(snippet);
             options.zIndex(Float.parseFloat(appointment.getId()));
 
