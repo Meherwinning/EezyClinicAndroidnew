@@ -32,9 +32,11 @@ import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyRemainData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.TestSliderActivity;
+import com.vempower.eezyclinic.core.DoctorsPair;
 import com.vempower.eezyclinic.fragments.FirstFragment;
 import com.vempower.eezyclinic.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.internal.Util;
@@ -42,16 +44,79 @@ import okhttp3.internal.Util;
 public class ArticleBinder1 extends ItemBinder<NewHomeDoctorsList, ArticleBinder1.ViewHolder> {
 
   private FragmentManager fragmentManager;
-  private List<NewHomeDoctorsList> doctorsLists;
+  //private List<NewHomeDoctorsList> doctorsLists;
+    private List<DoctorsPair> doctorsPairLists;
   private  ViewHolder holder;
  // FragmentPagerAdapter adapterViewPager;
   public static ArticleBinder1 articleBinder1;
   public ArticleBinder1(List<NewHomeDoctorsList> doctorsLists, ItemDecorator itemDecorator, FragmentManager fragmentManager) {
     super(itemDecorator);
     this.fragmentManager=fragmentManager;
-    this.doctorsLists=doctorsLists;
+    this.doctorsPairLists=getDoctorsPairLists(doctorsLists);
 
   }
+
+  private List<DoctorsPair> getDoctorsPairLists(List<NewHomeDoctorsList> doctorsLists)
+  {
+      ArrayList<DoctorsPair> list= new ArrayList<>();
+      if(doctorsLists==null || doctorsLists.size()==0) {
+          return list;
+      }
+      //NewHomeDoctorsList> doctorsLists;
+      DoctorsPair temp=null;
+      for(NewHomeDoctorsList doc:doctorsLists)
+      {
+          if(doc==null)
+          {
+              continue;
+          }
+          if(temp==null)
+          {
+              temp= new DoctorsPair();
+              temp.setDoc1(doc);
+              continue;
+          }
+          temp.setDoc2(doc);
+          list.add(temp.getCloneObject());
+          temp=null;
+
+      }
+
+      if(temp!=null)
+      {
+          list.add(temp.getCloneObject());
+      }
+
+
+      return list;
+  }
+
+    /*class DoctorsPair  implements  Cloneable{
+      public  NewHomeDoctorsList doc1,doc2;
+
+        public NewHomeDoctorsList getDoc1() {
+            return doc1;
+        }
+
+        public void setDoc1(NewHomeDoctorsList doc1) {
+            this.doc1 = doc1;
+        }
+
+        public NewHomeDoctorsList getDoc2() {
+            return doc2;
+        }
+
+        public void setDoc2(NewHomeDoctorsList doc2) {
+            this.doc2 = doc2;
+        }
+
+        public DoctorsPair getCloneObject() {
+            DoctorsPair other= new DoctorsPair();
+            other.doc1=this.doc1 ;
+            other.doc2= this.doc2;
+            return other;
+        }
+    }*/
 
   /*public static ArticleBinder1 getArticleBinder1(List<NewHomeDoctorsList> doctorsLists, ItemDecorator itemDecorator, FragmentManager fragmentManager)
   {
@@ -116,7 +181,7 @@ public class ArticleBinder1 extends ItemBinder<NewHomeDoctorsList, ArticleBinder
         //vpPager.setOffscreenPageLimit(20);
         //vpPager.setPageMargin(12);
      // if(adapterViewPager==null) {
-            adapterViewPager = new MyPagerAdapter(fragmentManager,doctorsLists);
+            adapterViewPager = new MyPagerAdapter(fragmentManager,doctorsPairLists);
             vpPager.setAdapter(adapterViewPager);
       /*}else
      {
@@ -148,43 +213,45 @@ public class ArticleBinder1 extends ItemBinder<NewHomeDoctorsList, ArticleBinder
 
   private  class MyPagerAdapter extends FragmentPagerAdapter {
     //private  int NUM_ITEMS = doctorsLists.size();
-    private List<NewHomeDoctorsList> myDoctorsLists;
-    public MyPagerAdapter(FragmentManager fragmentManager,List<NewHomeDoctorsList> doctorsLists) {
+    private List<DoctorsPair> myDoctorsPairs;
+    public MyPagerAdapter(FragmentManager fragmentManager,List<DoctorsPair> doctorsPairs) {
       super(fragmentManager);
-      this.myDoctorsLists=doctorsLists;
+      this.myDoctorsPairs=doctorsPairs;
     }
 
-    public void setUpdatedList(List<NewHomeDoctorsList> newList) {
+    public void setUpdatedList(List<DoctorsPair> newList) {
       if (newList == null || newList.size() == 0) {
-        if (this.myDoctorsLists == null) {
+        if (this.myDoctorsPairs == null) {
           return;
         }
-        this.myDoctorsLists.clear();
+        this.myDoctorsPairs.clear();
         notifyDataSetChanged();
 
         return;
       }
-      this.myDoctorsLists = newList;
+      this.myDoctorsPairs = newList;
       notifyDataSetChanged();
     }
 
 
-    @Override
+   /* @Override
     public float getPageWidth (int position) {
       return 0.55f;
       //return 0.93f;
-    }
+    }*/
+
+
 
     // Returns total number of pages
     @Override
     public int getCount() {
-      return myDoctorsLists==null?0:myDoctorsLists.size();
+      return myDoctorsPairs==null?0:myDoctorsPairs.size();
     }
 
     // Returns the fragment to display for that page
     @Override
     public Fragment getItem(int position) {
-      return new FirstFragment(myDoctorsLists.get(position));
+      return new FirstFragment(myDoctorsPairs.get(position));
             /*switch (position) {
                 case 0: // Fragment # 0 - This will show FirstFragment
                     return FirstFragment.newInstance(position, "Page # 1");
