@@ -982,9 +982,10 @@ public class SearchFragment extends AbstractFragment {
 
 
         //HintAdapter aa = new HintAdapter<DoctorClinicNameData>(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, doctorClinicNameList);
-final CustomerAdapter aa= new CustomerAdapter<DoctorClinicNameData>(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, doctorClinicNameList);
+final CustomerAdapter aa= new CustomerAdapter<DoctorClinicNameData>(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, doctorClinicNameList,false);
 
         doctor_clinic_names_actv.setAdapter(aa);
+
         // speciality_actv.setSelection(aa.getCount());
 
 
@@ -1017,7 +1018,7 @@ final CustomerAdapter aa= new CustomerAdapter<DoctorClinicNameData>(MyApplicatio
 
        // HintAdapter aa = new HintAdapter<SpecalitiyData>(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, dataList);
         //Context context, int viewResourceId, ArrayList<T> items
-      final  CustomerAdapter aa= new CustomerAdapter(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, dataList);
+      final  CustomerAdapter aa= new CustomerAdapter(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, dataList,false);
         speciality_actv.setAdapter(aa);
 
 

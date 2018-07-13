@@ -87,12 +87,12 @@ public class DoctorProfileActivity extends AbstractMenuActivity
 
             // showToastMessage("Data :" + data);
         } else {
-            showMyAlertDialog("Alert", "Invalid Doctor profile.Please try again", "Close", true);
+            showMyAlertDialog("Sorry", "Doctor’s full profile is not updated", "Close", true);
             return;
         }
 
         if (data == null) {
-            showMyAlertDialog("Alert", "Invalid Doctor profile.Please try again", "Close", true);
+            showMyAlertDialog("Sorry", "Doctor’s full profile is not updated", "Close", true);
             return;
 
         }

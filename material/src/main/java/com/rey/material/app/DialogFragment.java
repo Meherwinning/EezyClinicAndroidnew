@@ -82,7 +82,8 @@ public class DialogFragment extends android.support.v4.app.DialogFragment{
         Dialog dialog = mBuilder == null ? new Dialog(getActivity()) : mBuilder.build(getActivity());
         dialog.positiveActionClickListener(mActionListener)
                 .negativeActionClickListener(mActionListener)
-                .neutralActionClickListener(mActionListener);
+                .neutralActionClickListener(mActionListener)
+                .setCanceledOnTouchOutside(false);
         return dialog;
     }
 

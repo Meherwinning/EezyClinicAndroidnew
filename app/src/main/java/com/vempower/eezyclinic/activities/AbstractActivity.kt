@@ -3,6 +3,7 @@ package com.vempower.eezyclinic.activities
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -154,6 +155,9 @@ abstract class AbstractActivity : AppCompatActivity() {
     }
     protected fun showMyAlertDialog(title: String, message: String,buttonName: String, isFinish: Boolean) {
         val builder = object : SimpleDialog.Builder(R.style.SimpleDialogLight) {
+
+
+
             override fun onPositiveActionClicked(fragment: DialogFragment) {
                 //Toast.makeText(mActivity, "Agreed", Toast.LENGTH_SHORT).show();
                 super.onPositiveActionClicked(fragment)
@@ -167,6 +171,15 @@ abstract class AbstractActivity : AppCompatActivity() {
 
             }
 
+            override fun onCancel(dialog: DialogInterface?) {
+                super.onCancel(dialog)
+                if(isFinish)
+                {
+                    finish();
+                }
+            }
+
+
             /*override fun onNegativeActionClicked(fragment: DialogFragment) {
                 //Toast.makeText(mActivity, "Disagreed", Toast.LENGTH_SHORT).show();
                 super.onNegativeActionClicked(fragment)
@@ -177,9 +190,16 @@ abstract class AbstractActivity : AppCompatActivity() {
         (builder as SimpleDialog.Builder).message(message)
                 .title(title)
                 .positiveAction(buttonName)
+
+
+
+
+
+
                // .negativeAction("Close")
 
         val fragment = DialogFragment.newInstance(builder)
+
         //fragment.show(this.fragmentManager,"")
         fragment?.show(supportFragmentManager, null)
     }

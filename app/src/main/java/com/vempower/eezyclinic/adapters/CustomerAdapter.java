@@ -8,18 +8,31 @@ import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.TextView;
 
+import com.vempower.eezyclinic.APICore.PrescriptionAPIData;
 import com.vempower.eezyclinic.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerAdapter<T> extends ArrayAdapter<T> {
+    private final Object lock = new Object();
     private boolean isEnableHint;
     private final String MY_DEBUG_TAG = "CustomerAdapter";
     private List<T> items;
-    private List<T> itemsAll;
+    private final List<T> itemsAll;
     private List<T> suggestions;
     private int viewResourceId;
+
+    public CustomerAdapter(Context context, int viewResourceId, List<T> items, boolean isHintEnable) {
+        super(context, viewResourceId, items);
+        this.items = items;
+        // this.itemsAll = (ArrayList<T>) items.clone();
+        this.itemsAll = new ArrayList<>();
+        itemsAll.addAll(items);
+        this.suggestions = new ArrayList<T>();
+        this.viewResourceId = viewResourceId;
+        isEnableHint = isHintEnable;
+    }
 
 
     public CustomerAdapter(Context context, int viewResourceId, List<T> items) {
@@ -54,6 +67,7 @@ public class CustomerAdapter<T> extends ArrayAdapter<T> {
     public int getCount() {
         // don't display last item. It is used as hint.
         int count = super.getCount();
+        // return count;
         if (isEnableHint) {
 
             return count > 0 ? count - 1 : count;
@@ -76,25 +90,28 @@ public class CustomerAdapter<T> extends ArrayAdapter<T> {
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
+            // isEnableHint=false;
             FilterResults filterResults = new FilterResults();
+
+
             if (constraint != null) {
                 suggestions.clear();
-                T temp=null;
+                T temp = null;
                 for (T customer : itemsAll) {
                     if (customer == null) {
                         continue;
                     }
-                   String str1= customer.toString().toLowerCase().trim().replaceAll(" ","");
-                    String str2= constraint.toString().toLowerCase().trim().replaceAll(" ","");
-                    if ( str1.contains(str2)  ||  str1.startsWith(str2)  ||  str2.contains(str1) || str2.startsWith(str1)) {
+                    String str1 = customer.toString().toLowerCase().trim().replaceAll(" ", "");
+                    String str2 = constraint.toString().toLowerCase().trim().replaceAll(" ", "");
+                    if (str1.contains(str2) || str1.startsWith(str2) || str2.contains(str1) || str2.startsWith(str1)) {
                         suggestions.add(customer);
-                        temp=customer;
+                        temp = customer;
                     }
                 }
-                if(temp!=null && suggestions.size()>0)
-                {
-                    suggestions.add(suggestions.size(),temp);
+                if (temp != null && suggestions.size() > 0) {
+                    suggestions.add(suggestions.size(), temp);
                 }
+
                 //suggestions.add(new T());
                 filterResults.values = suggestions;
                 filterResults.count = suggestions.size();
@@ -105,15 +122,34 @@ public class CustomerAdapter<T> extends ArrayAdapter<T> {
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            ArrayList<T> filteredList = (ArrayList<T>) results.values;
+
             if (results != null && results.count > 0) {
                 clear();
-                addAll(filteredList);
+                setUpdatedList((ArrayList<T>) results.values);
+
+                //notifyDataSetChanged();
+                // items= (ArrayList<T>) results.values;
+                // addAll((ArrayList<T>) results.values);
                 /*for (T c : filteredList) {
                     add(c);
                 }*/
-                notifyDataSetChanged();
+                //  notifyDataSetChanged();
+                if (results.count > 0)
+                    notifyDataSetChanged();
+                else
+                    notifyDataSetInvalidated();
             }
         }
     };
+
+
+    public void setUpdatedList(List<T> newList) {
+        if (newList == null || newList.size() == 0) {
+            clear();
+            notifyDataSetChanged();
+            return;
+        }
+        addAll(newList);
+        notifyDataSetChanged();
+    }
 }
