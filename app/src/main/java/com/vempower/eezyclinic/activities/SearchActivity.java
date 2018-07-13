@@ -67,7 +67,7 @@ public class SearchActivity extends AbstractMenuActivity {
 
     }
 
-    @Override
+   /* @Override
     protected void onRestart() {
         super.onRestart();
 
@@ -79,7 +79,7 @@ public class SearchActivity extends AbstractMenuActivity {
             searchFragment.refreshUI();
 
         }
-    }
+    }*/
 
     public void setActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

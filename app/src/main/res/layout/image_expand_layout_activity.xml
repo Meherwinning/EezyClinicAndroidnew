@@ -3,54 +3,72 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
 
-    android:background="@color/transparent"
+    android:background="#ffffff"
+    android:layout_margin="@dimen/_10sp"
     android:padding="@dimen/_10dp"
+    android:id="@+id/image_relative"
     android:layout_gravity="center"
+    android:layout_centerInParent="true"
+    android:gravity="center"
 
     android:layout_height="wrap_content">
 
 
+
+
+        <ImageView
+            android:id="@+id/expand_iv"
+            android:layout_centerInParent="true"
+
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/close_iv"
+            />
+
+        <ImageView
+            android:id="@+id/close_iv"
+            android:paddingLeft="@dimen/_30sp"
+            android:paddingRight="@dimen/_5sp"
+            android:paddingBottom="@dimen/_10sp"
+            android:paddingTop="@dimen/_5sp"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/profile_popup_close_button" />
+
+
+
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
 
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/background_fenced_transparent"
+        android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/_5dp">
 
 
         <RelativeLayout
-            android:layout_above="@+id/image_relative"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/image_relative"
             android:layout_gravity="right"
-            android:gravity="right"
-            android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/close_iv"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/profile_popup_close_button" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/image_relative"
-            android:layout_width="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:layout_height="wrap_content"
-           >
-
+            android:gravity="right">
 
             <ImageView
-                android:id="@+id/expand_iv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_launcher" />
 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/profile_popup_close_button"
+                android:visibility="gone" />
         </RelativeLayout>
+
+
+
     </LinearLayout>
 </RelativeLayout>

@@ -526,7 +526,7 @@
                                 android:layout_marginBottom="@dimen/_2dp"
                                 android:background="@null"
                                 android:gravity="left|center_vertical"
-                                android:hint="Langueges Known"
+                                android:hint="Languages Known"
                                 android:imeOptions="actionUnspecified"
                                 android:inputType="text"
                                 android:maxLength="100"

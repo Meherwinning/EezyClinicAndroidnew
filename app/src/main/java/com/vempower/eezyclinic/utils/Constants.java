@@ -112,6 +112,7 @@ public interface Constants {
             {
                // return "http://202.63.103.194:8008";
                 return "http://202.63.103.194:8003";
+               // return "https://dev.v-empower.com:81";
             }else
             {
                 return "https://www.stashdeal.com";

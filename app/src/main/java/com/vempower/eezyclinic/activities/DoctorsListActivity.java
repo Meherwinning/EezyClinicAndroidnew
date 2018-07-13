@@ -238,7 +238,7 @@ public class DoctorsListActivity extends AbstractMenuActivity {
             buttonClick();
             return false;
         }*/
-      // finishScreen();
+       finishScreen();
         return true;
     }
 

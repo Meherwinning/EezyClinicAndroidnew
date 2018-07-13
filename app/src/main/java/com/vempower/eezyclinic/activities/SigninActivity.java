@@ -80,7 +80,8 @@ public class SigninActivity extends AbstractSocialLoginActivity {
             @Override
             public void onClick(View view) {
 
-               /* if(false)
+               /*
+               if(false)
                 {
                     Intent intent= new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -93,7 +94,8 @@ public class SigninActivity extends AbstractSocialLoginActivity {
                 if(false) {
                     generateHashkey();
                     return;
-                }*/
+                }
+                */
 
                 if (isNotValidLoginDetails()) {
 

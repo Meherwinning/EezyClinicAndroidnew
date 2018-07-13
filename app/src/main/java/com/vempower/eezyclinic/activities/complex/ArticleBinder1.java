@@ -194,6 +194,13 @@ public class ArticleBinder1 extends ItemBinder<NewHomeDoctorsList, ArticleBinder
         vpPager.refreshDrawableState();
         vpPager.computeScroll();
 
+        vpPager.setClipToPadding(false);
+       // vpPager.setPadding(0,0,0,0);
+
+        vpPager.setPadding(40, 0, 40, 0);
+        // sets a margin b/w individual pages to ensure that there is a gap b/w them
+        vpPager.setPageMargin(20);
+
 
      // }
      // {

@@ -21,6 +21,8 @@
 
     <color name="button_text_color">#00b4ef</color>
 
+    <color name="transparent1">#77fffcfc</color>
+
 
 
     <!--Start Social login -->

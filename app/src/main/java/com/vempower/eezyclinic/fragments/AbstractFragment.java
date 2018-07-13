@@ -356,8 +356,12 @@ public abstract class AbstractFragment extends Fragment {
                 .negativeAction("Close");
         DialogFragment fragment = DialogFragment.newInstance(builder);
         fragment.setCancelable(false);
-        fragment.show(getChildFragmentManager(), null);
-        fragment.dismissAllowingStateLoss();
+        if(fragment.isAdded()) {
+            fragment.show(getChildFragmentManager(), null);
+            fragment.dismissAllowingStateLoss();
+        }
+
+
 
     }
 
