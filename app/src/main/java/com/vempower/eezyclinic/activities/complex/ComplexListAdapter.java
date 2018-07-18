@@ -286,7 +286,8 @@ public class ComplexListAdapter extends RecyclerAdapter {
               {
                   NewHomeSpeciality moreData= new NewHomeSpeciality();
                   //moreData.setMoreButton(true);
-                  moreData.setButtonType(SpecalitiyData.ButtonType.MORE);
+                  moreData.setButtonType(NewHomeSpeciality.ButtonType.MORE);
+                  remainingList.add(data) ;
                   displayList.add(moreData);
                  continue;
 
@@ -335,10 +336,11 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
                   //moreData.setMoreButton(true);
 
-                  moreData.setButtonType(SpecalitiyData.ButtonType.MORE);
+                  moreData.setButtonType(NewHomeSpeciality.ButtonType.MORE);
                   displayList.add(moreData);
                   addedCount++;
                   isMoreButtonAdded=true;
+                  tempList.add(data);
                   continue;
                   //break;
 
@@ -364,7 +366,7 @@ public class ComplexListAdapter extends RecyclerAdapter {
           //moreData.setMoreButton(true);
           displayList.remove(moreData);
            moreData= new NewHomeSpeciality();
-          moreData.setButtonType(SpecalitiyData.ButtonType.LESS);
+          moreData.setButtonType(NewHomeSpeciality.ButtonType.LESS);
           displayList.add(moreData);
       }
       remainingList=tempList;

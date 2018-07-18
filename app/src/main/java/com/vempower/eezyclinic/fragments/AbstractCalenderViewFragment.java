@@ -176,7 +176,7 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
        // widget.setDynamicHeightEnabled(true);
         widget.setShowOtherDates(MaterialCalendarView.SHOW_OUT_OF_RANGE);
         widget.setTopbarVisible(false);
-        widget.setTileHeightDp((int)getResources().getDimension(R.dimen._11dp));
+        //widget.setTileHeightDp((int)getResources().getDimension(R.dimen._11dp));
 
         widget.setSelectionMode(MaterialCalendarView.SELECTION_MODE_SINGLE);
 
@@ -289,6 +289,7 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
                     return getDiabledDateAndtime();
                 }
             });
+            recyclerView.setNestedScrollingEnabled(false);
 
             recyclerView.setAdapter(adapter);
         } else {

@@ -62,8 +62,8 @@ import retrofit.http.Query;
  */
 
 public interface EezyClinicAPI {
-   // String data = "/eezyclinic-git/api/";
-    String data = "/api/";
+    String data = "/eezyclinic-git/api/";
+   // String data = "/api/";
 
 
     //http://202.63.103.194:8008/api/patient/signin

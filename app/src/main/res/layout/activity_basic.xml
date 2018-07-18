@@ -9,145 +9,162 @@
     android:orientation="vertical"
 
     >
-    <LinearLayout
+
+    <!--<ScrollView
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_above="@+id/conform_time_bt"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:fillViewport="true">-->
 
 
-    <!-- <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_weight="1"
-         android:background="@drawable/app_gradient_bg"
-         android:layout_height="0dp">-->
     <LinearLayout
+        android:id="@+id/top_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/app_gradient_bg"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/_5dp"
-        android:paddingLeft="@dimen/_20dp"
-        android:paddingRight="@dimen/_20dp">
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
 
-        <include layout="@layout/cal_top_bar_view"></include>
 
-        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-            android:id="@+id/calendarView"
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:mcv_allowClickDaysOutsideCurrentMonth="true"
-            app:mcv_dateTextAppearance="@style/my_TextAppearance.MaterialCalendarWidget.Date"
-            app:mcv_selectionColor="@color/white"
-            app:mcv_titleAnimationOrientation="horizontal"
-            app:mcv_firstDayOfWeek="saturday"
-            app:mcv_weekDayTextAppearance="@style/my_TextAppearance.MaterialCalendarWidget.WeekDay" />
-    </LinearLayout>
-
-    <!--</LinearLayout>-->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-
-        android:padding="@dimen/_1dp">
-        <include
-            android:id="@+id/middle_tab"
-            android:layout_width="match_parent"
-            android:background="@color/transparent"
-            android:layout_height="@dimen/_45dp"
-            android:layout_alignParentTop="true"
-            layout="@layout/calender_middle_tab"></include>
-        <TextView
-            android:layout_below="@+id/middle_tab"
-            android:id="@+id/devider_view"
-            android:layout_marginTop="@dimen/_4dp"
-            android:layout_width="match_parent"
-            android:layout_marginBottom="@dimen/_3dp"
-            android:alpha="0.4"
-            android:background="@color/dash_board_text_color"
-
-            android:layout_height="1dp" />
-        <TextView
-            android:visibility="gone"
-            android:layout_below="@+id/devider_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
+        <!-- <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_weight="1"
+             android:background="@drawable/app_gradient_bg"
+             android:layout_height="0dp">-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/devider_view"
-            android:layout_centerHorizontal="true"
+            android:background="@drawable/app_gradient_bg"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/_20dp"
+            android:paddingRight="@dimen/_20dp"
+            android:paddingBottom="@dimen/_3dp">
+
+            <include layout="@layout/cal_top_bar_view"></include>
+
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                android:id="@+id/calendarView"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:mcv_allowClickDaysOutsideCurrentMonth="true"
+                app:mcv_dateTextAppearance="@style/my_TextAppearance.MaterialCalendarWidget.Date"
+                app:mcv_firstDayOfWeek="saturday"
+                app:mcv_selectionColor="@color/white"
+                app:mcv_tileHeight="@dimen/_30dp"
+                app:mcv_tileSize="match_parent"
+                app:mcv_tileWidth="match_parent"
+                app:mcv_titleAnimationOrientation="horizontal"
+                app:mcv_weekDayTextAppearance="@style/my_TextAppearance.MaterialCalendarWidget.WeekDay" />
+        </LinearLayout>
+
+        <include
+            android:id="@+id/middle_tab"
+            layout="@layout/calender_middle_tab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/transparent"></include>
+
+        <TextView
+            android:id="@+id/devider_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_4dp"
+            android:layout_marginBottom="@dimen/_3dp"
+            android:alpha="0.4"
+
+            android:background="@color/dash_board_text_color" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_linear"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+
+        android:padding="@dimen/_1dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:fillViewport="true"
+            android:layout_alignParentBottom="true"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/time_slots_liner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
             android:layout_marginTop="@dimen/_3dp"
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_below="@+id/top_linear"
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
                 <android.support.v4.widget.SwipeRefreshLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
                     android:id="@+id/swipeContainer"
-                    >
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
                     <com.vempower.eezyclinic.views.AutoFitFixedRecyclerView
                         android:id="@+id/recycler_view"
                         android:layout_width="match_parent"
-                        android:columnWidth="@dimen/_85dp"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:columnWidth="@dimen/_85dp">
 
                     </com.vempower.eezyclinic.views.AutoFitFixedRecyclerView>
+
+
                 </android.support.v4.widget.SwipeRefreshLayout>
 
+
+
                 <TextView
-                    android:fontFamily="@font/roboto"
                     android:id="@+id/no_matching_result_tv"
                     android:layout_width="wrap_content"
-                    android:visibility="gone"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_16sp"
-
                     android:layout_centerInParent="true"
-                    android:textStyle="normal"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/no_time_slots_available_lbl"
+
                     android:textColor="#5d5d5d"
-                    android:text="@string/no_time_slots_available_lbl" />
+                    android:textSize="@dimen/_16sp"
+                    android:textStyle="normal"
+                    android:visibility="gone" />
             </RelativeLayout>
+            <Button
+                android:id="@+id/conform_time_bt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_48dp"
+                android:layout_marginLeft="@dimen/_24dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_24dp"
+                android:layout_marginBottom="@dimen/_5dp"
+                android:background="@drawable/button_bg"
+                android:clickable="true"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:padding="@dimen/_4dp"
 
+                android:text="Confirm Time"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/_16sp"
+                android:textStyle="normal"
 
+                />
 
 
         </LinearLayout>
-
+        </ScrollView>
     </RelativeLayout>
-    </LinearLayout>
-    <Button
 
-        android:layout_alignParentBottom="true"
-        android:id="@+id/conform_time_bt"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_48dp"
-        android:layout_marginTop="@dimen/_5dp"
-        android:layout_marginBottom="@dimen/_5dp"
-        android:clickable="true"
-        android:layout_marginLeft="@dimen/_24dp"
-        android:layout_marginRight="@dimen/_24dp"
-        android:maxLines="1"
-        android:padding="@dimen/_4dp"
-        android:textAllCaps="false"
-        android:background="@drawable/button_bg"
-
-        android:textSize="@dimen/_16sp"
-        android:fontFamily="sans-serif-medium"
-        android:textStyle="normal"
-        android:textColor="#ffffff"
-        android:text="Confirm Time"
-
-        />
 
 </RelativeLayout>

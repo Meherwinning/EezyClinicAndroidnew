@@ -11,4 +11,9 @@
     android:paddingLeft="@dimen/_5dp"
     android:paddingBottom="@dimen/_7dp"
     android:textColor="@color/black"
-    android:textAlignment="inherit"/>
+    android:textAlignment="inherit"
+
+    style="?android:attr/dropDownItemStyle"
+    android:textAppearance="?android:attr/textAppearanceLargePopupMenu"
+
+    />

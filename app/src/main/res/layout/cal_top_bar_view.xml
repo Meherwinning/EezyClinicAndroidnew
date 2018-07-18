@@ -5,7 +5,9 @@
 
     android:background="@color/transparent"
     android:gravity="center"
-    android:padding="@dimen/_5dp"
+    android:paddingLeft="@dimen/_5dp"
+    android:paddingRight="@dimen/_5dp"
+
     android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +17,7 @@
         <com.prolificinteractive.materialcalendarview.DirectionButton
             android:id="@+id/button_past"
              android:layout_width="wrap_content"
-            android:padding="8dp"
+            android:padding="@dimen/_6dp"
             android:clickable="true"
 
             android:src="@drawable/left_arrow"
@@ -32,9 +34,9 @@
 
                 android:singleLine="true"
                 android:maxLines="1"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="@dimen/_5dp"
 
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="@dimen/_5dp"
                 android:layout_height="match_parent" />
 
 
@@ -44,7 +46,7 @@
             android:onClick="onFutureButtonClick"
             android:layout_width="wrap_content"
             android:src="@drawable/right_arrow"
-            android:padding="8dp"
+            android:padding="@dimen/_6dp"
             android:clickable="true"
             android:layout_height="wrap_content" />
 

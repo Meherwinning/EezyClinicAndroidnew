@@ -111,8 +111,8 @@ public interface Constants {
             if(IS_TESTING)
             {
                // return "http://202.63.103.194:8008";
-                return "http://202.63.103.194:8003";
-               // return "https://dev.v-empower.com:81";
+                //return "http://202.63.103.194:8003";
+                return "https://dev.v-empower.com:81";
             }else
             {
                 return "https://www.stashdeal.com";
@@ -183,5 +183,12 @@ public interface Constants {
     interface RangeBarValues {
         float MIN_VALUE = 100;
         float MAX_VALUE = 10000;
+    }
+
+    interface DefaultImage
+    {
+        String MALE_URL="https://res.cloudinary.com/eezyclinic/image/upload/f_auto,h_98,q_auto,w_98/v1/images/Dr-Male-min.png";
+        String FEMALE_URL="https://res.cloudinary.com/eezyclinic/image/upload/f_auto,h_98,q_auto,w_98/v1/images/Dr-Female-min.png";
+        String UNISEX_URL="https://res.cloudinary.com/eezyclinic/image/upload/f_auto,h_98,q_auto,w_98/v1/images/Dr-Unisex-min.png";
     }
 }

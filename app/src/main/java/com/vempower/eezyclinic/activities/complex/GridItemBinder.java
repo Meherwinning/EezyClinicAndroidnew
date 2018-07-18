@@ -94,7 +94,44 @@ private ExpandColapseButtonListener buttonListener;
       new_home_speciality_iv.setBackground(null);
       switch (data.getButtonType())
       {
-        case SpecalitiyData.ButtonType.NORMAL:
+
+        case NewHomeSpeciality.ButtonType.MORE:
+          MyApplication.getInstance().setBitmapToImageview(R.drawable.more_button,new_home_speciality_iv);
+          item_name_tv.setText("More");
+          itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+               // Utils.showToastMsg("Now click More button");
+                if(buttonListener!=null)
+                {
+                  itemView.setOnClickListener(null);
+                  buttonListener.onClick(true);
+                }
+               // profile_iv.setBackground(null);
+              }
+          });
+          break;
+        case NewHomeSpeciality.ButtonType.LESS:
+          MyApplication.getInstance().setBitmapToImageview(R.drawable.less_button,new_home_speciality_iv);
+          item_name_tv.setText("Less");
+          itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+              //Utils.showToastMsg("Now click Less button");
+              if(buttonListener!=null)
+              {
+                itemView.setOnClickListener(null);
+                buttonListener.onClick(false);
+              }
+             // profile_iv.setBackground(null);
+            }
+          });
+          break;
+
+        default:
           //MyApplication.getInstance().setBitmapToImageview(R.drawable.empty_specification,profile_iv);
 
           MyApplication.getInstance().setBitmapToImageview(R.drawable.empty_specification,new_home_speciality_iv,data.getIcon());
@@ -116,41 +153,6 @@ private ExpandColapseButtonListener buttonListener;
 
               MyApplication.getCurrentActivityContext().startActivity(intent);
               //( (Activity) MyApplication.getCurrentActivityContext()).finish();
-            }
-          });
-          break;
-        case SpecalitiyData.ButtonType.MORE:
-          MyApplication.getInstance().setBitmapToImageview(R.drawable.more_button,new_home_speciality_iv);
-          item_name_tv.setText("More");
-          itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-               // Utils.showToastMsg("Now click More button");
-                if(buttonListener!=null)
-                {
-                  itemView.setOnClickListener(null);
-                  buttonListener.onClick(true);
-                }
-               // profile_iv.setBackground(null);
-              }
-          });
-          break;
-        case SpecalitiyData.ButtonType.LESS:
-          MyApplication.getInstance().setBitmapToImageview(R.drawable.less_button,new_home_speciality_iv);
-          item_name_tv.setText("Less");
-          itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-              //Utils.showToastMsg("Now click Less button");
-              if(buttonListener!=null)
-              {
-                itemView.setOnClickListener(null);
-                buttonListener.onClick(false);
-              }
-             // profile_iv.setBackground(null);
             }
           });
           break;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="@dimen/_250dp"
     android:layout_margin="@dimen/_15dp"
     android:orientation="vertical"
@@ -58,61 +58,16 @@
 
 
     </LinearLayout>
-    <RelativeLayout
+    <LinearLayout
         android:layout_weight="1"
-        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
 
         >
 
-       <!-- <LinearLayout
-            android:id="@+id/top_image_linear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <RelativeLayout
-                android:id="@+id/top_image_relative"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center">
-
-                <LinearLayout
-                    android:id="@+id/image_linear"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/canvas_380x380"
-                    android:gravity="center"
-
-                    >
-
-                    <ImageView
-                        android:id="@+id/popular_doctor_iv"
-                        style="@style/image_fit_toparent"
-                        android:src="@drawable/default_doctor_image"
-                        android:scaleType="fitXY"
-                         />
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:src="@drawable/photoframe"
-                     />
-
-
-            </RelativeLayout>
-
-
-        </LinearLayout>-->
 
 
         <TextView
@@ -137,17 +92,17 @@
             android:layout_below="@+id/doctor_name_tv"
             android:id="@+id/designation_linear"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="0dp"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:layout_marginBottom="@dimen/_5dp"
             android:orientation="vertical">
 
 
             <TextView
                 android:id="@+id/designation_tv2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/_5dp"
                 android:fontFamily="@font/roboto"
                 android:gravity="center"
@@ -163,7 +118,7 @@
 
         </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <!-- <TextView
          android:id="@+id/tvLabel"

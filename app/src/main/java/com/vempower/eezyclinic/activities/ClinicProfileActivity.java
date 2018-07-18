@@ -106,7 +106,7 @@ public class ClinicProfileActivity extends AbstractMenuActivity
             @Override
             public void getClinicProfileAPI(ClinicProfileAPI clinicProfileAPI, String errorMessage) {
                 if (!isValidResponse(clinicProfileAPI, errorMessage) || clinicProfileAPI.getData() == null) {
-                    showMyDialog("Alert", "Unable to get Clinic profile,Please try again", new ApiErrorDialogInterface() {
+                    showMyDialog("Alert", "Unable to get Clinic profile, Please try again", new ApiErrorDialogInterface() {
                         @Override
                         public void onCloseClick() {
                             finish();

@@ -140,7 +140,7 @@ public class AbstractFragmentActivity extends AbstractActivity  /*implements OTP
             {
                 showAlertDialog("Alert",  Utils.getStringFromResources(R.string.invalid_service_response_lbl),isFinish);
             }else {
-                Utils.showToastMsg(R.string.invalid_service_response_lbl);
+               // Utils.showToastMsg(R.string.invalid_service_response_lbl);
             }
             return false;
         }

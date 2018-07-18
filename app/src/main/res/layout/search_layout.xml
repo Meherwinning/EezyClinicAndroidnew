@@ -228,7 +228,7 @@
                 android:layout_height="@dimen/_50dp"
                 android:orientation="horizontal"
                 android:padding="@dimen/_2dp">
-                <com.vempower.eezyclinic.views.MyAutoCompleteTextView
+                <com.vempower.eezyclinic.views.ClearableAutoCompleteTextView
                     android:id="@+id/speciality_actv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -249,7 +249,7 @@
 
                     >
                     <requestFocus />
-                </com.vempower.eezyclinic.views.MyAutoCompleteTextView>
+                </com.vempower.eezyclinic.views.ClearableAutoCompleteTextView>
 
     <!--            <com.vempower.eezyclinic.views.CustomSpinnerSelection
                     android:id="@+id/speciality_type_spinner"
@@ -501,7 +501,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/_2dp">
 
-                <com.vempower.eezyclinic.views.MyAutoCompleteTextView
+                <com.vempower.eezyclinic.views.ClearableAutoCompleteTextView
                     android:id="@+id/doctor_clinic_names_actv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

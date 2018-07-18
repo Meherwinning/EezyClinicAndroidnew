@@ -44,6 +44,7 @@ import com.vempower.eezyclinic.mappers.DoctorProfileMapper;
 import com.vempower.eezyclinic.tools.ScrollableFragmentListener;
 import com.vempower.eezyclinic.tools.ScrollableListener;
 import com.vempower.eezyclinic.tools.ViewPagerHeaderHelper;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
  ;
 import com.vempower.eezyclinic.widget.TouchCallbackLayout;
@@ -114,7 +115,7 @@ public class DoctorProfileActivity extends AbstractMenuActivity
             @Override
             public void getDoctorProfileAPI(DoctorProfileAPI doctorProfileAPI, String errorMessage) {
                 if (!isValidResponse(doctorProfileAPI, errorMessage) || doctorProfileAPI.getData() == null) {
-                    showMyDialog("Alert", "Unable to get Doctor profile, Please try again", new ApiErrorDialogInterface() {
+               /*     showMyDialog("Alert", "Doctor’s full profile is not updated", new ApiErrorDialogInterface() {
                         @Override
                         public void onCloseClick() {
                             finish();
@@ -124,11 +125,12 @@ public class DoctorProfileActivity extends AbstractMenuActivity
                         public void retryClick() {
                             callDoctorProfileMapper(data);
                         }
-                    });
+                    });*/
+                    showMyAlertDialog("Sorry", "Doctor’s full profile is not updated", "Close", true);
                     return;
                 }
                 if (doctorProfileAPI.getData() == null) {
-                    showMyDialog("Alert", "Unable to get Doctor profile,Please try again", new ApiErrorDialogInterface() {
+                    /*showMyDialog("Alert", "Unable to get Doctor profile,Please try again", new ApiErrorDialogInterface() {
                         @Override
                         public void onCloseClick() {
                             finish();
@@ -139,6 +141,9 @@ public class DoctorProfileActivity extends AbstractMenuActivity
                             callDoctorProfileMapper(data);
                         }
                     });
+                    return;*/
+
+                    showMyAlertDialog("Sorry", "Doctor’s full profile is not updated", "Close", true);
                     return;
                 }
                 profileData=doctorProfileAPI.getData();
@@ -356,8 +361,34 @@ public class DoctorProfileActivity extends AbstractMenuActivity
 
         ImageView imageView = findViewById(R.id.profile_iv1);
         if (imageView != null) {
-            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, profileData.getDoctorLogo());
+            //MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, profileData.getDoctorLogo());
+
+            //START
+            if (!TextUtils.isEmpty(profileData.getDoctorLogo())) {
+                MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, profileData.getDoctorLogo());
+            } else {
+                if (TextUtils.isEmpty(data.getGender())) {
+                    MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, Constants.DefaultImage.UNISEX_URL);
+
+                } else {
+                    switch (data.getGender().trim().toLowerCase()) {
+                        case "male":
+                            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, Constants.DefaultImage.MALE_URL);
+                            break;
+                        case "female":
+                            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, Constants.DefaultImage.FEMALE_URL);
+
+                            break;
+                        default:
+                            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, Constants.DefaultImage.UNISEX_URL);
+
+                            break;
+                    }
+                }
+
+            }
         }
+        //END
 
         ((TextView)findViewById(R.id.doctor_name_tv)).setText(profileData.getDoctorfullname());
         ((TextView)findViewById(R.id.doctor_designation_tv)).setText(profileData.getDoctorsdegrees());

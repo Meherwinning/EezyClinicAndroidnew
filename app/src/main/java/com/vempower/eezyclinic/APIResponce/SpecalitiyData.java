@@ -13,12 +13,12 @@ public class SpecalitiyData implements BaseModel {
         int SPECALITI_YTYPE=2;
     }
 
-    public interface ButtonType
+  /*  public interface ButtonType
     {
         int NORMAL=0;
         int MORE=1;
         int LESS=2;
-    }
+    }*/
 
     @SerializedName("id")
     @Expose

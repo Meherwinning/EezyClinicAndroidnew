@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/popular_doctors_bg_color"
-    android:paddingTop="@dimen/_10dp"
+    android:paddingTop="@dimen/_5dp"
 
     android:orientation="vertical">
 
@@ -13,7 +13,7 @@
         android:gravity="center"
 
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/_220dp"
+        android:layout_height="@dimen/_250dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:paddingLeft="@dimen/_25dp"
         android:paddingRight="@dimen/_30dp"

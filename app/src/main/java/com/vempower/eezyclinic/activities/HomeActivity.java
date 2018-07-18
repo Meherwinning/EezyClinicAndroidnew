@@ -585,7 +585,11 @@ public class HomeActivity extends AbstractMenuActivity {
         if(homeFragment==null)
         {
             homeFragment= getHomeFragment();
+        }else
+        {
+            ((HomeFragment)homeFragment).refresh();
         }
+
 
         setFragment(homeFragment);
         unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,Constants.Home.HOME_ACTIVITY);

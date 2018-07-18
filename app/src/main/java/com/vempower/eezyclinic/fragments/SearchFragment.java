@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.DoctorsListActivity;
 import com.vempower.eezyclinic.activities.SearchDoctorsListActivity;
+import com.vempower.eezyclinic.adapters.CustomAdapter;
 import com.vempower.eezyclinic.adapters.CustomerAdapter;
 import com.vempower.eezyclinic.adapters.HintAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
@@ -59,6 +61,7 @@ import com.vempower.eezyclinic.mappers.SpecalitiesMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
+import com.vempower.eezyclinic.views.ClearableAutoCompleteTextView;
 import com.vempower.eezyclinic.views.CustomSpinnerSelection;
 import com.vempower.eezyclinic.views.MyAutoCompleteTextView;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
@@ -80,7 +83,10 @@ public class SearchFragment extends AbstractFragment {
 
     private View fragmentView;
 
-    private MyAutoCompleteTextView addressAutoCompleteTextView, speciality_actv, doctor_clinic_names_actv;
+    private MyAutoCompleteTextView addressAutoCompleteTextView ;
+
+    private ClearableAutoCompleteTextView speciality_actv, doctor_clinic_names_actv;
+
     private GooglePlacesAutocompleteAdapter googlePlacesAutocompleteAdapter;
 
     private CustomSpinnerSelection country_spinner, city_type_spinner,
@@ -137,9 +143,11 @@ public class SearchFragment extends AbstractFragment {
 
         speciality_actv = getFragemtView().findViewById(R.id.speciality_actv);
         speciality_actv.setText(null);
+        speciality_actv.hideClearButton();
 
         doctor_clinic_names_actv = getFragemtView().findViewById(R.id.doctor_clinic_names_actv);
         doctor_clinic_names_actv.setText("");
+        doctor_clinic_names_actv.hideClearButton();
 
         doctor_clinic_names_actv.addTextChangedListener(doctorClinicNameTextWatcher);
         doctor_clinic_names_actv.setText("");
@@ -972,7 +980,8 @@ public class SearchFragment extends AbstractFragment {
         }
     };
 
-
+    String temp="";
+    int count1=0;
     public void setToDoctorsClinicAutoCompleteAdapter(List<DoctorClinicNameData> dataList) {
         final ArrayList<DoctorClinicNameData> doctorClinicNameList = new ArrayList<>();
         if (dataList != null && dataList.size() > 0) {
@@ -982,11 +991,40 @@ public class SearchFragment extends AbstractFragment {
 
 
         //HintAdapter aa = new HintAdapter<DoctorClinicNameData>(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, doctorClinicNameList);
-final CustomerAdapter aa= new CustomerAdapter<DoctorClinicNameData>(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, doctorClinicNameList,false);
-
+final CustomAdapter aa= new CustomAdapter<DoctorClinicNameData>(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, doctorClinicNameList);
+        doctor_clinic_names_actv.setThreshold(1);
         doctor_clinic_names_actv.setAdapter(aa);
 
+
         // speciality_actv.setSelection(aa.getCount());
+
+
+      /*  doctor_clinic_names_actv.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(temp.equalsIgnoreCase(s.toString()))
+                {
+                    return;
+                }
+
+                Log.i("Search"+(count1++), s.toString());
+
+                temp=s.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //Utils.showToastMsg(s.toString());
+
+
+            }
+        });*/
 
 
 
@@ -1018,8 +1056,9 @@ final CustomerAdapter aa= new CustomerAdapter<DoctorClinicNameData>(MyApplicatio
 
        // HintAdapter aa = new HintAdapter<SpecalitiyData>(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, dataList);
         //Context context, int viewResourceId, ArrayList<T> items
-      final  CustomerAdapter aa= new CustomerAdapter(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, dataList,false);
-        speciality_actv.setAdapter(aa);
+      final  CustomAdapter aa= new CustomAdapter(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, dataList);
+        speciality_actv.setThreshold(1);
+      speciality_actv.setAdapter(aa);
 
 
 

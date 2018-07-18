@@ -39,6 +39,7 @@ public class NewHomeSpeciality  implements BaseModel{
 
     public NewHomeSpeciality() {
         this.dataType = SpecalitiyData.ViewType.SPECALITI_YTYPE;
+        buttonType=ButtonType.NORMAL;
     }
 
     public void setButtonType(int type) {

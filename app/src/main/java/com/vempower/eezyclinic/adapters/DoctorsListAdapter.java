@@ -148,8 +148,32 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
                 }
             });
 
-            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, data.getDoctorLogo());
+            if(!TextUtils.isEmpty(data.getDoctorLogo())) {
+                MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, data.getDoctorLogo());
+            }else
+            {
+                if(TextUtils.isEmpty(data.getGender()))
+                {
+                    MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, Constants.DefaultImage.UNISEX_URL);
 
+                }
+               else {
+                    switch (data.getGender().trim().toLowerCase()) {
+                        case "male":
+                            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, Constants.DefaultImage.MALE_URL);
+                            break;
+                        case "female":
+                            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, Constants.DefaultImage.FEMALE_URL);
+
+                            break;
+                        default:
+                            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, Constants.DefaultImage.UNISEX_URL);
+
+                            break;
+                    }
+                }
+
+            }
 
             title_tv.setText(data.getDoctorName());
             designation_tv.setText(data.getSpecalities());

@@ -1,6 +1,7 @@
 package com.vempower.eezyclinic.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -38,16 +39,16 @@ import java.util.Random;
  * Created by satish on 11/1/18.
  */
 
-public class DemoFragment extends  AbstractFragment implements MyRecylerViewScrollListener {
+public class DemoFragment extends AbstractFragment implements MyRecylerViewScrollListener {
 
 
     private View fragmentView;
     private RecyclerView recyclerView;
     private ComplexListAdapter adapter;
-   // private List<SpecalitiyData> dataList;
-   private NewHomeData newHomeData;
+    // private List<SpecalitiyData> dataList;
+    private NewHomeData newHomeData;
     private NewHomeAPIMapper mapper;
-    private  RecyclerView.SmoothScroller smoothScroller;
+    private RecyclerView.SmoothScroller smoothScroller;
     private GridLayoutManager glm;
 
 
@@ -69,31 +70,45 @@ public class DemoFragment extends  AbstractFragment implements MyRecylerViewScro
 
     }
 
-    public void refreshData()
-    {
+    public void refreshData() {
         //mapper=null;
         callHomePageMapper();
     }
 
+   /* @Override
+    public void onResume() {
+        super.onResume();
+        refreshData();
+    }*/
 
     private void myInit() {
-        recyclerView =getFragemtView().findViewById(R.id.rcv_list);
+        recyclerView = getFragemtView().findViewById(R.id.rcv_list);
         smoothScroller = new
                 LinearSmoothScroller(MyApplication.getCurrentActivityContext()) {
-                    @Override protected int getVerticalSnapPreference() {
+                    @Override
+                    protected int getVerticalSnapPreference() {
                         return LinearSmoothScroller.SNAP_TO_END;
                     }
                 };
     }
 
 
-    public void scrollMyRecylerView(int pos)
-    {
+    public void scrollMyRecylerView(int pos) {
         smoothScroller.setTargetPosition(pos);
         glm.startSmoothScroll(smoothScroller);
     }
 
     protected void setUpAdapter() {
+
+        if (!isAdded()) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    setUpAdapter();
+                }
+            }, 1000);
+            return;
+        }
 
         /*if(adapter!=null)
         {
@@ -102,17 +117,16 @@ public class DemoFragment extends  AbstractFragment implements MyRecylerViewScro
 
                     return;
         }*/
-         glm = new GridLayoutManager(MyApplication.getCurrentActivityContext(), 3);
+        glm = new GridLayoutManager(MyApplication.getCurrentActivityContext(), 3);
         //ArrayList<SpecalitiyRemainData> dataList1=new ArrayList<>();
         /*for(NewHomeSpeciality data:newHomeData.getSpecialities())
         {
             dataList1.add(new SpecalitiyRemainData(data)) ;
         }*/
-       // if(adapter==null) {
-            adapter = new ComplexListAdapter(newHomeData, getChildFragmentManager(),this);
-            adapter.setSpanCount(3);
-       // }
-
+        // if(adapter==null) {
+        adapter = new ComplexListAdapter(newHomeData, getChildFragmentManager(), this);
+        adapter.setSpanCount(3);
+        // }
 
 
         glm.setSpanSizeLookup(adapter.getSpanSizeLookup());
@@ -127,29 +141,31 @@ public class DemoFragment extends  AbstractFragment implements MyRecylerViewScro
         adapter.addSingleModelItem(dataListThree);
 
 
-
     }
 
 
-    private void callHomePageMapper()
-    {
-        if(mapper!=null)
+    private void callHomePageMapper() {
+        if (!isAdded()) {
+            return;
+        }
+      /*  if(mapper!=null)
         {
+            if(isAdded())
             setUpAdapter();
             //recyclerView.invalidate();
             return;
-        }
-         mapper= new NewHomeAPIMapper();
+        }*/
+        mapper = new NewHomeAPIMapper();
         mapper.setOnNewHomeAPIListener(new NewHomeAPIMapper.NewHomeAPIListener() {
             @Override
             public void getNewHomeAPI(NewHomeAPI homeAPI, String errorMessage) {
 
-                if ((!isValidResponse(homeAPI, errorMessage))|| homeAPI.getData()==null) {
+                if ((!isValidResponse(homeAPI, errorMessage)) || homeAPI.getData() == null) {
                     showMyDialog("Alert", Utils.getStringFromResources(R.string.unable_to_get_home_page_details), new ApiErrorDialogInterface() {
                         @Override
                         public void onCloseClick() {
 
-                            ((AbstractActivity) MyApplication.getCurrentActivityContext()). finish();
+                            ((AbstractActivity) MyApplication.getCurrentActivityContext()).finish();
                         }
 
                         @Override
@@ -160,7 +176,7 @@ public class DemoFragment extends  AbstractFragment implements MyRecylerViewScro
                     return;
                 }
                 //dataList = specalitiesAPI.getData();
-                newHomeData=homeAPI.getData();
+                newHomeData = homeAPI.getData();
                 // setSpecialitiesToAdapter(dataList);
 
                 setUpAdapter();
