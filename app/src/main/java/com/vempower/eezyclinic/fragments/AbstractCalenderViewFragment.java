@@ -1,9 +1,14 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,7 +22,10 @@ import com.prolificinteractive.materialcalendarview.OnRangeSelectedListener;
 import com.prolificinteractive.materialcalendarview.format.DateFormatTitleFormatter;
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.AbstractFragmentActivity;
 import com.vempower.eezyclinic.adapters.TimeSlotsListAdapter;
+import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.views.AutoFitFixedRecyclerView;
 import com.vempower.eezyclinic.views.MyCheckedTextViewRR;
  ;
 
@@ -33,7 +41,7 @@ import static com.prolificinteractive.materialcalendarview.MaterialCalendarView.
  * Created by satish on 6/12/17.
  */
 
-public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecyclerViewFragment implements OnDateSelectedListener, OnMonthChangedListener {
+public abstract class AbstractCalenderViewFragment extends AbstractFragment implements OnDateSelectedListener, OnMonthChangedListener {
 
     private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
     //private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
@@ -58,12 +66,13 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
     private MyCheckedTextViewRR today_ctv;
     private Calendar startCalendar;
     private Calendar endCalendar;
+    private AutoFitFixedRecyclerView recyclerView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.activity_basic, container, false);
-        setupSwipeRefreshLayout(fragmentView);
+       // setupSwipeRefreshLayout(fragmentView);
         myInit();
 
         return fragmentView;
@@ -97,12 +106,18 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
     }
 
     private void myInit() {
+
+        recyclerView =fragmentView.findViewById(R.id.recycler_view);
+       // Context context, int spanCount, @RecyclerView.Orientation int orientation, boolean reverseLayout
+        GridLayoutManager layoutManager= new GridLayoutManager(MyApplication.getCurrentActivityContext(),4, LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(layoutManager);
         widget =fragmentView.findViewById(R.id.calendarView);
         textView =fragmentView.findViewById(R.id. textView);
         title_tv =fragmentView.findViewById(R.id. title_tv);
         today_ctv = fragmentView.findViewById(R.id.today_ctv);
 
         conform_time_bt  =fragmentView.findViewById(R.id.conform_time_bt);
+        conform_time_bt.setVisibility(View.GONE);
 
         conform_time_bt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,6 +194,52 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
         //widget.setTileHeightDp((int)getResources().getDimension(R.dimen._11dp));
 
         widget.setSelectionMode(MaterialCalendarView.SELECTION_MODE_SINGLE);
+
+        widget.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+               /* int dragthreshold = 10;
+
+                int downX = 0;
+
+                int downY = 0;*/
+
+                switch (event.getAction()) {
+                   /* case MotionEvent.ACTION_DOWN:
+                        downX = (int) event.getRawX();
+
+                        downY = (int) event.getRawY();
+
+                        break;*/
+
+                    case MotionEvent.ACTION_MOVE:
+                       /* int distanceX = Math.abs((int) event.getRawX() - downX);
+
+                        int distanceY = Math.abs((int) event.getRawY() - downY);
+
+                        if (distanceY > distanceX && distanceY > dragthreshold) {
+                            pager.getParent().requestDisallowInterceptTouchEvent(false);
+
+                            mScrollView.getParent().requestDisallowInterceptTouchEvent(true);
+                        } else if (distanceX > distanceY && distanceX > dragthreshold) {
+                            pager.getParent().requestDisallowInterceptTouchEvent(true);
+
+                            mScrollView.getParent().requestDisallowInterceptTouchEvent(false);
+                        }*/
+
+                        break;
+                    case MotionEvent.ACTION_UP:
+                       // mScrollView.getParent().requestDisallowInterceptTouchEvent(false);
+
+                        widget.getParent().requestDisallowInterceptTouchEvent(false);
+
+                        break;
+                }
+
+                return false;
+            }
+        });
 
 
 
@@ -298,9 +359,11 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
         if(slots==null || slots.size()==0)
         {
             fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.VISIBLE);
+            conform_time_bt.setVisibility(View.GONE);
         }else
         {
             fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.GONE);
+            conform_time_bt.setVisibility(View.VISIBLE);
         }
 
 
@@ -385,7 +448,7 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
 
 
 
-    @Override
+    /*@Override
     protected boolean isCheckTabletOrNot() {
         return false;
     }
@@ -404,7 +467,7 @@ public abstract class AbstractCalenderViewFragment extends SwipedAutoFitRecycler
             swipeLayout.setRefreshing(false);
         }
 
-    }
+    }*/
 
     public String getDiabledDateAndtime() {
         return null;

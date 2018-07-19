@@ -102,15 +102,14 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <android.support.v4.widget.SwipeRefreshLayout
+              <!--  <android.support.v4.widget.SwipeRefreshLayout
                     android:id="@+id/swipeContainer"
 
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content">-->
 
 
                     <com.vempower.eezyclinic.views.AutoFitFixedRecyclerView
@@ -122,7 +121,7 @@
                     </com.vempower.eezyclinic.views.AutoFitFixedRecyclerView>
 
 
-                </android.support.v4.widget.SwipeRefreshLayout>
+               <!-- </android.support.v4.widget.SwipeRefreshLayout>-->
 
 
 
