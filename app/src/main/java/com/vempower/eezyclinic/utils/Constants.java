@@ -190,5 +190,6 @@ public interface Constants {
         String MALE_URL="https://res.cloudinary.com/eezyclinic/image/upload/f_auto,h_98,q_auto,w_98/v1/images/Dr-Male-min.png";
         String FEMALE_URL="https://res.cloudinary.com/eezyclinic/image/upload/f_auto,h_98,q_auto,w_98/v1/images/Dr-Female-min.png";
         String UNISEX_URL="https://res.cloudinary.com/eezyclinic/image/upload/f_auto,h_98,q_auto,w_98/v1/images/Dr-Unisex-min.png";
+        String CLINIC_URL="https://res.cloudinary.com/eezyclinic/image/upload/f_auto,q_auto/v1/images/servicesp3.jpg";
     }
 }

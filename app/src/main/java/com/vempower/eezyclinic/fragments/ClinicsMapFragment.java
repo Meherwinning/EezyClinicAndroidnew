@@ -197,7 +197,7 @@ public class ClinicsMapFragment extends AbstractMapFragment /*, GoogleMap.OnMark
               options.position(latLng);
             options.icon(bitmapDescriptor);
             options.title(data.getClinicName());
-             String snippet = data.getBranchName() + ", " + data.getCityName() + ", " + data.getAddress();
+             String snippet = data.getBranchName() + "\n" + data.getCityName() + ", " + data.getAddress();
              options.snippet(snippet);
              options.zIndex(Float.parseFloat(data.getClncId()));
 

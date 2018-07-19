@@ -22,6 +22,7 @@ import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.core.DoctorsPair;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
+import com.vempower.eezyclinic.utils.Constants;
 
 public class FirstFragment extends AbstractFragment {
     // Store instance variables
@@ -29,70 +30,64 @@ public class FirstFragment extends AbstractFragment {
     /*private TextView nameLabel,designation_tv2;
     private ImageView popular_doctor_iv;*/
     //private View docView1,docView2;
-    private ViewHolder docHolder1,docHolder2;
+    private ViewHolder docHolder1, docHolder2;
 
     public FirstFragment() {
-        doctorPair=null;
+        doctorPair = null;
     }
 
     public FirstFragment(DoctorsPair doctorPair) {
-       this.doctorPair=doctorPair;
+        this.doctorPair = doctorPair;
     }
 
-    private class ViewHolder
-    {
-        private TextView nameLabel,designation_tv2;
+    private class ViewHolder {
+        private TextView nameLabel, designation_tv2;
         private ImageView popular_doctor_iv;
         private View view;
 
         public ViewHolder(View view) {
-            this.view=view;
-            popular_doctor_iv= view.findViewById(R.id.popular_doctor_iv);
+            this.view = view;
+            popular_doctor_iv = view.findViewById(R.id.popular_doctor_iv);
             nameLabel = view.findViewById(R.id.doctor_name_tv);
-            designation_tv2 = view.findViewById(R.id. designation_tv2);
+            designation_tv2 = view.findViewById(R.id.designation_tv2);
         }
 
-        public void bindValue(final NewHomeDoctorsList doctor)
-        {
+        public void bindValue(final NewHomeDoctorsList doctor) {
             view.setVisibility(View.INVISIBLE);
-            if(doctor==null)
-            {
+            if (doctor == null) {
                 return;
             }
             view.setVisibility(View.VISIBLE);
-            String name="";
+            String name = "";
 
-            if(!TextUtils.isEmpty(doctor.getFirstName()))
-            {
-                name=doctor.getFirstName();
+            if (!TextUtils.isEmpty(doctor.getFirstName())) {
+                name = doctor.getFirstName();
             }
 
-            if(!TextUtils.isEmpty(doctor.getMiddleName()))
-            {
-                name=name+" "+doctor.getMiddleName();
+            if (!TextUtils.isEmpty(doctor.getMiddleName())) {
+                name = name + " " + doctor.getMiddleName();
             }
-            if(!TextUtils.isEmpty(doctor.getLastName()))
-            {
-                name=name+" "+doctor.getLastName();
+            if (!TextUtils.isEmpty(doctor.getLastName())) {
+                name = name + " " + doctor.getLastName();
             }
 
 
             nameLabel.setText(name);
-            designation_tv2 .setText(doctor.getSpecalities());
+            designation_tv2.setText(doctor.getSpecalities());
 
             popular_doctor_iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),DoctorProfileActivity.class);
+                    Intent intent = new Intent(MyApplication.getCurrentActivityContext(), DoctorProfileActivity.class);
                     /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
-                    intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
+                    intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
                         @Override
                         protected IntentObjectListener getMyObject() {
-                            return new IntentObjectListener(){
+                            return new IntentObjectListener() {
 
                                 @Override
                                 public Object getObject() {
-                                    SearchResultDoctorListData data=doctor;
+                                    SearchResultDoctorListData data = doctor;
                                     data.setDocId(doctor.id);
                                     data.setBranchId(doctor.getBranchId());
 
@@ -101,13 +96,42 @@ public class FirstFragment extends AbstractFragment {
                             };
                         }
                     }));
-                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                     MyApplication.getCurrentActivityContext().startActivity(intent);
                 }
             });
 
-            MyApplication.getInstance().setBitmapToImageview(R.drawable.default_doctor_image,popular_doctor_iv,doctor.getDoctorLogo());
+
+            if (popular_doctor_iv != null) {
+              //  MyApplication.getInstance().setBitmapToImageview(R.drawable.default_doctor_image, popular_doctor_iv, doctor.getDoctorLogo());
+
+                //START
+                if (!TextUtils.isEmpty(doctor.getDoctorLogo())) {
+                    MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.default_doctor_image, popular_doctor_iv, doctor.getDoctorLogo());
+                } else {
+                    if (TextUtils.isEmpty(doctor.getGender())) {
+                        MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.default_doctor_image, popular_doctor_iv, Constants.DefaultImage.UNISEX_URL);
+
+                    } else {
+                        switch (doctor.getGender().trim().toLowerCase()) {
+                            case "male":
+                                MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.default_doctor_image, popular_doctor_iv, Constants.DefaultImage.MALE_URL);
+                                break;
+                            case "female":
+                                MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.default_doctor_image, popular_doctor_iv, Constants.DefaultImage.FEMALE_URL);
+
+                                break;
+                            default:
+                                MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.default_doctor_image, popular_doctor_iv, Constants.DefaultImage.UNISEX_URL);
+
+                                break;
+                        }
+                    }
+
+                }
+            }
+
 
         }
     }
@@ -133,7 +157,7 @@ public class FirstFragment extends AbstractFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       // View view = inflater.inflate(R.layout.fragment_first, container, false);
+        // View view = inflater.inflate(R.layout.fragment_first, container, false);
         View view = inflater.inflate(R.layout.fragment_doctors_pairs, container, false);
 
         init(view);
@@ -144,10 +168,10 @@ public class FirstFragment extends AbstractFragment {
        /* popular_doctor_iv= view.findViewById(R.id.popular_doctor_iv);
         nameLabel = view.findViewById(R.id.doctor_name_tv);
         designation_tv2 = view.findViewById(R.id. designation_tv2);*/
-        View docView1= view.findViewById(R.id.doc1);
-        View docView2= view.findViewById(R.id.doc2);
+        View docView1 = view.findViewById(R.id.doc1);
+        View docView2 = view.findViewById(R.id.doc2);
         docHolder1 = new ViewHolder(docView1);
-        docHolder2= new ViewHolder(docView2);
+        docHolder2 = new ViewHolder(docView2);
     }
 
     @Override
@@ -157,14 +181,11 @@ public class FirstFragment extends AbstractFragment {
     }
 
     private void bindValues() {
-        if(/*popular_doctor_iv!=null &&*/ doctorPair!=null)
-        {
-           if(doctorPair.getDoc1()!=null)
-           {
-               docHolder1.bindValue(doctorPair.doc1);
-           }
-            if(doctorPair.getDoc2()!=null)
-            {
+        if (/*popular_doctor_iv!=null &&*/ doctorPair != null) {
+            if (doctorPair.getDoc1() != null) {
+                docHolder1.bindValue(doctorPair.doc1);
+            }
+            if (doctorPair.getDoc2() != null) {
                 docHolder2.bindValue(doctorPair.doc2);
             }
         }

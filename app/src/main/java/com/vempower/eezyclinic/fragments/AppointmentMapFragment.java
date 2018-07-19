@@ -73,13 +73,13 @@ public class AppointmentMapFragment extends AbstractMapFragment/*, GoogleMap.OnM
     protected LatLngBounds.Builder addAllMarkersToMap(GoogleMap mMap) {
         fragmentView.findViewById(R.id.top_linear).setVisibility(View.GONE);
         fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.GONE);
-
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
         if(appointment==null)
         {
             return null;
         }
 
-        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
 
         //  MarkerOptions markerOptions = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.path_352_2));
         BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.path_352_2);
@@ -93,7 +93,7 @@ public class AppointmentMapFragment extends AbstractMapFragment/*, GoogleMap.OnM
                 lat = Double.parseDouble(appointment.getGoogleMapLatitude());
                 lon = Double.parseDouble(appointment.getGoogleMapLongitude());
             } catch (Exception e) {
-                return null;
+                return builder;
             }
             // GeoLocation geoLocation= deal.getLocation().getGeoLocation();
             LatLng latLng = new LatLng(lat, lon);
@@ -101,7 +101,7 @@ public class AppointmentMapFragment extends AbstractMapFragment/*, GoogleMap.OnM
             options.position(latLng);
             options.icon(bitmapDescriptor);
             options.title(appointment.getDoctorName());
-            String snippet = appointment.getSpecalities() + ", " + appointment.getAddress();
+            String snippet = appointment.getSpecalities() + "\n" + appointment.getAddress();
             options.snippet(snippet);
             options.zIndex(Float.parseFloat(appointment.getId()));
 

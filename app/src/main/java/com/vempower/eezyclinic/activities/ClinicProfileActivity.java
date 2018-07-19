@@ -188,12 +188,12 @@ public class ClinicProfileActivity extends AbstractMenuActivity
         fab.setOnMyClickListener(new ButtonFloat.MyClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),SingleClinicMapActivity.class);
-                           /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
-                intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_CLINIC_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
+                Intent intent = new Intent(MyApplication.getCurrentActivityContext(), SingleClinicMapActivity.class);
+                /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+                intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_CLINIC_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
                     @Override
                     protected IntentObjectListener getMyObject() {
-                        return new IntentObjectListener(){
+                        return new IntentObjectListener() {
 
                             @Override
                             public Object getObject() {
@@ -202,24 +202,22 @@ public class ClinicProfileActivity extends AbstractMenuActivity
                         };
                     }
                 }));
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 MyApplication.getCurrentActivityContext().startActivity(intent);
             }
         });
 
 
-      final  AppCompatButton view_contact_number_bt =  findViewById(R.id.view_contact_number_bt);
+        final AppCompatButton view_contact_number_bt = findViewById(R.id.view_contact_number_bt);
 
         view_contact_number_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(TextUtils.isEmpty(clinicProfileData.getClinicContactNumber()))
-                {
+                if (TextUtils.isEmpty(clinicProfileData.getClinicContactNumber())) {
                     view_contact_number_bt.setText("Not Available");
                     view_contact_number_bt.setOnClickListener(null);
-                }else
-                {
+                } else {
                     view_contact_number_bt.setText(clinicProfileData.getClinicContactNumber());
                     view_contact_number_bt.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -234,12 +232,18 @@ public class ClinicProfileActivity extends AbstractMenuActivity
         });
 
 
-
-
-        ImageView imageView = findViewById(R.id.profile_iv);
+        ImageView imageView = findViewById(R.id.clinic_profile_iv);
         if (imageView != null) {
             MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, clinicProfileData.getClinicImage());
+            //START
+            if (!TextUtils.isEmpty(clinicProfileData.getClinicImage())) {
+                MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, clinicProfileData.getClinicImage());
+            } else {
+                    MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, Constants.DefaultImage.CLINIC_URL);
+            }
         }
+        //END
+
 
         ((TextView)findViewById(R.id.clinic_name_tv)).setText(clinicProfileData.getClinicName());
         ((TextView)findViewById(R.id.branch_name_tv)).setText(clinicProfileData.getBranchName());

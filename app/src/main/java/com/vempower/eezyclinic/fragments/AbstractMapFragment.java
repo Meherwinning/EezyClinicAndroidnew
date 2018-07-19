@@ -1,10 +1,15 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -81,7 +86,17 @@ public abstract class AbstractMapFragment extends AbstractFragment implements On
             //mMap.setOnMarkerClickListener(this);
             //final MarkerDetails details=addAllMarkersToMap(mMap);
             LatLngBounds.Builder builder = addAllMarkersToMap(mMap);
-            final LatLngBounds bounds = adjustBoundsForMaxZoomLevel(builder.build());
+
+            if(builder==null )
+            {
+                return;
+            }
+            LatLngBounds latLngBounds = builder.build();
+            if(latLngBounds==null )
+            {
+                return;
+            }
+            final LatLngBounds bounds = adjustBoundsForMaxZoomLevel(latLngBounds);
 
            final float[] results = new float[1];
             android.location.Location.distanceBetween(bounds.northeast.latitude, bounds.northeast.longitude,
@@ -90,11 +105,39 @@ public abstract class AbstractMapFragment extends AbstractFragment implements On
            // Utils.showToastMessage("Size :"+details.size);
 
            // LatLngBounds.Builder builder = addAllMarkersToMap(mMap);
-            if(builder==null )
-            {
-                return;
-            }
+
            // final LatLngBounds bounds = builder.build();
+
+            mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+                @Override
+                public View getInfoWindow(Marker arg0) {
+                    return null;
+                }
+
+                @Override
+                public View getInfoContents(Marker marker) {
+
+                    LinearLayout info = new LinearLayout(MyApplication.getCurrentActivityContext());
+                    info.setOrientation(LinearLayout.VERTICAL);
+
+                    TextView title = new TextView(MyApplication.getCurrentActivityContext());
+                    title.setTextColor(Color.BLACK);
+                    title.setGravity(Gravity.CENTER);
+                    title.setTypeface(null, Typeface.BOLD);
+                    title.setText(marker.getTitle());
+
+                    TextView snippet = new TextView(MyApplication.getCurrentActivityContext());
+                    snippet.setTextColor(Color.GRAY);
+                    snippet.setGravity(Gravity.CENTER);
+                    snippet.setText(marker.getSnippet());
+
+                    info.addView(title);
+                    info.addView(snippet);
+
+                    return info;
+                }
+            });
 
 
             mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {

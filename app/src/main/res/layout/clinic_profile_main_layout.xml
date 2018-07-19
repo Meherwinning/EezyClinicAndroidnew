@@ -57,7 +57,7 @@
                     >
 
                     <ImageView
-                        android:id="@+id/profile_iv"
+                        android:id="@+id/clinic_profile_iv"
                         style="@style/image_fit_toparent"
                         android:scaleType="fitXY"
                         android:src="@drawable/profile_icon" />
