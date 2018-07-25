@@ -34,7 +34,8 @@ abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
     //on Thursday
     //08-03-2018, 08.41 AM
     //String DISPLAY_DATE_FORMAT = "'on' EEEE dd-MM-yyyy, h:mm a";//4th Dec 2017
-    String DISPLAY_DATE_FORMAT = "'on' EEEE dd-MM-yyyy, h:mm a";//4th Dec 2017
+    String DISPLAY_DATE_FORMAT = "'on' EEE dd-MM-yyyy, h:mm a";//4th Dec 2017
+    String DISPLAY_DATE_FORMAT1 = "EEE d MMM yyyy, h:mm a";//Thu 14 Jun 2018, 12:13 PM
 
     protected final int SUGAR_TYPE = 1, BLOOD_PRESSURE_TYPE = 2, WEIGHT_AND_HEIGHT_TYPE = 3, CHOLESTEROL_TYPE = 4;
 
@@ -82,8 +83,8 @@ abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
             showAlertDialog("Alert", Utils.getStringFromResources(R.string.unauthorized_user_lbl), true);
             return;
         }
-
-        url = Constants.BASIC_URL + "/patient/healthcheckreports?access_key=" + access_key + "&type=" + getHealthCheckType();
+//https://dev.v-empower.com:81/eezyclinic-git/patient/healthcheckreports?access_key=97857cb8d95925c863a56d4d7703f8c8&type=1
+        url = Constants.GRAPH_BASE_URL + access_key + "&type=" + getHealthCheckType();
         //String url="file:///android_asset/"+"chart.html";
 
         if (graph_expand_iv != null) {
@@ -282,11 +283,11 @@ abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
             Calendar selectedCal = selectedDate1.getFirstDate();
 
             //  String date = selectedCal.get(Calendar.YEAR) + "-" + (selectedCal.get(Calendar.MONTH) + 1) + "-" + selectedCal.get(Calendar.DAY_OF_MONTH);
-            SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
+           // SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
             SimpleDateFormat serverDateFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
             //profileDetails.dateofBirth=requestFormat.format(selectedCal.getTime());
             selectedDateStr = serverDateFormat.format(selectedCal.getTime());
-            new_date_tv.setText(format.format(selectedCal.getTime()));
+            new_date_tv.setText(getFormattedDate(selectedCal.getTime()));
 
           //  onTimePickClick(mFragmentTimeCallback, selectedDOBObj, false);
 
@@ -314,7 +315,28 @@ abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
         return new SimpleDateFormat("'on' EEE d'th' MMM yyyy, h:mm a").format(date);
     }
 
-
+    protected String filterDateStr(String dateStr) {
+        if (TextUtils.isEmpty(dateStr)) {
+            return dateStr;
+        }
+        if (dateStr.contains("st")) {
+            dateStr = dateStr.replace("st", "");
+            dateStr = dateStr.trim();
+        }
+        if (dateStr.contains("nd")) {
+            dateStr = dateStr.replace("nd", "");
+            dateStr = dateStr.trim();
+        }
+        if (dateStr.contains("rd")) {
+            dateStr = dateStr.replace("rd", "");
+            dateStr = dateStr.trim();
+        }
+        if (dateStr.contains("th")) {
+            dateStr = dateStr.replace("th", "");
+            dateStr = dateStr.trim();
+        }
+        return dateStr;
+    }
 
 
 }

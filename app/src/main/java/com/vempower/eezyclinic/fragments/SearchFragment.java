@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -83,7 +84,7 @@ public class SearchFragment extends AbstractFragment {
 
     private View fragmentView;
 
-    private MyAutoCompleteTextView addressAutoCompleteTextView ;
+    private ClearableAutoCompleteTextView addressAutoCompleteTextView ;
 
     private ClearableAutoCompleteTextView speciality_actv, doctor_clinic_names_actv;
 
@@ -140,6 +141,7 @@ public class SearchFragment extends AbstractFragment {
 
         addressAutoCompleteTextView = getFragemtView().findViewById(R.id.google_places_actv);
         addressAutoCompleteTextView.setText("");
+        addressAutoCompleteTextView.hideClearButton();
 
         speciality_actv = getFragemtView().findViewById(R.id.speciality_actv);
         speciality_actv.setText(null);
@@ -583,6 +585,37 @@ public class SearchFragment extends AbstractFragment {
         }*/
         addressAutoCompleteTextView.setAdapter(googlePlacesAutocompleteAdapter);
         addressAutoCompleteTextView.setOnItemClickListener(adapterViewListener);
+
+        addressAutoCompleteTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Log.i("Search","beforeTextChanged: "+s.toString());
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //  Log.i("Search","onTextChanged:" +s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if(TextUtils.isEmpty(s.toString())) {
+
+                    searchRequestParams.setLatitude(null);
+                    searchRequestParams.setLongitude(null);
+                   // addressAutoCompleteTextView.setOnItemClickListener(null);
+                    // addressAutoCompleteTextView.setText(myGeodata.getAddress());
+                    searchRequestParams.setLocality(null);
+
+                    // Log.i("Search","afterTextChanged:" +s.toString());
+                   // addressAutoCompleteTextView.hideClearButton();
+                }/*else
+                {
+                    addressAutoCompleteTextView.showClearButton();
+                }*/
+            }
+        });
     }
 
 
@@ -851,6 +884,7 @@ public class SearchFragment extends AbstractFragment {
             city_type_spinner.setSelection(aa.getCount());
         }*/
 
+
         city_type_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -1028,6 +1062,35 @@ final CustomAdapter aa= new CustomAdapter<DoctorClinicNameData>(MyApplication.ge
 
 
 
+        doctor_clinic_names_actv.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Log.i("Search","beforeTextChanged: "+s.toString());
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //  Log.i("Search","onTextChanged:" +s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+                if(TextUtils.isEmpty(s.toString())) {
+                    searchRequestParams.setSearchName(null);
+                    searchRequestParams.setSearchtype(null);
+                   // Log.i("Search","afterTextChanged:" +s.toString());
+                    //doctor_clinic_names_actv.hideClearButton();
+                }/*else
+                {
+                    doctor_clinic_names_actv.showClearButton();
+                }*/
+            }
+        });
+
+
+
 
         doctor_clinic_names_actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                             @Override
@@ -1061,12 +1124,40 @@ final CustomAdapter aa= new CustomAdapter<DoctorClinicNameData>(MyApplication.ge
       speciality_actv.setAdapter(aa);
 
 
+        speciality_actv.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+               // Log.i("Search","beforeTextChanged: "+s.toString());
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+              //  Log.i("Search","onTextChanged:" +s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if(TextUtils.isEmpty(s.toString())) {
+                    namesSearch.setSpeciality(null);
+                    searchRequestParams.setSpecality(null);
+                   // Log.i("Search","afterTextChanged:" +s.toString());
+                    //speciality_actv.hideClearButton();
+                }/*else
+                {
+                    speciality_actv.showClearButton();
+                }*/
+            }
+        });
+
+
 
         speciality_actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 SpecalitiyData selectedSpeciality = (SpecalitiyData) adapterView.getItemAtPosition(position);
                 // SpecalitiyData selectedSpeciality = dataList.get(position);
+
                 if (selectedSpeciality != null) {
                     namesSearch.setSpeciality(selectedSpeciality.getName());
                     callDoctorsClinicNamesMapper();

@@ -234,12 +234,12 @@ public class ClinicProfileActivity extends AbstractMenuActivity
 
         ImageView imageView = findViewById(R.id.clinic_profile_iv);
         if (imageView != null) {
-            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, clinicProfileData.getClinicImage());
+            MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_icon, imageView, clinicProfileData.getClinicImage());
             //START
             if (!TextUtils.isEmpty(clinicProfileData.getClinicImage())) {
-                MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, clinicProfileData.getClinicImage());
+                MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_icon, imageView, clinicProfileData.getClinicImage());
             } else {
-                    MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, Constants.DefaultImage.CLINIC_URL);
+                    MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_icon, imageView, Constants.DefaultImage.CLINIC_URL);
             }
         }
         //END

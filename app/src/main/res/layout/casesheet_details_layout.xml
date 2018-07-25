@@ -234,7 +234,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                          
-                        android:hint="History"
+                        android:hint="-"
                         android:textColorHint="#debebaba"
                         android:textColor="#95989a"
                         android:textSize="@dimen/_14sp"
@@ -277,7 +277,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                          
-                        android:hint="Complaint"
+                        android:hint="-"
                         android:textColorHint="#debebaba"
                         android:textColor="#95989a"
                         android:textSize="@dimen/_14sp"
@@ -302,7 +302,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                          
-                        android:text="History of Presentillness (HOPI)"
+                        android:text="History of Present Illness (HOPI)"
                         android:textColor="#de000000"
                         android:textSize="@dimen/_14sp"
                         android:textStyle="normal" />
@@ -320,7 +320,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                          
-                        android:hint="History"
+                        android:hint="-"
                         android:textColorHint="#debebaba"
                         android:textColor="#95989a"
                         android:textSize="@dimen/_14sp"

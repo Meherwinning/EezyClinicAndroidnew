@@ -74,6 +74,8 @@ public class DoctorProfileActivity extends AbstractMenuActivity
 
     private  SearchResultDoctorListData data;
 
+    private ImageView profile_imageview;
+
     @Override
     protected void setMyContectntView() {
         super.setMyContectntView();
@@ -99,7 +101,11 @@ public class DoctorProfileActivity extends AbstractMenuActivity
         }
 
           myView = findViewById(R.id.header_view_linear);
-       // myInit();
+         profile_imageview = findViewById(R.id.profile_iv1);
+         setProfileImage(data.getDoctorLogo(),data.getGender());
+        ((TextView)findViewById(R.id.doctor_name_tv)).setText(data.getDoctorName());
+
+        // myInit();
         callDoctorProfileMapper(data);
 
 
@@ -127,6 +133,8 @@ public class DoctorProfileActivity extends AbstractMenuActivity
                         }
                     });*/
                     showMyAlertDialog("Sorry", "Doctor’s full profile is not updated", "Close", true);
+                    ((TextView)findViewById(R.id.doctor_designation_tv)).setText(data.getSpecalities());
+
                     return;
                 }
                 if (doctorProfileAPI.getData() == null) {
@@ -144,6 +152,8 @@ public class DoctorProfileActivity extends AbstractMenuActivity
                     return;*/
 
                     showMyAlertDialog("Sorry", "Doctor’s full profile is not updated", "Close", true);
+                    ((TextView)findViewById(R.id.doctor_designation_tv)).setText(data.getSpecalities());
+
                     return;
                 }
                 profileData=doctorProfileAPI.getData();
@@ -359,35 +369,8 @@ public class DoctorProfileActivity extends AbstractMenuActivity
 
         //End
 
-        ImageView imageView = findViewById(R.id.profile_iv1);
-        if (imageView != null) {
-            //MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, profileData.getDoctorLogo());
 
-            //START
-            if (!TextUtils.isEmpty(profileData.getDoctorLogo())) {
-                MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, profileData.getDoctorLogo());
-            } else {
-                if (TextUtils.isEmpty(data.getGender())) {
-                    MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, Constants.DefaultImage.UNISEX_URL);
-
-                } else {
-                    switch (data.getGender().trim().toLowerCase()) {
-                        case "male":
-                            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, Constants.DefaultImage.MALE_URL);
-                            break;
-                        case "female":
-                            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, Constants.DefaultImage.FEMALE_URL);
-
-                            break;
-                        default:
-                            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, imageView, Constants.DefaultImage.UNISEX_URL);
-
-                            break;
-                    }
-                }
-
-            }
-        }
+        setProfileImage(profileData.getDoctorLogo(),data.getGender());
         //END
 
         ((TextView)findViewById(R.id.doctor_name_tv)).setText(profileData.getDoctorfullname());
@@ -425,6 +408,37 @@ public class DoctorProfileActivity extends AbstractMenuActivity
         ((TabLayout) findViewById(R.id.tabHost)).setupWithViewPager(mViewPager);
 
         mViewPager.setTranslationY(mHeaderHeight);
+    }
+
+    private void setProfileImage(String profileUrl,String gender) {
+        if (profile_imageview != null) {
+            //MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_imageview, profileData.getDoctorLogo());
+
+            //START
+            if (!TextUtils.isEmpty(profileUrl)) {
+                MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_imageview,profileUrl );
+            } else {
+                if (TextUtils.isEmpty(gender)) {
+                    MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_imageview, Constants.DefaultImage.UNISEX_URL);
+
+                } else {
+                    switch (gender.trim().toLowerCase()) {
+                        case "male":
+                            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_imageview, Constants.DefaultImage.MALE_URL);
+                            break;
+                        case "female":
+                            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_imageview, Constants.DefaultImage.FEMALE_URL);
+
+                            break;
+                        default:
+                            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_imageview, Constants.DefaultImage.UNISEX_URL);
+
+                            break;
+                    }
+                }
+
+            }
+        }
     }
 
     @Override

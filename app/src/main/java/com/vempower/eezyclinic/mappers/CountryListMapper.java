@@ -12,6 +12,8 @@ import com.vempower.eezyclinic.utils.Utils;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
+
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -65,6 +67,7 @@ public class CountryListMapper extends  AbstractMapper  implements Callback<Coun
         Call<CountryListAPI> apiResponseCall = stashDealAPI.getCountryListApi();
 
         apiResponseCall.enqueue(this);
+
     }
 
     @Override

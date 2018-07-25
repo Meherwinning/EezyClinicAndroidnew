@@ -456,7 +456,7 @@
                     android:textColor="@color/text_color"
                     android:textColorHint="@color/text_hint_color"
                     android:textSize="@dimen/button_text_size" />-->
-                <com.vempower.eezyclinic.views.MyAutoCompleteTextView
+                <com.vempower.eezyclinic.views.ClearableAutoCompleteTextView
                     android:id="@+id/google_places_actv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

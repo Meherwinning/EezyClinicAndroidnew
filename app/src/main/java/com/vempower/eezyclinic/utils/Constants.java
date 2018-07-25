@@ -15,6 +15,7 @@ public interface Constants {
 
 
     String BASIC_URL= URL_MANAGE.getURL();
+    String GRAPH_BASE_URL=Constants.BASIC_URL +"/eezyclinic-git/patient/healthcheckreports?access_key=";
     //String SHARED_PREFERENCES_FILE_NAME = "stashdealcustomerpref";
     String LOGGED_USER_DETAILS_OBJECT = "login_user_obj";
     String SUCCESS_STATUS_CODE = "1";
@@ -185,8 +186,7 @@ public interface Constants {
         float MAX_VALUE = 10000;
     }
 
-    interface DefaultImage
-    {
+    interface DefaultImage {
         String MALE_URL="https://res.cloudinary.com/eezyclinic/image/upload/f_auto,h_98,q_auto,w_98/v1/images/Dr-Male-min.png";
         String FEMALE_URL="https://res.cloudinary.com/eezyclinic/image/upload/f_auto,h_98,q_auto,w_98/v1/images/Dr-Female-min.png";
         String UNISEX_URL="https://res.cloudinary.com/eezyclinic/image/upload/f_auto,h_98,q_auto,w_98/v1/images/Dr-Unisex-min.png";

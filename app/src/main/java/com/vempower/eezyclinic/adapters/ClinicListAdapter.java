@@ -139,8 +139,18 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Or
                     MyApplication.getCurrentActivityContext().startActivity(intent);
                 }
             });
-            MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, data.getMainDisplayImage());
+            MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_icon, profile_iv, data.getMainDisplayImage());
 
+           // ImageView imageView = findViewById(R.id.clinic_profile_iv);
+            if (profile_iv != null) {
+               // MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_icon, profile_iv, clinicProfileData.getClinicImage());
+                //START
+                if (!TextUtils.isEmpty(data.getMainDisplayImage())) {
+                    MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_icon, profile_iv, data.getMainDisplayImage());
+                } else {
+                    MyApplication.getInstance().setBitmapToImageview(R.drawable.profile_icon, profile_iv, Constants.DefaultImage.CLINIC_URL);
+                }
+            }
 
             title_tv.setText(data.getClinicName());
             designation_tv.setText("Services Offered");

@@ -298,6 +298,11 @@ public class HealthCheckTab4 extends  AbstractHealthChecksTabFragment {
             //For Date of birth
             if(!TextUtils.isEmpty(dateStr)) {
                 try {
+                    if (dateStr.contains("on")) {
+                        dateStr = dateStr.replace("on", "");
+                        dateStr = dateStr.trim();
+                    }
+                    dateStr = filterDateStr(dateStr);
 
                     Date date = format.parse(dateStr);
 

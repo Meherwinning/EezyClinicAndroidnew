@@ -33,7 +33,7 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
- ;
+;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -68,7 +68,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
         super.myInit();
         inflater = (LayoutInflater) MyApplication.getCurrentActivityContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        no_records_relative  = getFragemtView().findViewById(R.id.no_records_relative);
+        no_records_relative = getFragemtView().findViewById(R.id.no_records_relative);
 
         sugar_levels_linear = getFragemtView().findViewById(R.id.sugar_levels_linear);
         add_new_reocrd_linear = getFragemtView().findViewById(R.id.add_new_reocrd_linear);
@@ -115,11 +115,11 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                     Utils.showToastMessage(R.string.please_enter_lunch_value_lbl);
                     return;
                 }
-                if (TextUtils.isEmpty(fasting)|| fasting.equalsIgnoreCase("0")) {
+                if (TextUtils.isEmpty(fasting) || fasting.equalsIgnoreCase("0")) {
                     Utils.showToastMessage(R.string.please_enter_pasting_value_lbl);
                     return;
                 }
-                if (TextUtils.isEmpty(hba1c)|| hba1c.equalsIgnoreCase("0")) {
+                if (TextUtils.isEmpty(hba1c) || hba1c.equalsIgnoreCase("0")) {
                     Utils.showToastMessage(R.string.please_enter_hba1c_value_lbl);
                     return;
                 }
@@ -152,7 +152,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
         new_post_meal_et.setText(null);
         new_hba1c_et.setText(null);
         new_date_tv.setText(null);
-        selectedDateStr="";
+        selectedDateStr = "";
     }
 
     private void callAddNewSugarHealthcheckRecord1(final String fasting, final String lunch, final String hba1c) {
@@ -164,8 +164,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                     return;
                 }
 
-                if(response==null || response.getData()==null)
-                {
+                if (response == null || response.getData() == null) {
                     return;
                 }
 
@@ -204,13 +203,11 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
         setSugarlevelViews();
     }
 
-    protected  void setNoRecordsViewManage()
-    {
+    protected void setNoRecordsViewManage() {
         if (recordsCount() == 0) {
             no_records_relative.setVisibility(View.VISIBLE);
             return;
-        }else
-        {
+        } else {
             no_records_relative.setVisibility(View.GONE);
         }
     }
@@ -219,8 +216,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
         if (sugarLevelsList == null || sugarLevelsList.size() == 0) {
             no_records_relative.setVisibility(View.VISIBLE);
             return;
-        }else
-        {
+        } else {
             no_records_relative.setVisibility(View.GONE);
         }
 
@@ -237,7 +233,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
 
     private class RecordHolder {
         MyEditTextBlackCursor fasting_et, post_meal_et, hba1c_et;
-         TextView date_tv;
+        TextView date_tv;
         ImageView ok_iv, edit_iv, delete_iv;
         private final HealthChecksSugar sugar;
         private SelectedDate selectedObj1;
@@ -259,16 +255,15 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
             setHealthChecksSugar();
         }
 
-        private String getDisplayDateStr(String dateStr)
-        {
+        private String getDisplayDateStr(String dateStr) {
             //on Thursday
             //08-03-2018, 08.41 AM
-           // SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
+            // SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
             SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
 
 
             //For Date of birth
-            if(!TextUtils.isEmpty(dateStr)) {
+            if (!TextUtils.isEmpty(dateStr)) {
                 try {
 
                     Date date = requestFormat.parse(dateStr);
@@ -287,15 +282,20 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
             return null;
         }
 
-        private String getServerDateStr(String dateStr)
-        {
-            SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
+        private String getServerDateStr(String dateStr) {
+            SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT1);
             SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
 
 
             //For Date of birth
-            if(!TextUtils.isEmpty(dateStr)) {
+            if (!TextUtils.isEmpty(dateStr)) {
                 try {
+
+                    if (dateStr.contains("on")) {
+                        dateStr = dateStr.replace("on", "");
+                        dateStr = dateStr.trim();
+                    }
+                    dateStr = filterDateStr(dateStr);
 
                     Date date = format.parse(dateStr);
 
@@ -310,6 +310,29 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
             return null;
         }
 
+        protected String filterDateStr(String dateStr) {
+            if (TextUtils.isEmpty(dateStr)) {
+                return dateStr;
+            }
+            if (dateStr.contains("st")) {
+                dateStr = dateStr.replace("st", "");
+                dateStr = dateStr.trim();
+            }
+            if (dateStr.contains("nd")) {
+                dateStr = dateStr.replace("nd", "");
+                dateStr = dateStr.trim();
+            }
+            if (dateStr.contains("rd")) {
+                dateStr = dateStr.replace("rd", "");
+                dateStr = dateStr.trim();
+            }
+            if (dateStr.contains("th")) {
+                dateStr = dateStr.replace("th", "");
+                dateStr = dateStr.trim();
+            }
+            return dateStr;
+        }
+
         private void init() {
             edit_iv.setVisibility(View.VISIBLE);
             ok_iv.setVisibility(View.GONE);
@@ -318,7 +341,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
             date_tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onDateOfBirthTextviewClick(mFragmentCallback,selectedObj1,true);
+                    onDateOfBirthTextviewClick(mFragmentCallback, selectedObj1, true);
 
                 }
             });
@@ -340,17 +363,16 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                 if (selectedDate1 == null || selectedDate1.getFirstDate() == null) {
                     return;
                 }
-                selectedDate1.set(Calendar.HOUR_OF_DAY,hourOfDay);
-                selectedDate1.set(Calendar.MINUTE,minute);
+                selectedDate1.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                selectedDate1.set(Calendar.MINUTE, minute);
 
                 selectedObj1 = selectedDate1;
                 //selectedObj1.getFirstDate().set(Calendar.HOUR_OF_DAY,hourOfDay);
-               // selectedObj1.getFirstDate().set(Calendar.MINUTE,minute);
+                // selectedObj1.getFirstDate().set(Calendar.MINUTE,minute);
 
 
-
-              Calendar  selectedCal = selectedObj1.getFirstDate();
-               // selectedCal.set(Calendar.HOUR,hourOfDay);
+                Calendar selectedCal = selectedObj1.getFirstDate();
+                // selectedCal.set(Calendar.HOUR,hourOfDay);
                 //selectedCal.set(Calendar.MINUTE,minute);
                 //int year, int month, int date, int hourOfDay, int minute, int second
                /* selectedCal.set(selectedDate1.getFirstDate().get(Calendar.YEAR),
@@ -367,7 +389,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                 //profileDetails.dateofBirth=requestFormat.format(selectedCal.getTime());
                 SimpleDateFormat serverDateFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
                 //profileDetails.dateofBirth=requestFormat.format(selectedCal.getTime());
-                selectedDateStr=serverDateFormat.format(selectedCal.getTime());
+                selectedDateStr = serverDateFormat.format(selectedCal.getTime());
                 date_tv.setText(format.format(selectedCal.getTime()));
 
             }
@@ -389,7 +411,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
             date_tv.setText(getDisplayDateStr(sugar.getCheckupTime()));
             //SimpleDateFormat serverDateFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
             //profileDetails.dateofBirth=requestFormat.format(selectedCal.getTime());
-           // selectedDateStr=serverDateFormat.format(sugar.getCheckupTime());
+            // selectedDateStr=serverDateFormat.format(sugar.getCheckupTime());
             //(String fromDateStr, String fromDateFormat, String destDateFormat) {
 
         }
@@ -411,18 +433,17 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
             }
         }
 
-        public void onUpdateButtonClick()
-        {
+        public void onUpdateButtonClick() {
            /* fasting_et = convertView.findViewById(R.id.fasting_et);
             post_meal_et = convertView.findViewById(R.id.post_meal_et);
             hba1c_et = convertView.findViewById(R.id.hba1c_et);
             date_tv = convertView.findViewById(R.id.date_tv);
 */
-           final String fasting = fasting_et.getText().toString();
+            final String fasting = fasting_et.getText().toString();
             final String lunch = post_meal_et.getText().toString();
             final String hba1c = hba1c_et.getText().toString();
-             String checkuptime1 = date_tv.getText().toString();
-          // String updateDateStr=Utils.changeToDateFormat(sugar.getCheckupTime(),DISPLAY_DATE_FORMAT,Constants.SERVER_DATE_FORMAT_NEW);
+            String checkuptime1 = date_tv.getText().toString();
+            // String updateDateStr=Utils.changeToDateFormat(sugar.getCheckupTime(),DISPLAY_DATE_FORMAT,Constants.SERVER_DATE_FORMAT_NEW);
 
             if (TextUtils.isEmpty(lunch)) {
                 Utils.showToastMessage(R.string.please_enter_lunch_value_lbl);
@@ -440,15 +461,14 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                 Utils.showToastMessage(R.string.please_select_date_lbl);
                 return;
             }
-           // "YYYY-M-d H:I:S"
-            final String checkuptime=getServerDateStr(checkuptime1);
-            UpdateSugarHealthCheckMapper mapper= new UpdateSugarHealthCheckMapper(sugar.getId(),  fasting,  lunch,  hba1c,  checkuptime);
+            // "YYYY-M-d H:I:S"
+            final String checkuptime = getServerDateStr(checkuptime1);
+            UpdateSugarHealthCheckMapper mapper = new UpdateSugarHealthCheckMapper(sugar.getId(), fasting, lunch, hba1c, checkuptime);
 
             mapper.setOnUpdateSugarHealthCheckListener(new UpdateSugarHealthCheckMapper.UpdateSugarHealthCheckListener() {
                 @Override
                 public void updateSugar(AbstractResponse response, String errorMessage) {
-                    if(!isValidResponse(response,errorMessage,true,false))
-                    {
+                    if (!isValidResponse(response, errorMessage, true, false)) {
                         return;
                     }
                     sugar.setCheckupTime(checkuptime);
@@ -460,7 +480,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
             });
 
 
-           // holder.setViewState(false);
+            // holder.setViewState(false);
 
         }
 
@@ -503,28 +523,23 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
                 } else {
                     showMyCustomDialog("Alert", Utils.getStringFromResources(R.string.are_you_sure_to_delete_sugar_record_lbl), "Yes", "No", new MyDialogInterface() {
                         @Override
-                        public void onPossitiveClick()
-                        {
-                            int id=-1;
-                            try
-                            {
-                                if(TextUtils.isEmpty(sugar.getId()))
-                                {
+                        public void onPossitiveClick() {
+                            int id = -1;
+                            try {
+                                if (TextUtils.isEmpty(sugar.getId())) {
                                     Utils.showToastMessage(R.string.invalid_sugar_record_details_lbl);
                                     return;
                                 }
-                                id= Integer.parseInt(sugar.getId());
-                            }catch (Exception e)
-                            {
+                                id = Integer.parseInt(sugar.getId());
+                            } catch (Exception e) {
                                 Utils.showToastMessage(R.string.invalid_sugar_record_details_lbl);
                                 return;
                             }
-                            DeleteSugarHealthCheckMapper mapper= new DeleteSugarHealthCheckMapper(id);
+                            DeleteSugarHealthCheckMapper mapper = new DeleteSugarHealthCheckMapper(id);
                             mapper.setOnDeleteSugarHealthCheckListener(new DeleteSugarHealthCheckMapper.DeleteSugarHealthCheckListener() {
                                 @Override
                                 public void deleteSugar(AbstractResponse response, String errorMessage) {
-                                    if(!isValidResponse(response,errorMessage,true,false))
-                                    {
+                                    if (!isValidResponse(response, errorMessage, true, false)) {
                                         return;
                                     }
                                     Utils.showToastMessage(response.getStatusMessage());
@@ -566,8 +581,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
 
     @Override
     int recordsCount() {
-        if(sugar_levels_linear!=null)
-        {
+        if (sugar_levels_linear != null) {
             return sugar_levels_linear.getChildCount();
         }
         return 0;

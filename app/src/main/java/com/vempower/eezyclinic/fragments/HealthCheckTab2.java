@@ -266,6 +266,7 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
             if(!TextUtils.isEmpty(dateStr)) {
                 try {
 
+
                     Date date = requestFormat.parse(dateStr);
                     if (selectedObj == null) {
                         selectedObj = new SelectedDate(Calendar.getInstance());
@@ -284,13 +285,20 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
 
         private String getServerDateStr(String dateStr)
         {
-            SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
+            SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT1);
             SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
 
 
             //For Date of birth
             if(!TextUtils.isEmpty(dateStr)) {
                 try {
+
+                    if (dateStr.contains("on")) {
+                        dateStr = dateStr.replace("on", "");
+                        dateStr = dateStr.trim();
+                    }
+                    dateStr = filterDateStr(dateStr);
+
 
                     Date date = format.parse(dateStr);
 
