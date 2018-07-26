@@ -101,12 +101,15 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
 
 
     private void callSearchResultDoctorsListMapper() {
+
         SearchResultDoctorsListMapper mapper = new SearchResultDoctorsListMapper(requestParms);
 
         mapper.setOnSearchResultDoctorListAPItListener(new SearchResultDoctorsListMapper.SearchResultDoctorListAPItListener() {
             @Override
             public void getSearchResultDoctorListAPI(SearchResultDoctorListAPI searchResultDoctorListAPI, String errorMessage) {
+
                 if (!isValidResponse(searchResultDoctorListAPI, errorMessage)) {
+
                     return;
                 }
                 if (!(requestParms.getPage().equalsIgnoreCase("1")) && (searchResultDoctorListAPI.getData() == null || searchResultDoctorListAPI.getData().size() == 0)) {

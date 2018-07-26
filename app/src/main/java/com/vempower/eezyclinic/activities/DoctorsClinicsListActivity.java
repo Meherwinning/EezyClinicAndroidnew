@@ -133,10 +133,28 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
 
                 if (searchRequest != null) {
                     StringBuilder queryStr = new StringBuilder();
+                    if (!TextUtils.isEmpty(searchRequest.getSearchName())) {
+                        if(queryStr.length()!=0) {
+                            queryStr.append(", ");
+                        }
+                        queryStr.append("Name : " + searchRequest.getSearchName());
+                    }
+
+                    if (!TextUtils.isEmpty(searchRequest.getSpecality())) {
+                        if(queryStr.length()!=0) {
+                            queryStr.append(", ");
+                        }
+                        queryStr.append("Speciality : " + searchRequest.getSpecality());
+                    }
 
                     if (!TextUtils.isEmpty(searchRequest.getCity())) {
+                        if(queryStr.length()!=0) {
+                            queryStr.append(", ");
+                        }
                         queryStr.append("City : " + searchRequest.getCityName());
                     }
+
+
 
                     if (!TextUtils.isEmpty(searchRequest.getCountry())) {
                         if(queryStr.length()!=0) {
@@ -169,11 +187,59 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
                         queryStr.append("Gender : " + gender);
                     }
 
-                    if(queryStr.length()!=0) {
-                        search_query_tv.setText(matchFound + " matches found\n"+queryStr);
-
+                    if (searchRequest.getInsurenceList().size()!=0) {
+                        if(queryStr.length()!=0) {
+                            queryStr.append(", ");
+                        }
+                        String insurance="";
+                        for ( String ins:searchRequest.getInsurenceList())
+                        {
+                            if(insurance.length()!=0) {
+                                insurance=insurance+", ";
+                            }
+                            insurance=insurance+ins;
+                        }
+                        queryStr.append("Insurance : " + insurance);
                     }
 
+
+                    if (searchRequest.getNationalityList().size()!=0) {
+                        if(queryStr.length()!=0) {
+                            queryStr.append(", ");
+                        }
+                        String nationality="";
+                        for ( String nat:searchRequest.getNationalityList())
+                        {
+                            if(nationality.length()!=0) {
+                                nationality=nationality+", ";
+                            }
+                            nationality=nationality+nat;
+                        }
+                        queryStr.append("Nationality : " + nationality);
+                    }
+
+
+                    if (searchRequest.getLaunguage().size()!=0) {
+                        if(queryStr.length()!=0) {
+                            queryStr.append(", ");
+                        }
+                        String language="";
+                        for ( String lan:searchRequest.getLaunguage())
+                        {
+                            if(language.length()!=0) {
+                                language=language+", ";
+                            }
+                            language=language+lan;
+                        }
+                        queryStr.append("Language : " + language);
+                    }
+
+                    if (searchRequest.getOnlinebooking()!=0) {
+                        if(queryStr.length()!=0) {
+                            queryStr.append(", ");
+                        }
+                        queryStr.append("Online Booking : true");
+                    }
 
 
 
@@ -188,9 +254,22 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
                             ", searchName='" + searchName + '\'' +
                             ", onlinebooking=" + onlinebooking +
                             '}';*/
+
+                    if(queryStr.length()!=0) {
+                        search_query_tv.setText(matchFound + " matches found\n"+queryStr);
+
+                    }
+
                 }
 
 
+            }
+
+            @Override
+            public void reset() {
+                if(search_query_tv!=null) {
+                    search_query_tv.setText(null);
+                }
             }
         };
 

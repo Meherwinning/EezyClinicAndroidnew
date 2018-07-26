@@ -57,20 +57,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </FrameLayout>
-    <TextView
-        android:visibility="gone"
+
+    <LinearLayout
         android:layout_below="@+id/toolbar_container"
+        android:id="@+id/top_linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f4f4f4"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/_20dp"
+        android:paddingTop="@dimen/_3dp"
+        android:paddingBottom="@dimen/_3dp">
+
+    <TextView
+        android:paddingBottom="@dimen/_3dp"
         android:id="@+id/search_query_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/_5dp"
         android:fontFamily="@font/roboto"
-        android:text="this is search text"
         android:textColor="#5d5d5d"
         android:textSize="@dimen/_14sp"
-        android:textStyle="normal" />
+        android:textStyle="normal"
+        />
+    </LinearLayout>
     <LinearLayout
-        android:layout_below="@+id/search_query_tv"
+        android:layout_below="@+id/top_linear1"
         android:orientation="vertical"
         android:layout_above="@+id/bottom_linear"
 

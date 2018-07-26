@@ -44,14 +44,12 @@ public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
 
         setupSwipeRefreshLayout(fragmentView);
 
-        if(isOnlyViewList)
-        {
+        if (isOnlyViewList) {
             viewList();
-        }else
-        {
+        } else {
             refreshList();
         }
-        isOnlyViewList=true;
+        isOnlyViewList = true;
 
         return fragmentView;
     }
@@ -60,32 +58,28 @@ public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
         return clinicList;
     }
 
-    public void isViewOnlyList(boolean isOnlyViewList)
-    {
-        this.isOnlyViewList=isOnlyViewList;
+    public void isViewOnlyList(boolean isOnlyViewList) {
+        this.isOnlyViewList = isOnlyViewList;
     }
 
     private void init() {
-        adapter=null;
-        clinicList= new ArrayList<>();
+        adapter = null;
+        clinicList = new ArrayList<>();
         requestParms = MyApplication.getInstance().getSearchRequestParms();
-        if(requestParms==null)
-        {
-            requestParms= new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
+        if (requestParms == null) {
+            requestParms = new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
         }
         requestParms.setPage("1");
 
         callSearchResultDoctorsListMapper();
     }
 
-    private void viewList()
-    {
-        adapter=null;
+    private void viewList() {
+        adapter = null;
         setOrderItemsToAdapter(clinicList);
     }
 
-    private void refreshList()
-    {
+    private void refreshList() {
         init();
 
     }
@@ -101,27 +95,25 @@ public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
     }
 
 
+    private void callSearchResultDoctorsListMapper() {
+        if (onSearchResultListener != null) {
+            onSearchResultListener.reset();
+        }
 
-    private void callSearchResultDoctorsListMapper()
-    {
-
-        SearchResultClinicListMapper mapper=new SearchResultClinicListMapper(requestParms);
+        SearchResultClinicListMapper mapper = new SearchResultClinicListMapper(requestParms);
 
         mapper.setOnSearchResultClinicListAPItListener(new SearchResultClinicListMapper.SearchResultClinicListAPItListener() {
             @Override
             public void getSearchResultClinicListAPI(SearchResultClinicListAPI searchResultClinicListAPI, String errorMessage) {
-                if(!isValidResponse(searchResultClinicListAPI,errorMessage))
-                {
+                if (!isValidResponse(searchResultClinicListAPI, errorMessage)) {
                     return;
                 }
-                if(!(requestParms.getPage().equalsIgnoreCase("1")) && (searchResultClinicListAPI.getData()==null ||searchResultClinicListAPI.getData().size()==0) )
-                {
+                if (!(requestParms.getPage().equalsIgnoreCase("1")) && (searchResultClinicListAPI.getData() == null || searchResultClinicListAPI.getData().size() == 0)) {
                     Utils.showToastMsg(R.string.no_more_clinic_found_lbl);
                     return;
 
                 }
-                if(searchResultClinicListAPI.getData()!=null )
-                {
+                if (searchResultClinicListAPI.getData() != null) {
                     clinicList.addAll(searchResultClinicListAPI.getData());
                 }
                 // Utils.showToastMessage(searchResultDoctorListAPI.toString());
@@ -154,7 +146,7 @@ public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
 
     public void setOrderItemsToAdapter(List<SearchResultClinicData> orders) {
         hideProgressView();
-        ((TextView)fragmentView.findViewById(R.id.match_found_tv)).setText(orders.size()+"");
+        ((TextView) fragmentView.findViewById(R.id.match_found_tv)).setText(orders.size() + "");
 
         if (onSearchResultListener != null) {
             onSearchResultListener.result(orders.size());
@@ -168,14 +160,11 @@ public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
             adapter.setUpdatedList(orders);
         }
 
-        if(orders==null || orders.size()==0)
-        {
+        if (orders == null || orders.size() == 0) {
             fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.VISIBLE);
-        }else
-        {
+        } else {
             fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.GONE);
         }
-
 
 
     }
@@ -185,7 +174,7 @@ public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
         if (swipeLayout != null) {
             swipeLayout.setRefreshing(false);
         }
-        clinicList= new ArrayList<>();
+        clinicList = new ArrayList<>();
         requestParms.setPage("1");
         callSearchResultDoctorsListMapper();
 
@@ -196,7 +185,7 @@ public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
         if (swipeLayout != null) {
             swipeLayout.setRefreshing(false);
         }
-        requestParms.setPage((Integer.parseInt(requestParms.getPage())+1)+"");
+        requestParms.setPage((Integer.parseInt(requestParms.getPage()) + 1) + "");
         callSearchResultDoctorsListMapper();
     }
 
