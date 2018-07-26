@@ -22,6 +22,22 @@
 
             android:paddingBottom="@dimen/_4dp"
             android:paddingTop="@dimen/_4dp">
+            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
+                android:id="@+id/systolic_et"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_3dp"
+                android:layout_marginRight="@dimen/_3dp"
+                android:background="@drawable/health_checks_view_selector"
+                android:enabled="true"
+                android:gravity="center"
+                android:inputType="numberSigned"
+                android:maxLength="3"
+                android:imeOptions="actionDone"
+                android:hint="0"
+                android:textColor="#ee7b7979"
+                android:textSize="@dimen/_14dp" />
 
             <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                 android:id="@+id/diastolic_et"
@@ -40,22 +56,7 @@
                 android:textColor="#ee7b7979"
                 android:textSize="@dimen/_14dp" />
 
-            <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
-                android:id="@+id/systolic_et"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/_3dp"
-                android:layout_marginRight="@dimen/_3dp"
-                android:background="@drawable/health_checks_view_selector"
-                android:enabled="true"
-                android:gravity="center"
-                android:inputType="numberSigned"
-                android:maxLength="3"
-                android:imeOptions="actionDone"
-                android:hint="0"
-                android:textColor="#ee7b7979"
-                android:textSize="@dimen/_14dp" />
+
 
             <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
                 android:id="@+id/hba1c_et"

@@ -247,6 +247,7 @@
     <string name="please_enter_valid_emerengency_email_id_lbl">Please enter valid Emergency Email id</string>
     <string name="please_enter_valid_emerengency_contact_num_lbl">Please enter valid Emergency Contact number</string>
     <string name="other_appointment_create_alert_lbl">As contact details of patient is not provided, Patient account would be created by considering your details for contact purpose, this can be changed later.\nDo you want to continue</string>
+    <string name="title_settings_lbl">My Account</string>
 
 
 </resources>

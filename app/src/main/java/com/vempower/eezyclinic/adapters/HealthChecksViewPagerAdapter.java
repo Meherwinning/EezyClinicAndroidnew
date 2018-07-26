@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.adapters;
 
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -8,6 +9,7 @@ import com.vempower.eezyclinic.APICore.HealthChecksData;
 import com.vempower.eezyclinic.APICore.HealthChecksHeight;
 import com.vempower.eezyclinic.APICore.HealthChecksHeightWeight;
 import com.vempower.eezyclinic.APICore.HealthChecksWeight;
+import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.fragments.CasesheetsFragment;
 import com.vempower.eezyclinic.fragments.HealthCheckTab1;
 import com.vempower.eezyclinic.fragments.HealthCheckTab2;
@@ -39,6 +41,7 @@ public class HealthChecksViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
+
         switch (position) {
             case 0:
                 HealthCheckTab1  checkTab1= new HealthCheckTab1();
@@ -61,6 +64,10 @@ public class HealthChecksViewPagerAdapter extends FragmentStatePagerAdapter {
     }
 
 
+    @Override
+    public Parcelable saveState() {
+        return null;
+    }
 
     @Override
     public int getCount() {

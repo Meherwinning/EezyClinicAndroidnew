@@ -12,7 +12,7 @@
         android:clickable="true"
         android:layout_width="0dp"
         android:onClick="onNewHomeClick"
-        android:layout_weight="1"
+        android:layout_weight="0.9"
         android:orientation="vertical"
         android:background="@drawable/view_selector"
         android:layout_height="match_parent">
@@ -41,7 +41,7 @@
         android:clickable="true"
         android:layout_width="0dp"
         android:onClick="onDashBoardClick"
-        android:layout_weight="1"
+        android:layout_weight="0.9"
         android:orientation="vertical"
         android:background="@drawable/view_selector"
         android:layout_height="match_parent">
@@ -65,32 +65,33 @@
             android:layout_height="match_parent" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/bottom_linear2"
         android:clickable="true"
-        android:background="@drawable/view_selector"
         android:layout_width="0dp"
-        android:onClick="onMyProfileClick"
-        android:layout_weight="1"
+        android:background="@drawable/view_selector"
+        android:onClick="onHealthChecksClick"
+        android:layout_weight="1.15"
         android:orientation="vertical"
         android:layout_height="match_parent">
         <ImageView
             android:id="@+id/bottom_linear_image2"
             android:layout_marginTop="@dimen/_7dp"
             android:layout_width="wrap_content"
-            android:src="@drawable/group_6"
+            android:src="@drawable/footer_health_checks"
             android:minHeight="@dimen/_24dp"
             android:layout_gravity="center|center_vertical"
             android:layout_height="wrap_content" />
 
 
-         <TextView    android:fontFamily="@font/roboto"
+        <TextView    android:fontFamily="@font/roboto"
             android:id="@+id/bottom_linear_textview2"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/_1dp"
             android:layout_gravity="bottom|center|center_vertical"
             android:textSize="@dimen/text_size_small1"
-            android:text="@string/my_profile_lbl"
+            android:text="@string/health_checks_lbl"
             android:gravity="center"
             android:layout_height="match_parent" />
 
@@ -101,7 +102,7 @@
         android:layout_width="0dp"
         android:background="@drawable/view_selector"
         android:onClick="onMedicalRecordsClick"
-        android:layout_weight="1"
+        android:layout_weight="1.15"
         android:orientation="vertical"
         android:layout_height="match_parent">
         <ImageView
@@ -126,6 +127,37 @@
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/bottom_linear4"
+        android:clickable="true"
+        android:background="@drawable/view_selector"
+        android:layout_width="0dp"
+        android:onClick="onMyProfileClick"
+        android:layout_weight="0.9"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/bottom_linear_image4"
+            android:layout_marginTop="@dimen/_7dp"
+            android:layout_width="wrap_content"
+            android:src="@drawable/group_6"
+            android:minHeight="@dimen/_24dp"
+            android:layout_gravity="center|center_vertical"
+            android:layout_height="wrap_content" />
+
+
+        <TextView    android:fontFamily="@font/roboto"
+            android:id="@+id/bottom_linear_textview4"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_1dp"
+            android:layout_gravity="bottom|center|center_vertical"
+            android:textSize="@dimen/text_size_small1"
+            android:text="@string/my_profile_lbl"
+            android:gravity="center"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+   <!-- <LinearLayout
+        android:visibility="gone"
         android:id="@+id/bottom_linear4"
         android:clickable="true"
         android:layout_width="0dp"
@@ -153,6 +185,6 @@
             android:text="@string/settings_lbl"
             android:layout_height="match_parent" />
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 </LinearLayout>

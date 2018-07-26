@@ -23,6 +23,21 @@
 
         android:layout_weight="3"
         >
+        <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
+            android:id="@+id/systolic_et"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_2dp"
+            android:background="@drawable/health_checks_view_selector"
+            android:enabled="false"
+            android:gravity="center"
+            android:inputType="numberSigned"
+            android:maxLength="4"
+            android:hint="0"
+            android:imeOptions="actionDone"
+            android:textColor="#ee7b7979"
+            android:textSize="@dimen/_14dp" />
 
         <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
             android:id="@+id/diastolic_et"
@@ -40,21 +55,7 @@
             android:textColor="#ee7b7979"
             android:textSize="@dimen/_14dp" />
 
-        <com.vempower.eezyclinic.views.MyEditTextBlackCursor            android:fontFamily="@font/roboto"
-            android:id="@+id/systolic_et"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/_2dp"
-            android:background="@drawable/health_checks_view_selector"
-            android:enabled="false"
-            android:gravity="center"
-            android:inputType="numberSigned"
-            android:maxLength="4"
-            android:hint="0"
-            android:imeOptions="actionDone"
-            android:textColor="#ee7b7979"
-            android:textSize="@dimen/_14dp" />
+
 
 
 

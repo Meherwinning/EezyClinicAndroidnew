@@ -245,11 +245,11 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 callSideMenuScreen(NotificationsListActivity.class);
 
                 break;
-            case R.id.health_checks_linear:
+           /* case R.id.health_checks_linear:
                 //TODO something
                // showToastMessage("Coming soon");
                 callSideMenuScreen(HealthChecksActivity.class);
-                break;
+                break;*/
             case R.id.medical_history_linear:
                // showToastMessage("Coming soon");
                 callSideMenuScreen(MedicalHistoryListActivity.class);
@@ -277,9 +277,15 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 startActivity(intent);*/
                 break;
             case R.id.my_account_settings_linear:
-                callSettings();
+               // callSettings();
+
+                callSideMenuScreen(SettingsActivity.class);
+                break;
+            case R.id.health_checks_linear:
+                callHealthChecks();
 
                 break;
+
             case R.id.feedback_linear:
                 //showToastMessage("Coming soon");
                 callSideMenuScreen(FeedbackActivity.class);
@@ -367,12 +373,22 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
     }
 
-    protected void callSettings() {
+   /* protected void callSettings() {
         Intent intent = getIntent(); //= new Intent(this,HomeActivity.class);
         intent.setClass(this, HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.SETTINGS));
+    }*/
+
+
+
+    protected void callHealthChecks() {
+        Intent intent = getIntent(); //= new Intent(this,HomeActivity.class);
+        intent.setClass(this, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.HEALTH_CHECKS));
     }
 
 

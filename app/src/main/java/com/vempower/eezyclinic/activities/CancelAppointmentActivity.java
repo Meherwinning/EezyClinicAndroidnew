@@ -1,53 +1,20 @@
 package com.vempower.eezyclinic.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
-import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarFinalValueListener;
-import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
-import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
-import com.github.aakira.expandablelayout.ExpandableLinearLayout;
-import com.nex3z.togglebuttongroup.MultiSelectToggleGroup;
-import com.nex3z.togglebuttongroup.button.LabelToggle;
-import com.rey.material.widget.Switch;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
-import com.vempower.eezyclinic.APIResponce.InsuranceData;
-import com.vempower.eezyclinic.APIResponce.InsuranceListAPI;
-import com.vempower.eezyclinic.APIResponce.LanguageData;
-import com.vempower.eezyclinic.APIResponce.LanguageListAPI;
-import com.vempower.eezyclinic.APIResponce.NationalityData;
-import com.vempower.eezyclinic.APIResponce.NationalityListAPI;
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.activities.AbstractFragmentActivity;
-import com.vempower.eezyclinic.activities.DoctorsListActivity;
-import com.vempower.eezyclinic.application.MyApplication;
-import com.vempower.eezyclinic.callbacks.FilterRefreshListListener;
-import com.vempower.eezyclinic.callbacks.HomeBottomItemClickListener;
-import com.vempower.eezyclinic.callbacks.ListenerKey;
-import com.vempower.eezyclinic.core.SearchRequest;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.CancelAppointmentMapper;
-import com.vempower.eezyclinic.mappers.InsuranceListMapper;
-import com.vempower.eezyclinic.mappers.LanguageListMapper;
-import com.vempower.eezyclinic.mappers.NationalityMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import android.widget.CheckBox;
-import com.vempower.eezyclinic.views.MySwitch;
- ;
-
-import java.util.List;
+;
 
 public class CancelAppointmentActivity extends AbstractFragmentActivity /*implements MySwitch.OnChangeAttemptListener, CompoundButton.OnCheckedChangeListener*/ {
 

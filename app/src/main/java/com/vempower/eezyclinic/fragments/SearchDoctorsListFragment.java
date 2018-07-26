@@ -16,10 +16,11 @@ import com.vempower.eezyclinic.activities.MapDoctorsActivity;
 import com.vempower.eezyclinic.adapters.DoctorsListAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.SearchRequest;
+import com.vempower.eezyclinic.interfaces.SearchResultListener;
 import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
- ;
+;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
     private SearchRequest requestParms;
 
     private boolean isOnlyViewList;
+    private SearchResultListener onSearchResultListener;
     //private  TextView match_found_tv;
 
     @Nullable
@@ -45,14 +47,12 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
 
         setupSwipeRefreshLayout(fragmentView);
 
-        if(isOnlyViewList)
-        {
+        if (isOnlyViewList) {
             viewList();
-        }else
-        {
+        } else {
             refreshList();
         }
-        isOnlyViewList=true;
+        isOnlyViewList = true;
 
         return fragmentView;
     }
@@ -61,34 +61,30 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
         return doctorsList;
     }
 
-    public void isViewOnlyList(boolean isOnlyViewList)
-    {
-        this.isOnlyViewList=isOnlyViewList;
+    public void isViewOnlyList(boolean isOnlyViewList) {
+        this.isOnlyViewList = isOnlyViewList;
     }
 
     private void init() {
 
-       // match_found_tv=  fragmentView.findViewById(R.id.match_found_tv);
-       // match_found_tv.setText("0");
-        adapter=null;
-        doctorsList= new ArrayList<>();
+        // match_found_tv=  fragmentView.findViewById(R.id.match_found_tv);
+        // match_found_tv.setText("0");
+        adapter = null;
+        doctorsList = new ArrayList<>();
         requestParms = MyApplication.getInstance().getSearchRequestParms();
-        if(requestParms==null)
-        {
-            requestParms= new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
+        if (requestParms == null) {
+            requestParms = new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
         }
         requestParms.setPage("1");
         callSearchResultDoctorsListMapper();
     }
 
-    private void viewList()
-    {
-        adapter=null;
+    private void viewList() {
+        adapter = null;
         setOrderItemsToAdapter(doctorsList);
     }
 
-    private void refreshList()
-    {
+    private void refreshList() {
         init();
 
     }
@@ -104,29 +100,24 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
     }
 
 
-
-    private void callSearchResultDoctorsListMapper()
-    {
-        SearchResultDoctorsListMapper mapper=new SearchResultDoctorsListMapper(requestParms);
+    private void callSearchResultDoctorsListMapper() {
+        SearchResultDoctorsListMapper mapper = new SearchResultDoctorsListMapper(requestParms);
 
         mapper.setOnSearchResultDoctorListAPItListener(new SearchResultDoctorsListMapper.SearchResultDoctorListAPItListener() {
             @Override
             public void getSearchResultDoctorListAPI(SearchResultDoctorListAPI searchResultDoctorListAPI, String errorMessage) {
-                if(!isValidResponse(searchResultDoctorListAPI,errorMessage))
-                {
+                if (!isValidResponse(searchResultDoctorListAPI, errorMessage)) {
                     return;
                 }
-                if(!(requestParms.getPage().equalsIgnoreCase("1")) && (searchResultDoctorListAPI.getData()==null ||searchResultDoctorListAPI.getData().size()==0) )
-                {
-                   // Utils.showToastMsg(R.string.no_more_doctors_found_lbl);
+                if (!(requestParms.getPage().equalsIgnoreCase("1")) && (searchResultDoctorListAPI.getData() == null || searchResultDoctorListAPI.getData().size() == 0)) {
+                    // Utils.showToastMsg(R.string.no_more_doctors_found_lbl);
                     return;
 
                 }
-                if(searchResultDoctorListAPI.getData()!=null )
-                {
+                if (searchResultDoctorListAPI.getData() != null) {
                     doctorsList.addAll(searchResultDoctorListAPI.getData());
                 }
-               // Utils.showToastMessage(searchResultDoctorListAPI.toString());
+                // Utils.showToastMessage(searchResultDoctorListAPI.toString());
                 setOrderItemsToAdapter(doctorsList);
 
             }
@@ -135,25 +126,23 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
 
     public void setOrderItemsToAdapter(List<SearchResultDoctorListData> orders) {
         hideProgressView();
-        ((TextView)fragmentView.findViewById(R.id.match_found_tv)).setText(orders.size()+"");
-
+        ((TextView) fragmentView.findViewById(R.id.match_found_tv)).setText(orders.size() + "");
+        if (onSearchResultListener != null) {
+            onSearchResultListener.result(orders.size());
+        }
         if (adapter == null) {
 
-            adapter = new DoctorsListAdapter(getChildFragmentManager(),orders);
+            adapter = new DoctorsListAdapter(getChildFragmentManager(), orders);
 
             recyclerView.setAdapter(adapter);
         } else {
             adapter.setUpdatedList(orders);
         }
-        if(orders==null || orders.size()==0)
-        {
+        if (orders == null || orders.size() == 0) {
             fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.VISIBLE);
-        }else
-        {
+        } else {
             fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.GONE);
         }
-
-
 
 
     }
@@ -163,7 +152,7 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
         if (swipeLayout != null) {
             swipeLayout.setRefreshing(false);
         }
-        doctorsList= new ArrayList<>();
+        doctorsList = new ArrayList<>();
         requestParms.setPage("1");
         callSearchResultDoctorsListMapper();
 
@@ -174,7 +163,13 @@ public class SearchDoctorsListFragment extends SwipedRecyclerViewFragment {
         if (swipeLayout != null) {
             swipeLayout.setRefreshing(false);
         }
-        requestParms.setPage((Integer.parseInt(requestParms.getPage())+1)+"");
+        requestParms.setPage((Integer.parseInt(requestParms.getPage()) + 1) + "");
         callSearchResultDoctorsListMapper();
     }
+
+    public void setOnSearchResultListener(SearchResultListener onSearchResultListener) {
+        this.onSearchResultListener = onSearchResultListener;
+    }
+
+
 }

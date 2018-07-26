@@ -13,6 +13,7 @@ import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.ClinicListAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.SearchRequest;
+import com.vempower.eezyclinic.interfaces.SearchResultListener;
 import com.vempower.eezyclinic.mappers.SearchResultClinicListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
@@ -34,6 +35,8 @@ public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
     private SearchRequest requestParms;
 
     private boolean isOnlyViewList;
+    private SearchResultListener onSearchResultListener;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -153,7 +156,9 @@ public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
         hideProgressView();
         ((TextView)fragmentView.findViewById(R.id.match_found_tv)).setText(orders.size()+"");
 
-
+        if (onSearchResultListener != null) {
+            onSearchResultListener.result(orders.size());
+        }
         if (adapter == null) {
 
             adapter = new ClinicListAdapter(orders);
@@ -193,5 +198,9 @@ public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
         }
         requestParms.setPage((Integer.parseInt(requestParms.getPage())+1)+"");
         callSearchResultDoctorsListMapper();
+    }
+
+    public void setOnSearchResultListener(SearchResultListener onSearchResultListener) {
+        this.onSearchResultListener = onSearchResultListener;
     }
 }

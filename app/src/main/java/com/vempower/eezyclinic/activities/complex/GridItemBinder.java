@@ -16,30 +16,23 @@
 
 package com.vempower.eezyclinic.activities.complex;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.ahamed.multiviewadapter.BaseViewHolder;
 import com.ahamed.multiviewadapter.ItemBinder;
 import com.ahamed.multiviewadapter.ItemViewHolder;
 import com.vempower.eezyclinic.APICore.NewHomeSpeciality;
-import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.activities.DoctorsListActivity;
+import com.vempower.eezyclinic.activities.DoctorsClinicsListActivity;
 import com.vempower.eezyclinic.activities.decorator.GridInsetDecoration;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.SearchRequest;
 import com.vempower.eezyclinic.utils.Constants;
-import com.vempower.eezyclinic.utils.Utils;
- ;
+;
 
 public class GridItemBinder extends ItemBinder<NewHomeSpeciality, GridItemBinder.OrdersListHolder> {
 private ExpandColapseButtonListener buttonListener;
@@ -145,7 +138,7 @@ private ExpandColapseButtonListener buttonListener;
               searchRequestParams.setSpecality(data.getName());
 
               MyApplication.getInstance().setSearchRequestParms(searchRequestParams);
-              Intent intent= new Intent(MyApplication.getCurrentActivityContext(), DoctorsListActivity.class);
+              Intent intent= new Intent(MyApplication.getCurrentActivityContext(), DoctorsClinicsListActivity.class);
 
               intent.putExtra(Constants.Pref.IS_FROM_NEW_HOME_SPESHALITY,true);
               intent.putExtra(Constants.Pref.DIPLAY_SPESHALITY_NAME,data.getName());

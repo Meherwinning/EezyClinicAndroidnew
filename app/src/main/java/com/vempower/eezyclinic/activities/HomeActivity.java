@@ -41,6 +41,7 @@ import com.vempower.eezyclinic.callbacks.HomeBottomItemClickListener;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.DemoFragment;
+import com.vempower.eezyclinic.fragments.HealthChecksFragment;
 import com.vempower.eezyclinic.fragments.HealthRecordsFragment;
 import com.vempower.eezyclinic.fragments.HomeFragment;
 import com.vempower.eezyclinic.fragments.MedicalRecordsFragment;
@@ -64,11 +65,13 @@ public class HomeActivity extends AbstractMenuActivity {
 
     private static final String BOTTOM_IMAGE_ID_STR = "bottom_linear_image", BOTTOM_TEXTVIEW_ID_STR = "bottom_linear_textview";
 
+//
+    private int[] imageUnselectIds={
+            R.drawable.footer_home,R.drawable.group_2,R.drawable.footer_health_checks,R.drawable.group_8,R.drawable.group_6};
+    private int[] imageSelectIds={
+            R.drawable.footer_home_active,R.drawable.group_6_blue,R.drawable.footer_health_checks_active,R.drawable.group_8_blue,R.drawable.group_7_blue};
 
-    private int[] imageUnselectIds={R.drawable.footer_home,R.drawable.group_2,R.drawable.group_6,R.drawable.group_8,R.drawable.group_10};
-    private int[] imageSelectIds={R.drawable.footer_home_active,R.drawable.group_6_blue,R.drawable.group_7_blue,R.drawable.group_8_blue,R.drawable.group_9_blue};
-
-    private AbstractFragment homeFragment,myProfileFragment,medicalRecordsFragment,settingsFragment,newHomeFragment;
+    private AbstractFragment homeFragment,myProfileFragment,medicalRecordsFragment,settingsFragment1,newHomeFragment,healthChecksFragment;
    //private MedicalRecordsFragment ;
     private ImageView title_logo_iv;
 
@@ -126,9 +129,13 @@ public class HomeActivity extends AbstractMenuActivity {
                    callMedicalRecordds();
                   // callHomeActionBar();
                    break;
-               case  Constants.Home.SETTINGS:
+              /* case  Constants.Home.SETTINGS:
                    callSettings();
                   // callHomeActionBar();
+                   break;*/
+               case  Constants.Home.HEALTH_CHECKS:
+                   callHealthChecks();
+                   // callHomeActionBar();
                    break;
            }
         hideKeyBord();
@@ -413,9 +420,13 @@ public class HomeActivity extends AbstractMenuActivity {
                 getMenuInflater().inflate(R.menu.normal_menu, menu);
                 settingsActionBar("Health Records");
                 break;
-            case  Constants.Home.SETTINGS:
+            /*case  Constants.Home.SETTINGS:
                 getMenuInflater().inflate(R.menu.normal_menu, menu);
                 settingsActionBar("My Account");
+                break;*/
+            case  Constants.Home.HEALTH_CHECKS:
+                getMenuInflater().inflate(R.menu.normal_menu, menu);
+                settingsActionBar("Health Checks");
                 break;
 
 
@@ -553,9 +564,14 @@ public class HomeActivity extends AbstractMenuActivity {
         onMedicalRecordsClick(null);
     }
 
-    @Override
+    /*@Override
     protected void callSettings() {
         onSettingsClick(null);
+    }
+*/
+    @Override
+    protected void callHealthChecks() {
+        onHealthChecksClick(null);
     }
 
     @Override
@@ -609,6 +625,33 @@ public class HomeActivity extends AbstractMenuActivity {
         unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,Constants.Home.MY_PROFILE);
 
     }
+
+
+
+    public void onHealthChecksClick(View view)
+    {
+        PRESENT_TAB=Constants.Home.HEALTH_CHECKS;
+        callSettingsActionBar();
+        if(healthChecksFragment==null)
+        {
+            healthChecksFragment= new HealthChecksFragment();
+        }else if(healthChecksFragment instanceof HealthChecksFragment)
+        {
+            HealthChecksFragment f1 = (HealthChecksFragment) healthChecksFragment;
+
+              if(f1.isAdded())
+              {
+                  f1.callHealthChecksMapper();
+              }else
+              {
+                  f1.refreshView();
+              }
+        }
+
+        setFragment(healthChecksFragment);
+        unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,Constants.Home.HEALTH_CHECKS);
+    }
+
     public void onMedicalRecordsClick(View view)
     {
         PRESENT_TAB=Constants.Home.MEDICAL_RECORDS;
@@ -622,7 +665,7 @@ public class HomeActivity extends AbstractMenuActivity {
         unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,Constants.Home.MEDICAL_RECORDS);
 
     }
-    public void onSettingsClick(View view)
+   /* public void onSettingsClick(View view)
     {
         PRESENT_TAB=Constants.Home.SETTINGS;
         callSettingsActionBar();
@@ -632,7 +675,7 @@ public class HomeActivity extends AbstractMenuActivity {
         }
         setFragment(settingsFragment);
         unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,Constants.Home.SETTINGS);
-    }
+    }*/
 
     private void computeBottomViews(View view,int viewNum)
     {

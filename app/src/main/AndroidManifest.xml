@@ -268,6 +268,14 @@
             android:label="@string/title_activity_health_records"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeOverlay.MyNoTitleActivity" />
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:label="@string/title_settings_lbl"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeOverlay.MyNoTitleActivity" />
+
+
 
         <activity
             android:name=".activities.UpcomingFollowupsActivity"
@@ -298,7 +306,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/ThemeOverlay.MyNoTitleActivity" />
         <activity
-            android:name=".activities.DoctorsListActivity"
+            android:name=".activities.DoctorsClinicsListActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"

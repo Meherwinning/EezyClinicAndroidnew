@@ -57,8 +57,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </FrameLayout>
-    <LinearLayout
+    <TextView
+        android:visibility="gone"
         android:layout_below="@+id/toolbar_container"
+        android:id="@+id/search_query_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_5dp"
+        android:fontFamily="@font/roboto"
+        android:text="this is search text"
+        android:textColor="#5d5d5d"
+        android:textSize="@dimen/_14sp"
+        android:textStyle="normal" />
+    <LinearLayout
+        android:layout_below="@+id/search_query_tv"
         android:orientation="vertical"
         android:layout_above="@+id/bottom_linear"
 

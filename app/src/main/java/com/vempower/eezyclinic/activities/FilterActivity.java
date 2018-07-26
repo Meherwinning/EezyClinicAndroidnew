@@ -2,11 +2,9 @@ package com.vempower.eezyclinic.activities;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
@@ -15,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarFinalValueListener;
@@ -23,7 +20,6 @@ import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.nex3z.togglebuttongroup.MultiSelectToggleGroup;
-import com.nex3z.togglebuttongroup.SingleSelectToggleGroup;
 import com.nex3z.togglebuttongroup.button.LabelToggle;
 import com.rey.material.widget.Switch;
 import com.vempower.eezyclinic.APIResponce.InsuranceData;
@@ -35,10 +31,8 @@ import com.vempower.eezyclinic.APIResponce.NationalityListAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.FilterRefreshListListener;
-import com.vempower.eezyclinic.callbacks.HomeBottomItemClickListener;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.core.SearchRequest;
-import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.InsuranceListMapper;
 import com.vempower.eezyclinic.mappers.LanguageListMapper;
@@ -49,7 +43,6 @@ import com.vempower.eezyclinic.utils.Utils;
 //import android.widget.CheckBox;
 import com.vempower.eezyclinic.views.MySwitch;
 ;
-import com.vempower.eezyclinic.views.myseekbar.RangeSeekBar;
 
 import java.util.List;
 
@@ -166,7 +159,7 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
         MyApplication.getInstance().setSearchRequestParms(requestParms);
 
         Intent intent = getIntent(); //new Intent(this,HomeActivity.class);
-        intent.setClass(this, DoctorsListActivity.class);
+        intent.setClass(this, DoctorsClinicsListActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         sendHandlerMessage(getIntent(), ListenerKey.FILTER_REFRESH_LIST_LISTENER_KEY, getFilterRefreshListListener(requestParms.getSearchtype()));

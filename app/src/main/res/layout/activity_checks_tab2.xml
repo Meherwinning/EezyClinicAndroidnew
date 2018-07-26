@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:paddingLeft="@dimen/_10dp"
-    android:paddingRight="@dimen/_10dp"
-    android:layout_marginTop="@dimen/_10dp"
-
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_marginTop="@dimen/_10dp"
+    android:background="@color/white"
+
+    android:paddingLeft="@dimen/_10dp"
+    android:paddingRight="@dimen/_10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="7">
+        android:weightSum="7.3">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="2.3"
             android:background="@color/google_plus_light">
 
             <WebView
@@ -27,127 +27,145 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true" />
+
             <ProgressBar
                 android:id="@+id/progress_bar_view"
-                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
         </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="5"
-            android:orientation="vertical"
-            android:layout_height="0dp">
+            android:orientation="vertical">
+
             <ImageView
-                android:layout_gravity="right"
                 android:id="@+id/graph_expand_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_gravity="right"
+                android:layout_toRightOf="@+id/image_linear"
                 android:paddingLeft="@dimen/_40dp"
                 android:paddingTop="@dimen/_2dp"
-                android:paddingBottom="@dimen/_2dp"
                 android:paddingRight="@dimen/_5dp"
-                android:layout_toRightOf="@+id/image_linear"
+                android:paddingBottom="@dimen/_2dp"
                 android:src="@drawable/profile_image_zoom_icon" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
 
                 android:layout_height="@dimen/_48dp">
-                <TextView                    android:fontFamily="@font/roboto"
+
+                <TextView
                     android:id="@+id/graph_type_title_tv"
                     android:layout_width="wrap_content"
-                    android:hint="Title"
-                    android:layout_toLeftOf="@+id/add_new_reocrd_linear"
+                    android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:singleLine="true"
-                    android:maxLines="1"
+                    android:layout_toLeftOf="@+id/add_new_reocrd_linear"
+                    android:fontFamily="@font/roboto"
                     android:gravity="center_vertical"
-                    android:textSize="@dimen/_18dp"
+                    android:hint="Title"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:textColor="@color/black"
-                    android:layout_height="match_parent" />
+                    android:textSize="@dimen/_18dp" />
 
                 <LinearLayout
                     android:id="@+id/add_new_reocrd_linear"
                     android:layout_width="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginTop="@dimen/_5dp"
                     android:layout_marginBottom="@dimen/_5dp"
-                    android:paddingTop="@dimen/_5dp"
-                    android:clickable="true"
-                    android:paddingBottom="@dimen/_5dp"
-                    android:paddingLeft="@dimen/_8dp"
-                    android:paddingRight="@dimen/_8dp"
                     android:background="@drawable/background_normal"
-                    android:layout_alignParentEnd="true"
+                    android:clickable="true"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/_8dp"
+                    android:paddingTop="@dimen/_5dp"
+                    android:paddingRight="@dimen/_8dp"
 
-                    android:layout_height="match_parent">
-                    <TextView                    android:fontFamily="@font/roboto"
+                    android:paddingBottom="@dimen/_5dp">
+
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:text="Add New Record"
+                        android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
+                        android:fontFamily="@font/roboto"
                         android:gravity="center_vertical"
-                        android:textSize="@dimen/_14dp"
+                        android:text="Add New Record"
                         android:textColor="#f1838181"
-                        android:layout_height="match_parent" />
+                        android:textSize="@dimen/_14dp" />
+
                     <ImageView
-                        android:layout_gravity="center_vertical"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/_14dp"
-                        android:src="@drawable/add_new_record"
-                        android:layout_height="wrap_content" />
+                        android:src="@drawable/add_new_record" />
 
                 </LinearLayout>
 
             </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
+                android:layout_height="@dimen/_45dp"
                 android:background="#ebe8e8e8"
-                android:layout_height="@dimen/_45dp">
-                <TextView                    android:fontFamily="@font/roboto"
+                android:orientation="horizontal">
+
+
+
+                <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="Diastolic"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/_3dp"
                     android:layout_marginRight="@dimen/_3dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:text="Systolic"
+                    android:textColor="#ee7b7979"
+                    android:textSize="@dimen/_14dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_3dp"
+                    android:layout_marginRight="@dimen/_3dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto"
 
                     android:gravity="center"
-                    android:textSize="@dimen/_14dp"
+                    android:text="Diastolic"
                     android:textColor="#ee7b7979"
-                    android:layout_height="match_parent" />
-                <TextView                    android:fontFamily="@font/roboto"
+                    android:textSize="@dimen/_14dp" />
+
+                <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="Systolic"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/_3dp"
                     android:layout_marginRight="@dimen/_3dp"
-                    android:textSize="@dimen/_14dp"
-                    android:gravity="center"
-                    android:textColor="#ee7b7979"
-                    android:layout_height="match_parent" />
-                <TextView                    android:fontFamily="@font/roboto"
-                    android:layout_width="0dp"
-                    android:visibility="gone"
                     android:layout_weight="1"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
                     android:text="HbA1c"
-                    android:layout_marginLeft="@dimen/_3dp"
-                    android:layout_marginRight="@dimen/_3dp"
-                    android:textSize="@dimen/_14dp"
-                    android:gravity="center"
                     android:textColor="#ee7b7979"
-                    android:layout_height="match_parent" />
-                <TextView                    android:fontFamily="@font/roboto"
+                    android:textSize="@dimen/_14dp"
+                    android:visibility="gone" />
+
+                <TextView
                     android:layout_width="@dimen/_120dp"
-                    android:visibility="gone"
-                    android:text="Date &amp; time"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/_3dp"
                     android:layout_marginRight="@dimen/_3dp"
-                    android:textSize="@dimen/_14dp"
+                    android:fontFamily="@font/roboto"
                     android:gravity="center"
+                    android:text="Date &amp; time"
                     android:textColor="#ee7b7979"
-                    android:layout_height="match_parent" />
+                    android:textSize="@dimen/_14dp"
+                    android:visibility="gone" />
                 <!-- <TextView                    android:fontFamily="@font/roboto"
                      android:visibility="invisible"
                      android:layout_width="@dimen/_100dp"
@@ -160,38 +178,42 @@
                      android:layout_height="match_parent" />-->
 
 
-
             </LinearLayout>
+
             <ScrollView
                 android:id="@+id/hsv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="vertical"
-
                 android:fillViewport="true"
 
+                android:scrollbars="vertical"
+
                 >
+
                 <LinearLayout
                     android:id="@+id/horigental_linear"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
                     <RelativeLayout
                         android:id="@+id/no_records_relative"
-                        android:visibility="gone"
                         android:layout_width="match_parent"
-                        android:background="@color/transparent"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
+                        android:background="@color/transparent"
                         android:gravity="center"
-                        android:layout_height="match_parent">
+                        android:visibility="gone">
 
-                        <TextView                    android:fontFamily="@font/roboto"
+                        <TextView
                             android:layout_width="wrap_content"
-                            android:textSize="@dimen/_16sp"
-                            android:textColor="@color/black"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:text="@string/no_health_records_found_lbl"
-                            android:layout_height="wrap_content" />
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_16sp" />
                     </RelativeLayout>
+
                     <include layout="@layout/health_check_add_bp_record_layout"></include>
 
                     <!-- <view

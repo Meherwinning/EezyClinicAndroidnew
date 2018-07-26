@@ -212,7 +212,7 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
         {
             no_records_relative.setVisibility(View.GONE);
         }
-
+        MyApplication.showTransparentDialog();
         for (HealthChecksHeightWeight heightWeight : heightWeightList) {
             if (heightWeight == null) {
                 continue;
@@ -221,6 +221,7 @@ public class HealthCheckTab3 extends AbstractHealthChecksTabFragment {
 
 
         }
+        MyApplication.hideTransaprentDialog();
 
     }
 

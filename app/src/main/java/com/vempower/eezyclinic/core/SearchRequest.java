@@ -33,6 +33,9 @@ public class SearchRequest implements Cloneable {
 
     private float amountRangeMin,amountRangeMax;
 
+    private String countryName;
+    private String cityName;
+
 
     public SearchRequest(int limit) {
         this.searchtype = DOCTOR_TYPE;
@@ -60,7 +63,7 @@ public class SearchRequest implements Cloneable {
                          ArrayList<String> gendersearch, String locality,
                          ArrayList<String> launguage, String searchName,
                          int onlinebooking, String amountRange, int perpage,
-                         String page,float amountRangeMin,float amountRangeMax) {
+                         String page,float amountRangeMin,float amountRangeMax,String cityName,String countryName) {
         this.searchtype = searchtype;
         this.specality = specality;
         this.country = country;
@@ -79,6 +82,9 @@ public class SearchRequest implements Cloneable {
         this.page = page;
         this.amountRangeMin=amountRangeMin;
                 this.amountRangeMax=amountRangeMax;
+
+                this.cityName=cityName;
+                this.countryName=countryName;
 
     }
 
@@ -423,10 +429,12 @@ public class SearchRequest implements Cloneable {
                 ", locality='" + locality + '\'' +
                 ", launguage=" + launguage +
                 ", searchName='" + searchName + '\'' +
-                ", onlinebooking='" + onlinebooking + '\'' +
+                ", onlinebooking=" + onlinebooking +
                 ", amountRange='" + amountRange + '\'' +
-                ", perpage='" + perpage + '\'' +
+                ", perpage=" + perpage +
                 ", page='" + page + '\'' +
+                ", amountRangeMin=" + amountRangeMin +
+                ", amountRangeMax=" + amountRangeMax +
                 '}';
     }
 
@@ -435,6 +443,22 @@ public class SearchRequest implements Cloneable {
         return new SearchRequest( searchtype,  specality,  country,  city,
                 longitude,  latitude,  insurenceList,  nationalityList,
                 gendersearch,  locality,  launguage,  searchName,
-                onlinebooking,  amountRange,  perpage,  page,amountRangeMin,amountRangeMax);
+                onlinebooking,  amountRange,  perpage,  page,amountRangeMin,amountRangeMax,cityName,countryName);
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 }

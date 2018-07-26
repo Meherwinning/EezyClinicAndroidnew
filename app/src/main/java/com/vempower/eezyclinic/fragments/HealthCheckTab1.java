@@ -220,14 +220,15 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
             no_records_relative.setVisibility(View.GONE);
         }
 
+        MyApplication.showTransparentDialog();
+
         for (HealthChecksSugar sugar : sugarLevelsList) {
             if (sugar == null) {
                 continue;
             }
             calAddViewRecord(sugar, false);
-
-
         }
+        MyApplication.hideTransaprentDialog();
 
     }
 

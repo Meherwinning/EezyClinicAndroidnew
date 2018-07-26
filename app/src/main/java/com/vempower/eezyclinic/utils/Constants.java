@@ -84,9 +84,12 @@ public interface Constants {
     public interface Home {
         int NEW_HOME_ACTIVITY = 0;
         int HOME_ACTIVITY = 1;
-        int MY_PROFILE=2;
+        int HEALTH_CHECKS=2;
         int MEDICAL_RECORDS=3;
-        int SETTINGS=4;
+        //int SETTINGS=4;
+
+        int MY_PROFILE=4;
+
     }
 
     public interface ImagePic {

@@ -217,15 +217,14 @@ public class HealthCheckTab2 extends  AbstractHealthChecksTabFragment {
         {
             no_records_relative.setVisibility(View.GONE);
         }
-
+        MyApplication.showTransparentDialog();
         for (HealthChecksBP bp : BPList) {
             if (bp == null) {
                 continue;
             }
             calAddViewRecord(bp, false);
-
-
         }
+        MyApplication.hideTransaprentDialog();
 
     }
 

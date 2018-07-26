@@ -1,10 +1,7 @@
 package com.vempower.eezyclinic.fragments;
 
 import android.animation.ObjectAnimator;
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,14 +32,11 @@ import com.vempower.eezyclinic.APIResponce.LanguageData;
 import com.vempower.eezyclinic.APIResponce.LanguageListAPI;
 import com.vempower.eezyclinic.APIResponce.NationalityData;
 import com.vempower.eezyclinic.APIResponce.NationalityListAPI;
-import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiesAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.activities.DoctorsListActivity;
-import com.vempower.eezyclinic.activities.SearchDoctorsListActivity;
+import com.vempower.eezyclinic.activities.DoctorsClinicsListActivity;
 import com.vempower.eezyclinic.adapters.CustomAdapter;
-import com.vempower.eezyclinic.adapters.CustomerAdapter;
 import com.vempower.eezyclinic.adapters.HintAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.DoctorClinicNamesSearch;
@@ -57,14 +50,12 @@ import com.vempower.eezyclinic.mappers.DoctorClinicNamesListMapper;
 import com.vempower.eezyclinic.mappers.InsuranceListMapper;
 import com.vempower.eezyclinic.mappers.LanguageListMapper;
 import com.vempower.eezyclinic.mappers.NationalityMapper;
-import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.mappers.SpecalitiesMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.ClearableAutoCompleteTextView;
 import com.vempower.eezyclinic.views.CustomSpinnerSelection;
-import com.vempower.eezyclinic.views.MyAutoCompleteTextView;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
@@ -194,7 +185,7 @@ public class SearchFragment extends AbstractFragment {
                         Utils.showToastMessage(searchResultDoctorListAPI.toString());
                     }
                 });*/
-                startActivity(new Intent(MyApplication.getCurrentActivityContext(), DoctorsListActivity.class));
+                startActivity(new Intent(MyApplication.getCurrentActivityContext(), DoctorsClinicsListActivity.class));
                 //( (Activity) MyApplication.getCurrentActivityContext()).finish();
 
             }
@@ -883,7 +874,8 @@ public class SearchFragment extends AbstractFragment {
             aa.notifyDataSetInvalidated();
             city_type_spinner.setSelection(aa.getCount());
         }*/
-
+        searchRequestParams.setCity(null);
+        searchRequestParams.setCityName(null);
 
         city_type_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -898,11 +890,12 @@ public class SearchFragment extends AbstractFragment {
                 //{
                 if (position != (aa.getCount())) {
                     CityData selectedCity = cityTypeList.get(position);
-                    Utils.showToastMessage("selected city " + selectedCity);
+                    //Utils.showToastMessage("selected city " + selectedCity);
                     if (selectedCity != null) {
                         namesSearch.setCity(selectedCity.getId());
                         callDoctorsClinicNamesMapper();
                         searchRequestParams.setCity(selectedCity.getId());
+                        searchRequestParams.setCityName(selectedCity.getCityName());
                     }
                 }
 
@@ -984,6 +977,7 @@ public class SearchFragment extends AbstractFragment {
 
             callCityListMapper(selectedCountry.getId());
             searchRequestParams.setCountry(selectedCountry.getId());
+            searchRequestParams.setCountryName(selectedCountry.getCountry());
             namesSearch.setCountryId(selectedCountry.getId());
             SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.COUNTRY_CODE_KEY,selectedCountry.getId());
             callInsuranceAcceptedMapper(selectedCountry.getId());

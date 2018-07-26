@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +15,6 @@ import com.vempower.eezyclinic.APICore.HealthChecksWeight;
 import com.vempower.eezyclinic.APIResponce.HealthChecksListAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.HealthChecksViewPagerAdapter;
-import com.vempower.eezyclinic.adapters.HealthRecordsViewPagerAdapter;
-import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.mappers.HealthCheckListMapper;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.NonSwipeableViewPager;
@@ -29,7 +26,7 @@ import java.util.List;
  * Created by satish on 6/12/17.
  */
 
-public class HealthChecksFragment extends AbstractFragment {
+public class HealthChecksFragment1 extends AbstractFragment {
 
     private NonSwipeableViewPager mViewPager;
     private HealthChecksViewPagerAdapter mViewPagerAdapter;
@@ -106,13 +103,12 @@ public class HealthChecksFragment extends AbstractFragment {
 
     }
 
-
     public void setMyViewPager() {
-        callHealthChecksMapper();
+        setViewPager();
     }
 
 
-    public void callHealthChecksMapper()
+   /* private void setViewPager()
     {
         HealthCheckListMapper mapper= new HealthCheckListMapper();
         mapper.setOnHealthChecksListListener(new HealthCheckListMapper.HealthChecksListListener() {
@@ -131,21 +127,12 @@ public class HealthChecksFragment extends AbstractFragment {
                // HealthChecksFragment  fragment= new HealthChecksFragment();
                 //fragment.setHealthChecksData(checksListAPI.getData());
                // setFragment(fragment);
-                setViewPager();
+                setViewPager1();
             }
         });
-    }
-
-
+    }*/
 
     private void setViewPager() {
-        if(healthChecksData==null)
-        {
-            //callHealthChecksMapper();
-            showAlertDialog("Alert", Utils.getStringFromResources(R.string.invalid_health_checks_list_data_lbl),true);
-            return;
-
-        }
         //MyApplication.showTransparentDialog();
         ArrayList<HealthChecksHeightWeight> heightAndWeightList = getHeightAndWeightList(healthChecksData.getHeight(), healthChecksData.getWeight());
        // MyApplication.hideTransaprentDialog();
@@ -154,8 +141,6 @@ public class HealthChecksFragment extends AbstractFragment {
         mViewPagerAdapter = new HealthChecksViewPagerAdapter(healthChecksData,heightAndWeightList, getFragmentManager());
 
         mViewPager.setAdapter(mViewPagerAdapter);
-
-
 
         mTabLayout.setupWithViewPager(mViewPager);
       /*  mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
@@ -182,13 +167,5 @@ public class HealthChecksFragment extends AbstractFragment {
 
     public void setHealthChecksData(HealthChecksData healthChecksData) {
         this.healthChecksData = healthChecksData;
-    }
-
-    public void refreshView() {
-        if(mViewPager!=null && mViewPagerAdapter!=null)
-        {
-            mViewPager.setAdapter(mViewPagerAdapter);
-            mViewPager.invalidate();
-        }
     }
 }
