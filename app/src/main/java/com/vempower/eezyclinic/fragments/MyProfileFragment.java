@@ -665,7 +665,7 @@ public class MyProfileFragment extends AbstractFragment {
      * @param child             Child.
      * @param accumulatedOffset Accumalated Offset.
      */
-    private void getDeepChildOffset(final ViewGroup mainParent, final ViewParent parent, final View child, final Point accumulatedOffset) {
+    protected void getDeepChildOffset(final ViewGroup mainParent, final ViewParent parent, final View child, final Point accumulatedOffset) {
         ViewGroup parentGroup = (ViewGroup) parent;
         accumulatedOffset.x += child.getLeft();
         accumulatedOffset.y += child.getTop();

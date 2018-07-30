@@ -29,7 +29,7 @@ import com.vempower.eezyclinic.core.Feature;
 import com.vempower.eezyclinic.core.HealthTip;
 
 public class FeaturesListBinder extends ItemBinder<Feature, FeaturesListBinder.ViewHolder> {
-
+  private static View  view;
   public FeaturesListBinder(ItemDecorator itemDecorator) {
     super(itemDecorator);
   }
@@ -40,7 +40,14 @@ public class FeaturesListBinder extends ItemBinder<Feature, FeaturesListBinder.V
 
   @Override public void bind(ViewHolder holder, Feature item) {
     holder.health_tip_tv2.setText(item.feature);
+    if(view==null) {
+      view = holder.itemView;
+    }
    // holder.tvDescription.setText(item.getDescription());
+  }
+
+  public  View getView() {
+    return view;
   }
 
   @Override public boolean canBindData(Object item) {

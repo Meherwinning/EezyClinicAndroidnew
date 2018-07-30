@@ -54,6 +54,8 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
 
     private final MyRecylerViewScrollListener myRecylerViewScrollListener;
+    private final FeaturesListBinder featuresListBinder;
+    // private final HealthTipsBinder healthTipsBinder;
     private DataListManager<Article> singleModelManager;
     private DataListManager<NewHomeDoctorsList> popularDoctorslManager;
    // private DataListManager<SpecalitiyData> specialitiesModelManager;
@@ -130,8 +132,12 @@ public class ComplexListAdapter extends RecyclerAdapter {
     addDataManager(new DataItemManager<>(this, new Header("Health Tips")));
     addDataManager(healthTipsManager);
 
-      addDataManager(new DataItemManager<>(this, new Header("Features / Benefits")));
+      Header featuresHeader = new Header("Features / Benefits");
+
+      addDataManager(new DataItemManager<>(this, featuresHeader));
       addDataManager(featuresManager);
+
+
 
 
 
@@ -162,6 +168,8 @@ public class ComplexListAdapter extends RecyclerAdapter {
         }
     }));
 
+
+
      // registerBinder(new GridItemRemainBinder(convertDpToPixel(4, context)));
 
       //registerBinder(new CarBinder(simpleItemDecoration1,doctorsList));
@@ -170,7 +178,13 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
       registerBinder(new ArticleBinder1(homeData.getDoctorsList(),new ArticleItemDecorator1(),fragmentManager));
 
-      registerBinder(new HealthTipsBinder(simpleItemDecoration1));
+
+      HealthTipsBinder healthTipsBinder=  new HealthTipsBinder(simpleItemDecoration1);
+
+
+      registerBinder(healthTipsBinder);
+
+       featuresListBinder=new FeaturesListBinder(simpleItemDecoration1);
       registerBinder(new FeaturesListBinder(simpleItemDecoration1));
 
    /* registerBinder(new FeaturedArticleBinder(new ArticleItemDecorator()));*/
@@ -194,7 +208,16 @@ public class ComplexListAdapter extends RecyclerAdapter {
 
 
 
+  }
 
+  public View getFeaturesListView()
+  {
+      if(featuresListBinder!=null)
+      {
+          return featuresListBinder.getView();
+      }
+
+      return null;
   }
     protected void scrollToView(final ScrollView scrollViewParent, final View view) {
         // Get deepChild Offset
@@ -375,7 +398,7 @@ public class ComplexListAdapter extends RecyclerAdapter {
       if(myRecylerViewScrollListener!=null) {
           myRecylerViewScrollListener.scrollMyRecylerView(displayList.size());
       }
-     // scrollToView(final ScrollView scrollViewParent, gridItemsManager);
+
 
   }
 

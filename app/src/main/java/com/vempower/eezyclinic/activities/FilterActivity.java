@@ -44,6 +44,7 @@ import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MySwitch;
 ;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FilterActivity extends AbstractFragmentActivity /*implements MySwitch.OnChangeAttemptListener, CompoundButton.OnCheckedChangeListener*/ {
@@ -142,7 +143,8 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
 
             @Override
             public void retryClick() {
-                requestParms = new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
+               // requestParms = new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
+                requestParms= new SearchRequest(requestParms.getCloneObject());
                 setParamsValuesToviews();
             }
         });
@@ -156,7 +158,7 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
         //showToastMessage(requestParms.toString());
         // MyApplication.getInstance().setSearchRequestParms(requestParms);
 
-        MyApplication.getInstance().setSearchRequestParms(requestParms);
+        MyApplication.getInstance().setSearchRequestParms(requestParms.getCloneObject());
 
         Intent intent = getIntent(); //new Intent(this,HomeActivity.class);
         intent.setClass(this, DoctorsClinicsListActivity.class);
@@ -476,16 +478,25 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
     }
 
 
-    public void setToNationalityListToggleViews(List<NationalityData> nationalityList) {
+    public void setToNationalityListToggleViews(final List<NationalityData> nationalityList) {
         MultiSelectToggleGroup multiDummy = (MultiSelectToggleGroup) findViewById(R.id.nationality_group_toggle_views);
         multiDummy.clearCheck();
         multiDummy.setOnCheckedChangeListener(new MultiSelectToggleGroup.OnCheckedStateChangeListener() {
             @Override
             public void onCheckedStateChanged(MultiSelectToggleGroup group, int checkedId, boolean isChecked) {
+                NationalityData data= new NationalityData();
+                data.setId(checkedId+"");
+                String name="";
+                int index= nationalityList.indexOf(data);
+                if(index!=-1)
+                {
+                    name=nationalityList.get(index).getNationalityName();
+                }
+
                 if (isChecked) {
-                    requestParms.addNationality(checkedId + "");
+                    requestParms.addNationality(checkedId + "",name);
                 } else {
-                    requestParms.removeNationality(checkedId + "");
+                    requestParms.removeNationality(checkedId + "",name);
                 }
             }
         });

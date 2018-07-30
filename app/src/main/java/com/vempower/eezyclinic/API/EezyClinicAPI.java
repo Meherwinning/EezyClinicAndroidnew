@@ -30,6 +30,7 @@ import com.vempower.eezyclinic.APIResponce.LoginAPI;
 import com.vempower.eezyclinic.APIResponce.MedicalHistoryListAPI;
 import com.vempower.eezyclinic.APIResponce.NationalityListAPI;
 import com.vempower.eezyclinic.APIResponce.NewHomeAPI;
+import com.vempower.eezyclinic.APIResponce.NotificationsAPI;
 import com.vempower.eezyclinic.APIResponce.NotificationsListAPI;
 import com.vempower.eezyclinic.APIResponce.PendingFeedbackListAPI;
 import com.vempower.eezyclinic.APIResponce.PrescriptionsListAPI;
@@ -449,6 +450,21 @@ Call<HealthChecksListAPI> getHealthCheckList(@Body RequestBody postBody);
     //http://202.63.103.194:8003/api/patient/deletesecondaryinsurance
     @POST(data + "patient/deletesecondaryinsurance")
     Call<AbstractResponse> deletesecondaryinsurance(@Body RequestBody postBody);
+
+
+    //https://dev.v-empower.com:81/eezyclinic-git/api/patient/saveDeviceToken
+    @POST(data + "patient/saveDeviceToken")
+    Call<AbstractResponse> saveDeviceToken(@Body RequestBody postBody);
+
+
+   // https://dev.v-empower.com:81/eezyclinic-git/api/patient/notificationcount
+   @POST(data + "patient/notificationcount")
+   Call<NotificationsAPI> getNotificationCount(@Body RequestBody postBody);
+
+
+    //https://dev.v-empower.com:81/eezyclinic-git/api/patient/notificationdelete
+    @POST(data + "patient/notificationdelete")
+    Call<AbstractResponse> notificationDelete(@Body RequestBody postBody);
 
 
 }

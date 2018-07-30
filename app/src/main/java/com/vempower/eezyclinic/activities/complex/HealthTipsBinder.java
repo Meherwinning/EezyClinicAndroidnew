@@ -29,8 +29,13 @@ import com.vempower.eezyclinic.core.HealthTip;
 
 public class HealthTipsBinder extends ItemBinder<HealthTip, HealthTipsBinder.ViewHolder> {
 
+
+
   public HealthTipsBinder(ItemDecorator itemDecorator) {
     super(itemDecorator);
+
+
+
   }
 
   @Override public ViewHolder create(LayoutInflater layoutInflater, ViewGroup parent) {
@@ -39,8 +44,11 @@ public class HealthTipsBinder extends ItemBinder<HealthTip, HealthTipsBinder.Vie
 
   @Override public void bind(ViewHolder holder, HealthTip item) {
     holder.health_tip_tv2.setText(item.tip);
+
    // holder.tvDescription.setText(item.getDescription());
   }
+
+
 
   @Override public boolean canBindData(Object item) {
     return item instanceof HealthTip;

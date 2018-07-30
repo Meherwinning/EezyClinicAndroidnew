@@ -23,6 +23,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.PatientData;
+import com.vempower.eezyclinic.APIResponce.AbstractResponse;
+import com.vempower.eezyclinic.APIResponce.NotificationsAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.FromActivityListener;
@@ -32,11 +34,14 @@ import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.HomeFragment;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.interfaces.MenuScreenListener;
+import com.vempower.eezyclinic.mappers.NotificationsCountMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 
 import com.vempower.eezyclinic.activities.AbstractActivity;
+
+import static com.vempower.eezyclinic.MyFirebaseInstanceIDService.IS_SEND_TO_SERVER;
 
 
 /**
@@ -51,7 +56,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     private LinearLayout linearLayout;
     private ActionBarDrawerToggle drawerToggle;
 
-    private TextView nameTv, emailTv;
+    private TextView nameTv, emailTv, notification_count_tv;
 
     private AbstractFragment currentFragment, prevoiusFragment;
     // private  Intent  intent;
@@ -62,10 +67,8 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         checkNetwork();
 
 
-
         //intent= getIntent();
     }
-
 
 
     protected void checkNetwork() {
@@ -107,6 +110,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         // if(nameTv==null) {
         nameTv = findViewById(R.id.patient_name_tv);
         emailTv = findViewById(R.id.patient_email_tv);
+        notification_count_tv = findViewById(R.id.notification_count_tv);
         //}
         //titleRightImageview=findViewById(R.id.title_right_iv);
 
@@ -128,7 +132,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 hideKeyBord(nameTv);
                 hideKeyBord();
             }
-        },200);
+        }, 200);
     }
 
     @Override
@@ -141,7 +145,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 hideKeyBord(nameTv);
                 hideKeyBord();
             }
-        },250);
+        }, 250);
 
 
         //checkNetwork();
@@ -206,7 +210,6 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     }
 
 
-
     private void openScreen(@NonNull View item) {
         hideKeyBord();
         Intent intent = getIntent();
@@ -241,7 +244,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
                 break;
             case R.id.notification_linear:
-               // showToastMessage("Coming soon");
+                // showToastMessage("Coming soon");
                 callSideMenuScreen(NotificationsListActivity.class);
 
                 break;
@@ -251,7 +254,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 callSideMenuScreen(HealthChecksActivity.class);
                 break;*/
             case R.id.medical_history_linear:
-               // showToastMessage("Coming soon");
+                // showToastMessage("Coming soon");
                 callSideMenuScreen(MedicalHistoryListActivity.class);
                 break;
             case R.id.notes_linear:
@@ -260,7 +263,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 break;
             case R.id.family_members_linear:
                 //TODO something
-               // showToastMessage("Coming soon");
+                // showToastMessage("Coming soon");
                 callSideMenuScreen(FamilyMembersActivity.class);
                 break;
             case R.id.appointment_history_linear:
@@ -277,7 +280,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 startActivity(intent);*/
                 break;
             case R.id.my_account_settings_linear:
-               // callSettings();
+                // callSettings();
 
                 callSideMenuScreen(SettingsActivity.class);
                 break;
@@ -317,10 +320,6 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 break;
 
 
-
-
-
-
             default:
                 showToastMessage("Coming soon");
                 break;
@@ -333,7 +332,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 hideKeyBord(nameTv);
                 hideKeyBord();
             }
-        },200);
+        }, 200);
     }
 
     public void onSignupClick(View view) {
@@ -382,7 +381,6 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     }*/
 
 
-
     protected void callHealthChecks() {
         Intent intent = getIntent(); //= new Intent(this,HomeActivity.class);
         intent.setClass(this, HomeActivity.class);
@@ -390,7 +388,6 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         startActivity(intent);
         sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.HEALTH_CHECKS));
     }
-
 
 
     public void onMenuClick(View view) {
@@ -495,10 +492,28 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
             if (!TextUtils.isEmpty(user.getPatentEmail())) {
                 emailTv.setText(user.getPatentEmail());
             }
+            setNotoficationsCount();
+
             refreshSideMenuItems(true);
 
         }
 
+    }
+
+    private void setNotoficationsCount() {
+        //notification_count_tv.setText("0");
+        NotificationsCountMapper mapper = new NotificationsCountMapper();
+        mapper.setOnNotificationsCountListener(new NotificationsCountMapper.NotificationsCountListener() {
+            @Override
+            public void getCount(NotificationsAPI response, String errorMessage) {
+                if (!isValidResponse(response, errorMessage)) {
+                    notification_count_tv.setText("0");
+                    return;
+                }
+                notification_count_tv.setText(response.getTotalcount());
+
+            }
+        });
     }
 
     private void refreshSideMenuItems(boolean isLoggedin) {
@@ -734,6 +749,8 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
         MyApplication.getInstance().setLoggedUserDetailsToSharedPref(null);
         MyApplication.getInstance().setSearchResultDoctorListData(null);
+        SharedPreferenceUtils.setBooleanValueToSharedPrefarence(IS_SEND_TO_SERVER, false);
+
 
         //Toast.makeText(getBaseContext(), "Logged out successfully!", Toast.LENGTH_LONG).show();
         showToastMessage(R.string.success_logout_msg);
@@ -895,14 +912,10 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
         return super.onOptionsItemSelected(item);
     }
-   protected void hideKeyBord()
-    {
+
+    protected void hideKeyBord() {
         hideKeyBord(drawerLayout);
-     }
-
-
-
-
+    }
 
 
 }

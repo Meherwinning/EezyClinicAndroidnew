@@ -30,6 +30,7 @@ import com.vempower.eezyclinic.core.SearchRequest;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.GoogleMarkerClickListener;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
+import com.vempower.eezyclinic.interfaces.SearchResultListener;
 import com.vempower.eezyclinic.mappers.SearchResultDoctorsListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
@@ -49,6 +50,7 @@ public class DoctorsMapFragment extends AbstractMapFragment/*, GoogleMap.OnMarke
     private List<SearchResultDoctorListData> doctorsLsit;
     private boolean isOnlyViewList;
     private boolean isFinish;
+    private SearchResultListener onSearchResultListener;
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -160,13 +162,14 @@ public class DoctorsMapFragment extends AbstractMapFragment/*, GoogleMap.OnMarke
 
     protected LatLngBounds.Builder addAllMarkersToMap(GoogleMap mMap) {
         fragmentView.findViewById(R.id.top_linear).setVisibility(View.GONE);
+        fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.GONE);
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        if (doctorsLsit == null || doctorsLsit.size() == 0) {
+       /* if (doctorsLsit == null || doctorsLsit.size() == 0) {
             fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.VISIBLE);
         } else {
             fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.GONE);
-        }
+        }*/
         if (doctorsLsit == null || doctorsLsit.size() == 0) {
             return null;
         }
@@ -208,7 +211,11 @@ public class DoctorsMapFragment extends AbstractMapFragment/*, GoogleMap.OnMarke
 
         if (!isFinish)
         {
-            fragmentView.findViewById(R.id.top_linear).setVisibility(View.VISIBLE);
+           // fragmentView.findViewById(R.id.top_linear).setVisibility(View.VISIBLE);
+            if(onSearchResultListener!=null)
+            {
+                onSearchResultListener.result(addedCount);
+            }
         ((TextView) fragmentView.findViewById(R.id.match_found_tv)).setText(addedCount + "");
     }
 
@@ -219,4 +226,10 @@ public class DoctorsMapFragment extends AbstractMapFragment/*, GoogleMap.OnMarke
         this.isFinish=isFinish;
 
     }
+
+    public void setOnSearchResultListener(SearchResultListener onSearchResultListener) {
+        this.onSearchResultListener = onSearchResultListener;
+    }
+
+
 }

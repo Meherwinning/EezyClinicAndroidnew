@@ -18,12 +18,19 @@
 
 package com.vempower.eezyclinic.activities;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Messenger;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,6 +50,7 @@ import com.vempower.eezyclinic.fragments.DoctorsMapFragment;
 import com.vempower.eezyclinic.fragments.MapFragment;
 import com.vempower.eezyclinic.fragments.SearchClinicListFragment;
 import com.vempower.eezyclinic.fragments.SearchDoctorsListFragment;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.interfaces.SearchResultListener;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
@@ -79,6 +87,9 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
     private String newTileName = "";
 
     private SearchResultListener searchResultListener;
+
+    private String black_color = "#FF000000";
+    private String item_text_color = "#FFF70404";//"#FF717171";
 
     private interface ViewState {
         int DOCTORS_LIST_VIEW = 1;
@@ -132,113 +143,138 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
                 search_query_tv.setText(matchFound + " matches found");
 
                 if (searchRequest != null) {
-                    StringBuilder queryStr = new StringBuilder();
+                    SpannableStringBuilder queryStr = new SpannableStringBuilder();
+                    queryStr.append(setSpanToText(matchFound+"", Color.BLACK));
+                    queryStr.append(setSpanToText(" matches found for ", getQueryItemColor()));
+                    boolean isAddCama= false;
                     if (!TextUtils.isEmpty(searchRequest.getSearchName())) {
-                        if(queryStr.length()!=0) {
+                        if (queryStr.length() != 0 && isAddCama) {
                             queryStr.append(", ");
                         }
-                        queryStr.append("Name : " + searchRequest.getSearchName());
+                        queryStr.append(setSpanToText("Name : ", getQueryItemColor()));
+                        queryStr.append(setSpanToText(searchRequest.getSearchName(), Color.BLACK));
+                        isAddCama=true;
                     }
 
                     if (!TextUtils.isEmpty(searchRequest.getSpecality())) {
-                        if(queryStr.length()!=0) {
+                        if (queryStr.length() != 0 && isAddCama) {
                             queryStr.append(", ");
                         }
-                        queryStr.append("Speciality : " + searchRequest.getSpecality());
+                        queryStr.append(setSpanToText("Speciality : ", getQueryItemColor()));
+                        queryStr.append(setSpanToText(searchRequest.getSpecality(), Color.BLACK));
+                        isAddCama=true;
                     }
 
                     if (!TextUtils.isEmpty(searchRequest.getCity())) {
-                        if(queryStr.length()!=0) {
+                        if (queryStr.length() != 0&& isAddCama) {
                             queryStr.append(", ");
                         }
-                        queryStr.append("City : " + searchRequest.getCityName());
-                    }
 
+                        //SpannableString lbl= new SpannableString("City : ");
+                        //setSpanToText(lbl, getQueryItemColor());
+
+                        queryStr.append(setSpanToText("City : ", getQueryItemColor()));
+                        queryStr.append(setSpanToText(searchRequest.getCityName(), Color.BLACK));
+                        // search_query_tv.setText(queryStr, TextView.BufferType.SPANNABLE);
+                        //return;
+                        isAddCama=true;
+                    }
+                    //FF717171
 
 
                     if (!TextUtils.isEmpty(searchRequest.getCountry())) {
-                        if(queryStr.length()!=0) {
+                        if (queryStr.length() != 0&& isAddCama) {
                             queryStr.append(", ");
                         }
-                        queryStr.append("Country : " + searchRequest.getCountryName());
+                        queryStr.append(setSpanToText("Country : ", getQueryItemColor()));
+                        queryStr.append(setSpanToText(searchRequest.getCountryName(), Color.BLACK));
+                        isAddCama=true;
                     }
 
 
                     if (!TextUtils.isEmpty(searchRequest.getLocality())) {
-                        if(queryStr.length()!=0) {
+                        if (queryStr.length() != 0&& isAddCama) {
                             queryStr.append(", ");
                         }
-                        queryStr.append("Locality : " + searchRequest.getLocality());
+                        queryStr.append(setSpanToText("Locality : ", getQueryItemColor()));
+                        queryStr.append(setSpanToText(searchRequest.getLocality(), Color.BLACK));
+                        isAddCama=true;
                     }
 
 
-                    if (searchRequest.getGendersearch().size()!=0) {
-                        if(queryStr.length()!=0) {
+                    if (searchRequest.getGendersearch().size() != 0) {
+                        if (queryStr.length() != 0&& isAddCama) {
                             queryStr.append(", ");
                         }
-                        String gender="";
-                        for ( String gen:searchRequest.getGendersearch())
-                        {
-                            if(gender.length()!=0) {
-                                gender=gender+", ";
+                        String gender = "";
+                        for (String gen : searchRequest.getGendersearch()) {
+                            if (gender.length() != 0) {
+                                gender = gender + ", ";
                             }
-                            gender=gender+gen;
+                            gender = gender + gen;
                         }
-                        queryStr.append("Gender : " + gender);
+                        queryStr.append(setSpanToText("Gender : ", getQueryItemColor()));
+                        queryStr.append(setSpanToText(gender, Color.BLACK));
+                        isAddCama=true;
                     }
 
-                    if (searchRequest.getInsurenceList().size()!=0) {
-                        if(queryStr.length()!=0) {
+                    if (searchRequest.getInsurenceList().size() != 0) {
+                        if (queryStr.length() != 0&& isAddCama) {
                             queryStr.append(", ");
                         }
-                        String insurance="";
-                        for ( String ins:searchRequest.getInsurenceList())
-                        {
-                            if(insurance.length()!=0) {
-                                insurance=insurance+", ";
+                        String insurance = "";
+                        for (String ins : searchRequest.getInsurenceList()) {
+                            if (insurance.length() != 0&& isAddCama) {
+                                insurance = insurance + ", ";
                             }
-                            insurance=insurance+ins;
+                            insurance = insurance + ins;
                         }
-                        queryStr.append("Insurance : " + insurance);
+                        queryStr.append(setSpanToText("Insurance : ", getQueryItemColor()));
+                        queryStr.append(setSpanToText(insurance, Color.BLACK));
+                        isAddCama=true;
                     }
 
 
-                    if (searchRequest.getNationalityList().size()!=0) {
-                        if(queryStr.length()!=0) {
+                    if (searchRequest.getNationalityListNames().size() != 0) {
+                        if (queryStr.length() != 0&& isAddCama) {
                             queryStr.append(", ");
                         }
-                        String nationality="";
-                        for ( String nat:searchRequest.getNationalityList())
-                        {
-                            if(nationality.length()!=0) {
-                                nationality=nationality+", ";
+                        String nationality = "";
+                        for (String nat : searchRequest.getNationalityListNames()) {
+                            if (nationality.length() != 0&& isAddCama) {
+                                nationality = nationality + ", ";
                             }
-                            nationality=nationality+nat;
+                            nationality = nationality + nat;
                         }
-                        queryStr.append("Nationality : " + nationality);
+                        queryStr.append(setSpanToText("Nationality : ", getQueryItemColor()));
+                        queryStr.append(setSpanToText(nationality, Color.BLACK));
+                        isAddCama=true;
                     }
 
 
-                    if (searchRequest.getLaunguage().size()!=0) {
-                        if(queryStr.length()!=0) {
+                    if (searchRequest.getLaunguage().size() != 0) {
+                        if (queryStr.length() != 0&& isAddCama) {
                             queryStr.append(", ");
                         }
-                        String language="";
-                        for ( String lan:searchRequest.getLaunguage())
-                        {
-                            if(language.length()!=0) {
-                                language=language+", ";
+                        String language = "";
+                        for (String lan : searchRequest.getLaunguage()) {
+                            if (language.length() != 0) {
+                                language = language + ", ";
                             }
-                            language=language+lan;
+                            language = language + lan;
                         }
-                        queryStr.append("Language : " + language);
+                        queryStr.append(setSpanToText("Language : ", getQueryItemColor()));
+                        queryStr.append(setSpanToText(language, Color.BLACK));
+                        isAddCama=true;
                     }
 
-                    if (searchRequest.getOnlinebooking()!=0) {
-                        if(queryStr.length()!=0) {
+                    if (searchRequest.getOnlinebooking() != 0) {
+                        if (queryStr.length() != 0&& isAddCama) {
                             queryStr.append(", ");
                         }
-                        queryStr.append("Online Booking : true");
+                        queryStr.append(setSpanToText("Online Booking : ", getQueryItemColor()));
+                        queryStr.append(setSpanToText("true", Color.BLACK));
+                        isAddCama=true;
                     }
 
 
@@ -254,9 +290,13 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
                             ", searchName='" + searchName + '\'' +
                             ", onlinebooking=" + onlinebooking +
                             '}';*/
+                    //
+                    if (queryStr.length() != 0) {
+                        // SpannableString spannableString = setSpanToText(queryStr.toString(), getQueryItemColor());
 
-                    if(queryStr.length()!=0) {
-                        search_query_tv.setText(matchFound + " matches found\n"+queryStr);
+                        search_query_tv.setText(queryStr, TextView.BufferType.SPANNABLE);
+
+                        //search_query_tv.setText(matchFound + " matches found for "+spannableString, TextView.BufferType.SPANNABLE);
 
                     }
 
@@ -265,14 +305,38 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
 
             }
 
+            private int getQueryItemColor()
+            {
+                if(Build.VERSION.SDK_INT<=Build.VERSION_CODES.M)
+                {
+                     return getResources().getColor(R.color.search_query_item_color);
+                }
+                    return getResources().getColor(R.color.search_query_item_color,null);
+            }
+
+            private String getColoredSpanned(String text, String color) {
+                String input = "<font color=" + color + ">" + text + "</font>";
+                return input;
+            }
+
+            private SpannableString setSpanToText(String str, int color) {
+                SpannableString str1 = new SpannableString(str);
+                str1.setSpan(new ForegroundColorSpan(color), 0, str1.length(), 0);
+                return str1;
+
+/*
+                SpannableString str1= new SpannableString("Text1");
+                str1.setSpan(new ForegroundColorSpan(getQueryItemColor()), 0, str1.length(), 0);
+*/
+            }
+
             @Override
             public void reset() {
-                if(search_query_tv!=null) {
+                if (search_query_tv != null) {
                     search_query_tv.setText(null);
                 }
             }
         };
-
 
         {
 
@@ -449,6 +513,7 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
     }
 
     public void onDoctorsListClick() {
+
         currentStateView = ViewState.DOCTORS_LIST_VIEW;
         isCurrentShowMap = false;
         myInit();
@@ -535,6 +600,7 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
         }*/
         if (doctorsMapFragment == null) {
             doctorsMapFragment = new DoctorsMapFragment();
+            doctorsMapFragment.setOnSearchResultListener(searchResultListener);
 
 
         }
@@ -583,6 +649,7 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
         }*/
         if (clinicsMapFragment == null) {
             clinicsMapFragment = new ClinicsMapFragment();
+            clinicsMapFragment.setOnSearchResultListener(searchResultListener);
 
         }
 
@@ -620,6 +687,7 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
         if (TextUtils.isEmpty(searchRequestStr)) {
             return;
         }
+        MyApplication.showTransparentDialog();
         if (searchRequestStr.equalsIgnoreCase(SearchRequest.DOCTOR_TYPE)) {
 
             doctorsListFragment = null;
@@ -643,6 +711,7 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
             }
         }
 
+        MyApplication.hideTransaprentDialog();
 
     }
 
@@ -706,6 +775,28 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
         // mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.app_red)));
 
         //super.setActionBar(false);
+    }
+
+
+    public void onClearAllClick(View view)
+    {
+        showMyDialog("Clear Filters", Utils.getStringFromResources(R.string.claer_filter_message_lbl), "Clear", "Cancel", new ApiErrorDialogInterface() {
+            @Override
+            public void onCloseClick() {
+                //TODO nothing
+            }
+
+            @Override
+            public void retryClick() {
+                // requestParms = new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
+               SearchRequest requestParms= new SearchRequest(MyApplication.getInstance().getSearchRequestParms().getCloneObject());
+               requestParms.setSearchtype(SearchRequest.DOCTOR_TYPE);
+               MyApplication.getInstance().setSearchRequestParms(requestParms);
+                refreshTheList(requestParms.getSearchtype());
+               // setParamsValuesToviews();
+            }
+        });
+
     }
 
 }

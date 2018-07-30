@@ -63,23 +63,36 @@
         android:id="@+id/top_linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#f4f4f4"
-        android:orientation="horizontal"
+        android:background="#FFF5F5F5"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/_20dp"
         android:paddingTop="@dimen/_3dp"
+        android:layout_marginRight="@dimen/_10dp"
         android:paddingBottom="@dimen/_3dp">
 
     <TextView
+        android:fontFamily="@font/roboto_light"
         android:paddingBottom="@dimen/_3dp"
         android:id="@+id/search_query_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/_5dp"
-        android:fontFamily="@font/roboto"
-        android:textColor="#5d5d5d"
         android:textSize="@dimen/_14sp"
+        android:lineSpacingMultiplier="1.4"
         android:textStyle="normal"
         />
+        <TextView
+            android:clickable="true"
+            android:onClick="onClearAllClick"
+            android:paddingLeft="@dimen/_15dp"
+            android:paddingBottom="@dimen/_5dp"
+            android:paddingRight="@dimen/_5dp"
+            android:layout_gravity="right"
+            android:textColor="#FF24B24E"
+
+            android:layout_width="wrap_content"
+            android:text="Clear All"
+            android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
         android:layout_below="@+id/top_linear1"

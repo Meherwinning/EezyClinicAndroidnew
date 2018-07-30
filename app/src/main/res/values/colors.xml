@@ -66,6 +66,7 @@
     <color name="amount_range_bar_color">#FF6BBC53</color>
     <color name="amount_range_bar_press_color">#00b4ef</color>
     <color name="popular_doctors_bg_color">#FFF4EFF0</color>
+    <color name="search_query_item_color">#FF5E5E5E</color>
 
 
 </resources>

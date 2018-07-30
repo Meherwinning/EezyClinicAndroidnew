@@ -96,9 +96,9 @@ public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
 
 
     private void callSearchResultDoctorsListMapper() {
-        if (onSearchResultListener != null) {
+        /*if (onSearchResultListener != null) {
             onSearchResultListener.reset();
-        }
+        }*/
 
         SearchResultClinicListMapper mapper = new SearchResultClinicListMapper(requestParms);
 
@@ -109,7 +109,7 @@ public class SearchClinicListFragment extends SwipedRecyclerViewFragment {
                     return;
                 }
                 if (!(requestParms.getPage().equalsIgnoreCase("1")) && (searchResultClinicListAPI.getData() == null || searchResultClinicListAPI.getData().size() == 0)) {
-                    Utils.showToastMsg(R.string.no_more_clinic_found_lbl);
+                   // Utils.showToastMsg(R.string.no_more_clinic_found_lbl);
                     return;
 
                 }

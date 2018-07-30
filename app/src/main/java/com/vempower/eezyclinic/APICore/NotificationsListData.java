@@ -14,6 +14,12 @@ public class NotificationsListData {
     @Expose
     private List<NotificationsComingappointment> comingappointments = null;
 
+
+    @SerializedName("notifications")
+    @Expose
+    private List<Notification> notificationsList = null;
+
+
     public List<NotificationsSendrequest> getSendrequest() {
         return sendrequest;
     }
@@ -30,4 +36,11 @@ public class NotificationsListData {
         this.comingappointments = comingappointments;
     }
 
+    public List<Notification> getNotificationsList() {
+        return notificationsList;
+    }
+
+    public void setNotificationsList(List<Notification> notificationsList) {
+        this.notificationsList = notificationsList;
+    }
 }

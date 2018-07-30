@@ -101,7 +101,9 @@ public class ViewDoctorsTabFragment extends SwipedRecyclerViewFragment1 implemen
 
     public void setOrderItemsToAdapter(List<SearchResultDoctorListData> orders) {
         hideProgressView();
-        fragmentView.findViewById(R.id.top_linear).setVisibility(View.GONE);
+        if(fragmentView!=null && fragmentView.findViewById(R.id.top_linear)!=null) {
+            fragmentView.findViewById(R.id.top_linear).setVisibility(View.GONE);
+        }
 
        // (( TextView)fragmentView.findViewById(R.id.match_found_tv)).setText(orders.size()+"");
 

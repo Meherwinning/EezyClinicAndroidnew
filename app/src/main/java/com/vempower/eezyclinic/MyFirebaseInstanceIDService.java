@@ -1,9 +1,11 @@
 package com.vempower.eezyclinic;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 
@@ -15,6 +17,7 @@ import com.vempower.eezyclinic.utils.Utils;
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     private static final String TAG = "MyFirebaseIIDService";
     public static final String FIRE_BASE_TOKEN_ID="fire_base_token_id";
+    public static final String IS_SEND_TO_SERVER="is_send_to_server";
 
 
     /**
@@ -46,8 +49,27 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
      */
     private void sendRegistrationToServer(String token) {
         SharedPreferenceUtils.setStringValueToSharedPrefarence(FIRE_BASE_TOKEN_ID,token);
-        //TODO call mapper for share token
+        SharedPreferenceUtils.setBooleanValueToSharedPrefarence(IS_SEND_TO_SERVER,false);
+
+
         Log.v("FCM ID :", "FCM :"+ Utils.getFireBaseCloudMessageId());
+       /* String access_key = SharedPreferenceUtils.getStringValueFromSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY, null);
+        if (TextUtils.isEmpty(access_key)) {
+
+            Log.v("FCM ID 1:", "NO access_key");
+            return;
+        }
+
+        String deviceId = Utils.getDeviceId();
+        String deviceType = "android";
+        Log.i("FCM_Register", "access_key :" + access_key + "\ndevice_type:" + deviceType + "\nDevice id" + deviceId + "\n FCM_Id: " + Utils.getFireBaseCloudMessageId() + "\n");
+*/
+        /*
+access_key(1)
+device_type(1)
+device_id(1)
+device_token(1)
+         */
 
     }
 }

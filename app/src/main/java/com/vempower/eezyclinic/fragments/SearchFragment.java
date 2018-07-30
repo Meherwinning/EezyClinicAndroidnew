@@ -203,7 +203,7 @@ public class SearchFragment extends AbstractFragment {
                 if(false) {
                     //reset the advanced search items
                     searchRequestParams.setInsurenceList(null);
-                    searchRequestParams.setNationalityList(null);
+                    searchRequestParams.setNationalityList(null,null);
                     searchRequestParams.setLaunguage(null);
                     searchRequestParams.setGendersearch(null);
                 }
@@ -415,8 +415,9 @@ public class SearchFragment extends AbstractFragment {
                     //  Utils.showToastMessage("selected Nationality " + selectedNationality);
 
                     if (selectedNationality != null) {
-                        searchRequestParams.setNationalityList(null);
-                        searchRequestParams.addNationality(selectedNationality.getId());
+                        searchRequestParams.setNationalityList(null,null);
+
+                        searchRequestParams.addNationality(selectedNationality.getId(),selectedNationality.getNationalityName());
                     }
                 }
 
@@ -737,6 +738,8 @@ public class SearchFragment extends AbstractFragment {
     private class LatLan {
         public String lat, lan;
     }
+
+
 
     @Override
     public void onResume() {
@@ -1254,5 +1257,14 @@ final CustomAdapter aa= new CustomAdapter<DoctorClinicNameData>(MyApplication.ge
         animator.setDuration(300);
         animator.setInterpolator(com.github.aakira.expandablelayout.Utils.createInterpolator(com.github.aakira.expandablelayout.Utils.LINEAR_INTERPOLATOR));
         return animator;
+    }
+
+    public void setSearchRequestParams() {
+        if(MyApplication.getInstance().getSearchRequestParms()==null)
+        {
+            this.searchRequestParams = new SearchRequest(Constants.RESULT_PAGE_ITEMS_LIMIT1);
+        }else {
+            this.searchRequestParams = MyApplication.getInstance().getSearchRequestParms().getCloneObject();
+        }
     }
 }

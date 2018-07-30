@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -56,11 +57,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         // Check if message contains a notification payload.
         if (remoteMessage.getData() != null) {
-            Log.d(TAG, "Message Notification Body: " + remoteMessage.getData().get("mymsg"));
+            Log.d(TAG, "Message Notification Body: " + remoteMessage.getData());
             // sendNotification(remoteMessage.getNotification().getBody());
 
            // generateNotification(getApplicationContext(), remoteMessage.getData().get("mymsg"));
-             generateNotification(getApplicationContext(), remoteMessage.getNotification().getBody());
+             generateNotification(getApplicationContext(), remoteMessage.getNotification().getBody(),remoteMessage.getNotification().getTitle());
 
 
         }
@@ -90,16 +91,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
     }*/
 
-    private static void generateNotification(Context context, String message) {
+    private  void generateNotification(Context context, String message,String title) {
 
         // Toast.makeText(context,notificationMessage,Toast.LENGTH_LONG).show();
-        String title = context.getString(R.string.app_name);
+        if(TextUtils.isEmpty(title))
+        {
+            title = context.getString(R.string.app_name);
+        }
         int icon = R.mipmap.ic_launcher;
         //	long when = System.currentTimeMillis();
         NotificationManager notificationManager = (NotificationManager) context
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
-        PendingIntent intent = PendingIntent.getActivity(context,
+        PendingIntent pendingIntent = PendingIntent.getActivity(context,
                 (int) (System.currentTimeMillis() % 100000),
                 new Intent(), PendingIntent.FLAG_UPDATE_CURRENT);
         /*NotificationCompat.Builder builder = new NotificationCompat.Builder(
@@ -127,7 +131,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,ChannelID);
 
         Notification notification = builder
-                .setContentIntent(intent)
+                .setContentIntent(pendingIntent)
                 .setSmallIcon(icon)
                 .setTicker(message)
                 .setAutoCancel(true)
@@ -139,7 +143,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
 //		notification.defaults |= Notification.DEFAULT_SOUND;
 //		notification.defaults |= Notification.DEFAULT_VIBRATE;
-        notificationManager.notify(98278734/*(int) (System.currentTimeMillis() % 100000)*/,
+        notificationManager.notify(944174/*(int) (System.currentTimeMillis() % 100000)*/,
                 notification);
 
 

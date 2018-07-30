@@ -39,7 +39,7 @@ public class MyApplication extends MultiDexApplication {
     private static ProgressDialog pd;
     private static Context mContext;
     private EezyClinicAPI eezyClinicAPI;
-    private SearchRequest searchRequestParms;
+    private static SearchRequest searchRequestParms;
     private static SearchResultDoctorListData searchResultDoctorListData;
 
     // private RefWatcher refWatcher;
@@ -124,7 +124,7 @@ public class MyApplication extends MultiDexApplication {
 
             // if (pd != null) {
             hideTransaprentDialog();
-            pd = new ProgressDialog((Activity)getCurrentActivityContext(), R.style.MyTheme);
+            pd = new ProgressDialog(getCurrentActivityContext(), R.style.MyTheme);
             pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             // pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             pd.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
@@ -156,7 +156,7 @@ public class MyApplication extends MultiDexApplication {
     public static void hideTransaprentDialog() {
 
         try {
-            if (pd != null && pd.isShowing()) {
+            if (pd != null && pd.isShowing() ) {
                 pd.dismiss();
             }
             pd=null;

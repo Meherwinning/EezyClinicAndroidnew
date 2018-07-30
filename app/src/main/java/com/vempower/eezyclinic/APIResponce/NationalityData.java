@@ -53,6 +53,20 @@ public class NationalityData {
 
     @Override
     public String toString() {
-        return nationalityName ;
+        return nationalityName;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (obj != null && obj instanceof NationalityData) {
+            NationalityData data = (NationalityData) obj;
+
+            if (data.getId() != null && getId() != null && data.getId().equalsIgnoreCase(getId())) {
+                return true;
+            }
+        }
+
+        return super.equals(obj);
     }
 }

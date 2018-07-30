@@ -206,6 +206,8 @@
     <string name="send_request_lbl">Send Request</string>
     <string name="search_btn_lbl">Search</string>
     <string name="are_you_sure_to_delete_family_member_lbl">Are you sure to delete family member?</string>
+    <string name="are_you_sure_to_delete_notification_lbl">Are you sure to delete Notification?</string>
+
     <string name="no_notifications_list_lbl">No notifications found</string>
     <string name="unable_to_get_notifications_list_lbl">Unable to get notifications list, please try again.</string>
     <string name="notification_send_request_note_lbl">Note: Added family members will be able to view your past medical Records and Appointment history if allowed from your Privacy settings. By Accepting the request, you agree to have read and accepted Eezy Clinic\'s Terms &amp; Conditions and Privacy Policy.</string>

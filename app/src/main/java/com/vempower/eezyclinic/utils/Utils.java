@@ -28,9 +28,11 @@ import android.widget.Toast;
 
 
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.MyFirebaseInstanceIDService;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.mappers.FCMRegisterMapper;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -51,6 +53,8 @@ import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
+
+import static com.vempower.eezyclinic.MyFirebaseInstanceIDService.IS_SEND_TO_SERVER;
 
 
 /**
@@ -858,6 +862,22 @@ public class Utils {
                 return token;
             }
             return "";
+        }
+
+        if(!TextUtils.isEmpty(token) &&  !SharedPreferenceUtils.getBooleanValueFromSharedPrefarence(IS_SEND_TO_SERVER,false))
+        {
+            FCMRegisterMapper mapper= new FCMRegisterMapper(token);
+            mapper.setOnFCMRegisterListener(new FCMRegisterMapper.FCMRegisterListener() {
+                @Override
+                public void register(AbstractResponse response, String errorMessage) {
+                    if(response!=null && response.getStatusCode().equalsIgnoreCase("1"))
+                    {
+                        SharedPreferenceUtils.setBooleanValueToSharedPrefarence(IS_SEND_TO_SERVER,true);
+
+                        Utils.showToastMsg("FCM send to server");
+                    }
+                }
+            });
         }
         return token;
     }

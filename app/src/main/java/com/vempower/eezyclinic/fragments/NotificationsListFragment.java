@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.vempower.eezyclinic.APICore.AbstractNotification;
+import com.vempower.eezyclinic.APICore.Notification;
 import com.vempower.eezyclinic.APICore.NotificationsComingappointment;
 import com.vempower.eezyclinic.APICore.NotificationsListData;
 import com.vempower.eezyclinic.APICore.NotificationsSendrequest;
@@ -19,12 +21,15 @@ import com.vempower.eezyclinic.APIResponce.NotificationsListAPI;
 import com.vempower.eezyclinic.APIResponce.PrescriptionsListAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.AddPrescriptionReportActivity;
+import com.vempower.eezyclinic.adapters.FamilyMembersListAdapter;
 import com.vempower.eezyclinic.adapters.NotificationsListAdapter;
 import com.vempower.eezyclinic.adapters.PrescriptionListAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.core.CustomComparator;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.interfaces.MyDialogInterface;
 import com.vempower.eezyclinic.mappers.AcceptNotificationMapper;
+import com.vempower.eezyclinic.mappers.DeleteNotificationMapper;
 import com.vempower.eezyclinic.mappers.NotificationsListMapper;
 import com.vempower.eezyclinic.mappers.PrescriptionsListMapper;
 import com.vempower.eezyclinic.mappers.RejectNotificationMapper;
@@ -32,9 +37,15 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by satish on 6/12/17.
@@ -124,6 +135,19 @@ public class NotificationsListFragment extends  SwipedRecyclerViewFragment {
         {
             return list;
         }
+
+        if(data.getNotificationsList()!=null && data.getNotificationsList().size()>0)
+        {
+            for(Notification notification:data.getNotificationsList())
+            {
+                if(notification!=null)
+                {
+                    list.add(notification);
+                }
+            }
+        }
+
+
         if(data.getSendrequest()!=null && data.getSendrequest().size()>0)
         {
             for(NotificationsSendrequest sendrequest:data.getSendrequest())
@@ -146,9 +170,35 @@ public class NotificationsListFragment extends  SwipedRecyclerViewFragment {
             }
         }
 
+        Collections.sort(list, new CustomComparator<AbstractNotification>() {
+
+            @Override
+            public int compare(AbstractNotification o1, AbstractNotification o2) {
+
+                //Date format in RSS field should be in 'Thu Feb 23 2017 10:37:04' format
+                //2018-07-30 16:33:13
+                //yyyy-MM-dd HH:mm:ss
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+                    try {
+                        if((TextUtils.isEmpty(o1.getSendDateTime()) || TextUtils.isEmpty(o1.getSendDateTime()))) {
+                            return 0;
+                        }
+                        Date d1 = sdf.parse(o1.getSendDateTime());
+                        Date d2 = sdf.parse(o2.getSendDateTime());
+                        return d2.compareTo(d1);
+                    }
+                    catch (ParseException e){
+                       // e.printStackTrace();
+                        return 0;
+                    }
+
+            }
+        });
+
 
         return list;
     }
+
 
 
   /*  private void callPrescriptionListMapper()
@@ -257,6 +307,26 @@ public class NotificationsListFragment extends  SwipedRecyclerViewFragment {
                 }
             });
 
+            adapter.setOnDeleteListener(new NotificationsListAdapter.DeleteListener() {
+                @Override
+                public void delete(final Notification notification) {
+                    showMyCustomDialog("Alert", Utils.getStringFromResources(R.string.are_you_sure_to_delete_notification_lbl), "Yes", "No", new MyDialogInterface() {
+                        @Override
+                        public void onPossitiveClick() {
+                            callDeleteNotification(notification);
+
+                        }
+
+                        @Override
+                        public void onNegetiveClick() {
+
+                        }
+                    });
+                }
+
+
+            });
+
             recyclerView.setAdapter(adapter);
         } else {
             adapter.setUpdatedList(notificationsList);
@@ -268,6 +338,23 @@ public class NotificationsListFragment extends  SwipedRecyclerViewFragment {
         {
             fragmentView.findViewById(R.id.no_matching_result_tv).setVisibility(View.GONE);
         }
+
+    }
+
+    private void callDeleteNotification(Notification notification) {
+        DeleteNotificationMapper mapper= new DeleteNotificationMapper(Integer.parseInt(notification.getId()));
+
+        mapper.setOnDeleteListener(new DeleteNotificationMapper.DeleteListener() {
+            @Override
+            public void delete(AbstractResponse response, String errorMessage) {
+                if(!isValidResponse(response,errorMessage))
+                {
+                    return;
+                }
+                Utils.showToastMsg(response.getStatusMessage());
+                fromTopScroll();
+            }
+        });
 
     }
 

@@ -66,6 +66,15 @@ public class SearchActivity extends AbstractMenuActivity {
         setFragment( searchFragment);
 
     }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(searchFragment!=null)
+        {
+            searchFragment.setSearchRequestParams();
+        }
+    }
+
 
    /* @Override
     protected void onRestart() {

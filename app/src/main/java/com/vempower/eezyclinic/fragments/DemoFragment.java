@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gc.materialdesign.views.ScrollView;
 import com.vempower.eezyclinic.APICore.NewHomeData;
 import com.vempower.eezyclinic.APICore.NewHomeSpeciality;
 import com.vempower.eezyclinic.APIResponce.NewHomeAPI;
@@ -50,6 +52,7 @@ public class DemoFragment extends AbstractFragment implements MyRecylerViewScrol
     private NewHomeAPIMapper mapper;
     private RecyclerView.SmoothScroller smoothScroller;
     private GridLayoutManager glm;
+    private int viewIndex=-1;
 
 
     @Nullable
@@ -67,6 +70,7 @@ public class DemoFragment extends AbstractFragment implements MyRecylerViewScrol
         super.onViewCreated(view, savedInstanceState);
 
         callHomePageMapper();
+
 
     }
 
@@ -90,12 +94,17 @@ public class DemoFragment extends AbstractFragment implements MyRecylerViewScrol
                         return LinearSmoothScroller.SNAP_TO_END;
                     }
                 };
+        //scrollToView(recyclerView,null);
+       // Point childOffset = new Point();
+       // getDeepChildOffset(scrollViewParent, view.getParent(), view, childOffset);
+
     }
 
 
     public void scrollMyRecylerView(int pos) {
         smoothScroller.setTargetPosition(pos);
         glm.startSmoothScroll(smoothScroller);
+
     }
 
     protected void setUpAdapter() {
@@ -140,6 +149,30 @@ public class DemoFragment extends AbstractFragment implements MyRecylerViewScrol
         List<Article> dataListThree = DummyDataProvider.getArticles();
         adapter.addSingleModelItem(dataListThree);
 
+        //scrollMyRecylerView(21);
+
+       /* new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(adapter.getFeaturesListView()!=null && viewIndex==-1)
+                {
+                   // scrollToView1(recyclerView,recyclerView.getChildViewHolder(adapter.getHealthtipsView()).itemView,glm);
+
+                    //recyclerView.getChildAt()
+                   // if(viewIndex==-1) {
+                        viewIndex = recyclerView.getChildLayoutPosition(adapter.getFeaturesListView());
+                   // }
+
+                }
+
+                if(viewIndex!=-1)
+                {
+                    scrollMyRecylerView(viewIndex-1);
+                }
+            }
+        },500);
+
+*/
 
     }
 

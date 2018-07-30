@@ -22,6 +22,7 @@ public class SearchRequest implements Cloneable {
     private String latitude;
     private ArrayList<String> insurenceList = null;
     private ArrayList<String> nationalityList = null;
+    private ArrayList<String> nationalityNameList = null;
     private ArrayList<String> gendersearch = null;
     private String locality;
     private ArrayList<String> launguage = null;
@@ -55,11 +56,56 @@ public class SearchRequest implements Cloneable {
                 "perpage":"",   //10 (Limit)
                 "page":""       //1   (Page No)*/
     }
+    public SearchRequest(SearchRequest request) {
+        this(Constants.RESULT_PAGE_ITEMS_LIMIT1);
+        if(request==null)
+        {
+            return;
+        }
+
+        this.searchtype=request.searchtype;
+
+
+        this.specality = request.specality;
+        this.country = request.country;
+        this.city = request.city;
+        this.longitude = request.longitude;
+        this.latitude = request.latitude;
+
+        this.locality = request.locality;
+        this.searchName = request.searchName;
+        this.cityName=request.cityName;
+        this.countryName=request.countryName;
+
+    }
+
+
+    public SearchRequest( String specality, String country,
+                         String city, String longitude, String latitude,
+                          String locality,
+                         String searchName,
+                         String cityName,String countryName) {
+
+        this(Constants.RESULT_PAGE_ITEMS_LIMIT1);
+        this.specality = specality;
+        this.country = country;
+        this.city = city;
+        this.longitude = longitude;
+        this.latitude = latitude;
+
+        this.locality = locality;
+        this.searchName = searchName;
+        this.cityName=cityName;
+        this.countryName=countryName;
+
+    }
+
 
     public SearchRequest(String searchtype, String specality, String country,
                          String city, String longitude, String latitude,
                          ArrayList<String> insurenceList,
                          ArrayList<String> nationalityList,
+                         ArrayList<String> nationalityNameList,
                          ArrayList<String> gendersearch, String locality,
                          ArrayList<String> launguage, String searchName,
                          int onlinebooking, String amountRange, int perpage,
@@ -72,6 +118,7 @@ public class SearchRequest implements Cloneable {
         this.latitude = latitude;
         this.insurenceList = insurenceList;
         this.nationalityList = nationalityList;
+        this.nationalityNameList = nationalityNameList;
         this.gendersearch = gendersearch;
         this.locality = locality;
         this.launguage = launguage;
@@ -80,6 +127,7 @@ public class SearchRequest implements Cloneable {
         this.amountRange = amountRange;
         this.perpage = perpage;
         this.page = page;
+
         this.amountRangeMin=amountRangeMin;
                 this.amountRangeMax=amountRangeMax;
 
@@ -201,7 +249,15 @@ public class SearchRequest implements Cloneable {
         return nationalityList;
     }
 
-    public void addNationality(String nationality) {
+    public ArrayList<String> getNationalityListNames() {
+        if(this.nationalityNameList==null)
+        {
+            this.nationalityNameList= new ArrayList<>();
+        }
+        return nationalityNameList;
+    }
+
+    public void addNationality(String nationality,String name) {
         if(this.nationalityList==null)
         {
             this.nationalityList= new ArrayList<>();
@@ -209,10 +265,19 @@ public class SearchRequest implements Cloneable {
         if(!TextUtils.isEmpty(nationality) && !nationalityList.contains(nationality)) {
             this.nationalityList.add(nationality);
         }
+
+        if(this.nationalityNameList==null)
+        {
+            this.nationalityNameList= new ArrayList<>();
+        }
+        if(!TextUtils.isEmpty(name) && !nationalityNameList.contains(name)) {
+            this.nationalityNameList.add(name);
+        }
+
     }
 
 
-    public void removeNationality(String natinality) {
+    public void removeNationality(String natinality,String name) {
         if(nationalityList==null)
         {
             nationalityList= new ArrayList<>();
@@ -222,9 +287,18 @@ public class SearchRequest implements Cloneable {
         if(!TextUtils.isEmpty(natinality)&& nationalityList.contains(natinality)) {
             this.nationalityList.remove(natinality);
         }
+
+        if(this.nationalityNameList==null)
+        {
+            this.nationalityNameList= new ArrayList<>();
+        }
+        if(!TextUtils.isEmpty(name)&& nationalityNameList.contains(name)) {
+            this.nationalityNameList.remove(name);
+        }
+
     }
 
-    public void setNationalityList(ArrayList<String> newNationality) {
+    public void setNationalityList(ArrayList<String> newNationality,ArrayList<String> newNationalityNames) {
         if(this.nationalityList==null)
         {
             this.nationalityList= new ArrayList<>();
@@ -236,6 +310,20 @@ public class SearchRequest implements Cloneable {
             return;
         }
         nationalityList.addAll(newNationality);
+
+
+
+        if(this.nationalityNameList==null)
+        {
+            this.nationalityNameList= new ArrayList<>();
+        }
+        if(newNationalityNames==null)
+        {
+            nationalityNameList.clear();
+            this.nationalityNameList= new ArrayList<>();
+            return;
+        }
+        nationalityNameList.addAll(newNationalityNames);
 
     }
 
@@ -425,6 +513,7 @@ public class SearchRequest implements Cloneable {
                 ", latitude='" + latitude + '\'' +
                 ", insurenceList=" + insurenceList +
                 ", nationalityList=" + nationalityList +
+                ", nationalityNameList=" + nationalityNameList +
                 ", gendersearch=" + gendersearch +
                 ", locality='" + locality + '\'' +
                 ", launguage=" + launguage +
@@ -441,7 +530,7 @@ public class SearchRequest implements Cloneable {
     public SearchRequest getCloneObject()
     {
         return new SearchRequest( searchtype,  specality,  country,  city,
-                longitude,  latitude,  insurenceList,  nationalityList,
+                longitude,  latitude,  insurenceList,  nationalityList,nationalityNameList,
                 gendersearch,  locality,  launguage,  searchName,
                 onlinebooking,  amountRange,  perpage,  page,amountRangeMin,amountRangeMax,cityName,countryName);
     }

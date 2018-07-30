@@ -15,6 +15,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.Messenger;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -399,6 +401,20 @@ public abstract class AbstractFragment extends Fragment {
     }
 
     /**
+     * Used to scroll to the given view.
+     *
+     * @param scrollViewParent Parent ScrollView
+     * @param view             View to which we need to scroll.
+     */
+    protected void scrollToView1(final RecyclerView scrollViewParent, final View view, GridLayoutManager layoutManager) {
+        // Get deepChild Offset
+        Point childOffset = new Point();
+        getDeepChildOffset(scrollViewParent, view.getParent(), view, childOffset);
+        // Scroll to child.
+        layoutManager.scrollToPositionWithOffset(0, childOffset.y);
+    }
+
+    /**
      * Used to get deep child offset.
      * <p/>
      * 1. We need to scroll to child in scrollview, but the child may not the direct child to scrollview.
@@ -409,7 +425,7 @@ public abstract class AbstractFragment extends Fragment {
      * @param child             Child.
      * @param accumulatedOffset Accumalated Offset.
      */
-    private void getDeepChildOffset(final ViewGroup mainParent, final ViewParent parent, final View child, final Point accumulatedOffset) {
+    protected void getDeepChildOffset(final ViewGroup mainParent, final ViewParent parent, final View child, final Point accumulatedOffset) {
         ViewGroup parentGroup = (ViewGroup) parent;
         accumulatedOffset.x += child.getLeft();
         accumulatedOffset.y += child.getTop();
