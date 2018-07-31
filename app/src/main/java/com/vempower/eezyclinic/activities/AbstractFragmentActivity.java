@@ -75,6 +75,15 @@ public class AbstractFragmentActivity extends AbstractActivity  /*implements OTP
 
     }
 
+    protected  void callNewHome(){
+        Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
+        intent.setClass(this,HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        sendHandlerMessage(getIntent(), ListenerKey.HOME_BOTTOM_ITEMS_SELECT_LISTENER_KEY, getRecordingListTitleBarListener(Constants.Home.NEW_HOME_ACTIVITY));
+
+    }
+
 
     protected void validateSignupReponse(SignupAPI signupAPI) {
         if(!signupAPI.getStatusCode().equalsIgnoreCase(Constants.SUCCESS_STATUS_CODE) || signupAPI.getData()==null)

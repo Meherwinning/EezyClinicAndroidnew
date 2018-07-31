@@ -874,7 +874,7 @@ public class Utils {
                     {
                         SharedPreferenceUtils.setBooleanValueToSharedPrefarence(IS_SEND_TO_SERVER,true);
 
-                        Utils.showToastMsg("FCM send to server");
+                       // Utils.showToastMsg("FCM send to server");
                     }
                 }
             });

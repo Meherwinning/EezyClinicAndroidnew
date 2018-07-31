@@ -129,10 +129,11 @@ public class HomeActivity extends AbstractMenuActivity {
                    callMedicalRecordds();
                   // callHomeActionBar();
                    break;
-              /* case  Constants.Home.SETTINGS:
-                   callSettings();
+               case  Constants.Home.NEW_HOME_ACTIVITY:
+                  // onNewHomeClick(null);
+                   newHomeCall(true);
                   // callHomeActionBar();
-                   break;*/
+                   break;
                case  Constants.Home.HEALTH_CHECKS:
                    callHealthChecks();
                    // callHomeActionBar();
@@ -157,9 +158,9 @@ public class HomeActivity extends AbstractMenuActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        MyApplication.showTransparentDialog();
+       /* MyApplication.showTransparentDialog();
         bottomItemChange(PRESENT_TAB);
-        MyApplication.hideTransaprentDialog();
+        MyApplication.hideTransaprentDialog();*/
 
         /*if(homeFragment!=null)
         {
@@ -582,15 +583,26 @@ public class HomeActivity extends AbstractMenuActivity {
 
     public void onNewHomeClick(View view)
     {
-        PRESENT_TAB=Constants.Home.NEW_HOME_ACTIVITY;
+        newHomeCall(false);
+
+    }
+
+    private void newHomeCall(boolean isShowFeatures) {
+        PRESENT_TAB= Constants.Home.NEW_HOME_ACTIVITY;
         callSettingsActionBar();
         /*if(newHomeFragment==null)
         {*/
-            newHomeFragment= new DemoFragment();
-           // fragment.refreshData();
-           // newHomeFragment=fragment;
-       // }
+        newHomeFragment= new DemoFragment();
+        // fragment.refreshData();
+        // newHomeFragment=fragment;
+        // }
         setFragment(newHomeFragment);
+        if(isShowFeatures)
+        {
+            DemoFragment df= (DemoFragment) newHomeFragment;
+            df.setToShowFeaturesView(true);
+
+        }
         unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,Constants.Home.NEW_HOME_ACTIVITY);
     }
 

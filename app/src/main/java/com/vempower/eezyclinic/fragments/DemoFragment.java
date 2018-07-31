@@ -36,6 +36,8 @@ import com.vempower.eezyclinic.activities.AbstractActivity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by satish on 11/1/18.
@@ -52,7 +54,9 @@ public class DemoFragment extends AbstractFragment implements MyRecylerViewScrol
     private NewHomeAPIMapper mapper;
     private RecyclerView.SmoothScroller smoothScroller;
     private GridLayoutManager glm;
-    private int viewIndex=-1;
+    private int viewIndex = -1;
+
+    private boolean isshowFeaturesView = false;
 
 
     @Nullable
@@ -95,8 +99,8 @@ public class DemoFragment extends AbstractFragment implements MyRecylerViewScrol
                     }
                 };
         //scrollToView(recyclerView,null);
-       // Point childOffset = new Point();
-       // getDeepChildOffset(scrollViewParent, view.getParent(), view, childOffset);
+        // Point childOffset = new Point();
+        // getDeepChildOffset(scrollViewParent, view.getParent(), view, childOffset);
 
     }
 
@@ -151,29 +155,57 @@ public class DemoFragment extends AbstractFragment implements MyRecylerViewScrol
 
         //scrollMyRecylerView(21);
 
-       /* new Handler().postDelayed(new Runnable() {
+
+        //scrollMyRecylerView(adapter.getItemCount()-1);
+        //scrollMyRecylerView(1);
+
+
+        if (isshowFeaturesView) {
+            gotToFeaturesAndBenifitsView();
+            isshowFeaturesView = false;
+
+        }
+
+
+    }
+
+    public void setToShowFeaturesView(boolean isShow) {
+        isshowFeaturesView = isShow;
+    }
+    public void gotToFeaturesAndBenifitsView()
+    {
+        gotToFeaturesAndBenifitsView(false) ;
+    }
+    public void gotToFeaturesAndBenifitsView(final boolean isNonLogin) {
+
+        glm.scrollToPositionWithOffset(adapter.getItemCount() - 1, 0);
+
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(adapter.getFeaturesListView()!=null && viewIndex==-1)
-                {
-                   // scrollToView1(recyclerView,recyclerView.getChildViewHolder(adapter.getHealthtipsView()).itemView,glm);
+                if (adapter.getFeaturesListView() != null && viewIndex == -1) {
+                    // scrollToView1(recyclerView,recyclerView.getChildViewHolder(adapter.getHealthtipsView()).itemView,glm);
 
                     //recyclerView.getChildAt()
-                   // if(viewIndex==-1) {
-                        viewIndex = recyclerView.getChildLayoutPosition(adapter.getFeaturesListView());
-                   // }
+                    // if(viewIndex==-1) {
+                    viewIndex = recyclerView.getChildLayoutPosition(adapter.getFeaturesListView());
+                    // }
 
                 }
 
-                if(viewIndex!=-1)
-                {
-                    scrollMyRecylerView(viewIndex-1);
+                if (viewIndex != -1) {
+                    //scrollMyRecylerView(viewIndex-1);
+                    if(isNonLogin)
+                    {
+                        glm.scrollToPositionWithOffset(viewIndex - 1, 0);
+                    }else
+                    {
+                        glm.scrollToPositionWithOffset(viewIndex - 2, 0);
+                    }
+
                 }
             }
-        },500);
-
-*/
-
+        }, 1000);
     }
 
 

@@ -19,6 +19,7 @@ package com.vempower.eezyclinic.activities.complex;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -193,6 +194,7 @@ public class ArticleBinder1 extends ItemBinder<NewHomeDoctorsList, ArticleBinder
         adapterViewPager.notifyDataSetChanged();
         vpPager.refreshDrawableState();
         vpPager.computeScroll();
+        vpPager.setOffscreenPageLimit(1);
 
         vpPager.setClipToPadding(false);
        // vpPager.setPadding(0,0,0,0);
@@ -218,7 +220,7 @@ public class ArticleBinder1 extends ItemBinder<NewHomeDoctorsList, ArticleBinder
   }
 
 
-  private  class MyPagerAdapter extends FragmentPagerAdapter {
+  private  class MyPagerAdapter extends FragmentStatePagerAdapter {
     //private  int NUM_ITEMS = doctorsLists.size();
     private List<DoctorsPair> myDoctorsPairs;
     public MyPagerAdapter(FragmentManager fragmentManager,List<DoctorsPair> doctorsPairs) {

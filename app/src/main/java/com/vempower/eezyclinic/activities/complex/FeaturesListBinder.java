@@ -35,18 +35,22 @@ public class FeaturesListBinder extends ItemBinder<Feature, FeaturesListBinder.V
   }
 
   @Override public ViewHolder create(LayoutInflater layoutInflater, ViewGroup parent) {
-    return new ViewHolder(layoutInflater.inflate(R.layout.item_feature, parent, false));
+    ViewHolder holder= new ViewHolder(layoutInflater.inflate(R.layout.item_feature, parent, false));
+
+    return holder;
   }
 
   @Override public void bind(ViewHolder holder, Feature item) {
     holder.health_tip_tv2.setText(item.feature);
-    if(view==null) {
+    //if(view==null) {
       view = holder.itemView;
-    }
+    //}
+
    // holder.tvDescription.setText(item.getDescription());
   }
 
   public  View getView() {
+
     return view;
   }
 

@@ -23,6 +23,7 @@ import com.vempower.eezyclinic.core.DoctorsPair;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.IntentObjectListener;
 import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.Utils;
 
 public class FirstFragment extends AbstractFragment {
     // Store instance variables
@@ -55,6 +56,7 @@ public class FirstFragment extends AbstractFragment {
         public void bindValue(final NewHomeDoctorsList doctor) {
             view.setVisibility(View.INVISIBLE);
             if (doctor == null) {
+               // Utils.showToastMsg("Doctor value NULL");
                 return;
             }
             view.setVisibility(View.VISIBLE);

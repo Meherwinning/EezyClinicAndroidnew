@@ -30,6 +30,7 @@ import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.FromActivityListener;
 import com.vempower.eezyclinic.callbacks.HomeBottomItemClickListener;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
+import com.vempower.eezyclinic.callbacks.NewHomeClickListener;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.HomeFragment;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
@@ -294,7 +295,8 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 callSideMenuScreen(FeedbackActivity.class);
                 break;
             case R.id.features_and_benefits_linear:
-                showToastMessage("Coming soon");
+                //showToastMessage("Coming soon");
+                callNewHome();
                 //callSideMenuScreen(NewHomeActivity.class);
                 break;
 
@@ -305,7 +307,8 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
 
             case R.id.non_login_features_and_benefits_linear:
-                showToastMessage("Coming soon");
+                //showToastMessage("Coming soon");
+                showFeaturesAndBenifitsView();
 
                 break;
 
@@ -333,6 +336,22 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 hideKeyBord();
             }
         }, 200);
+    }
+
+    public void showFeaturesAndBenifitsView() {
+
+        /*Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
+        intent.setClass(this,NewHomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        sendHandlerMessage(getIntent(), ListenerKey.NEW_HOME_FEATURS_AND_BENIFITS_LISTENER_KEY, new NewHomeClickListener() {
+            @Override
+            public boolean isClicked() {
+                return true;
+            }
+        });
+*/
+
     }
 
     public void onSignupClick(View view) {

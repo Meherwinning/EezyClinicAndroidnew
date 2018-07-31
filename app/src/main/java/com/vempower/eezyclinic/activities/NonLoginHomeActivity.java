@@ -23,6 +23,8 @@ public class NonLoginHomeActivity extends AbstractMenuActivity {
 
 
     private ImageView title_logo_iv;
+    private DemoFragment demoFragment;
+
     public void setActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -49,10 +51,20 @@ public class NonLoginHomeActivity extends AbstractMenuActivity {
 
 
     }
+    @Override
+    public void showFeaturesAndBenifitsView()
+    {
+        if(demoFragment!=null)
+        {
+            demoFragment.gotToFeaturesAndBenifitsView(true);
+        }
+    }
+
 
     @Override
     protected AbstractFragment getFragment() {
-        return new DemoFragment();
+        demoFragment=new DemoFragment();
+        return demoFragment;
     }
 
     public void onLoginClick(View view)
