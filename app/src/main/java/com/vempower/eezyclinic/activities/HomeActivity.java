@@ -538,7 +538,7 @@ public class HomeActivity extends AbstractMenuActivity {
 
     private void refreshProfile()
     {
-        Utils.showToastMsg("Refresh profile");
+        //Utils.showToastMsg("Refresh profile");
         callMyProfile();
         if(myProfileFragment!=null && (myProfileFragment instanceof MyProfileFragment))
         {

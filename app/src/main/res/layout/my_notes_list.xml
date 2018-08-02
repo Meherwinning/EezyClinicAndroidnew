@@ -8,7 +8,15 @@
     android:layout_marginRight="@dimen/_24dp"
     android:background="@color/white">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/my_notes_linear"
         android:layout_width="match_parent"
@@ -78,6 +86,7 @@
         android:textStyle="normal"
 
         />
-
+    </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

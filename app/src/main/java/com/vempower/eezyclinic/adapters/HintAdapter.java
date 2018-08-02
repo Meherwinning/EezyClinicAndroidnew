@@ -49,7 +49,7 @@ public class HintAdapter<T> extends ArrayAdapter<T> {
         this.isEnableHint=isEnableHint;
     }
 
-    @Override
+  /*  @Override
     public int getCount() {
         // don't display last item. It is used as hint.
         int count = super.getCount();
@@ -59,5 +59,5 @@ public class HintAdapter<T> extends ArrayAdapter<T> {
         }else {
             return count;
         }
-    }
+    }*/
 }

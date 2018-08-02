@@ -89,7 +89,7 @@ private ExpandColapseButtonListener buttonListener;
       {
 
         case NewHomeSpeciality.ButtonType.MORE:
-          MyApplication.getInstance().setBitmapToImageview(R.drawable.more_button,new_home_speciality_iv);
+          MyApplication.getInstance().setBitmapToImageview(R.drawable.more_button,new_home_speciality_iv,Constants.MORE_BUTTON);
           item_name_tv.setText("More");
           itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +107,7 @@ private ExpandColapseButtonListener buttonListener;
           });
           break;
         case NewHomeSpeciality.ButtonType.LESS:
-          MyApplication.getInstance().setBitmapToImageview(R.drawable.less_button,new_home_speciality_iv);
+          MyApplication.getInstance().setBitmapToImageview(R.drawable.less_button,new_home_speciality_iv,Constants.LESS_BUTTON);
           item_name_tv.setText("Less");
           itemView.setOnClickListener(new View.OnClickListener() {
             @Override

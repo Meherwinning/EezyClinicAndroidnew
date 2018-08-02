@@ -39,7 +39,8 @@
                 <ImageView
                     android:id="@+id/popular_doctor_iv"
                     style="@style/image_fit_toparent"
-                    android:layout_margin="@dimen/_1dp"
+                    android:paddingTop="@dimen/_8dp"
+
                     android:src="@drawable/default_doctor_image"
                     android:scaleType="fitXY"
                     />
@@ -51,6 +52,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
+
                 android:src="@drawable/photoframe"
                 />
 

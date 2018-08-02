@@ -50,7 +50,6 @@ import java.util.Map;
 
 import retrofit.Call;
 import retrofit.http.Body;
-import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Multipart;
 import retrofit.http.POST;
@@ -465,6 +464,11 @@ Call<HealthChecksListAPI> getHealthCheckList(@Body RequestBody postBody);
     //https://dev.v-empower.com:81/eezyclinic-git/api/patient/notificationdelete
     @POST(data + "patient/notificationdelete")
     Call<AbstractResponse> notificationDelete(@Body RequestBody postBody);
+
+    //http://202.63.103.194:8003/api/patient/getuser
+    @POST(data + "patient/getuser")
+    Call<AbstractResponse> getuser(@Body RequestBody postBody);
+
 
 
 }

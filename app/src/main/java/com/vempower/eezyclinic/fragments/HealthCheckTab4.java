@@ -284,7 +284,7 @@ public class HealthCheckTab4 extends AbstractHealthChecksTabFragment {
         }
 
         private String getServerDateStr(String dateStr) {
-            SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
+            SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT1);
             SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
 
 
@@ -344,11 +344,9 @@ public class HealthCheckTab4 extends AbstractHealthChecksTabFragment {
                 selectedObj = selectedDate1;
                 Calendar selectedCal = selectedDate1.getFirstDate();
 
-                //  String date = selectedCal.get(Calendar.YEAR) + "-" + (selectedCal.get(Calendar.MONTH) + 1) + "-" + selectedCal.get(Calendar.DAY_OF_MONTH);
-                SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
-                //SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.REQUEST_DATE_FORMAT);
-                //profileDetails.dateofBirth=requestFormat.format(selectedCal.getTime());
-                date_tv.setText(format.format(selectedCal.getTime()));
+                SimpleDateFormat serverDateFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
+                selectedDateStr = serverDateFormat.format(selectedCal.getTime());
+                date_tv.setText(getDisplayDateStr(selectedDateStr));
 
             }
         };

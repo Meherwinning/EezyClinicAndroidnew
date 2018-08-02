@@ -34,7 +34,7 @@ abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
     //on Thursday
     //08-03-2018, 08.41 AM
     //String DISPLAY_DATE_FORMAT = "'on' EEEE dd-MM-yyyy, h:mm a";//4th Dec 2017
-    String DISPLAY_DATE_FORMAT = "'on' EEE dd-MM-yyyy, h:mm a";//4th Dec 2017
+    String DISPLAY_DATE_FORMAT123 = "'on' EEE dd-MM-yyyy, h:mm a";//4th Dec 2017
     String DISPLAY_DATE_FORMAT1 = "EEE d MMM yyyy, h:mm a";//Thu 14 Jun 2018, 12:13 PM
 
     protected final int SUGAR_TYPE = 1, BLOOD_PRESSURE_TYPE = 2, WEIGHT_AND_HEIGHT_TYPE = 3, CHOLESTEROL_TYPE = 4;

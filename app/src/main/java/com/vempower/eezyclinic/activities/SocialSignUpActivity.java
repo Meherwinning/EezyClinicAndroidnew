@@ -417,10 +417,10 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
     public void setToSpinnerAdapter() {
 
         final ArrayList<String> genderTypeList = new ArrayList<>();
-
+        genderTypeList.add(Constants.GenderValues.GENDER);
         genderTypeList.add(Constants.GenderValues.MALE);
         genderTypeList.add(Constants.GenderValues.FEMALE);
-        genderTypeList.add(Constants.GenderValues.GENDER);
+
        // selectedGender = genderTypeList.get(0);
 
 
@@ -471,7 +471,7 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
         };*/
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gender_type_spinner.setAdapter(aa);
-        gender_type_spinner.setSelection(aa.getCount());
+        gender_type_spinner.setSelection(0);
 
         gender_type_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

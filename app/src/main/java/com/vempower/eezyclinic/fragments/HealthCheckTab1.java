@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ import com.vempower.eezyclinic.mappers.AddSugarHealthCheckMapper;
 import com.vempower.eezyclinic.mappers.DeleteSugarHealthCheckMapper;
 import com.vempower.eezyclinic.mappers.UpdateSugarHealthCheckMapper;
 import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.DecimalDigitsInputFilter;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
@@ -97,6 +99,8 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
         new_fasting_et = getFragemtView().findViewById(R.id.fasting_et);
         new_post_meal_et = getFragemtView().findViewById(R.id.post_meal_et);
         new_hba1c_et = getFragemtView().findViewById(R.id.hba1c_et);
+        new_hba1c_et.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(2,2)});
+
 
 
         new_ok_iv = getFragemtView().findViewById(R.id.ok_iv);
@@ -246,6 +250,7 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
             fasting_et = convertView.findViewById(R.id.fasting_et);
             post_meal_et = convertView.findViewById(R.id.post_meal_et);
             hba1c_et = convertView.findViewById(R.id.hba1c_et);
+            hba1c_et.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(2,2)});
             date_tv = convertView.findViewById(R.id.date_tv);
 
             ok_iv = convertView.findViewById(R.id.ok_iv);
@@ -384,14 +389,9 @@ public class HealthCheckTab1 extends AbstractHealthChecksTabFragment {
 
                         );*/
 
-                //  String date = selectedCal.get(Calendar.YEAR) + "-" + (selectedCal.get(Calendar.MONTH) + 1) + "-" + selectedCal.get(Calendar.DAY_OF_MONTH);
-                SimpleDateFormat format = new SimpleDateFormat(DISPLAY_DATE_FORMAT);
-                //SimpleDateFormat requestFormat = new SimpleDateFormat(Constants.REQUEST_DATE_FORMAT);
-                //profileDetails.dateofBirth=requestFormat.format(selectedCal.getTime());
                 SimpleDateFormat serverDateFormat = new SimpleDateFormat(Constants.SERVER_DATE_FORMAT_NEW);
-                //profileDetails.dateofBirth=requestFormat.format(selectedCal.getTime());
                 selectedDateStr = serverDateFormat.format(selectedCal.getTime());
-                date_tv.setText(format.format(selectedCal.getTime()));
+                date_tv.setText(getDisplayDateStr(selectedDateStr));
 
             }
         };

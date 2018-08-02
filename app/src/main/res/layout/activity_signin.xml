@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_gradient_bg"
-    android:orientation="vertical">
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,9 +26,9 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="@dimen/_180dp"
                 android:layout_above="@+id/center_img"
-                android:layout_weight="3">
+               >
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -42,10 +42,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_15dp"
                 android:layout_marginRight="@dimen/_8dp"
-                android:layout_weight="6"
                 android:background="@color/transparent"
                 android:orientation="vertical">
 
@@ -180,15 +179,14 @@
                     android:id="@+id/social_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_10dp"
                     android:layout_marginLeft="@dimen/_10dp"
                     android:layout_marginRight="@dimen/_10dp"
-                    android:layout_marginTop="@dimen/_15dp"
                     android:minHeight="@dimen/_80dp"></RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_20dp"
                     android:layout_gravity="center_horizontal"
                     android:orientation="horizontal">
 
@@ -216,26 +214,11 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <com.vempower.eezyclinic.views.MyButtonRectangleRM
 
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_5dp"
-                    android:layout_marginTop="@dimen/_15dp"
-                    android:background="@color/white"
-                    android:clickable="true"
-                    android:fontFamily="sans-serif"
-                    android:maxLines="1"
-                    android:padding="@dimen/_4dp"
-                    android:text="Login"
-                    android:textAllCaps="false"
-                    android:textColor="@color/button_text_color"
-                    android:textSize="@dimen/button_text_size"
-                    android:textStyle="bold"
-                    android:visibility="invisible" />
 
 
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>

@@ -6,45 +6,7 @@
     android:background="@color/transparent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15dp"
-        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50dp"
-            android:orientation="horizontal"
-            android:padding="@dimen/_2dp">
-
-            <com.vempower.eezyclinic.views.CustomSpinnerSelection
-                android:id="@+id/country_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/white"
-                android:maxLines="1"
-                android:layout_marginRight="@dimen/_5dp"
-                android:layout_marginLeft="0dp"
-                android:singleLine="true"
-                android:foregroundTint="@color/black"
-                android:imeOptions="actionNext"
-                android:spinnerMode="dropdown"
-                android:textColor="@color/text_color"
-                android:textSize="@dimen/button_text_size" />
-
-        </LinearLayout>
-
-        <!-- </android.support.design.widget.TextInputLayout>-->
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginRight="@dimen/_12dp"
-            android:background="@color/white" />
-
-    </LinearLayout>
     <!--<com.github.aakira.expandablelayout.ExpandableLinearLayout
         android:id="@+id/expandableLayout_city_view"
         android:layout_width="match_parent"
@@ -234,6 +196,46 @@
                 android:layout_marginRight="@dimen/_5dp"
                 android:spinnerMode="dropdown"
                 android:imeOptions="actionNext"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/button_text_size" />
+
+        </LinearLayout>
+
+        <!-- </android.support.design.widget.TextInputLayout>-->
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="@dimen/_12dp"
+            android:background="@color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_15dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/_2dp">
+
+            <com.vempower.eezyclinic.views.CustomSpinnerSelection
+                android:id="@+id/country_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/white"
+                android:maxLines="1"
+                android:layout_marginRight="@dimen/_5dp"
+                android:layout_marginLeft="0dp"
+                android:singleLine="true"
+                android:foregroundTint="@color/black"
+                android:imeOptions="actionNext"
+                android:spinnerMode="dropdown"
                 android:textColor="@color/text_color"
                 android:textSize="@dimen/button_text_size" />
 

@@ -28,10 +28,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:layout_marginBottom="@dimen/_20dp"
                     android:layout_marginLeft="@dimen/_10dp"
+                    android:layout_marginTop="@dimen/_30dp"
                     android:layout_marginRight="@dimen/_10dp"
-                    android:layout_marginTop="@dimen/_30dp">
+                    android:layout_marginBottom="@dimen/_20dp">
 
                 </RelativeLayout>
 
@@ -68,12 +68,13 @@
                         app:hintEnabled="true"
                         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                        <EditText                                          android:fontFamily="@font/roboto"
+                        <EditText
                             android:id="@+id/name_et"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="@dimen/_2dp"
                             android:background="@null"
+                            android:fontFamily="@font/roboto"
                             android:gravity="left|center_vertical"
                             android:hint="Name*"
                             android:imeOptions="actionUnspecified"
@@ -90,7 +91,7 @@
                     </android.support.design.widget.TextInputLayout>
 
 
-                   <TextView
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginRight="@dimen/_12dp"
@@ -113,15 +114,16 @@
                         app:hintEnabled="true"
                         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                        <TextView                    android:fontFamily="@font/roboto"
+                        <TextView
                             android:id="@+id/dateofBirth_tv"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="@dimen/_2dp"
                             android:background="@null"
                             android:clickable="true"
-                            android:drawablePadding="@dimen/_5dp"
                             android:drawableRight="@drawable/cal1"
+                            android:drawablePadding="@dimen/_5dp"
+                            android:fontFamily="@font/roboto"
                             android:gravity="left|center_vertical"
                             android:hint="Date of Birth"
                             android:imeOptions="actionUnspecified"
@@ -140,7 +142,7 @@
                     </android.support.design.widget.TextInputLayout>
 
 
-                   <TextView
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginRight="@dimen/_12dp"
@@ -171,11 +173,12 @@
                         <Spinner
                             android:id="@+id/gender_type_spinner"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="@dimen/_30dp"
+                            android:layout_gravity="bottom"
                             android:backgroundTint="@color/white"
+                            android:foregroundTint="@color/black"
                             android:maxLines="1"
                             android:singleLine="true"
-                            android:foregroundTint="@color/black"
 
                             android:spinnerMode="dropdown"
                             android:textColor="@color/text_color"
@@ -186,7 +189,7 @@
                     <!-- </android.support.design.widget.TextInputLayout>-->
 
 
-                   <TextView
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginRight="@dimen/_12dp"
@@ -209,12 +212,13 @@
                         app:hintEnabled="true"
                         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                        <EditText                                          android:fontFamily="@font/roboto"
+                        <EditText
                             android:id="@+id/email_et"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="@dimen/_2dp"
                             android:background="@null"
+                            android:fontFamily="@font/roboto"
                             android:gravity="left|center_vertical"
                             android:hint="Email ID*"
                             android:imeOptions="actionUnspecified"
@@ -231,13 +235,26 @@
                     </android.support.design.widget.TextInputLayout>
 
 
-                  <TextView
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginRight="@dimen/_12dp"
                         android:background="@color/white" />
 
+                    <TextView
+                        android:id="@+id/email_id_exist_tv"
+                        android:visibility="gone"
+                        android:layout_marginLeft="@dimen/_5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="left|center_vertical"
+                        android:text="Email already in use!"
+                        android:textColor="@color/google_plus"
+                        android:textSize="@dimen/_13dp" />
+
                 </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -254,12 +271,13 @@
                         app:hintEnabled="true"
                         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                        <EditText                                          android:fontFamily="@font/roboto"
+                        <EditText
                             android:id="@+id/mobile_num_et"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="@dimen/_2dp"
                             android:background="@null"
+                            android:fontFamily="@font/roboto"
                             android:gravity="left|center_vertical"
                             android:hint="Mobile Number*"
                             android:imeOptions="actionUnspecified"
@@ -276,7 +294,7 @@
                     </android.support.design.widget.TextInputLayout>
 
 
-                  <TextView
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginRight="@dimen/_12dp"
@@ -296,22 +314,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50dp"
                         android:layout_marginTop="-1dp"
-                        app:passwordToggleEnabled="true"
-                        app:passwordToggleTint="@color/white"
                         android:background="@drawable/background_shape_idle"
                         android:textColorHint="@color/text_hint_color"
                         app:errorEnabled="true"
                         app:hintEnabled="true"
                         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/white"
 
                         >
 
-                        <EditText                                          android:fontFamily="@font/roboto"
+                        <EditText
                             android:id="@+id/password_et"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="@dimen/_2dp"
                             android:background="@null"
+                            android:fontFamily="@font/roboto"
                             android:gravity="left|center_vertical"
                             android:hint="Password"
                             android:imeOptions="actionUnspecified"
@@ -327,7 +346,7 @@
                     </com.vempower.eezyclinic.views.MyTextInputLayout>
 
 
-                <TextView
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginRight="@dimen/_12dp"
@@ -346,11 +365,11 @@
 
 
                     <CheckBox
-                        android:fontFamily="@font/roboto"
                         android:id="@+id/terms_and_cond_checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:button="@drawable/checkbox_selector"
+                        android:fontFamily="@font/roboto"
                         android:padding="@dimen/_5dp"
 
                         android:text="Sign up to Agree"
@@ -368,11 +387,12 @@
 
                           android:textSize="@dimen/text_size_normal" />
   -->
-                    <TextView                    android:fontFamily="@font/roboto"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:clickable="true"
+                        android:fontFamily="@font/roboto"
                         android:gravity="left|center_vertical"
                         android:onClick="onTermsAndConditionsClick"
                         android:paddingRight="@dimen/_5dp"

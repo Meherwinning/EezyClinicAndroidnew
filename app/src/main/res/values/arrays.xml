@@ -56,6 +56,7 @@
 
 
     <string-array name="relations">
+        <item>Select family member</item>
         <item>Father</item>
         <item>Mother</item>
         <item>Brother</item>
@@ -65,9 +66,10 @@
         <item>Son</item>
         <item>Daughter</item>
         <item>Others</item>
-        <item>Select family member</item>
+
     </string-array>
     <string-array name="relations1">
+        <item>Select Relation</item>
         <item>Father</item>
         <item>Mother</item>
         <item>Brother</item>
@@ -77,7 +79,7 @@
         <item>Son</item>
         <item>Daughter</item>
         <item>Others</item>
-        <item>Select Relation</item>
+
     </string-array>
 
 

@@ -1,6 +1,5 @@
 package com.vempower.eezyclinic.fragments;
 
-import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -12,32 +11,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.gc.materialdesign.views.ScrollView;
 import com.vempower.eezyclinic.APICore.NewHomeData;
-import com.vempower.eezyclinic.APICore.NewHomeSpeciality;
 import com.vempower.eezyclinic.APIResponce.NewHomeAPI;
-import com.vempower.eezyclinic.APIResponce.SpecalitiesAPI;
-import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
-import com.vempower.eezyclinic.APIResponce.SpecalitiyRemainData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.complex.Article;
-import com.vempower.eezyclinic.activities.complex.Bike;
 import com.vempower.eezyclinic.activities.complex.ComplexListAdapter;
 import com.vempower.eezyclinic.activities.complex.DummyDataProvider;
-import com.vempower.eezyclinic.activities.complex.Vehicle;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.interfaces.MyRecylerViewScrollListener;
 import com.vempower.eezyclinic.mappers.NewHomeAPIMapper;
-import com.vempower.eezyclinic.mappers.SpecalitiesMapper;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by satish on 11/1/18.

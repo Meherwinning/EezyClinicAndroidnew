@@ -51,6 +51,7 @@ public class HealthChecksFragment extends AbstractFragment {
         mViewPager = (NonSwipeableViewPager) getFragemtView().findViewById(R.id.pager1);
         mTabLayout = (TabLayout) getFragemtView().findViewById(R.id.tab1);
         mViewPager.setOffscreenPageLimit(4);
+
         // mViewPager.setScol
 
 
@@ -158,6 +159,24 @@ public class HealthChecksFragment extends AbstractFragment {
 
 
         mTabLayout.setupWithViewPager(mViewPager);
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                      // Utils.showToastMsg("Selected :"+position);
+                       hideKeyBord(mTabLayout);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
       /*  mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
 
             @Override

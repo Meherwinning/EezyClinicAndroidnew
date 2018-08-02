@@ -768,14 +768,14 @@ public class EditProfileFragment extends ImageProcessFragment {
 
             EditProfileViewInsurance hintData = new EditProfileViewInsurance();
             hintData.setCompanyName("Select Insurance");
-            insuranceTypeList.add(insuranceTypeList.size(), hintData);
+            insuranceTypeList.add(0, hintData);
 
 
             myInsuranceAdapter = new HintAdapter<EditProfileViewInsurance>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, insuranceTypeList);
 
             myInsuranceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             insurance_provider_spinner.setAdapter(myInsuranceAdapter);
-            insurance_provider_spinner.setSelection(myInsuranceAdapter.getCount());
+            insurance_provider_spinner.setSelection(0);
 
             insurance_provider_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -783,7 +783,7 @@ public class EditProfileFragment extends ImageProcessFragment {
                     //if(position!=0)
                     //{
                     insurance.setInsurancePackage(null);
-                    if (position != (myInsuranceAdapter.getCount())) {
+                    if (position != 0) {
                         EditProfileViewInsurance selectedInsurance = insuranceTypeList.get(position);
                         // Utils.showToastMessage("selected insurance " + selectedInsurance);
 
@@ -828,14 +828,14 @@ public class EditProfileFragment extends ImageProcessFragment {
 
             Tpalist hintData = new Tpalist();
             hintData.setTpa("Select TPA");
-            insuranceTypeList.add(insuranceTypeList.size(), hintData);
+            insuranceTypeList.add(0, hintData);
 
 
             myTPAListAdapter = new HintAdapter<Tpalist>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, insuranceTypeList);
 
             myTPAListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             tpa_list_spinner.setAdapter(myTPAListAdapter);
-            tpa_list_spinner.setSelection(myTPAListAdapter.getCount());
+            tpa_list_spinner.setSelection(0);
 
             tpa_list_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -843,7 +843,7 @@ public class EditProfileFragment extends ImageProcessFragment {
                     //if(position!=0)
                     //{
                     insurance.setTpa(null);
-                    if (position != (myTPAListAdapter.getCount())) {
+                    if (position != 0) {
                         Tpalist tpa = insuranceTypeList.get(position);
                         // Utils.showToastMessage("selected insurance " + selectedInsurance);
 
@@ -1005,13 +1005,13 @@ public class EditProfileFragment extends ImageProcessFragment {
         relation_spinner.setAdapter(aa);
 
 
-        relation_spinner.setSelection(aa.getCount());
+        relation_spinner.setSelection(0);
 
         relation_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 profileDetails.emergencyContactRelationship = null;
-                if (position != (aa.getCount())) {
+                if (position != 0) {
                     profileDetails.emergencyContactRelationship = relations[position];
 
                 }
@@ -1041,23 +1041,23 @@ public class EditProfileFragment extends ImageProcessFragment {
     public void setToGenderSpinnerAdapter() {
 
         final ArrayList<String> genderTypeList = new ArrayList<>();
-
+        genderTypeList.add(Constants.GenderValues.GENDER);
         genderTypeList.add(Constants.GenderValues.MALE);
         genderTypeList.add(Constants.GenderValues.FEMALE);
-        genderTypeList.add(Constants.GenderValues.GENDER);
+
         // selectedGender= genderTypeList.get(2);
         final HintAdapter aa = new HintAdapter<String>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, genderTypeList);
 
 
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gender_type_spinner.setAdapter(aa);
-        gender_type_spinner.setSelection(aa.getCount());
+        gender_type_spinner.setSelection(0);
 
         gender_type_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 profileDetails.gender = null;
-                if (position != (aa.getCount())) {
+                if (position != 0) {
                     String selectedGender = genderTypeList.get(position);
                     if (selectedGender != null) {
                         profileDetails.gender = selectedGender;
@@ -1091,23 +1091,23 @@ public class EditProfileFragment extends ImageProcessFragment {
     public void setToMaritalStatusSpinnerAdapter() {
 
         final ArrayList<String> maritalStatusList = new ArrayList<>();
-
+        maritalStatusList.add(Constants.MaritalStatusValues.MARITAL_STATUS);
         maritalStatusList.add(Constants.MaritalStatusValues.MARRIED);
         maritalStatusList.add(Constants.MaritalStatusValues.SINGLE);
-        maritalStatusList.add(Constants.MaritalStatusValues.MARITAL_STATUS);
+
         // selectedGender= genderTypeList.get(2);
         final HintAdapter aa = new HintAdapter<String>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, maritalStatusList);
 
 
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         marital_status_spinner.setAdapter(aa);
-        marital_status_spinner.setSelection(aa.getCount());
+        marital_status_spinner.setSelection(0);
 
         marital_status_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 profileDetails.maritialStatus = null;
-                if (position != (aa.getCount())) {
+                if (position != 0) {
                     String selectedGender = maritalStatusList.get(position);
                     if (selectedGender != null) {
                         profileDetails.maritialStatus = selectedGender;
@@ -1166,14 +1166,14 @@ public class EditProfileFragment extends ImageProcessFragment {
 
         EditProfileViewInsurance hintData = new EditProfileViewInsurance();
         hintData.setCompanyName("Select Insurance");
-        insuranceTypeList.add(insuranceTypeList.size(), hintData);
+        insuranceTypeList.add(0, hintData);
 
 
         insuranceAdapter1 = new HintAdapter<EditProfileViewInsurance>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, insuranceTypeList);
 
         insuranceAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         insurance_provider_spinner.setAdapter(insuranceAdapter1);
-        insurance_provider_spinner.setSelection(insuranceAdapter1.getCount());
+        insurance_provider_spinner.setSelection(0);
 
         insurance_provider_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -1181,7 +1181,7 @@ public class EditProfileFragment extends ImageProcessFragment {
                 //if(position!=0)
                 //{
                 profileDetails.insurancePackage = null;
-                if (position != (insuranceAdapter1.getCount())) {
+                if (position != 0) {
                     EditProfileViewInsurance selectedInsurance = insuranceTypeList.get(position);
                     // Utils.showToastMessage("selected insurance " + selectedInsurance);
 
@@ -1331,14 +1331,14 @@ public class EditProfileFragment extends ImageProcessFragment {
 
         EditProfileViewIdcardlist hintData = new EditProfileViewIdcardlist();
         hintData.setIdCardName("Select ID Type");
-        idCardTypeList.add(idCardTypeList.size(), hintData);
+        idCardTypeList.add(0, hintData);
 
 
         idTypeAdapter = new HintAdapter<EditProfileViewIdcardlist>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, idCardTypeList);
 
         idTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         id_type_spinner.setAdapter(idTypeAdapter);
-        id_type_spinner.setSelection(idTypeAdapter.getCount());
+        id_type_spinner.setSelection(0);
 
         id_type_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -1346,7 +1346,7 @@ public class EditProfileFragment extends ImageProcessFragment {
                 //if(position!=0)
                 //{
                 profileDetails.idType = null;
-                if (position != (idTypeAdapter.getCount())) {
+                if (position != 0) {
                     EditProfileViewIdcardlist idCardTypeData = idCardTypeList.get(position);
                     // Utils.showToastMessage("selected insurance " + selectedInsurance);
 
@@ -1432,14 +1432,14 @@ public class EditProfileFragment extends ImageProcessFragment {
 
         EditProfileViewNationality hintData = new EditProfileViewNationality();
         hintData.setNationalityName("Select Nationality");
-        nationalityTypeList.add(nationalityTypeList.size(), hintData);
+        nationalityTypeList.add(0, hintData);
 
 
         nationalityAdapter = new HintAdapter<EditProfileViewNationality>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, nationalityTypeList);
 
         nationalityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         nationality_spinner.setAdapter(nationalityAdapter);
-        nationality_spinner.setSelection(nationalityAdapter.getCount());
+        nationality_spinner.setSelection(0);
 
         nationality_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -1447,7 +1447,7 @@ public class EditProfileFragment extends ImageProcessFragment {
 
                 profileDetails.nationality = null;
 
-                if (position != (nationalityAdapter.getCount())) {
+                if (position != 0) {
                     EditProfileViewNationality selectedNationality = nationalityTypeList.get(position);
                     //Utils.showToastMessage("selected Nationality " + selectedNationality);
 
@@ -1486,7 +1486,7 @@ public class EditProfileFragment extends ImageProcessFragment {
     public void setToBloodGroupSpinnerAdapter() {
 
         final ArrayList<String> bloodGroupList = new ArrayList<>();
-
+        bloodGroupList.add(Constants.BloodGroupValues.BLOOD_GROUP);
         bloodGroupList.add(Constants.BloodGroupValues.O_NEGE);
         bloodGroupList.add(Constants.BloodGroupValues.O_POSI);
 
@@ -1499,19 +1499,20 @@ public class EditProfileFragment extends ImageProcessFragment {
         bloodGroupList.add(Constants.BloodGroupValues.AB_NEGE);
         bloodGroupList.add(Constants.BloodGroupValues.AB_POSI);
 
-        bloodGroupList.add(Constants.BloodGroupValues.BLOOD_GROUP);
+
         // selectedGender= genderTypeList.get(2);
         final HintAdapter aa = new HintAdapter<String>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, bloodGroupList);
 
 
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         blood_group_spinner.setAdapter(aa);
-        blood_group_spinner.setSelection(aa.getCount());
+        blood_group_spinner.setSelection(0);
 
         blood_group_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position != (aa.getCount())) {
+                profileDetails.bloodGroup =null;
+                if (position != 0) {
                     String selectedGender = bloodGroupList.get(position);
                     if (selectedGender != null) {
                         profileDetails.bloodGroup = selectedGender;
@@ -1907,7 +1908,7 @@ public class EditProfileFragment extends ImageProcessFragment {
 
         EditProfileViewCountry hintData = new EditProfileViewCountry();
         hintData.setCountryName("Select Country");
-        countryTypeList.add(countryTypeList.size(), hintData);
+        countryTypeList.add(0, hintData);
         setToCityListAdapter(null);
 
 
@@ -1915,7 +1916,7 @@ public class EditProfileFragment extends ImageProcessFragment {
 
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         country_spinner.setAdapter(aa);
-        country_spinner.setSelection(aa.getCount());
+        country_spinner.setSelection(0);
 
         country_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -1924,7 +1925,7 @@ public class EditProfileFragment extends ImageProcessFragment {
                 //{
                 // expandableLayout_city_view.collapse();
                 profileDetails.country = null;
-                if (position != (aa.getCount())) {
+                if (position != 0) {
                     EditProfileViewCountry selectedCountry = countryTypeList.get(position);
                     if (selectedCountry != null) {
                         // Utils.showToastMessage("selected country " + selectedCountry);
@@ -1999,7 +2000,7 @@ public class EditProfileFragment extends ImageProcessFragment {
 
         CityData hintData = new CityData();
         hintData.setCityName("City");
-        cityTypeList.add(cityTypeList.size(), hintData);
+        cityTypeList.add(0, hintData);
 
 
         city_type_spinner = getFragemtView().findViewById(R.id.city_type_spinner);
@@ -2009,7 +2010,7 @@ public class EditProfileFragment extends ImageProcessFragment {
 
 
         city_type_spinner.setAdapter(aa);
-        city_type_spinner.setSelection(aa.getCount());
+        city_type_spinner.setSelection(0);
        /* if(cityTypeList.size()==1)
         {
             aa.isHintEnable(false);
@@ -2034,7 +2035,7 @@ public class EditProfileFragment extends ImageProcessFragment {
                 //if(position!=0)
                 //{
                 profileDetails.city = null;
-                if (position != (aa.getCount())) {
+                if (position != 0) {
                     CityData selectedCity = cityTypeList.get(position);
                     Utils.showToastMessage("selected city " + selectedCity);
                     if (selectedCity != null) {
@@ -2534,14 +2535,14 @@ public class EditProfileFragment extends ImageProcessFragment {
 
         Tpalist hintData = new Tpalist();
         hintData.setTpa("Select TPA");
-        insuranceTypeList.add(insuranceTypeList.size(), hintData);
+        insuranceTypeList.add(0, hintData);
 
 
         tPAListAdapter = new HintAdapter<Tpalist>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, insuranceTypeList);
 
         tPAListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         primary_tpa_list_spinner.setAdapter(tPAListAdapter);
-        primary_tpa_list_spinner.setSelection(tPAListAdapter.getCount());
+        primary_tpa_list_spinner.setSelection(0);
 
         primary_tpa_list_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -2550,7 +2551,7 @@ public class EditProfileFragment extends ImageProcessFragment {
                 //{
                 //profileAPIData.getPatientdata().setTpa(null);
                 profileDetails.tpa = null;
-                if (position != (tPAListAdapter.getCount())) {
+                if (position != 0) {
                     Tpalist tpa = insuranceTypeList.get(position);
                     // Utils.showToastMessage("selected insurance " + selectedInsurance);
 

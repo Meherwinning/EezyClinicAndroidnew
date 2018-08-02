@@ -342,13 +342,13 @@ cityName
 
             aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         relation_spinner.setAdapter(aa);
-        relation_spinner.setSelection(aa.getCount());
+        relation_spinner.setSelection(0);
 
         relation_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                    String selectedRelation=null;
-                    if (position != (aa.getCount())) {
+                    if (position != 0) {
                          selectedRelation = relations[position];
                         //Utils.showToastMessage(selectedRelation);
 

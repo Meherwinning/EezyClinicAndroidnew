@@ -16,6 +16,8 @@ public interface Constants {
 
     String BASIC_URL= URL_MANAGE.getURL();
     String GRAPH_BASE_URL=Constants.BASIC_URL +"/eezyclinic-git/patient/healthcheckreports?access_key=";
+    String MORE_BUTTON=Constants.BASIC_URL +"/eezyclinic-git/uploads/icons/more.png";
+    String LESS_BUTTON=Constants.BASIC_URL +"/eezyclinic-git/uploads/icons/less.png";
     //String SHARED_PREFERENCES_FILE_NAME = "stashdealcustomerpref";
     String LOGGED_USER_DETAILS_OBJECT = "login_user_obj";
     String SUCCESS_STATUS_CODE = "1";

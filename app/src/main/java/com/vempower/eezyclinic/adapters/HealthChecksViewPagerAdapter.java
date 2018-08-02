@@ -18,6 +18,7 @@ import com.vempower.eezyclinic.fragments.HealthCheckTab4;
 import com.vempower.eezyclinic.fragments.PrescriptionsFragment;
 import com.vempower.eezyclinic.fragments.ReportsFragment;
 import com.vempower.eezyclinic.interfaces.HealthChecksRefreshListener;
+import com.vempower.eezyclinic.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,7 @@ public class HealthChecksViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+
 
 
         switch (position) {

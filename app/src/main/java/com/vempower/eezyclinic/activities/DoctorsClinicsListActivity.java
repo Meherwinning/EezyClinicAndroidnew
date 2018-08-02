@@ -166,7 +166,7 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
                     }
 
                     if (!TextUtils.isEmpty(searchRequest.getCity())) {
-                        if (queryStr.length() != 0&& isAddCama) {
+                        if (queryStr.length() != 0 && isAddCama) {
                             queryStr.append(", ");
                         }
 
@@ -182,7 +182,7 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
                     //FF717171
 
 
-                    if (!TextUtils.isEmpty(searchRequest.getCountry())) {
+                   /* if (!TextUtils.isEmpty(searchRequest.getCountry())) {
                         if (queryStr.length() != 0&& isAddCama) {
                             queryStr.append(", ");
                         }
@@ -190,7 +190,7 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
                         queryStr.append(setSpanToText(searchRequest.getCountryName(), Color.BLACK));
                         isAddCama=true;
                     }
-
+*/
 
                     if (!TextUtils.isEmpty(searchRequest.getLocality())) {
                         if (queryStr.length() != 0&& isAddCama) {
@@ -291,7 +291,14 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
                             ", onlinebooking=" + onlinebooking +
                             '}';*/
                     //
-                    if (queryStr.length() != 0) {
+                    if(!isAddCama)
+                    {
+                        SpannableStringBuilder plain = new SpannableStringBuilder();
+                        plain.append(setSpanToText(matchFound+"", Color.BLACK));
+                        plain.append(setSpanToText(" matches found ", getQueryItemColor()));
+                        search_query_tv.setText(plain, TextView.BufferType.SPANNABLE);
+                    }
+                    else if (queryStr.length() != 0) {
                         // SpannableString spannableString = setSpanToText(queryStr.toString(), getQueryItemColor());
 
                         search_query_tv.setText(queryStr, TextView.BufferType.SPANNABLE);
@@ -320,6 +327,7 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
             }
 
             private SpannableString setSpanToText(String str, int color) {
+
                 SpannableString str1 = new SpannableString(str);
                 str1.setSpan(new ForegroundColorSpan(color), 0, str1.length(), 0);
                 return str1;
