@@ -245,6 +245,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/white" />
+                    <TextView
+                        android:id="@+id/email_id_exist_tv"
+                        android:visibility="gone"
+                        android:layout_marginLeft="@dimen/_5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="left|center_vertical"
+                        android:text="Email already in use!"
+                        android:textColor="@color/google_plus"
+                        android:textSize="@dimen/_13dp" />
 
                 </LinearLayout>
 

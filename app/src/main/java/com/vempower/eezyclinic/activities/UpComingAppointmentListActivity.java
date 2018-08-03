@@ -106,6 +106,6 @@ public class UpComingAppointmentListActivity extends AbstractMenuActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        callDashboard();
+       // callDashboard();
     }
 }

@@ -306,12 +306,12 @@ public class AbstractSocialLoginActivity extends AbstractFragmentActivity {
         }
     }
 
-    @Override
+   /* @Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent= new Intent(MyApplication.getCurrentActivityContext(),NonLoginHomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
-    }
+    }*/
 }

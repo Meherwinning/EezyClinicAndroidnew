@@ -236,7 +236,7 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
                                                                   intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                                  MyApplication.getCurrentActivityContext().startActivity(intent);
-                                 ((Activity) MyApplication.getCurrentActivityContext()).finish();
+                                // ((Activity) MyApplication.getCurrentActivityContext()).finish();
 
                              }
                          });

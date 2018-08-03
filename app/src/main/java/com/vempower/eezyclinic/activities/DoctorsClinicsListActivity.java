@@ -101,7 +101,14 @@ public class DoctorsClinicsListActivity extends AbstractMenuActivity {
     int currentStateView;
 
     protected void setMyContectntView() {
-        setContentView(R.layout.activity_doctors_list_menu_layout);
+       // setContentView(R.layout.activity_doctors_list_menu_layout);
+        if ((!TextUtils.isEmpty(SharedPreferenceUtils.getStringValueFromSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY, null)))) {
+            setContentView(R.layout.activity_doctors_list_menu_layout);
+        } else {
+            setContentView(R.layout.activity_doctors_list_menu_nonlogin_layout);
+        }
+
+
         fab = findViewById(R.id.fab_all);
         titleNameStr = "Search Result";
 

@@ -92,7 +92,13 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     }
 
     protected void setMyContectntView() {
-        setContentView(R.layout.activity_menu_layout);
+
+        if ((!TextUtils.isEmpty(SharedPreferenceUtils.getStringValueFromSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY, null)))) {
+            setContentView(R.layout.activity_menu_layout);
+        } else {
+            setContentView(R.layout.activity_home_menu_non_login_layout);
+        }
+
     }
 
 
@@ -174,6 +180,12 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     public void setSidemenuItemsListener() {
 
 
+        if ((TextUtils.isEmpty(SharedPreferenceUtils.getStringValueFromSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY, null)))) {
+            findViewById(R.id.non_login_features_and_benefits_linear).setOnClickListener(this);
+            findViewById(R.id.non_login_feedback_linear).setOnClickListener(this);
+            findViewById(R.id.non_login_signup_tv).setOnClickListener(this);
+            return;
+        }
         findViewById(R.id.dashdoard_linear).setOnClickListener(this);
         findViewById(R.id.book_appointment_linear).setOnClickListener(this);
         findViewById(R.id.my_profile_linear).setOnClickListener(this);
@@ -354,9 +366,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
     }
 
-    public void onSignupClick(View view) {
 
-    }
 
     protected void callMyProfile() {
         Intent intent = getIntent(); //new Intent(this,HomeActivity.class);
@@ -479,6 +489,10 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
 
 
     protected void setSideMenuCutomerTitle() {
+        if ((TextUtils.isEmpty(SharedPreferenceUtils.getStringValueFromSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY, null)))) {
+
+            return;
+        }
 
         nameTv.setText(Utils.getStringFromResources(R.string.welcome_guest_lbl));
         refreshSideMenuItems(false);
@@ -781,11 +795,13 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         prevoiusFragment = null;
         refreshSideMenuItems(false);
         //setFragment(getHomeFragment());
+        finishAffinity();
         Intent intent = new Intent(this, NonLoginHomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-        finish();
+
+       // finish();
         //startActivity(new Intent(this,HomeActivity.class));
         // finish();
 
@@ -937,4 +953,28 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
     }
 
 
+
+
+    public void onLoginClick(View view)
+    {
+        closeMenu();
+        // showToastMessage("Login Click");
+        Intent intent= new Intent(this,SigninActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+
+    public void onSignupClick(View view)
+    {
+        closeMenu();
+        Intent intent= new Intent(this,SignUpActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+
+        //showToastMessage("Signup Click");
+    }
 }

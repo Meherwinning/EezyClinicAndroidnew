@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
+import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.HintAdapter;
@@ -24,6 +25,7 @@ import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.core.SocialLoginDetails;
 import com.vempower.eezyclinic.fragments.SublimePickerFragment;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.mappers.CheckUserIDMapper;
 import com.vempower.eezyclinic.mappers.SignupMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
@@ -44,7 +46,7 @@ import java.util.Calendar;
 
 public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
 
-    private TextView dateofBirth_tv,social_login_header_tv;
+    private TextView dateofBirth_tv,social_login_header_tv,email_id_exist_tv;
     private Spinner gender_type_spinner;
     private String selectedGender;
 
@@ -84,6 +86,8 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
         signup_bt = findViewById(R.id.signup_bt);
         social_login_header_tv = findViewById(R.id.social_login_header_tv);
         selectedGender=null;
+        email_id_exist_tv  = findViewById(R.id.email_id_exist_tv);
+        email_id_exist_tv.setVisibility(View.GONE);
 
         setToSpinnerAdapter();
 
@@ -95,12 +99,34 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
             return;
         }
         details = (SocialLoginDetails) serializableExtra;
+        signup_bt.setEnabled(true);
 
         if (!TextUtils.isEmpty(details.EMAIL)) {
             email_et.setText(details.EMAIL);
             email_et.setEnabled(false);
             email_et.setClickable(false);
+        }else
+        {
+            email_et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean hasFocus) {
+                    email_id_exist_tv.setVisibility(View.GONE);
+                    if (!hasFocus) {
+                        if (isNotValidEmail()) {
+                            return;
+                        }
+
+                        callEmailUsedMapper(email_et.getText().toString());
+
+
+
+                        // Toast.makeText(getApplicationContext(), "Lost the focus", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
         }
+
 
         if (!TextUtils.isEmpty(details.NAME)) {
             name_et.setText(details.NAME);
@@ -134,6 +160,45 @@ public class SocialSignUpActivity extends AbstractSocialLoginActivity  {
         });
 
 
+    }
+
+    private void callEmailUsedMapper(String email) {
+        email_id_exist_tv.setVisibility(View.GONE);
+        signup_bt.setEnabled(true);
+        CheckUserIDMapper mapper= new CheckUserIDMapper(email);
+
+        mapper.setOnUserIdListener(new CheckUserIDMapper.UserIdListener() {
+            @Override
+            public void getUser(AbstractResponse response, String errorMessage) {
+                if(response!=null && response.getStatusCode()!=null && response.getStatusCode().equalsIgnoreCase("1"))
+                {
+                    email_id_exist_tv.setVisibility(View.VISIBLE);
+                    signup_bt.setEnabled(false);
+                }
+            }
+        });
+
+        //email_id_exist_tv
+        // gfdsfds
+
+    }
+
+    private boolean isNotValidEmail() {
+        String email = email_et.getText().toString();
+
+        if (TextUtils.isEmpty(email)) {
+            showToastMessage(R.string.please_enter_valid_email_id_lbl);
+            // email_et.setError("Please enter email address");
+            return true;
+        }
+        if (!Utils.isValidEmail(email)) {
+            showToastMessage(R.string.please_enter_valid_email_id_lbl);
+            // email_et.setError("Please enter valid email address");
+            return true;
+        }
+
+
+        return false;
     }
 
     private void onSignupbuttonClick() {

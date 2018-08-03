@@ -45,6 +45,7 @@ import com.vempower.eezyclinic.tools.ScrollableFragmentListener;
 import com.vempower.eezyclinic.tools.ScrollableListener;
 import com.vempower.eezyclinic.tools.ViewPagerHeaderHelper;
 import com.vempower.eezyclinic.utils.Constants;
+import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
  ;
 import com.vempower.eezyclinic.widget.TouchCallbackLayout;
@@ -79,8 +80,14 @@ public class DoctorProfileActivity extends AbstractMenuActivity
     @Override
     protected void setMyContectntView() {
         super.setMyContectntView();
-        setContentView(R.layout.activity_menu_profile_layout);
+       // setContentView(R.layout.activity_menu_profile_layout);
         // myInit();
+
+        if ((!TextUtils.isEmpty(SharedPreferenceUtils.getStringValueFromSharedPrefarence(Constants.Pref.USER_VALIDATION_KEY, null)))) {
+            setContentView(R.layout.activity_menu_profile_layout);
+        } else {
+            setContentView(R.layout.activity_menu_profile_nonlogin_layout);
+        }
 
 
         Object obj = getObjectFromIntent(getIntent(), ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY);
@@ -309,7 +316,7 @@ public class DoctorProfileActivity extends AbstractMenuActivity
                                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                                 MyApplication.getCurrentActivityContext().startActivity(intent);
-                                ((Activity) MyApplication.getCurrentActivityContext()).finish();
+                                //((Activity) MyApplication.getCurrentActivityContext()).finish();
 
                             }
                         });

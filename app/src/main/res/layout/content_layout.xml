@@ -1,68 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
         android:layout_below="@+id/toolbar_container"
-        android:orientation="vertical"
-
         android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <FrameLayout
-        android:id="@+id/fragment_layout"
-        android:layout_above="@+id/bottom_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:orientation="vertical">
 
-    </FrameLayout>
+        <FrameLayout
+            android:id="@+id/fragment_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_view">
+
+        </FrameLayout>
 
     </LinearLayout>
 
     <FrameLayout
-        android:layout_alignParentTop="true"
         android:id="@+id/toolbar_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            app:theme="@style/Toolbar"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" >
-          <!--  <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="left"
-                android:onClick="onCategoriesRelativeClick"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:theme="@style/Toolbar">
+            <!--  <ImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="match_parent"
+                  android:layout_gravity="left"
+                  android:onClick="onCategoriesRelativeClick"
 
-                android:src="@drawable/categories_icon_hover"
+                  android:src="@drawable/categories_icon_hover"
 
-                />-->
-          <!--  <ImageView
-                android:id="@+id/title_logo_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_15dp"
-                android:layout_gravity="left|center_horizontal"
-                android:src="@drawable/logo"
+                  />-->
+            <!--  <ImageView
+                  android:id="@+id/title_logo_iv"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="@dimen/_15dp"
+                  android:layout_gravity="left|center_horizontal"
+                  android:src="@drawable/logo"
 
-                 />-->
-            <TextView                android:fontFamily="@font/roboto_medium"
-
+                   />-->
+            <TextView
                 android:id="@+id/title_logo_tv"
+
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
-                android:textSize="@dimen/title_text_size"
-                android:singleLine="true"
                 android:maxLines="1"
+                android:singleLine="true"
                 android:textColor="@color/white"
+                android:textSize="@dimen/title_text_size"
 
                 />
 
@@ -84,12 +87,12 @@
         android:layout_alignParentTop="true"
         layout="@layout/title_bar_layout"></include>-->
     <LinearLayout
-        android:orientation="vertical"
-        android:background="@color/white"
-        android:visibility="gone"
         android:id="@+id/bottom_view"
         android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
         android:layout_alignParentBottom="true"
-        android:layout_height="?actionBarSize"></LinearLayout>
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="gone"></LinearLayout>
 
 </RelativeLayout>

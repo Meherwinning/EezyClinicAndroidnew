@@ -91,6 +91,8 @@ public class SearchActivity extends AbstractMenuActivity {
     }*/
 
     public void setActionBar() {
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
