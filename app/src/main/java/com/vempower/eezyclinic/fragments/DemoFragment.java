@@ -159,11 +159,15 @@ public class DemoFragment extends AbstractFragment implements MyRecylerViewScrol
     public void setToShowFeaturesView(boolean isShow) {
         isshowFeaturesView = isShow;
     }
-    public void gotToFeaturesAndBenifitsView()
-    {
-        gotToFeaturesAndBenifitsView(false) ;
+
+    public void gotToFeaturesAndBenifitsView() {
+        gotToFeaturesAndBenifitsView(false);
     }
+
     public void gotToFeaturesAndBenifitsView(final boolean isNonLogin) {
+        if (glm == null || adapter==null) {
+            return;
+        }
 
         glm.scrollToPositionWithOffset(adapter.getItemCount() - 1, 0);
 
@@ -182,11 +186,9 @@ public class DemoFragment extends AbstractFragment implements MyRecylerViewScrol
 
                 if (viewIndex != -1) {
                     //scrollMyRecylerView(viewIndex-1);
-                    if(isNonLogin)
-                    {
+                    if (isNonLogin) {
                         glm.scrollToPositionWithOffset(viewIndex - 1, 0);
-                    }else
-                    {
+                    } else {
                         glm.scrollToPositionWithOffset(viewIndex - 2, 0);
                     }
 

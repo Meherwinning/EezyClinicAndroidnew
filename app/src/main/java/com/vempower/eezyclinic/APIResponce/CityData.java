@@ -31,7 +31,20 @@ public class CityData {
 
 
     @Override
+    public boolean equals(Object obj) {
+
+        if (obj != null && obj instanceof CityData) {
+            CityData data = (CityData) obj;
+            if (data.cityName != null && cityName != null && data.cityName.equalsIgnoreCase(cityName)) {
+                return true;
+            }
+        }
+
+        return super.equals(obj);
+    }
+
+    @Override
     public String toString() {
-        return  cityName;
+        return cityName;
     }
 }

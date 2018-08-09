@@ -664,6 +664,20 @@ public class HomeActivity extends AbstractMenuActivity {
         unSelectAllDistance(BOTTOM_TEXTVIEW_ID_STR,BOTTOM_IMAGE_ID_STR,Constants.Home.HEALTH_CHECKS);
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        if(PRESENT_TAB==Constants.Home.MEDICAL_RECORDS)
+        {
+           if(medicalRecordsFragment!=null)
+           {
+               MedicalRecordsFragment recordsFragment= (MedicalRecordsFragment) medicalRecordsFragment;
+               recordsFragment.refresh();
+           }
+        }
+    }
+
     public void onMedicalRecordsClick(View view)
     {
         PRESENT_TAB=Constants.Home.MEDICAL_RECORDS;

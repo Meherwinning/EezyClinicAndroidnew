@@ -60,6 +60,7 @@ import com.vempower.eezyclinic.views.CustomSpinnerSelection;
 import com.vempower.eezyclinic.views.MyButtonRectangleRM;
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.InputStreamReader;
@@ -106,6 +107,8 @@ public class SearchFragment extends AbstractFragment {
     private ExpandableLinearLayout expandableLayout_city_view;
     private SearchRequest searchRequestParams;
     private boolean isFromDashboard;
+
+    private List<CityData> cityList;
 
     @Nullable
     @Override
@@ -207,10 +210,12 @@ public class SearchFragment extends AbstractFragment {
                 }
 
                 //MyApplication.showTransparentDialog();
-                callInsuranceAcceptedMapper("2");
+                if (insuranceAdapter == null) {
+                    setToGenderSpinnerAdapter();
+                    callInsuranceAcceptedMapper("2");
 
 
-                setToGenderSpinnerAdapter();
+                }
 
 
             }
@@ -220,21 +225,6 @@ public class SearchFragment extends AbstractFragment {
         setInitForGooglePlacesAutocompleteTextView();
         MyApplication.showTransparentDialog();
         callSpecialityMapper();
-
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // callCountryListMapper();
-            }
-        }, 200);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-            }
-        }, 300);
-
 
     }
 
@@ -269,6 +259,7 @@ public class SearchFragment extends AbstractFragment {
                     return;
                 }
                 setToLanguagesAdapter(languageListAPI.getData());
+
             }
         });
 
@@ -326,8 +317,7 @@ public class SearchFragment extends AbstractFragment {
                         searchRequestParams.setLaunguage(null);
                         searchRequestParams.addLaunguage(selectedLanguage.getLanguageName());
                     }
-                }else
-                {
+                } else {
                     searchRequestParams.setLaunguage(null);
                 }
 
@@ -414,8 +404,7 @@ public class SearchFragment extends AbstractFragment {
 
                         searchRequestParams.addNationality(selectedNationality.getId(), selectedNationality.getNationalityName());
                     }
-                }else
-                {
+                } else {
                     searchRequestParams.setNationalityList(null, null);
 
                 }
@@ -494,8 +483,7 @@ public class SearchFragment extends AbstractFragment {
                         searchRequestParams.setInsurenceList(null);
                         searchRequestParams.addInsurence(selectedInsurance.getCompanyName());
                     }
-                }else
-                {
+                } else {
                     searchRequestParams.setInsurenceList(null);
                 }
 
@@ -514,7 +502,6 @@ public class SearchFragment extends AbstractFragment {
     }
 
     private void callCountryListMapper() {
-        //TODO call country list mapper
         CountryListMapper mapper = new CountryListMapper();
         mapper.setOnCountryListListener(new CountryListMapper.CountryListListener() {
             @Override
@@ -537,7 +524,7 @@ public class SearchFragment extends AbstractFragment {
                 }
 
                 setToCountryAdapter(countryListAPI.getData());
-                resetDoctorsClinicsSpinner();
+                // resetDoctorsClinicsSpinner();
 
             }
         });
@@ -596,11 +583,12 @@ public class SearchFragment extends AbstractFragment {
 
                 if (TextUtils.isEmpty(s.toString())) {
 
-                    searchRequestParams.setLatitude(null);
+                   /* searchRequestParams.setLatitude(null);
                     searchRequestParams.setLongitude(null);
-                    // addressAutoCompleteTextView.setOnItemClickListener(null);
-                    // addressAutoCompleteTextView.setText(myGeodata.getAddress());
-                    searchRequestParams.setLocality(null);
+                    searchRequestParams.setLocality(null);*/
+                    addressAutoCompleteTextView.removeTextChangedListener(this);
+                    resetLocality();
+                    addressAutoCompleteTextView.addTextChangedListener(this);
 
                     // Log.i("Search","afterTextChanged:" +s.toString());
                     // addressAutoCompleteTextView.hideClearButton();
@@ -690,11 +678,50 @@ public class SearchFragment extends AbstractFragment {
                 JSONObject jsonObj = new JSONObject(
                         jsonResults.toString());
                 JSONObject jsonResult = jsonObj.getJSONObject("result");
+                LatLan latLan = new LatLan();
+
+                JSONArray addressComponentsJson = jsonResult
+                        .getJSONArray("address_components");
+                boolean isBreak = false;
+                if (addressComponentsJson != null && addressComponentsJson.length() > 0) {
+
+                    for (int j = 0; j < addressComponentsJson.length(); j++) {
+                        if (addressComponentsJson.isNull(j)) {
+                            continue;
+                        }
+
+                        JSONObject jsonObject = addressComponentsJson.getJSONObject(j);
+
+                        JSONArray temp = jsonObject.getJSONArray("types");
+                        int length = temp.length();
+                        if (length > 0) {
+                            // String [] recipients = new String [length];
+                            String str = null;
+                            for (int i = 0; i < length; i++) {
+                                str = temp.getString(i);
+                                if (!TextUtils.isEmpty(str) && str.equalsIgnoreCase("locality")) {
+                                    latLan.city_name = jsonObject.getString("long_name");
+                                    isBreak = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (isBreak) {
+                            break;
+                        }
+
+
+                    }
+
+
+                }
+
+
                 JSONObject jsonGeometryList = jsonResult
                         .getJSONObject("geometry");
+
                 JSONObject jsonLocList = jsonGeometryList
                         .getJSONObject("location");
-                LatLan latLan = new LatLan();
                 latLan.lat = jsonLocList.getString("lat");
                 latLan.lan = jsonLocList.getString("lng");
                 return latLan;
@@ -720,6 +747,30 @@ public class SearchFragment extends AbstractFragment {
             addressAutoCompleteTextView.setOnItemClickListener(null);
             // addressAutoCompleteTextView.setText(myGeodata.getAddress());
             googlePlacesAutocompleteAdapter.setMyLocation(latLan.lat, latLan.lan);
+           // Utils.showToastMessage("City Name :" + latLan.city_name);
+
+            if (city_type_spinner != null && !TextUtils.isEmpty(latLan.city_name) && cityList != null && cityList.size() > 0) {
+                CityData tempData = new CityData();
+                tempData.setCityName(latLan.city_name);
+
+                int index = cityList.indexOf(tempData);
+
+                if (index != -1) {
+                    isRefreshLocality=false;
+                    city_type_spinner.setSelection(index + 1);
+                }else
+                {
+                    isRefreshLocality=false;
+                    city_type_spinner.setSelection(0);
+                }
+
+            }else  if(city_type_spinner != null)
+            {
+                isRefreshLocality=false;
+                city_type_spinner.setSelection(0);
+            }
+
+
             searchRequestParams.setLocality(myGeodata.getAddress());
             addressAutoCompleteTextView.setOnItemClickListener(adapterViewListener);
             namesSearch.setLocality(myGeodata.getAddress());
@@ -737,7 +788,7 @@ public class SearchFragment extends AbstractFragment {
 
 
     private class LatLan {
-        public String lat, lan;
+        public String lat, lan, city_name;
     }
 
 
@@ -783,7 +834,7 @@ public class SearchFragment extends AbstractFragment {
         });
     }
 
-    private void callDoctorsClinicNamesMapper() {
+    private void callDoctorsClinicNamesMapper1() {
         DoctorClinicNamesListMapper listMapper = new DoctorClinicNamesListMapper(namesSearch);
 
         listMapper.setOnDoctorClinicNameListListener(new DoctorClinicNamesListMapper.DoctorClinicNameListListener() {
@@ -825,8 +876,7 @@ public class SearchFragment extends AbstractFragment {
                         searchRequestParams.setGendersearch(null);
                         searchRequestParams.addGendersearch(selectedGender.toLowerCase());
                     }
-                }else
-                {
+                } else {
                     searchRequestParams.setGendersearch(null);
                 }
                 //Utils.showToastMessage("selectedGender "+selectedGender);
@@ -841,14 +891,18 @@ public class SearchFragment extends AbstractFragment {
 
     }
 
+    boolean isRefreshLocality = true;
 
     public void setToCityListAdapter(List<CityData> list) {
         if (list == null) {
             //expandableLayout_city_view.collapse();
+            cityList = new ArrayList<>();
             return;
         } else {
             expandableLayout_city_view.expand();
         }
+        cityList = new ArrayList<>();
+        cityList.addAll(list);
         final ArrayList<CityData> cityTypeList = new ArrayList<>();
         if (list != null && list.size() > 0) {
             cityTypeList.addAll(list);
@@ -899,16 +953,23 @@ public class SearchFragment extends AbstractFragment {
                     //Utils.showToastMessage("selected city " + selectedCity);
                     if (selectedCity != null) {
                         namesSearch.setCity(selectedCity.getId());
-                        resetDoctorsClinicsSpinner();
+                        // resetDoctorsClinicsSpinner();
                         searchRequestParams.setCity(selectedCity.getId());
                         searchRequestParams.setCityName(selectedCity.getCityName());
                     }
-                }else
-                {
+                } else {
                     namesSearch.setCity(null);
-                    resetDoctorsClinicsSpinner();
+
                     searchRequestParams.setCity(null);
                     searchRequestParams.setCityName(null);
+                }
+                resetDoctorsClinicsSpinner();
+                if (isRefreshLocality) {
+                    resetLocality();
+                }
+
+                if (!isRefreshLocality) {
+                    isRefreshLocality = true;
                 }
 
 
@@ -922,8 +983,10 @@ public class SearchFragment extends AbstractFragment {
             }
         });
 
-
     }
+
+
+    private boolean isCallInsurance = false;
 
     public void setToCountryAdapter(List<CountryData> list) {
         final ArrayList<CountryData> countryTypeList = new ArrayList<>();
@@ -933,7 +996,7 @@ public class SearchFragment extends AbstractFragment {
         }
 
         CountryData hintData = new CountryData();
-       // hintData.setCountry("Country");
+        // hintData.setCountry("Country");
         //countryTypeList.add(0, hintData);
         setToCityListAdapter(null);
 
@@ -941,10 +1004,12 @@ public class SearchFragment extends AbstractFragment {
         final HintAdapter aa = new HintAdapter<CountryData>(MyApplication.getCurrentActivityContext(), R.layout.spinner_textview, countryTypeList);
 
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        country_spinner.setOnItemSelectedListener(null);
         country_spinner.setAdapter(aa);
         // country_spinner.setSelection(aa.getCount());
+
         country_spinner.setSelection(aa.getCount() - 1);
-        selectCountry(aa.getCount() - 1, countryTypeList);
+        //selectCountry(aa.getCount() - 1, countryTypeList);
         country_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -952,7 +1017,8 @@ public class SearchFragment extends AbstractFragment {
                 //{
                 // expandableLayout_city_view.collapse();
                 //if (position != 0) {
-                    selectCountry(position, countryTypeList);
+                selectCountry(position, countryTypeList, isCallInsurance);
+                isCallInsurance = true;
                 //}
 
 
@@ -969,7 +1035,7 @@ public class SearchFragment extends AbstractFragment {
 
     }
 
-    private void selectCountry(int position, ArrayList<CountryData> countryTypeList) {
+    private void selectCountry(int position, ArrayList<CountryData> countryTypeList, boolean isOpenAdvanceView) {
         CountryData selectedCountry = countryTypeList.get(position);
         if (selectedCountry != null) {
             // Utils.showToastMessage("selected country " + selectedCountry);
@@ -983,6 +1049,7 @@ public class SearchFragment extends AbstractFragment {
                 } else {
                     googlePlacesAutocompleteAdapter.setRegion("AE");
                 }
+                resetLocality();
             }
 
             callCityListMapper(selectedCountry.getId());
@@ -990,18 +1057,28 @@ public class SearchFragment extends AbstractFragment {
             searchRequestParams.setCountryName(selectedCountry.getCountry());
             namesSearch.setCountryId(selectedCountry.getId());
             SharedPreferenceUtils.setStringValueToSharedPrefarence(Constants.Pref.COUNTRY_CODE_KEY, selectedCountry.getId());
-            callInsuranceAcceptedMapper(selectedCountry.getId());
+            if (isOpenAdvanceView) {
+                callInsuranceAcceptedMapper(selectedCountry.getId());
+            }
             resetDoctorsClinicsSpinner();
 
         }
     }
 
+    private void resetLocality() {
+        searchRequestParams.setLatitude(null);
+        searchRequestParams.setLongitude(null);
+        searchRequestParams.setLocality(null);
+        addressAutoCompleteTextView.setText(null);
+    }
+
     private void resetDoctorsClinicsSpinner() {
-        if(doctor_clinic_names_actv!=null && searchRequestParams!=null)
+        if (doctor_clinic_names_actv != null && searchRequestParams != null) {
             doctor_clinic_names_actv.setText(null);
-        doctor_clinic_names_actv.setAdapter(null);
-        searchRequestParams.setSearchName(null);
-        searchRequestParams.setSearchtype(null);
+            doctor_clinic_names_actv.setAdapter(null);
+            searchRequestParams.setSearchName(null);
+            searchRequestParams.setSearchtype(null);
+        }
     }
 
     private TextWatcher doctorClinicNameTextWatcher = new TextWatcher() {
@@ -1013,11 +1090,11 @@ public class SearchFragment extends AbstractFragment {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            if(charSequence.toString().length()>1) {
+            if (charSequence.toString().length() > 1) {
                 doctor_clinic_names_actv.removeTextChangedListener(this);
                 namesSearch.setSearch_text(charSequence.toString());
                 // Log.i("TextWatcher :",charSequence.toString());
-                callDoctorsClinicNamesMapper();
+                callDoctorsClinicNamesMapper1();
                 doctor_clinic_names_actv.addTextChangedListener(doctorClinicNameTextWatcher);
             }
         }
@@ -1025,7 +1102,7 @@ public class SearchFragment extends AbstractFragment {
         @Override
         public void afterTextChanged(Editable editable) {
 
-            if (TextUtils.isEmpty(editable.toString()) && searchRequestParams!=null) {
+            if (TextUtils.isEmpty(editable.toString()) && searchRequestParams != null) {
                 searchRequestParams.setSearchName(null);
                 searchRequestParams.setSearchtype(null);
                 // Log.i("Search","afterTextChanged:" +s.toString());
@@ -1047,7 +1124,7 @@ public class SearchFragment extends AbstractFragment {
 
         //HintAdapter aa = new HintAdapter<DoctorClinicNameData>(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, doctorClinicNameList);
         final CustomAdapter1 aa = new CustomAdapter1<DoctorClinicNameData>(MyApplication.getCurrentActivityContext(), R.layout.auto_complete_textview, doctorClinicNameList);
-        doctor_clinic_names_actv.setThreshold(3);
+        doctor_clinic_names_actv.setThreshold(2);
         doctor_clinic_names_actv.setAdapter(aa);
 
 

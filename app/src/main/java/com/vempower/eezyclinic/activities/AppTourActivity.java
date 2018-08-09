@@ -24,6 +24,7 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
@@ -35,39 +36,38 @@ import com.vempower.eezyclinic.fragments.PageFragment;
 public class AppTourActivity extends AbstractFragmentActivity {
 
     private int mSelectedItem;
-    private boolean flag;
+    // private boolean flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple_java_example);
-        flag=false;
+        //  flag=false;
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
-        final  PagerAdapter adapter= new PagerAdapter(getSupportFragmentManager());
+        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
+       // viewPager.setOffscreenPageLimit(1);
 
        /* final ViewPager.LayoutParams layoutParams = new ViewPager.LayoutParams();
         layoutParams.width = ViewPager.LayoutParams.MATCH_PARENT;
         layoutParams.height = ViewPager.LayoutParams.WRAP_CONTENT;
         layoutParams.gravity = Gravity.BOTTOM;
 */
-       // final ViewPagerIndicator indicator =  findViewById(R.id.view_pager_indicator);//new ViewPagerIndicator(this);
+        // final ViewPagerIndicator indicator =  findViewById(R.id.view_pager_indicator);//new ViewPagerIndicator(this);
         //viewPager.addView(indicator);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            public int state=-1;
+            public int state = -1;
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 mSelectedItem = position;
 
-                if(state== ViewPager.SCROLL_STATE_DRAGGING && position==(adapter.getCount()-1))
-                {
-                    if(!flag)
+                if (state == ViewPager.SCROLL_STATE_DRAGGING && position == (adapter.getCount() - 1)) {
+                    //if(!flag)
                     onNextButtonClick();
                     return;
                 }
-
 
             }
 
@@ -79,15 +79,15 @@ public class AppTourActivity extends AbstractFragmentActivity {
             @Override
             public void onPageScrollStateChanged(int state) {
 
-                this.state=state;
+                this.state = state;
+
+
             }
         });
 
-        viewPager.setPageTransformer(false, new ViewPager.PageTransformer()
-        {
+        viewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
             @Override
-            public void transformPage(View page, float position)
-            {
+            public void transformPage(View page, float position) {
                 int pageWidth = viewPager.getMeasuredWidth() -
                         viewPager.getPaddingLeft() - viewPager.getPaddingRight();
                 int pageHeight = viewPager.getHeight();
@@ -95,20 +95,15 @@ public class AppTourActivity extends AbstractFragmentActivity {
                 float transformPos = (float) (page.getLeft() -
                         (viewPager.getScrollX() + paddingLeft)) / pageWidth;
                 int max = pageHeight / 10;
-                if (transformPos < -1)
-                {
+                if (transformPos < -1) {
                     // [-Infinity,-1)
                     // This page is way off-screen to the left.
                     page.setAlpha(0.5f);// to make left transparent
                     page.setScaleY(0.7f);
-                }
-                else if (transformPos <= 1)
-                {
+                } else if (transformPos <= 1) {
                     // [-1,1]
                     page.setScaleY(1f);
-                }
-                else
-                {
+                } else {
                     // (1,+Infinity]
                     // This page is way off-screen to the right.
                     page.setAlpha(0.5f);// to make right transparent
@@ -122,23 +117,31 @@ public class AppTourActivity extends AbstractFragmentActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        flag=false;
+        //flag=false;
     }
+
+    boolean flag = false;
 
     private void onNextButtonClick() {
-        flag=true;
-        new Handler().postDelayed(new Runnable() {
+        if (flag) {
+            return;
+        }
+        flag = true;
+
+        Intent intent = new Intent(this, NonLoginHomeActivity.class);
+        startActivity(intent);
+        finishAffinity();
+
+       /* new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent= new Intent(AppTourActivity.this,NonLoginHomeActivity.class);
-                startActivity(intent);
-                finish();
+
             }
         },200);
-
+*/
     }
 
-    private static class PagerAdapter extends FragmentPagerAdapter {
+    private static class PagerAdapter extends FragmentStatePagerAdapter {
 
         private static final int NUM_PAGES = 3;
 
@@ -153,7 +156,7 @@ public class AppTourActivity extends AbstractFragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return PageFragment.newInstance( position);
+            return PageFragment.newInstance(position);
         }
     }
 }

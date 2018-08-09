@@ -307,6 +307,11 @@ public class SearchRequest implements Cloneable {
         {
             nationalityList.clear();
             this.nationalityList= new ArrayList<>();
+            if(nationalityNameList!=null)
+            {
+                this.nationalityNameList= new ArrayList<>();
+            }
+
             return;
         }
         nationalityList.addAll(newNationality);

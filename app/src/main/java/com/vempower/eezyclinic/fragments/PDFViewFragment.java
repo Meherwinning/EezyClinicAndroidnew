@@ -160,7 +160,7 @@ public class PDFViewFragment extends AbstractFragment /*implements
                     return;
                 }*/
                 if (PDFDetails != null) {
-                    downloadTaskStart(PDFDetails.getDowloadzip());
+                    downloadTaskStart(PDFDetails.getPrintpdf());
                 }
             }
         });
@@ -245,6 +245,7 @@ public class PDFViewFragment extends AbstractFragment /*implements
 
             @Override
             public void failed(Throwable t) {
+                showAlertDialog("Alert","Download failed",true);
                 MyApplication.hideTransaprentDialog();
             }
 

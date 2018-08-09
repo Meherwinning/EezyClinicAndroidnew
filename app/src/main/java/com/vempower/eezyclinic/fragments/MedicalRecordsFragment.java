@@ -43,6 +43,8 @@ public class MedicalRecordsFragment extends AbstractFragment {
 
     }
 
+
+
     @Override
     View getFragemtView() {
         return fragmentView;
@@ -85,5 +87,9 @@ public class MedicalRecordsFragment extends AbstractFragment {
 
 
         // ((TabLayout) findViewById(R.id.tabHost)).setupWithViewPager(mViewPager);
+    }
+
+    public void refresh() {
+        setMyViewPager();
     }
 }

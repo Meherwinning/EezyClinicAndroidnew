@@ -131,7 +131,7 @@ import java.util.List;
                     @Override
                     public void onClick(View v) {
 
-                         Utils.showToastMsg(data.getId()+"");
+                        // Utils.showToastMsg(data.getId()+"");
 
                         Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),PDFViewActivity.class);
                            ((Activity) MyApplication.getCurrentActivityContext()).getIntent();

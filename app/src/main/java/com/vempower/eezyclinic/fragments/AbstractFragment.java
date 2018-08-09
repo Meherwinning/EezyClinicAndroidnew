@@ -3,6 +3,9 @@ package com.vempower.eezyclinic.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DownloadManager;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,12 +15,16 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Messenger;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -59,18 +66,16 @@ public abstract class AbstractFragment extends Fragment {
     private ProgressDialog progress;
 
 
-
     public void setOnMenuScreenListener(MenuScreenListener listener) {
-        this.listener=listener;
+        this.listener = listener;
     }
 
-    public  void onTitleRightButtonClick(){
+    public void onTitleRightButtonClick() {
 
     }
 
     public void setScreenTitle(String screenTitle) {
-        if(TextUtils.isEmpty(screenTitle) || getFragemtView()==null)
-        {
+        if (TextUtils.isEmpty(screenTitle) || getFragemtView() == null) {
             return;
         }
         // if(screen_title_tv==null) {
@@ -84,43 +89,36 @@ public abstract class AbstractFragment extends Fragment {
     }
 
 
-     View getFragemtView(){
+    View getFragemtView() {
         return null;
     }
 
-    protected boolean isValidResponse(AbstractResponse response, String errorMessage/*,boolean isShowDialog,boolean isShowNothing*/)
-    {
+    protected boolean isValidResponse(AbstractResponse response, String errorMessage/*,boolean isShowDialog,boolean isShowNothing*/) {
 
-        return isValidResponse( response,  errorMessage, false,false);
+        return isValidResponse(response, errorMessage, false, false);
     }
 
-    protected boolean isValidResponse(AbstractResponse response, String errorMessage,boolean isShowDialog,boolean isFinish)
-    {
-        if(response==null && TextUtils.isEmpty(errorMessage))
-        {
-            if(isShowDialog)
-            {
-                showAlertDialog("Alert",  Utils.getStringFromResources(R.string.invalid_service_response_lbl),isFinish);
-            }else {
+    protected boolean isValidResponse(AbstractResponse response, String errorMessage, boolean isShowDialog, boolean isFinish) {
+        if (response == null && TextUtils.isEmpty(errorMessage)) {
+            if (isShowDialog) {
+                showAlertDialog("Alert", Utils.getStringFromResources(R.string.invalid_service_response_lbl), isFinish);
+            } else {
                 Utils.showToastMsg(R.string.invalid_service_response_lbl);
             }
             return false;
         }
-        if(response==null && !TextUtils.isEmpty(errorMessage))
-        {
-            if(isShowDialog) {
-                showAlertDialog("Alert", errorMessage,isFinish);
-            }else {
+        if (response == null && !TextUtils.isEmpty(errorMessage)) {
+            if (isShowDialog) {
+                showAlertDialog("Alert", errorMessage, isFinish);
+            } else {
                 Utils.showToastMsg(errorMessage);
             }
             return false;
         }
-        if(!response.getStatusCode().equalsIgnoreCase(Constants.SUCCESS_STATUS_CODE))
-        {
-            if(isShowDialog) {
-                showAlertDialog("Alert",response.getStatusMessage() ,isFinish);
-            }else
-            {
+        if (!response.getStatusCode().equalsIgnoreCase(Constants.SUCCESS_STATUS_CODE)) {
+            if (isShowDialog) {
+                showAlertDialog("Alert", response.getStatusMessage(), isFinish);
+            } else {
                 Utils.showToastMsg(response.getStatusMessage());
             }
             //showMyAlertDialog("Alert",response.getStatusMessage() ,"Ok",false);
@@ -131,24 +129,24 @@ public abstract class AbstractFragment extends Fragment {
         return true;
     }
 
-    public void setOnMyListener(AbstractListener myListener)
-    {
-        this.myListener=myListener;
+    public void setOnMyListener(AbstractListener myListener) {
+        this.myListener = myListener;
     }
 
-    public void showAlertDialog(String title, int msgId,final boolean isFinish) {
-        showAlertDialog(title, Utils.getStringFromResources(msgId),isFinish, null);
-    }
-    public void showAlertDialog(String title, String msg,final boolean isFinish) {
-        showAlertDialog(title, msg,isFinish, null);
+    public void showAlertDialog(String title, int msgId, final boolean isFinish) {
+        showAlertDialog(title, Utils.getStringFromResources(msgId), isFinish, null);
     }
 
-    protected void showAlertDialog(String title, String msg,final boolean isFinish, final Intent intent) {
+    public void showAlertDialog(String title, String msg, final boolean isFinish) {
+        showAlertDialog(title, msg, isFinish, null);
+    }
+
+    protected void showAlertDialog(String title, String msg, final boolean isFinish, final Intent intent) {
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(MyApplication.getCurrentActivityContext());
 
         // Setting Dialog Title
-        alertDialog.setTitle(TextUtils.isEmpty(title)?"":title);
+        alertDialog.setTitle(TextUtils.isEmpty(title) ? "" : title);
 
         // Setting Dialog Message
         alertDialog.setMessage(msg);
@@ -163,12 +161,10 @@ public abstract class AbstractFragment extends Fragment {
                         dialog.dismiss();
 
 
-                        if(intent!=null)
-                        {
+                        if (intent != null) {
                             startActivity(intent);
                         }
-                        if(isFinish)
-                        {
+                        if (isFinish) {
                             ((Activity) MyApplication.getCurrentActivityContext()).finish();
                         }
                     }
@@ -180,12 +176,10 @@ public abstract class AbstractFragment extends Fragment {
     }
 
 
-    protected void showProgressView()
-    {
+    protected void showProgressView() {
         hideProgressView();
         progress = new ProgressDialog(MyApplication.getCurrentActivityContext());
-        if(progress==null)
-        {
+        if (progress == null) {
             return;
         }
         progress.setMessage("Loading...");
@@ -193,27 +187,25 @@ public abstract class AbstractFragment extends Fragment {
         progress.show();
     }
 
-    protected void hideProgressView()
-    {
-        if(progress!=null)
-        {
+    protected void hideProgressView() {
+        if (progress != null) {
             progress.dismiss();
-            progress=null;
+            progress = null;
         }
     }
-    protected void showMyDialog(String title,int messageId,final ApiErrorDialogInterface dialogInterface)
-    {
-        showMyDialog( title,Utils.getStringFromResources(messageId),  dialogInterface);
+
+    protected void showMyDialog(String title, int messageId, final ApiErrorDialogInterface dialogInterface) {
+        showMyDialog(title, Utils.getStringFromResources(messageId), dialogInterface);
 
     }
-    protected void showMyCustomDialog(String title,String message, String possitiveButtonStr,String negetiveButtonStr,final MyDialogInterface dialogInterface)
-    {
-        SimpleDialog.Builder builder = new SimpleDialog.Builder(R.style.SimpleDialogLight){
+
+    protected void showMyCustomDialog(String title, String message, String possitiveButtonStr, String negetiveButtonStr, final MyDialogInterface dialogInterface) {
+        SimpleDialog.Builder builder = new SimpleDialog.Builder(R.style.SimpleDialogLight) {
             @Override
             public void onPositiveActionClicked(DialogFragment fragment) {
                 //Toast.makeText(mActivity, "Agreed", Toast.LENGTH_SHORT).show();
                 super.onPositiveActionClicked(fragment);
-                if(dialogInterface!=null) {
+                if (dialogInterface != null) {
                     dialogInterface.onPossitiveClick();
                 }
             }
@@ -222,13 +214,13 @@ public abstract class AbstractFragment extends Fragment {
             public void onNegativeActionClicked(DialogFragment fragment) {
                 //Toast.makeText(mActivity, "Disagreed", Toast.LENGTH_SHORT).show();
                 super.onNegativeActionClicked(fragment);
-                if(dialogInterface!=null) {
+                if (dialogInterface != null) {
                     dialogInterface.onNegetiveClick();
                 }
             }
         };
 
-        ((SimpleDialog.Builder)builder).message(message)
+        ((SimpleDialog.Builder) builder).message(message)
                 .title(title)
                 .positiveAction(possitiveButtonStr)
                 .negativeAction(negetiveButtonStr);
@@ -237,9 +229,8 @@ public abstract class AbstractFragment extends Fragment {
         fragment.show(getChildFragmentManager(), null);
     }
 
-    protected void showMyCustomDialog(String title,String message,String possitiveButtonStr)
-    {
-        SimpleDialog.Builder builder = new SimpleDialog.Builder(R.style.SimpleDialogLight){
+    protected void showMyCustomDialog(String title, String message, String possitiveButtonStr) {
+        SimpleDialog.Builder builder = new SimpleDialog.Builder(R.style.SimpleDialogLight) {
             @Override
             public void onPositiveActionClicked(DialogFragment fragment) {
                 //Toast.makeText(mActivity, "Agreed", Toast.LENGTH_SHORT).show();
@@ -259,7 +250,7 @@ public abstract class AbstractFragment extends Fragment {
             }
         };
 
-        ((SimpleDialog.Builder)builder).message(message)
+        ((SimpleDialog.Builder) builder).message(message)
                 .title(title)
                 .positiveAction(possitiveButtonStr);
         // .negativeAction(negetiveButtonStr);
@@ -268,14 +259,13 @@ public abstract class AbstractFragment extends Fragment {
         fragment.show(getChildFragmentManager(), null);
     }
 
-    protected void showMyDialog(String title,String message,String positiveButtonName,final ApiErrorDialogInterface dialogInterface)
-    {
-        SimpleDialog.Builder builder = new SimpleDialog.Builder(R.style.SimpleDialogLight){
+    protected void showMyDialog(String title, String message, String positiveButtonName, final ApiErrorDialogInterface dialogInterface) {
+        SimpleDialog.Builder builder = new SimpleDialog.Builder(R.style.SimpleDialogLight) {
             @Override
             public void onPositiveActionClicked(DialogFragment fragment) {
                 //Toast.makeText(mActivity, "Agreed", Toast.LENGTH_SHORT).show();
                 super.onPositiveActionClicked(fragment);
-                if(dialogInterface!=null) {
+                if (dialogInterface != null) {
                     dialogInterface.retryClick();
                 }
             }
@@ -290,22 +280,22 @@ public abstract class AbstractFragment extends Fragment {
             }*/
         };
 
-        ((SimpleDialog.Builder)builder).message(message)
+        ((SimpleDialog.Builder) builder).message(message)
                 .title(title)
                 .positiveAction(positiveButtonName);
-               // .negativeAction("Close");
+        // .negativeAction("Close");
         DialogFragment fragment = DialogFragment.newInstance(builder);
         fragment.setCancelable(false);
         fragment.show(getChildFragmentManager(), null);
     }
-    protected void showMyDialog(String title,String message,String positiveButtonName,String negetiveButtonName,final ApiErrorDialogInterface dialogInterface)
-    {
-        SimpleDialog.Builder builder = new SimpleDialog.Builder(R.style.SimpleDialogLight){
+
+    protected void showMyDialog(String title, String message, String positiveButtonName, String negetiveButtonName, final ApiErrorDialogInterface dialogInterface) {
+        SimpleDialog.Builder builder = new SimpleDialog.Builder(R.style.SimpleDialogLight) {
             @Override
             public void onPositiveActionClicked(DialogFragment fragment) {
                 //Toast.makeText(mActivity, "Agreed", Toast.LENGTH_SHORT).show();
                 super.onPositiveActionClicked(fragment);
-                if(dialogInterface!=null) {
+                if (dialogInterface != null) {
                     dialogInterface.retryClick();
                 }
             }
@@ -314,30 +304,29 @@ public abstract class AbstractFragment extends Fragment {
             public void onNegativeActionClicked(DialogFragment fragment) {
                 //Toast.makeText(mActivity, "Disagreed", Toast.LENGTH_SHORT).show();
                 super.onNegativeActionClicked(fragment);
-                if(dialogInterface!=null) {
+                if (dialogInterface != null) {
                     dialogInterface.onCloseClick();
                 }
             }
         };
 
-        ((SimpleDialog.Builder)builder).message(message)
+        ((SimpleDialog.Builder) builder).message(message)
                 .title(title)
                 .positiveAction(positiveButtonName)
-         .negativeAction(negetiveButtonName);
+                .negativeAction(negetiveButtonName);
         DialogFragment fragment = DialogFragment.newInstance(builder);
         fragment.setCancelable(false);
         fragment.show(getChildFragmentManager(), null);
     }
 
 
-    protected void showMyDialog(String title,String message,final ApiErrorDialogInterface dialogInterface)
-    {
-        SimpleDialog.Builder builder = new SimpleDialog.Builder(R.style.SimpleDialogLight){
+    protected void showMyDialog(String title, String message, final ApiErrorDialogInterface dialogInterface) {
+        SimpleDialog.Builder builder = new SimpleDialog.Builder(R.style.SimpleDialogLight) {
             @Override
             public void onPositiveActionClicked(DialogFragment fragment) {
                 //Toast.makeText(mActivity, "Agreed", Toast.LENGTH_SHORT).show();
                 super.onPositiveActionClicked(fragment);
-                if(dialogInterface!=null) {
+                if (dialogInterface != null) {
                     dialogInterface.retryClick();
                 }
             }
@@ -346,27 +335,25 @@ public abstract class AbstractFragment extends Fragment {
             public void onNegativeActionClicked(DialogFragment fragment) {
                 //Toast.makeText(mActivity, "Disagreed", Toast.LENGTH_SHORT).show();
                 super.onNegativeActionClicked(fragment);
-                if(dialogInterface!=null) {
+                if (dialogInterface != null) {
                     dialogInterface.onCloseClick();
                 }
             }
         };
 
-        ((SimpleDialog.Builder)builder).message(message)
+        ((SimpleDialog.Builder) builder).message(message)
                 .title(title)
                 .positiveAction("Retry")
                 .negativeAction("Close");
         DialogFragment fragment = DialogFragment.newInstance(builder);
         fragment.setCancelable(false);
-        if(fragment.isAdded()) {
+        if (fragment.isAdded()) {
             fragment.show(getChildFragmentManager(), null);
             fragment.dismissAllowingStateLoss();
         }
 
 
-
     }
-
 
 
     public void hideKeyBord(View view) {
@@ -437,16 +424,15 @@ public abstract class AbstractFragment extends Fragment {
 
     protected void displayImageInLarge(final String imageUrl) {
 
-        if(TextUtils.isEmpty(imageUrl))
-        {
+        if (TextUtils.isEmpty(imageUrl)) {
             Utils.showToastMsg("Invalid Image");
             return;
         }
-        Intent intent= new Intent(MyApplication.getCurrentActivityContext(), ImageExpandViewActivity.class);
+        Intent intent = new Intent(MyApplication.getCurrentActivityContext(), ImageExpandViewActivity.class);
 
-        intent.putExtra(Constants.Pref.IMAGE_VIEW_URL_KEY,imageUrl);
+        intent.putExtra(Constants.Pref.IMAGE_VIEW_URL_KEY, imageUrl);
         // Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),ClinicProfileActivity.class);
-               /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+        /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
         /*intent.putExtra(ListenerKey.ObjectKey.IMAGE_DRAWABLE_KEY,new Messenger(new AbstractIBinder(){
             @Override
             protected IntentObjectListener getMyObject() {
@@ -466,11 +452,10 @@ public abstract class AbstractFragment extends Fragment {
 
     protected void printPDF(Uri uri) {
 
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             PrintPDF printPDF = new PrintPDF(uri);
             printPDF.printPreview();
-        }else
-        {
+        } else {
             Utils.showToastMsg(Utils.getStringFromResources(R.string.printing_not_supported_device_lbl));
         }
 
@@ -482,6 +467,30 @@ public abstract class AbstractFragment extends Fragment {
         if (TextUtils.isEmpty(downloadUrlStr)) {
             return;
         }
+
+        if(true)
+        {
+            DownloadManager downloadmanager;
+            Environment
+                    .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                    .mkdirs();
+          String  downloadFileName = downloadUrlStr.substring(downloadUrlStr.lastIndexOf('/')+1,downloadUrlStr.length());//downloadUrl);//Create file name by picking download file name from URL
+
+
+            downloadmanager = (DownloadManager) MyApplication.getCurrentActivityContext().getSystemService(Context.DOWNLOAD_SERVICE);
+            String url = downloadUrlStr ;
+            Uri uri = Uri.parse(url);
+            DownloadManager.Request request = new DownloadManager.Request(uri)
+                    .setTitle(Utils.getStringFromResources(R.string.app_name)+"-"+downloadFileName )
+                    .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,
+                            downloadFileName)
+                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            Log.i("Download1", String.valueOf(request));
+            downloadmanager.enqueue(request);
+            Utils.showToastMsg(Utils.getStringFromResources(R.string.download_file_start_lbl));
+            return;
+        }
+
         DownloadTask downloadTask = new DownloadTask(downloadUrlStr, new DownloadTask.DownloadListener() {
             @Override
             public void download(String status) {
@@ -519,12 +528,18 @@ public abstract class AbstractFragment extends Fragment {
 
     private void openDownloadedFolder() {
 
+        if (true) {
+            openDownloads((Activity) MyApplication.getCurrentActivityContext());
+            return;
+        }
+
         /*
         API >= 19 you can use
         Intent.ACTION_OPEN_DOCUMENT
         (or API >= 21 - Intent.ACTION_OPEN_DOCUMENT_TREE)
          */
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        //Intent intent = new Intent(Intent.ACTION_VIEW);
         /*Intent intent =null;
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP)
         {
@@ -535,31 +550,67 @@ public abstract class AbstractFragment extends Fragment {
             intent = new Intent(Intent.ACTION_GET_CONTENT);
         }*/
         Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
-                + File.separator+ Constants.APP_DIRECTORY_NAME+ File.separator );
+                + File.separator + Constants.APP_DIRECTORY_NAME + File.separator);
         //intent.setDataAndType(uri, "resource/folder");
         //intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setDataAndType(uri, "*/*");
-        startActivity(Intent.createChooser(intent, "Open Download Folder"));
+        //intent.setDataAndType(uri, "resource/folder");
+        startActivity(intent);
+        // startActivity(Intent.createChooser(intent, "Open Download Folder"));
+
+
+        // Uri selectedUri = Uri.parse(Environment.getExternalStorageDirectory() + "/myFolder/");
+        //Intent intent = new Intent(Intent.ACTION_VIEW);
+
+
+       /* if (intent.resolveActivityInfo(MyApplication.getCurrentActivityContext().getPackageManager(), 0) != null)
+        {
+            startActivity(intent);
+        }
+        else
+        {
+            Utils.showToastMessage("No any file explorer app installed on your device");
+            // if you reach this place, it means there is no any file
+            // explorer app installed on your device
+        }*/
+    }
+
+    public static void openDownloads(@NonNull Activity activity) {
+        if (isSamsung()) {
+            Intent intent = activity.getPackageManager()
+                    .getLaunchIntentForPackage("com.sec.android.app.myfiles");
+            intent.setAction("samsung.myfiles.intent.action.LAUNCH_MY_FILES");
+            intent.putExtra("samsung.myfiles.intent.extra.START_PATH",
+                    getDownloadsFile().getPath());
+            activity.startActivity(intent);
+        } else activity.startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
+    }
+
+    public static boolean isSamsung() {
+        String manufacturer = Build.MANUFACTURER;
+        if (manufacturer != null) return manufacturer.toLowerCase().equals("samsung");
+        return false;
+    }
+
+    public static File getDownloadsFile() {
+        return Environment.getExternalStoragePublicDirectory(Constants.APP_DIRECTORY_NAME);
     }
 
 
-
-    public interface DownloadPDFAsURIListener
-    {
+    public interface DownloadPDFAsURIListener {
         void onComplete(Uri uri);
     }
 
     protected class DownloadPDFAsURI extends AsyncTask<String, Void, Uri> {
 
         private DownloadPDFAsURIListener listener;
-        public DownloadPDFAsURI()
-        {
+
+        public DownloadPDFAsURI() {
 
         }
 
-        public DownloadPDFAsURI(DownloadPDFAsURIListener listener)
-        {
-            this.listener=listener;
+        public DownloadPDFAsURI(DownloadPDFAsURIListener listener) {
+            this.listener = listener;
         }
 
         @Override
@@ -580,15 +631,13 @@ public abstract class AbstractFragment extends Fragment {
             MyApplication.hideTransaprentDialog();
             super.onPostExecute(uri);
             showPDFInScreen(uri);
-            if(listener!=null)
-            {
+            if (listener != null) {
                 listener.onComplete(uri);
             }
         }
     }
 
-    protected void showPDFInScreen(Uri uri)
-    {
+    protected void showPDFInScreen(Uri uri) {
 
     }
 
