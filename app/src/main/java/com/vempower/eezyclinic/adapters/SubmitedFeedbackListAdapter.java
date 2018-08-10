@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Messenger;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.vempower.eezyclinic.APICore.PendingFeedbackData;
 import com.vempower.eezyclinic.APICore.SubmitedFeedbackListData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.CasesheetsDetailsActivity;
 import com.vempower.eezyclinic.activities.FeedbackDetailsActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
@@ -133,8 +135,8 @@ import java.util.List;
                         // Utils.showToastMsg(data.getId()+"");
 
 
-
-                        Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),FeedbackDetailsActivity.class);
+                        Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                        intent.setClass(MyApplication.getCurrentActivityContext(),FeedbackDetailsActivity.class);
                            //((Activity) MyApplication.getCurrentActivityContext()).getIntent();
                         intent.putExtra(ListenerKey.ObjectKey.SUBMITED_FEEDBACK_DATA_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                             @Override

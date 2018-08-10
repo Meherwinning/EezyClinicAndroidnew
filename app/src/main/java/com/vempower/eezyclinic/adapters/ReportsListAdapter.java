@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.vempower.eezyclinic.APICore.HelathReportsData;
 import com.vempower.eezyclinic.APICore.PrescriptionAPIData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.CasesheetsDetailsActivity;
 import com.vempower.eezyclinic.activities.PDFViewActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
@@ -132,8 +133,8 @@ import java.util.List;
                     public void onClick(View v) {
 
                         // Utils.showToastMsg(data.getId()+"");
-
-                        Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),PDFViewActivity.class);
+                        Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                        intent.setClass(MyApplication.getCurrentActivityContext(),PDFViewActivity.class);
                            ((Activity) MyApplication.getCurrentActivityContext()).getIntent();
                         intent.putExtra(ListenerKey.ObjectKey.PDF_DETAILS_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                             @Override

@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Messenger;
@@ -16,6 +17,7 @@ import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.ClinicProfileActivity;
 import com.vempower.eezyclinic.activities.DoctorProfileActivity;
+import com.vempower.eezyclinic.activities.DoctorsClinicsListActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
@@ -121,7 +123,8 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Or
                    /* "doctorid":"46",
                             "clinicid":"21",
                             "branchid":40*/
-                    Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),ClinicProfileActivity.class);
+                    Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                    intent.setClass(MyApplication.getCurrentActivityContext(),ClinicProfileActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                     intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_CLINIC_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
                         @Override
@@ -182,7 +185,8 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Or
                 @Override
                 public void onClick(View view) {
                    // Utils.showToastMsg(data.getClinicName()+"");
-                    Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),ClinicProfileActivity.class);
+                    Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                    intent.setClass(MyApplication.getCurrentActivityContext(),ClinicProfileActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                     intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_CLINIC_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
                         @Override

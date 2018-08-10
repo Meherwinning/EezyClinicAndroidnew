@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Messenger;
@@ -80,7 +81,10 @@ public class FirstFragment extends AbstractFragment {
             popular_doctor_iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MyApplication.getCurrentActivityContext(), DoctorProfileActivity.class);
+                    Intent intent =((Activity) MyApplication.getCurrentActivityContext()).getIntent();
+                    intent.setClass(MyApplication.getCurrentActivityContext(), DoctorProfileActivity.class);
+
+                   // Intent intent = new Intent(MyApplication.getCurrentActivityContext(), DoctorProfileActivity.class);
                     /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                     intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
                         @Override

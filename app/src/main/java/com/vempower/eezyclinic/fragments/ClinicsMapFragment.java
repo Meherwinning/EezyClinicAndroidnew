@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Messenger;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.vempower.eezyclinic.APIResponce.SearchResultClinicListAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.ClinicProfileActivity;
+import com.vempower.eezyclinic.activities.ScheduleAppointmentActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.core.SearchRequest;
@@ -79,8 +81,8 @@ public class ClinicsMapFragment extends AbstractMapFragment /*, GoogleMap.OnMark
                 final int index= clinicsLsit.lastIndexOf(temp);
                 if(index>=0 && clinicsLsit.get(index)!=null) {
 
-
-                    Intent intent = new Intent(MyApplication.getCurrentActivityContext(), ClinicProfileActivity.class);
+                    Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                    intent.setClass(MyApplication.getCurrentActivityContext(), ClinicProfileActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                     intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_CLINIC_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
                         @Override

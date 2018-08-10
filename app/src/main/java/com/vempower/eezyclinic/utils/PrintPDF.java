@@ -1,6 +1,7 @@
 package com.vempower.eezyclinic.utils;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +14,7 @@ import com.hp.mss.hpprint.model.PrintItem;
 import com.hp.mss.hpprint.model.PrintJobData;
 import com.hp.mss.hpprint.model.asset.PDFAsset;
 import com.hp.mss.hpprint.util.PrintUtil;
+import com.vempower.eezyclinic.activities.CasesheetsDetailsActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.activities.AbstractActivity;
 
@@ -91,8 +93,8 @@ public class PrintPDF {
         PrintUtil.setPrintJobData(printJobData);
         PrintUtil.customData.clear();
 //        PrintUtil.sendPrintMetrics = showMetricsDialog;
-
-        Intent intent = new Intent(activity, PrintPluginManagerActivity.class);
+        Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+        intent.setClass(activity, PrintPluginManagerActivity.class);
         activity.startActivity(intent);
         //PrintUtil.print(activity);
 

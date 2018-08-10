@@ -15,6 +15,7 @@ import com.vempower.eezyclinic.APICore.CaseSheetsListDate;
 import com.vempower.eezyclinic.APICore.HelathReportsData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.CasesheetsDetailsActivity;
+import com.vempower.eezyclinic.activities.DoctorsClinicsListActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.interfaces.AbstractIBinder;
@@ -140,7 +141,8 @@ import java.util.List;
                             Utils.showToastMsg(R.string.no_casesheet_saved_lbl);
                             return;
                         }
-                        Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),CasesheetsDetailsActivity.class);
+                        Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                        intent.setClass(MyApplication.getCurrentActivityContext(),CasesheetsDetailsActivity.class);
                           // ((Activity) MyApplication.getCurrentActivityContext()).getIntent();
                         intent.putExtra(Constants.Pref.CASESHEET_APPOINTMENT_ID_KEY,data.getAppointmentid());
                        /* intent.putExtra(ListenerKey.ObjectKey.APPOINTMENT_OBJECT_KEY,new Messenger(new AbstractIBinder(){

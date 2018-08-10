@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Messenger;
@@ -19,6 +20,7 @@ import com.vempower.eezyclinic.APICore.ReScheduleAppointmentRequestDetails;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.AppointmentDetailsActivity;
 import com.vempower.eezyclinic.activities.CancelAppointmentActivity;
+import com.vempower.eezyclinic.activities.CasesheetsDetailsActivity;
 import com.vempower.eezyclinic.activities.ReScheduleAppointmentActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
@@ -84,7 +86,8 @@ public class AppointmentDetailsFragment extends AbstractFragment {
                     activity.startActivityForResult(intent,AppointmentDetailsActivity.REQUESTCODE);
 
                 }else {
-                     intent=  new Intent(MyApplication.getCurrentActivityContext(),CancelAppointmentActivity.class);
+
+                     intent.setClass(MyApplication.getCurrentActivityContext(),CancelAppointmentActivity.class);
                     intent.putExtra(Constants.Pref.APPOINTMENT_ID_KEY,appointment.getId());
                     intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -116,8 +119,8 @@ public class AppointmentDetailsFragment extends AbstractFragment {
                     return;
                 }
                 final ReScheduleAppointmentRequestDetails details=requestDetails;
-
-                Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),ReScheduleAppointmentActivity.class);
+                Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                intent.setClass(MyApplication.getCurrentActivityContext(),ReScheduleAppointmentActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                 intent.putExtra(ListenerKey.ObjectKey.RESCHEDULE_APPOINTMENT_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                     @Override

@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Messenger;
 import android.support.design.widget.TabLayout;
@@ -188,7 +189,8 @@ public class ClinicProfileActivity extends AbstractMenuActivity
         fab.setOnMyClickListener(new ButtonFloat.MyClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MyApplication.getCurrentActivityContext(), SingleClinicMapActivity.class);
+                Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                intent.setClass(MyApplication.getCurrentActivityContext(), SingleClinicMapActivity.class);
                 /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                 intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_CLINIC_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
                     @Override

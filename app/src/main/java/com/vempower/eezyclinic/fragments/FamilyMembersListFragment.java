@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +18,7 @@ import com.vempower.eezyclinic.APIResponce.GetFamilyMembersAPI;
 import com.vempower.eezyclinic.APIResponce.MedicalHistoryListAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.AddFamilyMemberActivity;
+import com.vempower.eezyclinic.activities.MedicalHistoryEditDialogActivity;
 import com.vempower.eezyclinic.adapters.FamilyMembersListAdapter;
 import com.vempower.eezyclinic.adapters.MedicalHistoryListAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
@@ -72,7 +74,10 @@ public class FamilyMembersListFragment extends  SwipedRecyclerViewFragment {
             public void onClick(View v) {
              //   Utils.showToastMessage("Now click on add new family member");
 
-                Intent intent= new Intent(MyApplication.getCurrentActivityContext(),AddFamilyMemberActivity.class);
+                Intent intent =((Activity) MyApplication.getCurrentActivityContext()).getIntent();
+                intent.setClass(MyApplication.getCurrentActivityContext(), AddFamilyMemberActivity.class);
+
+               // Intent intent= new Intent(MyApplication.getCurrentActivityContext(),AddFamilyMemberActivity.class);
                /* intent.putExtra(ListenerKey.ObjectKey.MEDICAL_HISTORY_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                     @Override
                     protected IntentObjectListener getMyObject() {

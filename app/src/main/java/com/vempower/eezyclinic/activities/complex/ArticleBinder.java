@@ -16,6 +16,7 @@
 
 package com.vempower.eezyclinic.activities.complex;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
@@ -79,7 +80,9 @@ public class ArticleBinder extends ItemBinder<Article, ArticleBinder.ViewHolder>
       search_bt.setOnClickListener(new View.OnClickListener() {
        @Override
        public void onClick(View v) {
-         Intent intent = new Intent(MyApplication.getCurrentActivityContext(),SearchActivity.class);
+         Intent intent =((Activity) MyApplication.getCurrentActivityContext()).getIntent();
+         //Intent intent = new Intent(MyApplication.getCurrentActivityContext(),SearchActivity.class);
+         intent.setClass(MyApplication.getCurrentActivityContext(),SearchActivity.class);
          intent.putExtra(Constants.Pref.IS_FROM_DASH_BOARD,true);
          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
 

@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Messenger;
@@ -15,6 +16,7 @@ import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.APIResponce.AppointmentTimeSlotsAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.AppointmentBookReviewActivity;
+import com.vempower.eezyclinic.activities.CasesheetsDetailsActivity;
 import com.vempower.eezyclinic.activities.HomeActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
@@ -142,7 +144,8 @@ public class ReScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewF
 
                        @Override
                        public void retryClick() {
-                           Intent  intent= new Intent(MyApplication.getCurrentActivityContext(),HomeActivity.class);
+                           Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                           intent.setClass(MyApplication.getCurrentActivityContext(),HomeActivity.class);
                            //intent.setClass(this,HomeActivity.class);
                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
                            startActivity(intent);

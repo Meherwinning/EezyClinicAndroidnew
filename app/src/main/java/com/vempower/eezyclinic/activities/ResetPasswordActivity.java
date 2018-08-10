@@ -128,6 +128,7 @@ public class ResetPasswordActivity extends AbstractFragmentActivity {
                 {
                     return;
                 }
+
                 Intent intent= new Intent(ResetPasswordActivity.this,LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 

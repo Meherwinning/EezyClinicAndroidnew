@@ -49,7 +49,7 @@ public class NewHomeActivity extends AbstractMenuActivity {
     @Override
     protected void setMyContectntView() {
         super.setMyContectntView();
-        getIntent().putExtra(ListenerKey.NEW_HOME_FEATURS_AND_BENIFITS_LISTENER_KEY, new Messenger(getNewHomeKeyListener()));
+       // getIntent().putExtra(ListenerKey.NEW_HOME_FEATURS_AND_BENIFITS_LISTENER_KEY, new Messenger(getNewHomeKeyListener()));
 
     }
 

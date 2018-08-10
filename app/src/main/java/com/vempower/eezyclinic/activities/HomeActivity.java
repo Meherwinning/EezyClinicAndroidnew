@@ -18,6 +18,7 @@
 
 package com.vempower.eezyclinic.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Messenger;
@@ -483,7 +484,8 @@ public class HomeActivity extends AbstractMenuActivity {
                 {
                    break;
                 }
-                Intent intent=  new Intent(this,EditProfileActivity.class);
+                Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                intent.setClass(this,EditProfileActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                 intent.putExtra(ListenerKey.ObjectKey.PATIENT_PROFILE_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                     @Override

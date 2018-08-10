@@ -17,6 +17,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Messenger;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -35,6 +36,7 @@ import com.rey.material.app.DialogFragment;
 import com.rey.material.app.SimpleDialog;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.CasesheetsDetailsActivity;
 import com.vempower.eezyclinic.activities.ImageExpandViewActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
@@ -341,15 +343,26 @@ public abstract class AbstractFragment extends Fragment {
             }
         };
 
-        ((SimpleDialog.Builder) builder).message(message)
+        builder.message(message)
                 .title(title)
                 .positiveAction("Retry")
                 .negativeAction("Close");
-        DialogFragment fragment = DialogFragment.newInstance(builder);
+        final DialogFragment fragment = DialogFragment.newInstance(builder);
         fragment.setCancelable(false);
         if (fragment.isAdded()) {
             fragment.show(getChildFragmentManager(), null);
             fragment.dismissAllowingStateLoss();
+        }else
+        {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (fragment.isAdded()) {
+                        fragment.show(getChildFragmentManager(), null);
+                        fragment.dismissAllowingStateLoss();
+                    }
+                }
+            },2000);
         }
 
 
@@ -428,7 +441,8 @@ public abstract class AbstractFragment extends Fragment {
             Utils.showToastMsg("Invalid Image");
             return;
         }
-        Intent intent = new Intent(MyApplication.getCurrentActivityContext(), ImageExpandViewActivity.class);
+        Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+        intent.setClass(MyApplication.getCurrentActivityContext(), ImageExpandViewActivity.class);
 
         intent.putExtra(Constants.Pref.IMAGE_VIEW_URL_KEY, imageUrl);
         // Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),ClinicProfileActivity.class);

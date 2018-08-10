@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Messenger;
@@ -18,6 +19,7 @@ import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.AppointmentDetailsActivity;
 import com.vempower.eezyclinic.activities.CancelAppointmentActivity;
 import com.vempower.eezyclinic.activities.DoctorProfileActivity;
+import com.vempower.eezyclinic.activities.DoctorsClinicsListActivity;
 import com.vempower.eezyclinic.activities.ReScheduleAppointmentActivity;
 import com.vempower.eezyclinic.activities.ScheduleAppointmentActivity;
 import com.vempower.eezyclinic.activities.UpComingAppointmentListActivity;
@@ -144,14 +146,15 @@ public class UpcomingAppointmentListAdapter extends RecyclerView.Adapter<Upcomin
             cancel_app_tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent=null;
+                    Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                   // intent.setClass(MyApplication.getCurrentActivityContext(), DoctorsClinicsListActivity.class);
                     if(MyApplication.getCurrentActivityContext() instanceof UpComingAppointmentListActivity) {
-                        intent=  ((UpComingAppointmentListActivity)(MyApplication.getCurrentActivityContext())).getIntent();
+                        //intent=  ((UpComingAppointmentListActivity)(MyApplication.getCurrentActivityContext())).getIntent();
                         intent.setClass(MyApplication.getCurrentActivityContext(),CancelAppointmentActivity.class);
 
                     }else
                     {
-                        intent=  new Intent(MyApplication.getCurrentActivityContext(),CancelAppointmentActivity.class);
+                        intent.setClass(MyApplication.getCurrentActivityContext(),CancelAppointmentActivity.class);
 
                     }
                    // Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),CancelAppointmentActivity.class);
@@ -176,16 +179,18 @@ public class UpcomingAppointmentListAdapter extends RecyclerView.Adapter<Upcomin
                 @Override
                 public void onClick(View v) {
 
-                    Intent intent=  null;//new Intent(MyApplication.getCurrentActivityContext(),AppointmentDetailsActivity.class);
+                    Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                   //intent.setClass(MyApplication.getCurrentActivityContext(), DoctorsClinicsListActivity.class);
+                    //Intent intent=  null;//new Intent(MyApplication.getCurrentActivityContext(),AppointmentDetailsActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
 
                     if(MyApplication.getCurrentActivityContext() instanceof UpComingAppointmentListActivity) {
-                         intent=  ((UpComingAppointmentListActivity)(MyApplication.getCurrentActivityContext())).getIntent();
+                         //intent=  ((UpComingAppointmentListActivity)(MyApplication.getCurrentActivityContext())).getIntent();
                         intent.setClass(MyApplication.getCurrentActivityContext(),AppointmentDetailsActivity.class);
 
                     }else
                     {
-                         intent=  new Intent(MyApplication.getCurrentActivityContext(),AppointmentDetailsActivity.class);
+                         intent.setClass(MyApplication.getCurrentActivityContext(),AppointmentDetailsActivity.class);
 
                     }
                     intent.putExtra(ListenerKey.ObjectKey.APPOINTMENT_OBJECT_KEY,new Messenger(new AbstractIBinder(){
@@ -235,8 +240,8 @@ public class UpcomingAppointmentListAdapter extends RecyclerView.Adapter<Upcomin
                     final ReScheduleAppointmentRequestDetails details=requestDetails;
 
 
-
-                    Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),ReScheduleAppointmentActivity.class);
+                    Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                    intent.setClass(MyApplication.getCurrentActivityContext(),ReScheduleAppointmentActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                     intent.putExtra(ListenerKey.ObjectKey.RESCHEDULE_APPOINTMENT_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                         @Override

@@ -160,6 +160,7 @@ public interface Constants {
         String DIPLAY_SPESHALITY_NAME = "diplay_speshality_name";
         String IMAGE_VIEW_URL_KEY = "image_view_url_key";
         String COUNTRY_CODE_KEY = "country_code_key";
+        String IS_CALL_FEATURS_AND_BENIFITS = "is_call_featurs_and_benifits";
     }
 
     interface ActivityResult

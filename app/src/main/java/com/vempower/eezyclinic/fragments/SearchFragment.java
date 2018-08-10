@@ -1,6 +1,7 @@
 package com.vempower.eezyclinic.fragments;
 
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ import com.vempower.eezyclinic.APIResponce.SpecalitiesAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.DoctorsClinicsListActivity;
+import com.vempower.eezyclinic.activities.ScheduleAppointmentActivity;
 import com.vempower.eezyclinic.adapters.CustomAdapter;
 import com.vempower.eezyclinic.adapters.CustomAdapter1;
 import com.vempower.eezyclinic.adapters.HintAdapter;
@@ -186,7 +188,9 @@ public class SearchFragment extends AbstractFragment {
                         Utils.showToastMessage(searchResultDoctorListAPI.toString());
                     }
                 });*/
-                startActivity(new Intent(MyApplication.getCurrentActivityContext(), DoctorsClinicsListActivity.class));
+                Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                intent.setClass(MyApplication.getCurrentActivityContext(), DoctorsClinicsListActivity.class);
+                startActivity(intent);
                 //( (Activity) MyApplication.getCurrentActivityContext()).finish();
 
             }

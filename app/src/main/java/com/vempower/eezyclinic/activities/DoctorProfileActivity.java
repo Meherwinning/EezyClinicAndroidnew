@@ -227,7 +227,8 @@ public class DoctorProfileActivity extends AbstractMenuActivity
         fab.setOnMyClickListener(new ButtonFloat.MyClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),SingleDoctorMapActivity.class);
+                Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                intent.setClass(MyApplication.getCurrentActivityContext(),SingleDoctorMapActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                 intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
                     @Override
@@ -258,7 +259,8 @@ public class DoctorProfileActivity extends AbstractMenuActivity
         findViewById(R.id.appointment_bt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),ScheduleAppointmentActivity.class);
+                Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                intent.setClass(MyApplication.getCurrentActivityContext(),ScheduleAppointmentActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                 intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
                     @Override
@@ -310,8 +312,8 @@ public class DoctorProfileActivity extends AbstractMenuActivity
                             public void retryClick() {
 
                                 MyApplication.getInstance().setSearchResultDoctorListData(data);
-
-                                Intent intent = new Intent(MyApplication.getCurrentActivityContext(), SigninActivity.class);
+                                Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                                intent.setClass(MyApplication.getCurrentActivityContext(), SigninActivity.class);
                                 /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -327,7 +329,8 @@ public class DoctorProfileActivity extends AbstractMenuActivity
 
 
 
-                    Intent intent = new Intent(MyApplication.getCurrentActivityContext(), ScheduleAppointmentActivity.class);
+                    Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                     intent.setClass(MyApplication.getCurrentActivityContext(), ScheduleAppointmentActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                     intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
                         @Override

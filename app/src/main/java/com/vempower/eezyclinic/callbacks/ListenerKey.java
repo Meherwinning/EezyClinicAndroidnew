@@ -11,7 +11,7 @@ public interface ListenerKey {
     String FILTER_REFRESH_LIST_LISTENER_KEY = "filter_refresh_list_listener_key";
     String FROM_ACTIVITY_LISTENER_KEY = "from_activity_listener_key";
 
-    String NEW_HOME_FEATURS_AND_BENIFITS_LISTENER_KEY="new_home_featurs_and_benifits_listener_key";
+    String NEW_HOME_FEATURS_AND_BENIFITS_LISTENER_KEY="new_home_featurs_key";
 
 
     interface ObjectKey

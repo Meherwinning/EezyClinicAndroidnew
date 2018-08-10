@@ -18,6 +18,7 @@ import com.rey.material.app.SimpleDialog;
 import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.CasesheetsDetailsActivity;
 import com.vempower.eezyclinic.activities.DoctorProfileActivity;
 import com.vempower.eezyclinic.activities.ScheduleAppointmentActivity;
 import com.vempower.eezyclinic.activities.SigninActivity;
@@ -127,8 +128,8 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
 
                    /* "doctorid":"46",
                             "clinicid":"21",
-                            "branchid":40*/
-                   Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),DoctorProfileActivity.class);
+                            "branchid":40*/ Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                    intent.setClass(MyApplication.getCurrentActivityContext(),DoctorProfileActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                     intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
                         @Override
@@ -230,8 +231,8 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
                              public void retryClick() {
 
                                  MyApplication.getInstance().setSearchResultDoctorListData(data);
-
-                                 Intent intent = new Intent(MyApplication.getCurrentActivityContext(), SigninActivity.class);
+                                 Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                                 intent.setClass(MyApplication.getCurrentActivityContext(), SigninActivity.class);
                                  /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                                                                   intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -245,8 +246,8 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
                      }
 
 
-
-                     Intent intent = new Intent(MyApplication.getCurrentActivityContext(), ScheduleAppointmentActivity.class);
+                     Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                     intent.setClass(MyApplication.getCurrentActivityContext(), ScheduleAppointmentActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                      intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
                          @Override

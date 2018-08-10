@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -200,8 +201,8 @@ public class SigninActivity extends AbstractSocialLoginActivity {
         {
             final SearchResultDoctorListData data= MyApplication.getInstance().getSearchResultDoctorListData();
 
-
-            Intent intent2 = new Intent(MyApplication.getCurrentActivityContext(), ScheduleAppointmentActivity.class);
+            Intent intent2 = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+            intent.setClass(MyApplication.getCurrentActivityContext(), ScheduleAppointmentActivity.class);
             /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
             intent2.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
                 @Override

@@ -350,19 +350,21 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         }, 200);
     }
 
-    public void showFeaturesAndBenifitsView() {
+  //  public abstract void showFeaturesAndBenifitsView();
 
-        /*Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
-        intent.setClass(this,NewHomeActivity.class);
+    public  void showFeaturesAndBenifitsView(){
+
+        Intent  intent= getIntent(); //new Intent(this,HomeActivity.class);
+        intent.setClass(this,NonLoginHomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra(Constants.Pref.IS_CALL_FEATURS_AND_BENIFITS,true);
         startActivity(intent);
-        sendHandlerMessage(getIntent(), ListenerKey.NEW_HOME_FEATURS_AND_BENIFITS_LISTENER_KEY, new NewHomeClickListener() {
+        sendHandlerMessage(intent, ListenerKey.NEW_HOME_FEATURS_AND_BENIFITS_LISTENER_KEY, new NewHomeClickListener() {
             @Override
             public boolean isClicked() {
                 return true;
             }
         });
-*/
 
     }
 

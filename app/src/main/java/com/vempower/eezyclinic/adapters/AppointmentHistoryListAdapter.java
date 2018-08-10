@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Messenger;
@@ -15,6 +16,7 @@ import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.AppointmentDetailsActivity;
 import com.vempower.eezyclinic.activities.AppointmentHistoryActivity;
 import com.vempower.eezyclinic.activities.CancelAppointmentActivity;
+import com.vempower.eezyclinic.activities.CasesheetsDetailsActivity;
 import com.vempower.eezyclinic.activities.DoctorProfileActivity;
 import com.vempower.eezyclinic.activities.ReScheduleAppointmentActivity;
 import com.vempower.eezyclinic.activities.UpComingAppointmentListActivity;
@@ -136,8 +138,8 @@ public class AppointmentHistoryListAdapter extends RecyclerView.Adapter<Appointm
                 public void onClick(View v) {
 
                    // Utils.showToastMsg(data.getId()+"");
-
-                    Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),AppointmentHistoryActivity.class);
+                    Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                    intent.setClass(MyApplication.getCurrentActivityContext(),AppointmentHistoryActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                     intent.putExtra(ListenerKey.ObjectKey.APPOINTMENT_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                         @Override

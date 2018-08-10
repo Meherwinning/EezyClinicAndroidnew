@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Messenger;
@@ -12,6 +13,7 @@ import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.APIResponce.AppointmentTimeSlotsAPI;
 import com.vempower.eezyclinic.activities.AbstractMenuActivity;
 import com.vempower.eezyclinic.activities.AppointmentBookReviewActivity;
+import com.vempower.eezyclinic.activities.DoctorsClinicsListActivity;
 import com.vempower.eezyclinic.activities.ScheduleAppointmentActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
@@ -115,8 +117,8 @@ public class ScheduleAppointmentTimeSlotFragment extends AbstractCalenderViewFra
         if(!TextUtils.isEmpty(confirmDateTime))
         {
 
-
-            Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),AppointmentBookReviewActivity.class);
+            Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+            intent.setClass(MyApplication.getCurrentActivityContext(),AppointmentBookReviewActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
 
             intent.putExtra(Constants.Pref.SELECTED_SCHDULE_DATE_TIME_KEY,confirmDateTime);

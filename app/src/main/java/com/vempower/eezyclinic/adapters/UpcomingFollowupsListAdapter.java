@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Messenger;
@@ -15,8 +16,10 @@ import com.vempower.eezyclinic.APICore.ReScheduleAppointmentRequestDetails;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.AppointmentDetailsActivity;
 import com.vempower.eezyclinic.activities.CancelAppointmentActivity;
+import com.vempower.eezyclinic.activities.DoctorsClinicsListActivity;
 import com.vempower.eezyclinic.activities.FollowupAppointmentActivity;
 import com.vempower.eezyclinic.activities.ReScheduleAppointmentActivity;
+import com.vempower.eezyclinic.activities.ScheduleAppointmentActivity;
 import com.vempower.eezyclinic.activities.UpComingAppointmentListActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
@@ -138,16 +141,18 @@ public class UpcomingFollowupsListAdapter extends RecyclerView.Adapter<UpcomingF
                         callSheduleCalender(data);
                         return;
                     }
+                    Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                   // intent.setClass(MyApplication.getCurrentActivityContext(), ScheduleAppointmentActivity.class);
 
-                    Intent intent = null;//new Intent(MyApplication.getCurrentActivityContext(),AppointmentDetailsActivity.class);
+                   // Intent intent = null;//new Intent(MyApplication.getCurrentActivityContext(),AppointmentDetailsActivity.class);
                     /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
 
                     if (MyApplication.getCurrentActivityContext() instanceof UpComingAppointmentListActivity) {
-                        intent = ((UpComingAppointmentListActivity) (MyApplication.getCurrentActivityContext())).getIntent();
+                       // intent = ((UpComingAppointmentListActivity) (MyApplication.getCurrentActivityContext())).getIntent();
                         intent.setClass(MyApplication.getCurrentActivityContext(), AppointmentDetailsActivity.class);
 
                     } else {
-                        intent = new Intent(MyApplication.getCurrentActivityContext(), AppointmentDetailsActivity.class);
+                        intent.setClass(MyApplication.getCurrentActivityContext(), AppointmentDetailsActivity.class);
 
                     }
                     intent.putExtra(ListenerKey.ObjectKey.APPOINTMENT_OBJECT_KEY, new Messenger(new AbstractIBinder() {
@@ -204,8 +209,8 @@ public class UpcomingFollowupsListAdapter extends RecyclerView.Adapter<UpcomingF
 
             //  Utils.showToastMsg(details.toString());
 
-
-            Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),FollowupAppointmentActivity.class);
+            Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+            intent.setClass(MyApplication.getCurrentActivityContext(),FollowupAppointmentActivity.class);
             // ((Activity) MyApplication.getCurrentActivityContext()).getIntent();
             intent.putExtra(ListenerKey.ObjectKey.FOLLOWUP_APPOINTMENT_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                 @Override

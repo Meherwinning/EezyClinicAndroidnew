@@ -16,6 +16,7 @@
 
 package com.vempower.eezyclinic.activities.complex;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.ahamed.multiviewadapter.ItemBinder;
 import com.ahamed.multiviewadapter.ItemViewHolder;
 import com.vempower.eezyclinic.APICore.NewHomeSpeciality;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.DoctorProfileActivity;
 import com.vempower.eezyclinic.activities.DoctorsClinicsListActivity;
 import com.vempower.eezyclinic.activities.decorator.GridInsetDecoration;
 import com.vempower.eezyclinic.application.MyApplication;
@@ -138,7 +140,11 @@ private ExpandColapseButtonListener buttonListener;
               searchRequestParams.setSpecality(data.getName());
 
               MyApplication.getInstance().setSearchRequestParms(searchRequestParams);
-              Intent intent= new Intent(MyApplication.getCurrentActivityContext(), DoctorsClinicsListActivity.class);
+
+              Intent intent =((Activity) MyApplication.getCurrentActivityContext()).getIntent();
+              intent.setClass(MyApplication.getCurrentActivityContext(), DoctorsClinicsListActivity.class);
+
+             // Intent intent= new Intent(MyApplication.getCurrentActivityContext(), DoctorsClinicsListActivity.class);
 
               intent.putExtra(Constants.Pref.IS_FROM_NEW_HOME_SPESHALITY,true);
               intent.putExtra(Constants.Pref.DIPLAY_SPESHALITY_NAME,data.getName());

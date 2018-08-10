@@ -20,6 +20,7 @@ public class PDFViewActivity extends AbstractMenuActivity {
     private String titleNameStr="";
     private TextView titleName;
     public static final int MEDICAL_RECORDS_REFRESH_REQUEST_CODE=3452;
+    private PDFViewFragment fragment;
 
     @Override
     protected void setMyContectntView() {
@@ -43,7 +44,7 @@ public class PDFViewActivity extends AbstractMenuActivity {
 
         }
 
-        PDFViewFragment   fragment= new PDFViewFragment();
+           fragment= new PDFViewFragment();
         fragment.setPDFDetails(data);
         fragment.setOnSuccuessUpdateListener(new PDFViewFragment.SuccussUpdateListener() {
             @Override
@@ -117,6 +118,15 @@ public class PDFViewActivity extends AbstractMenuActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(fragment!=null)
+        {
+            fragment.onRestart();
+        }
     }
 
     @Override

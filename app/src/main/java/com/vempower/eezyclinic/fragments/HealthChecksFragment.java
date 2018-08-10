@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.HealthChecksViewPagerAdapter;
 import com.vempower.eezyclinic.adapters.HealthRecordsViewPagerAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.HealthCheckListMapper;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.NonSwipeableViewPager;
@@ -119,8 +121,20 @@ public class HealthChecksFragment extends AbstractFragment {
         mapper.setOnHealthChecksListListener(new HealthCheckListMapper.HealthChecksListListener() {
             @Override
             public void getHealthChecksListAPI(HealthChecksListAPI checksListAPI, String errorMessage) {
-                if(!isValidResponse(checksListAPI,errorMessage,true,true))
+                if(!isValidResponse(checksListAPI,errorMessage))
                 {
+                    showMyDialog("Alert", errorMessage, new ApiErrorDialogInterface() {
+                        @Override
+                        public void onCloseClick() {
+                            ((Activity) MyApplication.getCurrentActivityContext()).finish();
+                        }
+
+                        @Override
+                        public void retryClick() {
+                            callHealthChecksMapper();
+                        }
+                    });
+
                     return;
                 }
                 if(checksListAPI.getData()==null)

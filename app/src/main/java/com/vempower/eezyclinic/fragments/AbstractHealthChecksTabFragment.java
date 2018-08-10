@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -19,6 +20,7 @@ import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicke
 import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.GraphExpandViewActivity;
+import com.vempower.eezyclinic.activities.ScheduleAppointmentActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.HealthChecksRefreshListener;
 import com.vempower.eezyclinic.utils.Constants;
@@ -138,7 +140,8 @@ abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
 
     private void callGraphExpandActivity() {
         //Utils.showToastMessage("Now click on Graph expand image");
-        Intent intent = new Intent(MyApplication.getCurrentActivityContext(), GraphExpandViewActivity.class);
+        Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+        intent.setClass(MyApplication.getCurrentActivityContext(), GraphExpandViewActivity.class);
         intent.putExtra(Constants.Pref.GRAPH_URL_STR, url);
         intent.putExtra(Constants.Pref.GRAPH_TYPE, getHealthCheckTypeName());
 

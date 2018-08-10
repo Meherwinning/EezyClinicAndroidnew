@@ -3,6 +3,7 @@ package com.vempower.eezyclinic.activities;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Messenger;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,10 +11,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.callbacks.AbstractAppHandler;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
+import com.vempower.eezyclinic.callbacks.NewHomeClickListener;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
 import com.vempower.eezyclinic.fragments.DemoFragment;
 import com.vempower.eezyclinic.fragments.NewHomeFragment;
+import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
 
 public class NonLoginHomeActivity extends AbstractMenuActivity {
@@ -47,10 +51,38 @@ public class NonLoginHomeActivity extends AbstractMenuActivity {
 
     protected void setMyContectntView()
     {
-        setContentView(R.layout.activity_home_menu_non_login_layout);
+        getIntent().putExtra(ListenerKey.NEW_HOME_FEATURS_AND_BENIFITS_LISTENER_KEY, new Messenger(getNewHomeKeyListener()));
+        super.setMyContectntView();
+        //setContentView(R.layout.activity_home_menu_non_login_layout);
 
+
+            if(getIntent().getBooleanExtra(Constants.Pref.IS_CALL_FEATURS_AND_BENIFITS,false))
+            {
+                showFeaturesAndBenifitsView();
+                getIntent().putExtra(Constants.Pref.IS_CALL_FEATURS_AND_BENIFITS,false);
+            }
 
     }
+
+    @NonNull
+    private AbstractAppHandler getNewHomeKeyListener() {
+        return new AbstractAppHandler() {
+            @Override
+            public void getObject(Object obj) {
+                if (obj != null && (obj instanceof NewHomeClickListener) ) {
+                    NewHomeClickListener listener= (NewHomeClickListener) obj;
+                    if(listener.isClicked())
+                    {
+                        showFeaturesAndBenifitsView();
+                    }
+                    //listener.getItemClicked();
+                    //bottomItemChange(listener.getItemClicked());
+
+                }
+            }
+        };
+    }
+
     @Override
     public void showFeaturesAndBenifitsView()
     {

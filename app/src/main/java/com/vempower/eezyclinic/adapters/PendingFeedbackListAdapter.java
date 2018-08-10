@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Messenger;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.vempower.eezyclinic.APICore.PendingFeedbackData;
 import com.vempower.eezyclinic.APICore.PrescriptionAPIData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.CasesheetsDetailsActivity;
 import com.vempower.eezyclinic.activities.FeedbackActivity;
 import com.vempower.eezyclinic.activities.PDFViewActivity;
 import com.vempower.eezyclinic.activities.SubmitFeedbackActivity;
@@ -134,9 +136,8 @@ import java.util.List;
 
                          //Utils.showToastMsg(data.getId()+"");
 
-
-
-                        Intent intent=  new Intent(MyApplication.getCurrentActivityContext(),SubmitFeedbackActivity.class);
+                        Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                        intent.setClass(MyApplication.getCurrentActivityContext(),SubmitFeedbackActivity.class);
 
                         if(MyApplication.getCurrentActivityContext() instanceof  FeedbackActivity)
                         {

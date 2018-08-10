@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -192,7 +193,10 @@ public class ForgotPasswordActivity extends AbstractFragmentActivity {
                 }
 
                 ForgotPasswordData passwordData = forgotPasswordOTPAPI.getData();
-                final Intent intent = new Intent(MyApplication.getCurrentActivityContext(), ResetPasswordActivity.class);
+                Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+               // intent.setClass(MyApplication.getCurrentActivityContext(), ScheduleAppointmentActivity.class);
+
+                intent.setClass(MyApplication.getCurrentActivityContext(), ResetPasswordActivity.class);
 
                 intent.putExtra(Constants.Pref.PATIENT_ID_KEY, passwordData.getId());
                 intent.putExtra(Constants.Pref.FORGOT_OTP_KEY, passwordData.getOtp());

@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Messenger;
@@ -23,6 +24,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.CasesheetsDetailsActivity;
 import com.vempower.eezyclinic.activities.DoctorProfileActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
@@ -85,7 +87,8 @@ public class DoctorsMapFragment extends AbstractMapFragment/*, GoogleMap.OnMarke
               final int index= doctorsLsit.lastIndexOf(temp);
                if(index>=0 && doctorsLsit.get(index)!=null) {
 
-                   Intent intent = new Intent(MyApplication.getCurrentActivityContext(), DoctorProfileActivity.class);
+                   Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                   intent.setClass(MyApplication.getCurrentActivityContext(), DoctorProfileActivity.class);
                            /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
                    intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
                        @Override

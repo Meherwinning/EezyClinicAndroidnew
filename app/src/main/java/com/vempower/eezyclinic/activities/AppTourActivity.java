@@ -129,6 +129,7 @@ public class AppTourActivity extends AbstractFragmentActivity {
         flag = true;
 
         Intent intent = new Intent(this, NonLoginHomeActivity.class);
+
         startActivity(intent);
         finishAffinity();
 

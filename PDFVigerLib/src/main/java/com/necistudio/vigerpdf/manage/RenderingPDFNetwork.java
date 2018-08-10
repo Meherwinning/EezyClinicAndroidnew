@@ -74,6 +74,7 @@ public class RenderingPDFNetwork {
             public void subscribe(ObservableEmitter<String> e) throws Exception {
                 try {
                     String root = Environment.getExternalStorageDirectory().toString();
+                   // String root = Environment.getDownloadCacheDirectory()
                     final File pdfFolder = new File(root + "/Android/data/" + context.getPackageName());
                     pdfFolder.mkdirs();
                     String path = pdfFolder + "/" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());

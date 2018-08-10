@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Messenger;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.vempower.eezyclinic.APICore.MedicalHistoryData;
 import com.vempower.eezyclinic.APICore.PrescriptionAPIData;
 import com.vempower.eezyclinic.R;
+import com.vempower.eezyclinic.activities.DoctorsClinicsListActivity;
 import com.vempower.eezyclinic.activities.MedicalHistoryEditDialogActivity;
 import com.vempower.eezyclinic.activities.PDFViewActivity;
 import com.vempower.eezyclinic.application.MyApplication;
@@ -162,7 +164,10 @@ import java.util.List;
                     switch (menuItem.getItemId()) {
                         case R.id.edit_item:
                            Utils.showToastMsg(data.toString());
-                            Intent intent= new Intent(MyApplication.getCurrentActivityContext(),MedicalHistoryEditDialogActivity.class);
+                            Intent intent =((Activity) MyApplication.getCurrentActivityContext()).getIntent();
+                            intent.setClass(MyApplication.getCurrentActivityContext(), MedicalHistoryEditDialogActivity.class);
+
+                            //Intent intent= new Intent(MyApplication.getCurrentActivityContext(),MedicalHistoryEditDialogActivity.class);
                             intent.putExtra(ListenerKey.ObjectKey.MEDICAL_HISTORY_OBJECT_KEY,new Messenger(new AbstractIBinder(){
                                 @Override
                                 protected IntentObjectListener getMyObject() {
