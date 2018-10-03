@@ -38,6 +38,7 @@
 -dontnote kotlin.**
 -dontnote kotlin.jvm.**
 -dontnote retrofit2.Platform
+
 #-dontnote com.google.android.gms.common.internal.**
 
 
@@ -97,6 +98,7 @@
 
 -keep class com.google.android.***
 -keep class com.google.android.gms.*
+-keep class com.google.android.gms.**
 
 -keep class com.android.volley.**
 -keep class com.appeaser.sublimepickerlibrary.**
@@ -160,7 +162,7 @@
 -keep class twitter4j.** { *; }
 
 -dontwarn twitter4j.**
--keep  class com.facebook.*
+-keep class com.facebook.*
 -keep class com.facebook.** { *; }
 
 
@@ -277,3 +279,22 @@
 -dontwarn com.google.**
 -dontwarn java.nio.**
 -dontwarn javax.annotation.**
+-dontwarn org.hamcrest.**
+-dontwarn org.hamcrest.beans.*
+-dontwarn android.test.*
+-dontwarn android.test.**
+-dontwarn android.test.***
+
+-keep class com.facebook.**
+-keep class com.necistudio.vigerpdf.utils.*
+-keep class okio.*
+-keep class retrofit.**
+-keep class android.database.sqlite.**
+-keep class com.crashlytics.android.**
+-keep class com.android.okhttp.internal.*
+#-keep com.facebook.FacebookAppLinkResolver
+
+-ignorewarnings
+-keep class * {
+    public private *;
+}

@@ -71,13 +71,12 @@
         <!-- Minimum space between the switch and caption text -->
         <attr name="switchPadding" format="dimension" />
 
-        <attr name="orientation" >
+        <attr name="my_orientation" >
             <!-- the switch moves only on the x-axis(horizontally) -->
             <enum name="horizontal" value="1" />
             <!-- the switch moves only on the y-axis(vertically) -->
             <enum name="vertical" value="0" />
         </attr>
-
         <!-- the track drawable will be drawn on top of these background. So if
              these back grounds were to be visible, the track has to have transparency -->
         <!-- The background when left side of the switch is visible -->

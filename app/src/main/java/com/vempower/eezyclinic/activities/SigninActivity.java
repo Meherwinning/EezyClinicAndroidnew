@@ -196,6 +196,7 @@ public class SigninActivity extends AbstractSocialLoginActivity {
             // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            finishAffinity();
             startActivity(intent);
         }else
         {
@@ -217,7 +218,7 @@ public class SigninActivity extends AbstractSocialLoginActivity {
                 }
             }));
             intent2.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
+            finishAffinity();
             startActivities(new Intent[]{intent,intent2});
             // MyApplication.getCurrentActivityContext().startActivity(intent);
 
@@ -225,7 +226,7 @@ public class SigninActivity extends AbstractSocialLoginActivity {
         showToastMessage(R.string.normal_signup_or_signin_msg_lbl);
 
         //finish();
-        finishAffinity();
+
     }
 
     private void callResendOTPScreen(SignupAPI signupAPI) {

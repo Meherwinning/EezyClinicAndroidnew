@@ -1,6 +1,7 @@
 apply plugin: 'maven'
 apply plugin: 'signing'
 
+/*
 def sonatypeRepositoryUrl
 if (isReleaseBuild()) {
     println 'RELEASE BUILD'
@@ -89,4 +90,4 @@ afterEvaluate { project ->
         archives androidSourcesJar
         archives androidJavadocsJar
     }
-}
+}*/

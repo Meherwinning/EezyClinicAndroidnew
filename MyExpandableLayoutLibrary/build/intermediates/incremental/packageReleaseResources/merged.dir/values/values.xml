@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="expandableLayout"><attr format="integer" name="ael_duration"/><attr format="boolean" name="ael_expanded"/><attr format="integer" name="ael_defaultChildIndex"/><attr format="dimension" name="ael_defaultPosition"/><attr format="enum" name="ael_orientation">
+    <declare-styleable name="expandableLayout">
+        <attr format="integer" name="ael_duration"/>
+        <attr format="boolean" name="ael_expanded"/>
+        <attr format="integer" name="ael_defaultChildIndex"/>
+        <attr format="dimension" name="ael_defaultPosition"/>
+        <attr format="enum" name="ael_orientation">
             <enum name="horizontal" value="0"/>
             <enum name="vertical" value="1"/>
-        </attr><attr format="enum" name="ael_interpolator">
+        </attr>
+        <attr format="enum" name="ael_interpolator">
             <enum name="accelerateDecelerate" value="0"/>
             <enum name="accelerate" value="1"/>
             <enum name="anticipate" value="2"/>
@@ -15,5 +21,6 @@
             <enum name="linear" value="8"/>
             <enum name="linearOutSlowIn" value="9"/>
             <enum name="overshoot" value="10"/>
-        </attr></declare-styleable>
+        </attr>
+    </declare-styleable>
 </resources>

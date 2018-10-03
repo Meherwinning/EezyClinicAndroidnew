@@ -19,7 +19,7 @@ package gradle;
 public class Config {
 
   public static final int MIN_SDK = 9;
-  public static final int COMPILE_SDK = 25;
+  public static final int COMPILE_SDK = 27;
   public static final int TARGET_SDK = COMPILE_SDK;
 
   public static final String VERSION_NAME = "1.2.6";

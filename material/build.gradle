@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '27.0.1'
+    compileSdkVersion 27
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 23
+        targetSdkVersion 27
         versionCode 21
         versionName "1.2.4"
     }
@@ -23,12 +23,26 @@ ext{
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:${libSupportVersion}"
-    compile "com.android.support:cardview-v7:${libSupportVersion}"
-    compile "com.android.support:recyclerview-v7:${libSupportVersion}"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    implementation "com.android.support:appcompat-v7:${libSupportVersion}"
+    implementation "com.android.support:cardview-v7:${libSupportVersion}"
+    implementation "com.android.support:recyclerview-v7:${libSupportVersion}"
 }
+
+configurations {
+    //'com.mcxiaoke.volley:library:1.0.6'
+    //all*.exclude group: 'com.android.support', module: 'support-v4'
+    //all*.exclude module: 'com.android.volley'
+
+    //all*.exclude group: 'com.android.volley', module: 'volley:volley'
+    //all*.exclude group: 'com.mcxiaoke.volley', module: 'volley:library-aar'
+    //all*.exclude module: 'gson'
+
+    // all*.exclude group: 'com.android.support', module: 'support-v7'
+    // all*.exclude group: 'com.android.support', module: 'support-annotations'
+}
+
 
 // Place it at the end of the file
 //apply from: "$rootProject.projectDir/dist/distInfo.gradle"

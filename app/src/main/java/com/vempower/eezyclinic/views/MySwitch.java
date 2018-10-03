@@ -199,7 +199,7 @@ public class MySwitch extends CompoundButton {
 
         mLeftBackground = a.getDrawable(R.styleable.MySwitch_leftBackground);
         mRightBackground = a.getDrawable(R.styleable.MySwitch_rightBackground);
-        mOrientation = a.getInteger(R.styleable.MySwitch_orientation, HORIZONTAL);
+        mOrientation = a.getInteger(R.styleable.MySwitch_my_orientation, HORIZONTAL);
         mThumbDrawable = a.getDrawable(R.styleable.MySwitch_thumb);
         mTrackDrawable = a.getDrawable(R.styleable.MySwitch_track);
         mTextOn = a.getText(R.styleable.MySwitch_textOn);
