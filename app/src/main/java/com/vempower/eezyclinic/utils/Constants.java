@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic.utils;
 
+import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.R;
 
 import org.jetbrains.annotations.Nullable;
@@ -9,15 +10,18 @@ import org.jetbrains.annotations.Nullable;
  */
 
 public interface Constants {
-    boolean IS_TESTING=true;
+    boolean IS_TESTING=false;
+
+    String BASE_URL_SUB="/betav/";//  /eezyclinic-git/
 
 
 
 
     String BASIC_URL= URL_MANAGE.getURL();
-    String GRAPH_BASE_URL=Constants.BASIC_URL +"/eezyclinic-git/patient/healthcheckreports?access_key=";
-    String MORE_BUTTON=Constants.BASIC_URL +"/eezyclinic-git/uploads/icons/more.png";
-    String LESS_BUTTON=Constants.BASIC_URL +"/eezyclinic-git/uploads/icons/less.png";
+    String GRAPH_BASE_URL=Constants.BASIC_URL +BASE_URL_SUB+ "patient/healthcheckreports?access_key=";
+    ///betav/api/
+    String MORE_BUTTON=Constants.BASIC_URL +BASE_URL_SUB+ "uploads/icons/more.png";
+    String LESS_BUTTON=Constants.BASIC_URL +BASE_URL_SUB+ "uploads/icons/less.png";
     //String SHARED_PREFERENCES_FILE_NAME = "stashdealcustomerpref";
     String LOGGED_USER_DETAILS_OBJECT = "login_user_obj";
     String SUCCESS_STATUS_CODE = "1";
@@ -119,10 +123,33 @@ public interface Constants {
             {
                // return "http://202.63.103.194:8008";
                 //return "http://202.63.103.194:8003";
+                //https://www.eezyclinic.com/betav
+               // return "https://dev.v-empower.com:81";
                 return "https://dev.v-empower.com:81";
             }else
             {
-                return "https://www.stashdeal.com";
+                return "https://www.eezyclinic.com";
+                //return "https://www.stashdeal.com";
+            }
+        }
+    }
+
+
+    class DATA_MANAGE
+    {
+        public static String getURL()
+        {
+            if(IS_TESTING)
+            {
+                // return "http://202.63.103.194:8008";
+                //return "http://202.63.103.194:8003";
+                //https://www.eezyclinic.com/betav
+                // return "https://dev.v-empower.com:81";
+                return "/eezyclinic-git/api/";
+            }else
+            {
+                return "/betav/api/";//"https://www.eezyclinic.com";
+                //return "https://www.stashdeal.com";
             }
         }
     }

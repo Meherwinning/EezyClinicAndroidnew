@@ -15,8 +15,8 @@ android {
         applicationId "com.vempower.eezyclinic"
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.27"
+        versionCode 29
+        versionName "1.29"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         resConfigs "en"
@@ -66,8 +66,8 @@ android {
              reset()
              //include "armeabi","armeabi-v7a","arm64-v8a","mips","mips64","x86","x86_64"
              ////include "armeabi","armeabi-v7a","arm64-v8a","mips"/*,"x86"*/
-             include "armeabi-v7a"
-             ////universalApk true
+             //include "armeabi-v7a"
+             universalApk true
 
          }
      }

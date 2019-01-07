@@ -167,7 +167,8 @@
     <!-- TimePicker -->
 
     <style name="SublimeTimePickerStyle">
-        <item name="spHeaderBackground">?spHeaderBackgroundPtr</item>
+       <!-- <item name="spHeaderBackground">?spHeaderBackgroundPtr</item>-->
+        <item name="spHeaderBackground">@color/colorPrimary</item>
         <item name="spHeaderTextColor">?attr/spPrimaryTextSecondaryWhenActivatedMaterialInversePtr</item>
     </style>
 

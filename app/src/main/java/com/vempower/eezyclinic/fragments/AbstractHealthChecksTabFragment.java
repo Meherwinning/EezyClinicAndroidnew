@@ -87,6 +87,7 @@ abstract class AbstractHealthChecksTabFragment extends AbstractFragment {
         }
 //https://dev.v-empower.com:81/eezyclinic-git/patient/healthcheckreports?access_key=97857cb8d95925c863a56d4d7703f8c8&type=1
         url = Constants.GRAPH_BASE_URL + access_key + "&type=" + getHealthCheckType();
+
         //String url="file:///android_asset/"+"chart.html";
 
         if (graph_expand_iv != null) {

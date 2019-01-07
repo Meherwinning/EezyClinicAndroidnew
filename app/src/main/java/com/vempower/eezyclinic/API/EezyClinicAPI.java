@@ -45,6 +45,7 @@ import com.vempower.eezyclinic.APIResponce.TPAListAPI;
 import com.vempower.eezyclinic.APIResponce.UpcomingAppointmentListAPI;
 import com.vempower.eezyclinic.APIResponce.UpcomingFollowupsAPI;
 import com.vempower.eezyclinic.APIResponce.VerifyOTPAPI;
+import com.vempower.eezyclinic.utils.Constants;
 
 import java.util.Map;
 
@@ -57,13 +58,18 @@ import retrofit.http.Part;
 import retrofit.http.PartMap;
 import retrofit.http.Query;
 
+import static com.vempower.eezyclinic.utils.Constants.BASE_URL_SUB;
+import static com.vempower.eezyclinic.utils.Constants.IS_TESTING;
+
 /**
  * Created by Satish on 11/15/2017.
  */
 
 public interface EezyClinicAPI {
-    String data = "/eezyclinic-git/api/";
+    String data = BASE_URL_SUB+"api/";//Constants.DATA_MANAGE.getURL();//"/betav/eezyclinic-git/api/";
    // String data = "/api/";
+
+
 
 
     //http://202.63.103.194:8008/api/patient/signin
