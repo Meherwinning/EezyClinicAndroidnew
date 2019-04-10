@@ -28,8 +28,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.utils.Utils;
- ;
+
+;
 
 
 /**
@@ -42,6 +42,7 @@ import com.vempower.eezyclinic.utils.Utils;
 public class PageFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_TEXT = "param1";
+    private static AppTourListener tourListener;
 
     //private TextView myTextView;
 
@@ -59,12 +60,13 @@ public class PageFragment extends Fragment {
      * @param pageText Parameter 1.
      * @return A new instance of fragment PageFragment.
      */
-    public static PageFragment newInstance(@NonNull final int pageText) {
+    public static PageFragment newInstance(@NonNull final int pageText,AppTourListener tourListener1) {
         PageFragment fragment = new PageFragment();
 
         Bundle args = new Bundle();
         args.putInt(ARG_TEXT, pageText);
         fragment.setArguments(args);
+        tourListener=tourListener1;
 
         return fragment;
     }
@@ -73,7 +75,7 @@ public class PageFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            page = getArguments().getInt(ARG_TEXT,-1);
+            page = getArguments().getInt(ARG_TEXT, -1);
         }
     }
 
@@ -81,30 +83,44 @@ public class PageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=null;
-        switch (page)
-        {
+        View view = null;
+        switch (page) {
             case 0:
-                return inflater.inflate(R.layout.fragment_apptour_page1, container, false);
+                view = inflater.inflate(R.layout.fragment_apptour_page1, container, false);
+
                 //myTextView= view.findViewById(R.id.from_text);
 
-               // break;
+                 break;
             case 1:
-                return inflater.inflate(R.layout.fragment_apptour_page2, container, false);
-               // myTextView= view.findViewById(R.id.from_text);
-                //break;
+                view = inflater.inflate(R.layout.fragment_apptour_page2, container, false);
+            // myTextView= view.findViewById(R.id.from_text);
+            break;
+
             case 2:
-                return inflater.inflate(R.layout.fragment_apptour_page3, container, false);
-               // myTextView= view.findViewById(R.id.from_text);
-                //break;
+                view = inflater.inflate(R.layout.fragment_apptour_page3, container, false);
+            // myTextView= view.findViewById(R.id.from_text);
+            break;
 
-                default: {
-                    return inflater.inflate(R.layout.fragment_apptour_page3, container, false);
-                    //myTextView = view.findViewById(R.id.from_text);
-                }
-
+            default: {
+                view = inflater.inflate(R.layout.fragment_apptour_page3, container, false);
+                //myTextView = view.findViewById(R.id.from_text);
+            }
 
         }
+        TextView skipTv = view.findViewById(R.id.skip_tv);
+        if (skipTv != null) {
+            skipTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if(tourListener!=null)
+                    {
+                        tourListener.onSkipClick();
+                    }
+                }
+            });
+        }
+        return view;
        /*  TextView textView = (TextView) view.findViewById(R.id.text_view);
         if (textView != null) {
             textView.setText(pageText);
@@ -112,6 +128,11 @@ public class PageFragment extends Fragment {
 
         //myTextView.setText("Screen :"+ Utils.getStringFromResources(R.string.screen)+" Dimen:"+getResources().getDimension(R.dimen.text_size_normal));
 
-       // return view;
+        // return view;
+    }
+
+    public interface AppTourListener {
+        void onSkipClick();
+
     }
 }

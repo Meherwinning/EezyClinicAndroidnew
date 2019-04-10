@@ -17,6 +17,19 @@
             android:layout_width="match_parent"
             android:layout_above="@+id/center_img"
             android:layout_height="0dp">
+            <TextView
+                android:id="@+id/skip_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_15dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:padding="@dimen/_10dp"
+                android:layout_alignParentRight="true"
+                android:text="@string/next_lbl"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_16dp" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_centerInParent="true"

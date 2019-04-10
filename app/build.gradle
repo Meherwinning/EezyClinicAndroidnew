@@ -15,8 +15,8 @@ android {
         applicationId "com.vempower.eezyclinic"
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 29
-        versionName "1.29"
+        versionCode 30
+        versionName "1.30"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         resConfigs "en"

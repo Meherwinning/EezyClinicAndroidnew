@@ -1898,7 +1898,7 @@ public class EditProfileFragment extends ImageProcessFragment {
         });
 
     }
-
+   // United Arab Emirates
     public void setToCountryAdapter(List<EditProfileViewCountry> list) {
         final ArrayList<EditProfileViewCountry> countryTypeList = new ArrayList<>();
         if (list != null && list.size() > 0) {
@@ -1934,6 +1934,17 @@ public class EditProfileFragment extends ImageProcessFragment {
                         }
                         callCityListMapper(selectedCountry.getId());
                         profileDetails.country = selectedCountry.getCurrencyName();
+
+                        //start
+                        if (googlePlacesAutocompleteAdapter != null) {
+                            if (selectedCountry.getId().equalsIgnoreCase("1")) {
+                                googlePlacesAutocompleteAdapter.setRegion("IN");
+                            } else {
+                                googlePlacesAutocompleteAdapter.setRegion("AE");
+                            }
+                            addressAutoCompleteTextView.setText(null);
+                        }
+                        //end
                         // searchRequestParams.setCountry(selectedCountry.getId());
 
                         // namesSearch.setCountryId(selectedCountry.getId());
@@ -2037,7 +2048,7 @@ public class EditProfileFragment extends ImageProcessFragment {
                 profileDetails.city = null;
                 if (position != 0) {
                     CityData selectedCity = cityTypeList.get(position);
-                    Utils.showToastMessage("selected city " + selectedCity);
+                    //Utils.showToastMessage("selected city " + selectedCity);
                     if (selectedCity != null) {
                         profileDetails.city = selectedCity.getCityName();
                         //namesSearch.setCity(selectedCity.getId());

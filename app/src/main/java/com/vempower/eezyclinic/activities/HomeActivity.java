@@ -670,10 +670,8 @@ public class HomeActivity extends AbstractMenuActivity {
     protected void onRestart() {
         super.onRestart();
 
-        if(PRESENT_TAB==Constants.Home.MEDICAL_RECORDS)
-        {
-           if(medicalRecordsFragment!=null)
-           {
+        if(PRESENT_TAB==Constants.Home.MEDICAL_RECORDS) {
+           if(medicalRecordsFragment!=null) {
                MedicalRecordsFragment recordsFragment= (MedicalRecordsFragment) medicalRecordsFragment;
                recordsFragment.refresh();
            }

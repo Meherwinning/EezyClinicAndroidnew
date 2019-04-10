@@ -90,6 +90,6 @@ public class MedicalRecordsFragment extends AbstractFragment {
     }
 
     public void refresh() {
-        setMyViewPager();
+        //setMyViewPager();
     }
 }

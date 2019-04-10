@@ -126,7 +126,7 @@
     <string name="search_result_clinic_lbl">Search Result – Clinics</string>
     <string name="view_doctors_lbl">View Doctors</string>
     <string name="no_matching_resuly_lbl">There are no matching results</string>
-    <string name="no_reviews_yet_lbl">Reviews from verified patients not received,\nBe the first one to review and give your feedback</string>
+    <string name="no_reviews_yet_lbl">Reviews from verified patients not received,\nGive your feedback</string>
     <string name="claer_filter_message_lbl">Are you sure you want to clear the filters?</string>
     <string name="press_again_to_exit_from_search">Press again to exit from the search.</string>
     <string name="unable_to_get_insurance_list_lbl">Something went wrong in fetching Insurance List from server, please try again</string>
@@ -250,6 +250,8 @@
     <string name="please_enter_valid_emerengency_contact_num_lbl">Please enter valid Emergency Contact number</string>
     <string name="other_appointment_create_alert_lbl">As contact details of patient is not provided, Patient account would be created by considering your details for contact purpose, this can be changed later.\nDo you want to continue</string>
     <string name="title_settings_lbl">My Account</string>
+    <string name="skip_lbl"><u>Skip</u></string>
+    <string name="next_lbl"><u>Next</u></string>
 
 
 </resources>

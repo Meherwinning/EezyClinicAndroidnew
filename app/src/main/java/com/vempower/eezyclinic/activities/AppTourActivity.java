@@ -142,7 +142,7 @@ public class AppTourActivity extends AbstractFragmentActivity {
 */
     }
 
-    private static class PagerAdapter extends FragmentStatePagerAdapter {
+    private  class PagerAdapter extends FragmentStatePagerAdapter {
 
         private static final int NUM_PAGES = 3;
 
@@ -157,7 +157,13 @@ public class AppTourActivity extends AbstractFragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return PageFragment.newInstance(position);
+            return PageFragment.newInstance(position, new PageFragment.AppTourListener() {
+                @Override
+                public void onSkipClick() {
+                    onNextButtonClick();
+                }
+
+            });
         }
     }
 }
