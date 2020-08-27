@@ -62,7 +62,7 @@
                 android:layout_marginLeft="@dimen/_10dp"
                 android:paddingLeft="@dimen/_10dp"
                 >
-                <android.support.v4.widget.NestedScrollView
+                <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
 
 
@@ -87,7 +87,7 @@
 
                         </com.nex3z.togglebuttongroup.MultiSelectToggleGroup>
                     </LinearLayout>
-                </android.support.v4.widget.NestedScrollView>
+                </androidx.core.widget.NestedScrollView>
 
 
             </com.github.aakira.expandablelayout.ExpandableLinearLayout>

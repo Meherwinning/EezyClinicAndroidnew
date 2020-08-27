@@ -28,10 +28,11 @@ import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.support.annotation.ColorInt;
-import android.support.annotation.Nullable;
-import android.support.annotation.Px;
-import android.support.v7.widget.AppCompatEditText;
+import androidx.annotation.ColorInt;
+import androidx.annotation.Nullable;
+import androidx.annotation.Px;
+import androidx.appcompat.widget.AppCompatEditText;
+
 import android.text.InputFilter;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -547,7 +548,7 @@ public class PinView extends AppCompatEditText {
      *
      * @param color A color value in the form 0xAARRGGBB.
      *              Do not pass a resource ID. To get a color value from a resource ID, call
-     *              {@link android.support.v4.content.ContextCompat#getColor(Context, int) getColor}.
+     *              {@link androidx.core.content.ContextCompat#getColor(Context, int) getColor}.
      * @attr ref R.styleable#PinView_borderColor
      * @see #setBorderColor(ColorStateList)
      * @see #getBorderColors()
@@ -602,7 +603,7 @@ public class PinView extends AppCompatEditText {
      *
      * @param color A color value in the form 0xAARRGGBB.
      *              Do not pass a resource ID. To get a color value from a resource ID, call
-     *              {@link android.support.v4.content.ContextCompat#getColor(Context, int) getColor}.
+     *              {@link androidx.core.content.ContextCompat#getColor(Context, int) getColor}.
      * @attr ref R.styleable#PinView_lineColor
      * @see #setLineColor(ColorStateList)
      * @see #getLineColors()

@@ -20,7 +20,7 @@
         android:layout_marginBottom="@dimen/_15dp"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
 
             android:layout_height="@dimen/_50dp"
@@ -50,7 +50,7 @@
                 android:textColorHint="#8a000000"
                 android:textSize="@dimen/_14dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
@@ -67,7 +67,7 @@
                 android:layout_marginBottom="@dimen/_15dp"
                 android:orientation="vertical">
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
 
                     android:layout_height="@dimen/_50dp"
@@ -97,7 +97,7 @@
                         android:textColorHint="#8a000000"
                         android:textSize="@dimen/_14dp" />
 
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
 
                 <TextView
@@ -114,7 +114,7 @@
         android:layout_marginBottom="@dimen/_15dp"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
 
             android:layout_height="@dimen/_50dp"
@@ -145,7 +145,7 @@
                 android:textColorHint="#8a000000"
                 android:textSize="@dimen/_14dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
@@ -162,7 +162,7 @@
         android:layout_marginBottom="@dimen/_15dp"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
 
             android:layout_height="@dimen/_50dp"
@@ -194,7 +194,7 @@
                 android:textColorHint="#8a000000"
                 android:textSize="@dimen/_14dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
@@ -211,7 +211,7 @@
         android:layout_marginBottom="@dimen/_15dp"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
 
             android:layout_height="@dimen/_50dp"
@@ -241,7 +241,7 @@
                 android:textColorHint="#8a000000"
                 android:textSize="@dimen/_14dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
@@ -258,7 +258,7 @@
                 android:layout_marginBottom="@dimen/_15dp"
                 android:orientation="vertical">
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
 
                     android:layout_height="@dimen/_50dp"
@@ -288,7 +288,7 @@
                         android:textColorHint="#8a000000"
                         android:textSize="@dimen/_14dp" />
 
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
 
                 <TextView
@@ -305,7 +305,7 @@
         android:layout_marginBottom="@dimen/_15dp"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
 
             android:layout_height="@dimen/_50dp"
@@ -337,7 +337,7 @@
                 android:textColorHint="#8a000000"
                 android:textSize="@dimen/_14dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
@@ -354,7 +354,7 @@
         android:layout_marginBottom="@dimen/_15dp"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
 
             android:layout_height="@dimen/_50dp"
@@ -384,7 +384,7 @@
                 android:textColorHint="#8a000000"
                 android:textSize="@dimen/_14dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
@@ -401,7 +401,7 @@
         android:layout_marginBottom="@dimen/_15dp"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
 
             android:layout_height="@dimen/_50dp"
@@ -432,7 +432,7 @@
                 android:textColorHint="#8a000000"
                 android:textSize="@dimen/_14dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
@@ -449,7 +449,7 @@
         android:layout_marginBottom="@dimen/_15dp"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
 
             android:layout_height="@dimen/_50dp"
@@ -479,7 +479,7 @@
                 android:textColorHint="#8a000000"
                 android:textSize="@dimen/_14dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
@@ -496,7 +496,7 @@
         android:layout_marginBottom="@dimen/_15dp"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
 
             android:layout_height="@dimen/_50dp"
@@ -526,7 +526,7 @@
                 android:textColorHint="#8a000000"
                 android:textSize="@dimen/_14dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
@@ -543,7 +543,7 @@
         android:layout_marginBottom="@dimen/_15dp"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
 
             android:layout_height="@dimen/_50dp"
@@ -573,7 +573,7 @@
                 android:textColorHint="#8a000000"
                 android:textSize="@dimen/_14dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
@@ -590,7 +590,7 @@
         android:layout_marginBottom="@dimen/_15dp"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
 
             android:layout_height="@dimen/_50dp"
@@ -620,7 +620,7 @@
                 android:textColorHint="#8a000000"
                 android:textSize="@dimen/_14dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
@@ -637,7 +637,7 @@
         android:layout_marginBottom="@dimen/_15dp"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
 
             android:layout_height="@dimen/_50dp"
@@ -667,7 +667,7 @@
                 android:textColorHint="#8a000000"
                 android:textSize="@dimen/_14dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView
@@ -684,7 +684,7 @@
         android:layout_marginBottom="@dimen/_15dp"
         android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
 
             android:layout_height="@dimen/_50dp"
@@ -714,7 +714,7 @@
                 android:textColorHint="#8a000000"
                 android:textSize="@dimen/_14dp" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <TextView

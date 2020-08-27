@@ -1,10 +1,10 @@
 package com.vempower.eezyclinic.activities;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.widget.Toolbar;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,16 +12,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.PatientProfileData;
-import com.vempower.eezyclinic.APICore.SearchResultClinicData;
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
-import com.vempower.eezyclinic.fragments.AppointmentListFragment;
 import com.vempower.eezyclinic.fragments.EditProfileFragment;
-import com.vempower.eezyclinic.fragments.MyProfileFragment;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.activities.AbstractActivity;
 
 import static com.vempower.eezyclinic.fragments.ImageProcessFragment.CODE_WRITE_SETTINGS_PERMISSION;
 

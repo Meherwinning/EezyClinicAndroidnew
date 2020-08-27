@@ -1,6 +1,6 @@
 package com.vempower.eezyclinic.activities;
 
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
@@ -106,7 +106,20 @@ public class AppointmentBookReviewActivity extends AbstractMenuActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView titleName = toolbar.findViewById(R.id.title_logo_tv);
         //((Toolbar) findViewById(R.id.toolbar)).setTitle(deal.getEntityName());
-        titleName.setText("Appointment Review");
+        Object obj = getObjectFromIntent(getIntent(), ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY);
+
+
+        if (obj != null && obj instanceof SearchResultDoctorListData) {
+            data = (SearchResultDoctorListData) obj;
+            if(data.getInstantBooking().equals("2"))
+            {
+                titleName.setText("Request Appointment Review");
+            }
+            else {
+                titleName.setText("Appointment Review");
+            }
+        }
+
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

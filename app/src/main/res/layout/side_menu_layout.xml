@@ -341,6 +341,39 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/tele_consultation_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_13dp"
+        android:background="@drawable/view_selector"
+        android:clickable="true"
+        android:minHeight="@dimen/_35dp"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/_8dp"
+        android:paddingBottom="@dimen/_8dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_28dp"
+            android:gravity="left|center"
+            android:minWidth="@dimen/_30dp"
+            android:src="@drawable/tele_consultation_icon" />
+
+        <TextView
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="left|center"
+            android:text="@string/tele_consultation_lbl"
+            android:textColor="@color/side_menu_text_color"
+            android:textSize="@dimen/text_size_normal" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/health_records_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

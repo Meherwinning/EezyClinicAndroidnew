@@ -2,7 +2,7 @@ package com.vempower.eezyclinic.views;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.v7.widget.AppCompatCheckedTextView;
+import androidx.appcompat.widget.AppCompatCheckedTextView;
 import android.util.AttributeSet;
 import android.view.ActionMode;
 import android.view.Menu;

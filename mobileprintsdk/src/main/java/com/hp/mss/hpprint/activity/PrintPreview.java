@@ -14,11 +14,14 @@ package com.hp.mss.hpprint.activity;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.print.PrintAttributes;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatSpinner;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatSpinner;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +30,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hp.mss.hpprint.R;
 import com.hp.mss.hpprint.model.PrintItem;
 import com.hp.mss.hpprint.model.PrintJobData;
@@ -46,6 +50,7 @@ import java.util.List;
  * create this activity by yourself). In the future, we may allow UI customization
  * within this activity.
  */
+@RequiresApi(api = Build.VERSION_CODES.KITKAT)
 public class PrintPreview extends AppCompatActivity {
     HashMap<String,PrintAttributes.MediaSize> spinnerMap = new HashMap<>();
     private PagePreviewView previewView;
@@ -67,7 +72,7 @@ public class PrintPreview extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if  (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setElevation(0);

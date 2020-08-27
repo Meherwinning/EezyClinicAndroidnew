@@ -2,8 +2,8 @@ package com.vempower.eezyclinic.views;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.v7.widget.AppCompatCheckBox;
-import android.support.v7.widget.AppCompatRadioButton;
+import androidx.appcompat.widget.AppCompatCheckBox;
+import androidx.appcompat.widget.AppCompatRadioButton;
 import android.util.AttributeSet;
 
 //import com.gc.materialdesign.views.CheckBox;

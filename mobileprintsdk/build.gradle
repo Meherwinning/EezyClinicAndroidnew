@@ -79,6 +79,7 @@ android {
 
 }
 
+/*
 def siteUrl = 'https://github.com/IPGPTP/DroidPrint'
 def gitUrl = 'https://github.com/IPGPTP/DroidPrint.git'
 group = 'com.hp.mss'
@@ -132,7 +133,7 @@ task sourcesJar(type: Jar) {
     classifier = 'sources'
 }
 
-task javadoc(type: Javadoc) << {
+task javadoc(type: Javadoc)  {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
@@ -147,7 +148,7 @@ artifacts {
     archives sourcesJar
 }
 
-task copyAarFile(type: Copy) << {
+task copyAarFile(type: Copy) {
     def myDir = System.getProperty("user.dir")
     def myFile = "mobileprintsdk.aar"
 
@@ -155,14 +156,15 @@ task copyAarFile(type: Copy) << {
     into("${myDir}/")
     include("mobileprintsdk.aar")
 }
+*/
 
 dependencies {
     // compile fileTree(include: ['*.jar'], dir: 'libs')
     //compile 'com.mcxiaoke.volley:library:1.0.19'
     //compile 'com.android.volley:volley:+'
-    implementation 'com.android.support:appcompat-v7:23.0.1'
-    implementation 'com.android.support:design:23.0.1'
-    implementation 'com.android.support:support-v4:23.0.1'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     //compile project(':volley-master')
     //implementation project(':volley-master-release')
     //implementation project(':volley-new2')

@@ -2,7 +2,7 @@ package com.vempower.eezyclinic.activities;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 

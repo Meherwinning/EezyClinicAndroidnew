@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
+
 import com.vempower.eezyclinic.R;
 
 import java.lang.reflect.Field;
@@ -14,7 +16,7 @@ import java.lang.reflect.Field;
  * Created by satish on 11/12/17.
  */
 
-public class MyAutoCompleteBlackCursorTextView extends android.support.v7.widget.AppCompatAutoCompleteTextView {
+public class MyAutoCompleteBlackCursorTextView extends AppCompatAutoCompleteTextView {
     public MyAutoCompleteBlackCursorTextView(Context context) {
         super(context);
         setFontStyle();

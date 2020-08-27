@@ -57,7 +57,7 @@
                     android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
 
                         android:layout_height="@dimen/_50dp"
@@ -88,7 +88,7 @@
                             android:textColorHint="@color/text_hint_color"
                             android:textSize="@dimen/text_size_normal" />
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                     <TextView
@@ -105,7 +105,7 @@
                     android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50dp"
                         android:background="@drawable/background_shape_idle"
@@ -139,7 +139,7 @@
                             android:textColorHint="@color/text_hint_color"
                             android:textSize="@dimen/text_size_normal" />
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                     <TextView
@@ -156,7 +156,7 @@
                     android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
                     <!--
-                                        <android.support.design.widget.TextInputLayout
+                                        <com.google.android.material.textfield.TextInputLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="@dimen/_50dp"
                                             android:background="@drawable/background_shape_idle"
@@ -186,7 +186,7 @@
 
                     </LinearLayout>
 
-                    <!-- </android.support.design.widget.TextInputLayout>-->
+                    <!-- </com.google.android.material.textfield.TextInputLayout>-->
 
 
                     <TextView
@@ -203,7 +203,7 @@
                     android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50dp"
                         android:background="@drawable/background_shape_idle"
@@ -232,7 +232,7 @@
                             android:textColorHint="@color/text_hint_color"
                             android:textSize="@dimen/text_size_normal" />
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                     <TextView
@@ -262,7 +262,7 @@
                     android:layout_marginBottom="@dimen/_15dp"
                     android:orientation="vertical">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50dp"
                         android:background="@drawable/background_shape_idle"
@@ -291,7 +291,7 @@
                             android:textColorHint="@color/text_hint_color"
                             android:textSize="@dimen/text_size_normal" />
 
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                     <TextView

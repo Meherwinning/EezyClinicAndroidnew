@@ -3,7 +3,7 @@ package com.vempower.eezyclinic.activities;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,13 +52,13 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
     private MySwitch search_type_switch;
     //private TextView search_type_switch_tv;
     private SearchRequest requestParms;
-    private ExpandableLinearLayout expandableLayout_gender_view, expandableLayout_language_view,
+    private ExpandableLinearLayout expandableLayout_gender_view,expandableLayout_language_view,
             expandableLayout_nationality_view, expandableLayout_insurance_view, expandableLayout_fee_view;
 
 
     private LinearLayout consultation_fee_linear, gender_view_linear,
             language_known_linear, nationality_view_linear;
-    private Switch online_booking_switch;
+    private Switch online_booking_switch,tele_consultation_switch;
 
     // private ExpandableLinearLayout expandableLayout_gender_view;
     @Override
@@ -75,6 +75,8 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
         gender_view_linear = findViewById(R.id.gender_view_linear);
         language_known_linear = findViewById(R.id.language_known_linear);
         nationality_view_linear = findViewById(R.id.nationality_view_linear);
+
+        tele_consultation_switch = findViewById(R.id.tele_counsltation_switch);
 
         online_booking_switch = findViewById(R.id.online_booking_switch);
 
@@ -109,6 +111,20 @@ public class FilterActivity extends AbstractFragmentActivity /*implements MySwit
             @Override
             public void onCheckedChanged(Switch view, boolean checked) {
                 requestParms.setOnlinebooking(checked ? 1 : 0);
+            }
+        });
+
+        tele_consultation_switch.setOnCheckedChangeListener(null);
+        tele_consultation_switch.setChecked(false);
+
+        if (requestParms.getTeleconsultation() == 1) {
+            tele_consultation_switch.setChecked(true);
+        }
+
+        tele_consultation_switch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(Switch view, boolean checked) {
+                requestParms.setTeleconsultation(checked ? 1 : 0);
             }
         });
 

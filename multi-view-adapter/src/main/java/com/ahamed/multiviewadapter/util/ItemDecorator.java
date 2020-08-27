@@ -18,8 +18,10 @@ package com.ahamed.multiviewadapter.util;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.ahamed.multiviewadapter.DataListManager;
 import com.ahamed.multiviewadapter.annotation.PositionType;
 
@@ -100,5 +102,5 @@ public interface ItemDecorator {
    * info
    */
   void onDraw(Canvas canvas, RecyclerView parent, View child, int position,
-      @PositionType int positionType);
+              @PositionType int positionType);
 }

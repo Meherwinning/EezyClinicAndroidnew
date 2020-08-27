@@ -22,21 +22,13 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import com.ahamed.multiviewadapter.annotation.PositionType;
 
-/**
- * SimpleDividerDecoration is a {@link RecyclerView.ItemDecoration} that can be used as a divider
- * between items of a {@link LinearLayoutManager}. It supports both {@link #HORIZONTAL} and
- * {@link #VERTICAL} orientations.
- *
- * This code has been adapted from official support library's  {@link DividerItemDecoration}
- */
+
 public class SimpleDividerDecoration implements ItemDecorator {
 
   public static final int HORIZONTAL = LinearLayout.HORIZONTAL;

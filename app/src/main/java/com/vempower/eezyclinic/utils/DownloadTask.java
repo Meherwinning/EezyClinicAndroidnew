@@ -7,13 +7,10 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Environment;
-import android.os.Handler;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.NotificationCompat;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
@@ -24,7 +21,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static android.os.SystemClock.sleep;
 import static com.vempower.eezyclinic.utils.DownloadTask.DownloadStatus.DOWNLOAD_COMPLETED;
 import static com.vempower.eezyclinic.utils.DownloadTask.DownloadStatus.DOWNLOAD_FAILED;
 import static com.vempower.eezyclinic.utils.DownloadTask.DownloadStatus.DOWNLOAD_STARTED;

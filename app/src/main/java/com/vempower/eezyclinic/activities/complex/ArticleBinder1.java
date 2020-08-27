@@ -16,31 +16,26 @@
 
 package com.vempower.eezyclinic.activities.complex;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.ahamed.multiviewadapter.BaseViewHolder;
 import com.ahamed.multiviewadapter.ItemBinder;
 import com.ahamed.multiviewadapter.util.ItemDecorator;
 import com.vempower.eezyclinic.APICore.NewHomeDoctorsList;
-import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
-import com.vempower.eezyclinic.APIResponce.SpecalitiyRemainData;
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.activities.TestSliderActivity;
 import com.vempower.eezyclinic.core.DoctorsPair;
 import com.vempower.eezyclinic.fragments.FirstFragment;
-import com.vempower.eezyclinic.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import okhttp3.internal.Util;
 
 public class ArticleBinder1 extends ItemBinder<NewHomeDoctorsList, ArticleBinder1.ViewHolder> {
 

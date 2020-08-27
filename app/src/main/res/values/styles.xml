@@ -15,6 +15,7 @@
          <item name="colorControlActivated">@color/white</item>
          <item name="colorControlHighlight">@color/colorPrimary</item>-->
     </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>

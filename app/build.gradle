@@ -9,16 +9,16 @@ import com.android.build.OutputFile
 //ext { minSdkVersion = 17 }
 android {
 
-    compileSdkVersion 27
-    buildToolsVersion '28.0.2'
+    compileSdkVersion 30
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.vempower.eezyclinic"
-        minSdkVersion 17
-        targetSdkVersion 27
+        minSdkVersion 21
+        targetSdkVersion 30
         versionCode 30
         versionName "1.30"
         multiDexEnabled true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         resConfigs "en"
     }
 
@@ -87,6 +87,26 @@ android {
 
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/proguard/coroutines.pro'
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            force 'androidx.media:media:1.0.0'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 }
@@ -152,28 +172,33 @@ subprojects {
 dependencies {
 
     //implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.0.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation project(":telrlibrary-release")
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation 'com.android.support:multidex:1.0.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.squareup.retrofit:retrofit:2.0.0-beta2'
     implementation 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
     implementation 'com.squareup.retrofit:adapter-rxjava:2.0.0-beta2'
     implementation 'com.squareup.okhttp:logging-interceptor:2.6.0'
-    implementation 'com.android.support:recyclerview-v7:27.0.1'
-    implementation 'com.android.support:design:27.0.1'
-    implementation 'com.android.support:cardview-v7:27.0.1'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
 
     //implementation 'com.github.asne:asne-facebook:0.3.3'
 
     //Social login
 
     //Start
-    implementation 'com.github.asne:asne-facebook:0.3.3'
-    implementation 'com.github.asne:asne-twitter:0.3.3'
+    implementation ('com.github.asne:asne-facebook:0.3.3'){
+            exclude group: 'com.parse.bolts', module: 'bolts-tasks'
+    }
+    implementation ('com.github.asne:asne-twitter:0.3.3'){
+        exclude group: 'com.parse.bolts', module: 'bolts-tasks'
+    }
 
     //implementation 'com.github.asne:asne-googleplus:0.3.3'
 
@@ -222,11 +247,14 @@ dependencies {
 
     //implementation 'com.google.firebase:firebase-crash:11.4.2'
 
-    //implementation 'com.google.firebase:firebase-core:11.4.2'
-    implementation 'com.google.android.gms:play-services-maps:11.4.2'
-    implementation 'com.google.android.gms:play-services-auth:11.4.2'
-    implementation 'com.google.android.gms:play-services:11.4.2'
-    implementation 'com.google.android.gms:play-services-analytics:11.4.2'
+    implementation 'com.firebase:firebase-client-android:2.5.2'
+    implementation 'com.google.firebase:firebase-auth:19.3.1'
+    implementation 'com.google.android.gms:play-services-auth:18.0.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-drive:17.0.0'
+    implementation 'com.google.android.gms:play-services-plus:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.firebase:firebase-messaging:20.1.7'
 
     //compile 'com.facebook.android:facebook-android-sdk:[4,5)'
 
@@ -298,6 +326,29 @@ dependencies {
 
     //https://github.com/aerdy/Viger-PDF?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=5198
     implementation project(':PDFVigerLib')
+
+    implementation 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
+    implementation ('org.simpleframework:simple-xml:2.7.1',{
+        exclude group:'stax', module:'stax'
+        exclude group:'stax', module:'stax-api'
+        exclude group:'xpp3', module:'xpp3'
+    })
+
+    // Stripe Android SDK
+    implementation 'com.stripe:stripe-android:15.0.1'
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // Jitsi Meet
+    implementation ('org.jitsi.react:jitsi-meet-sdk:2.8.2') {
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.google.android.gms'
+        exclude module: 'com.android.volley'
+        exclude module: 'recyclerview-v7'
+        exclude group: 'com.parse.bolts', module: 'bolts-tasks'
+        transitive = true
+    }
+
 }
 repositories {
     mavenCentral()

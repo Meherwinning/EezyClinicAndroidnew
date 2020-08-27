@@ -20,17 +20,16 @@ package com.vempower.eezyclinic.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import android.view.View;
 
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.fragments.PageFragment;
 
 public class AppTourActivity extends AbstractFragmentActivity {

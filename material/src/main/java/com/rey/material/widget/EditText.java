@@ -10,11 +10,12 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.widget.AppCompatAutoCompleteTextView;
-import android.support.v7.widget.AppCompatEditText;
-import android.support.v7.widget.AppCompatMultiAutoCompleteTextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView;
+import androidx.core.view.GravityCompat;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Layout;
@@ -1201,17 +1202,7 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
         ((AutoCompleteTextView)mInputView).setListSelection(position);
     }
 
-    /**
-     * Get the position of the dropdown view selection, if there is one.  Returns
-     * {@link ListView#INVALID_POSITION ListView.INVALID_POSITION} if there is no dropdown or if
-     * there is no selection.
-     * <p>Only work when autoComplete mode is {@link #AUTOCOMPLETE_MODE_SINGLE} or {@link #AUTOCOMPLETE_MODE_MULTI}</p>
-     *
-     * @return the position of the current selection, if there is one, or
-     * {@link ListView#INVALID_POSITION ListView.INVALID_POSITION} if not.
-     *
-     * @see ListView#getSelectedItemPosition()
-     */
+
     public int getListSelection() {
         if(mAutoCompleteMode == AUTOCOMPLETE_MODE_NONE)
             return 0;
@@ -1949,7 +1940,6 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
      * @return the maximum width of the TextView, expressed in ems or -1 if the maximum width
-     * was set in pixels instead (using {@link #setMaxWidth(int)} or {@link #setWidth(int)}).
      *
      * @see #setMaxEms(int)
      * @see #setEms(int)
@@ -2001,7 +1991,6 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
      * was set in ems instead (using {@link #setMaxEms(int)} or {@link #setEms(int)}).
      *
      * @see #setMaxWidth(int)
-     * @see #setWidth(int)
      *
      * @attr ref android.R.styleable#TextView_maxWidth
      */
@@ -2015,7 +2004,6 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
      * @return the minimum width of the TextView, expressed in ems or -1 if the minimum width
-     * was set in pixels instead (using {@link #setMinWidth(int)} or {@link #setWidth(int)}).
      *
      * @see #setMinEms(int)
      * @see #setEms(int)
@@ -2067,7 +2055,6 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
      * was set in ems instead (using {@link #setMinEms(int)} or {@link #setEms(int)}).
      *
      * @see #setMinWidth(int)
-     * @see #setWidth(int)
      *
      * @attr ref android.R.styleable#TextView_minWidth
      */
@@ -2146,7 +2133,6 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
 	/**
      * Get the private type of the content.
      *
-     * @see #setPrivateImeOptions(String)
      * @see EditorInfo#privateImeOptions
      */
 	public String getPrivateImeOptions (){
@@ -3068,7 +3054,6 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
      * {@link EditorInfo#extras TextBoxAttribute.extras}
      * Bundle that will be filled in when creating an input connection.  The
      * given integer is the resource ID of an XML resource holding an
-     * {@link android.R.styleable#InputExtras &lt;input-extras&gt;} XML tree.
      *
      * @see #getInputExtras(boolean)
      * @see EditorInfo#extras
@@ -3398,7 +3383,8 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
      * Sets whether the soft input method will be made visible when this
      * TextView gets focused. The default is true.
      */
-	public final void setShowSoftInputOnFocus (boolean show){
+	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public final void setShowSoftInputOnFocus (boolean show){
 		mInputView.setShowSoftInputOnFocus(show);
 	}
 
@@ -3477,16 +3463,7 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
      * When you use a TextView to display a useful piece of information to the user (such as a
      * contact's address), make it selectable, so that the user can select and copy its
      * content. You can also use set the XML attribute
-     * {@link android.R.styleable#TextView_textIsSelectable} to "true".
-     * <p>
-     * When you call this method to set the value of {@code textIsSelectable}, it sets
-     * the flags {@code focusable}, {@code focusableInTouchMode}, {@code clickable},
-     * and {@code longClickable} to the same value. These flags correspond to the attributes
-     * {@link android.R.styleable#View_focusable android:focusable},
-     * {@link android.R.styleable#View_focusableInTouchMode android:focusableInTouchMode},
-     * {@link android.R.styleable#View_clickable android:clickable}, and
-     * {@link android.R.styleable#View_longClickable android:longClickable}. To restore any of these
-     * flags to a state you had set previously, call one or more of the following methods:
+        * flags to a state you had set previously, call one or more of the following methods:
      * {@link #setFocusable(boolean) setFocusable()},
      * {@link #setFocusableInTouchMode(boolean) setFocusableInTouchMode()},
      * {@link #setClickable(boolean) setClickable()} or
@@ -3640,6 +3617,7 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
         return !hasPasswordTransformationMethod() && getText().length() > 0 && hasSelection();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     public boolean canPaste() {
         return (getKeyListener() != null &&
                 getSelectionStart() >= 0 &&
@@ -3688,7 +3666,7 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	}
 
-	private class InternalEditText extends AppCompatEditText{
+	private class InternalEditText extends AppCompatEditText {
 
 		public InternalEditText(Context context) {
 			super(context);
@@ -3987,7 +3965,7 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
         }
     }
 
-    private class InternalMultiAutoCompleteTextView extends AppCompatMultiAutoCompleteTextView{
+    private class InternalMultiAutoCompleteTextView extends AppCompatMultiAutoCompleteTextView {
 
         public InternalMultiAutoCompleteTextView(Context context) {
             super(context);

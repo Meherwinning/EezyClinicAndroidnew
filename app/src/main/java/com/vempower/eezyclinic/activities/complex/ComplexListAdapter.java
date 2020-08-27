@@ -20,9 +20,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Point;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.LinearSmoothScroller;
-import android.support.v7.widget.RecyclerView;
+
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,16 +28,15 @@ import android.view.ViewParent;
 import android.widget.ScrollView;
 
 
+import androidx.fragment.app.FragmentManager;
+
 import com.ahamed.multiviewadapter.DataItemManager;
 import com.ahamed.multiviewadapter.DataListManager;
 import com.ahamed.multiviewadapter.RecyclerAdapter;
-import com.ahamed.multiviewadapter.annotation.ExpandableMode;
 import com.ahamed.multiviewadapter.util.SimpleDividerDecoration;
 import com.vempower.eezyclinic.APICore.NewHomeData;
 import com.vempower.eezyclinic.APICore.NewHomeDoctorsList;
 import com.vempower.eezyclinic.APICore.NewHomeSpeciality;
-import com.vempower.eezyclinic.APIResponce.SpecalitiyData;
-import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.decorator.ArticleItemDecorator;
 import com.vempower.eezyclinic.activities.decorator.ArticleItemDecorator1;
 import com.vempower.eezyclinic.application.MyApplication;
@@ -428,12 +425,12 @@ public class ComplexListAdapter extends RecyclerAdapter {
       return width;
   }
 
-    public void setNewHomeData(NewHomeData newHomeData) {
+ /*   public void setNewHomeData(NewHomeData newHomeData) {
         this.homeData = newHomeData;
         refreshData();
         //setExpandableMode(EXPANDABLE_MODE_MULTIPLE);
         refreshDataBinders();
         notifyDataSetChanged();
 
-    }
+    }*/
 }

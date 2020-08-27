@@ -32,9 +32,11 @@ import com.vempower.eezyclinic.APIResponce.NationalityListAPI;
 import com.vempower.eezyclinic.APIResponce.NewHomeAPI;
 import com.vempower.eezyclinic.APIResponce.NotificationsAPI;
 import com.vempower.eezyclinic.APIResponce.NotificationsListAPI;
+import com.vempower.eezyclinic.APIResponce.PatientRequestAppointmentListAPI;
 import com.vempower.eezyclinic.APIResponce.PendingFeedbackListAPI;
 import com.vempower.eezyclinic.APIResponce.PrescriptionsListAPI;
 import com.vempower.eezyclinic.APIResponce.ProfileSettingsAPI;
+import com.vempower.eezyclinic.APIResponce.RequestAppointmentAPI;
 import com.vempower.eezyclinic.APIResponce.SearchFamilyMemberAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultClinicListAPI;
 import com.vempower.eezyclinic.APIResponce.SearchResultDoctorListAPI;
@@ -42,6 +44,7 @@ import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.APIResponce.SpecalitiesAPI;
 import com.vempower.eezyclinic.APIResponce.SubmitedFeedbackListAPI;
 import com.vempower.eezyclinic.APIResponce.TPAListAPI;
+import com.vempower.eezyclinic.APIResponce.TeleConsultationListAPI;
 import com.vempower.eezyclinic.APIResponce.UpcomingAppointmentListAPI;
 import com.vempower.eezyclinic.APIResponce.UpcomingFollowupsAPI;
 import com.vempower.eezyclinic.APIResponce.VerifyOTPAPI;
@@ -180,6 +183,17 @@ public interface EezyClinicAPI {
     @POST(data + "appointment/upcomingappointments")
     Call<UpcomingAppointmentListAPI> getAppointmentList(@Body RequestBody postBody);
 
+    //http://202.63.103.194:8003/api/appointment/teleconsultation_list
+    @POST(data + "appointment/teleconsultation_list")
+    Call<TeleConsultationListAPI> getteleconsultationList(@Body RequestBody postBody);
+
+    //http://202.63.103.194:8003/api/appointment/requestappointment
+    @POST(data + "appointment/patientrequestappointment")
+    Call<RequestAppointmentAPI> requestAppointment(@Body RequestBody postBody);
+
+    //http://202.63.103.194:8003/api/appointment/requestappointment
+    @POST(data + "appointment/patientrequestappointment_list")
+    Call<PatientRequestAppointmentListAPI> getpatientrequestappointmentlist(@Body RequestBody postBody);
 
     //http://202.63.103.194:8003/api/appointment/reschedule
     @POST(data + "appointment/reschedule")

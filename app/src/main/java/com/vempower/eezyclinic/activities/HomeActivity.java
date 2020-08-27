@@ -22,8 +22,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Messenger;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.Toolbar;
+
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,8 +31,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+
 import com.vempower.eezyclinic.APICore.Followup;
 import com.vempower.eezyclinic.APICore.Appointment;
+import com.vempower.eezyclinic.APICore.PatientRequestAppointment;
+import com.vempower.eezyclinic.APICore.TeleConsultation;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.AbstractAppHandler;
@@ -179,6 +183,37 @@ public class HomeActivity extends AbstractMenuActivity {
             homeFragment.setOnMyListener(new HomeListener() {
 
                 @Override
+                public void onTeleconsultationClick(final List<TeleConsultation> teleConsultationList) {
+                    // Utils.showToastMsg("Now click appointments");
+
+                    //  Intent  intent=new Intent(MyApplication.getCurrentActivityContext(),UpComingAppointmentListActivity.class);
+                    //startActivity(intent);
+
+                    //
+
+                    Intent intent = getIntent();
+                    intent.setClass(HomeActivity.this,TeleConsultationListActivity.class);
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra(ListenerKey.ObjectKey.TELE_CONSULTATION_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
+                        @Override
+                        protected IntentObjectListener getMyObject() {
+                            return new IntentObjectListener(){
+
+                                @Override
+                                public Object getObject() {
+                                    return teleConsultationList;
+                                }
+                            };
+                        }
+                    }));
+
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+                    startActivity(intent);
+                }
+
+
+                @Override
                 public void onUpcomingAppointmentClick(final List<Appointment> list) {
                    // Utils.showToastMsg("Now click appointments");
 
@@ -207,7 +242,35 @@ public class HomeActivity extends AbstractMenuActivity {
 
                     startActivity(intent);
                 }
+                @Override
+                public void onPatientRequestAppointmentClick(final List<PatientRequestAppointment> patientRequestAppointmentList) {
+                    // Utils.showToastMsg("Now click appointments");
 
+                    //  Intent  intent=new Intent(MyApplication.getCurrentActivityContext(),UpComingAppointmentListActivity.class);
+                    //startActivity(intent);
+
+                    //
+
+                    Intent intent = getIntent();
+                    intent.setClass(HomeActivity.this,PatientRequestAppointmentListActivity.class);
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.putExtra(ListenerKey.ObjectKey.PATIENT_REQUEST_APPOINTMENT_LIST_DATA_KEY,new Messenger(new AbstractIBinder(){
+                        @Override
+                        protected IntentObjectListener getMyObject() {
+                            return new IntentObjectListener(){
+
+                                @Override
+                                public Object getObject() {
+                                    return patientRequestAppointmentList;
+                                }
+                            };
+                        }
+                    }));
+
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+                    startActivity(intent);
+                }
                 @Override
                 public void onUpcomingFollowupsClick(List<Followup> followups) {
                     Intent intent = getIntent();

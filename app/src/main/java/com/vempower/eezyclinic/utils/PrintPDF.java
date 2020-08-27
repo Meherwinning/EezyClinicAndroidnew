@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.print.PrintAttributes;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 
 import com.hp.mss.hpprint.activity.PrintPluginManagerActivity;
 import com.hp.mss.hpprint.model.PDFPrintItem;

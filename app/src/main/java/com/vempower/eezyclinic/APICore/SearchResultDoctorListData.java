@@ -53,6 +53,12 @@ public class SearchResultDoctorListData {
     @SerializedName("instantBooking")
     @Expose
     private String instantBooking;
+    @SerializedName("teleconsultation")
+    @Expose
+    private String teleconsultation;
+    @SerializedName("requestBooking")
+    @Expose
+    private String requestBooking;
     @SerializedName("primaryMobileNo")
     @Expose
     private String primaryMobileNo;
@@ -229,6 +235,21 @@ public class SearchResultDoctorListData {
         this.instantBooking = instantBooking;
     }
 
+    public String getTeleconsultation() {
+        return teleconsultation;
+    }
+
+    public void setTeleconsultation(String teleconsultation) {
+        this.teleconsultation = teleconsultation;
+    }
+
+    public String getRequestBooking() {
+        return requestBooking;
+    }
+    public void setRequestBooking(String requestBooking) {
+        this.requestBooking = requestBooking;
+    }
+
     public String getPrimaryMobileNo() {
         return primaryMobileNo;
     }
@@ -395,6 +416,7 @@ public class SearchResultDoctorListData {
                 ", briefProfile='" + briefProfile + '\'' +
                 ", consultancyFeeCurrency='" + consultancyFeeCurrency + '\'' +
                 ", instantBooking='" + instantBooking + '\'' +
+                ", teleconsultation='" + teleconsultation + '\'' +
                 ", primaryMobileNo='" + primaryMobileNo + '\'' +
                 ", counsultancyPrice='" + counsultancyPrice + '\'' +
                 ", branchTimings='" + branchTimings + '\'' +

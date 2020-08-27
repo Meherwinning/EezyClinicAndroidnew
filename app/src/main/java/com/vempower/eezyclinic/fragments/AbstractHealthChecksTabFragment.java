@@ -3,7 +3,7 @@ package com.vempower.eezyclinic.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
+import androidx.fragment.app.DialogFragment;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
@@ -20,7 +20,6 @@ import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicke
 import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.GraphExpandViewActivity;
-import com.vempower.eezyclinic.activities.ScheduleAppointmentActivity;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.HealthChecksRefreshListener;
 import com.vempower.eezyclinic.utils.Constants;

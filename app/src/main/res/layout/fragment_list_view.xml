@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
    >
 
-    <android.support.v4.widget.SwipeRefreshLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/swipeContainer"
@@ -16,7 +16,7 @@
             android:layout_height="match_parent">
 
         </com.vempower.eezyclinic.views.FixedRecyclerView>
-    </android.support.v4.widget.SwipeRefreshLayout>>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>>
      <TextView                    android:fontFamily="@font/roboto"
         android:id="@+id/no_matching_result_tv"
         android:layout_width="wrap_content"

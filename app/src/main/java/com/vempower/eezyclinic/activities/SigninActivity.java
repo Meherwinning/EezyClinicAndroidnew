@@ -8,12 +8,14 @@ import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Messenger;
-import android.support.annotation.Nullable;
+
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+
+import androidx.annotation.Nullable;
 
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.APIResponce.LoginAPI;

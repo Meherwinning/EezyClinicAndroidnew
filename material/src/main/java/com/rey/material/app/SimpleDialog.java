@@ -1,11 +1,12 @@
 package com.rey.material.app;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.v4.view.ViewCompat;
+import androidx.core.view.ViewCompat;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -14,10 +15,8 @@ import android.widget.BaseAdapter;
 import android.widget.ScrollView;
 
 import com.rey.material.R;
-import com.rey.material.drawable.BlankDrawable;
 import com.rey.material.widget.CheckBox;
 import com.rey.material.widget.CompoundButton;
-import com.rey.material.widget.ListView;
 import com.rey.material.widget.RadioButton;
 import com.rey.material.widget.TextView;
 
@@ -28,7 +27,7 @@ public class SimpleDialog extends Dialog {
 
     private TextView mMessage;
     private InternalScrollView mScrollView;
-    private InternalListView mListView;
+    //private InternalListView mListView;
     private InternalAdapter mAdapter;
 
     private int mMessageTextAppearanceId;
@@ -147,6 +146,7 @@ public class SimpleDialog extends Dialog {
         return this;
     }
 
+    @SuppressLint("WrongConstant")
     private void initScrollView(){
         mScrollView = new InternalScrollView(getContext());
         mScrollView.setPadding(0, 0, 0, mContentPadding - mActionPadding);
@@ -282,7 +282,7 @@ public class SimpleDialog extends Dialog {
     }
 
     private void initListView(){
-        mListView = new InternalListView(getContext());
+       /* mListView = new InternalListView(getContext());
         mListView.setDividerHeight(0);
         mListView.setCacheColorHint(0x00000000);
         mListView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
@@ -294,7 +294,7 @@ public class SimpleDialog extends Dialog {
         ViewCompat.setLayoutDirection(mListView, ViewCompat.LAYOUT_DIRECTION_INHERIT);
 
         mAdapter = new InternalAdapter();
-        mListView.setAdapter(mAdapter);
+        mListView.setAdapter(mAdapter);*/
     }
 
     /**
@@ -304,12 +304,12 @@ public class SimpleDialog extends Dialog {
      * @return The SimpleDialog for chaining methods.
      */
     public SimpleDialog items(CharSequence[] items, int selectedIndex){
-        if(mListView == null)
+        /*if(mListView == null)
             initListView();
 
         mMode = MODE_ITEMS;
         mAdapter.setItems(items, selectedIndex);
-        super.contentView(mListView);
+        super.contentView(mListView);*/
         return this;
     }
 
@@ -320,12 +320,12 @@ public class SimpleDialog extends Dialog {
      * @return The SimpleDialog for chaining methods.
      */
     public SimpleDialog multiChoiceItems(CharSequence[] items, int... selectedIndexes){
-        if(mListView == null)
+        /*if(mListView == null)
             initListView();
 
         mMode = MODE_MULTI_ITEMS;
         mAdapter.setItems(items, selectedIndexes);
-        super.contentView(mListView);
+        super.contentView(mListView);*/
         return this;
     }
 
@@ -401,51 +401,6 @@ public class SimpleDialog extends Dialog {
         }
     }
 
-    private class InternalListView extends ListView{
-
-        private boolean mIsRtl = false;
-
-        public InternalListView(Context context) {
-            super(context);
-        }
-
-        public void onRtlPropertiesChanged(int layoutDirection) {
-            boolean rtl = layoutDirection == LAYOUT_DIRECTION_RTL;
-            if(mIsRtl != rtl) {
-                mIsRtl = rtl;
-                requestLayout();
-            }
-        }
-
-        public boolean isLayoutRtl(){
-            return mIsRtl;
-        }
-
-        @Override
-        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-            int heightMode = View.MeasureSpec.getMode(heightMeasureSpec);
-            if(heightMode == View.MeasureSpec.UNSPECIFIED){
-                if(mItemHeight != ViewGroup.LayoutParams.WRAP_CONTENT)
-                    heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(mItemHeight * getAdapter().getCount() + getPaddingTop() + getPaddingBottom(), View.MeasureSpec.EXACTLY);
-            }
-
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        }
-
-        @Override
-        protected void onLayout(boolean changed, int l, int t, int r, int b) {
-            super.onLayout(changed, l, t, r, b);
-
-            int totalHeight = 0;
-            int childCount = getChildCount();
-
-            for(int i = 0; i < childCount; i++)
-                totalHeight += getChildAt(i).getMeasuredHeight();
-
-            showDivider(totalHeight > getMeasuredHeight() || (totalHeight == getMeasuredHeight() && getAdapter().getCount() > childCount));
-        }
-
-    }
 
     private class InternalAdapter extends BaseAdapter implements CompoundButton.OnCheckedChangeListener{
 
@@ -551,7 +506,7 @@ public class SimpleDialog extends Dialog {
                     v.setMinHeight(mItemHeight);
                 v.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
-                    v.setTextDirection(((InternalListView)parent).isLayoutRtl() ? View.TEXT_DIRECTION_RTL : View.TEXT_DIRECTION_LTR);
+                    v.setTextDirection(View.TEXT_DIRECTION_RTL);//((InternalListView)parent).isLayoutRtl() ? View.TEXT_DIRECTION_RTL : View.TEXT_DIRECTION_LTR);
                 v.setTextAppearance(v.getContext(), mItemTextAppearance);
                 v.setCompoundDrawablePadding(mContentPadding);
             }
@@ -578,7 +533,7 @@ public class SimpleDialog extends Dialog {
                     mOnSelectionChangedListener.onSelectionChanged(position, mSelected[position]);
             }
 
-            if(mMode == MODE_ITEMS && isChecked && mLastSelectedIndex != position){
+          /*  if(mMode == MODE_ITEMS && isChecked && mLastSelectedIndex != position){
                 mSelected[mLastSelectedIndex] = false;
 
                 if(mOnSelectionChangedListener != null)
@@ -589,7 +544,7 @@ public class SimpleDialog extends Dialog {
                     child.setChecked(false);
 
                 mLastSelectedIndex = position;
-            }
+            }*/
         }
     }
 
@@ -667,14 +622,14 @@ public class SimpleDialog extends Dialog {
                 case MODE_MESSAGE:
                     dialog.message(mMessage);
                     break;
-                case MODE_ITEMS:
+              /*  case MODE_ITEMS:
                     dialog.items(mItems, mSelectedIndexes == null ? 0 : mSelectedIndexes[0]);
                     dialog.onSelectionChangedListener(this);
                     break;
                 case MODE_MULTI_ITEMS:
                     dialog.multiChoiceItems(mItems, mSelectedIndexes);
                     dialog.onSelectionChangedListener(this);
-                    break;
+                    break;*/
             }
 
             return dialog;

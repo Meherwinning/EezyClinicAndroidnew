@@ -3,10 +3,10 @@ package com.vempower.eezyclinic.application;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.support.multidex.MultiDex;
-import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
 import android.widget.ImageView;
+
+import androidx.multidex.MultiDex;
 
 import com.google.gson.Gson;
 //import com.rey.material.app.ThemeManager;
@@ -14,6 +14,8 @@ import com.rey.material.app.ThemeManager;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 import com.squareup.picasso.Picasso;
+//import com.stripe.android.PaymentConfiguration;
+import com.stripe.android.PaymentConfiguration;
 import com.vempower.eezyclinic.API.EezyClinicAPI;
 import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
@@ -34,13 +36,15 @@ import retrofit.RxJavaCallAdapterFactory;
  * Created by Satishk on 8/9/2017.
  */
 
-public class MyApplication extends MultiDexApplication {
+public class MyApplication extends  TelrApplication/*MultiDexApplication*/ {
     private static MyApplication myApplication;
     private static ProgressDialog pd;
     private static Context mContext;
     private EezyClinicAPI eezyClinicAPI;
+    private TelrApplication telrApplication;
     private static SearchRequest searchRequestParms;
     private static SearchResultDoctorListData searchResultDoctorListData;
+    private static Context context;
 
     // private RefWatcher refWatcher;
 
@@ -54,8 +58,24 @@ public class MyApplication extends MultiDexApplication {
             refWatcher = LeakCanary.install(this);*/
         //ThemeManager.init(this, 2, 0, null);
         ThemeManager.init(this, 2, 0, null);
+        initStrip();
+
+       context = getApplicationContext();
 
 
+
+
+    }
+
+    public static Context getContext(){
+        return context;
+    }
+
+    private void initStrip() {
+        PaymentConfiguration.init(
+                getApplicationContext(),
+                "pk_test_TYooMQauvdEDq54NiTphI7jx"
+        );
     }
 
     @Override
@@ -77,6 +97,7 @@ public class MyApplication extends MultiDexApplication {
         MyApplication.mContext = mContext;
 
     }
+
 
     public EezyClinicAPI getEezyClinicAPI()
     {

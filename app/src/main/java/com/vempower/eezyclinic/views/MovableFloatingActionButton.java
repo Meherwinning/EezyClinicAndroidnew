@@ -5,10 +5,11 @@ package com.vempower.eezyclinic.views;
  */
 
 import android.content.Context;
-import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.rey.material.widget.FloatingActionButton;
 
 public class MovableFloatingActionButton extends FloatingActionButton implements View.OnTouchListener {
 

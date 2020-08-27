@@ -22,8 +22,9 @@ import android.graphics.Matrix;
 import android.graphics.Matrix.ScaleToFit;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
-import android.support.v4.view.MotionEventCompat;
+
+import androidx.annotation.Nullable;
+import androidx.core.view.MotionEventCompat;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -239,12 +240,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
         return mZoomEnabled;
     }
 
-    /**
-     * Clean-up the resources attached to this object. This needs to be called when the ImageView is
-     * no longer used. A good example is from {@link View#onDetachedFromWindow()} or
-     * from {@link android.app.Activity#onDestroy()}. This is automatically called if you are using
-     * {@link com.necistudio.libimagezoom.PhotoView}.
-     */
+
     @SuppressWarnings("deprecation")
     public void cleanup() {
         if (null == mImageView) {

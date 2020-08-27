@@ -2,12 +2,13 @@ package com.vempower.eezyclinic.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.vempower.eezyclinic.APICore.GetMyNotesData;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;

@@ -1,14 +1,14 @@
 package com.vempower.eezyclinic.fragments;
 
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.View;
+
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.utils.Utils;
 import com.vempower.eezyclinic.views.AutoFitFixedRecyclerView;
-import com.vempower.eezyclinic.views.FixedRecyclerView;
 import com.vempower.eezyclinic.views.FullToRefreshGridLayoutManager;
 import com.vempower.eezyclinic.views.FullToRefreshLinerLayoutManager;
 

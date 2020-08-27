@@ -3,7 +3,7 @@ package com.vempower.eezyclinic.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Messenger;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.text.TextUtils;
 
 import com.linkedin.platform.APIHelper;

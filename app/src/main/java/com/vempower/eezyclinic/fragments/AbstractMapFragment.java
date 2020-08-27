@@ -3,13 +3,15 @@ package com.vempower.eezyclinic.fragments;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -92,10 +94,11 @@ public abstract class AbstractMapFragment extends AbstractFragment implements On
                 return;
             }
             LatLngBounds latLngBounds = builder.build();
-            if(latLngBounds==null )
-            {
-                return;
-            }
+
+//            if(latLngBounds==null )
+//            {
+//                return;
+//            }
             final LatLngBounds bounds = adjustBoundsForMaxZoomLevel(latLngBounds);
 
            final float[] results = new float[1];

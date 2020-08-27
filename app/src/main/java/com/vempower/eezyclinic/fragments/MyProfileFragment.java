@@ -1,27 +1,24 @@
 package com.vempower.eezyclinic.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Point;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Messenger;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
@@ -33,24 +30,15 @@ import com.vempower.eezyclinic.APICore.PatientProfileAddress;
 import com.vempower.eezyclinic.APICore.PatientProfileData;
 import com.vempower.eezyclinic.APICore.Patientinsurancedetail;
 import com.vempower.eezyclinic.APICore.Tpalist;
-import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.APIResponce.GetPatientProfileAPI;
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.activities.ClinicProfileActivity;
-import com.vempower.eezyclinic.activities.ImageExpandViewActivity;
 import com.vempower.eezyclinic.adapters.HintAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
-import com.vempower.eezyclinic.callbacks.ListenerKey;
-import com.vempower.eezyclinic.core.SecondaryInsurance;
-import com.vempower.eezyclinic.interfaces.AbstractIBinder;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.interfaces.ImageProcessListener;
-import com.vempower.eezyclinic.interfaces.IntentObjectListener;
-import com.vempower.eezyclinic.mappers.DeleteSecoundaryInsuranceMapper;
 import com.vempower.eezyclinic.mappers.GetPatientProfileMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.Utils;
-import com.vempower.eezyclinic.views.CustomSpinnerSelection;
 import com.vempower.eezyclinic.views.MyEditTextBlackCursor;
  ;
 import com.vempower.eezyclinic.activities.AbstractActivity;
@@ -58,10 +46,8 @@ import com.vempower.eezyclinic.activities.AbstractActivity;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
 
 /**

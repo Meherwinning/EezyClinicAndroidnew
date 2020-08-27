@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/_10dp"
+        android:paddingLeft="@dimen/_10dp"
+        android:layout_marginRight="@dimen/_18dp"
+        android:paddingRight="@dimen/_10dp"
+
+        android:layout_height="wrap_content">
+        <CheckBox                        android:fontFamily="@font/roboto"
+            android:id="@+id/tele_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:button="@drawable/checkbox_selector1"
+            android:padding="@dimen/_5dp"
+
+            android:text="Tele Consultation"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_small" />
+
+
+    </LinearLayout>
+</LinearLayout>

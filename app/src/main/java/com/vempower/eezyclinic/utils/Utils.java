@@ -16,8 +16,6 @@ import android.os.Build;
 import android.os.CountDownTimer;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.DisplayMetrics;
@@ -26,10 +24,12 @@ import android.view.Display;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.vempower.eezyclinic.APIResponce.AbstractResponse;
-import com.vempower.eezyclinic.MyFirebaseInstanceIDService;
+import com.vempower.eezyclinic.MyFirebaseMessagingService;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.mappers.FCMRegisterMapper;
@@ -54,7 +54,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
-import static com.vempower.eezyclinic.MyFirebaseInstanceIDService.IS_SEND_TO_SERVER;
+import static com.vempower.eezyclinic.MyFirebaseMessagingService.IS_SEND_TO_SERVER;
 
 
 /**
@@ -163,7 +163,7 @@ public class Utils {
             packageInfo = context.getPackageManager().getPackageInfo(packageName,
                     PackageManager.GET_SIGNATURES);
 
-            Log.e("Package Name=", context.getApplicationContext().getPackageName());
+            //Log.e("Package Name=", context.getApplicationContext().getPackageName());
 
             for (Signature signature : packageInfo.signatures) {
                 MessageDigest md = MessageDigest.getInstance("SHA");
@@ -853,11 +853,11 @@ public class Utils {
     }*/
 
     public static String getFireBaseCloudMessageId() {
-        String token = SharedPreferenceUtils.getStringValueFromSharedPrefarence(MyFirebaseInstanceIDService.FIRE_BASE_TOKEN_ID, "");
+        String token = SharedPreferenceUtils.getStringValueFromSharedPrefarence(MyFirebaseMessagingService.FIRE_BASE_TOKEN_ID, "");
         if (TextUtils.isEmpty(token)) {
             token = FirebaseInstanceId.getInstance().getToken();
             if (!TextUtils.isEmpty(token)) {
-                SharedPreferenceUtils.setStringValueToSharedPrefarence(MyFirebaseInstanceIDService.FIRE_BASE_TOKEN_ID, token);
+                SharedPreferenceUtils.setStringValueToSharedPrefarence(MyFirebaseMessagingService.FIRE_BASE_TOKEN_ID, token);
 
                 return token;
             }

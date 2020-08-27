@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
 
-        <android.support.v4.widget.SwipeRefreshLayout
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_above="@+id/search_family_member_bt"
             android:layout_height="match_parent"
@@ -22,7 +22,7 @@
                 android:layout_height="match_parent">
 
             </com.vempower.eezyclinic.views.FixedRecyclerView>
-        </android.support.v4.widget.SwipeRefreshLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
          <TextView    android:fontFamily="@font/roboto"
             android:id="@+id/no_matching_result_tv"
@@ -36,7 +36,7 @@
             android:textColor="#5d5d5d"
             android:text="@string/no_familiy_members_lbl" />
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
 
             android:layout_alignParentBottom="true"
             android:id="@+id/search_family_member_bt"
@@ -65,4 +65,4 @@
     </RelativeLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

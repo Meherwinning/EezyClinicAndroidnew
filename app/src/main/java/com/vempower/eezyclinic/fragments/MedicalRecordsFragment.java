@@ -1,17 +1,17 @@
 package com.vempower.eezyclinic.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.HealthRecordsViewPagerAdapter;
-import com.vempower.eezyclinic.utils.Utils;
 
 /**
  * Created by satish on 6/12/17.

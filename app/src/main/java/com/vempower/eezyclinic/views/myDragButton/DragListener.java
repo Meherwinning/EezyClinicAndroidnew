@@ -1,6 +1,6 @@
 package com.vempower.eezyclinic.views.myDragButton;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.util.EventListener;
 

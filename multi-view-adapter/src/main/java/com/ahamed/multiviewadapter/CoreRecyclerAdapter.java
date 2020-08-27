@@ -16,13 +16,16 @@
 
 package com.ahamed.multiviewadapter;
 
-import android.support.annotation.RestrictTo;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import androidx.annotation.RestrictTo;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.ahamed.multiviewadapter.annotation.ExpandableMode;
 import com.ahamed.multiviewadapter.listener.ItemActionListener;
 import java.util.ArrayList;

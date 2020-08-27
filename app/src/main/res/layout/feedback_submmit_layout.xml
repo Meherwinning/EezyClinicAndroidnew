@@ -254,7 +254,7 @@
             android:layout_marginTop="@dimen/_15dp"
             android:orientation="vertical">
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
 
                 android:layout_height="wrap_content"
@@ -278,7 +278,7 @@
                     android:textColor="#de000000"
                     />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <TextView
@@ -340,7 +340,7 @@
         </LinearLayout>
 
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
 
             android:layout_alignParentBottom="true"
             android:id="@+id/submit_bt"

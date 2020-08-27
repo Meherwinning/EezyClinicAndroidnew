@@ -2,7 +2,6 @@ package com.vempower.eezyclinic.fragments;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.rey.material.widget.Button;
 import com.vempower.eezyclinic.APICore.BookAppointmentRequestDetails;
@@ -39,7 +40,7 @@ import java.util.Date;
 public class AppointmentReviewFragment extends AbstractFragment {
 
     private View fragmentView;
-    private LinearLayout relation_linear,patient_email_id_linear,patient_phone_number_linear;
+    private LinearLayout consultancy_type_linear,relation_linear,patient_email_id_linear,patient_phone_number_linear;
     private MyRadioButtonRR self_radio_button;
     private RadioGroup appointment_radio_group;
 
@@ -47,13 +48,13 @@ public class AppointmentReviewFragment extends AbstractFragment {
     // private CheckBox self_checkbox,others_checkbox;
 
     //private boolean isSelfAppointment;
-    private CustomSpinnerSelection relation_spinner;
+    private CustomSpinnerSelection relation_spinner,counsltancy_type_spinner;
     private Button appointment_bt;
     //private String selectedRelation;
     private MyEditTextBlackCursor patient_name_et,reason_for_appointment_et,email_et,phone_et;
     private SearchResultDoctorListData searchResultDoctorListData;
     private String dateTimeStr;
-    private  TextView time_date_display_tv;
+    private  TextView time_date_display_tv,requestappointment_conform_tv,appointment_time_before_tv;
     private PatientData patientData;
     private View success_view;
     private LinearLayout review_view;
@@ -84,23 +85,16 @@ public class AppointmentReviewFragment extends AbstractFragment {
         success_view  =fragmentView.findViewById(R.id.success_view);
         review_view.setVisibility(View.VISIBLE);
         success_view.setVisibility(View.GONE);
-        appointment_bt.setText("Book Appointment");
-
-
-
-
-
-
-
-
+        //appointment_bt.setText("Book Appointment");
         appointment_radio_group   =fragmentView.findViewById(R.id. appointment_radio_group);
         time_date_display_tv =fragmentView.findViewById(R.id. time_date_display_tv);
         relation_linear =fragmentView.findViewById(R.id.relation_linear);
+        consultancy_type_linear =fragmentView.findViewById(R.id.consultancy_type_linear);
         patient_email_id_linear =fragmentView.findViewById(R.id. patient_email_id_linear);
         patient_phone_number_linear  =fragmentView.findViewById(R.id.patient_phone_number_linear);
 
         relation_spinner =fragmentView.findViewById(R.id.  relation_spinner);
-
+        counsltancy_type_spinner =fragmentView.findViewById(R.id.  counsltancy_type_spinner);
 
         patient_name_et  =fragmentView.findViewById(R.id.patient_name_et);
         reason_for_appointment_et =fragmentView.findViewById(R.id.reason_for_appointment_et);
@@ -138,6 +132,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
         });
 
         setRelationSpinner();
+        setconsultationtypeSpinner();
 
         ((MyRadioButtonRR)fragmentView.findViewById(R.id.self_radio_button)).setChecked(true);
 
@@ -172,6 +167,7 @@ public class AppointmentReviewFragment extends AbstractFragment {
                     }
                     return;
                 }
+
 
                String patientName= patient_name_et.getText().toString();
                if(TextUtils.isEmpty(patientName))
@@ -245,7 +241,13 @@ public class AppointmentReviewFragment extends AbstractFragment {
     private void showSuccessAppoiintmentView(AbstractResponse response) {
         review_view.setVisibility(View.GONE);
         success_view.setVisibility(View.VISIBLE);
-
+        TextView requestappointment_conform_tv = fragmentView.findViewById(R.id.requestappointment_conform_tv);
+        if(searchResultDoctorListData.getInstantBooking().equals("2"))
+        {
+            requestappointment_conform_tv.setText("Request Appointment Confirmed");
+        }else{
+            requestappointment_conform_tv.setText("Appointment Confirmed");
+        }
         //
         appointment_bt.setText("Done");
 
@@ -286,10 +288,22 @@ public class AppointmentReviewFragment extends AbstractFragment {
 
         MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon,imageView,searchResultDoctorListData.getDoctorLogo());
 
+        if(searchResultDoctorListData.getTeleconsultation().equals("1")) {
+            fragmentView.findViewById(R.id.consultancy_type_linear).setVisibility(View.VISIBLE);
+        }else{
+            fragmentView.findViewById(R.id.consultancy_type_linear).setVisibility(View.GONE);
+        }
+
+        if(searchResultDoctorListData.getInstantBooking().equals("2")) {
+            ((Button)fragmentView.findViewById(R.id.appointment_bt)).setText("Request Appointment Booking");
+            ((TextView)fragmentView.findViewById(R.id.appointment_time_before_tv)).setText("Request Appointment:");
+        }else{
+            ((Button)fragmentView.findViewById(R.id.appointment_bt)).setText("Book Appointment");
+            ((TextView)fragmentView.findViewById(R.id.appointment_time_before_tv)).setText("Appointment:");
+        }
 
         ((TextView)fragmentView.findViewById(R.id.doctor_name_tv)).setText(searchResultDoctorListData.getDoctorName());
         (( TextView)fragmentView.findViewById(R.id.doctor_designation_tv)).setText(searchResultDoctorListData.getSpecalities());
-
         ((TextView)fragmentView.findViewById(R.id.clinic_name_tv)).setText(searchResultDoctorListData.getClinicName());
         /*
         locality
@@ -369,6 +383,49 @@ cityName
 
     }
 
+    private void setconsultationtypeSpinner() {
+
+        // final ArrayList<String> genderTypeList = new ArrayList<>();
+
+        final String[] consultationtype=getResources().getStringArray(R.array.consultation);
+
+
+        // genderTypeList.add(Constants.GenderValues.MALE);
+        //  genderTypeList.add(Constants.GenderValues.FEMALE);
+        //genderTypeList.add(Constants.GenderValues.GENDER);
+        // selectedGender= genderTypeList.get(2);
+        final HintAdapter aa = new HintAdapter<String>(MyApplication.getCurrentActivityContext(), R.layout.spinner_black_textview, consultationtype);
+
+
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        counsltancy_type_spinner.setAdapter(aa);
+        counsltancy_type_spinner.setSelection(0);
+
+        counsltancy_type_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedConsultation=null;
+                if (position != 0) {
+                    selectedConsultation = consultationtype[position];
+                    //Utils.showToastMessage(selectedRelation);
+
+                }
+                if(requestDetails!=null)
+                {
+                    requestDetails.setConsultationtype(selectedConsultation);
+                }
+                //Utils.showToastMessage("selectedGender "+selectedGender);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+
     private void updateUIelements(boolean isSelefButtonClick) {
         /*if(isSelefButtonClick && isSelfAppointment)
         {
@@ -378,9 +435,7 @@ cityName
         patient_email_id_linear.setVisibility(isSelefButtonClick?View.GONE:View.VISIBLE);
         patient_phone_number_linear .setVisibility(isSelefButtonClick?View.GONE:View.VISIBLE);
         //isSelfAppointment=isSelefButtonClick;
-
-
-    }
+   }
 
     public boolean isSuccesViewShown()
     {

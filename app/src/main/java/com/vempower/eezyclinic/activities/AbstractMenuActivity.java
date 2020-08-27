@@ -6,13 +6,16 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -23,12 +26,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vempower.eezyclinic.APICore.PatientData;
-import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.APIResponce.NotificationsAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.callbacks.FromActivityListener;
-import com.vempower.eezyclinic.callbacks.HomeBottomItemClickListener;
 import com.vempower.eezyclinic.callbacks.ListenerKey;
 import com.vempower.eezyclinic.callbacks.NewHomeClickListener;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
@@ -40,9 +41,7 @@ import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 
-import com.vempower.eezyclinic.activities.AbstractActivity;
-
-import static com.vempower.eezyclinic.MyFirebaseInstanceIDService.IS_SEND_TO_SERVER;
+import static com.vempower.eezyclinic.MyFirebaseMessagingService.IS_SEND_TO_SERVER;
 
 
 /**
@@ -195,6 +194,7 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         findViewById(R.id.notes_linear).setOnClickListener(this);
         findViewById(R.id.family_members_linear).setOnClickListener(this);
         findViewById(R.id.appointment_history_linear).setOnClickListener(this);
+        findViewById(R.id.tele_consultation_linear).setOnClickListener(this);
         findViewById(R.id.health_records_linear).setOnClickListener(this);
         findViewById(R.id.my_account_settings_linear).setOnClickListener(this);
         findViewById(R.id.feedback_linear).setOnClickListener(this);
@@ -281,6 +281,9 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
                 break;
             case R.id.appointment_history_linear:
                 callSideMenuScreen(AppointmentHistoryListActivity.class);
+                break;
+            case R.id.tele_consultation_linear:
+                callSideMenuScreen(TeleConsultationListActivity.class);
                 break;
             case R.id.health_records_linear:
                 //showToastMessage("Coming soon");
@@ -687,9 +690,9 @@ public abstract class AbstractMenuActivity extends AbstractBackPressActivity imp
         {
              contactDetailsFragment= (ContactDetailsFragment) abstractFragment;
         }*/
-        Log.d("fragment", fragment.getClass().getSimpleName());
+        //Log.d("fragment", fragment.getClass().getSimpleName());
         //if(fragmentManager.findFragmentByTag(fragment.getClass().getSimpleName())==null) {
-        fragmentTransaction.replace(R.id.fragment_layout, fragment, fragment.getClass().getSimpleName()/*"FRAGMENT"*/);
+        fragmentTransaction.replace(R.id.fragment_layout, fragment, ((Fragment)fragment).getClass().getSimpleName()/*"FRAGMENT"*/);
         //}else {
         //fragmentTransaction.show(fragmentManager.findFragmentByTag(fragment.getClass().getSimpleName()));
         // fragmentTransaction.attach(fragmentManager.findFragmentByTag(fragment.getClass().getSimpleName()));

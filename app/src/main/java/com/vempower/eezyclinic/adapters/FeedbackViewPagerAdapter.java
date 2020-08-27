@@ -1,13 +1,11 @@
 package com.vempower.eezyclinic.adapters;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.vempower.eezyclinic.fragments.CasesheetsFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+
 import com.vempower.eezyclinic.fragments.PendingFeedbackFragment;
-import com.vempower.eezyclinic.fragments.PrescriptionsFragment;
-import com.vempower.eezyclinic.fragments.ReportsFragment;
 import com.vempower.eezyclinic.fragments.SubmitedFeedbackFragment;
 
 public class FeedbackViewPagerAdapter extends FragmentStatePagerAdapter {

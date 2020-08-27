@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
@@ -21,6 +23,7 @@
             <option value="$PROJECT_DIR$/myCalenderLibrary" />
             <option value="$PROJECT_DIR$/pinview" />
             <option value="$PROJECT_DIR$/sublimepickerlibrary" />
+            <option value="$PROJECT_DIR$/telrlibrary-release" />
             <option value="$PROJECT_DIR$/togglebuttongroup" />
             <option value="$PROJECT_DIR$/volley-master-new" />
             <option value="$PROJECT_DIR$/volley-master-new_1" />

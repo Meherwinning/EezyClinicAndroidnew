@@ -1,27 +1,19 @@
 package com.vempower.eezyclinic.adapters;
 
 import android.os.Parcelable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.vempower.eezyclinic.APICore.HealthChecksData;
-import com.vempower.eezyclinic.APICore.HealthChecksHeight;
 import com.vempower.eezyclinic.APICore.HealthChecksHeightWeight;
-import com.vempower.eezyclinic.APICore.HealthChecksWeight;
-import com.vempower.eezyclinic.application.MyApplication;
-import com.vempower.eezyclinic.fragments.CasesheetsFragment;
 import com.vempower.eezyclinic.fragments.HealthCheckTab1;
 import com.vempower.eezyclinic.fragments.HealthCheckTab2;
 import com.vempower.eezyclinic.fragments.HealthCheckTab3;
 import com.vempower.eezyclinic.fragments.HealthCheckTab4;
-import com.vempower.eezyclinic.fragments.PrescriptionsFragment;
-import com.vempower.eezyclinic.fragments.ReportsFragment;
-import com.vempower.eezyclinic.interfaces.HealthChecksRefreshListener;
-import com.vempower.eezyclinic.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HealthChecksViewPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -31,7 +23,7 @@ public class HealthChecksViewPagerAdapter extends FragmentStatePagerAdapter {
    private ArrayList<HealthChecksHeightWeight> heightAndWeightList;
    //private HealthChecksRefreshListener refreshListener;
 
-    public HealthChecksViewPagerAdapter(HealthChecksData healthChecksData,ArrayList<HealthChecksHeightWeight> heightAndWeightList,FragmentManager fm/*,HealthChecksRefreshListener refreshListener*/) {
+    public HealthChecksViewPagerAdapter(HealthChecksData healthChecksData, ArrayList<HealthChecksHeightWeight> heightAndWeightList, FragmentManager fm/*,HealthChecksRefreshListener refreshListener*/) {
         super(fm);
         this.healthChecksData=healthChecksData;
         this.heightAndWeightList=heightAndWeightList;

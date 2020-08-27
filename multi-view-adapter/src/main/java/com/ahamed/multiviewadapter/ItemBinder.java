@@ -18,11 +18,13 @@ package com.ahamed.multiviewadapter;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.ahamed.multiviewadapter.annotation.PositionType;
 import com.ahamed.multiviewadapter.listener.ItemActionListener;
 import com.ahamed.multiviewadapter.util.ItemDecorator;
@@ -84,7 +86,7 @@ public abstract class ItemBinder<M, VH extends ItemViewHolder<M>> {
    * ViewBinders to provide the custom span size.
    * </p>
    *
-   * @param maxSpanCount The maximum span count of the {@link GridLayoutManager} used inside the
+   * @param maxSpanCount The maximum span count of the {@link } used inside the
    * RecyclerView
    * @return Returns the span size
    */
@@ -152,7 +154,7 @@ public abstract class ItemBinder<M, VH extends ItemViewHolder<M>> {
   }
 
   void onDraw(Canvas canvas, RecyclerView parent, View child, int position,
-      @PositionType int positionType) {
+              @PositionType int positionType) {
     if (null == itemDecorators) {
       return;
     }

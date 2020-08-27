@@ -1,8 +1,10 @@
 package com.vempower.eezyclinic.views;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -11,7 +13,7 @@ import java.util.TimerTask;
  * Created by sathishkumar on 25/7/16.
  */
 public class FullToRefreshLinerLayoutManager extends
-        android.support.v7.widget.LinearLayoutManager{
+        LinearLayoutManager {
 
     private static final long DELAY_TIME = 500;
     private boolean isBottomUp=true;

@@ -161,7 +161,7 @@ public class SearchResultClinicListMapper extends  AbstractMapper  implements Ca
              //if(!TextUtils.isEmpty(searchRequestParams.getOnlinebooking())) {
                  jsonObject.put("onlinebooking", searchRequestParams.getOnlinebooking());
             // }
-
+             jsonObject.put("teleconsultation", searchRequestParams.getTeleconsultation());
              if(!TextUtils.isEmpty(searchRequestParams.getAmountRange())) {
                  jsonObject.put("amount_range", searchRequestParams.getAmountRange());
              }

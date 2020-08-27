@@ -170,6 +170,10 @@ public class AppointmentBookingMapper extends  AbstractMapper  implements Callba
                  jsonObject.put("appointmenttime", requestDetails.appointmenttime);
              //}
 
+             if(!TextUtils.isEmpty(requestDetails.getConsultationtype())) {
+                 jsonObject.put("consultationtype", requestDetails.getConsultationtype());
+             }
+
              if(!TextUtils.isEmpty(requestDetails.getFamilymember())) {
                  jsonObject.put("familymember", requestDetails.getFamilymember());
              }

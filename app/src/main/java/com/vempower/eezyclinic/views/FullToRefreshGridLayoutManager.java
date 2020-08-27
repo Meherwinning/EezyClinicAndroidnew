@@ -1,8 +1,10 @@
 package com.vempower.eezyclinic.views;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -11,7 +13,7 @@ import java.util.TimerTask;
  * Created by Satishk on 9/27/2017.
  */
 
-public class FullToRefreshGridLayoutManager extends android.support.v7.widget.GridLayoutManager {
+public class FullToRefreshGridLayoutManager extends GridLayoutManager {
 
     private static final long DELAY_TIME = 500;
     private boolean isBottomUp=true;

@@ -1,6 +1,5 @@
 package com.vempower.eezyclinic.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.vempower.eezyclinic.R;

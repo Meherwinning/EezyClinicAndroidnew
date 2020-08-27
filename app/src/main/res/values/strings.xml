@@ -64,6 +64,8 @@
     <string name="notes_lbl">Notes</string>
     <string name="family_members_lbl">Family Members</string>
     <string name="appointment_history_lbl">Appointment History</string>
+    <string name="tele_consultation_lbl">Tele Consultation</string>
+    <string name="request_appointment_lbl">Request Appointment</string>
     <string name="health_records_lbl">Health Records</string>
     <string name="my_account_settings_lbl">My Account Settings</string>
     <string name="feedback_lbl">Feedback</string>
@@ -100,12 +102,15 @@
     <string name="title_health_records">Health Records</string>
     <string name="title_activity_appointments">Appointments</string>
     <string name="title_activity_upcoming_followups">Followups</string>
+    <string name="title_activity_request_appointments">Request Appointments</string>
     <string name="title_activity_search">Search</string>
     <string name="please_enter_valid_location">Please enter valid location name</string>
 
     <string name="health_goal_empty_msg">You haven’t set up your health goals</string>
 
     <string name="upcoming_empty_appointment_list_msg">You do not have any upcoming appointments.</string>
+    <string name="tele_empty_consultation_list_msg">You do not have any Tele Consultation.</string>
+    <string name="request_empty_appointment_list_msg">You do not have any Request Appointment.</string>
     <string name="upcoming_empty_followups_list_msg">You do not have any upcoming followups.</string>
     <string name="title_activity_find_docotor">Find a Doctor</string>
     <string name="no_more_doctors_found_lbl">No more doctor(s) found.</string>
@@ -120,6 +125,8 @@
     <string name="tab_scroll_view">Scroll View</string>
     <string name="demo_min_label">min</string>
     <string name="demo_max_label">max</string>
+    <string name="showDetails">Show Details</string>
+    <string name="proceedtomakepayment">Proceed to Make Payment</string>
     <string name="sample_txt">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="search_doctors_lbl">Search for Doctor/Clinic</string>
     <string name="search_result_doctors_lbl">Search Result - Doctors</string>
@@ -171,6 +178,7 @@
     <string name="unable_to_get_casesheet_details_lbl">Unable to get case-sheets details, please try again</string>
     <string name="invalid_casesheet_details_">Invalid casheet details</string>
     <string name="title_activity_my_notes">My Notes</string>
+    <string name="title_activity_tele_consultation">Tele Consultation</string>
     <string name="title_activity_medical_history">Medical History</string>
     <string name="title_activity_notifications">Notifications</string>
     <string name="title_activity_family_menbers">Family Members</string>
@@ -189,6 +197,8 @@
     <string name="invalid_pdf_details_lbl">Invalid PDF details</string>
     <string name="are_you_sure_to_delete_record_lbl">Are you sure you want to delete this record?</string>
     <string name="add_note_lbl">Add Note</string>
+    <string name="tele_consultation_complete_payment_lbl">Complete Payment to Start Video Consultation</string>
+    <string name="tele_consultation_start">Start Video Consultation</string>
     <string name="no_medical_history_lbl">No Medical History</string>
     <string name="unable_to_get_medical_history_list_lbl">Unable to get medical history</string>
     <string name="please_enter_valid_medical_history_lbl">Please enter valid medical history</string>

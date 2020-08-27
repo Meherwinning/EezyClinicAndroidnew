@@ -2,14 +2,15 @@ package com.vempower.eezyclinic.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 import com.vempower.eezyclinic.APICore.HealthChecksData;
 import com.vempower.eezyclinic.APICore.HealthChecksHeight;
 import com.vempower.eezyclinic.APICore.HealthChecksHeightWeight;
@@ -17,7 +18,6 @@ import com.vempower.eezyclinic.APICore.HealthChecksWeight;
 import com.vempower.eezyclinic.APIResponce.HealthChecksListAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.HealthChecksViewPagerAdapter;
-import com.vempower.eezyclinic.adapters.HealthRecordsViewPagerAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.HealthCheckListMapper;

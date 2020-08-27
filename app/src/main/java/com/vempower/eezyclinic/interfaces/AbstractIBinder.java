@@ -1,7 +1,7 @@
 package com.vempower.eezyclinic.interfaces;
 
 import android.os.IBinder;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.vempower.eezyclinic.IMyAidlInterface;
 

@@ -19,9 +19,12 @@ public interface ListenerKey {
         String SEARCH_RESULT_DOCTOR_LIST_DATA_KEY="doctor_list_data_key";
         String SEARCH_RESULT_CLINIC_LIST_DATA_KEY="clinic_list_data_key";
         String UPCOMING_APPOINTMENT_LIST_DATA_KEY="upcoming_appointment_list_data_key";
+        String TELE_CONSULTATION_LIST_DATA_KEY="tele_consultation_list_data_key";
+        String PATIENT_REQUEST_APPOINTMENT_LIST_DATA_KEY="patient_request_appointment_list_data_key";
         //String APPOINTMENT_OBJECT_KEY="appointment_object_key";
         String RESCHEDULE_APPOINTMENT_OBJECT_KEY="ReScheduleAppointment_object";
         String APPOINTMENT_OBJECT_KEY="appointment_object_key";
+        String TELE_CONSULTATION_REVIEW_OBJECT_KEY="tele_consultation_review_object_key";
         String PATIENT_PROFILE_OBJECT_KEY="patient_profile_object_key";
 
        // String IMAGE_DRAWABLE_KEY="image_drawable_key";

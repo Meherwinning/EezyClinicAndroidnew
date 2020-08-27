@@ -4,11 +4,13 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 /**
  * Created by satish on 20/11/17.
  */
 
-public class MyTextInputLayout extends android.support.design.widget.TextInputLayout {
+public class MyTextInputLayout extends TextInputLayout {
     public MyTextInputLayout(Context context) {
         super(context);
         setFontStyle();

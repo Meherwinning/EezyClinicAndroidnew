@@ -45,7 +45,7 @@
 
             </LinearLayout>
 
-            &lt;!&ndash; </android.support.design.widget.TextInputLayout>&ndash;&gt;
+            &lt;!&ndash; </com.google.android.material.textfield.TextInputLayout>&ndash;&gt;
 
 
             <TextView
@@ -87,7 +87,7 @@
 
         </LinearLayout>
 
-        <!-- </android.support.design.widget.TextInputLayout>-->
+        <!-- </com.google.android.material.textfield.TextInputLayout>-->
 
 
         <TextView
@@ -125,7 +125,7 @@
 
         </LinearLayout>
 
-        <!-- </android.support.design.widget.TextInputLayout>-->
+        <!-- </com.google.android.material.textfield.TextInputLayout>-->
 
 
         <TextView
@@ -163,7 +163,7 @@
 
         </LinearLayout>
 
-        <!-- </android.support.design.widget.TextInputLayout>-->
+        <!-- </com.google.android.material.textfield.TextInputLayout>-->
 
 
         <TextView
@@ -201,7 +201,7 @@
 
         </LinearLayout>
 
-        <!-- </android.support.design.widget.TextInputLayout>-->
+        <!-- </com.google.android.material.textfield.TextInputLayout>-->
 
 
         <TextView
@@ -241,7 +241,7 @@
 
         </LinearLayout>
 
-        <!-- </android.support.design.widget.TextInputLayout>-->
+        <!-- </com.google.android.material.textfield.TextInputLayout>-->
 
 
         <TextView

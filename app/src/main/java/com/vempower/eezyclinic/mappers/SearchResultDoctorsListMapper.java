@@ -162,6 +162,7 @@ public class SearchResultDoctorsListMapper extends  AbstractMapper  implements C
             // if(!TextUtils.isEmpty(searchRequestParams.getOnlinebooking())) {
                  jsonObject.put("onlinebooking", searchRequestParams.getOnlinebooking());
             // }
+             jsonObject.put("teleconsultation", searchRequestParams.getTeleconsultation());
 
              if(!TextUtils.isEmpty(searchRequestParams.getAmountRange())) {
                  jsonObject.put("amount_range", searchRequestParams.getAmountRange());

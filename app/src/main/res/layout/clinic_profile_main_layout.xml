@@ -16,7 +16,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
         android:layout_marginTop="@dimen/_50dp"
 
@@ -123,7 +123,7 @@
         </LinearLayout>
 
 
-        <android.support.design.widget.TabLayout
+        <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabHost"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50dp"
@@ -161,7 +161,7 @@
 
 </com.vempower.eezyclinic.widget.TouchCallbackLayout>
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
 
         android:layout_alignParentBottom="true"
         android:id="@+id/view_contact_number_bt"

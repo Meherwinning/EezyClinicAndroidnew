@@ -10,9 +10,9 @@ import org.jetbrains.annotations.Nullable;
  */
 
 public interface Constants {
-    boolean IS_TESTING=false;
+    boolean IS_TESTING=true;
 
-    String BASE_URL_SUB="/betav/";//  /eezyclinic-git/
+    String BASE_URL_SUB="/eezyclinic-meher/";//  /eezyclinic-git/
 
 
 
@@ -46,6 +46,9 @@ public interface Constants {
     String RECORD_FOLDER_NAME=Utils.getStringFromResources(R.string.directory_name);
     String APP_DIRECTORY_NAME = "Eezyclinic";
     String FCM_DEVICE_TYPE = "android";
+    String STORE_ID = "23685";
+    String KEY = "ttnpf^f6Dx2#84T5";
+    String EMAIL = "meher@yopmail.com";
 
     //http://cfw.samplespace.com/wp-json/cfw/v1/customer
 
@@ -71,7 +74,8 @@ public interface Constants {
         String MALE = "Male";
         String FEMALE="Female";
     }
-    interface MaritalStatusValues {
+
+     interface MaritalStatusValues {
         String MARITAL_STATUS = "Marital Status";
         String MARRIED = "Married";
         String SINGLE="Single";
@@ -145,7 +149,8 @@ public interface Constants {
                 //return "http://202.63.103.194:8003";
                 //https://www.eezyclinic.com/betav
                 // return "https://dev.v-empower.com:81";
-                return "/eezyclinic-git/api/";
+                //return "/eezyclinic-git/api/";
+                return "/eezyclinic-meher/api/";
             }else
             {
                 return "/betav/api/";//"https://www.eezyclinic.com";
@@ -177,6 +182,7 @@ public interface Constants {
         String SELECTED_SCHDULE_DATE_TIME_KEY = "selected_schdule_date_time_key";
         String IS_FROM_RE_SCHUDULE_KEY="is_from_re_schudule_key";
         String APPOINTMENT_ID_KEY = "appointment_id_key";
+        String TELECOUNSULTATION_ID_KEY = "telecounsulation_id_key";
         String CASESHEET_APPOINTMENT_ID_KEY = "casesheet_appointment_id_key";
         String IS_FROM_FOLLOWUPS = "is_from_followups";
         String IS_FROM_ADD_PRESCRIPTION_KEY ="is_from_add_prescription_key" ;
@@ -225,5 +231,6 @@ public interface Constants {
         String FEMALE_URL="https://res.cloudinary.com/eezyclinic/image/upload/f_auto,h_98,q_auto,w_98/v1/images/Dr-Female-min.png";
         String UNISEX_URL="https://res.cloudinary.com/eezyclinic/image/upload/f_auto,h_98,q_auto,w_98/v1/images/Dr-Unisex-min.png";
         String CLINIC_URL="https://res.cloudinary.com/eezyclinic/image/upload/f_auto,q_auto/v1/images/servicesp3.jpg";
+        String VIDEO_URL="https://dev.v-empower.com:81/eezyclinic-meher/assets/images/video-camera_3.png";
     }
 }

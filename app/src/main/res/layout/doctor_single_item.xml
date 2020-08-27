@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -59,10 +59,23 @@
                 >
 
                 <ImageView
+                    android:id="@+id/tele_consultation_icon_iv"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginRight="-10dp"
+                    android:visibility="gone"
+                    android:src="@drawable/video_camera" />
+
+                <ImageView
                     android:id="@+id/profile_iv"
                     style="@style/image_fit_toparent"
                     android:scaleType="fitXY"
                     android:src="@drawable/profile_icon" />
+
+
             </LinearLayout>
 
 
@@ -235,4 +248,4 @@
     </RelativeLayout>
 
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -56,7 +56,7 @@
 
                 />
 
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
 
         <com.miguelcatalan.materialsearchview.MaterialSearchView
@@ -260,7 +260,7 @@
                              rsb:absoluteMinValue="0" />
 
 
-                         &lt;!&ndash; </android.support.design.widget.TextInputLayout>&ndash;&gt;
+                         &lt;!&ndash; </com.google.android.material.textfield.TextInputLayout>&ndash;&gt;
 
 
 
@@ -403,7 +403,7 @@
 
 
 
-                         &lt;!&ndash; </android.support.design.widget.TextInputLayout>&ndash;&gt;
+                         &lt;!&ndash; </com.google.android.material.textfield.TextInputLayout>&ndash;&gt;
 
 
 
@@ -471,7 +471,7 @@
                      android:paddingLeft="@dimen/_10dp"
 
                      >
-                     <android.support.v4.widget.NestedScrollView
+                     <androidx.core.widget.NestedScrollView
                          android:layout_width="match_parent"
 
 
@@ -499,7 +499,7 @@
 
 
                      </LinearLayout>
-                     </android.support.v4.widget.NestedScrollView>
+                     </androidx.core.widget.NestedScrollView>
 
 
                  </com.github.aakira.expandablelayout.ExpandableLinearLayout>
@@ -563,7 +563,7 @@
                      android:layout_marginLeft="@dimen/_10dp"
                      android:paddingLeft="@dimen/_10dp"
                      >
-                     <android.support.v4.widget.NestedScrollView
+                     <androidx.core.widget.NestedScrollView
                          android:layout_width="match_parent"
 
 
@@ -588,7 +588,7 @@
 
                              </com.nex3z.togglebuttongroup.MultiSelectToggleGroup>
                          </LinearLayout>
-                     </android.support.v4.widget.NestedScrollView>
+                     </androidx.core.widget.NestedScrollView>
 
 
                  </com.github.aakira.expandablelayout.ExpandableLinearLayout>
@@ -651,7 +651,7 @@
                      android:layout_marginLeft="@dimen/_10dp"
                      android:paddingLeft="@dimen/_10dp"
                      >
-                     <android.support.v4.widget.NestedScrollView
+                     <androidx.core.widget.NestedScrollView
                          android:layout_width="match_parent"
 
 
@@ -676,7 +676,7 @@
 
                              </com.nex3z.togglebuttongroup.MultiSelectToggleGroup>
                          </LinearLayout>
-                     </android.support.v4.widget.NestedScrollView>
+                     </androidx.core.widget.NestedScrollView>
 
 
                  </com.github.aakira.expandablelayout.ExpandableLinearLayout>

@@ -1,7 +1,7 @@
 package com.vempower.eezyclinic.interfaces;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListener {
 //    public static String TAG = EndlessRecyclerOnScrollListener.class.getSimpleName();

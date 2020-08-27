@@ -2,8 +2,6 @@ package com.vempower.eezyclinic.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +9,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+
 import com.vempower.eezyclinic.APICore.Appointment;
 import com.vempower.eezyclinic.APICore.DashboardData;
 import com.vempower.eezyclinic.APICore.Followup;
 import com.vempower.eezyclinic.APICore.PatientData;
+import com.vempower.eezyclinic.APICore.PatientRequestAppointment;
+import com.vempower.eezyclinic.APICore.TeleConsultation;
 import com.vempower.eezyclinic.APIResponce.DashboardAPI;
+import com.vempower.eezyclinic.APIResponce.PatientRequestAppointmentListAPI;
+import com.vempower.eezyclinic.APIResponce.TeleConsultationListAPI;
 import com.vempower.eezyclinic.APIResponce.UpcomingAppointmentListAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.activities.SigninActivity;
@@ -23,6 +28,8 @@ import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.interfaces.HomeListener;
 import com.vempower.eezyclinic.mappers.DashboardMapper;
+import com.vempower.eezyclinic.mappers.PatientRequestAppointmentListMapper;
+import com.vempower.eezyclinic.mappers.TeleConsultationListMapper;
 import com.vempower.eezyclinic.mappers.UpcomingAppointmentListMapper;
 import com.vempower.eezyclinic.utils.Constants;
 import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
@@ -44,12 +51,12 @@ public class HomeFragment extends AbstractFragment {
     private View fragmentView;
     //private TextView welcome_tv;
     private TextView patient_name_tv,patient_id_tv;
-    private  TextView health_tips_tv,health_goal_tv,upcoming_appointment_tv,upcoming_followups_tv;
+    private TextView health_tips_tv,health_goal_tv,upcoming_appointment_tv,upcoming_followups_tv,tele_consultation_tv,request_appointment_tv;
     private ImageView profile_iv;
     private MyButtonRectangleRM search_doctors_bt;
-    private  TextView upcoming_appointment_name_tv;
+    private TextView upcoming_appointment_name_tv,tele_consultation_name_tv,request_appointment_name_tv;
 
-    private CardView upcoming_appointment_cardview,upcoming_followups_cardview;
+    private CardView upcoming_appointment_cardview,upcoming_followups_cardview,tele_consultation_cardview,patient_request_appointment_cardview;
     //private HomeListener homeListener;
 
     // private MyButtonRectangleRM
@@ -76,6 +83,8 @@ public class HomeFragment extends AbstractFragment {
         health_tips_tv = fragmentView.findViewById(R.id.health_tips_tv);
         health_goal_tv = fragmentView.findViewById(R.id. health_goal_tv);
         upcoming_appointment_tv  = fragmentView.findViewById(R.id.upcoming_appointment_tv);
+        tele_consultation_tv  = fragmentView.findViewById(R.id.tele_consultation_tv);
+        request_appointment_tv  = fragmentView.findViewById(R.id.request_appointment_tv);
         upcoming_followups_tv = fragmentView.findViewById(R.id.upcoming_followups_tv);
         upcoming_followups_cardview  = fragmentView.findViewById(R.id.upcoming_followups_cardview);
 
@@ -83,6 +92,12 @@ public class HomeFragment extends AbstractFragment {
 
         upcoming_appointment_name_tv = fragmentView.findViewById(R.id.upcoming_appointment_name_tv);
         upcoming_appointment_cardview = fragmentView.findViewById(R.id.upcoming_appointment_cardview);
+
+        tele_consultation_name_tv = fragmentView.findViewById(R.id.tele_consultation_name_tv);
+        tele_consultation_cardview = fragmentView.findViewById(R.id.tele_consultation_cardview);
+
+        request_appointment_name_tv = fragmentView.findViewById(R.id.request_appointment_name_tv);
+        patient_request_appointment_cardview = fragmentView.findViewById(R.id.patient_request_appointment_cardview);
 
        // String str = "Welcome to Eezyclinic\n";
         refreshPatientData(null);
@@ -107,6 +122,8 @@ public class HomeFragment extends AbstractFragment {
     public void onResume() {
         super.onResume();
         callUpcomingAppointmentsMapper();
+        callTeleConsultationMapper();
+        callPatientRequestAppointmentMapper();
     }
 
     private void callDashboardMapper()
@@ -163,6 +180,159 @@ public class HomeFragment extends AbstractFragment {
     String  SERVER_DATE_FORMAT_NEW="yyyy-MM-dd HH:mm:ss";
     SimpleDateFormat DISPLAY_DATE_TIME_FORMATTER = new SimpleDateFormat(DISPLAY_DATE_TIME);
 
+    private void callTeleConsultationMapper() {
+        TeleConsultationListMapper teleConsultationListMapper = new TeleConsultationListMapper(1);
+        teleConsultationListMapper.setOnTeleConsultationListListener(new TeleConsultationListMapper.TeleConsultationListListener() {
+            @Override
+            public void getTeleconsultation(final TeleConsultationListAPI teleConsultationListAPI, String errorMessage) {
+
+                if(!isValidResponse(teleConsultationListAPI,errorMessage))
+                {
+                    tele_consultation_name_tv.setText(null);
+                    tele_consultation_name_tv.setVisibility(View.GONE);
+                    tele_consultation_tv.setText(Utils.getStringFromResources(R.string.tele_empty_consultation_list_msg));
+                    tele_consultation_cardview.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            //Utils.showToastMsg("No upcoming appointment(s).");
+                            Utils.showToastMsg(R.string.tele_empty_consultation_list_msg);
+                        }
+                    });
+                    return;
+                }
+
+
+                if(teleConsultationListAPI.getData()!=null && teleConsultationListAPI.getData().size()>0)
+                {
+                    TeleConsultation teleConsultation = teleConsultationListAPI.getData().get(0);
+                    if(teleConsultation!=null)
+                    {
+                        //WithDr. M J Korian at08:45 AMonFriday, 08-12-2017
+                        //atClinic 1, Al Karama, Dubai
+                        tele_consultation_name_tv.setText(teleConsultation.getDoctorName());
+                        tele_consultation_name_tv.setVisibility(View.VISIBLE);
+
+                        String dateTimeStr=teleConsultation.getAppointmentDateTime();
+                        try {
+                            Date date = Utils.changeStringToDateFormat(teleConsultation.getAppointmentDateTime(), SERVER_DATE_FORMAT_NEW);
+                            String dateStr= DISPLAY_DATE_TIME_FORMATTER.format(date);
+                            // String timeStr= DISPLAY_TIME_FORMATTER.format(date);
+                            //With Dr. First name Middle name Last Name at 07:00 PM on Tuesday, 26-12-2017
+                            dateTimeStr=dateStr;
+                        }catch (Exception e)
+                        {
+
+                        }
+                        tele_consultation_tv.setText(teleConsultation.getSpecalities()+
+                                "\nat "+dateTimeStr+"\n"+teleConsultation.getLocality()+", "+teleConsultation.getCity());
+                        tele_consultation_cardview.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if(myListener!=null && myListener instanceof HomeListener)
+                                {
+                                    HomeListener homeListener= (HomeListener) myListener;
+                                    homeListener.onTeleconsultationClick(teleConsultationListAPI.getData());
+
+                                    // homeListener.onUpcomingAppointmentClick(dashboardData.getComingappointments());
+                                }
+                            }
+                        });
+                    }
+
+                }else
+                {
+                    tele_consultation_name_tv.setText(null);
+                    tele_consultation_name_tv.setVisibility(View.GONE);
+                    tele_consultation_tv.setText(Utils.getStringFromResources(R.string.tele_empty_consultation_list_msg));
+                    tele_consultation_cardview.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            //Utils.showToastMsg("No upcoming appointment(s).");
+                            Utils.showToastMsg(R.string.tele_empty_consultation_list_msg);
+                        }
+                    });
+                }
+            }
+        });
+
+    }
+
+    private void callPatientRequestAppointmentMapper() {
+        PatientRequestAppointmentListMapper patientRequestAppointmentListMapper = new PatientRequestAppointmentListMapper(1);
+        patientRequestAppointmentListMapper.setOnPatientRequestAppointmentListListener(new PatientRequestAppointmentListMapper.PatientRequestAppointmentListListener() {
+            @Override
+            public void getPatientRequestappointment(final PatientRequestAppointmentListAPI patientRequestAppointmentListAPI, String errorMessage) {
+
+                if(!isValidResponse(patientRequestAppointmentListAPI,errorMessage))
+                {
+                    request_appointment_name_tv.setText(null);
+                    request_appointment_name_tv.setVisibility(View.GONE);
+                    request_appointment_tv.setText(Utils.getStringFromResources(R.string.request_empty_appointment_list_msg));
+                    patient_request_appointment_cardview.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            //Utils.showToastMsg("No upcoming appointment(s).");
+                            Utils.showToastMsg(R.string.request_empty_appointment_list_msg);
+                        }
+                    });
+                    return;
+                }
+
+
+                if(patientRequestAppointmentListAPI.getData()!=null && patientRequestAppointmentListAPI.getData().size()>0)
+                {
+                    PatientRequestAppointment patientRequestAppointment = patientRequestAppointmentListAPI.getData().get(0);
+                    if(patientRequestAppointment!=null)
+                    {
+                        //WithDr. M J Korian at08:45 AMonFriday, 08-12-2017
+                        //atClinic 1, Al Karama, Dubai
+                        request_appointment_name_tv.setText(patientRequestAppointment.getDoctorName());
+                        request_appointment_name_tv.setVisibility(View.VISIBLE);
+
+                        String dateTimeStr=patientRequestAppointment.getAppointmentDateTime();
+                        try {
+                            Date date = Utils.changeStringToDateFormat(patientRequestAppointment.getAppointmentDateTime(), SERVER_DATE_FORMAT_NEW);
+                            String dateStr= DISPLAY_DATE_TIME_FORMATTER.format(date);
+                            // String timeStr= DISPLAY_TIME_FORMATTER.format(date);
+                            //With Dr. First name Middle name Last Name at 07:00 PM on Tuesday, 26-12-2017
+                            dateTimeStr=dateStr;
+                        }catch (Exception e)
+                        {
+
+                        }
+                        request_appointment_tv.setText(patientRequestAppointment.getSpecalities()+
+                                "\nat "+dateTimeStr+"\n"+patientRequestAppointment.getLocality()+", "+patientRequestAppointment.getCity());
+                        patient_request_appointment_cardview.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if(myListener!=null && myListener instanceof HomeListener)
+                                {
+                                    HomeListener homeListener= (HomeListener) myListener;
+                                    homeListener.onPatientRequestAppointmentClick(patientRequestAppointmentListAPI.getData());
+
+                                    // homeListener.onUpcomingAppointmentClick(dashboardData.getComingappointments());
+                                }
+                            }
+                        });
+                    }
+
+                }else
+                {
+                    request_appointment_name_tv.setText(null);
+                    request_appointment_name_tv.setVisibility(View.GONE);
+                    request_appointment_tv.setText(Utils.getStringFromResources(R.string.request_empty_appointment_list_msg));
+                    patient_request_appointment_cardview.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            //Utils.showToastMsg("No upcoming appointment(s).");
+                            Utils.showToastMsg(R.string.request_empty_appointment_list_msg);
+                        }
+                    });
+                }
+            }
+        });
+
+    }
 
     private void callUpcomingAppointmentsMapper() {
         UpcomingAppointmentListMapper appointmentListMapper= new UpcomingAppointmentListMapper();
@@ -240,6 +410,8 @@ public class HomeFragment extends AbstractFragment {
         });
 
     }
+
+
 
     private void logout() {
         MyApplication.getInstance().setLoggedUserDetailsToSharedPref(null);
@@ -319,6 +491,7 @@ public class HomeFragment extends AbstractFragment {
         refreshPatientData(null);
         callDashboardMapper();
         callUpcomingAppointmentsMapper();
+        callTeleConsultationMapper();
     }
 
 

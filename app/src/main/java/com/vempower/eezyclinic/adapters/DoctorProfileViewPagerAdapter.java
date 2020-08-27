@@ -1,14 +1,12 @@
 package com.vempower.eezyclinic.adapters;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.view.MotionEvent;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.vempower.eezyclinic.APICore.DoctorProfileData;
 import com.vempower.eezyclinic.fragments.DoctorProfileTabFragment;
 import com.vempower.eezyclinic.fragments.DoctorReviewsTabFragment;
-import com.vempower.eezyclinic.fragments.ListViewFragment;
 
 /**
  * Created by satish on 18/12/17.

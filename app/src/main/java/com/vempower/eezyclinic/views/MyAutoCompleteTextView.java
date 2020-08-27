@@ -14,7 +14,7 @@ import java.lang.reflect.Field;
  * Created by satish on 11/12/17.
  */
 
-public class MyAutoCompleteTextView extends android.support.v7.widget.AppCompatAutoCompleteTextView {
+public class MyAutoCompleteTextView extends androidx.appcompat.widget.AppCompatAutoCompleteTextView {
     public MyAutoCompleteTextView(Context context) {
         super(context);
         setFontStyle();

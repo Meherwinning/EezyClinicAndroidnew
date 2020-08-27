@@ -1,21 +1,15 @@
 package com.vempower.eezyclinic.fragments;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 
-import com.github.gorbin.asne.core.AccessToken;
-import com.github.gorbin.asne.core.listener.OnRequestSocialPersonCompleteListener;
-import com.github.gorbin.asne.core.persons.SocialPerson;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;

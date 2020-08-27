@@ -2,7 +2,7 @@ package com.vempower.eezyclinic.views;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.v7.widget.AppCompatCheckBox;
+import androidx.appcompat.widget.AppCompatCheckBox;
 import android.util.AttributeSet;
 import android.widget.CheckBox;
 

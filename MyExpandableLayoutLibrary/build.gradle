@@ -13,15 +13,15 @@ android {
         versionCode 11
         versionName "1.6.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 }
 dependencies {
-    implementation 'com.android.support:appcompat-v7:23.2.1'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.0'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.0'
-    androidTestImplementation 'com.android.support:support-annotations:23.2.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.annotation:annotation:1.0.0'
     //androidTestImplementation "com.android.support.test:runner:0.4.1"
     //androidTestImplementation "com.android.support.test:rules:0.4.1"
 }

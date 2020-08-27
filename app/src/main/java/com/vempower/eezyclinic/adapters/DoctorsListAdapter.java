@@ -4,8 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Messenger;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +19,8 @@ import com.rey.material.app.SimpleDialog;
 import com.vempower.eezyclinic.APICore.PatientData;
 import com.vempower.eezyclinic.APICore.SearchResultDoctorListData;
 import com.vempower.eezyclinic.R;
-import com.vempower.eezyclinic.activities.CasesheetsDetailsActivity;
 import com.vempower.eezyclinic.activities.DoctorProfileActivity;
+import com.vempower.eezyclinic.activities.RequestAppointmentActivity;
 import com.vempower.eezyclinic.activities.ScheduleAppointmentActivity;
 import com.vempower.eezyclinic.activities.SigninActivity;
 import com.vempower.eezyclinic.application.MyApplication;
@@ -96,7 +97,7 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
 
     public class OrdersListHolder extends RecyclerView.ViewHolder {
 
-        private ImageView profile_iv;
+        private ImageView profile_iv,tele_consultation_icon_iv;
 
         private TextView title_tv;
         private  TextView designation_tv, time_tv, address_tv,
@@ -105,6 +106,7 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
         public OrdersListHolder(View itemView) {
             super(itemView);
             profile_iv = itemView.findViewById(R.id.profile_iv);
+            tele_consultation_icon_iv = itemView.findViewById(R.id.tele_consultation_icon_iv);
 
             title_tv = itemView.findViewById(R.id.title_tv);
             designation_tv = itemView.findViewById(R.id.designation_tv);
@@ -148,15 +150,19 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
                     MyApplication.getCurrentActivityContext().startActivity(intent);
                 }
             });
-
+            if(!TextUtils.isEmpty(data.getTeleconsultation())) {
+                if(data.getTeleconsultation().equals("1")) {
+                   // MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.empty_specification, tele_consultation_icon_iv, Constants.DefaultImage.UNISEX_URL);
+                    tele_consultation_icon_iv.setVisibility(View.VISIBLE);
+                }
+            }
             if(!TextUtils.isEmpty(data.getDoctorLogo())) {
                 MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, data.getDoctorLogo());
-            }else
+             }else
             {
                 if(TextUtils.isEmpty(data.getGender()))
                 {
                     MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, Constants.DefaultImage.UNISEX_URL);
-
                 }
                else {
                     switch (data.getGender().trim().toLowerCase()) {
@@ -165,11 +171,9 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
                             break;
                         case "female":
                             MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, Constants.DefaultImage.FEMALE_URL);
-
                             break;
                         default:
                             MyApplication.getInstance().setBitmapToImageviewCircular(R.drawable.profile_icon, profile_iv, Constants.DefaultImage.UNISEX_URL);
-
                             break;
                     }
                 }
@@ -263,6 +267,52 @@ public class DoctorsListAdapter extends RecyclerView.Adapter<DoctorsListAdapter.
                      }));
                      intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
+                     MyApplication.getCurrentActivityContext().startActivity(intent);
+                 }
+             });
+         }else if((!TextUtils.isEmpty(data.getInstantBooking()))  && data.getInstantBooking().equalsIgnoreCase("2")) {
+             book_appointment_tv.setText("Request Appointment");
+             book_appointment_tv.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View view) {
+                     // Utils.showToastMsg("Coming soon");
+                     MyApplication.showTransparentDialog();
+                     PatientData patientData = MyApplication.getInstance().getLoggedUserDetailsFromSharedPref();
+                     MyApplication.hideTransaprentDialog();
+                     if(patientData==null)
+                     {
+                         showMyDialog("Alert", Utils.getStringFromResources(R.string.non_logged_user_book_appointment_alert_msz), "Ok", "Cancel", new ApiErrorDialogInterface() {
+                             @Override
+                             public void onCloseClick() {
+                             }
+                             @Override
+                             public void retryClick() {
+                                 MyApplication.getInstance().setSearchResultDoctorListData(data);
+                                 Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                                 intent.setClass(MyApplication.getCurrentActivityContext(), SigninActivity.class);
+                                 /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+                                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                 MyApplication.getCurrentActivityContext().startActivity(intent);
+                                 // ((Activity) MyApplication.getCurrentActivityContext()).finish();
+                             }
+                         });
+                         return;
+                     }
+                     Intent intent = ((Activity)MyApplication.getCurrentActivityContext()).getIntent();
+                     intent.setClass(MyApplication.getCurrentActivityContext(),RequestAppointmentActivity.class);
+                     /*((Activity) MyApplication.getCurrentActivityContext()).getIntent();*/
+                     intent.putExtra(ListenerKey.ObjectKey.SEARCH_RESULT_DOCTOR_LIST_DATA_KEY, new Messenger(new AbstractIBinder() {
+                         @Override
+                         protected IntentObjectListener getMyObject() {
+                             return new IntentObjectListener() {
+                                 @Override
+                                 public Object getObject() {
+                                     return data;
+                                 }
+                             };
+                         }
+                     }));
+                     intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                      MyApplication.getCurrentActivityContext().startActivity(intent);
                  }
              });

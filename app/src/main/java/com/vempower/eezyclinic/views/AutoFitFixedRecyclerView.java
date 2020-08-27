@@ -2,7 +2,7 @@ package com.vempower.eezyclinic.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 
 import com.vempower.eezyclinic.application.MyApplication;

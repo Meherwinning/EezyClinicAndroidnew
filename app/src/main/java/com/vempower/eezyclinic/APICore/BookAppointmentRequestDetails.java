@@ -17,6 +17,7 @@ private static final String APP_FOR_SELF="Self";
     private  String  patientname;
     private String  reasonsforappoinment;
     private  boolean  isSelfAppointment;
+    private  String  consultationtype;
 
 //if appointment for other then need to provide following parameters
     private  String  familymember;
@@ -66,6 +67,10 @@ private static final String APP_FOR_SELF="Self";
         return patientname;
     }
 
+    public void setConsultationtype(String consultationtype) {
+        this.consultationtype = consultationtype;
+    }
+
     public void setFamilymember(String familymember) {
         this.familymember = familymember;
     }
@@ -80,6 +85,10 @@ private static final String APP_FOR_SELF="Self";
 
     public String getFamilymember() {
         return familymember;
+    }
+
+    public String getConsultationtype() {
+        return consultationtype;
     }
 
     public String getEmail() {
@@ -101,6 +110,7 @@ private static final String APP_FOR_SELF="Self";
                 ", reasonsforappoinment='" + reasonsforappoinment + '\'' +
                 ", isSelfAppointment=" + isSelfAppointment +
                 ", familymember='" + familymember + '\'' +
+                ", consultationtype='" + consultationtype + '\'' +
                 ", email='" + email + '\'' +
                 ", mobilenum='" + mobilenum + '\'' +
                 '}';

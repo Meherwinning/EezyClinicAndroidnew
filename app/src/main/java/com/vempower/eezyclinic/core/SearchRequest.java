@@ -28,6 +28,7 @@ public class SearchRequest implements Cloneable {
     private ArrayList<String> launguage = null;
     private String searchName;
     private int onlinebooking;
+    private int teleconsultation;
     private String amountRange;
     private int perpage;
     private String page;
@@ -108,7 +109,7 @@ public class SearchRequest implements Cloneable {
                          ArrayList<String> nationalityNameList,
                          ArrayList<String> gendersearch, String locality,
                          ArrayList<String> launguage, String searchName,
-                         int onlinebooking, String amountRange, int perpage,
+                         int onlinebooking,int teleconsultation, String amountRange, int perpage,
                          String page,float amountRangeMin,float amountRangeMax,String cityName,String countryName) {
         this.searchtype = searchtype;
         this.specality = specality;
@@ -124,6 +125,7 @@ public class SearchRequest implements Cloneable {
         this.launguage = launguage;
         this.searchName = searchName;
         this.onlinebooking = onlinebooking;
+        this.teleconsultation = teleconsultation;
         this.amountRange = amountRange;
         this.perpage = perpage;
         this.page = page;
@@ -452,6 +454,18 @@ public class SearchRequest implements Cloneable {
         this.onlinebooking = onlinebooking;
     }
 
+    public int getTeleconsultation() {
+        if(teleconsultation<0)
+        {
+            teleconsultation=0;
+        }
+        return teleconsultation;
+    }
+
+    public void setTeleconsultation(int teleconsultation) {
+        this.teleconsultation = teleconsultation;
+    }
+
     public String getAmountRange() {
         try {
             amountRange= Math.round(amountRangeMin)+"-"+ Math.round(amountRangeMax);
@@ -524,6 +538,7 @@ public class SearchRequest implements Cloneable {
                 ", launguage=" + launguage +
                 ", searchName='" + searchName + '\'' +
                 ", onlinebooking=" + onlinebooking +
+                ", teleconsultation=" + teleconsultation +
                 ", amountRange='" + amountRange + '\'' +
                 ", perpage=" + perpage +
                 ", page='" + page + '\'' +
@@ -537,7 +552,7 @@ public class SearchRequest implements Cloneable {
         return new SearchRequest( searchtype,  specality,  country,  city,
                 longitude,  latitude,  insurenceList,  nationalityList,nationalityNameList,
                 gendersearch,  locality,  launguage,  searchName,
-                onlinebooking,  amountRange,  perpage,  page,amountRangeMin,amountRangeMax,cityName,countryName);
+                onlinebooking,teleconsultation,  amountRange,  perpage,  page,amountRangeMin,amountRangeMax,cityName,countryName);
     }
 
     public String getCountryName() {

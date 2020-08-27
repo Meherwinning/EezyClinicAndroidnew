@@ -24,8 +24,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Messenger;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.Toolbar;
+
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -35,6 +34,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 
 import com.gc.materialdesign.views.ButtonFloat;
 import com.vempower.eezyclinic.R;

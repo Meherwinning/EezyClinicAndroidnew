@@ -1,5 +1,6 @@
 package com.vempower.eezyclinic;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -8,12 +9,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.v4.app.NotificationCompat;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.vempower.eezyclinic.utils.SharedPreferenceUtils;
 import com.vempower.eezyclinic.utils.Utils;
 
 /**
@@ -25,6 +29,20 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
     public static final String FCM_MESSAGE_KEY="fcm_message_key";
+
+    public static final String FIRE_BASE_TOKEN_ID="fire_base_token_id";
+    public static final String IS_SEND_TO_SERVER="is_send_to_server";
+
+    @Override
+    public void onNewToken(@NonNull String token) {
+        super.onNewToken(token);
+        SharedPreferenceUtils.setStringValueToSharedPrefarence(FIRE_BASE_TOKEN_ID,token);
+        SharedPreferenceUtils.setBooleanValueToSharedPrefarence(IS_SEND_TO_SERVER,false);
+
+
+        Log.v("FCM ID :", "FCM :"+ Utils.getFireBaseCloudMessageId());
+
+    }
 
     /**
      * Called when message is received.
@@ -61,7 +79,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             // sendNotification(remoteMessage.getNotification().getBody());
 
            // generateNotification(getApplicationContext(), remoteMessage.getData().get("mymsg"));
-             generateNotification(getApplicationContext(), remoteMessage.getNotification().getBody(),remoteMessage.getNotification().getTitle());
+             generateNotification(null, remoteMessage.getNotification().getBody(),remoteMessage.getNotification().getTitle());
 
 
         }

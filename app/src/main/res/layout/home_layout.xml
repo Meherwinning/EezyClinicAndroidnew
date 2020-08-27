@@ -105,7 +105,7 @@
             </RelativeLayout>
 
 
-            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -205,10 +205,10 @@
                 </RelativeLayout>
 
 
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
 
-            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -310,10 +310,124 @@
                 </RelativeLayout>
 
 
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/tele_consultation_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:background="@drawable/view_selector"
+
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_4dp"
+                android:layout_marginLeft="@dimen/_4dp"
+                android:layout_marginRight="@dimen/_4dp"
+                android:layout_marginTop="@dimen/_7dp"
+                card_view:cardCornerRadius="@dimen/_4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+
+                    android:paddingLeft="@dimen/_20dp">
+
+                    <LinearLayout
+                        android:id="@+id/img_linear5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/_25dp"
+                        android:layout_marginTop="@dimen/_25dp"
+                        android:gravity="center"
+
+                        >
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+
+                            android:src="@drawable/dashborad_telecon_icon" />
 
 
-            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/content_linear5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginBottom="@dimen/_10dp"
+                        android:layout_marginTop="@dimen/_16dp"
+
+                        android:layout_marginLeft="@dimen/_10dp"
+                        android:layout_marginRight="@dimen/_10dp"
+
+                        android:layout_toRightOf="@+id/img_linear5"
+                        android:orientation="vertical">
+
+                        <TextView                android:fontFamily="@font/roboto_medium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_5dp"
+                            android:text="@string/tele_consultation_lbl"
+                            android:textColor="@color/health_goal_color"
+                            android:textSize="@dimen/text_size_normal" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView    android:fontFamily="@font/roboto"
+                                android:id="@+id/tele_consultation_name_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:text="-"
+                                android:textColor="#616161"
+                                android:textSize="@dimen/text_size_normal"
+
+                                android:textStyle="bold"
+                                android:lineSpacingExtra="1sp"
+                                />
+                            <TextView    android:fontFamily="@font/roboto"
+                                android:id="@+id/tele_consultation_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:text="-"
+                                android:textColor="@color/dash_board_text_color"
+                                android:textSize="@dimen/text_size_small"
+
+                                android:textStyle="normal"
+                                android:lineSpacingExtra="1sp"
+                                />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/left_indicator5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+
+                        android:layout_marginRight="@dimen/_13dp"
+                        android:src="@drawable/arrow_right"/>
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                android:id="@+id/upcoming_appointment_cardview"
                 android:clickable="true"
                 android:background="@drawable/view_selector"
@@ -429,10 +543,124 @@
                 </RelativeLayout>
 
 
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/patient_request_appointment_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:background="@drawable/view_selector"
+
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_4dp"
+                android:layout_marginLeft="@dimen/_4dp"
+                android:layout_marginRight="@dimen/_4dp"
+                android:layout_marginTop="@dimen/_7dp"
+                card_view:cardCornerRadius="@dimen/_4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+
+                    android:paddingLeft="@dimen/_20dp">
+
+                    <LinearLayout
+                        android:id="@+id/img_linear6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/_25dp"
+                        android:layout_marginTop="@dimen/_25dp"
+                        android:gravity="center"
+
+                        >
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+
+                            android:src="@drawable/request_appointment_icon" />
 
 
-            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/content_linear6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginBottom="@dimen/_10dp"
+                        android:layout_marginTop="@dimen/_16dp"
+
+                        android:layout_marginLeft="@dimen/_10dp"
+                        android:layout_marginRight="@dimen/_10dp"
+
+                        android:layout_toRightOf="@+id/img_linear6"
+                        android:orientation="vertical">
+
+                        <TextView                android:fontFamily="@font/roboto_medium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_5dp"
+                            android:text="@string/request_appointment_lbl"
+                            android:textColor="@color/health_goal_color"
+                            android:textSize="@dimen/text_size_normal" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView    android:fontFamily="@font/roboto"
+                                android:id="@+id/request_appointment_name_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:text="-"
+                                android:textColor="#616161"
+                                android:textSize="@dimen/text_size_normal"
+
+                                android:textStyle="bold"
+                                android:lineSpacingExtra="1sp"
+                                />
+                            <TextView    android:fontFamily="@font/roboto"
+                                android:id="@+id/request_appointment_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:text="-"
+                                android:textColor="@color/dash_board_text_color"
+                                android:textSize="@dimen/text_size_small"
+
+                                android:textStyle="normal"
+                                android:lineSpacingExtra="1sp"
+                                />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/left_indicator6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+
+                        android:layout_marginRight="@dimen/_13dp"
+                        android:src="@drawable/arrow_right" />
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                android:id="@+id/upcoming_followups_cardview"
                 android:layout_width="match_parent"
                 android:clickable="true"
@@ -533,7 +761,7 @@
                 </RelativeLayout>
 
 
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
 
             <com.vempower.eezyclinic.views.MyButtonRectangleRM

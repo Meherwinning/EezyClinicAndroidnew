@@ -1,19 +1,15 @@
 package com.vempower.eezyclinic.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
+
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
@@ -23,7 +19,6 @@ import com.vempower.eezyclinic.APIResponce.SignupAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.HintAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
-import com.vempower.eezyclinic.core.SocialLoginDetails;
 import com.vempower.eezyclinic.fragments.SublimePickerFragment;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.CheckUserIDMapper;
@@ -36,6 +31,9 @@ import android.widget.CheckBox;
 
 ;
 //import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

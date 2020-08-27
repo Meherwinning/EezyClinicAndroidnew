@@ -3,7 +3,7 @@ package com.prolificinteractive.materialcalendarview;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Build;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.ImageView;

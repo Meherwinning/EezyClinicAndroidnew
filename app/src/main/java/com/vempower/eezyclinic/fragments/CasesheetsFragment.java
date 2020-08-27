@@ -1,20 +1,19 @@
 package com.vempower.eezyclinic.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.vempower.eezyclinic.APICore.CaseSheetsListDate;
-import com.vempower.eezyclinic.APICore.HelathReportsData;
 import com.vempower.eezyclinic.APIResponce.CaseSheetsListAPI;
 import com.vempower.eezyclinic.APIResponce.HelathReportsListAPI;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.adapters.CaseSheetsListAdapter;
-import com.vempower.eezyclinic.adapters.ReportsListAdapter;
 import com.vempower.eezyclinic.application.MyApplication;
 import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
 import com.vempower.eezyclinic.mappers.CaseSheetsListMapper;
