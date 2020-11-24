@@ -34,6 +34,12 @@ public class TeleConsultation {
     @SerializedName("patientName")
     @Expose
     private String patientName;
+    @SerializedName("patentEmail")
+    @Expose
+    private String patentEmail;
+    @SerializedName("country")
+    @Expose
+    private String country;
     @SerializedName("selectFamilyMember")
     @Expose
     private String selectFamilyMember;
@@ -52,6 +58,9 @@ public class TeleConsultation {
     @SerializedName("mobileotp")
     @Expose
     private Object mobileotp;
+    @SerializedName("mobile")
+    @Expose
+    private String mobile;
     @SerializedName("cancelReason")
     @Expose
     private Object cancelReason;
@@ -211,6 +220,14 @@ public class TeleConsultation {
         this.patientName = patientName;
     }
 
+    public String getpatentEmail() {
+        return patentEmail;
+    }
+
+    public void setpatentEmail(String patentEmail) {
+        this.patentEmail = patentEmail;
+    }
+
     public String getSelectFamilyMember() {
         return selectFamilyMember;
     }
@@ -257,6 +274,14 @@ public class TeleConsultation {
 
     public void setMobileotp(Object mobileotp) {
         this.mobileotp = mobileotp;
+    }
+
+    public String getMobile(){
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public Object getCancelReason() {
@@ -412,6 +437,14 @@ public class TeleConsultation {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getGoogleMapLatitude() {

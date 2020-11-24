@@ -203,6 +203,10 @@ public interface EezyClinicAPI {
     @POST(data + "appointment/cancel")
     Call<AbstractResponse> cancelAppointment(@Body RequestBody postBody);
 
+    //http://202.63.103.194:8003/api/appointment/cancel
+    @POST(data + "appointment/telepayments")
+    Call<AbstractResponse> teleConsultationPayment(@Body RequestBody postBody);
+
     //http://202.63.103.194:8003/api/appointment/appointments
     @POST(data + "appointment/appointments")
     Call<AppointmentHistoryListAPI> getAppointmentHistoryList(@Body RequestBody postBody);

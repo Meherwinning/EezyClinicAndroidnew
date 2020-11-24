@@ -11,8 +11,12 @@ import android.widget.TextView;
 
 import com.telr.mobile.sdk.activty.WebviewActivity;
 import com.telr.mobile.sdk.entity.response.status.StatusResponse;
+import com.vempower.eezyclinic.APIResponce.AbstractResponse;
 import com.vempower.eezyclinic.R;
 import com.vempower.eezyclinic.fragments.AbstractFragment;
+import com.vempower.eezyclinic.interfaces.ApiErrorDialogInterface;
+import com.vempower.eezyclinic.mappers.CancelAppointmentMapper;
+import com.vempower.eezyclinic.mappers.TeleConsultationPaymentMapper;
 
 public class SuccessTransationActivity extends AbstractMenuActivity {
 
@@ -74,6 +78,39 @@ public class SuccessTransationActivity extends AbstractMenuActivity {
         editor.putString("ref", ref);
         editor.putString("last4", last4);
         editor.commit();
+        SharedPreferences pref = getSharedPreferences("MyPref", MODE_PRIVATE);
+        String appointment_id =pref.getString("appointment_id", null);
+        String consultation_fee =pref.getString("consultation_fee", null);
+        String currency =pref.getString("currency", null);
+        //showToastMessage("Data :" + ref + appointment_id + consultation_fee + currency);
+        TeleConsultationPaymentMapper mapper= new TeleConsultationPaymentMapper(appointment_id,ref,consultation_fee,currency);
+        mapper.setOnTeleConsultationPaymentListener(new TeleConsultationPaymentMapper.TeleConsultationPaymentListener() {
+            @Override
+            public void teleConsultationPayment(AbstractResponse response, String errorMessage) {
+                if(!isValidResponse(response,errorMessage,true,false))
+                {
+                    return;
+                }
+                showMyDialog("Success", response.getStatusMessage(), "Ok", new ApiErrorDialogInterface() {
+                    @Override
+                    public void onCloseClick() {
+
+                    }
+
+                    @Override
+                    public void retryClick() {
+                      /* if(getIntent()!=null && getIntent().getBooleanExtra(CancelAppointmentActivity.IS_FROM_APPOINTMENT_LIST_KEY,false))
+                       {*/ setResult(RESULT_OK);
+                        finish();
+                    }
+                      /* else {
+                           callDashboard();
+                           finish();
+                       }*/
+                    // }
+                });
+            }
+        });
     }
 
     public void closeWindow(View view){

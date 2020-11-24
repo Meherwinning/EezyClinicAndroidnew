@@ -140,6 +140,11 @@ public class TeleConsultationPaymentReviewActivity extends AbstractMenuActivity 
         String currency = teleConsultation.getconsultancyFeeCurrency();
         if(currency.equals("AED")) {
             MyApplication.getCurrentActivityContext().startActivity(intent);
+            SharedPreferences.Editor editor = getSharedPreferences("MyPref", MODE_PRIVATE).edit();
+            editor.putString("appointment_id", teleConsultation.getPatenetRandomId());
+            editor.putString("consultation_fee", consultation_fee);
+            editor.putString("currency", currency);
+            editor.apply();
         }else {
             MyApplication.getCurrentActivityContext().startActivity(new Intent(this, StripCheckoutActivityJava.class));
         }
@@ -223,7 +228,7 @@ public class TeleConsultationPaymentReviewActivity extends AbstractMenuActivity 
        // tran.setType("sale");
         tran.setClazz("paypage");                       // Transaction class only 'paypage' is allowed on mobile, which means 'use the hosted payment page to capture and process the card details'
         tran.setCartid(String.valueOf(new BigInteger(128, new Random()))); //// Transaction cart ID : An example use of the cart ID field would be your own transaction or order reference.
-        tran.setDescription("Test Mobile API");         // Transaction description
+        tran.setDescription(teleConsultation.getPatenetRandomId());         // Transaction description
         tran.setCurrency("AED");                        // Transaction currency : Currency must be sent as a 3 character ISO code. A list of currency codes can be found at the end of this document. For voids or refunds, this must match the currency of the original transaction.
         tran.setAmount(consultation_fee);                         // Transaction amount : The transaction amount must be sent in major units, for example 9 dollars 50 cents must be sent as 9.50 not 950. There must be no currency symbol, and no thousands separators. Thedecimal part must be separated using a dot.
         tran.setVersion("1.2");
@@ -233,21 +238,21 @@ public class TeleConsultationPaymentReviewActivity extends AbstractMenuActivity 
         mobile.setTran(tran);
         Billing billing = new Billing();
         Address address = new Address();
-        address.setCity("Dubai");                       // City : the minimum required details for a transaction to be processed
-        address.setCountry("AE");                       // Country : Country must be sent as a 2 character ISO code. A list of country codes can be found at the end of this document. the minimum required details for a transaction to be processed
-        address.setRegion("Dubai");                     // Region
-        address.setLine1("SIT G=Towe");                 // Street address – line 1: the minimum required details for a transaction to be processed
+        address.setCity(teleConsultation.getCity());                       // City : the minimum required details for a transaction to be processed
+        address.setCountry(teleConsultation.getCountry());                       // Country : Country must be sent as a 2 character ISO code. A list of country codes can be found at the end of this document. the minimum required details for a transaction to be processed
+        address.setRegion("");                     // Region
+        address.setLine1(teleConsultation.getAddress());                 // Street address – line 1: the minimum required details for a transaction to be processed
         //address.setLine2("SIT G=Towe");               // (Optinal)
         //address.setLine3("SIT G=Towe");               // (Optinal)
         //address.setZip("SIT G=Towe");                 // (Optinal)
         billing.setAddress(address);
         Name name = new Name();
-        name.setFirst("Meher Babu");                          // Forename : the minimum required details for a transaction to be processed
-        name.setLast("Babu");                          // Surname : the minimum required details for a transaction to be processed
+        name.setFirst(teleConsultation.getPatientName());                          // Forename : the minimum required details for a transaction to be processed
+        name.setLast("");                          // Surname : the minimum required details for a transaction to be processed
         name.setTitle("Mr");                           // Title
         billing.setName(name);
-        billing.setEmail("meherbabu@yopmail.com");                 // TODO: Insert your email here : the minimum required details for a transaction to be processed.
-        billing.setPhone("588519952");                // Phone number, required if enabled in your merchant dashboard.
+        billing.setEmail(teleConsultation.getpatentEmail());    // TODO: Insert your email here : the minimum required details for a transaction to be processed.
+        billing.setPhone(teleConsultation.getMobile());                // Phone number, required if enabled in your merchant dashboard.
         mobile.setBilling(billing);
         return mobile;
 
